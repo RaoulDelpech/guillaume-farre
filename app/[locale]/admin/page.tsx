@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import type { PhotoMetadata } from "@/lib/admin/photo-manager";
+import AIAnalysisPanel from "@/components/admin/AIAnalysisPanel";
 
 export default function AdminPage() {
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
@@ -199,11 +200,26 @@ export default function AdminPage() {
                 <option value="origins">Origins</option>
               </select>
 
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', marginBottom: '15px' }}>
                 <input type="checkbox" checked={photo.forSale}
                   onChange={(e) => updatePhoto(globalIndex, { forSale: e.target.checked })} />
                 <span>💰 À vendre</span>
               </label>
+
+              {/* AI Analysis Button */}
+              <AIAnalysisPanel
+                photoFilename={photo.filename}
+                category={photo.category}
+                currentPrice={photo.price}
+                onApplySuggestions={(suggestions) => {
+                  updatePhoto(globalIndex, {
+                    price: suggestions.price,
+                    forSale: true,
+                    limitedEdition: suggestions.isLimitedEdition,
+                    editionCount: suggestions.editionNumber
+                  });
+                }}
+              />
             </div>
           );
         })}

@@ -74,17 +74,8 @@
   }
 }
 
-/* Images plein cadre avec marges blanches uniformes */
-img { display: block; width: 100%; height: auto; box-shadow: none !important; }
-
-/* Marges blanches uniformes sur toutes les images de la galerie */
-.masonry-item img,
-.grid img,
-article img,
-section img {
-  border: 3px solid white;
-  box-sizing: border-box;
-}
+/* Images plein cadre sans bordures */
+img { display: block; width: 100%; height: auto; box-shadow: none !important; border: none !important; }
 
 /* Masonry helper classes (CSS columns) */
 .masonry { column-gap: 1rem; }

@@ -34,13 +34,11 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
               className="group block w-full border-0 outline-none bg-transparent p-0 cursor-pointer"
               onClick={() => { setSelectedSlug(w.slug); setOpen(true); }}
             >
-              <div className={index % 2 === 0 ? 'border-4 border-white p-2' : ''}>
-                {primaryImage(w) ? (
-                  <img src={primaryImage(w)!} alt={altForWork(w)} loading="lazy" className="w-full h-auto block" />
-                ) : (
-                  <div className="w-full h-48 rounded-md bg-muted" />
-                )}
-              </div>
+              {primaryImage(w) ? (
+                <img src={primaryImage(w)!} alt={altForWork(w)} loading="lazy" className="w-full h-auto block" />
+              ) : (
+                <div className="w-full h-48 rounded-md bg-muted" />
+              )}
             </button>
             <div className="mt-2 md:mt-3">
               <Link href={`/galerie-item/${w.slug}`} className="text-sm md:text-base font-medium hover:underline block truncate">{w.title}</Link>

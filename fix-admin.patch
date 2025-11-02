@@ -1,0 +1,16 @@
+--- a/app/[locale]/admin/page.tsx
++++ b/app/[locale]/admin/page.tsx
+@@ -235,10 +235,13 @@
+           <button
+             onClick={savePhotos}
+             disabled={saving}
+-            className="bg-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 font-bold text-lg flex items-center gap-2"
++            className="bg-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:bg-blue-700 font-bold text-lg flex items-center gap-2">
+             {saving ? '⏳ Sauvegarde...' : '💾 Sauvegarder tout'}
+           </button>
+         </div>
+       )}
++      </div>
+     </div>
+     </AdminAuth>
+   );

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import PhotoCard from "@/components/admin/PhotoCard";
 import AdminAuth from "@/components/admin/AdminAuth";
 import type { PhotoMetadata } from "@/lib/admin/photo-manager";
-import Navigation from "@/components/navigation/Navigation";
 
 export default function AdminPage() {
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
@@ -100,8 +99,6 @@ export default function AdminPage() {
   return (
     <AdminAuth>
       <div className="min-h-screen bg-black">
-        <Navigation />
-
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">

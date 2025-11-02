@@ -215,8 +215,10 @@ export default function AdminPage() {
                   updatePhoto(globalIndex, {
                     price: suggestions.price,
                     forSale: true,
-                    limitedEdition: suggestions.isLimitedEdition,
-                    editionCount: suggestions.editionNumber
+                    edition: {
+                      type: suggestions.isLimitedEdition ? 'limited' : 'open',
+                      count: suggestions.editionNumber
+                    }
                   });
                 }}
               />

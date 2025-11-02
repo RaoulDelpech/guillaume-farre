@@ -5,7 +5,7 @@
     "boutique": "Boutique",
     "histoire": "Histoire",
     "atelier": "Atelier",
-    "conceptCarArt": "Concept car art",
+    "conceptCarArt": "Ferrari Live",
     "presse": "Presse",
     "contact": "Contact",
     "panier": "Panier"
@@ -19,15 +19,15 @@
     },
     "atelier": {
       "title": "L'atelier",
-      "subtitle": "Guillaume Farré — Au milieu des voitures",
-      "description": "L'atelier réunit les véhicules, les outils, la matière. Guillaume Farré au milieu de ses deux voitures grises, instruments de création. C'est ici que le mouvement devient forme.",
+      "subtitle": "Guillaume Farré — Au milieu des Ferrari",
+      "description": "L'atelier réunit les véhicules, les outils, la matière. Quatre Ferrari, instruments de création. C'est ici que le mouvement automobile devient art.",
       "cta": "Découvrir l'atelier"
     },
     "creations": {
-      "title": "Deux créations distinctes",
+      "title": "Deux créations",
       "subtitle": "Toiles & Photographies",
-      "description": "Les toiles sont des œuvres uniques créées par le mouvement. Les photographies documentent ces instants de création, figent l'énergie du geste, et deviennent elles-mêmes des œuvres en édition limitée.",
-      "cta": "Comprendre la démarche"
+      "description": "Les Ferrari et la Dino peignent sous mes impulsions, comme un chef d'orchestre dirige ses musiciens. Les toiles sont des œuvres uniques. Les photographies capturent l'instant où la voiture crée l'œuvre.",
+      "cta": "La démarche"
     },
     "photographies": {
       "title": "Les photographies",
@@ -36,16 +36,16 @@
       "cta": "Voir la galerie"
     },
     "conceptCarArt": {
-      "title": "Concept Car Art",
+      "title": "Ferrari Live Performance",
       "subtitle": "Quand l'automobile devient pinceau",
-      "description": "Un événement unique où la Ferrari rouge rejoint la petite voiture n°20. L'atelier ouvre ses portes pour une performance live.",
+      "description": "Un événement unique où les Ferrari créent en direct. L'atelier ouvre ses portes pour une performance live exceptionnelle.",
       "cta": "Découvrir l'événement"
     },
     "acquerir": {
       "title": "Acquérir une œuvre",
       "subtitle": "Éditions numérotées et signées",
-      "description": "Photographies : formats A4, A3, A2 — Encadrement noir ou alu — À partir de 2000€. Toiles : sur rendez-vous à l'atelier.",
-      "cta": "Acheter un tirage"
+      "description": "Photographies en éditions limitées ou ouvertes — Multiples formats disponibles — Encadrement professionnel. Toiles uniques sur rendez-vous à l'atelier.",
+      "cta": "Découvrir la boutique"
     },
     "histoire": {
       "title": "L'histoire",
@@ -58,8 +58,8 @@
   },
   "home": {
     "nextEvent": "Prochain évènement :",
-    "conceptCarArt": "Concept Car Art",
-    "livePerformance": "Performance live à l'atelier",
+    "conceptCarArt": "Ferrari Live Performance",
+    "livePerformance": "Les Ferrari créent en direct à l'atelier",
     "selectionTitle": "Galerie — Sélection",
     "shopTitle": "Boutique — Nouveautés"
   },

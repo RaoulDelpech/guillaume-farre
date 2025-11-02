@@ -5,7 +5,7 @@
     "boutique": "Negozio",
     "histoire": "Storia",
     "atelier": "Laboratorio",
-    "conceptCarArt": "Concept car art",
+    "conceptCarArt": "Ferrari Live",
     "presse": "Stampa",
     "contact": "Contatto",
     "panier": "Carrello"
@@ -19,15 +19,15 @@
     },
     "atelier": {
       "title": "Il laboratorio",
-      "subtitle": "Guillaume Farré — In mezzo alle auto",
-      "description": "Il laboratorio riunisce veicoli, strumenti e materiali. Guillaume Farré tra le sue due auto grigie, strumenti di creazione. È qui che il movimento diventa forma.",
+      "subtitle": "Guillaume Farré — In mezzo alle Ferrari",
+      "description": "Il laboratorio riunisce veicoli, strumenti e materiali. Quattro Ferrari, strumenti di creazione. È qui che il movimento automobilistico diventa arte.",
       "cta": "Scopri il laboratorio"
     },
     "creations": {
-      "title": "Due creazioni distinte",
+      "title": "Due creazioni",
       "subtitle": "Tele e Fotografie",
-      "description": "Le tele sono opere uniche create dal movimento. Le fotografie documentano questi istanti di creazione, congelano l'energia del gesto e diventano opere in edizione limitata.",
-      "cta": "Comprendere l'approccio"
+      "description": "Le Ferrari e la Dino dipingono sotto i miei impulsi, come un direttore d'orchestra guida i suoi musicisti. Le tele sono opere uniche. Le fotografie catturano l'istante in cui l'auto crea l'opera.",
+      "cta": "L'approccio"
     },
     "photographies": {
       "title": "Le fotografie",
@@ -36,16 +36,16 @@
       "cta": "Visualizza la galleria"
     },
     "conceptCarArt": {
-      "title": "Concept Car Art",
+      "title": "Ferrari Live Performance",
       "subtitle": "Quando l'automobile diventa pennello",
-      "description": "Un evento unico in cui la Ferrari rossa si unisce alla piccola auto n°20. Il laboratorio apre le porte per una performance dal vivo.",
+      "description": "Un evento unico in cui le Ferrari creano dal vivo. Il laboratorio apre le porte per una performance live eccezionale.",
       "cta": "Scopri l'evento"
     },
     "acquerir": {
       "title": "Acquisire un'opera",
       "subtitle": "Edizioni numerate e firmate",
-      "description": "Fotografie: formati A4, A3, A2 — Cornici nere o in alluminio — A partire da 2000€. Tele: su appuntamento al laboratorio.",
-      "cta": "Acquista una stampa"
+      "description": "Fotografie in edizioni limitate o aperte — Diversi formati disponibili — Cornici professionali. Tele uniche su appuntamento al laboratorio.",
+      "cta": "Scopri il negozio"
     },
     "histoire": {
       "title": "La storia",
@@ -58,8 +58,8 @@
   },
   "home": {
     "nextEvent": "Prossimo evento:",
-    "conceptCarArt": "Concept Car Art",
-    "livePerformance": "Performance dal vivo al laboratorio",
+    "conceptCarArt": "Ferrari Live Performance",
+    "livePerformance": "Le Ferrari creano dal vivo al laboratorio",
     "selectionTitle": "Galleria — Selezione",
     "shopTitle": "Negozio — Novità"
   },

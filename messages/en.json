@@ -5,7 +5,7 @@
     "boutique": "Shop",
     "histoire": "Story",
     "atelier": "Workshop",
-    "conceptCarArt": "Concept car art",
+    "conceptCarArt": "Ferrari Live",
     "presse": "Press",
     "contact": "Contact",
     "panier": "Cart"
@@ -19,15 +19,15 @@
     },
     "atelier": {
       "title": "The workshop",
-      "subtitle": "Guillaume Farré — Among the cars",
-      "description": "The workshop brings together vehicles, tools, and materials. Guillaume Farré among his two grey cars, instruments of creation. This is where movement becomes form.",
+      "subtitle": "Guillaume Farré — Among the Ferraris",
+      "description": "The workshop brings together vehicles, tools, and materials. Four Ferraris, instruments of creation. This is where automotive movement becomes art.",
       "cta": "Discover the workshop"
     },
     "creations": {
-      "title": "Two distinct creations",
+      "title": "Two creations",
       "subtitle": "Canvases & Photographs",
-      "description": "The canvases are unique works created by movement. The photographs document these moments of creation, freeze the energy of the gesture, and become works themselves in limited editions.",
-      "cta": "Understand the approach"
+      "description": "The Ferraris and the Dino paint under my impulses, like a conductor directing musicians. The canvases are unique works. The photographs capture the instant when the car creates the artwork.",
+      "cta": "The approach"
     },
     "photographies": {
       "title": "The photographs",
@@ -36,16 +36,16 @@
       "cta": "View the gallery"
     },
     "conceptCarArt": {
-      "title": "Concept Car Art",
+      "title": "Ferrari Live Performance",
       "subtitle": "When the automobile becomes a brush",
-      "description": "A unique event where the red Ferrari joins the small car n°20. The workshop opens its doors for a live performance.",
+      "description": "A unique event where Ferraris create live. The workshop opens its doors for an exceptional live performance.",
       "cta": "Discover the event"
     },
     "acquerir": {
       "title": "Acquire a work",
       "subtitle": "Numbered and signed editions",
-      "description": "Photographs: A4, A3, A2 formats — Black or aluminum framing — From 2000€. Canvases: by appointment at the workshop.",
-      "cta": "Buy a print"
+      "description": "Photographs in limited or open editions — Multiple formats available — Professional framing. Unique canvases by appointment at the workshop.",
+      "cta": "Discover the shop"
     },
     "histoire": {
       "title": "The story",
@@ -58,8 +58,8 @@
   },
   "home": {
     "nextEvent": "Next event:",
-    "conceptCarArt": "Concept Car Art",
-    "livePerformance": "Live performance at the workshop",
+    "conceptCarArt": "Ferrari Live Performance",
+    "livePerformance": "Ferraris create live at the workshop",
     "selectionTitle": "Gallery — Selection",
     "shopTitle": "Shop — New arrivals"
   },

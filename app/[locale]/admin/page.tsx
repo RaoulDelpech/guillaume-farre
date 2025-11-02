@@ -18,13 +18,40 @@ export default function AdminPage() {
 
   async function loadPhotos() {
     try {
+      console.log('🔄 Chargement des photos...');
       const response = await fetch('/api/admin/photos');
       const data = await response.json();
+      console.log('📸 Photos reçues:', data.length, 'photos');
+      console.log('📁 Première photo:', data[0]);
       setPhotos(data);
     } catch (error) {
-      console.error('Error loading photos:', error);
+      console.error('❌ Error loading photos:', error);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    const formData = new FormData();
+    Array.from(files).forEach(file => {
+      formData.append('files', file);
+    });
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      console.log('✅ Upload réussi:', result);
+      alert(`✅ ${result.files.length} photo(s) uploadée(s) ! Cliquez sur Actualiser.`);
+      loadPhotos(); // Recharger les photos
+    } catch (error) {
+      console.error('❌ Upload error:', error);
+      alert('❌ Erreur lors de l\'upload');
     }
   }
 
@@ -169,6 +196,18 @@ export default function AdminPage() {
             >
               🔄 Actualiser
             </button>
+
+            {/* Upload Button */}
+            <label className="px-6 py-2 rounded-lg bg-green-600 text-white font-bold hover:bg-green-500 border-2 border-green-400 shadow-lg cursor-pointer">
+              📤 Upload Photos
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleUpload}
+                className="hidden"
+              />
+            </label>
 
             <div className="flex-1" />
 

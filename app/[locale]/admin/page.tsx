@@ -99,7 +99,7 @@ export default function AdminPage() {
 
   return (
     <AdminAuth>
-      <div className="min-h-screen bg-gray-900">
+      <div className="min-h-screen bg-black">
         <Navigation />
 
       <div className="container mx-auto px-4 py-8">
@@ -113,34 +113,34 @@ export default function AdminPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
-            <div className="text-2xl font-bold text-white">{stats.total}</div>
-            <div className="text-sm text-gray-400">Total photos</div>
+          <div className="bg-gray-900 p-4 rounded-lg border-2 border-gray-600">
+            <div className="text-3xl font-bold text-white">{stats.total}</div>
+            <div className="text-sm text-gray-300">Total photos</div>
           </div>
-          <div className="bg-green-900 p-4 rounded-lg border border-green-700">
-            <div className="text-2xl font-bold text-green-400">{stats.visible}</div>
-            <div className="text-sm text-green-300">Visibles</div>
+          <div className="bg-green-950 p-4 rounded-lg border-2 border-green-600">
+            <div className="text-3xl font-bold text-green-300">{stats.visible}</div>
+            <div className="text-sm text-green-200">Visibles</div>
           </div>
-          <div className="bg-red-900 p-4 rounded-lg border border-red-700">
-            <div className="text-2xl font-bold text-red-400">{stats.hidden}</div>
-            <div className="text-sm text-red-300">Masquées</div>
+          <div className="bg-red-950 p-4 rounded-lg border-2 border-red-600">
+            <div className="text-3xl font-bold text-red-300">{stats.hidden}</div>
+            <div className="text-sm text-red-200">Masquées</div>
           </div>
-          <div className="bg-blue-900 p-4 rounded-lg border border-blue-700">
-            <div className="text-2xl font-bold text-blue-400">{stats.forSale}</div>
-            <div className="text-sm text-blue-300">À la vente</div>
+          <div className="bg-blue-950 p-4 rounded-lg border-2 border-blue-600">
+            <div className="text-3xl font-bold text-blue-300">{stats.forSale}</div>
+            <div className="text-sm text-blue-200">À la vente</div>
           </div>
         </div>
 
         {/* Filters & Actions */}
-        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 mb-6 sticky top-16 z-30 shadow-lg">
+        <div className="bg-gray-950 p-4 rounded-lg border-2 border-gray-600 mb-6 sticky top-16 z-30 shadow-xl">
           <div className="flex flex-wrap items-center gap-4">
             {/* Category Filter */}
             <div>
-              <label className="text-sm text-gray-300 mr-2">Catégorie:</label>
+              <label className="text-sm text-gray-100 mr-2 font-semibold">Catégorie:</label>
               <select
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
-                className="px-3 py-2 border border-gray-600 rounded bg-gray-700 text-white"
+                className="px-4 py-2 border-2 border-gray-500 rounded-lg bg-gray-900 text-white font-medium"
               >
                 <option value="all">Toutes ({photos.length})</option>
                 {categories.map(cat => (
@@ -153,11 +153,11 @@ export default function AdminPage() {
 
             {/* Visibility Filter */}
             <div>
-              <label className="text-sm text-gray-300 mr-2">Affichage:</label>
+              <label className="text-sm text-gray-100 mr-2 font-semibold">Affichage:</label>
               <select
                 value={filterVisibility}
                 onChange={(e) => setFilterVisibility(e.target.value)}
-                className="px-3 py-2 border border-gray-600 rounded bg-gray-700 text-white"
+                className="px-4 py-2 border-2 border-gray-500 rounded-lg bg-gray-900 text-white font-medium"
               >
                 <option value="all">Toutes</option>
                 <option value="visible">Visibles uniquement</option>
@@ -168,7 +168,7 @@ export default function AdminPage() {
             {/* Refresh Button */}
             <button
               onClick={loadPhotos}
-              className="px-4 py-2 rounded bg-gray-700 text-white hover:bg-gray-600 border border-gray-600"
+              className="px-6 py-2 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-500 border-2 border-blue-400 shadow-lg"
             >
               🔄 Actualiser
             </button>

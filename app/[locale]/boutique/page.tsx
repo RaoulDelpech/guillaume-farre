@@ -7,7 +7,7 @@ export default async function BoutiquePage() {
   const t = await getTranslations("shop");
 
   // Load all photos marked as for sale
-  let photosForSale = [];
+  let photosForSale: any[] = [];
   try {
     const allPhotos = await loadPhotoMetadata();
     photosForSale = allPhotos.filter(photo => photo.visible && photo.forSale);

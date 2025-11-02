@@ -11,11 +11,41 @@
     "panier": "Panier"
   },
   "hero": {
+    "origine": {
+      "title": "L'origine",
+      "subtitle": "Enfant, une petite voiture n°20",
+      "description": "Je verse la couleur et je roule. La roue fait pinceau.",
+      "cta": "Découvrir l'histoire"
+    },
     "atelier": {
       "title": "L'atelier",
       "subtitle": "Guillaume Farré — Au milieu des voitures",
       "description": "L'atelier réunit les véhicules, les outils, la matière. Guillaume Farré au milieu de ses deux voitures grises, instruments de création. C'est ici que le mouvement devient forme.",
       "cta": "Découvrir l'atelier"
+    },
+    "creations": {
+      "title": "Deux créations distinctes",
+      "subtitle": "Toiles & Photographies",
+      "description": "Les toiles sont des œuvres uniques créées par le mouvement. Les photographies documentent ces instants de création, figent l'énergie du geste, et deviennent elles-mêmes des œuvres en édition limitée.",
+      "cta": "Comprendre la démarche"
+    },
+    "photographies": {
+      "title": "Les photographies",
+      "subtitle": "Capturer l'instant créatif",
+      "description": "Tirages pigmentaires d'art — Éditions limitées et ouvertes — La photographie fixe l'instant où le mouvement fabrique l'image.",
+      "cta": "Voir la galerie"
+    },
+    "conceptCarArt": {
+      "title": "Concept Car Art",
+      "subtitle": "Quand l'automobile devient pinceau",
+      "description": "Un événement unique où la Ferrari rouge rejoint la petite voiture n°20. L'atelier ouvre ses portes pour une performance live.",
+      "cta": "Découvrir l'événement"
+    },
+    "acquerir": {
+      "title": "Acquérir une œuvre",
+      "subtitle": "Éditions numérotées et signées",
+      "description": "Photographies : formats A4, A3, A2 — Encadrement noir ou alu — À partir de 2000€. Toiles : sur rendez-vous à l'atelier.",
+      "cta": "Acheter un tirage"
     },
     "histoire": {
       "title": "L'histoire",
@@ -23,12 +53,8 @@
       "description": "Du carnet de croquis aux sculptures monumentales, retracez le parcours artistique de Guillaume Farré. Une vie dédiée à capturer le mouvement automobile.",
       "cta": "Découvrir l'histoire"
     },
-    "galerie": {
-      "title": "La galerie",
-      "subtitle": "Guillaume Farré — Sculptures et créations",
-      "description": "Explorez l'univers créatif de Guillaume Farré à travers ses sculptures automobiles. Chaque pièce raconte une histoire de vitesse, de forme et d'émotion.",
-      "cta": "Découvrir la galerie"
-    }
+    "galerie": "Galerie",
+    "boutique": "Boutique"
   },
   "home": {
     "nextEvent": "Prochain évènement :",

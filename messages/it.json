@@ -11,11 +11,41 @@
     "panier": "Carrello"
   },
   "hero": {
+    "origine": {
+      "title": "L'origine",
+      "subtitle": "Da bambino, una piccola auto n°20",
+      "description": "Verso il colore e rotolo. La ruota diventa pennello.",
+      "cta": "Scopri la storia"
+    },
     "atelier": {
       "title": "Il laboratorio",
       "subtitle": "Guillaume Farré — In mezzo alle auto",
       "description": "Il laboratorio riunisce veicoli, strumenti e materiali. Guillaume Farré tra le sue due auto grigie, strumenti di creazione. È qui che il movimento diventa forma.",
       "cta": "Scopri il laboratorio"
+    },
+    "creations": {
+      "title": "Due creazioni distinte",
+      "subtitle": "Tele e Fotografie",
+      "description": "Le tele sono opere uniche create dal movimento. Le fotografie documentano questi istanti di creazione, congelano l'energia del gesto e diventano opere in edizione limitata.",
+      "cta": "Comprendere l'approccio"
+    },
+    "photographies": {
+      "title": "Le fotografie",
+      "subtitle": "Catturare l'istante creativo",
+      "description": "Stampe d'arte a pigmenti — Edizioni limitate e aperte — La fotografia cattura l'istante in cui il movimento crea l'immagine.",
+      "cta": "Visualizza la galleria"
+    },
+    "conceptCarArt": {
+      "title": "Concept Car Art",
+      "subtitle": "Quando l'automobile diventa pennello",
+      "description": "Un evento unico in cui la Ferrari rossa si unisce alla piccola auto n°20. Il laboratorio apre le porte per una performance dal vivo.",
+      "cta": "Scopri l'evento"
+    },
+    "acquerir": {
+      "title": "Acquisire un'opera",
+      "subtitle": "Edizioni numerate e firmate",
+      "description": "Fotografie: formati A4, A3, A2 — Cornici nere o in alluminio — A partire da 2000€. Tele: su appuntamento al laboratorio.",
+      "cta": "Acquista una stampa"
     },
     "histoire": {
       "title": "La storia",
@@ -23,12 +53,8 @@
       "description": "Dai quaderni di schizzi alle sculture monumentali, ripercorri il percorso artistico di Guillaume Farré. Una vita dedicata a catturare il movimento automobilistico.",
       "cta": "Scopri la storia"
     },
-    "galerie": {
-      "title": "La galleria",
-      "subtitle": "Guillaume Farré — Sculture e creazioni",
-      "description": "Esplora l'universo creativo di Guillaume Farré attraverso le sue sculture automobilistiche. Ogni pezzo racconta una storia di velocità, forma ed emozione.",
-      "cta": "Scopri la galleria"
-    }
+    "galerie": "Galleria",
+    "boutique": "Negozio"
   },
   "home": {
     "nextEvent": "Prossimo evento:",

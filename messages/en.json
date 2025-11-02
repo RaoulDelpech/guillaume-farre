@@ -11,11 +11,41 @@
     "panier": "Cart"
   },
   "hero": {
+    "origine": {
+      "title": "The origin",
+      "subtitle": "As a child, a small car n°20",
+      "description": "I pour the color and I roll. The wheel becomes a brush.",
+      "cta": "Discover the story"
+    },
     "atelier": {
       "title": "The workshop",
       "subtitle": "Guillaume Farré — Among the cars",
       "description": "The workshop brings together vehicles, tools, and materials. Guillaume Farré among his two grey cars, instruments of creation. This is where movement becomes form.",
       "cta": "Discover the workshop"
+    },
+    "creations": {
+      "title": "Two distinct creations",
+      "subtitle": "Canvases & Photographs",
+      "description": "The canvases are unique works created by movement. The photographs document these moments of creation, freeze the energy of the gesture, and become works themselves in limited editions.",
+      "cta": "Understand the approach"
+    },
+    "photographies": {
+      "title": "The photographs",
+      "subtitle": "Capturing the creative instant",
+      "description": "Fine art pigment prints — Limited and open editions — Photography captures the instant when movement creates the image.",
+      "cta": "View the gallery"
+    },
+    "conceptCarArt": {
+      "title": "Concept Car Art",
+      "subtitle": "When the automobile becomes a brush",
+      "description": "A unique event where the red Ferrari joins the small car n°20. The workshop opens its doors for a live performance.",
+      "cta": "Discover the event"
+    },
+    "acquerir": {
+      "title": "Acquire a work",
+      "subtitle": "Numbered and signed editions",
+      "description": "Photographs: A4, A3, A2 formats — Black or aluminum framing — From 2000€. Canvases: by appointment at the workshop.",
+      "cta": "Buy a print"
     },
     "histoire": {
       "title": "The story",
@@ -23,12 +53,8 @@
       "description": "From sketchbooks to monumental sculptures, trace Guillaume Farré's artistic journey. A life dedicated to capturing automotive movement.",
       "cta": "Discover the story"
     },
-    "galerie": {
-      "title": "The gallery",
-      "subtitle": "Guillaume Farré — Sculptures and creations",
-      "description": "Explore Guillaume Farré's creative universe through his automotive sculptures. Each piece tells a story of speed, form, and emotion.",
-      "cta": "Discover the gallery"
-    }
+    "galerie": "Gallery",
+    "boutique": "Shop"
   },
   "home": {
     "nextEvent": "Next event:",

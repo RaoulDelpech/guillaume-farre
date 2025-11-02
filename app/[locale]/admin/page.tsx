@@ -99,48 +99,48 @@ export default function AdminPage() {
 
   return (
     <AdminAuth>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-900">
         <Navigation />
 
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Administration des Photos</h1>
-          <p className="text-gray-600">
+          <h1 className="text-3xl font-bold mb-2 text-white">Administration des Photos</h1>
+          <p className="text-gray-400">
             Gérez toutes vos photos : visibilité, catégories, prix, et éditions
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg border">
-            <div className="text-2xl font-bold">{stats.total}</div>
-            <div className="text-sm text-gray-600">Total photos</div>
+          <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+            <div className="text-2xl font-bold text-white">{stats.total}</div>
+            <div className="text-sm text-gray-400">Total photos</div>
           </div>
-          <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-            <div className="text-2xl font-bold text-green-700">{stats.visible}</div>
-            <div className="text-sm text-gray-600">Visibles</div>
+          <div className="bg-green-900 p-4 rounded-lg border border-green-700">
+            <div className="text-2xl font-bold text-green-400">{stats.visible}</div>
+            <div className="text-sm text-green-300">Visibles</div>
           </div>
-          <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-            <div className="text-2xl font-bold text-red-700">{stats.hidden}</div>
-            <div className="text-sm text-gray-600">Masquées</div>
+          <div className="bg-red-900 p-4 rounded-lg border border-red-700">
+            <div className="text-2xl font-bold text-red-400">{stats.hidden}</div>
+            <div className="text-sm text-red-300">Masquées</div>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-            <div className="text-2xl font-bold text-blue-700">{stats.forSale}</div>
-            <div className="text-sm text-gray-600">À la vente</div>
+          <div className="bg-blue-900 p-4 rounded-lg border border-blue-700">
+            <div className="text-2xl font-bold text-blue-400">{stats.forSale}</div>
+            <div className="text-sm text-blue-300">À la vente</div>
           </div>
         </div>
 
         {/* Filters & Actions */}
-        <div className="bg-white p-4 rounded-lg border mb-6 sticky top-16 z-30 shadow-sm">
+        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 mb-6 sticky top-16 z-30 shadow-lg">
           <div className="flex flex-wrap items-center gap-4">
             {/* Category Filter */}
             <div>
-              <label className="text-sm text-gray-600 mr-2">Catégorie:</label>
+              <label className="text-sm text-gray-300 mr-2">Catégorie:</label>
               <select
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
-                className="px-3 py-2 border rounded"
+                className="px-3 py-2 border border-gray-600 rounded bg-gray-700 text-white"
               >
                 <option value="all">Toutes ({photos.length})</option>
                 {categories.map(cat => (
@@ -153,17 +153,25 @@ export default function AdminPage() {
 
             {/* Visibility Filter */}
             <div>
-              <label className="text-sm text-gray-600 mr-2">Affichage:</label>
+              <label className="text-sm text-gray-300 mr-2">Affichage:</label>
               <select
                 value={filterVisibility}
                 onChange={(e) => setFilterVisibility(e.target.value)}
-                className="px-3 py-2 border rounded"
+                className="px-3 py-2 border border-gray-600 rounded bg-gray-700 text-white"
               >
                 <option value="all">Toutes</option>
                 <option value="visible">Visibles uniquement</option>
                 <option value="hidden">Masquées uniquement</option>
               </select>
             </div>
+
+            {/* Refresh Button */}
+            <button
+              onClick={loadPhotos}
+              className="px-4 py-2 rounded bg-gray-700 text-white hover:bg-gray-600 border border-gray-600"
+            >
+              🔄 Actualiser
+            </button>
 
             <div className="flex-1" />
 
@@ -185,7 +193,7 @@ export default function AdminPage() {
         {/* Photos by Category */}
         {categories.map(category => (
           <div key={category} className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 capitalize">
+            <h2 className="text-2xl font-bold mb-4 capitalize text-white">
               {category} ({photosByCategory[category].length})
             </h2>
 
@@ -205,8 +213,8 @@ export default function AdminPage() {
         ))}
 
         {filteredPhotos.length === 0 && (
-          <div className="text-center py-12 text-gray-500">
-            Aucune photo trouvée avec ces filtres
+          <div className="text-center py-12 text-gray-400">
+            Aucune photo trouvée avec ces filtres. Cliquez sur "🔄 Actualiser" pour recharger.
           </div>
         )}
       </div>

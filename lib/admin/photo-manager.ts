@@ -24,33 +24,67 @@ export interface PhotosByCategory {
 // Scan all photos in the public directory
 export async function scanAllPhotos(): Promise<PhotosByCategory> {
   const photosByCategory: PhotosByCategory = {};
-  const baseDir = path.join(process.cwd(), 'public', 'images', 'works');
+  const publicDir = path.join(process.cwd(), 'public');
 
-  try {
-    const categories = await fs.readdir(baseDir);
+  // Liste des dossiers à scanner
+  const dirsToScan = [
+    { path: path.join(publicDir, 'images', 'works'), prefix: '/images/works/' },
+    { path: path.join(publicDir, 'images', 'origins'), prefix: '/images/origins/' },
+    { path: path.join(publicDir, 'uploads-preview'), prefix: '/uploads-preview/' },
+  ];
 
-    for (const category of categories) {
-      const categoryPath = path.join(baseDir, category);
-      const stat = await fs.stat(categoryPath);
+  for (const dir of dirsToScan) {
+    try {
+      const stat = await fs.stat(dir.path);
 
       if (stat.isDirectory()) {
-        const files = await fs.readdir(categoryPath);
-        const photos = files
-          .filter(file => /\.(jpg|jpeg|png)$/i.test(file))
-          .map(file => ({
-            filename: file,
-            path: `/images/works/${category}/${file}`,
-            category,
-            visible: true, // Par défaut visible
-            forSale: false,
-            isNumberedSeries: false,
-          }));
+        // Si c'est un dossier avec des sous-catégories (comme works)
+        const items = await fs.readdir(dir.path);
 
-        photosByCategory[category] = photos;
+        for (const item of items) {
+          const itemPath = path.join(dir.path, item);
+          const itemStat = await fs.stat(itemPath);
+
+          if (itemStat.isDirectory()) {
+            // Sous-catégorie (ex: works/atelier)
+            const files = await fs.readdir(itemPath);
+            const photos = files
+              .filter(file => /\.(jpg|jpeg|png|webp)$/i.test(file))
+              .map(file => ({
+                filename: file,
+                path: `${dir.prefix}${item}/${file}`,
+                category: item,
+                visible: true,
+                forSale: false,
+                isNumberedSeries: false,
+              }));
+
+            if (!photosByCategory[item]) {
+              photosByCategory[item] = [];
+            }
+            photosByCategory[item].push(...photos);
+          } else if (/\.(jpg|jpeg|png|webp)$/i.test(item)) {
+            // Fichier direct (ex: uploads-preview/photo.jpg)
+            const categoryName = dir.path.split('/').pop() || 'autres';
+            const photo = {
+              filename: item,
+              path: `${dir.prefix}${item}`,
+              category: categoryName,
+              visible: true,
+              forSale: false,
+              isNumberedSeries: false,
+            };
+
+            if (!photosByCategory[categoryName]) {
+              photosByCategory[categoryName] = [];
+            }
+            photosByCategory[categoryName].push(photo);
+          }
+        }
       }
+    } catch (error) {
+      console.log(`Dossier ${dir.path} non trouvé, ignoré`);
     }
-  } catch (error) {
-    console.error('Error scanning photos:', error);
   }
 
   return photosByCategory;

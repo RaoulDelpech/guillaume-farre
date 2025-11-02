@@ -51,10 +51,10 @@ export default function AdminAuth({ children }: AdminAuthProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#111111' }}>
         <div className="text-center">
-          <div className="text-2xl mb-2">⏳</div>
-          <div>Chargement...</div>
+          <div className="text-2xl mb-2 text-white">⏳</div>
+          <div className="text-white">Chargement...</div>
         </div>
       </div>
     );
@@ -62,7 +62,7 @@ export default function AdminAuth({ children }: AdminAuthProps) {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#111111' }}>
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
           <h1 className="text-2xl font-bold mb-6 text-center">
             🔒 Administration

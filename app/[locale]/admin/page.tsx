@@ -125,11 +125,14 @@ export default function AdminPage() {
 
   return (
     <AdminAuth>
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen" style={{ backgroundColor: '#000000', minHeight: '100vh' }}>
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2 text-white">Administration des Photos</h1>
+          <h1 className="text-3xl font-bold mb-2" style={{ color: '#FFFFFF' }}>Administration des Photos</h1>
+          <p style={{ color: '#FF0000', fontWeight: 'bold', fontSize: '20px' }}>
+            🔴 VERSION MISE À JOUR - Si vous voyez ce texte ROUGE, la nouvelle version est chargée !
+          </p>
           <p className="text-gray-400">
             Gérez toutes vos photos : visibilité, catégories, prix, et éditions
           </p>

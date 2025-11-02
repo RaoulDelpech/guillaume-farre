@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "accueil": "Home",
+    "galerie": "Gallery",
+    "boutique": "Shop",
+    "histoire": "Story",
+    "atelier": "Workshop",
+    "conceptCarArt": "Concept car art",
+    "presse": "Press",
+    "contact": "Contact",
+    "panier": "Cart"
+  },
+  "hero": {
+    "atelier": {
+      "title": "The workshop",
+      "subtitle": "Guillaume Farré — Among the cars",
+      "description": "The workshop brings together vehicles, tools, and materials. Guillaume Farré among his two grey cars, instruments of creation. This is where movement becomes form.",
+      "cta": "Discover the workshop"
+    },
+    "histoire": {
+      "title": "The story",
+      "subtitle": "Guillaume Farré — From first drawings to today",
+      "description": "From sketchbooks to monumental sculptures, trace Guillaume Farré's artistic journey. A life dedicated to capturing automotive movement.",
+      "cta": "Discover the story"
+    },
+    "galerie": {
+      "title": "The gallery",
+      "subtitle": "Guillaume Farré — Sculptures and creations",
+      "description": "Explore Guillaume Farré's creative universe through his automotive sculptures. Each piece tells a story of speed, form, and emotion.",
+      "cta": "Discover the gallery"
+    }
+  },
+  "home": {
+    "nextEvent": "Next event:",
+    "conceptCarArt": "Concept Car Art",
+    "livePerformance": "Live performance at the workshop",
+    "selectionTitle": "Gallery — Selection",
+    "shopTitle": "Shop — New arrivals"
+  },
+  "footer": {
+    "rights": "© {year} Guillaume Farré. All rights reserved.",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "allWorks": "All works",
+    "sculptures": "Sculptures",
+    "drawings": "Drawings",
+    "installations": "Installations"
+  },
+  "shop": {
+    "title": "Shop",
+    "addToCart": "Add to cart",
+    "price": "Price",
+    "available": "Available",
+    "soldOut": "Sold out"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send"
+  }
+}

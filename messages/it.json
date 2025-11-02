@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "accueil": "Home",
+    "galerie": "Galleria",
+    "boutique": "Negozio",
+    "histoire": "Storia",
+    "atelier": "Laboratorio",
+    "conceptCarArt": "Concept car art",
+    "presse": "Stampa",
+    "contact": "Contatto",
+    "panier": "Carrello"
+  },
+  "hero": {
+    "atelier": {
+      "title": "Il laboratorio",
+      "subtitle": "Guillaume Farré — In mezzo alle auto",
+      "description": "Il laboratorio riunisce veicoli, strumenti e materiali. Guillaume Farré tra le sue due auto grigie, strumenti di creazione. È qui che il movimento diventa forma.",
+      "cta": "Scopri il laboratorio"
+    },
+    "histoire": {
+      "title": "La storia",
+      "subtitle": "Guillaume Farré — Dai primi disegni a oggi",
+      "description": "Dai quaderni di schizzi alle sculture monumentali, ripercorri il percorso artistico di Guillaume Farré. Una vita dedicata a catturare il movimento automobilistico.",
+      "cta": "Scopri la storia"
+    },
+    "galerie": {
+      "title": "La galleria",
+      "subtitle": "Guillaume Farré — Sculture e creazioni",
+      "description": "Esplora l'universo creativo di Guillaume Farré attraverso le sue sculture automobilistiche. Ogni pezzo racconta una storia di velocità, forma ed emozione.",
+      "cta": "Scopri la galleria"
+    }
+  },
+  "home": {
+    "nextEvent": "Prossimo evento:",
+    "conceptCarArt": "Concept Car Art",
+    "livePerformance": "Performance dal vivo al laboratorio",
+    "selectionTitle": "Galleria — Selezione",
+    "shopTitle": "Negozio — Novità"
+  },
+  "footer": {
+    "rights": "© {year} Guillaume Farré. Tutti i diritti riservati.",
+    "legal": "Note legali",
+    "privacy": "Informativa sulla privacy"
+  },
+  "gallery": {
+    "title": "Galleria",
+    "allWorks": "Tutte le opere",
+    "sculptures": "Sculture",
+    "drawings": "Disegni",
+    "installations": "Installazioni"
+  },
+  "shop": {
+    "title": "Negozio",
+    "addToCart": "Aggiungi al carrello",
+    "price": "Prezzo",
+    "available": "Disponibile",
+    "soldOut": "Esaurito"
+  },
+  "contact": {
+    "title": "Contatto",
+    "name": "Nome",
+    "email": "Email",
+    "message": "Messaggio",
+    "send": "Invia"
+  }
+}

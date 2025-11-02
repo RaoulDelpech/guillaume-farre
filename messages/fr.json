@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "accueil": "Accueil",
+    "galerie": "Galerie",
+    "boutique": "Boutique",
+    "histoire": "Histoire",
+    "atelier": "Atelier",
+    "conceptCarArt": "Concept car art",
+    "presse": "Presse",
+    "contact": "Contact",
+    "panier": "Panier"
+  },
+  "hero": {
+    "atelier": {
+      "title": "L'atelier",
+      "subtitle": "Guillaume Farré — Au milieu des voitures",
+      "description": "L'atelier réunit les véhicules, les outils, la matière. Guillaume Farré au milieu de ses deux voitures grises, instruments de création. C'est ici que le mouvement devient forme.",
+      "cta": "Découvrir l'atelier"
+    },
+    "histoire": {
+      "title": "L'histoire",
+      "subtitle": "Guillaume Farré — Des premiers dessins à aujourd'hui",
+      "description": "Du carnet de croquis aux sculptures monumentales, retracez le parcours artistique de Guillaume Farré. Une vie dédiée à capturer le mouvement automobile.",
+      "cta": "Découvrir l'histoire"
+    },
+    "galerie": {
+      "title": "La galerie",
+      "subtitle": "Guillaume Farré — Sculptures et créations",
+      "description": "Explorez l'univers créatif de Guillaume Farré à travers ses sculptures automobiles. Chaque pièce raconte une histoire de vitesse, de forme et d'émotion.",
+      "cta": "Découvrir la galerie"
+    }
+  },
+  "home": {
+    "nextEvent": "Prochain évènement :",
+    "conceptCarArt": "Concept Car Art",
+    "livePerformance": "Performance live à l'atelier",
+    "selectionTitle": "Galerie — Sélection",
+    "shopTitle": "Boutique — Nouveautés"
+  },
+  "footer": {
+    "rights": "© {year} Guillaume Farré. Tous droits réservés.",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "allWorks": "Toutes les œuvres",
+    "sculptures": "Sculptures",
+    "drawings": "Dessins",
+    "installations": "Installations"
+  },
+  "shop": {
+    "title": "Boutique",
+    "addToCart": "Ajouter au panier",
+    "price": "Prix",
+    "available": "Disponible",
+    "soldOut": "Épuisé"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "send": "Envoyer"
+  }
+}

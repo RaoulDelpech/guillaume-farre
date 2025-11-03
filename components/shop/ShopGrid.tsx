@@ -107,7 +107,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
           </p>
           <button
             onClick={handleCheckout}
-            className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-light tracking-wide transition-colors"
+            className="w-full bg-black hover:bg-gray-900 text-white py-3 px-4 rounded-lg font-light tracking-wide transition-colors"
           >
             Payer maintenant
           </button>
@@ -176,7 +176,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
               <button
                 onClick={() => setSelectedPhoto(photo)}
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-6 rounded-lg font-light tracking-wide transition-colors"
+                className="w-full bg-black hover:bg-gray-900 text-white py-3 px-6 rounded-lg font-light tracking-wide transition-colors"
               >
                 {t("addToCart")}
               </button>
@@ -272,7 +272,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 </div>
                 <button
                   onClick={handleAddToCart}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white py-4 px-6 rounded-lg font-light tracking-wide text-lg transition-all"
+                  className="w-full bg-black hover:bg-gray-900 text-white py-4 px-6 rounded-lg font-light tracking-wide text-lg transition-all"
                 >
                   Ajouter au panier
                 </button>

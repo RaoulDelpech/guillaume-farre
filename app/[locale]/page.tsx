@@ -94,7 +94,7 @@ export default async function HomePage() {
         <div className="mt-16 text-center">
           <Link
             href="/boutique"
-            className="inline-block px-10 py-5 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-lg transition-all transform hover:scale-105"
+            className="inline-block px-10 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-lg transition-all transform hover:scale-105"
           >
             Voir toutes les œuvres disponibles
           </Link>
@@ -172,7 +172,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href="/boutique"
-              className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl transition-all"
+              className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
             >
               Réserver une œuvre
             </Link>

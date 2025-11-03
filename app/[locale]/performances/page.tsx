@@ -195,7 +195,7 @@ export default function PerformancesPage() {
               </div>
               <Link
                 href="/contact"
-                className="px-10 py-5 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded whitespace-nowrap transition-all"
+                className="px-10 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded whitespace-nowrap transition-all"
               >
                 Demander un devis
               </Link>
@@ -347,7 +347,7 @@ export default function PerformancesPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/contact"
-                className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded text-xl transition-all"
+                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded text-xl transition-all"
               >
                 Réserver une place
               </Link>

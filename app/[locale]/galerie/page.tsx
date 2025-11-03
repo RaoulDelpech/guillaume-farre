@@ -91,7 +91,7 @@ export default async function GaleriePage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a
                 href="/boutique"
-                className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded text-xl transition-all"
+                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded text-xl transition-all"
               >
                 Voir la boutique
               </a>

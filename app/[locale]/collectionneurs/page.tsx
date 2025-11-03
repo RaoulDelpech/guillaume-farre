@@ -31,7 +31,7 @@ export default function CollectionneursPage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href="/contact"
-              className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl transition-all"
+              className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
             >
               Nous contacter
             </Link>
@@ -203,7 +203,7 @@ export default function CollectionneursPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
               <Link
                 href="/boutique"
-                className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl transition-all"
+                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
               >
                 Voir les œuvres disponibles
               </Link>

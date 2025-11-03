@@ -81,7 +81,7 @@ export default async function GalerieItemPage({
               <div className="pt-8">
                 <Link
                   href="/contact"
-                  className="inline-block w-full px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl text-center transition-all"
+                  className="inline-block w-full px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl text-center transition-all"
                 >
                   Demander des informations
                 </Link>

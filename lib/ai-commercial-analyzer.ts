@@ -270,7 +270,8 @@ function calculateSocialMediaScore(
     'origins': 92     // Histoire personnelle
   };
 
-  const baseScore = categoryScores[category.toLowerCase()] || 80;
+  const categoryKey = category.toLowerCase() as keyof typeof categoryScores;
+  const baseScore = categoryScores[categoryKey] || 80;
   const qualityBonus = (artisticQuality - 80) * 0.5;
 
   return Math.min(100, Math.round(baseScore + qualityBonus));
@@ -285,7 +286,8 @@ function calculateRarityScore(category: string, filename: string): number {
     'atelier': 75
   };
 
-  const base = categoryRarity[category.toLowerCase()] || 70;
+  const categoryKey = category.toLowerCase() as keyof typeof categoryRarity;
+  const base = categoryRarity[categoryKey] || 70;
   return Math.round((base + uniqueness) / 2);
 }
 

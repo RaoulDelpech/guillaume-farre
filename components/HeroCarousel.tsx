@@ -10,7 +10,7 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/origins/childhood-sepia.jpg",
+      image: "/images/origins/childhood-noir-blanc-1.jpg",
       title: t("origine.title"),
       subtitle: t("origine.subtitle"),
       description: t("origine.description"),
@@ -77,7 +77,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-black">
+    <section className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -91,24 +91,24 @@ export default function HeroCarousel() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
           </div>
 
           {/* Content */}
-          <div className="relative h-full container flex flex-col justify-center items-start text-white px-4 md:px-8">
-            <div className="max-w-3xl">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-3 md:mb-4 animate-fade-in">
+          <div className="relative h-full container flex flex-col justify-center items-start text-white px-6 lg:px-8">
+            <div className="max-w-4xl">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-light tracking-wide mb-4 md:mb-6 animate-fade-in">
                 {slide.title}
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light italic mb-4 md:mb-6 text-gray-200 animate-fade-in-delay-1">
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic mb-6 md:mb-8 text-white/90 animate-fade-in-delay-1">
                 {slide.subtitle}
               </p>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-gray-300 max-w-2xl animate-fade-in-delay-2">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light mb-8 md:mb-12 text-white/80 max-w-3xl leading-relaxed animate-fade-in-delay-2">
                 {slide.description}
               </p>
               <Link
                 href={slide.cta.href}
-                className="inline-block px-6 py-3 md:px-8 md:py-4 bg-primary text-white text-base md:text-lg font-medium rounded-md hover:bg-primary/90 transition-all animate-fade-in-delay-3"
+                className="inline-block px-8 py-4 md:px-10 md:py-5 border border-white/40 text-white hover:bg-white hover:text-foreground text-base md:text-lg font-light tracking-wide rounded backdrop-blur-sm transition-all animate-fade-in-delay-3"
               >
                 {slide.cta.text}
               </Link>

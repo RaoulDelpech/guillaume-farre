@@ -10,14 +10,6 @@ function editionLabel(w: Work) {
   return "Édition ouverte";
 }
 
-function priceLabel(w: Work): string {
-  if (!w.prices) return "Prix: sur demande";
-  const prices = Object.values(w.prices).filter(p => p !== undefined) as number[];
-  if (prices.length === 0) return "Prix: sur demande";
-  const minPrice = Math.min(...prices);
-  return `À partir de ${minPrice} €`;
-}
-
 export default function GalleryGrid({ works }: { works: Work[] }) {
   const [open, setOpen] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -44,7 +36,6 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
               <Link href={`/galerie-item/${w.slug}`} className="text-sm md:text-base font-medium hover:underline block truncate">{w.title}</Link>
               <div className="text-xs md:text-sm text-muted-foreground">{w.year} — {w.type === 'photo' ? 'Photo' : 'Toile'}</div>
               <div className="text-xs text-muted-foreground truncate">{editionLabel(w)}</div>
-              <div className="text-[10px] md:text-xs text-muted-foreground font-medium">{priceLabel(w)}</div>
             </div>
           </div>
         ))}

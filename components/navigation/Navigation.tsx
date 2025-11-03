@@ -12,9 +12,10 @@ export default function Navigation() {
     { href: "/", label: t("accueil") },
     { href: "/galerie", label: t("galerie") },
     { href: "/boutique", label: t("boutique") },
-    { href: "/histoire", label: t("histoire") },
-    { href: "/atelier", label: t("atelier") },
-    { href: "/concept-car-art", label: t("conceptCarArt") },
+    { href: "/origine", label: "Origine" },
+    { href: "/performances", label: "Performances" },
+    { href: "/collectionneurs", label: "Club" },
+    { href: "/actualites", label: "Actualités" },
     { href: "/presse", label: t("presse") },
     { href: "/contact", label: t("contact") },
   ];

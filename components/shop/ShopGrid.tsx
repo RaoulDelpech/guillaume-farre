@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { useTranslations } from "next-intl";
+import { useFavorites } from "@/hooks/useFavorites";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -20,6 +21,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoMetadata | null>(null);
   const [selectedFormat, setSelectedFormat] = useState("A3");
   const [selectedFrame, setSelectedFrame] = useState("none");
+  const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
   const formats = {
     "A4": { width: 21, height: 29.7, priceMultiplier: 1.0 },
@@ -117,12 +119,29 @@ export default function ShopGrid({ photos }: ShopGridProps) {
             key={photo.path}
             className="bg-card rounded-lg overflow-hidden border-2 border-border hover:border-red-500 transition-all shadow-lg"
           >
-            <div className="relative aspect-[4/3] bg-zinc-900">
+            <div className="relative aspect-[4/3] bg-zinc-900 group">
               <img
                 src={photo.path}
                 alt={photo.title || photo.filename}
                 className="w-full h-full object-cover"
               />
+
+              {/* Favorite button */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite(photo.path);
+                }}
+                className="absolute top-2 left-2 bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white p-2 rounded-full transition-all hover:scale-110 z-10"
+                title={isFavorite(photo.path) ? "Retirer des favoris" : "Ajouter aux favoris"}
+              >
+                {isFavorite(photo.path) ? (
+                  <span className="text-xl">❤️</span>
+                ) : (
+                  <span className="text-xl">🤍</span>
+                )}
+              </button>
+
               {photo.edition?.type === 'limited' && photo.edition?.count && (
                 <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                   Édition limitée {photo.edition.count}

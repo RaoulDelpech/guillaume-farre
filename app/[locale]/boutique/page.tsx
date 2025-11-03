@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
-import ShopGrid from "@/components/shop/ShopGrid";
+import ShopFilteredGrid from "@/components/shop/ShopFilteredGrid";
 import { loadPhotoMetadata } from "@/lib/admin/photo-manager";
 import { Link } from "@/i18n/routing";
 
@@ -112,25 +112,7 @@ export default async function BoutiquePage() {
       <div className="container mx-auto px-4 py-8">
         {photosForSale.length > 0 ? (
           <>
-            {/* Filtres rapides */}
-            <div className="max-w-5xl mx-auto mb-8">
-              <div className="flex flex-wrap gap-3">
-                <button className="px-4 py-2 bg-red-600 text-white rounded-lg font-bold text-sm">
-                  Toutes ({stats.total})
-                </button>
-                <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg font-bold text-sm transition-all">
-                  Éditions limitées ({stats.limitedEditions})
-                </button>
-                <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg font-bold text-sm transition-all">
-                  Pièces uniques
-                </button>
-                <button className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg font-bold text-sm transition-all">
-                  Prix croissant
-                </button>
-              </div>
-            </div>
-
-            <ShopGrid photos={photosForSale} />
+            <ShopFilteredGrid photos={photosForSale} />
 
             {/* CTA bottom */}
             <div className="max-w-5xl mx-auto mt-16 bg-gradient-to-r from-purple-950/30 to-black border border-purple-600/30 rounded-2xl p-8 text-center">

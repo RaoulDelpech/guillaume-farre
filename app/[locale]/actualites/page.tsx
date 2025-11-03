@@ -82,16 +82,16 @@ export default function ActualitesPage() {
       <Navigation />
 
       {/* Hero */}
-      <div className="bg-gradient-to-b from-purple-950/20 to-black border-b border-purple-900/30 py-16 md:py-20">
-        <div className="container mx-auto px-4">
+      <div className="bg-gradient-to-b from-accent/20 to-background border-b border-border py-20 md:py-28">
+        <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block px-4 py-2 bg-purple-600 rounded-full text-sm font-bold mb-6">
-              ACTUALITÉS
+            <div className="text-primary text-xs font-light mb-8 tracking-[0.3em] uppercase">
+              Actualités
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-6xl md:text-7xl font-light tracking-wide mb-8">
               Journal de bord
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Coulisses des performances, réflexions sur l'art automobile, portraits de collectionneurs.
               Suivez l'aventure au quotidien.
             </p>
@@ -101,15 +101,15 @@ export default function ActualitesPage() {
 
       {/* Article à la une */}
       {featuredArticle && (
-        <section className="container mx-auto px-4 py-16 md:py-20">
+        <section className="container mx-auto px-6 lg:px-8 py-20 md:py-28">
           <div className="max-w-6xl mx-auto">
-            <div className="mb-6">
-              <div className="inline-block px-3 py-1 bg-red-600 rounded-full text-xs font-bold mb-4">
-                ⭐ À LA UNE
+            <div className="mb-8">
+              <div className="text-primary text-xs font-light tracking-[0.2em] uppercase">
+                À la une
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 bg-gradient-to-br from-purple-950/20 to-black border-2 border-purple-900/30 rounded-3xl overflow-hidden hover:border-purple-600 transition-all">
+            <div className="grid md:grid-cols-2 gap-12 bg-card border border-border rounded-2xl overflow-hidden hover:border-primary transition-all">
               <div className="relative h-64 md:h-full">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -118,25 +118,25 @@ export default function ActualitesPage() {
               </div>
 
               <div className="p-8 md:p-12 flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="px-3 py-1 bg-purple-600/30 rounded-full text-xs font-bold text-purple-400">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-xs font-light tracking-wide text-primary uppercase">
                     {featuredArticle.category}
                   </span>
-                  <span className="text-sm text-gray-400">{featuredArticle.date}</span>
-                  <span className="text-sm text-gray-400">• {featuredArticle.readTime}</span>
+                  <span className="text-xs text-muted-foreground font-light">{featuredArticle.date}</span>
+                  <span className="text-xs text-muted-foreground font-light">• {featuredArticle.readTime}</span>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                <h2 className="text-3xl md:text-4xl font-light tracking-wide mb-6">
                   {featuredArticle.title}
                 </h2>
 
-                <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+                <p className="text-lg font-light text-muted-foreground mb-8 leading-relaxed">
                   {featuredArticle.excerpt}
                 </p>
 
                 <Link
                   href={`/actualites/${featuredArticle.slug}`}
-                  className="inline-block px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-all transform hover:scale-105"
+                  className="inline-block px-10 py-5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-light tracking-wide rounded-lg transition-all"
                 >
                   Lire l'article →
                 </Link>
@@ -147,13 +147,13 @@ export default function ActualitesPage() {
       )}
 
       {/* Filtres par catégorie */}
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap gap-3 mb-12">
+          <div className="flex flex-wrap gap-4 mb-16">
             {categories.map((cat) => (
               <button
                 key={cat}
-                className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg font-bold text-sm transition-all"
+                className="px-6 py-3 border border-border hover:border-primary text-foreground hover:text-primary rounded-lg font-light text-sm tracking-wide transition-all"
               >
                 {cat}
               </button>
@@ -163,17 +163,17 @@ export default function ActualitesPage() {
       </section>
 
       {/* Grille d'articles */}
-      <section className="container mx-auto px-4 pb-20">
+      <section className="container mx-auto px-6 lg:px-8 pb-28">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {regularArticles.map((article) => (
               <Link
                 key={article.id}
                 href={`/actualites/${article.slug}`}
-                className="group bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden hover:border-purple-600 transition-all shadow-lg"
+                className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary transition-all"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-52 overflow-hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
                     style={{ backgroundImage: `url(${article.image})` }}
@@ -181,30 +181,30 @@ export default function ActualitesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
                   {/* Catégorie badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 bg-purple-600/90 backdrop-blur-sm rounded-full text-xs font-bold">
+                  <div className="absolute top-4 left-4">
+                    <span className="text-xs font-light tracking-wide text-white/90 uppercase">
                       {article.category}
                     </span>
                   </div>
                 </div>
 
                 {/* Contenu */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                <div className="p-8">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground font-light mb-4">
                     <span>{article.date}</span>
                     <span>•</span>
                     <span>{article.readTime}</span>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-purple-500 transition-colors">
+                  <h3 className="text-xl font-light tracking-wide mb-4 group-hover:text-primary transition-colors">
                     {article.title}
                   </h3>
 
-                  <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                  <p className="text-sm text-muted-foreground font-light leading-relaxed mb-6">
                     {article.excerpt}
                   </p>
 
-                  <div className="text-purple-500 font-bold text-sm group-hover:translate-x-2 transition-transform inline-block">
+                  <div className="text-primary font-light text-sm group-hover:translate-x-2 transition-transform inline-block">
                     Lire la suite →
                   </div>
                 </div>
@@ -215,14 +215,13 @@ export default function ActualitesPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="container mx-auto px-4 pb-20">
+      <section className="container mx-auto px-6 lg:px-8 pb-28">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-purple-950/30 to-black border-2 border-purple-600/30 rounded-3xl p-8 md:p-12 text-center">
-            <div className="text-6xl mb-6">📬</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="bg-card border border-border rounded-2xl p-12 md:p-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-6">
               Ne manquez aucune actualité
             </h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl font-light text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
               Recevez les nouvelles créations, invitations aux performances et articles
               directement dans votre boîte mail.
             </p>
@@ -230,13 +229,13 @@ export default function ActualitesPage() {
               <input
                 type="email"
                 placeholder="votre@email.com"
-                className="flex-1 px-6 py-4 bg-black/40 border-2 border-purple-600/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-600"
+                className="flex-1 px-6 py-4 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground font-light focus:outline-none focus:border-primary"
               />
-              <button className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-all whitespace-nowrap">
+              <button className="px-10 py-4 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-light tracking-wide rounded-lg transition-all whitespace-nowrap">
                 S'abonner
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-4">
+            <p className="text-xs text-muted-foreground font-light mt-6">
               Pas de spam. Désinscription en un clic. ~2 emails par mois maximum.
             </p>
           </div>

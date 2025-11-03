@@ -58,7 +58,7 @@ export default function ShareButtons({
 
   // Native Web Share API (mobile)
   const handleNativeShare = async () => {
-    if (navigator.share) {
+    if (typeof navigator !== "undefined" && navigator.share !== undefined) {
       try {
         await navigator.share({
           title,
@@ -159,7 +159,7 @@ export default function ShareButtons({
             </div>
 
             {/* Native share (mobile) */}
-            {typeof navigator !== "undefined" && navigator.share && (
+            {typeof navigator !== "undefined" && navigator.share !== undefined && (
               <button
                 onClick={handleNativeShare}
                 className="w-full mb-2 px-3 py-2 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 rounded-lg text-white text-sm font-semibold transition-all"

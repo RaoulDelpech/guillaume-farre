@@ -10,9 +10,8 @@ export default function Navigation() {
 
   const links = [
     { href: "/", label: t("accueil") },
+    { href: "/galerie", label: "Galerie" },
     { href: "/boutique", label: t("boutique") },
-    { href: "/quiz", label: "Quiz", highlight: true },
-    { href: "/comparer", label: "Comparer" },
     { href: "/origine", label: "Origine" },
     { href: "/performances", label: "Performances" },
     { href: "/collectionneurs", label: "Club" },

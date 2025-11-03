@@ -7,46 +7,34 @@ export default async function ContactPage() {
 
   const contactReasons = [
     {
-      icon: "🛒",
       title: "Acquérir une œuvre",
       description: "Achat, réservation, paiement fractionné",
       cta: "Demander un rendez-vous",
-      urgent: false
     },
     {
-      icon: "🎭",
       title: "Réserver une performance",
       description: "Événement privé ou public",
       cta: "Voir les disponibilités",
-      urgent: false
     },
     {
-      icon: "💎",
       title: "Rejoindre le club",
       description: "Devenir collectionneur privilégié",
       cta: "Candidater au club",
-      urgent: false
     },
     {
-      icon: "📰",
       title: "Demande presse",
       description: "Interview, visuels HD, informations",
       cta: "Accès presse",
-      urgent: true
     },
     {
-      icon: "🤝",
       title: "Collaboration / Galerie",
       description: "Partenariats, expositions, projets",
       cta: "Présenter mon projet",
-      urgent: false
     },
     {
-      icon: "💬",
       title: "Autre demande",
       description: "Question générale, information",
       cta: "Envoyer un message",
-      urgent: false
     }
   ];
 
@@ -70,117 +58,119 @@ export default async function ContactPage() {
   ];
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero */}
-      <div className="bg-gradient-to-b from-blue-950/20 to-black border-b border-blue-900/30 py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block px-4 py-2 bg-blue-600 rounded-full text-sm font-bold mb-6">
-              CONTACT
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Parlons de votre projet
-            </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-              Acquisition, performance privée, collaboration ? Je réponds personnellement
-              à chaque message sous 24h.
-            </p>
+      {/* Hero élégant */}
+      <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden border-b border-border">
+        <div className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: 'url("/photos/atelier/ferrari-traces.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        ></div>
 
-            {/* Trust signals */}
-            <div className="flex flex-wrap gap-6 justify-center text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">✓</span>
-                <span>Réponse sous 24h garantie</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">✓</span>
-                <span>Contact direct avec l'artiste</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-green-500">✓</span>
-                <span>Confidentialité assurée</span>
-              </div>
+        <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl py-28">
+          <div className="text-primary text-xs font-light mb-8 tracking-[0.3em] uppercase">
+            Contact
+          </div>
+          <h1 className="text-6xl md:text-8xl font-light tracking-wide mb-10 text-foreground">
+            Parlons de votre projet
+          </h1>
+          <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed">
+            Acquisition, performance privée, collaboration. Je réponds personnellement
+            à chaque message sous 24h.
+          </p>
+
+          {/* Trust signals élégants */}
+          <div className="flex flex-wrap gap-8 md:gap-12 justify-center text-sm md:text-base text-muted-foreground font-light">
+            <div className="flex items-center gap-3">
+              <span className="text-primary">—</span>
+              <span>Réponse sous 24h garantie</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-primary">—</span>
+              <span>Contact direct avec l'artiste</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-primary">—</span>
+              <span>Confidentialité assurée</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Contact rapide - Cartes par motif */}
-      <section className="container mx-auto px-4 py-16 md:py-20">
+      {/* Motifs de contact - Cartes élégantes */}
+      <section className="container px-6 lg:px-8 py-28 md:py-36">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-6 text-foreground">
               Je souhaite...
             </h2>
-            <p className="text-gray-400">
+            <p className="text-xl font-light text-muted-foreground leading-relaxed">
               Choisissez le motif de contact pour une réponse optimale
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-12 md:gap-16">
             {contactReasons.map((reason, index) => (
               <div
                 key={index}
-                className={`bg-gradient-to-br from-gray-900 to-black border-2 rounded-2xl p-6 hover:border-blue-600 transition-all cursor-pointer group ${
-                  reason.urgent ? "border-orange-600/50" : "border-gray-800"
-                }`}
+                className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all group"
               >
-                {reason.urgent && (
-                  <div className="inline-block px-2 py-1 bg-orange-600 rounded-full text-xs font-bold mb-3">
-                    PRIORITAIRE
-                  </div>
-                )}
+                <div className="p-10">
+                  <h3 className="text-3xl font-light tracking-wide mb-8 text-foreground">{reason.title}</h3>
 
-                <div className="text-5xl mb-4">{reason.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{reason.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">{reason.description}</p>
+                  <p className="text-base text-muted-foreground font-light mb-10 leading-relaxed">
+                    {reason.description}
+                  </p>
 
-                <button className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all group-hover:scale-105">
-                  {reason.cta}
-                </button>
+                  <button className="w-full px-6 py-4 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-light tracking-wide rounded transition-all">
+                    {reason.cta}
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Méthodes de contact directes */}
-      <section className="bg-gradient-to-b from-black via-blue-950/10 to-black border-y border-blue-900/30 py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      {/* Méthodes de contact directes - Sophistiquées */}
+      <section className="bg-muted/20 border-y border-border py-28 md:py-36">
+        <div className="container px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-6">
                 Ou contactez-moi directement
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-12 md:gap-16">
               {/* Email */}
               <a
                 href="mailto:contact@guillaumefarre.com"
-                className="bg-gradient-to-br from-blue-950/20 to-black border-2 border-blue-900/30 rounded-2xl p-8 text-center hover:border-blue-600 transition-all group"
+                className="bg-card border border-border rounded-lg p-12 text-center hover:border-primary/50 transition-all group"
               >
-                <div className="text-6xl mb-4">📧</div>
-                <h3 className="text-xl font-bold mb-3">Email</h3>
-                <p className="text-blue-500 group-hover:text-blue-400 font-mono text-sm mb-2">
+                <div className="text-6xl font-light mb-6 text-primary">@</div>
+                <h3 className="text-2xl font-light tracking-wide mb-4">Email</h3>
+                <p className="text-primary group-hover:text-primary/80 font-light text-base mb-3 tracking-wide">
                   contact@guillaumefarre.com
                 </p>
-                <p className="text-xs text-gray-400">Réponse sous 24h</p>
+                <p className="text-sm text-muted-foreground font-light">Réponse sous 24h</p>
               </a>
 
               {/* Téléphone */}
               <a
                 href="tel:+33612345678"
-                className="bg-gradient-to-br from-green-950/20 to-black border-2 border-green-900/30 rounded-2xl p-8 text-center hover:border-green-600 transition-all group"
+                className="bg-card border border-border rounded-lg p-12 text-center hover:border-primary/50 transition-all group"
               >
-                <div className="text-6xl mb-4">📱</div>
-                <h3 className="text-xl font-bold mb-3">Téléphone</h3>
-                <p className="text-green-500 group-hover:text-green-400 font-mono text-sm mb-2">
+                <div className="text-6xl font-light mb-6 text-primary">☎</div>
+                <h3 className="text-2xl font-light tracking-wide mb-4">Téléphone</h3>
+                <p className="text-primary group-hover:text-primary/80 font-light text-base mb-3 tracking-wide">
                   +33 6 12 34 56 78
                 </p>
-                <p className="text-xs text-gray-400">Lun-Ven 9h-18h</p>
+                <p className="text-sm text-muted-foreground font-light">Lun-Ven 9h-18h</p>
               </a>
 
               {/* WhatsApp */}
@@ -188,47 +178,47 @@ export default async function ContactPage() {
                 href="https://wa.me/33612345678"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-br from-emerald-950/20 to-black border-2 border-emerald-900/30 rounded-2xl p-8 text-center hover:border-emerald-600 transition-all group"
+                className="bg-card border border-border rounded-lg p-12 text-center hover:border-primary/50 transition-all group"
               >
-                <div className="text-6xl mb-4">💬</div>
-                <h3 className="text-xl font-bold mb-3">WhatsApp</h3>
-                <p className="text-emerald-500 group-hover:text-emerald-400 font-mono text-sm mb-2">
+                <div className="text-6xl font-light mb-6 text-primary">✉</div>
+                <h3 className="text-2xl font-light tracking-wide mb-4">WhatsApp</h3>
+                <p className="text-primary group-hover:text-primary/80 font-light text-base mb-3 tracking-wide">
                   +33 6 12 34 56 78
                 </p>
-                <p className="text-xs text-gray-400">Réponse rapide</p>
+                <p className="text-sm text-muted-foreground font-light">Réponse rapide</p>
               </a>
             </div>
 
-            {/* Réseaux sociaux */}
-            <div className="mt-12 text-center">
-              <p className="text-gray-400 mb-4">Suivez-moi sur les réseaux</p>
-              <div className="flex gap-4 justify-center">
+            {/* Réseaux sociaux - Minimalistes */}
+            <div className="mt-20 text-center">
+              <p className="text-muted-foreground font-light mb-8 text-lg">Suivez-moi sur les réseaux</p>
+              <div className="flex gap-6 justify-center">
                 <a
                   href="https://instagram.com/guillaumefarre.art"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-gradient-to-br from-pink-600 to-orange-600 rounded-full flex items-center justify-center text-2xl hover:scale-110 transition-all"
+                  className="w-14 h-14 border border-border hover:border-primary rounded-full flex items-center justify-center text-foreground hover:text-primary transition-all font-light text-xl"
                   title="Instagram"
                 >
-                  📷
+                  IG
                 </a>
                 <a
                   href="https://linkedin.com/in/guillaumefarre"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-2xl hover:scale-110 transition-all"
+                  className="w-14 h-14 border border-border hover:border-primary rounded-full flex items-center justify-center text-foreground hover:text-primary transition-all font-light text-xl"
                   title="LinkedIn"
                 >
-                  💼
+                  LI
                 </a>
                 <a
                   href="https://youtube.com/@guillaumefarre"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-2xl hover:scale-110 transition-all"
+                  className="w-14 h-14 border border-border hover:border-primary rounded-full flex items-center justify-center text-foreground hover:text-primary transition-all font-light text-xl"
                   title="YouTube"
                 >
-                  📹
+                  YT
                 </a>
               </div>
             </div>
@@ -236,37 +226,39 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="container mx-auto px-4 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      {/* FAQ - Élégantes */}
+      <section className="container px-6 lg:px-8 py-28 md:py-36">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-6">
               Questions fréquentes
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-r from-gray-900 to-black border border-gray-800 rounded-xl p-6 hover:border-blue-600 transition-all"
+                className="bg-card border border-border rounded-lg p-10 hover:border-primary/50 transition-all"
               >
-                <h3 className="text-lg font-bold mb-3 flex items-start gap-3">
-                  <span className="text-blue-500">Q:</span>
+                <h3 className="text-xl md:text-2xl font-light mb-6 tracking-wide flex items-start gap-4">
+                  <span className="text-primary">—</span>
                   <span>{faq.q}</span>
                 </h3>
-                <p className="text-gray-400 pl-7">{faq.a}</p>
+                <p className="text-muted-foreground font-light leading-relaxed text-base md:text-lg pl-8">
+                  {faq.a}
+                </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <p className="text-gray-400 mb-4">
+          <div className="mt-20 text-center">
+            <p className="text-muted-foreground font-light mb-8 text-lg">
               Vous ne trouvez pas la réponse à votre question ?
             </p>
             <a
               href="mailto:contact@guillaumefarre.com"
-              className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all"
+              className="inline-block px-12 py-5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-light tracking-wide rounded text-lg transition-all"
             >
               Contactez-moi directement
             </a>
@@ -274,60 +266,60 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      {/* Atelier - Localisation */}
-      <section className="bg-gradient-to-b from-black to-gray-950 border-t border-gray-800 py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* Atelier - Localisation épurée */}
+      <section className="bg-muted/20 border-t border-border py-28 md:py-36">
+        <div className="container px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-10">
                   Visitez l'atelier
                 </h2>
-                <p className="text-lg text-gray-300 mb-6">
-                  L'atelier est situé à <strong>Paris, 18ème arrondissement</strong>.
+                <p className="text-xl font-light text-muted-foreground mb-12 leading-relaxed">
+                  L'atelier est situé à Paris, 18ème arrondissement.
                   Visites possibles sur rendez-vous pour découvrir le processus créatif,
                   voir les œuvres en cours, et rencontrer Guillaume.
                 </p>
 
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-start gap-3">
-                    <span className="text-blue-500 text-xl">📍</span>
+                <div className="space-y-6 mb-12">
+                  <div className="flex items-start gap-4">
+                    <span className="text-primary text-xl mt-1">—</span>
                     <div>
-                      <div className="font-bold">Adresse</div>
-                      <div className="text-gray-400">75018 Paris, France</div>
-                      <div className="text-sm text-gray-500">(Adresse exacte communiquée sur RDV)</div>
+                      <div className="font-light tracking-wide text-lg mb-2">Adresse</div>
+                      <div className="text-muted-foreground font-light">75018 Paris, France</div>
+                      <div className="text-sm text-muted-foreground font-light">(Adresse exacte communiquée sur RDV)</div>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <span className="text-blue-500 text-xl">🕐</span>
+                  <div className="flex items-start gap-4">
+                    <span className="text-primary text-xl mt-1">—</span>
                     <div>
-                      <div className="font-bold">Horaires de visite</div>
-                      <div className="text-gray-400">Vendredi 14h-18h (sur RDV)</div>
+                      <div className="font-light tracking-wide text-lg mb-2">Horaires de visite</div>
+                      <div className="text-muted-foreground font-light">Vendredi 14h-18h (sur RDV)</div>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <span className="text-blue-500 text-xl">🚇</span>
+                  <div className="flex items-start gap-4">
+                    <span className="text-primary text-xl mt-1">—</span>
                     <div>
-                      <div className="font-bold">Accès</div>
-                      <div className="text-gray-400">Métro Marcadet-Poissonniers (L12)</div>
+                      <div className="font-light tracking-wide text-lg mb-2">Accès</div>
+                      <div className="text-muted-foreground font-light">Métro Marcadet-Poissonniers (L12)</div>
                     </div>
                   </div>
                 </div>
 
                 <a
                   href="mailto:contact@guillaumefarre.com?subject=Demande de visite d'atelier"
-                  className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all"
+                  className="inline-block px-12 py-5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-light tracking-wide rounded text-lg transition-all"
                 >
                   Réserver une visite
                 </a>
               </div>
 
-              <div className="bg-gray-800 rounded-2xl h-80 flex items-center justify-center">
-                <div className="text-center text-gray-400">
-                  <div className="text-6xl mb-4">🗺️</div>
-                  <p>Carte interactive bientôt disponible</p>
+              <div className="bg-muted border border-border rounded-lg h-96 flex items-center justify-center">
+                <div className="text-center text-muted-foreground font-light">
+                  <div className="text-6xl mb-6 text-primary/20">◉</div>
+                  <p className="text-lg">Carte interactive bientôt disponible</p>
                 </div>
               </div>
             </div>
@@ -335,29 +327,37 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      {/* CTA final */}
-      <section className="container mx-auto px-4 py-16 md:py-20">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-gradient-to-r from-purple-950/30 to-black border-2 border-purple-600/30 rounded-3xl p-8 md:p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      {/* CTA final - Sophistiqué */}
+      <section className="container px-6 lg:px-8 py-28 md:py-32">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-card border border-border rounded-lg p-16 md:p-20 text-center">
+            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-8">
               Prêt à démarrer votre collection ?
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-2xl font-light text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
               Découvrez les œuvres disponibles ou rejoignez le club des collectionneurs
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/boutique"
-                className="px-10 py-5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-xl transition-all transform hover:scale-105"
+                className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded text-xl transition-all"
               >
-                🛒 Voir la boutique
+                Voir la boutique
               </Link>
               <Link
                 href="/collectionneurs"
-                className="px-10 py-5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-xl transition-all transform hover:scale-105"
+                className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded text-xl transition-all"
               >
-                💎 Rejoindre le club
+                Rejoindre le club
               </Link>
+            </div>
+
+            <div className="mt-12 flex flex-col md:flex-row gap-8 justify-center text-sm text-muted-foreground font-light">
+              <div>Spectacle unique</div>
+              <div className="hidden md:block">·</div>
+              <div>Rencontre avec l'artiste</div>
+              <div className="hidden md:block">·</div>
+              <div>Photos souvenirs</div>
             </div>
           </div>
         </div>

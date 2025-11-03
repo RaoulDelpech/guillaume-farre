@@ -40,10 +40,10 @@ export default function AdminPage() {
 
     try {
       await fetch('/api/upload', { method: 'POST', body: formData });
-      alert('✅ Photos uploadées !');
+      alert('Fichiers uploadés avec succès');
       loadPhotos();
     } catch (error) {
-      alert('❌ Erreur upload');
+      alert('Erreur lors de l\'upload');
     }
   }
 
@@ -56,9 +56,9 @@ export default function AdminPage() {
         body: JSON.stringify(photos),
       });
       setHasChanges(false);
-      alert('✅ Sauvegardé !');
+      alert('Modifications sauvegardées');
     } catch {
-      alert('❌ Erreur sauvegarde');
+      alert('Erreur lors de la sauvegarde');
     } finally {
       setSaving(false);
     }
@@ -88,177 +88,219 @@ export default function AdminPage() {
 
   if (loading) {
     return (
-      <div style={{ minHeight: '100vh', backgroundColor: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ color: '#fff', fontSize: '24px' }}>⏳ Chargement...</div>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-foreground text-2xl font-light">Chargement...</div>
       </div>
     );
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#000', color: '#fff', padding: '20px' }}>
-      {/* Header */}
-      <div style={{ marginBottom: '30px' }}>
-        <h1 style={{ fontSize: '32px', marginBottom: '10px', color: '#fff' }}>
-          🎨 Administration Photos
-        </h1>
-        <p style={{ color: '#888' }}>Gérez vos {photos.length} photos</p>
-      </div>
-
-      {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px', marginBottom: '30px' }}>
-        <div style={{ backgroundColor: '#1a1a1a', padding: '20px', borderRadius: '8px', border: '2px solid #333' }}>
-          <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#fff' }}>{stats.total}</div>
-          <div style={{ color: '#888', fontSize: '14px' }}>Total photos</div>
+    <div className="min-h-screen bg-background">
+      <div className="max-w-[1400px] mx-auto px-6 py-12">
+        {/* Header */}
+        <div className="mb-16">
+          <h1 className="text-4xl font-light tracking-wide mb-3 text-foreground">
+            Administration
+          </h1>
+          <p className="text-muted-foreground">
+            {photos.length} média{photos.length > 1 ? 's' : ''} • Gestion de la galerie
+          </p>
         </div>
-        <div style={{ backgroundColor: '#0a3d0a', padding: '20px', borderRadius: '8px', border: '2px solid #0f0' }}>
-          <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#0f0' }}>{stats.visible}</div>
-          <div style={{ color: '#0a0', fontSize: '14px' }}>Visibles</div>
-        </div>
-        <div style={{ backgroundColor: '#3d0a0a', padding: '20px', borderRadius: '8px', border: '2px solid #f00' }}>
-          <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#f00' }}>{stats.hidden}</div>
-          <div style={{ color: '#a00', fontSize: '14px' }}>Masquées</div>
-        </div>
-        <div style={{ backgroundColor: '#0a1a3d', padding: '20px', borderRadius: '8px', border: '2px solid #00f' }}>
-          <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#09f' }}>{stats.forSale}</div>
-          <div style={{ color: '#069', fontSize: '14px' }}>À vendre</div>
-        </div>
-      </div>
 
-      {/* Duplicate Detector */}
-      <div style={{ marginBottom: '30px' }}>
-        <DuplicateDetector />
-      </div>
-
-      {/* Instagram Configuration */}
-      <div style={{ marginBottom: '30px' }}>
-        <InstagramConfig />
-      </div>
-
-      {/* Commercial Performance Dashboard */}
-      <div style={{ marginBottom: '30px' }}>
-        <CommercialDashboard photos={photos} />
-      </div>
-
-      {/* Actions */}
-      <div style={{ backgroundColor: '#1a1a1a', padding: '20px', borderRadius: '8px', marginBottom: '30px', border: '2px solid #333' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', alignItems: 'center' }}>
-          <div>
-            <label style={{ marginRight: '10px', color: '#ccc' }}>Catégorie:</label>
-            <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}
-              style={{ padding: '10px', backgroundColor: '#000', color: '#fff', border: '2px solid #555', borderRadius: '5px' }}>
-              <option value="all">Toutes ({photos.length})</option>
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+          <div className="bg-card border border-border rounded-lg p-8">
+            <div className="text-4xl font-light text-foreground mb-2">{stats.total}</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wide">Total</div>
           </div>
-
-          <div>
-            <label style={{ marginRight: '10px', color: '#ccc' }}>Visibilité:</label>
-            <select value={filterVisibility} onChange={(e) => setFilterVisibility(e.target.value)}
-              style={{ padding: '10px', backgroundColor: '#000', color: '#fff', border: '2px solid #555', borderRadius: '5px' }}>
-              <option value="all">Toutes</option>
-              <option value="visible">Visibles</option>
-              <option value="hidden">Masquées</option>
-            </select>
+          <div className="bg-card border border-primary/30 rounded-lg p-8">
+            <div className="text-4xl font-light text-primary mb-2">{stats.visible}</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wide">Visibles</div>
           </div>
-
-          <button onClick={loadPhotos}
-            style={{ padding: '10px 20px', backgroundColor: '#0066cc', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>
-            🔄 Actualiser
-          </button>
-
-          <label style={{ padding: '10px 20px', backgroundColor: '#00aa00', color: '#fff', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>
-            📤 Upload
-            <input type="file" multiple accept="image/*" onChange={handleUpload} style={{ display: 'none' }} />
-          </label>
-
-          {hasChanges && (
-            <button onClick={savePhotos} disabled={saving}
-              style={{ padding: '10px 20px', backgroundColor: '#ff6600', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>
-              {saving ? '⏳ Sauvegarde...' : '💾 Sauvegarder'}
-            </button>
-          )}
+          <div className="bg-card border border-border rounded-lg p-8">
+            <div className="text-4xl font-light text-muted-foreground mb-2">{stats.hidden}</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wide">Masquées</div>
+          </div>
+          <div className="bg-card border border-primary/30 rounded-lg p-8">
+            <div className="text-4xl font-light text-primary mb-2">{stats.forSale}</div>
+            <div className="text-sm text-muted-foreground uppercase tracking-wide">À vendre</div>
+          </div>
         </div>
-      </div>
 
-      {/* Photos Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
-        {filteredPhotos.map((photo, index) => {
-          const globalIndex = photos.findIndex(p => p.path === photo.path);
-          return (
-            <div key={photo.path} style={{
-              backgroundColor: photo.visible ? '#1a1a1a' : '#3d0a0a',
-              padding: '15px',
-              borderRadius: '8px',
-              border: `2px solid ${photo.visible ? '#333' : '#f00'}`
-            }}>
-              <img src={photo.path} alt={photo.filename}
-                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '5px', marginBottom: '10px' }} />
+        {/* Duplicate Detector */}
+        <div className="mb-12">
+          <DuplicateDetector />
+        </div>
 
-              <div style={{ fontSize: '11px', color: '#666', marginBottom: '10px', wordBreak: 'break-all' }}>
-                {photo.filename}
-              </div>
+        {/* Instagram Configuration */}
+        <div className="mb-12">
+          <InstagramConfig />
+        </div>
 
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px', cursor: 'pointer' }}>
-                <input type="checkbox" checked={photo.visible}
-                  onChange={(e) => updatePhoto(globalIndex, { visible: e.target.checked })} />
-                <span style={{ fontWeight: 'bold' }}>
-                  {photo.visible ? '✅ Visible' : '❌ Masquée'}
-                </span>
-              </label>
+        {/* Commercial Performance Dashboard */}
+        <div className="mb-12">
+          <CommercialDashboard photos={photos} />
+        </div>
 
-              <select value={photo.category}
-                onChange={(e) => updatePhoto(globalIndex, { category: e.target.value })}
-                style={{ width: '100%', padding: '8px', backgroundColor: '#000', color: '#fff', border: '1px solid #555', borderRadius: '4px', marginBottom: '10px' }}>
-                <option value="empreintes">Empreintes</option>
-                <option value="atelier">Atelier</option>
-                <option value="projection">Projection</option>
-                <option value="uploads-preview">À trier</option>
-                <option value="uploads">Uploads</option>
-                <option value="origins">Origins</option>
+        {/* Actions */}
+        <div className="bg-card border border-border rounded-lg p-8 mb-12">
+          <div className="flex flex-wrap gap-6 items-center">
+            <div>
+              <label className="block text-sm text-muted-foreground mb-2 uppercase tracking-wide">Catégorie</label>
+              <select
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
+                className="px-4 py-3 bg-background border border-border rounded-md text-foreground focus:outline-none focus:border-primary transition-colors"
+              >
+                <option value="all">Toutes ({photos.length})</option>
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
               </select>
-
-              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', marginBottom: '15px' }}>
-                <input type="checkbox" checked={photo.forSale}
-                  onChange={(e) => updatePhoto(globalIndex, { forSale: e.target.checked })} />
-                <span>💰 À vendre</span>
-              </label>
-
-              {/* AI Analysis Button */}
-              <AIAnalysisPanel
-                photoFilename={photo.filename}
-                category={photo.category}
-                currentPrice={photo.price}
-                onApplySuggestions={(suggestions) => {
-                  updatePhoto(globalIndex, {
-                    price: suggestions.price,
-                    forSale: true,
-                    edition: {
-                      type: suggestions.isLimitedEdition ? 'limited' : 'open',
-                      count: suggestions.editionNumber
-                    }
-                  });
-                }}
-              />
-
-              {/* Instagram Optimizer */}
-              <InstagramSuggestionPanel
-                photoPath={photo.path}
-                photoTitle={photo.filename}
-                category={photo.category}
-                seriesName={photo.seriesName}
-              />
             </div>
-          );
-        })}
-      </div>
 
-      {filteredPhotos.length === 0 && (
-        <div style={{ textAlign: 'center', padding: '60px', color: '#666', fontSize: '18px' }}>
-          Aucune photo trouvée
+            <div>
+              <label className="block text-sm text-muted-foreground mb-2 uppercase tracking-wide">Visibilité</label>
+              <select
+                value={filterVisibility}
+                onChange={(e) => setFilterVisibility(e.target.value)}
+                className="px-4 py-3 bg-background border border-border rounded-md text-foreground focus:outline-none focus:border-primary transition-colors"
+              >
+                <option value="all">Toutes</option>
+                <option value="visible">Visibles</option>
+                <option value="hidden">Masquées</option>
+              </select>
+            </div>
+
+            <div className="flex-1"></div>
+
+            <button
+              onClick={loadPhotos}
+              className="px-6 py-3 bg-card hover:bg-muted border border-border rounded-md text-foreground font-medium transition-colors"
+            >
+              Actualiser
+            </button>
+
+            <label className="px-6 py-3 bg-primary hover:bg-accent text-primary-foreground rounded-md cursor-pointer font-medium transition-colors">
+              Upload Photos/Vidéos
+              <input
+                type="file"
+                multiple
+                accept="image/*,video/*"
+                onChange={handleUpload}
+                className="hidden"
+              />
+            </label>
+
+            {hasChanges && (
+              <button
+                onClick={savePhotos}
+                disabled={saving}
+                className="px-6 py-3 bg-primary hover:bg-accent text-primary-foreground rounded-md font-medium transition-colors disabled:opacity-50"
+              >
+                {saving ? 'Sauvegarde...' : 'Sauvegarder'}
+              </button>
+            )}
+          </div>
         </div>
-      )}
+
+        {/* Photos Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {filteredPhotos.map((photo, index) => {
+            const globalIndex = photos.findIndex(p => p.path === photo.path);
+            return (
+              <div
+                key={photo.path}
+                className={`bg-card border rounded-lg overflow-hidden transition-all ${
+                  photo.visible ? 'border-border' : 'border-muted-foreground/30'
+                }`}
+              >
+                <div className="relative aspect-square bg-muted">
+                  <img
+                    src={photo.path}
+                    alt={photo.filename}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="p-6 space-y-4">
+                  <div className="text-xs text-muted-foreground break-all font-mono">
+                    {photo.filename}
+                  </div>
+
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={photo.visible}
+                      onChange={(e) => updatePhoto(globalIndex, { visible: e.target.checked })}
+                      className="w-4 h-4 rounded border-border"
+                    />
+                    <span className="text-sm group-hover:text-primary transition-colors">
+                      {photo.visible ? 'Visible' : 'Masquée'}
+                    </span>
+                  </label>
+
+                  <select
+                    value={photo.category}
+                    onChange={(e) => updatePhoto(globalIndex, { category: e.target.value })}
+                    className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                  >
+                    <option value="empreintes">Empreintes</option>
+                    <option value="atelier">Atelier</option>
+                    <option value="projection">Projection</option>
+                    <option value="uploads-preview">À trier</option>
+                    <option value="uploads">Uploads</option>
+                    <option value="origins">Origins</option>
+                  </select>
+
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={photo.forSale}
+                      onChange={(e) => updatePhoto(globalIndex, { forSale: e.target.checked })}
+                      className="w-4 h-4 rounded border-border"
+                    />
+                    <span className="text-sm group-hover:text-primary transition-colors">
+                      À vendre
+                    </span>
+                  </label>
+
+                  {/* AI Analysis Button */}
+                  <AIAnalysisPanel
+                    photoFilename={photo.filename}
+                    category={photo.category}
+                    currentPrice={photo.price}
+                    onApplySuggestions={(suggestions) => {
+                      updatePhoto(globalIndex, {
+                        price: suggestions.price,
+                        forSale: true,
+                        edition: {
+                          type: suggestions.isLimitedEdition ? 'limited' : 'open',
+                          count: suggestions.editionNumber
+                        }
+                      });
+                    }}
+                  />
+
+                  {/* Instagram Optimizer */}
+                  <InstagramSuggestionPanel
+                    photoPath={photo.path}
+                    photoTitle={photo.filename}
+                    category={photo.category}
+                    seriesName={photo.seriesName}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {filteredPhotos.length === 0 && (
+          <div className="text-center py-20 text-muted-foreground">
+            Aucun média trouvé
+          </div>
+        )}
+      </div>
     </div>
   );
 }

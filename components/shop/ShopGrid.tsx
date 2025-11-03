@@ -101,7 +101,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
       {/* Panier flottant */}
       {cart.length > 0 && (
         <div className="fixed top-20 right-4 bg-zinc-900 text-white p-4 rounded-lg shadow-2xl z-50 border-2 border-amber-500">
-          <h3 className="font-bold mb-2">🛒 Panier ({cart.length})</h3>
+          <h3 className="font-bold mb-2">Panier ({cart.length})</h3>
           <p className="text-sm mb-3">
             Total: {cart.reduce((sum, item) => sum + item.price, 0)}€
           </p>
@@ -109,7 +109,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
             onClick={handleCheckout}
             className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-lg font-bold transition-colors"
           >
-            💳 Payer maintenant
+            Payer maintenant
           </button>
           <button
             onClick={() => setCart([])}
@@ -218,7 +218,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
               {/* Format */}
               <div>
-                <h3 className="text-lg font-bold mb-3">📐 Format</h3>
+                <h3 className="text-lg font-bold mb-3">Format</h3>
                 <div className="grid grid-cols-3 gap-3">
                   {Object.entries(formats).map(([key, value]) => (
                     <button
@@ -241,7 +241,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
               {/* Cadre */}
               <div>
-                <h3 className="text-lg font-bold mb-3">🖼️ Encadrement</h3>
+                <h3 className="text-lg font-bold mb-3">Encadrement</h3>
                 <div className="space-y-2">
                   {Object.entries(frames).map(([key, value]) => (
                     <button
@@ -274,7 +274,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                   onClick={handleAddToCart}
                   className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg"
                 >
-                  ✅ Ajouter au panier
+                  Ajouter au panier
                 </button>
               </div>
 

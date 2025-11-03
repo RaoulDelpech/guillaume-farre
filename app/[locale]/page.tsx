@@ -30,36 +30,8 @@ export default async function HomePage() {
       <Navigation />
       <HomeClient />
 
-      {/* Hero Carousel avec overlay de citation */}
-      <div className="relative">
-        <HeroCarousel />
-
-        {/* Citation puissante en overlay */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-center px-4 max-w-4xl">
-            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)] mb-4 md:mb-6">
-              Quand une Ferrari<br />devient pinceau
-            </h1>
-            <p className="text-lg md:text-2xl text-white/90 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] mb-6 md:mb-8">
-              De la voiture d'enfance à l'art automobile contemporain
-            </p>
-            <div className="pointer-events-auto flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/boutique"
-                className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105 shadow-xl"
-              >
-                🏎️ Découvrir les œuvres
-              </Link>
-              <Link
-                href="/origine"
-                className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold rounded-lg text-lg transition-all border-2 border-white/30"
-              >
-                ✨ L'histoire de la Ferrari n°20
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Hero Carousel */}
+      <HeroCarousel />
 
       {/* Stats Live - Impact immédiat */}
       <section className="bg-gradient-to-r from-red-950 to-black border-y border-red-900/30 py-6 md:py-8">

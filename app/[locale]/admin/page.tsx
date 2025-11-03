@@ -4,6 +4,7 @@ import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 import AIAnalysisPanel from "@/components/admin/AIAnalysisPanel";
 import DuplicateDetector from "@/components/admin/DuplicateDetector";
 import InstagramSuggestionPanel from "@/components/admin/InstagramSuggestionPanel";
+import InstagramConfig from "@/components/admin/InstagramConfig";
 import CommercialDashboard from "@/components/admin/CommercialDashboard";
 
 export default function AdminPage() {
@@ -126,6 +127,11 @@ export default function AdminPage() {
       {/* Duplicate Detector */}
       <div style={{ marginBottom: '30px' }}>
         <DuplicateDetector />
+      </div>
+
+      {/* Instagram Configuration */}
+      <div style={{ marginBottom: '30px' }}>
+        <InstagramConfig />
       </div>
 
       {/* Commercial Performance Dashboard */}

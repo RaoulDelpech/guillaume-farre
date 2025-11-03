@@ -40,20 +40,68 @@ export default function InstagramSuggestionPanel({
   };
 
   const handlePostToInstagram = async () => {
+    if (!suggestion) return;
+
     setPosting(true);
     try {
-      // TODO: Intégration API Instagram
-      // Pour l'instant, on copie tout dans le clipboard et on ouvre Instagram
-      const fullPost = `${suggestion?.caption.full}\n\n${suggestion?.hashtags.full}`;
-      await navigator.clipboard.writeText(fullPost);
+      // Préparer le caption complet (légende + hashtags)
+      const fullCaption = `${suggestion.caption.full}\n\n${suggestion.hashtags.full}`;
 
-      alert('📱 Post copié ! Collez-le dans Instagram.\n\n💡 Astuce: Ouvrez Instagram sur votre téléphone et collez le contenu dans un nouveau post.');
+      // Construire l'URL complète de l'image (doit être accessible publiquement)
+      const imageUrl = photoPath.startsWith('http')
+        ? photoPath
+        : `${window.location.origin}${photoPath}`;
 
-      // Optionnel: Ouvrir Instagram web (si l'utilisateur est sur desktop)
-      // window.open('https://www.instagram.com/create/select/', '_blank');
+      // Vérifier d'abord la connexion Instagram
+      const statusResponse = await fetch('/api/instagram/post');
+      const statusData = await statusResponse.json();
+
+      if (!statusData.connected) {
+        alert(
+          '❌ Instagram non connecté\n\n' +
+          'Veuillez d\'abord configurer votre compte Instagram dans les paramètres de l\'admin.\n\n' +
+          'Pour l\'instant, le post a été copié dans votre presse-papiers.'
+        );
+        await navigator.clipboard.writeText(fullCaption);
+        return;
+      }
+
+      // Publier sur Instagram
+      const response = await fetch('/api/instagram/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          imageUrl: imageUrl,
+          caption: fullCaption,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(
+          '✅ Post publié sur Instagram !\n\n' +
+          `Post ID: ${data.postId}\n\n` +
+          '🎉 Votre photo est maintenant visible sur votre profil Instagram.'
+        );
+      } else {
+        console.error('Erreur API Instagram:', data);
+        alert(
+          `❌ Erreur lors de la publication:\n\n${data.error}\n\n` +
+          'Le post a été copié dans votre presse-papiers pour publication manuelle.'
+        );
+        await navigator.clipboard.writeText(fullCaption);
+      }
     } catch (error) {
       console.error('Erreur post Instagram:', error);
-      alert('❌ Erreur lors de la préparation du post');
+      alert(
+        '❌ Erreur lors de la publication Instagram\n\n' +
+        'Le post a été copié dans votre presse-papiers.'
+      );
+      const fullPost = `${suggestion?.caption.full}\n\n${suggestion?.hashtags.full}`;
+      await navigator.clipboard.writeText(fullPost);
     } finally {
       setPosting(false);
     }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { useTranslations } from "next-intl";
 import { useFavorites } from "@/hooks/useFavorites";
+import { useConfetti } from "@/hooks/useConfetti";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -22,6 +23,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const [selectedFormat, setSelectedFormat] = useState("A3");
   const [selectedFrame, setSelectedFrame] = useState("none");
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { fireHeartConfetti, fireConfetti } = useConfetti();
 
   const formats = {
     "A4": { width: 21, height: 29.7, priceMultiplier: 1.0 },
@@ -54,6 +56,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
     setCart([...cart, item]);
     setSelectedPhoto(null);
+    fireConfetti(); // 🎊 Confetti!
     alert(`✅ ${selectedPhoto.title || selectedPhoto.filename} ajouté au panier !`);
   };
 
@@ -130,7 +133,11 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
+                  const wasNotFavorite = !isFavorite(photo.path);
                   toggleFavorite(photo.path);
+                  if (wasNotFavorite) {
+                    fireHeartConfetti(); // ❤️ Confetti coeurs!
+                  }
                 }}
                 className="absolute top-2 left-2 bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white p-2 rounded-full transition-all hover:scale-110 z-10"
                 title={isFavorite(photo.path) ? "Retirer des favoris" : "Ajouter aux favoris"}

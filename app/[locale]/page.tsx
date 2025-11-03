@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
+import HomeClient from "@/components/HomeClient";
 import { Link } from "@/i18n/routing";
 import { getWorksFromMetadata } from "@/lib/works";
 
@@ -24,6 +25,7 @@ export default async function HomePage() {
   return (
     <main className="min-h-[80vh]">
       <Navigation />
+      <HomeClient />
 
       {/* Hero Carousel avec overlay de citation */}
       <div className="relative">

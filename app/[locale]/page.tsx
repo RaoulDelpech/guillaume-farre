@@ -9,7 +9,6 @@ export default async function HomePage() {
   const allWorks = await getWorksFromMetadata();
   // Sélectionner 6 œuvres aléatoires pour l'aperçu
   const featuredWorks = allWorks
-    .filter(w => w.visible)
     .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 

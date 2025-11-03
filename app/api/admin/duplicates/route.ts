@@ -10,7 +10,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
 
-const PHOTOS_DIR = path.join(process.cwd(), 'public', 'photos');
+const PUBLIC_DIR = path.join(process.cwd(), 'public');
 
 interface DuplicateGroup {
   hash: string;

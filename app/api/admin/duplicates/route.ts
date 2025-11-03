@@ -68,7 +68,7 @@ async function scanForDuplicates(): Promise<DuplicateGroup[]> {
     }
   }
 
-  await scanDirectory(PHOTOS_DIR);
+  await scanDirectory(PUBLIC_DIR);
 
   // Ne garder que les groupes avec des doublons (2+ fichiers)
   const duplicates: DuplicateGroup[] = [];
@@ -106,7 +106,7 @@ export async function GET(request: Request) {
       summary: {
         groupCount: duplicates.length,
         duplicateFilesCount: totalDuplicates,
-        scannedDirectory: PHOTOS_DIR,
+        scannedDirectory: PUBLIC_DIR,
       },
     });
   } catch (error) {
@@ -138,7 +138,7 @@ export async function DELETE(request: Request) {
     const errors: Array<{ file: string; error: string }> = [];
 
     for (const filePath of filesToDelete) {
-      const fullPath = path.join(PHOTOS_DIR, filePath);
+      const fullPath = path.join(PUBLIC_DIR, filePath);
 
       try {
         await fs.unlink(fullPath);

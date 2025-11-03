@@ -14,13 +14,6 @@ export default async function HomePage() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 
-  // Statistiques dynamiques
-  const stats = {
-    totalWorks: allWorks.length,
-    collectors: 47, // À ajuster avec vraies données
-    performances: 12,
-  };
-
   return (
     <main className="min-h-[80vh]">
       <Navigation />
@@ -28,26 +21,6 @@ export default async function HomePage() {
 
       {/* Hero Carousel */}
       <HeroCarousel />
-
-      {/* Stats élégantes */}
-      <section className="bg-muted/30 border-y border-border py-20 md:py-28">
-        <div className="container px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="text-6xl md:text-8xl font-light tracking-wide text-primary mb-6">{stats.totalWorks}</div>
-              <div className="text-base md:text-lg text-foreground font-light tracking-wide">Œuvres créées</div>
-            </div>
-            <div className="text-center">
-              <div className="text-6xl md:text-8xl font-light tracking-wide text-primary mb-6">{stats.collectors}</div>
-              <div className="text-base md:text-lg text-foreground font-light tracking-wide">Collectionneurs</div>
-            </div>
-            <div className="text-center">
-              <div className="text-6xl md:text-8xl font-light tracking-wide text-primary mb-6">{stats.performances}</div>
-              <div className="text-base md:text-lg text-foreground font-light tracking-wide">Performances live</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Le concept artistique */}
       <section className="container py-20 md:py-32 px-6 lg:px-8 border-t border-border/50">
@@ -271,7 +244,7 @@ export default async function HomePage() {
       <section className="container py-24 md:py-32 px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-8">
-            Rejoignez les {stats.collectors} collectionneurs
+            Rejoignez la communauté
           </h2>
           <p className="text-2xl text-gray-400 font-light mb-12 leading-relaxed">
             Découvrez l'art automobile contemporain. Éditions limitées et pièces uniques.

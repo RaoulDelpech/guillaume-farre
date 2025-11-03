@@ -4,7 +4,7 @@ import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 import AIAnalysisPanel from "@/components/admin/AIAnalysisPanel";
 import DuplicateDetector from "@/components/admin/DuplicateDetector";
 import InstagramSuggestionPanel from "@/components/admin/InstagramSuggestionPanel";
-import CommercialPerformancePanel from "@/components/admin/CommercialPerformancePanel";
+import CommercialDashboard from "@/components/admin/CommercialDashboard";
 
 export default function AdminPage() {
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
@@ -128,6 +128,11 @@ export default function AdminPage() {
         <DuplicateDetector />
       </div>
 
+      {/* Commercial Performance Dashboard */}
+      <div style={{ marginBottom: '30px' }}>
+        <CommercialDashboard photos={photos} />
+      </div>
+
       {/* Actions */}
       <div style={{ backgroundColor: '#1a1a1a', padding: '20px', borderRadius: '8px', marginBottom: '30px', border: '2px solid #333' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', alignItems: 'center' }}>
@@ -229,13 +234,6 @@ export default function AdminPage() {
                     }
                   });
                 }}
-              />
-
-              {/* Commercial Performance Analysis */}
-              <CommercialPerformancePanel
-                photoTitle={photo.filename}
-                category={photo.category}
-                currentPrice={photo.price}
               />
 
               {/* Instagram Optimizer */}

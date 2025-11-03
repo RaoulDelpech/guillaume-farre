@@ -75,9 +75,8 @@ export default function NewsletterPopup() {
           <>
             {/* Icon */}
             <div className="text-center mb-4">
-              <div className="text-6xl mb-3">📬</div>
               <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                Ne manquez rien !
+                Newsletter
               </h3>
               <p className="text-muted-foreground">
                 Inscrivez-vous à la newsletter pour recevoir :
@@ -88,19 +87,19 @@ export default function NewsletterPopup() {
             <div className="bg-muted/40 border border-border rounded-xl p-4 mb-6">
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
+                  <span className="text-primary">•</span>
                   <span>Nouvelles œuvres en exclusivité</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
+                  <span className="text-primary">•</span>
                   <span>Invitations aux performances live</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
+                  <span className="text-primary">•</span>
                   <span>Offres spéciales collectionneurs</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-green-500">✓</span>
+                  <span className="text-primary">•</span>
                   <span>
                     <strong className="text-primary">-15%</strong> sur votre
                     première commande
@@ -137,9 +136,8 @@ export default function NewsletterPopup() {
           <>
             {/* Success state */}
             <div className="text-center py-8">
-              <div className="text-6xl mb-4">🎉</div>
               <h3 className="text-2xl md:text-3xl font-bold mb-3">
-                Merci pour votre inscription !
+                Merci pour votre inscription
               </h3>
               <p className="text-muted-foreground mb-4">
                 Consultez votre boîte mail pour recevoir votre code promo

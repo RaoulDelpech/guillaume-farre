@@ -65,22 +65,18 @@ export default async function BoutiquePage() {
             <div className="bg-card border border-border rounded-xl p-6">
               <div className="grid md:grid-cols-4 gap-6 text-center">
                 <div>
-                  <div className="text-3xl mb-2">✓</div>
                   <div className="font-semibold text-sm mb-1">Certificat authenticité</div>
                   <div className="text-xs text-muted-foreground">Garantie d'origine</div>
                 </div>
                 <div>
-                  <div className="text-3xl mb-2">✓</div>
                   <div className="font-semibold text-sm mb-1">Livraison premium</div>
                   <div className="text-xs text-muted-foreground">Assurée et sécurisée</div>
                 </div>
                 <div>
-                  <div className="text-3xl mb-2">✓</div>
                   <div className="font-semibold text-sm mb-1">Paiement 3x</div>
                   <div className="text-xs text-muted-foreground">Sans frais dès 500€</div>
                 </div>
                 <div>
-                  <div className="text-3xl mb-2">✓</div>
                   <div className="font-semibold text-sm mb-1">Club collectionneurs</div>
                   <div className="text-xs text-muted-foreground">Dès la 1ère acquisition</div>
                 </div>
@@ -114,7 +110,6 @@ export default async function BoutiquePage() {
           </>
         ) : (
           <div className="text-center py-20 max-w-2xl mx-auto">
-            <div className="text-6xl mb-6">🎨</div>
             <p className="text-2xl font-bold mb-4">
               Nouvelles œuvres bientôt disponibles
             </p>
@@ -147,7 +142,6 @@ export default async function BoutiquePage() {
             <h3 className="text-2xl font-bold text-center mb-8">Nos garanties</h3>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="text-5xl mb-4">🔒</div>
                 <h4 className="font-semibold mb-2">Authenticité</h4>
                 <p className="text-sm text-muted-foreground">
                   Chaque œuvre est signée, numérotée et certifiée.
@@ -155,7 +149,6 @@ export default async function BoutiquePage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-5xl mb-4">🎨</div>
                 <h4 className="font-semibold mb-2">Qualité galerie</h4>
                 <p className="text-sm text-muted-foreground">
                   Œuvres uniques créées lors de performances live.
@@ -163,7 +156,6 @@ export default async function BoutiquePage() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-5xl mb-4">🛡️</div>
                 <h4 className="font-semibold mb-2">Protection</h4>
                 <p className="text-sm text-muted-foreground">
                   Livraison assurée, encadrement professionnel disponible,

@@ -11,6 +11,7 @@ export interface PhotoMetadata {
   price?: number;
   title?: string;
   year?: number;
+  seriesName?: string;
   edition?: {
     type: 'limited' | 'open';
     count?: number;

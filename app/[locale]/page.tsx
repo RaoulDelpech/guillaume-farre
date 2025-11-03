@@ -32,30 +32,30 @@ export default async function HomePage() {
       <HeroCarousel />
 
       {/* Stats Live - Impact immédiat */}
-      <section className="bg-gradient-to-br from-accent/20 to-black/95 border-y border-accent/20 py-8 md:py-12">
-        <div className="container px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
+      <section className="bg-gradient-to-br from-accent/20 to-black/95 border-y border-accent/20 py-16 md:py-24">
+        <div className="container px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="text-4xl md:text-6xl font-bold text-primary mb-2">{stats.totalWorks}</div>
-              <div className="text-sm md:text-base text-muted-foreground">Œuvres créées</div>
+              <div className="text-5xl md:text-7xl font-light tracking-wide text-primary mb-4">{stats.totalWorks}</div>
+              <div className="text-base md:text-lg text-muted-foreground font-light">Œuvres créées</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-6xl font-bold text-primary mb-2">{stats.collectors}</div>
-              <div className="text-sm md:text-base text-muted-foreground">Collectionneurs</div>
+              <div className="text-5xl md:text-7xl font-light tracking-wide text-primary mb-4">{stats.collectors}</div>
+              <div className="text-base md:text-lg text-muted-foreground font-light">Collectionneurs</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-6xl font-bold text-primary mb-2">{stats.performances}</div>
-              <div className="text-sm md:text-base text-muted-foreground">Performances live</div>
+              <div className="text-5xl md:text-7xl font-light tracking-wide text-primary mb-4">{stats.performances}</div>
+              <div className="text-base md:text-lg text-muted-foreground font-light">Performances live</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Le concept artistique */}
-      <section className="container py-16 md:py-24 px-4 border-t border-border/50">
-        <div className="max-w-4xl mx-auto">
+      <section className="container py-20 md:py-32 px-6 lg:px-8 border-t border-border/50">
+        <div className="max-w-5xl mx-auto">
           {/* Titre minimaliste */}
-          <div className="text-center mb-16 md:mb-20">
+          <div className="text-center mb-20 md:mb-28">
             <h2 className="text-3xl md:text-5xl font-light tracking-wide mb-4">
               Du rêve d'enfant à l'œuvre d'art
             </h2>
@@ -133,18 +133,18 @@ export default async function HomePage() {
       </section>
 
       {/* Œuvres en vedette avec badges de rareté */}
-      <section className="container py-12 md:py-16 border-t px-4">
-        <div className="flex items-center justify-between mb-8">
+      <section className="container py-20 md:py-28 border-t px-6 lg:px-8">
+        <div className="flex items-center justify-between mb-12">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-2">Œuvres disponibles</h2>
-            <p className="text-gray-400">Éditions limitées et pièces uniques</p>
+            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-3">Œuvres disponibles</h2>
+            <p className="text-lg text-gray-400 font-light">Éditions limitées et pièces uniques</p>
           </div>
-          <Link href="/boutique" className="text-amber-500 hover:text-amber-400 font-bold">
+          <Link href="/boutique" className="text-amber-500 hover:text-amber-400 font-light tracking-wide">
             Voir tout →
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
           {featuredWorks.slice(0, 6).map((work, idx) => {
             // Simuler des badges de rareté (à remplacer par vraies données)
             const isLimited = idx % 3 === 0;
@@ -158,19 +158,19 @@ export default async function HomePage() {
                 className="group block overflow-hidden rounded-lg border hover:border-amber-500 transition-all relative"
               >
                 {/* Badges */}
-                <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
+                <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
                   {isLimited && !isSold && (
-                    <span className="px-3 py-1 bg-amber-600 text-white text-xs font-bold rounded-full">
+                    <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white/90 text-xs font-light tracking-wide rounded border border-white/20">
                       Édition 3/7
                     </span>
                   )}
                   {isLastOne && !isSold && (
-                    <span className="px-3 py-1 bg-orange-600 text-white text-xs font-bold rounded-full animate-pulse">
-                      Dernière !
+                    <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white/90 text-xs font-light tracking-wide rounded border border-white/20">
+                      Dernière disponible
                     </span>
                   )}
                   {isSold && (
-                    <span className="px-3 py-1 bg-gray-800 text-gray-400 text-xs font-bold rounded-full">
+                    <span className="px-3 py-1.5 bg-black/80 backdrop-blur-sm text-white/50 text-xs font-light tracking-wide rounded border border-white/10">
                       VENDU
                     </span>
                   )}
@@ -184,15 +184,15 @@ export default async function HomePage() {
                       className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     {isSold && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                        <span className="text-3xl font-bold text-white">VENDU</span>
+                      <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                        <span className="text-2xl font-light tracking-widest text-white/80">VENDU</span>
                       </div>
                     )}
                   </div>
                 )}
-                <div className="p-3 md:p-4 bg-card">
-                  <h3 className="text-sm md:text-base font-semibold mb-1 truncate">{work.title}</h3>
-                  <p className="text-xs text-muted-foreground mb-2">
+                <div className="p-4 md:p-6 bg-card">
+                  <h3 className="text-base md:text-lg font-light tracking-wide mb-2 truncate">{work.title}</h3>
+                  <p className="text-sm text-muted-foreground font-light">
                     {work.year} • {work.type === 'photo' ? 'Photographie' : 'Toile'}
                   </p>
                 </div>
@@ -201,10 +201,10 @@ export default async function HomePage() {
           })}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-16 text-center">
           <Link
             href="/boutique"
-            className="inline-block px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105"
+            className="inline-block px-10 py-5 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-lg transition-all transform hover:scale-105"
           >
             Voir toutes les œuvres disponibles
           </Link>
@@ -212,106 +212,106 @@ export default async function HomePage() {
       </section>
 
       {/* Témoignages de collectionneurs */}
-      <section className="bg-gradient-to-b from-black to-red-950/10 py-12 md:py-16 border-t">
-        <div className="container px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Ce que disent les collectionneurs</h2>
+      <section className="bg-gradient-to-b from-background to-muted/20 py-20 md:py-28 border-t border-border">
+        <div className="container px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-light tracking-wide text-center mb-16">Ce que disent les collectionneurs</h2>
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            <div className="bg-black/40 border border-red-900/30 rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-red-900/30 rounded-full flex items-center justify-center text-xl">
+          <div className="grid md:grid-cols-3 gap-10 md:gap-12 max-w-6xl mx-auto">
+            <div className="bg-card border border-border rounded-xl p-8">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-muted rounded-full flex items-center justify-center text-xl font-light text-muted-foreground">
                   JP
                 </div>
                 <div>
-                  <div className="font-bold">Jean-Pierre M.</div>
-                  <div className="text-xs text-gray-400">Collectionneur, Paris</div>
+                  <div className="font-light tracking-wide text-lg">Jean-Pierre M.</div>
+                  <div className="text-sm text-muted-foreground font-light">Collectionneur, Paris</div>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed mb-3">
+              <p className="text-foreground/80 text-base leading-relaxed mb-4 font-light">
                 "J'ai acheté ma première empreinte il y a 2 ans. Aujourd'hui,
                 j'en possède 4. Chaque pièce raconte une histoire unique."
               </p>
-              <div className="text-sm text-muted-foreground italic">★★★★★</div>
+              <div className="text-base text-muted-foreground italic">★★★★★</div>
             </div>
 
-            <div className="bg-black/40 border border-red-900/30 rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-red-900/30 rounded-full flex items-center justify-center text-xl">
+            <div className="bg-card border border-border rounded-xl p-8">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-muted rounded-full flex items-center justify-center text-xl font-light text-muted-foreground">
                   SM
                 </div>
                 <div>
-                  <div className="font-bold">Sophie M.</div>
-                  <div className="text-xs text-gray-400">Galeriste, Monaco</div>
+                  <div className="font-light tracking-wide text-lg">Sophie M.</div>
+                  <div className="text-sm text-muted-foreground font-light">Galeriste, Monaco</div>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed mb-3">
+              <p className="text-foreground/80 text-base leading-relaxed mb-4 font-light">
                 "Un concept totalement inédit. Mes clients sont fascinés
                 par cette fusion entre art contemporain et culture automobile."
               </p>
-              <div className="text-sm text-muted-foreground italic">★★★★★</div>
+              <div className="text-base text-muted-foreground italic">★★★★★</div>
             </div>
 
-            <div className="bg-black/40 border border-red-900/30 rounded-xl p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-red-900/30 rounded-full flex items-center justify-center text-xl">
+            <div className="bg-card border border-border rounded-xl p-8">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 bg-muted rounded-full flex items-center justify-center text-xl font-light text-muted-foreground">
                   AL
                 </div>
                 <div>
-                  <div className="font-bold">Antoine L.</div>
-                  <div className="text-xs text-gray-400">Collectionneur, Genève</div>
+                  <div className="font-light tracking-wide text-lg">Antoine L.</div>
+                  <div className="text-sm text-muted-foreground font-light">Collectionneur, Genève</div>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed mb-3">
+              <p className="text-foreground/80 text-base leading-relaxed mb-4 font-light">
                 "Une œuvre qui ne cesse de m'émerveiller. Chaque détail raconte
                 l'intensité du moment de la création. Un véritable coup de cœur."
               </p>
-              <div className="text-sm text-muted-foreground italic">★★★★★</div>
+              <div className="text-base text-muted-foreground italic">★★★★★</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Performance Countdown */}
-      <section className="container py-12 md:py-16 px-4 border-t">
+      <section className="container py-20 md:py-28 px-6 lg:px-8 border-t">
         <PerformanceCountdown />
       </section>
 
       {/* Collection Tracker */}
-      <section className="container py-12 md:py-16 px-4 border-t">
-        <div className="max-w-4xl mx-auto">
+      <section className="container py-20 md:py-28 px-6 lg:px-8 border-t">
+        <div className="max-w-5xl mx-auto">
           <CollectionTracker />
         </div>
       </section>
 
       {/* CTA final puissant */}
-      <section className="container py-16 md:py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+      <section className="container py-24 md:py-32 px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-8">
             Rejoignez les {stats.collectors} collectionneurs
           </h2>
-          <p className="text-xl text-gray-400 mb-8">
+          <p className="text-2xl text-gray-400 font-light mb-12 leading-relaxed">
             Découvrez l'art automobile contemporain. Éditions limitées et pièces uniques.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href="/boutique"
-              className="px-10 py-5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-xl transition-all transform hover:scale-105 shadow-2xl"
+              className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl transition-all transform hover:scale-105 shadow-2xl"
             >
               Réserver une œuvre
             </Link>
             <Link
               href="/contact"
-              className="px-10 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold rounded-lg text-xl transition-all border-2 border-white/30"
+              className="px-12 py-6 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-light tracking-wide rounded-lg text-xl transition-all border-2 border-white/30"
             >
               Contacter l'artiste
             </Link>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted-foreground">
+          <div className="mt-12 flex items-center justify-center gap-8 text-base text-muted-foreground font-light">
             <div>Certificat d'authenticité</div>
-            <div className="w-px h-4 bg-border"></div>
+            <div className="w-px h-5 bg-border"></div>
             <div>Livraison sécurisée</div>
-            <div className="w-px h-4 bg-border"></div>
+            <div className="w-px h-5 bg-border"></div>
             <div>Paiement en 3x</div>
           </div>
         </div>

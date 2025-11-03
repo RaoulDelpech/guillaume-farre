@@ -11,8 +11,8 @@ export default function Navigation() {
   const links = [
     { href: "/", label: t("accueil") },
     { href: "/boutique", label: t("boutique") },
-    { href: "/quiz", label: "🎯 Quiz", highlight: true },
-    { href: "/comparer", label: "⚖️ Comparer" },
+    { href: "/quiz", label: "Quiz", highlight: true },
+    { href: "/comparer", label: "Comparer" },
     { href: "/origine", label: "Origine" },
     { href: "/performances", label: "Performances" },
     { href: "/collectionneurs", label: "Club" },
@@ -22,18 +22,18 @@ export default function Navigation() {
 
   return (
     <nav className="bg-card border-b border-border text-foreground sticky top-0 z-40">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-semibold hover:text-primary transition-colors">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <Link href="/" className="text-2xl font-light tracking-wide hover:text-primary transition-colors">
             Guillaume Farré
           </Link>
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-8 lg:gap-10">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm hover:text-primary transition-colors ${
-                  pathname === link.href ? "text-primary" : ""
+                className={`text-sm font-light tracking-wide hover:text-primary transition-colors ${
+                  pathname === link.href ? "text-primary font-normal" : ""
                 }`}
               >
                 {link.label}

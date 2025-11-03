@@ -54,8 +54,8 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
       filtered.sort((a, b) => (b.price || 2000) - (a.price || 2000));
     } else if (activeSort === "newest") {
       filtered.sort((a, b) => {
-        const yearA = parseInt(a.year || "2024");
-        const yearB = parseInt(b.year || "2024");
+        const yearA = typeof a.year === "number" ? a.year : parseInt(a.year || "2024");
+        const yearB = typeof b.year === "number" ? b.year : parseInt(b.year || "2024");
         return yearB - yearA;
       });
     }

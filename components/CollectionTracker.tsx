@@ -126,7 +126,6 @@ export default function CollectionTracker() {
     <div className="bg-card border-2 border-border rounded-2xl p-6 md:p-8">
       {/* Header */}
       <div className="text-center mb-6">
-        <div className="text-5xl mb-3">🏆</div>
         <h3 className="text-2xl md:text-3xl font-bold mb-2">
           Ma Collection
         </h3>
@@ -293,7 +292,7 @@ export default function CollectionTracker() {
         <div className="mt-4 text-center">
           <button
             onClick={() => {
-              const text = `J'ai ${favorites.length} œuvres de Guillaume Farré dans ma collection ! 🎨🏎️`;
+              const text = `J'ai ${favorites.length} œuvres de Guillaume Farré dans ma collection.`;
               if (navigator.share) {
                 navigator.share({ text, url: window.location.origin });
               } else {
@@ -305,7 +304,7 @@ export default function CollectionTracker() {
             }}
             className="text-sm text-muted-foreground hover:text-foreground transition-all"
           >
-            📤 Partager ma collection
+            Partager ma collection
           </button>
         </div>
       )}

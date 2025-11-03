@@ -71,16 +71,16 @@ export default function PerformanceCountdown() {
         {/* Header */}
         <div className="text-center mb-6">
           <div className="inline-block px-4 py-2 bg-primary rounded-full text-sm font-semibold mb-3 animate-pulse">
-            🎨 PERFORMANCE LIVE EN DIRECT
+            PERFORMANCE LIVE EN DIRECT
           </div>
           <h3 className="text-2xl md:text-3xl font-bold mb-2">
             Prochaine création en direct
           </h3>
           <p className="text-muted-foreground text-sm mb-1">
-            📅 {formatDate()}
+            {formatDate()}
           </p>
           <p className="text-muted-foreground text-xs">
-            📍 Circuit Paul Ricard, Le Castellet
+            Circuit Paul Ricard, Le Castellet
           </p>
         </div>
 
@@ -115,23 +115,23 @@ export default function PerformanceCountdown() {
         {/* Details */}
         <div className="bg-muted/30 border border-border rounded-xl p-4 mb-4">
           <h4 className="font-semibold mb-2 text-sm md:text-base">
-            🎨 Ce qui vous attend :
+            Ce qui vous attend :
           </h4>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">
-              <span className="text-primary mt-0.5">🏎️</span>
+              <span className="text-primary mt-0.5">•</span>
               <span>Performance live avec la Ferrari 458 Italia</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-primary mt-0.5">🎥</span>
+              <span className="text-primary mt-0.5">•</span>
               <span>Diffusion en direct sur nos réseaux sociaux</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-primary mt-0.5">🖼️</span>
+              <span className="text-primary mt-0.5">•</span>
               <span>Création de 3 œuvres uniques en édition limitée</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-primary mt-0.5">🎫</span>
+              <span className="text-primary mt-0.5">•</span>
               <span>Possibilité de réserver votre œuvre en avant-première</span>
             </li>
           </ul>
@@ -157,7 +157,7 @@ export default function PerformanceCountdown() {
         {timeLeft.days < 7 && (
           <div className="mt-4 text-center">
             <span className="inline-block px-4 py-2 bg-accent text-primary-foreground text-xs font-semibold rounded-full animate-bounce">
-              ⚠️ Plus que {timeLeft.days} jours !
+              Plus que {timeLeft.days} jours
             </span>
           </div>
         )}

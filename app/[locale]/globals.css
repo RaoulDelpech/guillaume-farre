@@ -4,50 +4,50 @@
 
 @layer base {
   :root {
-    /* Light (fallback) */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* Light mode - Palette Artistique */
+    --background: 40 18% 97%; /* #FAF8F5 - Blanc cassé chaud */
+    --foreground: 30 8% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 30 8% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 0 72% 50%; /* Rouge signature */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 36 100% 39%; /* Ocre */
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 0 0% 16%; /* #2A2A2A */
-    --muted-foreground: 0 0% 55%; /* #8E8E8E */
-    --accent: 0 0% 16%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 72% 50%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 0 72% 50%;
+    --popover-foreground: 30 8% 12%;
+    --primary: 38 45% 48%; /* #A68D5E - Or/Bronze plus foncé pour lisibilité */
+    --primary-foreground: 40 18% 97%;
+    --secondary: 30 22% 55%; /* #9A8B75 - Taupe clair */
+    --secondary-foreground: 30 8% 12%;
+    --muted: 30 12% 88%; /* #E5E0D8 */
+    --muted-foreground: 30 8% 35%;
+    --accent: 38 35% 58%; /* #B59968 - Bronze clair */
+    --accent-foreground: 30 8% 12%;
+    --destructive: 0 45% 52%;
+    --destructive-foreground: 40 18% 97%;
+    --border: 30 12% 85%;
+    --input: 30 12% 85%;
+    --ring: 38 45% 48%;
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark brand palette - ardoise/béton sombre */
-    --background: 210 5% 15%; /* #222327 - gris anthracite légèrement bleuté */
-    --foreground: 60 6% 95%; /* #F1F1EF */
-    --card: 210 5% 17%; /* #272A2E */
-    --card-foreground: 60 6% 95%;
-    --popover: 210 5% 17%;
-    --popover-foreground: 60 6% 95%;
-    --primary: 0 70% 50%; /* #D12C2C Rouge signature */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 36 100% 39%; /* #C77E00 Ocre */
-    --secondary-foreground: 0 0% 98%;
-    --muted: 210 5% 22%; /* #343740 */
-    --muted-foreground: 0 0% 60%; /* #999999 */
-    --accent: 210 5% 20%;
-    --accent-foreground: 60 6% 95%;
-    --destructive: 0 72% 50%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 5% 22%;
-    --input: 210 5% 20%;
-    --ring: 0 70% 50%;
+    /* Palette Artistique - Galerie d'Art Contemporain */
+    --background: 30 8% 12%; /* #1C1915 - gris chaud, presque noir */
+    --foreground: 40 10% 92%; /* #EDE9E3 - blanc cassé chaud */
+    --card: 30 10% 16%; /* #26221C */
+    --card-foreground: 40 10% 92%;
+    --popover: 30 10% 16%;
+    --popover-foreground: 40 10% 92%;
+    --primary: 38 45% 58%; /* #C4A570 - Or/Bronze doux, élégant */
+    --primary-foreground: 30 8% 12%;
+    --secondary: 30 22% 45%; /* #7A6F5D - Taupe chaud */
+    --secondary-foreground: 40 10% 92%;
+    --muted: 30 8% 20%; /* #2E2922 */
+    --muted-foreground: 30 6% 65%; /* #A39A8E */
+    --accent: 38 35% 48%; /* #9F8560 - Bronze mat */
+    --accent-foreground: 40 10% 92%;
+    --destructive: 0 45% 52%; /* Rouge adouci pour les erreurs */
+    --destructive-foreground: 40 10% 92%;
+    --border: 30 12% 24%; /* #38302A */
+    --input: 30 10% 18%;
+    --ring: 38 45% 58%;
   }
 }
 

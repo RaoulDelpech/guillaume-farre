@@ -3,7 +3,6 @@ import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
 import HomeClient from "@/components/HomeClient";
 import PerformanceCountdown from "@/components/PerformanceCountdown";
-import PriceHistoryChart from "@/components/PriceHistoryChart";
 import CollectionTracker from "@/components/CollectionTracker";
 import { Link } from "@/i18n/routing";
 import { getWorksFromMetadata } from "@/lib/works";
@@ -22,7 +21,6 @@ export default async function HomePage() {
     totalWorks: allWorks.length,
     collectors: 47, // À ajuster avec vraies données
     performances: 12,
-    investmentValue: "850K€",
   };
 
   return (
@@ -34,41 +32,20 @@ export default async function HomePage() {
       <HeroCarousel />
 
       {/* Stats Live - Impact immédiat */}
-      <section className="bg-gradient-to-r from-red-950 to-black border-y border-red-900/30 py-6 md:py-8">
+      <section className="bg-gradient-to-br from-accent/20 to-black/95 border-y border-accent/20 py-8 md:py-12">
         <div className="container px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold text-red-500 mb-2">{stats.totalWorks}</div>
-              <div className="text-xs md:text-sm text-gray-400">Œuvres créées</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold text-red-500 mb-2">{stats.collectors}</div>
-              <div className="text-xs md:text-sm text-gray-400">Collectionneurs</div>
+              <div className="text-4xl md:text-6xl font-bold text-primary mb-2">{stats.totalWorks}</div>
+              <div className="text-sm md:text-base text-muted-foreground">Œuvres créées</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold text-red-500 mb-2">{stats.performances}</div>
-              <div className="text-xs md:text-sm text-gray-400">Performances live</div>
+              <div className="text-4xl md:text-6xl font-bold text-primary mb-2">{stats.collectors}</div>
+              <div className="text-sm md:text-base text-muted-foreground">Collectionneurs</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold text-red-500 mb-2">{stats.investmentValue}</div>
-              <div className="text-xs md:text-sm text-gray-400">Valeur totale investie</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dernière vente - FOMO */}
-      <section className="container py-6 md:py-8 px-4">
-        <div className="bg-gradient-to-r from-red-950/20 to-black border border-red-900/30 rounded-xl p-6 md:p-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <div className="text-red-500 font-bold text-sm mb-2">🔥 DERNIÈRE VENTE</div>
-              <h3 className="text-xl md:text-2xl font-bold mb-1">Empreinte Ferrari #4/7</h3>
-              <p className="text-gray-400 text-sm">Vendue il y a 3 jours • Paris</p>
-            </div>
-            <div className="text-center md:text-right">
-              <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">12 500€</div>
-              <div className="text-xs md:text-sm text-gray-400">+18% vs prix initial</div>
+              <div className="text-4xl md:text-6xl font-bold text-primary mb-2">{stats.performances}</div>
+              <div className="text-sm md:text-base text-muted-foreground">Performances live</div>
             </div>
           </div>
         </div>
@@ -81,9 +58,9 @@ export default async function HomePage() {
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <div className="text-center">
             <div className="text-6xl mb-4">👶</div>
-            <div className="bg-red-950/20 border border-red-900/30 rounded-lg p-6">
+            <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
               <h3 className="text-xl font-bold mb-3">1. Enfant</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Tout commence avec une petite Ferrari n°20. Guillaume trempe ses roues dans la peinture
                 et crée ses premières traces sur papier.
               </p>
@@ -92,9 +69,9 @@ export default async function HomePage() {
 
           <div className="text-center">
             <div className="text-6xl mb-4">🏎️</div>
-            <div className="bg-red-950/20 border border-red-900/30 rounded-lg p-6">
+            <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
               <h3 className="text-xl font-bold mb-3">2. Vision</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Des années plus tard, le rêve devient réalité :
                 une vraie Ferrari remplace la miniature. Échelle 1:1.
               </p>
@@ -103,9 +80,9 @@ export default async function HomePage() {
 
           <div className="text-center">
             <div className="text-6xl mb-4">🎨</div>
-            <div className="bg-red-950/20 border border-red-900/30 rounded-lg p-6">
+            <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
               <h3 className="text-xl font-bold mb-3">3. Œuvre unique</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Chaque performance live crée une œuvre strictement unique,
                 impossible à reproduire. Un instant capturé pour toujours.
               </p>
@@ -116,9 +93,9 @@ export default async function HomePage() {
         <div className="text-center mt-12">
           <Link
             href="/origine"
-            className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105"
+            className="inline-block px-8 py-4 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg text-lg transition-all"
           >
-            📖 Lire l'histoire complète
+            L'histoire complète
           </Link>
         </div>
       </section>
@@ -275,24 +252,6 @@ export default async function HomePage() {
         <PerformanceCountdown />
       </section>
 
-      {/* Investment section */}
-      <section className="bg-gradient-to-b from-black to-purple-950/10 py-12 md:py-16 border-t">
-        <div className="container px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Un investissement rentable
-              </h2>
-              <p className="text-xl text-gray-400">
-                Les œuvres de Guillaume Farré prennent de la valeur avec le temps
-              </p>
-            </div>
-
-            <PriceHistoryChart initialPrice={8500} currentPrice={12500} />
-          </div>
-        </div>
-      </section>
-
       {/* Collection Tracker */}
       <section className="container py-12 md:py-16 px-4 border-t">
         <div className="max-w-4xl mx-auto">
@@ -307,7 +266,7 @@ export default async function HomePage() {
             Rejoignez les {stats.collectors} collectionneurs
           </h2>
           <p className="text-xl text-gray-400 mb-8">
-            Investissez dans l'art automobile contemporain. Éditions limitées et pièces uniques.
+            Découvrez l'art automobile contemporain. Éditions limitées et pièces uniques.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

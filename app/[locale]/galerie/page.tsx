@@ -35,7 +35,8 @@ export default async function GaleriePage() {
             {t("title")}
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed">
-            Découvrez l'univers créatif de Guillaume Farré
+            Toiles. Photographies. Traces de Ferrari.<br />
+            Chaque œuvre raconte le même geste. Encore et encore.
           </p>
 
           {/* Stats minimalistes */}
@@ -85,7 +86,7 @@ export default async function GaleriePage() {
               Vous souhaitez acquérir une œuvre ?
             </h2>
             <p className="text-xl font-light text-muted-foreground mb-12 leading-relaxed">
-              Découvrez les œuvres disponibles à la vente et rejoignez la communauté des collectionneurs
+              Les œuvres disponibles. Rejoignez ceux qui possèdent une trace.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a

@@ -92,8 +92,8 @@ export default function ActualitesPage() {
               Journal de bord
             </h1>
             <p className="text-xl md:text-2xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Coulisses des performances, réflexions sur l'art automobile, portraits de collectionneurs.
-              Suivez l'aventure au quotidien.
+              Coulisses. Réflexions. Traces de création.
+              L'aventure se raconte ici.
             </p>
           </div>
         </div>

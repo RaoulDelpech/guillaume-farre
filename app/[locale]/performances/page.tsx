@@ -91,8 +91,8 @@ export default function PerformancesPage() {
             L'art en direct
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed">
-            Assistez à la création d'une œuvre unique. Une Ferrari, de la peinture, une toile monumentale.
-            Un spectacle inoubliable.
+            Une Ferrari. De la peinture. Une toile monumentale.
+            Vous voyez l'œuvre naître. Inoubliable.
           </p>
           <Link
             href="/contact"
@@ -294,9 +294,9 @@ export default function PerformancesPage() {
               </div>
               <div className="md:w-3/4 md:pt-12">
                 <p className="text-xl font-light text-muted-foreground leading-relaxed">
-                  Guillaume explique le concept. La Ferrari démarre (le son du V12 est unique).
-                  Les roues sont trempées dans la peinture. La voiture roule sur la toile, créant des traces uniques.
-                  Durée : 15-20 minutes de création pure.
+                  J'explique le geste. La Ferrari démarre. Le V12 rugit.
+                  Les roues plongent dans la peinture. La voiture roule. Les traces apparaissent.
+                  15-20 minutes. Pas de retour en arrière possible.
                 </p>
               </div>
             </div>
@@ -325,8 +325,8 @@ export default function PerformancesPage() {
               </div>
               <div className="md:w-3/4 md:pt-12">
                 <p className="text-xl font-light text-muted-foreground leading-relaxed">
-                  Temps d'échange avec Guillaume. Questions du public. Signature de l'œuvre.
-                  Pour les collectionneurs : possibilité d'acquérir l'œuvre créée ou des tirages photographiques limités.
+                  Temps d'échange. Vos questions. Je signe l'œuvre.
+                  Pour les collectionneurs : l'œuvre unique ou les photographies en édition limitée.
                 </p>
               </div>
             </div>
@@ -342,7 +342,7 @@ export default function PerformancesPage() {
               Vivez l'expérience en direct
             </h2>
             <p className="text-2xl font-light text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-              Assistez à la naissance d'une œuvre unique. Un spectacle artistique et automobile inoubliable.
+              Vous voyez l'œuvre naître. Artistique. Automobile. Inoubliable.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link

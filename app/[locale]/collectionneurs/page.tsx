@@ -25,8 +25,8 @@ export default function CollectionneursPage() {
             Collectionneurs
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            Rejoignez la communauté des passionnés d'art automobile.
-            Avantages exclusifs et expériences uniques.
+            Rejoignez ceux qui possèdent une trace.
+            Accès prioritaire. Expériences uniques.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link

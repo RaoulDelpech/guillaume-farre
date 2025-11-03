@@ -166,7 +166,8 @@ export default async function HomePage() {
             Rejoignez la communauté
           </h2>
           <p className="text-2xl text-gray-400 font-light mb-12 leading-relaxed">
-            Découvrez l'art automobile contemporain. Éditions limitées et pièces uniques.
+            Des Ferrari qui deviennent pinceaux. Des traces qui deviennent art.<br />
+            Éditions limitées. Pièces uniques.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link

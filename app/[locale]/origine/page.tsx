@@ -21,12 +21,12 @@ export default function OriginePage() {
             L'Origine
           </div>
           <h1 className="text-6xl md:text-8xl font-light tracking-wide mb-10 text-foreground leading-tight">
-            Tout commence avec<br />
+            Tout a commencé avec<br />
             une petite Ferrari n°20
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            De la chambre d'enfant aux galeries internationales,
-            l'histoire d'un rêve devenu art
+            De ma chambre d'enfant aux galeries internationales.<br />
+            L'histoire de mon rêve devenu art.
           </p>
         </div>
       </div>
@@ -46,20 +46,20 @@ export default function OriginePage() {
                 </h2>
                 <div className="space-y-6 text-lg font-light text-muted-foreground leading-relaxed">
                   <p>
-                    Guillaume, 6 ans, possède une petite voiture Ferrari miniature portant le numéro 20.
-                    Une simple voiture jouet, mais qui allait tout changer.
+                    J'avais 6 ans. Une petite Ferrari n°20. Rouge, bien sûr.
                   </p>
                   <p>
-                    Au lieu de simplement la faire rouler comme les autres enfants, Guillaume a une idée :
-                    tremper les roues dans la peinture et laisser des traces sur des feuilles de papier.
+                    Je ne voulais pas la faire rouler comme les autres. Trop simple.
+                    J'ai trempé les roues dans la peinture. Les traces sur le papier...
+                    c'était autre chose. Quelque chose de différent.
                   </p>
                   <blockquote className="border-l-2 border-primary pl-8 italic text-xl my-10 text-foreground">
-                    « Cette petite Ferrari n°20 n'était pas qu'un jouet. C'était mon premier pinceau,
-                    mon premier outil créateur. »
+                    « Cette Ferrari n°20 n'était pas un jouet.
+                    C'était mon premier pinceau. »
                   </blockquote>
                   <p>
-                    Ces gestes d'enfant contenaient déjà toute la philosophie de son art futur :
-                    transformer le mouvement automobile en création artistique.
+                    Ces gestes d'enfant contenaient déjà tout. Le mouvement qui devient création.
+                    L'automobile qui se transforme en art. C'était là, depuis le début.
                   </p>
                 </div>
               </div>
@@ -109,20 +109,19 @@ export default function OriginePage() {
                 </h2>
                 <div className="space-y-6 text-lg font-light text-muted-foreground leading-relaxed">
                   <p>
-                    Devenu adulte, Guillaume n'a jamais oublié cette petite Ferrari n°20.
-                    Le geste est resté, mais l'ambition a grandi.
+                    Des années ont passé. La Ferrari n°20 est toujours là, quelque part.
+                    Le geste, lui, n'a jamais disparu. Il a juste grandi.
                   </p>
                   <p className="text-2xl font-light text-foreground my-10">
-                    « Et si, au lieu d'une voiture miniature,<br />
-                    j'utilisais une vraie Ferrari ? »
+                    « Et si j'utilisais une vraie Ferrari ? »
                   </p>
                   <p>
-                    Cette question simple a donné naissance à un concept artistique unique :
-                    les Ferrari Live Performances.
+                    Cette question a tout changé. Le même geste, mais à l'échelle 1:1.
+                    Les toiles font 6 mètres. La Ferrari pèse des tonnes.
+                    Le moteur rugit. Mais le principe reste identique.
                   </p>
                   <p>
-                    Le principe reste le même qu'enfant — faire rouler une Ferrari dans la peinture pour créer des empreintes —
-                    mais à l'échelle 1:1, sur des toiles monumentales pouvant atteindre 6 mètres.
+                    Tremper les roues. Rouler. Laisser la trace.
                   </p>
                 </div>
               </div>
@@ -148,32 +147,32 @@ export default function OriginePage() {
                 </h2>
                 <div className="space-y-6 text-lg font-light text-muted-foreground leading-relaxed">
                   <p>
-                    La première performance live a lieu en 2018. Une vraie Ferrari, de la vraie peinture,
-                    une toile de 4 mètres. Le public est fasciné.
+                    2018. La première fois devant public.
+                    Une vraie Ferrari. 4 mètres de toile. La peinture fraîche qui attend.
                   </p>
                   <p>
-                    Chaque roue qui touche la toile crée une trace unique. Le ronronnement du moteur V12,
-                    le crissement des pneus sur la peinture fraîche, la tension du moment...
+                    Les roues touchent la toile. La trace apparaît. Unique. Irréversible.
+                    Le V12 rugit. Les pneus glissent sur la matière. Le public retient son souffle.
                   </p>
                   <p className="text-xl font-light text-primary">
-                    L'automobile n'est plus seulement un objet. Elle devient artiste.
+                    La Ferrari n'est plus un objet. Elle devient l'artiste.
                   </p>
                   <ul className="space-y-4 mt-10">
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">—</span>
-                      <span>Performances devant public</span>
+                      <span>Performance live</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">—</span>
-                      <span>Œuvres strictement uniques</span>
+                      <span>Œuvre unique</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">—</span>
-                      <span>Toiles jusqu'à 6 mètres</span>
+                      <span>Toile monumentale</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">—</span>
-                      <span>Éditions limitées photographiées</span>
+                      <span>Instant capturé en photographie</span>
                     </li>
                   </ul>
                 </div>
@@ -234,12 +233,12 @@ export default function OriginePage() {
 
               <div className="space-y-8 max-w-4xl mx-auto text-center text-muted-foreground font-light text-lg leading-relaxed">
                 <p>
-                  Guillaume Farré continue d'explorer ce concept unique. Performances live lors d'événements automobiles prestigieux,
-                  créations monumentales pour collectionneurs, collaborations avec des marques de luxe...
+                  Je continue. Performances live. Événements automobiles. Toiles monumentales.
+                  Collaborations. Le concept évolue mais reste le même.
                 </p>
                 <p className="text-2xl font-light text-foreground">
-                  Mais l'essence reste la même que dans la chambre d'enfant :
-                  <span className="text-primary"> faire rouler une Ferrari dans la peinture pour créer de l'art</span>.
+                  L'essence n'a pas changé depuis la chambre d'enfant.
+                  <span className="text-primary"> Une Ferrari. De la peinture. Une trace.</span>
                 </p>
               </div>
             </div>
@@ -316,14 +315,11 @@ export default function OriginePage() {
       <section className="container px-6 lg:px-8 py-28 md:py-36">
         <div className="max-w-5xl mx-auto">
           <blockquote className="text-3xl md:text-4xl font-light text-center leading-relaxed text-foreground">
-            De la petite Ferrari n°20 aux performances monumentales,
-            c'est la même histoire qui continue de s'écrire.
-            Une histoire où l'enfance rencontre l'art contemporain,
-            où le rêve devient réalité à l'échelle 1:1.
+            De la Ferrari n°20 aux toiles monumentales.
+            La même histoire. Le même geste.
+            L'enfance qui rencontre l'art. Le rêve qui devient réel.
+            À l'échelle 1:1.
           </blockquote>
-          <div className="text-center mt-12 text-muted-foreground text-xl font-light">
-            — Guillaume Farré
-          </div>
         </div>
       </section>
 

@@ -65,35 +65,35 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
 
   return (
     <div>
-      {/* Filtres rapides */}
-      <div className="max-w-5xl mx-auto mb-8">
-        <div className="flex flex-wrap gap-3">
+      {/* Filtres élégants */}
+      <div className="max-w-5xl mx-auto mb-12">
+        <div className="flex flex-wrap gap-4">
           <button
             onClick={() => setActiveFilter("all")}
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+            className={`px-6 py-3 rounded-lg font-light text-sm tracking-wide transition-all ${
               activeFilter === "all"
-                ? "bg-amber-600 text-white"
-                : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                ? "border border-primary text-primary bg-primary/5"
+                : "border border-border text-foreground hover:border-primary hover:text-primary"
             }`}
           >
             Toutes ({stats.total})
           </button>
           <button
             onClick={() => setActiveFilter("limited")}
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+            className={`px-6 py-3 rounded-lg font-light text-sm tracking-wide transition-all ${
               activeFilter === "limited"
-                ? "bg-amber-600 text-white"
-                : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                ? "border border-primary text-primary bg-primary/5"
+                : "border border-border text-foreground hover:border-primary hover:text-primary"
             }`}
           >
             Éditions limitées ({stats.limitedEditions})
           </button>
           <button
             onClick={() => setActiveFilter("unique")}
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+            className={`px-6 py-3 rounded-lg font-light text-sm tracking-wide transition-all ${
               activeFilter === "unique"
-                ? "bg-amber-600 text-white"
-                : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                ? "border border-primary text-primary bg-primary/5"
+                : "border border-border text-foreground hover:border-primary hover:text-primary"
             }`}
           >
             Pièces uniques ({stats.unique})
@@ -103,18 +103,18 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
           {favorites.length > 0 && (
             <button
               onClick={() => setActiveFilter("favorites")}
-              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-lg font-light text-sm tracking-wide transition-all ${
                 activeFilter === "favorites"
-                  ? "bg-pink-600 text-white"
-                  : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                  ? "border border-primary text-primary bg-primary/5"
+                  : "border border-border text-foreground hover:border-primary hover:text-primary"
               }`}
             >
-              <span>❤️</span> Mes favoris ({favorites.length})
+              Mes favoris ({favorites.length})
             </button>
           )}
 
           {/* Separator */}
-          <div className="w-px bg-white/20 mx-2"></div>
+          <div className="w-px bg-border mx-2"></div>
 
           {/* Sorting */}
           <button
@@ -123,10 +123,10 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
                 prev === "price_asc" ? "price_desc" : "price_asc"
               )
             }
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+            className={`px-6 py-3 rounded-lg font-light text-sm tracking-wide transition-all ${
               activeSort === "price_asc" || activeSort === "price_desc"
-                ? "bg-blue-600 text-white"
-                : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                ? "border border-primary text-primary bg-primary/5"
+                : "border border-border text-foreground hover:border-primary hover:text-primary"
             }`}
           >
             Prix {activeSort === "price_desc" ? "↓" : "↑"}
@@ -135,10 +135,10 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
             onClick={() =>
               setActiveSort((prev) => (prev === "newest" ? "default" : "newest"))
             }
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+            className={`px-6 py-3 rounded-lg font-light text-sm tracking-wide transition-all ${
               activeSort === "newest"
-                ? "bg-blue-600 text-white"
-                : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
+                ? "border border-primary text-primary bg-primary/5"
+                : "border border-border text-foreground hover:border-primary hover:text-primary"
             }`}
           >
             Plus récentes
@@ -147,7 +147,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
 
         {/* Results count */}
         {processedPhotos.length !== photos.length && (
-          <div className="mt-4 text-sm text-gray-400">
+          <div className="mt-6 text-sm text-muted-foreground font-light">
             {processedPhotos.length} œuvre{processedPhotos.length > 1 ? "s" : ""}{" "}
             trouvée{processedPhotos.length > 1 ? "s" : ""}
           </div>
@@ -158,10 +158,11 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
       <ShopGrid photos={processedPhotos} />
 
       {processedPhotos.length === 0 && (
-        <div className="text-center py-20 max-w-2xl mx-auto">
-          <div className="text-6xl mb-6">🔍</div>
-          <p className="text-2xl font-bold mb-4">Aucune œuvre trouvée</p>
-          <p className="text-gray-400 mb-8">
+        <div className="text-center py-28 max-w-3xl mx-auto">
+          <p className="text-3xl md:text-4xl font-light tracking-wide mb-6">
+            Aucune œuvre trouvée
+          </p>
+          <p className="text-xl text-muted-foreground font-light mb-10 leading-relaxed">
             Essayez un autre filtre pour découvrir nos créations disponibles.
           </p>
           <button
@@ -169,7 +170,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
               setActiveFilter("all");
               setActiveSort("default");
             }}
-            className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition-all"
+            className="px-10 py-5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-light tracking-wide rounded-lg transition-all"
           >
             Réinitialiser les filtres
           </button>

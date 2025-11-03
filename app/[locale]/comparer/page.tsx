@@ -2,7 +2,7 @@
 import Navigation from "@/components/navigation/Navigation";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useEffect, useState } from "react";
-import { loadPhotoMetadata, PhotoMetadata } from "@/lib/admin/photo-manager";
+import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { Link } from "@/i18n/routing";
 
 export default function ComparerPage() {
@@ -14,7 +14,9 @@ export default function ComparerPage() {
   useEffect(() => {
     const loadFavoritePhotos = async () => {
       try {
-        const allPhotos = await loadPhotoMetadata();
+        // Utiliser l'API route au lieu d'importer directement
+        const response = await fetch('/api/admin/photos');
+        const allPhotos: PhotoMetadata[] = await response.json();
         const favoritePhotos = allPhotos.filter((p) =>
           favorites.includes(p.path)
         );

@@ -29,21 +29,21 @@ export default async function HomePage() {
       {/* Hero Carousel */}
       <HeroCarousel />
 
-      {/* Stats Live - Impact immédiat */}
-      <section className="bg-gradient-to-br from-accent/20 to-black/95 border-y border-accent/20 py-16 md:py-24">
+      {/* Stats élégantes */}
+      <section className="bg-muted/30 border-y border-border py-20 md:py-28">
         <div className="container px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="text-5xl md:text-7xl font-light tracking-wide text-primary mb-4">{stats.totalWorks}</div>
-              <div className="text-base md:text-lg text-muted-foreground font-light">Œuvres créées</div>
+              <div className="text-6xl md:text-8xl font-light tracking-wide text-primary mb-6">{stats.totalWorks}</div>
+              <div className="text-base md:text-lg text-foreground font-light tracking-wide">Œuvres créées</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-7xl font-light tracking-wide text-primary mb-4">{stats.collectors}</div>
-              <div className="text-base md:text-lg text-muted-foreground font-light">Collectionneurs</div>
+              <div className="text-6xl md:text-8xl font-light tracking-wide text-primary mb-6">{stats.collectors}</div>
+              <div className="text-base md:text-lg text-foreground font-light tracking-wide">Collectionneurs</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl md:text-7xl font-light tracking-wide text-primary mb-4">{stats.performances}</div>
-              <div className="text-base md:text-lg text-muted-foreground font-light">Performances live</div>
+              <div className="text-6xl md:text-8xl font-light tracking-wide text-primary mb-6">{stats.performances}</div>
+              <div className="text-base md:text-lg text-foreground font-light tracking-wide">Performances live</div>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default async function HomePage() {
             {/* Étape 1 */}
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
               <div className="flex-shrink-0 w-full md:w-32">
-                <div className="text-5xl md:text-6xl font-light text-primary/30">01</div>
+                <div className="text-5xl md:text-6xl font-light text-primary/60">01</div>
               </div>
               <div className="flex-1 pt-2">
                 <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-wide">L'enfance</h3>
@@ -84,7 +84,7 @@ export default async function HomePage() {
             {/* Étape 2 */}
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
               <div className="flex-shrink-0 w-full md:w-32">
-                <div className="text-5xl md:text-6xl font-light text-primary/30">02</div>
+                <div className="text-5xl md:text-6xl font-light text-primary/60">02</div>
               </div>
               <div className="flex-1 pt-2">
                 <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-wide">La réalisation</h3>
@@ -103,7 +103,7 @@ export default async function HomePage() {
             {/* Étape 3 */}
             <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
               <div className="flex-shrink-0 w-full md:w-32">
-                <div className="text-5xl md:text-6xl font-light text-primary/30">03</div>
+                <div className="text-5xl md:text-6xl font-light text-primary/60">03</div>
               </div>
               <div className="flex-1 pt-2">
                 <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-wide">L'œuvre unique</h3>

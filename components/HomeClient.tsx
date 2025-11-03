@@ -1,6 +1,9 @@
 "use client";
 import SocialProofNotifications, { OnlineViewers } from "./SocialProofNotifications";
 import SoundToggle from "./SoundToggle";
+import ScrollProgress from "./ScrollProgress";
+import BackToTop from "./BackToTop";
+import NewsletterPopup from "./NewsletterPopup";
 import { useEffect, useState } from "react";
 
 export default function HomeClient() {
@@ -14,6 +17,9 @@ export default function HomeClient() {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+
       {/* Social Proof Notifications */}
       <SocialProofNotifications />
 
@@ -24,6 +30,12 @@ export default function HomeClient() {
 
       {/* Sound Toggle */}
       <SoundToggle />
+
+      {/* Back to Top Button */}
+      <BackToTop />
+
+      {/* Newsletter Popup */}
+      <NewsletterPopup />
 
       {/* Easter Egg: Konami Code */}
       <KonamiCode />

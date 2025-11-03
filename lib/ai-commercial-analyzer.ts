@@ -595,7 +595,8 @@ function createArtisticAnalysis(
     }
   };
 
-  return analyses[category.toLowerCase()] || analyses.atelier;
+  const categoryKey = category.toLowerCase() as keyof typeof analyses;
+  return analyses[categoryKey] || analyses.atelier;
 }
 
 function createStrategicRecommendations(

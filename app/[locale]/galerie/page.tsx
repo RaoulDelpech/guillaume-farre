@@ -11,7 +11,6 @@ export default async function GaleriePage() {
   const stats = {
     total: works.length,
     photos: works.filter(w => w.type === 'photo').length,
-    toiles: works.filter(w => w.type === 'canvas').length,
   };
 
   return (
@@ -48,10 +47,6 @@ export default async function GaleriePage() {
             <div className="flex items-center gap-3">
               <span className="text-primary">—</span>
               <span>{stats.photos} photographies</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-primary">—</span>
-              <span>{stats.toiles} toiles</span>
             </div>
           </div>
         </div>

@@ -210,7 +210,8 @@ function analyzeByCategory(category: string) {
     }
   };
 
-  return categoryData[category.toLowerCase()] || {
+  const categoryKey = category.toLowerCase() as keyof typeof categoryData;
+  return categoryData[categoryKey] || {
     artisticBase: 80,
     priceMultiplier: 1.0,
     market: 'Général',

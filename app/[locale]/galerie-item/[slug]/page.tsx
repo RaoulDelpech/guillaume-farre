@@ -71,12 +71,6 @@ export default async function GalerieItemPage({
                   <span className="text-sm font-light text-muted-foreground">Année</span>
                   <span className="font-light">{work.year}</span>
                 </div>
-                {work.dimensions && (
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-light text-muted-foreground">Dimensions</span>
-                    <span className="font-light">{work.dimensions}</span>
-                  </div>
-                )}
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-light text-muted-foreground">Type</span>
                   <span className="font-light capitalize">{work.type}</span>

@@ -51,52 +51,84 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Le concept en 3 étapes */}
-      <section className="container py-12 md:py-16 px-4 border-t">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Comment ça marche ?</h2>
+      {/* Le concept artistique */}
+      <section className="container py-16 md:py-24 px-4 border-t border-border/50">
+        <div className="max-w-4xl mx-auto">
+          {/* Titre minimaliste */}
+          <div className="text-center mb-16 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-light tracking-wide mb-4">
+              Du rêve d'enfant à l'œuvre d'art
+            </h2>
+            <div className="w-12 h-px bg-primary mx-auto mt-6"></div>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <div className="text-center">
-            <div className="text-6xl mb-4">👶</div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
-              <h3 className="text-xl font-bold mb-3">1. Enfant</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Tout commence avec une petite Ferrari n°20. Guillaume trempe ses roues dans la peinture
-                et crée ses premières traces sur papier.
-              </p>
+          {/* Timeline élégante */}
+          <div className="space-y-12 md:space-y-16">
+            {/* Étape 1 */}
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              <div className="flex-shrink-0 w-full md:w-32">
+                <div className="text-5xl md:text-6xl font-light text-primary/30">01</div>
+              </div>
+              <div className="flex-1 pt-2">
+                <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-wide">L'enfance</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed font-light">
+                  Tout commence avec une petite Ferrari miniature n°20.
+                  L'enfant trempe ses roues dans la peinture et crée ses premières traces sur papier.
+                </p>
+              </div>
+            </div>
+
+            {/* Séparateur artistique */}
+            <div className="flex items-center gap-4 my-8">
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent flex-1"></div>
+            </div>
+
+            {/* Étape 2 */}
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              <div className="flex-shrink-0 w-full md:w-32">
+                <div className="text-5xl md:text-6xl font-light text-primary/30">02</div>
+              </div>
+              <div className="flex-1 pt-2">
+                <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-wide">La réalisation</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed font-light">
+                  Des années plus tard, le rêve devient réalité.
+                  Une vraie Ferrari remplace la miniature. Échelle 1:1.
+                </p>
+              </div>
+            </div>
+
+            {/* Séparateur artistique */}
+            <div className="flex items-center gap-4 my-8">
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent flex-1"></div>
+            </div>
+
+            {/* Étape 3 */}
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+              <div className="flex-shrink-0 w-full md:w-32">
+                <div className="text-5xl md:text-6xl font-light text-primary/30">03</div>
+              </div>
+              <div className="flex-1 pt-2">
+                <h3 className="text-2xl md:text-3xl font-light mb-4 tracking-wide">L'œuvre unique</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed font-light">
+                  Chaque performance live crée une œuvre strictement unique,
+                  impossible à reproduire. Un instant capturé pour toujours.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="text-center">
-            <div className="text-6xl mb-4">🏎️</div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
-              <h3 className="text-xl font-bold mb-3">2. Vision</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Des années plus tard, le rêve devient réalité :
-                une vraie Ferrari remplace la miniature. Échelle 1:1.
-              </p>
-            </div>
+          {/* CTA minimaliste */}
+          <div className="text-center mt-16 md:mt-20">
+            <Link
+              href="/origine"
+              className="inline-block group"
+            >
+              <span className="text-sm tracking-widest uppercase text-muted-foreground group-hover:text-primary transition-colors">
+                Découvrir l'histoire complète
+              </span>
+              <div className="h-px bg-muted-foreground group-hover:bg-primary transition-colors w-full mt-2"></div>
+            </Link>
           </div>
-
-          <div className="text-center">
-            <div className="text-6xl mb-4">🎨</div>
-            <div className="bg-card border border-border rounded-lg p-6 hover:border-accent/50 transition-colors">
-              <h3 className="text-xl font-bold mb-3">3. Œuvre unique</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Chaque performance live crée une œuvre strictement unique,
-                impossible à reproduire. Un instant capturé pour toujours.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="text-center mt-12">
-          <Link
-            href="/origine"
-            className="inline-block px-8 py-4 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg text-lg transition-all"
-          >
-            L'histoire complète
-          </Link>
         </div>
       </section>
 

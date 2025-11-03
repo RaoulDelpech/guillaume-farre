@@ -1,5 +1,6 @@
 "use client";
 import SocialProofNotifications, { OnlineViewers } from "./SocialProofNotifications";
+import SoundToggle from "./SoundToggle";
 import { useEffect, useState } from "react";
 
 export default function HomeClient() {
@@ -20,6 +21,9 @@ export default function HomeClient() {
       <div className="fixed top-24 right-6 z-40 hidden lg:block">
         <OnlineViewers count={42} />
       </div>
+
+      {/* Sound Toggle */}
+      <SoundToggle />
 
       {/* Easter Egg: Konami Code */}
       <KonamiCode />

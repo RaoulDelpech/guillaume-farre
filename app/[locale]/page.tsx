@@ -2,6 +2,9 @@ import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
 import HomeClient from "@/components/HomeClient";
+import PerformanceCountdown from "@/components/PerformanceCountdown";
+import PriceHistoryChart from "@/components/PriceHistoryChart";
+import CollectionTracker from "@/components/CollectionTracker";
 import { Link } from "@/i18n/routing";
 import { getWorksFromMetadata } from "@/lib/works";
 
@@ -292,6 +295,36 @@ export default async function HomePage() {
               <div className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Performance Countdown */}
+      <section className="container py-12 md:py-16 px-4 border-t">
+        <PerformanceCountdown />
+      </section>
+
+      {/* Investment section */}
+      <section className="bg-gradient-to-b from-black to-purple-950/10 py-12 md:py-16 border-t">
+        <div className="container px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Un investissement rentable
+              </h2>
+              <p className="text-xl text-gray-400">
+                Les œuvres de Guillaume Farré prennent de la valeur avec le temps
+              </p>
+            </div>
+
+            <PriceHistoryChart initialPrice={8500} currentPrice={12500} />
+          </div>
+        </div>
+      </section>
+
+      {/* Collection Tracker */}
+      <section className="container py-12 md:py-16 px-4 border-t">
+        <div className="max-w-4xl mx-auto">
+          <CollectionTracker />
         </div>
       </section>
 

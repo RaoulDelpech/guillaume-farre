@@ -4,6 +4,9 @@ import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { useTranslations } from "next-intl";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useConfetti } from "@/hooks/useConfetti";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
+import ShareButtons from "@/components/ShareButtons";
+import SizeVisualizer from "@/components/SizeVisualizer";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -24,6 +27,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const [selectedFrame, setSelectedFrame] = useState("none");
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { fireHeartConfetti, fireConfetti } = useConfetti();
+  const { playCartAdd, playClick, playHover } = useSoundEffects();
 
   const formats = {
     "A4": { width: 21, height: 29.7, priceMultiplier: 1.0 },
@@ -56,6 +60,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
     setCart([...cart, item]);
     setSelectedPhoto(null);
+    playCartAdd(); // 💰 Sound effect!
     fireConfetti(); // 🎊 Confetti!
     alert(`✅ ${selectedPhoto.title || selectedPhoto.filename} ajouté au panier !`);
   };

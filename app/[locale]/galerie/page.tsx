@@ -36,7 +36,7 @@ export default async function GaleriePage() {
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed">
             Toiles. Photographies. Traces de Ferrari.<br />
-            Chaque œuvre raconte le même geste. Encore et encore.
+            Chaque œuvre est unique. Irréversible.
           </p>
 
           {/* Stats minimalistes */}

@@ -178,20 +178,20 @@ export default function QuizPage() {
           {/* Header */}
           {!showResult && (
             <div className="text-center mb-12">
-              <div className="inline-block px-4 py-2 bg-purple-600 rounded-full text-sm font-bold mb-6">
+              <div className="inline-block px-4 py-2 bg-primary rounded-full text-sm font-semibold mb-6">
                 QUIZ INTERACTIF
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Quelle œuvre vous correspond ?
               </h1>
-              <p className="text-xl text-gray-400">
+              <p className="text-xl text-muted-foreground">
                 5 questions pour découvrir l'œuvre faite pour vous
               </p>
 
               {/* Progress bar */}
-              <div className="mt-8 h-2 bg-white/10 rounded-full overflow-hidden">
+              <div className="mt-8 h-2 bg-muted rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-purple-600 to-red-600 transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500"
                   style={{ width: `${progress}%` }}
                 />
               </div>
@@ -203,7 +203,7 @@ export default function QuizPage() {
 
           {/* Questions */}
           {!showResult && (
-            <div className="bg-gradient-to-br from-purple-950/20 to-black border-2 border-purple-900/30 rounded-3xl p-8 md:p-12">
+            <div className="bg-card border-2 border-border rounded-3xl p-8 md:p-12">
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
                 {QUESTIONS[currentQuestion].question}
               </h2>
@@ -213,11 +213,11 @@ export default function QuizPage() {
                   <button
                     key={option.value}
                     onClick={() => handleAnswer(option.value)}
-                    className="group relative bg-white/5 hover:bg-white/10 border-2 border-white/20 hover:border-purple-600 rounded-xl p-6 text-left transition-all hover:scale-105 hover:shadow-2xl"
+                    className="group relative bg-muted/30 hover:bg-muted border-2 border-border hover:border-primary rounded-xl p-6 text-left transition-all hover:scale-105 hover:shadow-2xl"
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-4xl">{option.emoji}</span>
-                      <span className="text-lg font-medium group-hover:text-purple-400 transition-colors">
+                      <span className="text-lg font-medium group-hover:text-primary transition-colors">
                         {option.text}
                       </span>
                     </div>
@@ -249,7 +249,7 @@ export default function QuizPage() {
                 </h1>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-950/30 to-black border-2 border-purple-900/30 rounded-3xl overflow-hidden">
+              <div className="bg-card border-2 border-border rounded-3xl overflow-hidden">
                 {/* Image */}
                 <div className="relative h-80">
                   <div
@@ -261,7 +261,7 @@ export default function QuizPage() {
                     <h2 className="text-4xl font-bold mb-2">
                       {RESULTS[result].title}
                     </h2>
-                    <p className="text-2xl text-red-500 font-bold">
+                    <p className="text-2xl text-primary font-semibold">
                       {RESULTS[result].price}
                     </p>
                   </div>
@@ -269,14 +269,14 @@ export default function QuizPage() {
 
                 {/* Description */}
                 <div className="p-8 md:p-12">
-                  <p className="text-xl text-gray-300 leading-relaxed mb-8">
+                  <p className="text-xl text-muted-foreground leading-relaxed mb-8">
                     {RESULTS[result].description}
                   </p>
 
                   {!emailSubmitted ? (
                     <form onSubmit={handleEmailSubmit} className="mb-6">
-                      <p className="text-center mb-4 text-gray-400">
-                        Recevez un code promo de <strong className="text-white">-10%</strong> pour cette œuvre :
+                      <p className="text-center mb-4 text-muted-foreground">
+                        Recevez un code promo de <strong className="text-foreground">-10%</strong> pour cette œuvre :
                       </p>
                       <div className="flex gap-3">
                         <input
@@ -285,11 +285,11 @@ export default function QuizPage() {
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="votre@email.com"
                           required
-                          className="flex-1 px-6 py-4 bg-black/40 border-2 border-purple-600/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-600"
+                          className="flex-1 px-6 py-4 bg-muted border-2 border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary"
                         />
                         <button
                           type="submit"
-                          className="px-8 py-4 bg-gradient-to-r from-purple-600 to-red-600 hover:from-purple-700 hover:to-red-700 text-white font-bold rounded-lg transition-all transform hover:scale-105 whitespace-nowrap"
+                          className="px-8 py-4 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg transition-all whitespace-nowrap"
                         >
                           Obtenir -10%
                         </button>
@@ -298,10 +298,10 @@ export default function QuizPage() {
                   ) : (
                     <div className="bg-green-950/30 border-2 border-green-600/30 rounded-xl p-6 mb-6 text-center">
                       <div className="text-4xl mb-3">✅</div>
-                      <p className="text-lg font-bold text-green-500 mb-2">
+                      <p className="text-lg font-semibold text-green-500 mb-2">
                         Code promo envoyé !
                       </p>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-muted-foreground">
                         Vérifiez votre boîte mail (et les spams)
                       </p>
                     </div>
@@ -310,15 +310,15 @@ export default function QuizPage() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
                       href={RESULTS[result].link}
-                      className="flex-1 text-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-all transform hover:scale-105"
+                      className="flex-1 text-center px-8 py-4 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg transition-all"
                     >
-                      🛒 Voir l'œuvre
+                      Voir l'œuvre
                     </Link>
                     <button
                       onClick={restart}
-                      className="px-8 py-4 bg-white/10 hover:bg-white/20 border-2 border-white/30 text-white font-bold rounded-lg transition-all"
+                      className="px-8 py-4 bg-card hover:bg-accent/20 border-2 border-border text-foreground font-semibold rounded-lg transition-all"
                     >
-                      🔄 Refaire le quiz
+                      Refaire le quiz
                     </button>
                   </div>
                 </div>

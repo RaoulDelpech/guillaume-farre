@@ -70,9 +70,9 @@ export default function ComparerPage() {
             </p>
             <Link
               href="/boutique"
-              className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-all"
+              className="inline-block px-8 py-4 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg transition-all"
             >
-              🛒 Aller à la boutique
+              Aller à la boutique
             </Link>
           </div>
         </div>
@@ -85,16 +85,16 @@ export default function ComparerPage() {
       <Navigation />
 
       {/* Hero */}
-      <div className="bg-gradient-to-b from-orange-950/20 to-black border-b border-orange-900/30 py-12 md:py-16">
+      <div className="bg-gradient-to-b from-accent/20 to-background border-b border-border py-12 md:py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block px-4 py-2 bg-orange-600 rounded-full text-sm font-bold mb-6">
+            <div className="inline-block px-4 py-2 bg-primary rounded-full text-sm font-semibold mb-6">
               COMPARATEUR
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Comparez vos favoris
             </h1>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-muted-foreground">
               Sélectionnez jusqu'à 3 œuvres pour les comparer côte à côte
             </p>
           </div>
@@ -119,11 +119,11 @@ export default function ComparerPage() {
                     onClick={() => toggleSelection(photo)}
                     className={`relative group rounded-xl overflow-hidden border-4 transition-all ${
                       isSelected
-                        ? "border-orange-600 scale-105"
-                        : "border-transparent hover:border-orange-600/50"
+                        ? "border-primary scale-105"
+                        : "border-transparent hover:border-primary/50"
                     }`}
                   >
-                    <div className="aspect-square bg-gray-900">
+                    <div className="aspect-square bg-muted">
                       <img
                         src={photo.path}
                         alt={photo.title || "Photo"}
@@ -131,7 +131,7 @@ export default function ComparerPage() {
                       />
                     </div>
                     {isSelected && (
-                      <div className="absolute top-2 right-2 w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold">
+                      <div className="absolute top-2 right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
                         ✓
                       </div>
                     )}
@@ -156,7 +156,7 @@ export default function ComparerPage() {
               </h2>
               <button
                 onClick={clearComparison}
-                className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg font-bold text-sm transition-all"
+                className="px-6 py-3 bg-card hover:bg-accent/20 border border-border rounded-lg font-semibold text-sm transition-all"
               >
                 Effacer
               </button>
@@ -166,7 +166,7 @@ export default function ComparerPage() {
               {selectedPhotos.map((photo) => (
                 <div
                   key={photo.path}
-                  className="bg-gradient-to-br from-gray-900 to-black border-2 border-orange-900/30 rounded-2xl overflow-hidden"
+                  className="bg-card border-2 border-border rounded-2xl overflow-hidden"
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3]">
@@ -191,23 +191,23 @@ export default function ComparerPage() {
 
                     {/* Comparison table */}
                     <div className="space-y-3 mb-6">
-                      <div className="flex justify-between py-2 border-b border-white/10">
-                        <span className="text-gray-400">Prix</span>
-                        <span className="font-bold text-red-500">
+                      <div className="flex justify-between py-2 border-b border-border">
+                        <span className="text-muted-foreground">Prix</span>
+                        <span className="font-semibold text-primary">
                           {photo.price ? `${photo.price}€` : "Sur demande"}
                         </span>
                       </div>
 
                       {photo.year && (
-                        <div className="flex justify-between py-2 border-b border-white/10">
-                          <span className="text-gray-400">Année</span>
+                        <div className="flex justify-between py-2 border-b border-border">
+                          <span className="text-muted-foreground">Année</span>
                           <span className="font-semibold">{photo.year}</span>
                         </div>
                       )}
 
                       {photo.category && (
-                        <div className="flex justify-between py-2 border-b border-white/10">
-                          <span className="text-gray-400">Collection</span>
+                        <div className="flex justify-between py-2 border-b border-border">
+                          <span className="text-muted-foreground">Collection</span>
                           <span className="font-semibold capitalize">
                             {photo.category}
                           </span>
@@ -215,8 +215,8 @@ export default function ComparerPage() {
                       )}
 
                       {photo.edition && (
-                        <div className="flex justify-between py-2 border-b border-white/10">
-                          <span className="text-gray-400">Édition</span>
+                        <div className="flex justify-between py-2 border-b border-border">
+                          <span className="text-muted-foreground">Édition</span>
                           <span className="font-semibold">
                             {photo.edition.type === "limited"
                               ? `Limitée (${photo.edition.count})`
@@ -225,13 +225,13 @@ export default function ComparerPage() {
                         </div>
                       )}
 
-                      <div className="flex justify-between py-2 border-b border-white/10">
-                        <span className="text-gray-400">Disponibilité</span>
+                      <div className="flex justify-between py-2 border-b border-border">
+                        <span className="text-muted-foreground">Disponibilité</span>
                         <span
                           className={`font-semibold ${
                             photo.forSale
                               ? "text-green-500"
-                              : "text-orange-500"
+                              : "text-accent"
                           }`}
                         >
                           {photo.forSale ? "En vente" : "Réservée"}
@@ -242,7 +242,7 @@ export default function ComparerPage() {
                     {/* CTA */}
                     <Link
                       href={`/boutique`}
-                      className="block w-full text-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-all"
+                      className="block w-full text-center px-6 py-3 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg transition-all"
                     >
                       Voir les détails
                     </Link>
@@ -256,11 +256,11 @@ export default function ComparerPage() {
                   (_, index) => (
                     <div
                       key={`placeholder-${index}`}
-                      className="bg-gradient-to-br from-gray-900/30 to-black/30 border-2 border-dashed border-orange-900/30 rounded-2xl p-12 flex items-center justify-center text-center"
+                      className="bg-muted/30 border-2 border-dashed border-border rounded-2xl p-12 flex items-center justify-center text-center"
                     >
                       <div>
                         <div className="text-6xl mb-4">➕</div>
-                        <p className="text-gray-500">
+                        <p className="text-muted-foreground">
                           Sélectionnez une œuvre supplémentaire
                         </p>
                       </div>
@@ -271,27 +271,27 @@ export default function ComparerPage() {
 
             {/* Winner suggestion */}
             {selectedPhotos.length >= 2 && (
-              <div className="mt-12 bg-gradient-to-r from-orange-950/30 to-black border-2 border-orange-600/30 rounded-2xl p-8 text-center">
+              <div className="mt-12 bg-card border-2 border-border rounded-2xl p-8 text-center">
                 <div className="text-5xl mb-4">🏆</div>
                 <h3 className="text-2xl font-bold mb-3">
                   Besoin d'aide pour choisir ?
                 </h3>
-                <p className="text-gray-400 mb-6">
+                <p className="text-muted-foreground mb-6">
                   Contactez-moi pour un conseil personnalisé ou découvrez quelle
                   œuvre correspond le mieux à votre personnalité.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/quiz"
-                    className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-all"
+                    className="px-8 py-4 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg transition-all"
                   >
-                    🎯 Faire le quiz
+                    Faire le quiz
                   </Link>
                   <Link
                     href="/contact"
-                    className="px-8 py-4 bg-white/10 hover:bg-white/20 border-2 border-white/30 text-white font-bold rounded-lg transition-all"
+                    className="px-8 py-4 bg-card hover:bg-accent/20 border-2 border-border text-foreground font-semibold rounded-lg transition-all"
                   >
-                    💬 Demander conseil
+                    Demander conseil
                   </Link>
                 </div>
               </div>

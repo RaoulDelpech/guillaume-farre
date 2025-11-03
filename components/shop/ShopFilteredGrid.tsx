@@ -22,7 +22,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
       (p) => p.edition?.type === "limited"
     ).length;
     const unique = photos.filter(
-      (p) => !p.edition || p.edition.type === "unique"
+      (p) => !p.edition || p.edition.type === "open"
     ).length;
 
     return {
@@ -41,7 +41,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
       filtered = filtered.filter((p) => p.edition?.type === "limited");
     } else if (activeFilter === "unique") {
       filtered = filtered.filter(
-        (p) => !p.edition || p.edition.type === "unique"
+        (p) => !p.edition || p.edition.type === "open"
       );
     } else if (activeFilter === "favorites") {
       filtered = filtered.filter((p) => favorites.includes(p.path));

@@ -139,7 +139,7 @@ export default async function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Œuvres disponibles</h2>
             <p className="text-gray-400">Éditions limitées et pièces uniques</p>
           </div>
-          <Link href="/boutique" className="text-red-500 hover:text-red-400 font-bold">
+          <Link href="/boutique" className="text-amber-500 hover:text-amber-400 font-bold">
             Voir tout →
           </Link>
         </div>
@@ -155,12 +155,12 @@ export default async function HomePage() {
               <Link
                 key={work.slug}
                 href={`/galerie-item/${work.slug}`}
-                className="group block overflow-hidden rounded-lg border hover:border-red-500 transition-all relative"
+                className="group block overflow-hidden rounded-lg border hover:border-amber-500 transition-all relative"
               >
                 {/* Badges */}
                 <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
                   {isLimited && !isSold && (
-                    <span className="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full">
+                    <span className="px-3 py-1 bg-amber-600 text-white text-xs font-bold rounded-full">
                       Édition 3/7
                     </span>
                   )}
@@ -195,14 +195,6 @@ export default async function HomePage() {
                   <p className="text-xs text-muted-foreground mb-2">
                     {work.year} • {work.type === 'photo' ? 'Photographie' : 'Toile'}
                   </p>
-                  {!isSold && (
-                    <div className="flex items-center justify-between mt-3">
-                      <span className="text-sm text-gray-400">À partir de</span>
-                      <span className="text-lg font-bold text-red-500">
-                        {isLimited ? '8 500€' : '2 800€'}
-                      </span>
-                    </div>
-                  )}
                 </div>
               </Link>
             );
@@ -212,9 +204,9 @@ export default async function HomePage() {
         <div className="mt-12 text-center">
           <Link
             href="/boutique"
-            className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105"
+            className="inline-block px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105"
           >
-            🛒 Voir toutes les œuvres disponibles
+            Voir toutes les œuvres disponibles
           </Link>
         </div>
       </section>
@@ -239,7 +231,7 @@ export default async function HomePage() {
                 "J'ai acheté ma première empreinte il y a 2 ans. Aujourd'hui,
                 j'en possède 4. Chaque pièce raconte une histoire unique."
               </p>
-              <div className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</div>
+              <div className="text-sm text-muted-foreground italic">★★★★★</div>
             </div>
 
             <div className="bg-black/40 border border-red-900/30 rounded-xl p-6">
@@ -256,7 +248,7 @@ export default async function HomePage() {
                 "Un concept totalement inédit. Mes clients sont fascinés
                 par cette fusion entre art contemporain et culture automobile."
               </p>
-              <div className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</div>
+              <div className="text-sm text-muted-foreground italic">★★★★★</div>
             </div>
 
             <div className="bg-black/40 border border-red-900/30 rounded-xl p-6">
@@ -266,14 +258,14 @@ export default async function HomePage() {
                 </div>
                 <div>
                   <div className="font-bold">Antoine L.</div>
-                  <div className="text-xs text-gray-400">Investisseur, Genève</div>
+                  <div className="text-xs text-gray-400">Collectionneur, Genève</div>
                 </div>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                "Un excellent investissement. Les éditions limitées prennent
-                de la valeur. Ma pièce a pris 18% en 8 mois."
+                "Une œuvre qui ne cesse de m'émerveiller. Chaque détail raconte
+                l'intensité du moment de la création. Un véritable coup de cœur."
               </p>
-              <div className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</div>
+              <div className="text-sm text-muted-foreground italic">★★★★★</div>
             </div>
           </div>
         </div>
@@ -303,31 +295,24 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/boutique"
-              className="px-10 py-5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-xl transition-all transform hover:scale-105 shadow-2xl"
+              className="px-10 py-5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-xl transition-all transform hover:scale-105 shadow-2xl"
             >
-              🏎️ Réserver une œuvre
+              Réserver une œuvre
             </Link>
             <Link
               href="/contact"
               className="px-10 py-5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold rounded-lg text-xl transition-all border-2 border-white/30"
             >
-              💬 Discuter avec l'artiste
+              Contacter l'artiste
             </Link>
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-gray-400">
-            <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
-              Certificat d'authenticité
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
-              Livraison sécurisée
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
-              Paiement en 3x
-            </div>
+          <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted-foreground">
+            <div>Certificat d'authenticité</div>
+            <div className="w-px h-4 bg-border"></div>
+            <div>Livraison sécurisée</div>
+            <div className="w-px h-4 bg-border"></div>
+            <div>Paiement en 3x</div>
           </div>
         </div>
       </section>

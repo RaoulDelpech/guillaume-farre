@@ -100,14 +100,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     <div>
       {/* Panier flottant */}
       {cart.length > 0 && (
-        <div className="fixed top-20 right-4 bg-zinc-900 text-white p-4 rounded-lg shadow-2xl z-50 border-2 border-red-500">
+        <div className="fixed top-20 right-4 bg-zinc-900 text-white p-4 rounded-lg shadow-2xl z-50 border-2 border-amber-500">
           <h3 className="font-bold mb-2">🛒 Panier ({cart.length})</h3>
           <p className="text-sm mb-3">
             Total: {cart.reduce((sum, item) => sum + item.price, 0)}€
           </p>
           <button
             onClick={handleCheckout}
-            className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-bold transition-colors"
+            className="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-lg font-bold transition-colors"
           >
             💳 Payer maintenant
           </button>
@@ -125,7 +125,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
         {photos.map((photo, index) => (
           <div
             key={photo.path}
-            className="bg-card rounded-lg overflow-hidden border-2 border-border hover:border-red-500 transition-all shadow-lg"
+            className="bg-card rounded-lg overflow-hidden border-2 border-border hover:border-amber-500 transition-all shadow-lg"
           >
             <div className="relative aspect-[4/3] bg-zinc-900 group">
               <img
@@ -155,7 +155,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               </button>
 
               {photo.edition?.type === 'limited' && photo.edition?.count && (
-                <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                <div className="absolute top-2 right-2 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-bold">
                   Édition limitée {photo.edition.count}
                 </div>
               )}
@@ -170,13 +170,13 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 <p className="text-sm text-muted-foreground mb-3">{photo.year}</p>
               )}
 
-              <p className="text-2xl font-bold text-red-500 mb-4">
+              <p className="text-2xl font-bold text-amber-600 mb-4">
                 À partir de {photo.price || 2000}€
               </p>
 
               <button
                 onClick={() => setSelectedPhoto(photo)}
-                className="w-full bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg font-bold transition-colors"
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white py-3 px-6 rounded-lg font-bold transition-colors"
               >
                 {t("addToCart")}
               </button>
@@ -189,13 +189,13 @@ export default function ShopGrid({ photos }: ShopGridProps) {
       {selectedPhoto && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-zinc-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-t-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-amber-500 to-amber-600 text-white p-6 rounded-t-2xl">
               <div className="flex justify-between items-start">
                 <div>
                   <h2 className="text-2xl font-bold mb-2">
                     {selectedPhoto.title || selectedPhoto.filename}
                   </h2>
-                  <p className="text-red-100">Sélectionnez vos options</p>
+                  <p className="text-amber-100">Sélectionnez vos options</p>
                 </div>
                 <button
                   onClick={() => setSelectedPhoto(null)}
@@ -226,8 +226,8 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                       onClick={() => setSelectedFormat(key)}
                       className={`p-4 rounded-lg border-2 transition-all ${
                         selectedFormat === key
-                          ? 'border-red-500 bg-red-50 dark:bg-red-950'
-                          : 'border-border hover:border-red-300'
+                          ? 'border-amber-500 bg-amber-50 dark:bg-amber-950'
+                          : 'border-border hover:border-amber-300'
                       }`}
                     >
                       <div className="font-bold text-lg">{key}</div>
@@ -249,8 +249,8 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                       onClick={() => setSelectedFrame(key)}
                       className={`w-full p-4 rounded-lg border-2 transition-all flex justify-between items-center ${
                         selectedFrame === key
-                          ? 'border-red-500 bg-red-50 dark:bg-red-950'
-                          : 'border-border hover:border-red-300'
+                          ? 'border-amber-500 bg-amber-50 dark:bg-amber-950'
+                          : 'border-border hover:border-amber-300'
                       }`}
                     >
                       <span className="font-medium">{value.label}</span>
@@ -266,13 +266,13 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               <div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg p-6">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-lg font-medium">Prix total</span>
-                  <span className="text-3xl font-bold text-red-500">
+                  <span className="text-3xl font-bold text-amber-600">
                     {calculatePrice(selectedPhoto.price || 2000, selectedFormat, selectedFrame)}€
                   </span>
                 </div>
                 <button
                   onClick={handleAddToCart}
-                  className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-red-600 hover:to-orange-600 transition-all shadow-lg"
+                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg"
                 >
                   ✅ Ajouter au panier
                 </button>

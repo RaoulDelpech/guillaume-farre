@@ -33,8 +33,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="dark">
-      <body className="flex flex-col min-h-screen dark">
+    <html lang={locale}>
+      <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <div className="flex-1">
             {children}

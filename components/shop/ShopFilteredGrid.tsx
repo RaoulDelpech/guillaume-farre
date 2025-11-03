@@ -72,7 +72,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
             onClick={() => setActiveFilter("all")}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               activeFilter === "all"
-                ? "bg-red-600 text-white"
+                ? "bg-amber-600 text-white"
                 : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
             }`}
           >
@@ -82,7 +82,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
             onClick={() => setActiveFilter("limited")}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               activeFilter === "limited"
-                ? "bg-red-600 text-white"
+                ? "bg-amber-600 text-white"
                 : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
             }`}
           >
@@ -92,7 +92,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
             onClick={() => setActiveFilter("unique")}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               activeFilter === "unique"
-                ? "bg-red-600 text-white"
+                ? "bg-amber-600 text-white"
                 : "bg-white/10 hover:bg-white/20 border border-white/30 text-white"
             }`}
           >
@@ -169,7 +169,7 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
               setActiveFilter("all");
               setActiveSort("default");
             }}
-            className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-all"
+            className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition-all"
           >
             Réinitialiser les filtres
           </button>

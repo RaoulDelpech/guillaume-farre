@@ -543,7 +543,8 @@ function createSocialMediaStrategy(
     }
   };
 
-  const strategy = strategies[category.toLowerCase()] || strategies.atelier;
+  const categoryKey = category.toLowerCase() as keyof typeof strategies;
+  const strategy = strategies[categoryKey] || strategies.atelier;
 
   return {
     instagramScore: viralityScore,

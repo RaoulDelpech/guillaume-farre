@@ -390,7 +390,6 @@ export const COMMERCIAL_STRATEGIES: Record<string, CommercialStrategy> = {
     recommendedPapers: [
       'breathing_color_metallic',
       'hahnemuhle_fine_art_baryta',
-      'acrylic_diasec', // Montage sous acrylique
     ],
     targetMarket: 'Passionnés automobile fortunés, Showrooms, Entreprises automotive',
     positioning: 'Art automobile premium - Pièces décoratives spectaculaires',

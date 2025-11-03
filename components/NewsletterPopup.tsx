@@ -62,7 +62,7 @@ export default function NewsletterPopup() {
       />
 
       {/* Modal */}
-      <div className="relative bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/50 rounded-2xl p-6 md:p-8 max-w-lg w-full shadow-2xl animate-slideUp">
+      <div className="relative bg-card border-2 border-primary/50 rounded-2xl p-6 md:p-8 max-w-lg w-full shadow-2xl animate-slideUp">
         {/* Close button */}
         <button
           onClick={handleClose}
@@ -79,13 +79,13 @@ export default function NewsletterPopup() {
               <h3 className="text-2xl md:text-3xl font-bold mb-2">
                 Ne manquez rien !
               </h3>
-              <p className="text-gray-400">
+              <p className="text-muted-foreground">
                 Inscrivez-vous à la newsletter pour recevoir :
               </p>
             </div>
 
             {/* Benefits */}
-            <div className="bg-black/40 border border-red-600/30 rounded-xl p-4 mb-6">
+            <div className="bg-muted/40 border border-border rounded-xl p-4 mb-6">
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
@@ -102,7 +102,7 @@ export default function NewsletterPopup() {
                 <li className="flex items-center gap-2">
                   <span className="text-green-500">✓</span>
                   <span>
-                    <strong className="text-red-500">-15%</strong> sur votre
+                    <strong className="text-primary">-15%</strong> sur votre
                     première commande
                   </span>
                 </li>
@@ -116,19 +116,19 @@ export default function NewsletterPopup() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="votre@email.com"
-                className="w-full px-4 py-3 bg-black/40 border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-all"
+                className="w-full px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-all"
                 required
               />
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold rounded-lg transition-all transform hover:scale-105"
+                className="w-full px-6 py-3 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg transition-all"
               >
-                🎁 Recevoir mon code -15%
+                Recevoir mon code -15%
               </button>
             </form>
 
             {/* Privacy note */}
-            <p className="text-xs text-gray-500 text-center mt-4">
+            <p className="text-xs text-muted-foreground text-center mt-4">
               Vos données sont protégées. Vous pouvez vous désinscrire à tout
               moment.
             </p>
@@ -141,14 +141,14 @@ export default function NewsletterPopup() {
               <h3 className="text-2xl md:text-3xl font-bold mb-3">
                 Merci pour votre inscription !
               </h3>
-              <p className="text-gray-400 mb-4">
+              <p className="text-muted-foreground mb-4">
                 Consultez votre boîte mail pour recevoir votre code promo
                 exclusif de -15%.
               </p>
-              <div className="inline-block px-6 py-3 bg-green-600 text-white font-bold rounded-lg">
+              <div className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg">
                 FERRARI15
               </div>
-              <p className="text-xs text-gray-500 mt-4">
+              <p className="text-xs text-muted-foreground mt-4">
                 (Ce code est également dans votre email de bienvenue)
               </p>
             </div>

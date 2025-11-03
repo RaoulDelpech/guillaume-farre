@@ -63,75 +63,75 @@ export default function PerformanceCountdown() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-red-950/30 via-orange-950/30 to-red-950/30 border-2 border-red-600/40 rounded-2xl p-6 md:p-8 relative overflow-hidden">
+    <div className="bg-card border-2 border-primary/40 rounded-2xl p-6 md:p-8 relative overflow-hidden">
       {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-red-600/10 to-orange-600/10 animate-pulse" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 animate-pulse" />
 
       <div className="relative z-10">
         {/* Header */}
         <div className="text-center mb-6">
-          <div className="inline-block px-4 py-2 bg-red-600 rounded-full text-sm font-bold mb-3 animate-pulse">
-            🔴 PERFORMANCE LIVE EN DIRECT
+          <div className="inline-block px-4 py-2 bg-primary rounded-full text-sm font-semibold mb-3 animate-pulse">
+            🎨 PERFORMANCE LIVE EN DIRECT
           </div>
           <h3 className="text-2xl md:text-3xl font-bold mb-2">
             Prochaine création en direct
           </h3>
-          <p className="text-gray-400 text-sm mb-1">
+          <p className="text-muted-foreground text-sm mb-1">
             📅 {formatDate()}
           </p>
-          <p className="text-gray-400 text-xs">
+          <p className="text-muted-foreground text-xs">
             📍 Circuit Paul Ricard, Le Castellet
           </p>
         </div>
 
         {/* Countdown */}
         <div className="grid grid-cols-4 gap-3 md:gap-4 mb-6">
-          <div className="bg-black/40 border border-red-600/30 rounded-xl p-3 md:p-4 text-center">
-            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">
+          <div className="bg-muted/40 border border-primary/30 rounded-xl p-3 md:p-4 text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
               {String(timeLeft.days).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-gray-400">Jours</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Jours</div>
           </div>
-          <div className="bg-black/40 border border-red-600/30 rounded-xl p-3 md:p-4 text-center">
-            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">
+          <div className="bg-muted/40 border border-primary/30 rounded-xl p-3 md:p-4 text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
               {String(timeLeft.hours).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-gray-400">Heures</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Heures</div>
           </div>
-          <div className="bg-black/40 border border-red-600/30 rounded-xl p-3 md:p-4 text-center">
-            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1">
+          <div className="bg-muted/40 border border-primary/30 rounded-xl p-3 md:p-4 text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
               {String(timeLeft.minutes).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-gray-400">Minutes</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Minutes</div>
           </div>
-          <div className="bg-black/40 border border-red-600/30 rounded-xl p-3 md:p-4 text-center">
-            <div className="text-3xl md:text-4xl font-bold text-red-500 mb-1 animate-pulse">
+          <div className="bg-muted/40 border border-primary/30 rounded-xl p-3 md:p-4 text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-1 animate-pulse">
               {String(timeLeft.seconds).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-gray-400">Secondes</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Secondes</div>
           </div>
         </div>
 
         {/* Details */}
-        <div className="bg-black/30 border border-white/10 rounded-xl p-4 mb-4">
-          <h4 className="font-bold mb-2 text-sm md:text-base">
+        <div className="bg-muted/30 border border-border rounded-xl p-4 mb-4">
+          <h4 className="font-semibold mb-2 text-sm md:text-base">
             🎨 Ce qui vous attend :
           </h4>
-          <ul className="space-y-2 text-sm text-gray-300">
+          <ul className="space-y-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">🏎️</span>
+              <span className="text-primary mt-0.5">🏎️</span>
               <span>Performance live avec la Ferrari 458 Italia</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">🎥</span>
+              <span className="text-primary mt-0.5">🎥</span>
               <span>Diffusion en direct sur nos réseaux sociaux</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">🖼️</span>
+              <span className="text-primary mt-0.5">🖼️</span>
               <span>Création de 3 œuvres uniques en édition limitée</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-red-500 mt-0.5">🎫</span>
+              <span className="text-primary mt-0.5">🎫</span>
               <span>Possibilité de réserver votre œuvre en avant-première</span>
             </li>
           </ul>
@@ -141,22 +141,22 @@ export default function PerformanceCountdown() {
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
             href="/performances"
-            className="flex-1 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-center transition-all transform hover:scale-105"
+            className="flex-1 px-6 py-3 bg-primary hover:bg-accent text-primary-foreground font-semibold rounded-lg text-center transition-all"
           >
-            📺 Être notifié(e)
+            Être notifié(e)
           </Link>
           <Link
             href="/contact"
-            className="flex-1 px-6 py-3 bg-white/10 hover:bg-white/20 border-2 border-white/30 text-white font-bold rounded-lg text-center transition-all"
+            className="flex-1 px-6 py-3 bg-card hover:bg-accent/20 border-2 border-border text-foreground font-semibold rounded-lg text-center transition-all"
           >
-            🎫 Réserver une place
+            Réserver une place
           </Link>
         </div>
 
         {/* Urgency badge */}
         {timeLeft.days < 7 && (
           <div className="mt-4 text-center">
-            <span className="inline-block px-4 py-2 bg-orange-600 text-white text-xs font-bold rounded-full animate-bounce">
+            <span className="inline-block px-4 py-2 bg-accent text-primary-foreground text-xs font-semibold rounded-full animate-bounce">
               ⚠️ Plus que {timeLeft.days} jours !
             </span>
           </div>

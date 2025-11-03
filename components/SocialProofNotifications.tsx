@@ -131,13 +131,13 @@ export default function SocialProofNotifications() {
   const getBgColor = () => {
     switch (activeNotification.type) {
       case "purchase":
-        return "from-green-950/95 to-black/95";
+        return "from-primary/95 to-background/95";
       case "favorite":
-        return "from-pink-950/95 to-black/95";
+        return "from-accent/95 to-background/95";
       case "viewing":
-        return "from-blue-950/95 to-black/95";
+        return "from-secondary/95 to-background/95";
       default:
-        return "from-gray-950/95 to-black/95";
+        return "from-muted/95 to-background/95";
     }
   };
 
@@ -150,7 +150,7 @@ export default function SocialProofNotifications() {
       }`}
     >
       <div
-        className={`bg-gradient-to-r ${getBgColor()} backdrop-blur-lg border border-white/20 rounded-2xl p-4 shadow-2xl`}
+        className={`bg-gradient-to-r ${getBgColor()} backdrop-blur-lg border border-border rounded-2xl p-4 shadow-2xl`}
       >
         <div className="flex items-start gap-4">
           {/* Icon */}
@@ -159,22 +159,22 @@ export default function SocialProofNotifications() {
           {/* Content */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="font-bold text-white">
+              <span className="font-semibold text-foreground">
                 {activeNotification.name}
               </span>
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-muted-foreground">
                 • {activeNotification.location}
               </span>
             </div>
 
-            <p className="text-sm text-gray-300 mb-1">
+            <p className="text-sm text-muted-foreground mb-1">
               {activeNotification.action}{" "}
-              <span className="font-semibold text-white">
+              <span className="font-semibold text-foreground">
                 {activeNotification.artwork}
               </span>
             </p>
 
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               {activeNotification.timeAgo}
             </p>
           </div>
@@ -182,16 +182,16 @@ export default function SocialProofNotifications() {
           {/* Close button */}
           <button
             onClick={() => setIsVisible(false)}
-            className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
+            className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
           >
             ✕
           </button>
         </div>
 
         {/* Progress bar */}
-        <div className="mt-3 h-1 bg-white/10 rounded-full overflow-hidden">
+        <div className="mt-3 h-1 bg-muted rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+            className="h-full bg-gradient-to-r from-primary to-accent"
             style={{
               animation: "progress 5s linear",
             }}
@@ -232,13 +232,13 @@ export function OnlineViewers({ count }: { count: number }) {
   }, [count]);
 
   return (
-    <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-600/20 border border-red-600/30 rounded-full text-sm">
+    <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/20 border border-primary/30 rounded-full text-sm">
       <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
       </span>
-      <span className="font-bold">{viewers} personnes</span>
-      <span className="text-gray-400">en ligne maintenant</span>
+      <span className="font-semibold">{viewers} personnes</span>
+      <span className="text-muted-foreground">en ligne maintenant</span>
     </div>
   );
 }

@@ -2,8 +2,6 @@ import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
 import HomeClient from "@/components/HomeClient";
-import PerformanceCountdown from "@/components/PerformanceCountdown";
-import CollectionTracker from "@/components/CollectionTracker";
 import { Link } from "@/i18n/routing";
 import { getWorksFromMetadata } from "@/lib/works";
 
@@ -231,7 +229,6 @@ export default async function HomePage() {
                 "J'ai acheté ma première empreinte il y a 2 ans. Aujourd'hui,
                 j'en possède 4. Chaque pièce raconte une histoire unique."
               </p>
-              <div className="text-base text-muted-foreground italic">★★★★★</div>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-8">
@@ -248,7 +245,6 @@ export default async function HomePage() {
                 "Un concept totalement inédit. Mes clients sont fascinés
                 par cette fusion entre art contemporain et culture automobile."
               </p>
-              <div className="text-base text-muted-foreground italic">★★★★★</div>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-8">
@@ -265,23 +261,11 @@ export default async function HomePage() {
                 "Une œuvre qui ne cesse de m'émerveiller. Chaque détail raconte
                 l'intensité du moment de la création. Un véritable coup de cœur."
               </p>
-              <div className="text-base text-muted-foreground italic">★★★★★</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Performance Countdown */}
-      <section className="container py-20 md:py-28 px-6 lg:px-8 border-t">
-        <PerformanceCountdown />
-      </section>
-
-      {/* Collection Tracker */}
-      <section className="container py-20 md:py-28 px-6 lg:px-8 border-t">
-        <div className="max-w-5xl mx-auto">
-          <CollectionTracker />
-        </div>
-      </section>
 
       {/* CTA final puissant */}
       <section className="container py-24 md:py-32 px-6 lg:px-8">
@@ -295,7 +279,7 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href="/boutique"
-              className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl transition-all transform hover:scale-105 shadow-2xl"
+              className="px-12 py-6 bg-amber-600 hover:bg-amber-700 text-white font-light tracking-wide rounded-lg text-xl transition-all"
             >
               Réserver une œuvre
             </Link>

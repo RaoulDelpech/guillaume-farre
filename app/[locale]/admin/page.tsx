@@ -6,6 +6,8 @@ import DuplicateDetector from "@/components/admin/DuplicateDetector";
 import InstagramSuggestionPanel from "@/components/admin/InstagramSuggestionPanel";
 import InstagramConfig from "@/components/admin/InstagramConfig";
 import CommercialDashboard from "@/components/admin/CommercialDashboard";
+import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
+import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
@@ -15,6 +17,8 @@ export default function AdminPage() {
   const [hasChanges, setHasChanges] = useState(false);
   const [saving, setSaving] = useState(false);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [seriesSuggestions, setSeriesSuggestions] = useState<SeriesSuggestion[] | null>(null);
+  const [analyzingSeries, setAnalyzingSeries] = useState(false);
 
   useEffect(() => {
     loadPhotos();
@@ -40,9 +44,46 @@ export default function AdminPage() {
     Array.from(files).forEach(file => formData.append('files', file));
 
     try {
-      await fetch('/api/upload', { method: 'POST', body: formData });
-      alert('Fichiers uploadés avec succès');
-      loadPhotos();
+      // Upload les fichiers
+      const uploadRes = await fetch('/api/upload', { method: 'POST', body: formData });
+      const uploadData = await uploadRes.json();
+
+      if (!uploadData.success) {
+        alert('Erreur lors de l\'upload');
+        return;
+      }
+
+      // Recharger les photos
+      await loadPhotos();
+
+      // Si 2+ photos uploadées, analyser pour suggérer des séries
+      if (uploadData.files && uploadData.files.length >= 2) {
+        setAnalyzingSeries(true);
+
+        try {
+          const photoPaths = uploadData.files.map((f: any) => f.path);
+          const suggestRes = await fetch('/api/admin/suggest-series', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ photos: photoPaths }),
+          });
+
+          const suggestData = await suggestRes.json();
+
+          if (suggestData.suggestions && suggestData.suggestions.length > 0) {
+            setSeriesSuggestions(suggestData.suggestions);
+          } else {
+            alert('Fichiers uploadés avec succès');
+          }
+        } catch (error) {
+          console.error('Erreur lors de l\'analyse des séries:', error);
+          alert('Fichiers uploadés avec succès (analyse IA non disponible)');
+        } finally {
+          setAnalyzingSeries(false);
+        }
+      } else {
+        alert('Fichier uploadé avec succès');
+      }
     } catch (error) {
       alert('Erreur lors de l\'upload');
     }
@@ -70,6 +111,20 @@ export default function AdminPage() {
     newPhotos[index] = { ...newPhotos[index], ...updates };
     setPhotos(newPhotos);
     setHasChanges(true);
+  }
+
+  function handleApplySeries(seriesName: string, photoPaths: string[]) {
+    const newPhotos = [...photos];
+    photoPaths.forEach((photoPath) => {
+      const index = newPhotos.findIndex((p) => p.path === photoPath);
+      if (index !== -1) {
+        newPhotos[index] = { ...newPhotos[index], seriesName };
+      }
+    });
+    setPhotos(newPhotos);
+    setHasChanges(true);
+    setSeriesSuggestions(null);
+    alert(`Série "${seriesName}" appliquée à ${photoPaths.length} photo(s)`);
   }
 
   const filteredPhotos = photos.filter(p => {
@@ -330,6 +385,30 @@ export default function AdminPage() {
             onClick={(e) => e.stopPropagation()}
           />
         </div>
+      )}
+
+      {/* Modal d'analyse de séries */}
+      {analyzingSeries && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-card border border-border rounded-lg p-8 max-w-md w-full text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
+            <h2 className="text-2xl font-light mb-2 text-foreground">
+              Analyse en cours...
+            </h2>
+            <p className="text-muted-foreground">
+              L'IA analyse vos photos pour suggérer des regroupements en séries.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de suggestions de séries */}
+      {seriesSuggestions && (
+        <SeriesSuggestionModal
+          suggestions={seriesSuggestions}
+          onApply={handleApplySeries}
+          onClose={() => setSeriesSuggestions(null)}
+        />
       )}
     </div>
   );

@@ -90,24 +90,7 @@ export default async function BoutiquePage() {
       {/* Galerie */}
       <div className="container mx-auto px-6 lg:px-8 py-16 md:py-20">
         {photosForSale.length > 0 ? (
-          <>
-            <ShopFilteredGrid photos={photosForSale} />
-
-            {/* CTA bottom */}
-            <div className="max-w-5xl mx-auto mt-20 bg-card border border-border rounded-2xl p-12 text-center">
-              <h3 className="text-4xl md:text-5xl font-light tracking-wide mb-6">Rejoignez le club des collectionneurs</h3>
-              <p className="text-lg text-muted-foreground font-light mb-8 max-w-3xl mx-auto leading-relaxed">
-                Devenez membre dès votre première acquisition. Accès prioritaire aux nouvelles créations,
-                événements privés et expériences exclusives.
-              </p>
-              <Link
-                href="/collectionneurs"
-                className="inline-block px-10 py-5 bg-primary hover:bg-accent text-primary-foreground font-light tracking-wide rounded-lg text-lg transition-all"
-              >
-                Découvrir les avantages
-              </Link>
-            </div>
-          </>
+          <ShopFilteredGrid photos={photosForSale} />
         ) : (
           <div className="text-center py-28 max-w-3xl mx-auto">
             <p className="text-3xl md:text-4xl font-light tracking-wide mb-6">

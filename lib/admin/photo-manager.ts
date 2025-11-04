@@ -31,8 +31,6 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
   const dirsToScan = [
     { path: path.join(publicDir, 'images', 'works'), prefix: '/images/works/' },
     { path: path.join(publicDir, 'images', 'origins'), prefix: '/images/origins/' },
-    { path: path.join(publicDir, 'uploads-preview'), prefix: '/uploads-preview/' },
-    { path: path.join(publicDir, 'uploads'), prefix: '/uploads/' },
   ];
 
   for (const dir of dirsToScan) {

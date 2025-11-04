@@ -38,3 +38,7 @@ next-env.d.ts
 
 # bun
 bun.lockb
+
+# uploads (keep folder but ignore uploaded files)
+/public/uploads/*
+!/public/uploads/.gitkeep

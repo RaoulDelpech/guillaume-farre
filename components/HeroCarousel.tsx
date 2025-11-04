@@ -10,7 +10,7 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/origins/childhood-noir-blanc-1.jpg",
+      image: "/images/origins/atelier-deux-voitures.jpg",
       title: t("origine.title"),
       subtitle: t("origine.subtitle"),
       description: t("origine.description"),

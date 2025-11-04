@@ -14,6 +14,7 @@ export default function AdminPage() {
   const [filterVisibility, setFilterVisibility] = useState("all");
   const [hasChanges, setHasChanges] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   useEffect(() => {
     loadPhotos();
@@ -215,12 +216,20 @@ export default function AdminPage() {
                   photo.visible ? 'border-border' : 'border-muted-foreground/30'
                 }`}
               >
-                <div className="relative aspect-square bg-muted">
+                <div
+                  className="relative aspect-square bg-muted cursor-zoom-in group"
+                  onClick={() => setZoomedImage(photo.path)}
+                >
                   <img
                     src={photo.path}
                     alt={photo.filename}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <span className="text-white opacity-0 group-hover:opacity-100 text-sm font-medium">
+                      🔍 Cliquer pour agrandir
+                    </span>
+                  </div>
                 </div>
 
                 <div className="p-6 space-y-4">
@@ -301,6 +310,27 @@ export default function AdminPage() {
           </div>
         )}
       </div>
+
+      {/* Modal de zoom */}
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setZoomedImage(null)}
+        >
+          <button
+            onClick={() => setZoomedImage(null)}
+            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white text-2xl transition-colors"
+          >
+            ×
+          </button>
+          <img
+            src={zoomedImage}
+            alt="Zoom"
+            className="max-w-full max-h-full object-contain cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

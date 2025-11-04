@@ -25,8 +25,8 @@ export default function OriginePage() {
             une petite Ferrari n°20
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            De ma chambre d'enfant aux galeries internationales.<br />
-            L'histoire de mon rêve devenu art.
+            De ma chambre d'enfant à aujourd'hui.<br />
+            L'histoire d'un rêve devenu réalité.
           </p>
         </div>
       </div>

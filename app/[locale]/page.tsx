@@ -170,7 +170,7 @@ export default async function HomePage() {
               Rejoignez la communauté
             </h2>
             <p className="text-2xl text-foreground/70 font-light mb-12 leading-relaxed">
-              Des Ferrari qui deviennent pinceaux. Des traces qui deviennent art.<br />
+              Chaque trace raconte une histoire.<br />
               Éditions limitées. Pièces uniques.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">

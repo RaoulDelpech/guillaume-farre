@@ -1,0 +1,185 @@
+import Navigation from "@/components/navigation/Navigation";
+
+export default async function PolitiqueConfidentialitePage() {
+  return (
+    <main className="min-h-screen bg-white">
+      <Navigation />
+      <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <h1 className="text-4xl font-bold mb-8">Politique de Confidentialité</h1>
+
+        <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
+            <p>
+              La protection de vos données personnelles est une priorité pour Guillaume Farré.
+              Cette politique de confidentialité explique quelles informations nous collectons,
+              comment nous les utilisons et quels sont vos droits.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Responsable du traitement</h2>
+            <p>
+              <strong>Guillaume Farré</strong><br />
+              Artiste sculpteur - Concept car art<br />
+              Email : contact@guillaumefarre.com
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Données collectées</h2>
+            <p>
+              Nous collectons les données suivantes :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Données d'identité :</strong> nom, prénom</li>
+              <li><strong>Données de contact :</strong> adresse email, numéro de téléphone, adresse postale</li>
+              <li><strong>Données de commande :</strong> historique d'achats, préférences</li>
+              <li><strong>Données de paiement :</strong> traitées de manière sécurisée par Stripe (nous ne stockons jamais vos données bancaires)</li>
+              <li><strong>Données de connexion :</strong> adresse IP, type de navigateur, pages visitées</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Finalités du traitement</h2>
+            <p>
+              Vos données sont collectées pour :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Traiter et livrer vos commandes</li>
+              <li>Gérer votre compte client</li>
+              <li>Vous envoyer des informations sur vos commandes</li>
+              <li>Améliorer nos services et notre site web</li>
+              <li>Respecter nos obligations légales</li>
+              <li>Vous envoyer notre newsletter (avec votre consentement)</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Base légale du traitement</h2>
+            <p>
+              Le traitement de vos données repose sur :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>L'exécution d'un contrat :</strong> pour traiter vos commandes</li>
+              <li><strong>Votre consentement :</strong> pour l'envoi de la newsletter</li>
+              <li><strong>Notre intérêt légitime :</strong> pour améliorer nos services</li>
+              <li><strong>Nos obligations légales :</strong> comptabilité, facturation</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Destinataires des données</h2>
+            <p>
+              Vos données peuvent être transmises à :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Stripe :</strong> pour le traitement sécurisé des paiements</li>
+              <li><strong>WhiteWall :</strong> pour l'impression et la livraison des œuvres</li>
+              <li><strong>Transporteurs :</strong> pour la livraison de vos commandes</li>
+            </ul>
+            <p>
+              Nous ne vendons jamais vos données à des tiers.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Durée de conservation</h2>
+            <p>
+              Vos données sont conservées pendant :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Données de commande :</strong> 10 ans (obligations comptables)</li>
+              <li><strong>Données de compte client :</strong> 3 ans après la dernière activité</li>
+              <li><strong>Données de newsletter :</strong> jusqu'à votre désinscription</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Vos droits</h2>
+            <p>
+              Conformément au RGPD, vous disposez des droits suivants :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Droit d'accès :</strong> obtenir une copie de vos données</li>
+              <li><strong>Droit de rectification :</strong> corriger vos données inexactes</li>
+              <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données</li>
+              <li><strong>Droit à la limitation :</strong> limiter le traitement de vos données</li>
+              <li><strong>Droit à la portabilité :</strong> recevoir vos données dans un format structuré</li>
+              <li><strong>Droit d'opposition :</strong> vous opposer au traitement de vos données</li>
+              <li><strong>Droit de retrait du consentement :</strong> retirer votre consentement à tout moment</li>
+            </ul>
+            <p>
+              Pour exercer ces droits, contactez-nous à : contact@guillaumefarre.com
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Sécurité</h2>
+            <p>
+              Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>L'accès non autorisé</li>
+              <li>La perte accidentelle</li>
+              <li>La destruction ou les dommages</li>
+            </ul>
+            <p>
+              Les paiements sont sécurisés par Stripe, certifié PCI DSS niveau 1 (norme de sécurité la plus stricte).
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Cookies</h2>
+            <p>
+              Notre site utilise des cookies pour améliorer votre expérience de navigation.
+              Vous pouvez configurer votre navigateur pour refuser les cookies.
+            </p>
+            <p>
+              Types de cookies utilisés :
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Cookies nécessaires :</strong> essentiels au fonctionnement du site</li>
+              <li><strong>Cookies analytiques :</strong> pour comprendre comment vous utilisez le site</li>
+              <li><strong>Cookies de préférence :</strong> pour mémoriser vos choix</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Modifications</h2>
+            <p>
+              Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment.
+              Toute modification sera publiée sur cette page avec une nouvelle date de mise à jour.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Contact et réclamation</h2>
+            <p>
+              Pour toute question concernant cette politique de confidentialité ou l'exercice de vos droits :
+            </p>
+            <p>
+              Email : contact@guillaumefarre.com
+            </p>
+            <p>
+              Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la CNIL :
+            </p>
+            <p>
+              Commission Nationale de l'Informatique et des Libertés<br />
+              3 Place de Fontenoy - TSA 80715<br />
+              75334 PARIS CEDEX 07<br />
+              Téléphone : 01 53 73 22 22<br />
+              <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.cnil.fr</a>
+            </p>
+          </section>
+
+          <section className="border-t pt-6 mt-8">
+            <p className="text-sm text-gray-600">
+              <strong>Dernière mise à jour :</strong> {new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  );
+}

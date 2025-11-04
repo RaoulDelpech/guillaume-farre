@@ -312,7 +312,8 @@ export default function AdminPage() {
                     <option value="empreintes">Empreintes</option>
                     <option value="atelier">Atelier</option>
                     <option value="projection">Projection</option>
-                    <option value="uploads-preview">À trier</option>
+                    <option value="a-trier">À trier</option>
+                    <option value="uploads-preview">Uploads Preview</option>
                     <option value="uploads">Uploads</option>
                     <option value="origins">Origins</option>
                   </select>

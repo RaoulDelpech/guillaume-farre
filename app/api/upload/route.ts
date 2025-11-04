@@ -25,13 +25,13 @@ export async function POST(request: Request) {
       const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
       const filename = `${timestamp}_${safeName}`;
 
-      // Sauvegarder dans public/uploads
-      const path = join(process.cwd(), 'public', 'uploads', filename);
+      // Sauvegarder dans public/images/works/a-trier (dossier scanné par le système)
+      const path = join(process.cwd(), 'public', 'images', 'works', 'a-trier', filename);
       await writeFile(path, buffer);
 
       uploadedFiles.push({
         filename,
-        path: `/uploads/${filename}`,
+        path: `/images/works/a-trier/${filename}`,
         size: file.size,
       });
     }

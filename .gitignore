@@ -42,3 +42,7 @@ bun.lockb
 # uploads (keep folder but ignore uploaded files)
 /public/uploads/*
 !/public/uploads/.gitkeep
+
+# photos à trier (keep folder but ignore uploaded files)
+/public/images/works/a-trier/*
+!/public/images/works/a-trier/.gitkeep

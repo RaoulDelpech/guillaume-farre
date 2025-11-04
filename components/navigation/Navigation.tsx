@@ -16,10 +16,12 @@ export default function Navigation() {
     { href: "/boutique", label: t("boutique") },
     { href: "/origine", label: "Origine" },
     { href: "/performances", label: "Performances" },
-    { href: "/collectionneurs", label: "Club" },
-    { href: "/actualites", label: "Actualités" },
     { href: "/contact", label: t("contact") },
   ];
+
+  // Pages temporairement retirées (à réactiver plus tard) :
+  // { href: "/collectionneurs", label: "Club" },
+  // { href: "/actualites", label: "Actualités" },
 
   return (
     <nav className="bg-card border-b border-border text-foreground sticky top-0 z-40">

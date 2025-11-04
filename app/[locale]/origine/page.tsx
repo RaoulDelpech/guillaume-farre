@@ -233,8 +233,8 @@ export default function OriginePage() {
 
               <div className="space-y-8 max-w-4xl mx-auto text-center text-muted-foreground font-light text-lg leading-relaxed">
                 <p>
-                  Je continue. Performances live. Événements automobiles. Toiles monumentales.
-                  Collaborations. Le concept évolue mais reste le même.
+                  Je continue. Photographies. Événements automobiles. Collaborations.
+                  Le concept évolue mais reste le même.
                 </p>
                 <p className="text-2xl font-light text-foreground">
                   L'essence n'a pas changé depuis la chambre d'enfant.
@@ -251,10 +251,9 @@ export default function OriginePage() {
       <section className="container px-6 lg:px-8 py-28 md:py-36">
         <div className="max-w-5xl mx-auto">
           <blockquote className="text-3xl md:text-4xl font-light text-center leading-relaxed text-foreground">
-            De la Ferrari n°20 aux toiles monumentales.
+            De la Ferrari n°20 à aujourd'hui.
             La même histoire. Le même geste.
-            L'enfance qui rencontre l'art. Le rêve qui devient réel.
-            À l'échelle 1:1.
+            L'enfance qui rencontre l'art.
           </blockquote>
         </div>
       </section>

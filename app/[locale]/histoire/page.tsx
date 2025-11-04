@@ -66,7 +66,7 @@ export default function HistoirePage() {
             <p className="text-base md:text-lg leading-relaxed">
               Cette question simple a donné naissance à un concept artistique unique : les <strong className="text-foreground">Ferrari Live Performances</strong>.
               Le principe reste le même qu'enfant - faire rouler une Ferrari dans la peinture pour créer des empreintes -
-              mais à l'échelle 1:1, sur des toiles monumentales pouvant atteindre plusieurs mètres.
+              mais à l'échelle 1:1, capturées en photographie.
             </p>
           </div>
 
@@ -82,12 +82,12 @@ export default function HistoirePage() {
             </div>
 
             <div className="p-6 border rounded-lg bg-card/30">
-              <div className="text-4xl mb-3">🎨</div>
+              <div className="text-4xl mb-3">📸</div>
               <h3 className="text-lg font-bold mb-2">Aujourd'hui</h3>
               <p className="text-sm text-muted-foreground">
                 Ferrari authentique (échelle 1:1)
-                <br />Toiles monumentales (jusqu'à 6 mètres)
-                <br />Peintures acryliques professionnelles
+                <br />Performances photographiées
+                <br />Éditions limitées
               </p>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Navigation from "@/components/navigation/Navigation";
 import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
+import AddToCartSection from "@/components/AddToCartSection";
 
 export async function generateStaticParams() {
   const works = await getWorksFromMetadata();
@@ -77,14 +78,15 @@ export default async function GalerieItemPage({
                 </div>
               </div>
 
-              {/* CTA */}
+              {/* Section achat */}
               <div className="pt-8">
-                <Link
-                  href="/contact"
-                  className="inline-block w-full px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl text-center transition-all"
-                >
-                  Demander des informations
-                </Link>
+                <AddToCartSection
+                  productId={work.slug}
+                  productTitle={work.title}
+                  productImage={work.images[0]}
+                  productCategory={work.type === 'photo' ? 'Photographie' : 'Toile'}
+                  photoPath={work.images[0]}
+                />
               </div>
             </div>
           </div>

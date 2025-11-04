@@ -3,10 +3,12 @@ import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MobileNav from "./MobileNav";
+import { useCart } from "@/contexts/CartContext";
 
 export default function Navigation() {
   const pathname = usePathname();
   const t = useTranslations("nav");
+  const { totalItems } = useCart();
 
   const links = [
     { href: "/", label: t("accueil") },
@@ -38,6 +40,17 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/panier"
+              className="relative text-sm font-light tracking-wide hover:text-primary transition-colors"
+            >
+              🛒
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-medium">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
             <LanguageSwitcher />
           </div>
           <div className="md:hidden">

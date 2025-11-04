@@ -4,6 +4,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
+import { CartProvider } from '@/contexts/CartContext';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,10 +37,12 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
-          <div className="flex-1">
-            {children}
-          </div>
-          <Footer />
+          <CartProvider>
+            <div className="flex-1">
+              {children}
+            </div>
+            <Footer />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

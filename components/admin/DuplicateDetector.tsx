@@ -10,8 +10,10 @@ interface DuplicateFile {
 
 interface DuplicateGroup {
   hash: string;
+  type: 'exact' | 'similar-name';
   files: DuplicateFile[];
   count: number;
+  pattern?: string;
 }
 
 interface ScanResult {
@@ -203,11 +205,19 @@ export default function DuplicateDetector() {
           {duplicates.map((group, idx) => (
             <div key={group.hash} className="border rounded-lg p-4 bg-background">
               <div className="flex items-center justify-between mb-3">
-                <div className="font-medium">
-                  Groupe #{idx + 1} - {group.count} fichiers identiques
+                <div>
+                  <div className="font-medium">
+                    Groupe #{idx + 1} - {group.count} fichiers
+                    {group.type === 'exact' ? ' identiques (MD5)' : ' similaires (nom)'}
+                  </div>
+                  {group.pattern && (
+                    <div className="text-xs text-muted-foreground mt-1">
+                      Pattern: {group.pattern}
+                    </div>
+                  )}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  Hash: {group.hash.substring(0, 12)}...
+                  {group.type === 'exact' ? '🔴 Doublons exacts' : '🟡 Doublons suspects'}
                 </div>
               </div>
 

@@ -26,8 +26,8 @@ export default async function HomePage() {
       <section className="container py-20 md:py-28 border-t px-6 lg:px-8">
         <div className="flex items-center justify-between mb-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-3">Œuvres disponibles</h2>
-            <p className="text-lg text-gray-400 font-light">Éditions limitées et pièces uniques</p>
+            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-3 text-foreground">Œuvres disponibles</h2>
+            <p className="text-lg text-muted-foreground font-light">Éditions limitées et pièces uniques</p>
           </div>
           <Link href="/boutique" className="text-amber-500 hover:text-amber-400 font-light tracking-wide">
             Voir tout →
@@ -160,36 +160,41 @@ export default async function HomePage() {
 
 
       {/* CTA final puissant */}
-      <section className="container py-24 md:py-32 px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-8">
-            Rejoignez la communauté
-          </h2>
-          <p className="text-2xl text-gray-400 font-light mb-12 leading-relaxed">
-            Des Ferrari qui deviennent pinceaux. Des traces qui deviennent art.<br />
-            Éditions limitées. Pièces uniques.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link
-              href="/boutique"
-              className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
-            >
-              Réserver une œuvre
-            </Link>
-            <Link
-              href="/contact"
-              className="px-12 py-6 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-light tracking-wide rounded-lg text-xl transition-all border-2 border-white/30"
-            >
-              Contacter l'artiste
-            </Link>
-          </div>
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* Fond avec dégradé subtil pour créer du contraste */}
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-muted/50 to-muted/30" />
 
-          <div className="mt-12 flex items-center justify-center gap-8 text-base text-muted-foreground font-light">
-            <div>Certificat d'authenticité</div>
-            <div className="w-px h-5 bg-border"></div>
-            <div>Livraison sécurisée</div>
-            <div className="w-px h-5 bg-border"></div>
-            <div>Paiement en 3x</div>
+        <div className="container relative z-10 px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-8 text-foreground">
+              Rejoignez la communauté
+            </h2>
+            <p className="text-2xl text-foreground/70 font-light mb-12 leading-relaxed">
+              Des Ferrari qui deviennent pinceaux. Des traces qui deviennent art.<br />
+              Éditions limitées. Pièces uniques.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link
+                href="/boutique"
+                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all shadow-lg hover:shadow-xl"
+              >
+                Réserver une œuvre
+              </Link>
+              <Link
+                href="/contact"
+                className="px-12 py-6 bg-background hover:bg-muted border-2 border-foreground/20 hover:border-foreground/40 text-foreground font-light tracking-wide rounded-lg text-xl transition-all shadow-md hover:shadow-lg"
+              >
+                Contacter l'artiste
+              </Link>
+            </div>
+
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 md:gap-8 text-base text-muted-foreground font-light">
+              <div>Certificat d'authenticité</div>
+              <div className="w-px h-5 bg-border"></div>
+              <div>Livraison sécurisée</div>
+              <div className="w-px h-5 bg-border"></div>
+              <div>Paiement en 3x</div>
+            </div>
           </div>
         </div>
       </section>

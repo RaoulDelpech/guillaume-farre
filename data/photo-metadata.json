@@ -2,13 +2,27 @@
   {
     "filename": "atelier-001.jpg",
     "path": "/images/works/atelier/atelier-001.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
     "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 1,
-    "fileHash": "60e0313710927903917e9ed884f9f221",
     "price": 3000,
     "edition": {
       "type": "limited",
@@ -18,13 +32,27 @@
   {
     "filename": "atelier-002.jpg",
     "path": "/images/works/atelier/atelier-002.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
     "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 2,
-    "fileHash": "6bfd9d73d39bf6fbb87a1a2b6d53c599",
     "price": 3500,
     "edition": {
       "type": "limited",
@@ -34,13 +62,27 @@
   {
     "filename": "atelier-003.jpg",
     "path": "/images/works/atelier/atelier-003.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
     "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 3,
-    "fileHash": "2d927ef4da26025e5f09448a42b77928",
     "price": 4000,
     "edition": {
       "type": "limited",
@@ -50,849 +92,1927 @@
   {
     "filename": "atelier-004.jpg",
     "path": "/images/works/atelier/atelier-004.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 4,
-    "fileHash": "49f6260843611e34f632564bb6087ec7"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-005.jpg",
     "path": "/images/works/atelier/atelier-005.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 5,
-    "fileHash": "819fb0d63fbc1e632529ef36481cc92e"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-006.jpg",
     "path": "/images/works/atelier/atelier-006.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 6,
-    "fileHash": "023363159256f52f0f1b674b8f7a787d"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-007.jpg",
     "path": "/images/works/atelier/atelier-007.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 7,
-    "fileHash": "d4cc16d2034145f53be6ff2efd7f5e8a"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-008.jpg",
     "path": "/images/works/atelier/atelier-008.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 8,
-    "fileHash": "8f2886de0cf6724364bc95c9fe957fc3"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-009.jpg",
     "path": "/images/works/atelier/atelier-009.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 9,
-    "fileHash": "a36c17990da253699f46380d033f939c"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-010.jpg",
     "path": "/images/works/atelier/atelier-010.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 10,
-    "fileHash": "3f71a0fa97baf510e60de2e0ecdb83da"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-011.jpg",
     "path": "/images/works/atelier/atelier-011.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 11,
-    "fileHash": "8ba43ec543ac47df7b80b46ad4fbc946"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-012.jpg",
     "path": "/images/works/atelier/atelier-012.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 12,
-    "fileHash": "8014f38847daf4618647fc1ee34dea24"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-013.jpg",
     "path": "/images/works/atelier/atelier-013.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 13,
-    "fileHash": "4817ab4dcd1897ab62cce43cacb803f1"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-014.jpg",
     "path": "/images/works/atelier/atelier-014.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 14,
-    "fileHash": "e1aaea4f0e1e42e589d97b94e3353bc4"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-015.jpg",
     "path": "/images/works/atelier/atelier-015.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 15,
-    "fileHash": "dcbadc518e28d7a61d8edcf585b0e549"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-016.jpg",
     "path": "/images/works/atelier/atelier-016.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 16,
-    "fileHash": "7f5ccf0909decbf0e642d2704b28f831"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-017.jpg",
     "path": "/images/works/atelier/atelier-017.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 17,
-    "fileHash": "859a55375feb0671ebfa6c02d21e3a85"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-018.jpg",
     "path": "/images/works/atelier/atelier-018.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 18,
-    "fileHash": "08fda19bae0c098a4cc884d1d4d35eb0"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-019.jpg",
     "path": "/images/works/atelier/atelier-019.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 19,
-    "fileHash": "109f9d46625e4adfd93c4a58427ba7e4"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-020.jpg",
     "path": "/images/works/atelier/atelier-020.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 20,
-    "fileHash": "c8730dfc50f692d4d81593a155ce5b41"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-021.jpg",
     "path": "/images/works/atelier/atelier-021.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 21,
-    "fileHash": "380d344012639e6b6534cba34e5f6e55"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-022.jpg",
     "path": "/images/works/atelier/atelier-022.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 22,
-    "fileHash": "cdca638f8cb723fd9a87ac6d4f2d343f"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-023.jpg",
     "path": "/images/works/atelier/atelier-023.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 23,
-    "fileHash": "1341d86d4cf036ed6ab157c8f33fa94c"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-024.jpg",
     "path": "/images/works/atelier/atelier-024.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 24,
-    "fileHash": "a76b42ed59ef43a34a53dccd64b40ec5"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-025.jpg",
     "path": "/images/works/atelier/atelier-025.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 25,
-    "fileHash": "95964651d097cef6c4777414c3721de0"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-026.jpg",
     "path": "/images/works/atelier/atelier-026.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 26,
-    "fileHash": "56f16ea0f143a7afbc8a1d08d68b6279"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-027.jpg",
     "path": "/images/works/atelier/atelier-027.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 27,
-    "fileHash": "f010791b9243ae95c2d2c654a39245bf"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-028.jpg",
     "path": "/images/works/atelier/atelier-028.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 28,
-    "fileHash": "d27e074a68ed9b860c8928bb31c53758"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-029.jpg",
     "path": "/images/works/atelier/atelier-029.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 29,
-    "fileHash": "199723344e74f41767bde91d2dd43892"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-030.jpg",
     "path": "/images/works/atelier/atelier-030.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 30,
-    "fileHash": "d7a2ba9c3f9a2de83f131a20f055ed46"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-031.jpg",
     "path": "/images/works/atelier/atelier-031.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 31,
-    "fileHash": "1536803661ed07b88d5b98304074a023"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-032.jpg",
     "path": "/images/works/atelier/atelier-032.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 32,
-    "fileHash": "7088f590bc4791894aa71ddbe2e2b7b8"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-033.jpg",
     "path": "/images/works/atelier/atelier-033.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 33,
-    "fileHash": "11277e6993819442c6383ac168cee2b6"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-034.jpg",
     "path": "/images/works/atelier/atelier-034.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 34,
-    "fileHash": "3588d2f1d8397bb6f248ba85c42b35fd"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-035.jpg",
     "path": "/images/works/atelier/atelier-035.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 35,
-    "fileHash": "c29db1e4550d212e2885eae61e813b7c"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-036.jpg",
     "path": "/images/works/atelier/atelier-036.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 36,
-    "fileHash": "a29e259e905a226aa8e7fbf5224bca68"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-037.jpg",
     "path": "/images/works/atelier/atelier-037.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 37,
-    "fileHash": "273e734604bb81f38c64cba9d13a2b67"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-038.jpg",
     "path": "/images/works/atelier/atelier-038.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 38,
-    "fileHash": "f556a35d859d715bd0d085f74dcbf45f"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-039.jpg",
     "path": "/images/works/atelier/atelier-039.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 39,
-    "fileHash": "dd6f0834b381f45955d4d10e24bf630b"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-040.jpg",
     "path": "/images/works/atelier/atelier-040.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 40,
-    "fileHash": "58cef0c99eebb7289c4889fa7cadaa75"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-041.jpg",
     "path": "/images/works/atelier/atelier-041.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 41,
-    "fileHash": "1df069fe54b940a1167599e87ab325e0"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-042.jpg",
     "path": "/images/works/atelier/atelier-042.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 42,
-    "fileHash": "1dca005369600b95ede9a20ee25aa423"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-043.jpg",
     "path": "/images/works/atelier/atelier-043.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 43,
-    "fileHash": "193b3e3233deea397bdda33a57a40dae"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-044.jpg",
     "path": "/images/works/atelier/atelier-044.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 44,
-    "fileHash": "976dc8a21b041d9ce3bb6b4a85619ac8"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-045.jpg",
     "path": "/images/works/atelier/atelier-045.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 45,
-    "fileHash": "5a303efe9d4308b78c2f0048362e5316"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-046.jpg",
     "path": "/images/works/atelier/atelier-046.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 46,
-    "fileHash": "d1f3c169b9499cb9ed7d2e02c9cbdca2"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-047.jpg",
     "path": "/images/works/atelier/atelier-047.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 47,
-    "fileHash": "beb43e894a61d1229c3892b1648e1ea1"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-048.jpg",
     "path": "/images/works/atelier/atelier-048.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 48,
-    "fileHash": "f1098669fd16c5d8a5ebc972c47ec843"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-049.jpg",
     "path": "/images/works/atelier/atelier-049.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 49,
-    "fileHash": "6ee73a32266353c08c61e8a1dee083b6"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-050.jpg",
     "path": "/images/works/atelier/atelier-050.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 50,
-    "fileHash": "c549a5a9866f47d2390f7086112b2ac3"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-051.jpg",
     "path": "/images/works/atelier/atelier-051.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 51,
-    "fileHash": "654d8aa79a5150b0d5a8acc1945487ed"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-052.jpg",
     "path": "/images/works/atelier/atelier-052.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 52,
-    "fileHash": "51bf124eba307126aee6d62796b9456a"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-053.jpg",
     "path": "/images/works/atelier/atelier-053.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 53,
-    "fileHash": "cf1abc66ad748e36e976906d4a133395"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-054.jpg",
     "path": "/images/works/atelier/atelier-054.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 54,
-    "fileHash": "d2b0a27b979787f76418846e43816882"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-055.jpg",
     "path": "/images/works/atelier/atelier-055.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 55,
-    "fileHash": "018627562cc886e97861aa005fe75b53"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-056.jpg",
     "path": "/images/works/atelier/atelier-056.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 56,
-    "fileHash": "b3ebeec9b05f1b6a0754f0323be93faa"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-057.jpg",
     "path": "/images/works/atelier/atelier-057.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 57,
-    "fileHash": "c7b1c42390386e3ef61b5c3d44271c99"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-058.jpg",
     "path": "/images/works/atelier/atelier-058.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 58,
-    "fileHash": "d7f5c23b06a7cf9660b24a1b7c9e19c2"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-059.jpg",
     "path": "/images/works/atelier/atelier-059.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 59,
-    "fileHash": "734ca3bddc45a8b4f321c708fff28632"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-060.jpg",
     "path": "/images/works/atelier/atelier-060.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 60,
-    "fileHash": "c6bd081e29c3953c756f606e7075165a"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-061.jpg",
     "path": "/images/works/atelier/atelier-061.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 61,
-    "fileHash": "f2668b513fe10834d6777df5116a3538"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-062.jpg",
     "path": "/images/works/atelier/atelier-062.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 62,
-    "fileHash": "145533869ee1076609293c3f0bca19e2"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-063.jpg",
     "path": "/images/works/atelier/atelier-063.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 63,
-    "fileHash": "82e529e2cfcd58e05de369e71ec3f599"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-064.jpg",
     "path": "/images/works/atelier/atelier-064.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 64,
-    "fileHash": "464c70ad921f1c8c0a5b603ff18c7cb2"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-065.jpg",
     "path": "/images/works/atelier/atelier-065.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 65,
-    "fileHash": "93281d613bed9b68aa671adaa530aff4"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-066.jpg",
     "path": "/images/works/atelier/atelier-066.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 66,
-    "fileHash": "0ec4d4487bca51de77faae6ac3c21b7b"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-067.jpg",
     "path": "/images/works/atelier/atelier-067.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 67,
-    "fileHash": "96e44b5b37c42806ebaee8cfaf6d47f4"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-068.jpg",
     "path": "/images/works/atelier/atelier-068.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 68,
-    "fileHash": "5b7ad707a5834b45e47a51bb584a28a2"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-069.jpg",
     "path": "/images/works/atelier/atelier-069.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 69,
-    "fileHash": "0fea98b2a34c904b51c651f00cc3e0c6"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-070.jpg",
     "path": "/images/works/atelier/atelier-070.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 70,
-    "fileHash": "6809f8867d19ac0deab645b7e4a4e688"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-071.jpg",
     "path": "/images/works/atelier/atelier-071.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 71,
-    "fileHash": "cb4f266ce766da9e84bd333bb5dc35f6"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-072.jpg",
     "path": "/images/works/atelier/atelier-072.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 72,
-    "fileHash": "762438246f8c4217d101a24f88e11631"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-073.jpg",
     "path": "/images/works/atelier/atelier-073.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 73,
-    "fileHash": "fb4e800e693421fc6e7e1b76fe3d2c91"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-074.jpg",
     "path": "/images/works/atelier/atelier-074.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 74,
-    "fileHash": "36311277ec121a06d9f416edddd2333f"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-075.jpg",
     "path": "/images/works/atelier/atelier-075.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 75,
-    "fileHash": "ff13a0d451df6cbeb3637998cb1b16f6"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-076.jpg",
     "path": "/images/works/atelier/atelier-076.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 76,
-    "fileHash": "92022ec444c39f63db18dd1bba28b75f"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-077.jpg",
     "path": "/images/works/atelier/atelier-077.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 77,
-    "fileHash": "30dbf8d66622cc93c82edd6a863825ae"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-078.jpg",
     "path": "/images/works/atelier/atelier-078.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 78,
-    "fileHash": "0b78de9c8b6fa25aef30f1dda0a75867"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-079.jpg",
     "path": "/images/works/atelier/atelier-079.jpg",
-    "category": "atelier",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "L'Atelier - Ferrari créatrices",
-    "seriesNumber": 79,
-    "fileHash": "5edcf1e2c6759f81e8a0b7778bb8807a"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-001.jpg",
     "path": "/images/works/empreintes/empreintes-001.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
     "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 1,
-    "fileHash": "38547bb1685b58445706f9babcaa74d8",
     "price": 3000,
     "edition": {
       "type": "limited",
@@ -902,13 +2022,27 @@
   {
     "filename": "empreintes-003.jpg",
     "path": "/images/works/empreintes/empreintes-003.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
     "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 3,
-    "fileHash": "c136b29bfbb7f2cb8849ea79a828350b",
     "price": 4000,
     "edition": {
       "type": "limited",
@@ -918,223 +2052,497 @@
   {
     "filename": "empreintes-005.jpg",
     "path": "/images/works/empreintes/empreintes-005.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 5,
-    "fileHash": "f12bf9a4863e4fa9ae5b7a713869e194"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-007.jpg",
     "path": "/images/works/empreintes/empreintes-007.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 7,
-    "fileHash": "befecf35bcabfd7dd857776ed84aa687"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-009.jpg",
     "path": "/images/works/empreintes/empreintes-009.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 9,
-    "fileHash": "fea24d23185fc996c12ccc955bf569e9"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-011.jpg",
     "path": "/images/works/empreintes/empreintes-011.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 11,
-    "fileHash": "0b03c5251aa1e4c5939bed7a40f1623c"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-013.jpg",
     "path": "/images/works/empreintes/empreintes-013.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 13,
-    "fileHash": "4564bd62799fbf1f68b0af76ecc14983"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-015.jpg",
     "path": "/images/works/empreintes/empreintes-015.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 15,
-    "fileHash": "47a9dc8ae78b74abe144fab64b99cda5"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-017.jpg",
     "path": "/images/works/empreintes/empreintes-017.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 17,
-    "fileHash": "eb0e93f74903bfa09b41e5bdfd8619c7"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-019.jpg",
     "path": "/images/works/empreintes/empreintes-019.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 19,
-    "fileHash": "e7a429e9ff1ac1cb6999ec2723920d63"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-021.jpg",
     "path": "/images/works/empreintes/empreintes-021.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 21,
-    "fileHash": "74b8fbe50984f35de9b4daa948649d0d"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-023.jpg",
     "path": "/images/works/empreintes/empreintes-023.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 23,
-    "fileHash": "a2643f529cd0e235c61cf99c248c6cac"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-025.jpg",
     "path": "/images/works/empreintes/empreintes-025.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 25,
-    "fileHash": "9f056b2d30010ad3346008b9f4655125"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-027.jpg",
     "path": "/images/works/empreintes/empreintes-027.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 27,
-    "fileHash": "44c50624d20aed6bdd1a54b9ba77fa70"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-029.jpg",
     "path": "/images/works/empreintes/empreintes-029.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 29,
-    "fileHash": "9d5e2825015692b06ce66c24dbaa136d"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-031.jpg",
     "path": "/images/works/empreintes/empreintes-031.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 31,
-    "fileHash": "7a6e61321e05b86d1763e4dd5137e025"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "empreintes-033.jpg",
     "path": "/images/works/empreintes/empreintes-033.jpg",
-    "category": "empreintes",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Empreintes - Traces automobiles",
-    "seriesNumber": 33,
-    "fileHash": "5ed7ea4fb7e889a11edf5f70d6c9b83b"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true
   },
   {
     "filename": "atelier-deux-voitures-grises.jpg",
     "path": "/images/origins/atelier-deux-voitures-grises.jpg",
-    "category": "origins",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "9a9527e8cc9c5c6fb9c4f9535057eb42"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "origins",
+    "isNumberedSeries": false
   },
   {
     "filename": "atelier-deux-voitures.jpg",
     "path": "/images/origins/atelier-deux-voitures.jpg",
-    "category": "origins",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "6f8e161e474db66c26089ff2ee4efec5"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "origins",
+    "isNumberedSeries": false
   },
   {
     "filename": "childhood-noir-blanc-1.jpg",
     "path": "/images/origins/childhood-noir-blanc-1.jpg",
-    "category": "origins",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "6ae9b328dba8b9e8a0636c70b2e887c9"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "origins",
+    "isNumberedSeries": false
   },
   {
     "filename": "childhood-noir-blanc-2.jpg",
     "path": "/images/origins/childhood-noir-blanc-2.jpg",
-    "category": "origins",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "001c85cfb64573b63cba9f2c0bc61ff7"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "origins",
+    "isNumberedSeries": false
   },
   {
     "filename": "childhood-sepia.jpg",
     "path": "/images/origins/childhood-sepia.jpg",
-    "category": "origins",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "815568a5d5d993efc701713a0d8c357c"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "origins",
+    "isNumberedSeries": false
   },
   {
     "filename": "projection-001.jpg",
     "path": "/images/works/projection/projection-001.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
     "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 1,
-    "fileHash": "e81162b45f85360ac80af59921abdbad",
     "price": 3000,
     "edition": {
       "type": "limited",
@@ -1144,13 +2552,27 @@
   {
     "filename": "projection-003.jpg",
     "path": "/images/works/projection/projection-003.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": true,
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
     "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 3,
-    "fileHash": "3db2d556211818053405259d8da006ab",
     "price": 4000,
     "edition": {
       "type": "limited",
@@ -1160,358 +2582,776 @@
   {
     "filename": "projection-005.jpg",
     "path": "/images/works/projection/projection-005.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 5,
-    "fileHash": "1a43d1308549dbb56f6df2f865d18567"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-007.jpg",
     "path": "/images/works/projection/projection-007.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 7,
-    "fileHash": "4acb5c3e8c656f4beb88dfcb113deca0"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-009.jpg",
     "path": "/images/works/projection/projection-009.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 9,
-    "fileHash": "5b01277252cbb79300a393be60dcf3b4"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-011.jpg",
     "path": "/images/works/projection/projection-011.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 11,
-    "fileHash": "fa60d774163a91b025703193f13af65b"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-013.jpg",
     "path": "/images/works/projection/projection-013.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 13,
-    "fileHash": "84652868cb4c949667a71d63ea58c89a"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-015.jpg",
     "path": "/images/works/projection/projection-015.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 15,
-    "fileHash": "b323a21e0c5c36460f200ba3d4a212a6"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-017.jpg",
     "path": "/images/works/projection/projection-017.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 17,
-    "fileHash": "ca9e2ea7dce105861afc85220b204ce7"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-019.jpg",
     "path": "/images/works/projection/projection-019.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 19,
-    "fileHash": "e76a1710553500e278668cde0f6749c5"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-021.jpg",
     "path": "/images/works/projection/projection-021.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 21,
-    "fileHash": "f814db0054f03c51614247114b6b1705"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-023.jpg",
     "path": "/images/works/projection/projection-023.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 23,
-    "fileHash": "2bfccfad5204fbfb814e177bbb0a89d2"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-025.jpg",
     "path": "/images/works/projection/projection-025.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 25,
-    "fileHash": "ad0f874930c2cc437cabdff5097ddfb5"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "projection-027.jpg",
     "path": "/images/works/projection/projection-027.jpg",
-    "category": "projection",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": true,
-    "series": "Projection - L'instant capturé",
-    "seriesNumber": 27,
-    "fileHash": "40f135dbb1875257598ac4ee53736d57"
+    "limitedEdition": {
+      "total": 7,
+      "sold": 0,
+      "available": 7,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true
   },
   {
     "filename": "GF_004.jpg",
     "path": "/uploads-preview/GF_004.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "fcf1fc13af88cd2fa5546407f537fedd"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_005.jpg",
     "path": "/uploads-preview/GF_005.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "8dcb5056b800b71ac09ab5c22dd833d1"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_009.jpg",
     "path": "/uploads-preview/GF_009.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "381612be58cd3afadfc1bf0ae3ff0fae"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_010.jpg",
     "path": "/uploads-preview/GF_010.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "0212a8b88993daff1202ebfc8fcef637"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_014.jpg",
     "path": "/uploads-preview/GF_014.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "c8d8b1b17cb87450c55348a3fec0e72f"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_017.jpg",
     "path": "/uploads-preview/GF_017.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "f4b1c7026da1a3646d36377130aeab95"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_027.jpg",
     "path": "/uploads-preview/GF_027.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "7626a76d21954b9b7d8de484d942e5d8"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_028.jpg",
     "path": "/uploads-preview/GF_028.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "a0479e0154abee7e078fb3aa038e0be2"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_031.jpg",
     "path": "/uploads-preview/GF_031.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "b68b769cfc44426a9905f1f6fc1bcaa7"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_035.jpg",
     "path": "/uploads-preview/GF_035.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "7db726326c92ecd31f15b61a160e54db"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_037.jpg",
     "path": "/uploads-preview/GF_037.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "c2068cbe34a98853d54c9d7022039d08"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_038.jpg",
     "path": "/uploads-preview/GF_038.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "a08da74541b97b2d2147c6c476ae9960"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_043.jpg",
     "path": "/uploads-preview/GF_043.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "76d562504c3458b67ca79e1340cfcdcb"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_046.jpg",
     "path": "/uploads-preview/GF_046.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "8d121f43ea84d0ba3acf3b19d710da8a"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_051.jpg",
     "path": "/uploads-preview/GF_051.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "cc61ea510603a06b78cf7d92bc6b4bf8"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_053.jpg",
     "path": "/uploads-preview/GF_053.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "d41d8cd98f00b204e9800998ecf8427e"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_055.jpg",
     "path": "/uploads-preview/GF_055.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "eb79a5378b70b97adcb1204ee238d21a"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "GF_060.jpg",
     "path": "/uploads-preview/GF_060.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "fb5521a00637ebdf5f1fad9a1415de16"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_077.jpg",
     "path": "/uploads-preview/img_077.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "9280a637a555d9fe72b4dd0f4a73dde3"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_111.jpg",
     "path": "/uploads-preview/img_111.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "753307fbd4b3989d4ae55b83391994f5"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_112.jpg",
     "path": "/uploads-preview/img_112.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "990b0e333e18ea37ee1e9f00cfde2108"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_114.jpg",
     "path": "/uploads-preview/img_114.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "9b317559a4edcf8418e866cd82f6f46e"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_118.jpg",
     "path": "/uploads-preview/img_118.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "5612648e2835eb93ac7482db68344e97"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_134.jpg",
     "path": "/uploads-preview/img_134.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "e9fe83ab5f850f90ad015e792912b615"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   },
   {
     "filename": "img_142.jpg",
     "path": "/uploads-preview/img_142.jpg",
-    "category": "uploads-preview",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "active",
     "visible": true,
     "forSale": false,
-    "isNumberedSeries": false,
-    "fileHash": "c2d4074ea5b98f0d312d36312f3a8255"
+    "prices": {
+      "unlimited": {
+        "a4": 150,
+        "a3": 250,
+        "a2": 400
+      }
+    },
+    "category": "uploads-preview",
+    "isNumberedSeries": false
   }
 ]

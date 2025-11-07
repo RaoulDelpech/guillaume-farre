@@ -1,0 +1,243 @@
+// Gelato API Client - Skeleton
+// Date: 2025-11-07
+// Par: Lalou
+// Doc: GELATO_VALIDATION_GUIDE.md
+//
+// TODO: Compléter avec vraie implémentation après vérification pricing
+
+/**
+ * Gelato API Client
+ * https://dashboard.gelato.com/docs/
+ */
+export class GelatoClient {
+  private apiKey: string;
+  private apiUrl: string;
+  private testMode: boolean;
+
+  constructor() {
+    this.apiKey = process.env.GELATO_API_KEY || '';
+    this.apiUrl = process.env.GELATO_API_URL || 'https://order.gelatoapis.com';
+    this.testMode = process.env.GELATO_TEST_MODE === 'true';
+
+    if (!this.apiKey) {
+      throw new Error('GELATO_API_KEY manquante dans .env.local');
+    }
+  }
+
+  /**
+   * Créer commande Gelato après paiement Stripe
+   * Appelé depuis webhook Stripe
+   */
+  async createOrder(params: CreateOrderParams): Promise<GelatoOrder> {
+    // TODO: Implémenter
+    // POST https://order.gelatoapis.com/v4/orders
+    // Headers: X-API-KEY, Content-Type: application/json
+    // Body: { productUid, imageUrl, quantity, shipping, ... }
+
+    const endpoint = `${this.apiUrl}/v4/orders`;
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'X-API-KEY': this.apiKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        // TODO: Mapper params vers format Gelato
+        // Voir doc: https://dashboard.gelato.com/docs/orders/create
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Gelato API error: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  /**
+   * Récupérer statut commande
+   * Utilisé pour tracking livraison
+   */
+  async getOrderStatus(orderId: string): Promise<GelatoOrderStatus> {
+    // TODO: Implémenter
+    // GET https://order.gelatoapis.com/v4/orders/{orderId}
+    // Headers: X-API-KEY
+
+    const endpoint = `${this.apiUrl}/v4/orders/${orderId}`;
+
+    const response = await fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': this.apiKey,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Gelato API error: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+
+  /**
+   * Lister produits disponibles
+   * Utile pour vérifier productUid correct
+   */
+  async listProducts(): Promise<GelatoProduct[]> {
+    // TODO: Implémenter
+    // GET https://order.gelatoapis.com/v4/products
+    // Headers: X-API-KEY
+
+    const endpoint = `${this.apiUrl}/v4/products`;
+
+    const response = await fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': this.apiKey,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Gelato API error: ${response.statusText}`);
+    }
+
+    return await response.json();
+  }
+}
+
+/**
+ * Types
+ */
+
+export interface CreateOrderParams {
+  // Photo metadata
+  photoFilename: string;
+  photoPath: string;
+
+  // Format choisi (a4, a3, a2, a1)
+  format: 'a4' | 'a3' | 'a2' | 'a1';
+
+  // Catégorie (limited, unlimited)
+  category: 'limited' | 'unlimited';
+
+  // Client shipping (depuis Stripe session)
+  shipping: {
+    name: string;
+    email: string;
+    address: {
+      line1: string;
+      line2?: string;
+      city: string;
+      postalCode: string;
+      country: string; // FR pour France
+    };
+  };
+
+  // Stripe payment intent (pour tracking)
+  stripePaymentIntentId: string;
+
+  // Stripe session ID (pour tracking)
+  stripeSessionId: string;
+}
+
+export interface GelatoOrder {
+  id: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  trackingUrl?: string;
+  estimatedDeliveryDate?: string;
+}
+
+export interface GelatoOrderStatus {
+  id: string;
+  status: string;
+  trackingNumber?: string;
+  trackingUrl?: string;
+  events: Array<{
+    timestamp: string;
+    status: string;
+    message: string;
+  }>;
+}
+
+export interface GelatoProduct {
+  uid: string;
+  name: string;
+  description: string;
+  prices: {
+    [country: string]: number;
+  };
+}
+
+/**
+ * Utilitaires
+ */
+
+// Mapper format Guillaume → productUid Gelato
+export function getGelatoProductUid(format: string, category: string): string {
+  // TODO: Compléter avec vrais productUids Gelato
+  // Voir dashboard Gelato product catalog
+
+  const mapping: Record<string, string> = {
+    // Fine Art Giclee (à compléter après vérification dashboard)
+    'a4-unlimited': 'giclee-a4-200gsm', // Exemple
+    'a3-unlimited': 'giclee-a3-200gsm',
+    'a2-unlimited': 'giclee-a2-200gsm',
+    'a3-limited': 'giclee-a3-200gsm',
+    'a2-limited': 'giclee-a2-200gsm',
+    'a1-limited': 'giclee-a1-200gsm',
+  };
+
+  const key = `${format}-${category}`;
+  return mapping[key] || '';
+}
+
+// Générer URL image pour Gelato (doit être accessible publiquement)
+export function getPublicImageUrl(photoPath: string): string {
+  // TODO: Adapter selon hébergement
+  // Gelato a besoin URL publique HTTPS
+  // Options:
+  // 1. Upload vers S3/Cloudinary
+  // 2. Exposer via Next.js public/
+  // 3. CDN
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
+  return `${baseUrl}${photoPath}`;
+}
+
+/**
+ * Exemple utilisation
+ */
+
+/*
+// Dans app/api/stripe-webhook/route.ts
+
+import { GelatoClient } from '@/lib/gelato-client';
+
+export async function POST(req: Request) {
+  const event = await stripe.webhooks.constructEvent(...);
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+
+    // Créer commande Gelato
+    const gelato = new GelatoClient();
+    const order = await gelato.createOrder({
+      photoFilename: session.metadata.photoFilename,
+      photoPath: session.metadata.photoPath,
+      format: session.metadata.format,
+      category: session.metadata.category,
+      shipping: session.shipping_details,
+      stripePaymentIntentId: session.payment_intent,
+      stripeSessionId: session.id,
+    });
+
+    console.log('Gelato order created:', order.id);
+
+    // Envoyer email confirmation client avec tracking Gelato
+    // TODO: Implémenter
+  }
+}
+*/
+
+// Lalou

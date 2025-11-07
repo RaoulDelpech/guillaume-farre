@@ -8,6 +8,7 @@ import InstagramConfig from "@/components/admin/InstagramConfig";
 import CommercialDashboard from "@/components/admin/CommercialDashboard";
 import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
 import AdminLogin from "@/components/admin/AdminLogin";
+import PhotoDescriptionAI from "@/components/admin/PhotoDescriptionAI";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -361,6 +362,22 @@ export default function AdminPage() {
                           type: suggestions.isLimitedEdition ? 'limited' : 'open',
                           count: suggestions.editionNumber
                         }
+                      });
+                    }}
+                  />
+
+                  {/* Photo Description AI */}
+                  <PhotoDescriptionAI
+                    photoPath={photo.path}
+                    photoFilename={photo.filename}
+                    category={photo.category || 'autres'}
+                    seriesName={photo.seriesName}
+                    currentDescription={photo.description}
+                    aiGenerated={photo.aiGenerated}
+                    onApplyDescription={(description) => {
+                      updatePhoto(globalIndex, {
+                        description,
+                        aiGenerated: true
                       });
                     }}
                   />

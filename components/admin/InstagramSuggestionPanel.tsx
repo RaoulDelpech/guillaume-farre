@@ -109,15 +109,12 @@ export default function InstagramSuggestionPanel({
 
   return (
     <>
+      {/* Bouton icône Instagram compact */}
       <button
         onClick={handleGenerate}
         disabled={loading}
+        className="w-full px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-md hover:from-pink-700 hover:to-purple-700 transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
         style={{
-          width: '100%',
-          padding: '10px',
-          backgroundColor: '#e91e63',
-          color: '#fff',
-          border: 'none',
           borderRadius: '5px',
           cursor: 'pointer',
           fontWeight: 'bold',

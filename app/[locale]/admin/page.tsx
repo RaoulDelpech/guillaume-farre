@@ -323,6 +323,23 @@ export default function AdminPage() {
                     </span>
                   </label>
 
+                  {/* Statut photo */}
+                  <div>
+                    <label className="block text-xs text-muted-foreground mb-1 uppercase tracking-wide">
+                      Statut
+                    </label>
+                    <select
+                      value={photo.status || 'active'}
+                      onChange={(e) => updatePhoto(globalIndex, { status: e.target.value as 'active' | 'trash' | 'to-sort' })}
+                      className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                    >
+                      <option value="active">✅ Active</option>
+                      <option value="to-sort">⏳ À trier</option>
+                      <option value="trash">🗑️ Corbeille</option>
+                    </select>
+                  </div>
+
+                  {/* Catégorie ancienne (legacy) */}
                   <select
                     value={photo.category}
                     onChange={(e) => updatePhoto(globalIndex, { category: e.target.value })}
@@ -336,6 +353,34 @@ export default function AdminPage() {
                     <option value="uploads">Uploads</option>
                     <option value="origins">Origins</option>
                   </select>
+
+                  {/* Catégories multiples (nouveau schema) */}
+                  <div className="space-y-2">
+                    <label className="block text-xs text-muted-foreground uppercase tracking-wide">
+                      Catégories
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['unlimited', 'limited', 'xxl', 'monumental'].map((cat) => (
+                        <label key={cat} className="flex items-center gap-2 cursor-pointer group">
+                          <input
+                            type="checkbox"
+                            checked={photo.categories?.includes(cat as any) || false}
+                            onChange={(e) => {
+                              const categories = photo.categories || [];
+                              const newCategories = e.target.checked
+                                ? [...categories, cat as any]
+                                : categories.filter(c => c !== cat);
+                              updatePhoto(globalIndex, { categories: newCategories });
+                            }}
+                            className="w-4 h-4 rounded border-border"
+                          />
+                          <span className="text-xs group-hover:text-primary transition-colors capitalize">
+                            {cat}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
 
                   <label className="flex items-center gap-3 cursor-pointer group">
                     <input

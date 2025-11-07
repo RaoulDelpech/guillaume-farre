@@ -7,9 +7,11 @@ import InstagramSuggestionPanel from "@/components/admin/InstagramSuggestionPane
 import InstagramConfig from "@/components/admin/InstagramConfig";
 import CommercialDashboard from "@/components/admin/CommercialDashboard";
 import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
+import AdminLogin from "@/components/admin/AdminLogin";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState("all");
@@ -20,6 +22,14 @@ export default function AdminPage() {
   const [seriesSuggestions, setSeriesSuggestions] = useState<SeriesSuggestion[] | null>(null);
   const [analyzingSeries, setAnalyzingSeries] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+
+  // Vérifier si déjà authentifié au chargement
+  useEffect(() => {
+    const token = sessionStorage.getItem("admin_token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   useEffect(() => {
     loadPhotos();
@@ -151,6 +161,11 @@ export default function AdminPage() {
         <div className="text-foreground text-2xl font-light">Chargement...</div>
       </div>
     );
+  }
+
+  // Afficher page de login si pas authentifié
+  if (!isAuthenticated) {
+    return <AdminLogin onLogin={() => setIsAuthenticated(true)} />;
   }
 
   return (

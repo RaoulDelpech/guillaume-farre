@@ -333,7 +333,7 @@ export default function AdminPage() {
                   {/* AI Analysis Button */}
                   <AIAnalysisPanel
                     photoFilename={photo.filename}
-                    category={photo.category}
+                    category={photo.category || 'autres'}
                     currentPrice={photo.price}
                     onApplySuggestions={(suggestions) => {
                       updatePhoto(globalIndex, {
@@ -351,7 +351,7 @@ export default function AdminPage() {
                   <InstagramSuggestionPanel
                     photoPath={photo.path}
                     photoTitle={photo.filename}
-                    category={photo.category}
+                    category={photo.category || 'autres'}
                     seriesName={photo.seriesName}
                   />
                 </div>

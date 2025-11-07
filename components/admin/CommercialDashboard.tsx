@@ -28,7 +28,7 @@ export default function CommercialDashboard({ photos }: { photos: PhotoMetadata[
     const detected: Opportunity[] = [];
 
     photos.forEach((photo) => {
-      const analysis = analyzeCommercialPerformance(photo.category, photo.filename, photo.price);
+      const analysis = analyzeCommercialPerformance(photo.category || 'autres', photo.filename, photo.price);
 
       // Critères de détection d'opportunités exceptionnelles
       const isMasterpiece =

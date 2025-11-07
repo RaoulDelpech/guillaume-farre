@@ -2,16 +2,63 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export interface PhotoMetadata {
+  // Identifiants
   filename: string;
   path: string;
-  category: string;
-  visible: boolean;
-  forSale: boolean;
-  isNumberedSeries: boolean;
-  price?: number;
+
+  // Informations générales
   title?: string;
   year?: number;
   seriesName?: string;
+
+  // Catégories multiples (une photo peut être dans plusieurs catégories)
+  categories: ('unlimited' | 'limited' | 'xxl' | 'monumental')[];
+
+  // Description IA
+  description?: string;
+  aiGenerated?: boolean;
+
+  // Statuts
+  status: 'active' | 'trash' | 'to-sort';
+
+  // Visibilité et vente
+  visible: boolean;
+  forSale: boolean;
+
+  // Ancien champ category gardé pour compatibilité (à migrer)
+  category?: string;
+
+  // Éditions limitées (si categories contient 'limited')
+  limitedEdition?: {
+    total: 7; // Toujours 7 pour Guillaume
+    sold: number; // Combien vendus (0-7)
+    available: number; // Restants (7 - sold)
+    closed: boolean; // Série close manuellement
+  };
+
+  // Prix selon catégorie
+  prices?: {
+    // Si 'unlimited' dans categories
+    unlimited?: {
+      a4: 150;
+      a3: 250;
+      a2: 400;
+    };
+    // Si 'limited' dans categories
+    limited?: {
+      a3: 500;
+      a2: 800;
+      a1: 1200;
+    };
+    // Si 'xxl' dans categories
+    xxl?: number; // Sur devis
+    // Si 'monumental' dans categories
+    monumental?: number; // Sur devis
+  };
+
+  // Anciens champs gardés pour compatibilité (à migrer)
+  isNumberedSeries?: boolean;
+  price?: number;
   edition?: {
     type: 'limited' | 'open';
     count?: number;
@@ -54,6 +101,8 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
                 filename: file,
                 path: `${dir.prefix}${item}/${file}`,
                 category: item,
+                categories: ['unlimited'] as ('unlimited' | 'limited' | 'xxl' | 'monumental')[],
+                status: 'to-sort' as 'active' | 'trash' | 'to-sort',
                 visible: true,
                 forSale: false,
                 isNumberedSeries: false,
@@ -70,6 +119,8 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
               filename: item,
               path: `${dir.prefix}${item}`,
               category: categoryName,
+              categories: ['unlimited'] as ('unlimited' | 'limited' | 'xxl' | 'monumental')[],
+              status: 'to-sort' as 'active' | 'trash' | 'to-sort',
               visible: true,
               forSale: false,
               isNumberedSeries: false,

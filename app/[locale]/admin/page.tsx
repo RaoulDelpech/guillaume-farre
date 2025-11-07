@@ -8,6 +8,7 @@ import InstagramConfig from "@/components/admin/InstagramConfig";
 import CommercialDashboard from "@/components/admin/CommercialDashboard";
 import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
 import AdminLogin from "@/components/admin/AdminLogin";
+import DragDropUpload from "@/components/admin/DragDropUpload";
 import PhotoDescriptionAI from "@/components/admin/PhotoDescriptionAI";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
@@ -48,8 +49,17 @@ export default function AdminPage() {
     }
   }
 
-  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.target.files;
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement> | File[]) {
+    let files: FileList | File[] | null;
+
+    if (Array.isArray(e)) {
+      // Called from DragDropUpload with File[]
+      files = e;
+    } else {
+      // Called from input onChange with event
+      files = e.target.files;
+    }
+
     if (!files || files.length === 0) return;
 
     const formData = new FormData();
@@ -268,16 +278,16 @@ export default function AdminPage() {
               Actualiser
             </button>
 
-            <label className="px-6 py-3 bg-primary hover:bg-accent text-primary-foreground rounded-md cursor-pointer font-medium transition-colors">
-              Upload Photos/Vidéos
-              <input
-                type="file"
-                multiple
+            <div className="col-span-full">
+              <DragDropUpload
+                onFilesSelected={(files) => {
+                  handleUpload(files);
+                }}
                 accept="image/*,video/*"
-                onChange={handleUpload}
-                className="hidden"
+                multiple={true}
+                maxFiles={50}
               />
-            </label>
+            </div>
 
             {hasChanges && (
               <button

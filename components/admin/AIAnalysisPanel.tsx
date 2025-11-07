@@ -23,6 +23,7 @@ export default function AIAnalysisPanel({
   const [analysis, setAnalysis] = useState<PhotoAnalysis | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true); // Collapsed par défaut
 
   const runAnalysis = () => {
     setIsAnalyzing(true);
@@ -69,13 +70,30 @@ export default function AIAnalysisPanel({
   );
 
   return (
-    <div>
-      {/* Bouton d'analyse */}
+    <div className="border border-gray-200 rounded-md overflow-hidden">
+      {/* Header cliquable */}
       <button
-        onClick={runAnalysis}
-        disabled={isAnalyzing}
-        className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg flex items-center gap-2 disabled:opacity-50"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors flex items-center justify-between text-left"
       >
+        <span className="text-sm font-medium text-gray-700 flex items-center gap-2">
+          {isCollapsed ? '▶' : '▼'}
+          Analyse commerciale
+        </span>
+        <span className="text-xs text-gray-500">
+          {isCollapsed ? 'Déplier' : 'Replier'}
+        </span>
+      </button>
+
+      {/* Contenu dépliable */}
+      {!isCollapsed && (
+        <div className="p-4 space-y-3">
+          {/* Bouton d'analyse */}
+          <button
+            onClick={runAnalysis}
+            disabled={isAnalyzing}
+            className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg flex items-center justify-center gap-2 disabled:opacity-50"
+          >
         {isAnalyzing ? (
           <>
             <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
@@ -326,6 +344,8 @@ export default function AIAnalysisPanel({
               </div>
             </div>
           </div>
+        </div>
+      )}
         </div>
       )}
     </div>

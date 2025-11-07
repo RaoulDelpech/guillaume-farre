@@ -142,9 +142,19 @@ export default function AdminPage() {
   }
 
   const filteredPhotos = photos.filter(p => {
+    // Filtre statut (par défaut on affiche active seulement)
+    const status = p.status || 'active';
+    if (filterVisibility === "trash" && status !== "trash") return false;
+    if (filterVisibility === "to-sort" && status !== "to-sort") return false;
+    if (filterVisibility !== "trash" && filterVisibility !== "to-sort" && status !== "active") return false;
+
+    // Filtre catégorie
     if (filterCategory !== "all" && p.category !== filterCategory) return false;
+
+    // Filtre visibilité (ancien système)
     if (filterVisibility === "visible" && !p.visible) return false;
     if (filterVisibility === "hidden" && p.visible) return false;
+
     return true;
   });
 
@@ -235,15 +245,17 @@ export default function AdminPage() {
             </div>
 
             <div>
-              <label className="block text-sm text-muted-foreground mb-2 uppercase tracking-wide">Visibilité</label>
+              <label className="block text-sm text-muted-foreground mb-2 uppercase tracking-wide">Statut</label>
               <select
                 value={filterVisibility}
                 onChange={(e) => setFilterVisibility(e.target.value)}
                 className="px-4 py-3 bg-background border border-border rounded-md text-foreground focus:outline-none focus:border-primary transition-colors"
               >
-                <option value="all">Toutes</option>
+                <option value="all">Actives ({photos.filter(p => (p.status || 'active') === 'active').length})</option>
                 <option value="visible">Visibles</option>
                 <option value="hidden">Masquées</option>
+                <option value="to-sort">⏳ À trier ({photos.filter(p => p.status === 'to-sort').length})</option>
+                <option value="trash">🗑️ Corbeille ({photos.filter(p => p.status === 'trash').length})</option>
               </select>
             </div>
 

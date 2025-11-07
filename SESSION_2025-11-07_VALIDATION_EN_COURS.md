@@ -182,14 +182,66 @@ Ma recommandation : [Avis Lalou]
 - Webhook à configurer
 - Tests à faire
 
-**WhiteWall** :
-- API non configurée (placeholder)
-- Alternative : Picto Toulouse (05 61 53 42 48)
-- Process manuel temporaire possible
+**Impression API** :
+- ❌ WhiteWall : API non configurée (placeholder)
+- ❌ Picto Toulouse : Guillaume ne veut PAS appeler (manuel)
+- ✅ **NOUVEAU** : Recherche services API automatiques complète
+- 📄 Voir : SERVICES_IMPRESSION_API_ANALYSE.md
+- 🥇 **Recommandation Lalou** : ThePrintSpace (UK, spécialiste Fine Art)
+- 🥈 Alternative : Prodigi (EU/UK, certifié Fine Art Trade Guild)
+- ⏳ En attente validation Guillaume pour contacter ThePrintSpace
 
 ---
 
-**Dernière mise à jour** : Question 2 posée, en attente réponse
-**Prochain statut** : Réponse Q2 → Poser Q3
+## TRAVAIL SESSION CONTINUE (après compactage)
+
+### ✅ Analyses sites concurrents - FAIT
+**Fichier** : INSPIRATION_SITES_CONCURRENTS.md
+**Sites analysés** :
+- ArtPhotoLimited.com (multi-artistes, photographie iconique)
+- Peter Lik (mono-artiste, éditions limitées luxe)
+
+**Best practices identifiées** :
+- Trust signals (photos installations clients)
+- Éditions limitées visibles ("3/7 restants")
+- Options finitions (Papier/Alu/Acrylique) avec prévisualisation
+- Merchandising (livres d'art, calendriers)
+- Storytelling territorial
+- Visualisation in-room
+
+### ✅ Recherche services impression API - FAIT
+**Fichier** : SERVICES_IMPRESSION_API_ANALYSE.md
+**Services analysés** :
+- ThePrintSpace (UK) ⭐⭐⭐⭐⭐ - RECOMMANDÉ
+- Prodigi (EU/UK) ⭐⭐⭐⭐
+- Pwinty (UK/EU) ⭐⭐⭐⭐
+- Printful ⭐⭐⭐ (pas adapté)
+- Gelato ⭐⭐⭐ (pas adapté)
+
+**Recommandation finale** :
+- 🥇 **ThePrintSpace** : Spécialiste Fine Art, certificats édition limitée personnalisables, API + webhooks, 2-5 jours expédition
+- 🥈 **Prodigi** : Fine Art Trade Guild approved, museum-quality, réseau EU solide
+- 🥉 **Pwinty** : 100% gratuit (pas de frais setup/mensuels), réseau EU
+
+**Prochaines actions** :
+1. Validation Guillaume du choix ThePrintSpace
+2. Contacter ThePrintSpace pour confirmer Alu-Dibond + pricing
+3. Tester API sandbox
+4. Implémenter intégration Stripe → ThePrintSpace
+
+### ✅ Règles projet créées - FAIT
+**Fichier** : .claude/REGLES_PROJET.md
+**Contenu** :
+- Règles absolues (validation point par point, sauvegardes, authenticité)
+- Workflow session (démarrage, pendant, fin)
+- Décisions validées (Q1-Q4)
+- Priorités projet
+- Contacts utiles
+- Fichiers importants
+
+---
+
+**Dernière mise à jour** : Recherche services impression API terminée
+**Prochain statut** : Validation Guillaume choix ThePrintSpace → Continuer validation textes (Q5-8)
 
 Lalou

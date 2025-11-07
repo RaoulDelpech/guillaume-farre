@@ -12,45 +12,45 @@
   },
   "hero": {
     "origine": {
-      "title": "Quand une Ferrari n°20 rose devient pinceau",
-      "subtitle": "Un enfant de 4 ans. Une Ferrari rose. 40 ans plus tard.",
-      "description": "Ce jour-là, face à cette voiture de course immense et rose, quelque chose s'est gravé. Pas l'envie d'en posséder une. Quelque chose de plus profond : l'envie de fusionner avec cette puissance. Aujourd'hui, j'ai quatre Ferrari. Pas pour les collectionner. Pour créer avec elles.",
+      "title": "La Ferrari rose n°20",
+      "subtitle": "J'avais 4 ans. Elle m'a marqué pour toujours.",
+      "description": "Je me souviens de cette Ferrari de course, immense et rose. À 4 ans, face à elle, je n'ai pas rêvé de la posséder un jour. J'ai rêvé de fusionner avec sa puissance. Quarante ans plus tard, j'en ai quatre dans mon atelier. Elles ne sont pas là pour être admirées. Elles créent.",
       "cta": "Découvrir l'histoire"
     },
     "atelier": {
-      "title": "Mon atelier : quatre Ferrari grises, instruments de création",
-      "subtitle": "Pas de rouge flamboyant. Du gris. Volontairement.",
-      "description": "Ces voitures ne sont pas des objets de collection, ce sont des outils. Des pinceaux de 1200 kilos. Ici, elles peignent sous mes impulsions, comme un chef d'orchestre dirige ses musiciens. Chaque accélération, chaque freinage, chaque dérapage contrôlé crée une trace unique sur la toile.",
+      "title": "L'atelier",
+      "subtitle": "Quatre Ferrari. Des outils de 1200 kilos.",
+      "description": "Dans mon atelier, ces voitures sont des instruments. 1200 kilos de métal qui laissent des empreintes sur la toile. Chaque accélération, chaque freinage, chaque dérapage contrôlé produit quelque chose que je ne peux pas reproduire à la main. C'est ce geste irréplicable que je cherche.",
       "cta": "Découvrir l'atelier"
     },
     "creations": {
-      "title": "Deux créations, un processus : la Ferrari qui peint",
-      "subtitle": "Toiles uniques & Photographies en édition",
-      "description": "Les toiles : créées par le passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Chaque trace est irréversible. Les photographies : elles documentent l'instant où la Ferrari crée. Ce moment précis où le mouvement devient matière.",
+      "title": "Deux formes, un processus",
+      "subtitle": "Toiles uniques & Photographies documentaires",
+      "description": "Les toiles naissent du passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Les photographies, elles, capturent ce moment de création. L'instant où le mouvement devient matière.",
       "cta": "Comprendre le processus"
     },
     "photographies": {
-      "title": "Trois séries, une obsession : capturer l'instant où la Ferrari peint",
+      "title": "Trois séries photographiques",
       "subtitle": "Empreintes • Atelier • Projections",
-      "description": "Empreintes : les marques laissées sur la toile. Atelier : les Ferrari au repos, entre deux performances. Projections : la violence contrôlée, la peinture projetée. Chaque série documente un aspect différent du processus créatif.",
+      "description": "Les empreintes montrent les marques laissées par les roues et la carrosserie. L'atelier révèle les voitures au repos, entre deux sessions. Les projections figent la violence contrôlée du processus. Chaque série documente une facette différente de la création.",
       "cta": "Voir la galerie"
     },
     "conceptCarArt": {
-      "title": "Ferrari Live Performance : la création devient spectacle",
-      "subtitle": "Une scène. Une toile de 10 mètres. Une Ferrari.",
-      "description": "Pendant 45 minutes, je dirige la voiture comme un instrument. Chaque mouvement projette de la peinture sur la toile. Le public voit l'œuvre se créer en direct, dans le bruit assourdissant du moteur V12. À la fin, la toile est unique. Elle ne peut pas être refaite.",
+      "title": "Ferrari Live Performance",
+      "subtitle": "La création en direct",
+      "description": "Sur scène, une toile de 10 mètres. Pendant 45 minutes, je dirige la Ferrari comme un instrument. Le public assiste à la naissance de l'œuvre dans le rugissement du V12. À la fin, la toile existe. Elle ne peut plus être modifiée.",
       "cta": "Prochaines performances"
     },
     "acquerir": {
-      "title": "Posséder une trace, pas une reproduction",
+      "title": "Acquérir une œuvre",
       "subtitle": "Éditions limitées numérotées — Qualité musée",
-      "description": "Ces œuvres ne sont pas imprimées : elles documentent un instant unique où une Ferrari a peint sous mes impulsions. Formats A2, A3, A4. Encadrement professionnel noir ou aluminium. Impression Fine Art par laboratoire toulousain.",
+      "description": "Ces photographies documentent le moment où la Ferrari a créé la toile. Formats A2, A3, A4. Encadrement professionnel noir ou aluminium. Impression Fine Art Giclée 12 couleurs, papier archival 200 gsm.",
       "cta": "Voir les œuvres disponibles"
     },
     "histoire": {
-      "title": "De la Ferrari n°20 rose aux quatre Ferrari grises",
-      "subtitle": "1985 - 2025 : 40 ans d'obsession",
-      "description": "Un enfant fasciné par une Ferrari de course. Des années de croquis, de maquettes, de rêves. Puis un jour, la décision : ne plus regarder les Ferrari. Les utiliser pour créer. C'est l'histoire d'une quête qui transforme l'admiration en action.",
+      "title": "De la Ferrari rose aux quatre Ferrari",
+      "subtitle": "1985 - 2025 : quarante ans",
+      "description": "Enfant, j'étais fasciné par les Ferrari de course. J'ai passé des années à les dessiner, à construire des maquettes, à rêver devant elles. Un jour, j'ai pris une décision : arrêter de les regarder. Les utiliser pour créer. C'est l'histoire d'une obsession transformée en méthode.",
       "cta": "Lire l'histoire complète"
     },
     "galerie": "Galerie",
@@ -70,19 +70,19 @@
   },
   "gallery": {
     "title": "Galerie",
-    "subtitle": "Trois séries, une obsession : capturer l'instant où la Ferrari peint",
-    "intro": "Chaque œuvre documente un instant précis, irréplicable. Il n'y a pas de « deuxième prise ».",
+    "subtitle": "Trois séries photographiques",
+    "intro": "Ces images documentent le processus de création. Il n'y a jamais de « deuxième prise ».",
     "empreintes": {
       "title": "Empreintes",
-      "description": "Les marques laissées sur la toile par les roues, la carrosserie, le châssis. Peinture industrielle, friction, chaleur. Chaque passage est unique."
+      "description": "Les marques laissées par les roues, la carrosserie, le châssis. Peinture industrielle sous pression. Chaque contact produit un résultat différent."
     },
     "atelier": {
       "title": "Atelier",
-      "description": "Les Ferrari au repos, entre deux performances. Quatre voitures grises, instruments de création. L'envers du décor."
+      "description": "Les Ferrari au repos, entre deux sessions de travail. Quatre voitures qui attendent leur prochain passage sur la toile."
     },
     "projections": {
       "title": "Projections",
-      "description": "Le mouvement figé. Les traces de peinture projetées sur les murs, le sol, les toiles. La violence contrôlée du processus."
+      "description": "Le mouvement figé. Les éclaboussures de peinture sur les murs, le sol, les toiles. La violence contrôlée du geste."
     },
     "allWorks": "Toutes les œuvres",
     "filterAll": "Tout voir",
@@ -92,13 +92,13 @@
   },
   "shop": {
     "title": "Œuvres disponibles",
-    "subtitle": "Posséder une trace, pas une reproduction",
-    "intro": "Ces œuvres ne sont pas imprimées : elles documentent un instant unique où une Ferrari a peint sous mes impulsions.",
+    "subtitle": "Photographies d'art — Éditions limitées",
+    "intro": "Ces photographies capturent le moment où la Ferrari a créé la toile. Impression Fine Art Giclée, qualité musée.",
     "quality": {
       "title": "Qualité professionnelle",
       "certificate": "Certificat d'authenticité signé",
       "delivery": "Livraison assurée et sécurisée",
-      "printing": "Impression Fine Art par laboratoire toulousain",
+      "printing": "Impression Fine Art Giclée 12 couleurs",
       "framing": "Encadrement professionnel noir ou aluminium"
     },
     "addToCart": "Ajouter au panier",

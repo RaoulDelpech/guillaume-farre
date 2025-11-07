@@ -84,9 +84,9 @@ async function translateMessages() {
   // Compter total de chaînes
   const countStrings = (obj: any): number => {
     if (typeof obj === 'string') return 1;
-    if (Array.isArray(obj)) return obj.reduce((sum, item) => sum + countStrings(item), 0);
+    if (Array.isArray(obj)) return obj.reduce((sum: number, item: any) => sum + countStrings(item), 0);
     if (typeof obj === 'object' && obj !== null) {
-      return Object.values(obj).reduce((sum, val) => sum + countStrings(val), 0);
+      return Object.values(obj).reduce((sum: number, val: any) => sum + countStrings(val), 0);
     }
     return 0;
   };

@@ -57,7 +57,7 @@ export default function HeroCarousel() {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 9000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
 
@@ -77,7 +77,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden bg-background">
+    <section className="relative w-full h-[50vh] md:h-[55vh] lg:h-[60vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div

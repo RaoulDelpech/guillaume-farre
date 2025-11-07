@@ -70,19 +70,19 @@
   },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "Three series, one obsession: capturing the instant when the Ferrari paints",
-    "intro": "Each work documents a precise, irreplicable instant. There is no \"second take\".",
+    "subtitle": "Three photographic series",
+    "intro": "These images document the creation process. There is never a \"second take\".",
     "empreintes": {
       "title": "Imprints",
-      "description": "The marks left on the canvas by the wheels, bodywork, chassis. Industrial paint, friction, heat. Each passage is unique."
+      "description": "The marks left by the wheels, body, chassis. Industrial paint under pressure. Each contact produces a different result."
     },
     "atelier": {
       "title": "Workshop",
-      "description": "The Ferraris at rest, between performances. Four grey cars, instruments of creation. Behind the scenes."
+      "description": "The Ferraris at rest, between work sessions. Four cars waiting for their next passage on canvas."
     },
     "projections": {
       "title": "Projections",
-      "description": "Movement frozen. Paint traces projected on walls, floor, canvases. The controlled violence of the process."
+      "description": "Frozen movement. Paint splatters on walls, floor, canvases. The controlled violence of the gesture."
     },
     "allWorks": "All works",
     "filterAll": "View all",
@@ -92,13 +92,13 @@
   },
   "shop": {
     "title": "Available Works",
-    "subtitle": "Own a trace, not a reproduction",
-    "intro": "These works are not printed: they document a unique instant when a Ferrari painted under my impulses.",
+    "subtitle": "Art Photographs — Limited Editions",
+    "intro": "These photographs capture the moment when the Ferrari created the canvas. Fine Art Giclée printing, museum quality.",
     "quality": {
       "title": "Professional quality",
       "certificate": "Signed certificate of authenticity",
       "delivery": "Insured and secure delivery",
-      "printing": "Fine Art printing by Toulouse laboratory",
+      "printing": "Fine Art Giclée printing 12 colors",
       "framing": "Professional black or aluminum framing"
     },
     "addToCart": "Add to cart",

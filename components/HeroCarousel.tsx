@@ -10,7 +10,7 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/works/a-trier/1762539620520_WhatsApp_Image_2025-11-02_at_09.22.40__1_.jpeg",
+      image: "/images/origins/atelier-deux-voitures-grises.jpg",
       title: t("origine.title"),
       subtitle: t("origine.subtitle"),
       description: t("origine.description"),

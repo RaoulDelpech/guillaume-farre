@@ -12,46 +12,46 @@
   },
   "hero": {
     "origine": {
-      "title": "L'origine",
-      "subtitle": "Da bambino, una piccola auto n°20",
-      "description": "Verso il colore e rotolo. La ruota diventa pennello.",
+      "title": "Quando una Ferrari Rosa n°20 Diventa Pennello",
+      "subtitle": "Un bambino di 4 anni. Una Ferrari rosa. 40 anni dopo.",
+      "description": "Quel giorno, davanti a questa immensa auto da corsa rosa, qualcosa si è inciso. Non il desiderio di possederne una. Qualcosa di più profondo: il desiderio di fondersi con questa potenza. Oggi ho quattro Ferrari. Non per collezionarle. Per creare con loro.",
       "cta": "Scopri la storia"
     },
     "atelier": {
-      "title": "Il laboratorio",
-      "subtitle": "Guillaume Farré — In mezzo alle Ferrari",
-      "description": "Il laboratorio riunisce veicoli, strumenti e materiali. Quattro Ferrari, strumenti di creazione. È qui che il movimento automobilistico diventa arte.",
+      "title": "Il Mio Laboratorio: Quattro Ferrari Grigie, Strumenti di Creazione",
+      "subtitle": "Nessun rosso fiammante. Grigio. Deliberatamente.",
+      "description": "Queste auto non sono oggetti da collezione, sono strumenti. Pennelli da 1.200 chili. Qui dipingono sotto i miei impulsi, come un direttore d'orchestra guida i suoi musicisti. Ogni accelerazione, ogni frenata, ogni derapata controllata crea una traccia unica sulla tela.",
       "cta": "Scopri il laboratorio"
     },
     "creations": {
-      "title": "Due creazioni",
-      "subtitle": "Tele e Fotografie",
-      "description": "Le Ferrari e la Dino dipingono sotto i miei impulsi, come un direttore d'orchestra guida i suoi musicisti. Le tele sono opere uniche. Le fotografie catturano l'istante in cui l'auto crea l'opera.",
-      "cta": "L'approccio"
+      "title": "Due Creazioni, Un Processo: La Ferrari Che Dipinge",
+      "subtitle": "Tele Uniche & Fotografie in Edizione",
+      "description": "Le tele: create dal passaggio diretto della Ferrari sulla superficie. Pittura industriale, attrito, calore. Ogni traccia è irreversibile. Le fotografie: documentano l'istante in cui la Ferrari crea. Quel momento preciso in cui il movimento diventa materia.",
+      "cta": "Comprendere il processo"
     },
     "photographies": {
-      "title": "Le fotografie",
-      "subtitle": "Catturare l'istante creativo",
-      "description": "Stampe d'arte a pigmenti — Edizioni limitate e aperte — La fotografia cattura l'istante in cui il movimento crea l'immagine.",
+      "title": "Tre Serie, Un'Ossessione: Catturare l'Istante in cui la Ferrari Dipinge",
+      "subtitle": "Impronte • Laboratorio • Proiezioni",
+      "description": "Impronte: i segni lasciati sulla tela. Laboratorio: le Ferrari a riposo, tra le performance. Proiezioni: la violenza controllata, la pittura proiettata. Ogni serie documenta un aspetto diverso del processo creativo.",
       "cta": "Visualizza la galleria"
     },
     "conceptCarArt": {
-      "title": "Ferrari Live Performance",
-      "subtitle": "Quando l'automobile diventa pennello",
-      "description": "Un evento unico in cui le Ferrari creano dal vivo. Il laboratorio apre le porte per una performance live eccezionale.",
-      "cta": "Scopri l'evento"
+      "title": "Ferrari Live Performance: La Creazione Diventa Spettacolo",
+      "subtitle": "Un palco. Una tela di 10 metri. Una Ferrari.",
+      "description": "Per 45 minuti, dirigo l'auto come uno strumento. Ogni movimento proietta pittura sulla tela. Il pubblico vede l'opera crearsi dal vivo, nel rumore assordante del motore V12. Alla fine, la tela è unica. Non può essere rifatta.",
+      "cta": "Prossime performance"
     },
     "acquerir": {
-      "title": "Acquisire un'opera",
-      "subtitle": "Edizioni numerate e firmate",
-      "description": "Fotografie in edizioni limitate o aperte — Diversi formati disponibili — Cornici professionali. Tele uniche su appuntamento al laboratorio.",
-      "cta": "Scopri il negozio"
+      "title": "Possedere una Traccia, Non una Riproduzione",
+      "subtitle": "Edizioni Limitate Numerate — Qualità da Museo",
+      "description": "Queste opere non sono stampate: documentano un istante unico in cui una Ferrari ha dipinto sotto i miei impulsi. Formati A2, A3, A4. Cornici professionali nere o in alluminio. Stampa Fine Art da laboratorio toulousiano.",
+      "cta": "Visualizza opere disponibili"
     },
     "histoire": {
-      "title": "La storia",
-      "subtitle": "Guillaume Farré — Dai primi disegni a oggi",
-      "description": "Dai quaderni di schizzi alle sculture monumentali, ripercorri il percorso artistico di Guillaume Farré. Una vita dedicata a catturare il movimento automobilistico.",
-      "cta": "Scopri la storia"
+      "title": "Dalla Ferrari Rosa n°20 alle Quattro Ferrari Grigie",
+      "subtitle": "1985 - 2025: 40 Anni di Ossessione",
+      "description": "Un bambino affascinato da una Ferrari da corsa. Anni di schizzi, modelli, sogni. Poi un giorno, la decisione: non più guardare le Ferrari. Usarle per creare. Questa è la storia di una ricerca che trasforma l'ammirazione in azione.",
+      "cta": "Leggi la storia completa"
     },
     "galerie": "Galleria",
     "boutique": "Negozio"
@@ -70,17 +70,43 @@
   },
   "gallery": {
     "title": "Galleria",
+    "subtitle": "Tre serie, un'ossessione: catturare l'istante in cui la Ferrari dipinge",
+    "intro": "Ogni opera documenta un istante preciso, irripetibile. Non c'è una \"seconda ripresa\".",
+    "empreintes": {
+      "title": "Impronte",
+      "description": "I segni lasciati sulla tela dalle ruote, dalla carrozzeria, dal telaio. Pittura industriale, attrito, calore. Ogni passaggio è unico."
+    },
+    "atelier": {
+      "title": "Laboratorio",
+      "description": "Le Ferrari a riposo, tra le performance. Quattro auto grigie, strumenti di creazione. Dietro le quinte."
+    },
+    "projections": {
+      "title": "Proiezioni",
+      "description": "Il movimento congelato. Tracce di pittura proiettate su muri, pavimento, tele. La violenza controllata del processo."
+    },
     "allWorks": "Tutte le opere",
-    "sculptures": "Sculture",
-    "drawings": "Disegni",
-    "installations": "Installazioni"
+    "filterAll": "Visualizza tutto",
+    "filterEmpreintes": "Impronte",
+    "filterAtelier": "Laboratorio",
+    "filterProjections": "Proiezioni"
   },
   "shop": {
-    "title": "Negozio",
+    "title": "Opere Disponibili",
+    "subtitle": "Possedere una traccia, non una riproduzione",
+    "intro": "Queste opere non sono stampate: documentano un istante unico in cui una Ferrari ha dipinto sotto i miei impulsi.",
+    "quality": {
+      "title": "Qualità professionale",
+      "certificate": "Certificato di autenticità firmato",
+      "delivery": "Consegna assicurata e sicura",
+      "printing": "Stampa Fine Art da laboratorio toulousiano",
+      "framing": "Cornici professionali nere o in alluminio"
+    },
     "addToCart": "Aggiungi al carrello",
     "price": "Prezzo",
     "available": "Disponibile",
-    "soldOut": "Esaurito"
+    "soldOut": "Esaurito",
+    "limitedEdition": "Edizione limitata",
+    "numbered": "Numerato e firmato"
   },
   "contact": {
     "title": "Contatto",

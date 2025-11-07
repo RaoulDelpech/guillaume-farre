@@ -12,46 +12,46 @@
   },
   "hero": {
     "origine": {
-      "title": "The origin",
-      "subtitle": "As a child, a small car n°20",
-      "description": "I pour the color and I roll. The wheel becomes a brush.",
+      "title": "When a Pink Ferrari n°20 Becomes a Paintbrush",
+      "subtitle": "A 4-year-old boy. A pink Ferrari. 40 years later.",
+      "description": "That day, facing this immense pink racing car, something was engraved. Not the desire to own one. Something deeper: the desire to merge with this power. Today, I have four Ferraris. Not to collect them. To create with them.",
       "cta": "Discover the story"
     },
     "atelier": {
-      "title": "The workshop",
-      "subtitle": "Guillaume Farré — Among the Ferraris",
-      "description": "The workshop brings together vehicles, tools, and materials. Four Ferraris, instruments of creation. This is where automotive movement becomes art.",
+      "title": "My Workshop: Four Grey Ferraris, Instruments of Creation",
+      "subtitle": "No flashy red. Grey. Deliberately.",
+      "description": "These cars are not collectibles, they are tools. 1,200-kilo paintbrushes. Here, they paint under my impulses, like a conductor directs musicians. Each acceleration, each braking, each controlled drift creates a unique trace on the canvas.",
       "cta": "Discover the workshop"
     },
     "creations": {
-      "title": "Two creations",
-      "subtitle": "Canvases & Photographs",
-      "description": "The Ferraris and the Dino paint under my impulses, like a conductor directing musicians. The canvases are unique works. The photographs capture the instant when the car creates the artwork.",
-      "cta": "The approach"
+      "title": "Two Creations, One Process: The Ferrari That Paints",
+      "subtitle": "Unique Canvases & Edition Photographs",
+      "description": "The canvases: created by the direct passage of the Ferrari on the surface. Industrial paint, friction, heat. Each trace is irreversible. The photographs: they document the instant when the Ferrari creates. That precise moment when movement becomes matter.",
+      "cta": "Understand the process"
     },
     "photographies": {
-      "title": "The photographs",
-      "subtitle": "Capturing the creative instant",
-      "description": "Fine art pigment prints — Limited and open editions — Photography captures the instant when movement creates the image.",
+      "title": "Three Series, One Obsession: Capturing the Instant When the Ferrari Paints",
+      "subtitle": "Imprints • Workshop • Projections",
+      "description": "Imprints: the marks left on the canvas. Workshop: the Ferraris at rest, between performances. Projections: controlled violence, projected paint. Each series documents a different aspect of the creative process.",
       "cta": "View the gallery"
     },
     "conceptCarArt": {
-      "title": "Ferrari Live Performance",
-      "subtitle": "When the automobile becomes a brush",
-      "description": "A unique event where Ferraris create live. The workshop opens its doors for an exceptional live performance.",
-      "cta": "Discover the event"
+      "title": "Ferrari Live Performance: Creation Becomes Spectacle",
+      "subtitle": "A stage. A 10-meter canvas. A Ferrari.",
+      "description": "For 45 minutes, I direct the car like an instrument. Each movement projects paint onto the canvas. The audience watches the artwork being created live, in the deafening noise of the V12 engine. At the end, the canvas is unique. It cannot be redone.",
+      "cta": "Upcoming performances"
     },
     "acquerir": {
-      "title": "Acquire a work",
-      "subtitle": "Numbered and signed editions",
-      "description": "Photographs in limited or open editions — Multiple formats available — Professional framing. Unique canvases by appointment at the workshop.",
-      "cta": "Discover the shop"
+      "title": "Own a Trace, Not a Reproduction",
+      "subtitle": "Numbered Limited Editions — Museum Quality",
+      "description": "These works are not printed: they document a unique instant when a Ferrari painted under my impulses. A2, A3, A4 formats. Professional black or aluminum framing. Fine Art printing by Toulouse laboratory.",
+      "cta": "View available works"
     },
     "histoire": {
-      "title": "The story",
-      "subtitle": "Guillaume Farré — From first drawings to today",
-      "description": "From sketchbooks to monumental sculptures, trace Guillaume Farré's artistic journey. A life dedicated to capturing automotive movement.",
-      "cta": "Discover the story"
+      "title": "From the Pink Ferrari n°20 to Four Grey Ferraris",
+      "subtitle": "1985 - 2025: 40 Years of Obsession",
+      "description": "A child fascinated by a racing Ferrari. Years of sketches, models, dreams. Then one day, the decision: no longer look at Ferraris. Use them to create. This is the story of a quest that transforms admiration into action.",
+      "cta": "Read the full story"
     },
     "galerie": "Gallery",
     "boutique": "Shop"
@@ -70,17 +70,43 @@
   },
   "gallery": {
     "title": "Gallery",
+    "subtitle": "Three series, one obsession: capturing the instant when the Ferrari paints",
+    "intro": "Each work documents a precise, irreplicable instant. There is no \"second take\".",
+    "empreintes": {
+      "title": "Imprints",
+      "description": "The marks left on the canvas by the wheels, bodywork, chassis. Industrial paint, friction, heat. Each passage is unique."
+    },
+    "atelier": {
+      "title": "Workshop",
+      "description": "The Ferraris at rest, between performances. Four grey cars, instruments of creation. Behind the scenes."
+    },
+    "projections": {
+      "title": "Projections",
+      "description": "Movement frozen. Paint traces projected on walls, floor, canvases. The controlled violence of the process."
+    },
     "allWorks": "All works",
-    "sculptures": "Sculptures",
-    "drawings": "Drawings",
-    "installations": "Installations"
+    "filterAll": "View all",
+    "filterEmpreintes": "Imprints",
+    "filterAtelier": "Workshop",
+    "filterProjections": "Projections"
   },
   "shop": {
-    "title": "Shop",
+    "title": "Available Works",
+    "subtitle": "Own a trace, not a reproduction",
+    "intro": "These works are not printed: they document a unique instant when a Ferrari painted under my impulses.",
+    "quality": {
+      "title": "Professional quality",
+      "certificate": "Signed certificate of authenticity",
+      "delivery": "Insured and secure delivery",
+      "printing": "Fine Art printing by Toulouse laboratory",
+      "framing": "Professional black or aluminum framing"
+    },
     "addToCart": "Add to cart",
     "price": "Price",
     "available": "Available",
-    "soldOut": "Sold out"
+    "soldOut": "Sold out",
+    "limitedEdition": "Limited edition",
+    "numbered": "Numbered and signed"
   },
   "contact": {
     "title": "Contact",

@@ -33,6 +33,7 @@ export default function DuplicateDetector() {
   const [selectedFiles, setSelectedFiles] = useState<Set<string>>(new Set());
   const [deleting, setDeleting] = useState(false);
   const [showDuplicates, setShowDuplicates] = useState(false);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   /**
    * Scanne les photos pour détecter les doublons
@@ -245,6 +246,23 @@ export default function DuplicateDetector() {
                         className="w-4 h-4 cursor-pointer disabled:cursor-not-allowed"
                       />
 
+                      {/* Miniature cliquable */}
+                      <div
+                        onClick={() => setZoomedImage(file.path)}
+                        className="relative w-16 h-16 flex-shrink-0 cursor-zoom-in group overflow-hidden rounded border border-border hover:border-primary transition-colors"
+                      >
+                        <img
+                          src={file.path}
+                          alt={file.fileName}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <span className="text-white opacity-0 group-hover:opacity-100 text-xs font-medium">
+                            🔍
+                          </span>
+                        </div>
+                      </div>
+
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium truncate">{file.fileName}</div>
                         <div className="text-xs text-muted-foreground truncate">{file.path}</div>
@@ -279,12 +297,34 @@ export default function DuplicateDetector() {
         <div className="font-medium mb-1">💡 Fonctionnement :</div>
         <ul className="list-disc list-inside space-y-1">
           <li>Le scan détecte automatiquement les fichiers identiques (même contenu)</li>
+          <li>Cliquez sur les miniatures pour agrandir et vérifier</li>
           <li>Pour chaque groupe, le premier fichier est conservé (✅ vert)</li>
           <li>Les autres sont pré-sélectionnés pour suppression (❌ rouge)</li>
           <li>Vous pouvez modifier la sélection avant de supprimer</li>
           <li>⚠️ La suppression est irréversible</li>
         </ul>
       </div>
+
+      {/* Modal zoom image */}
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setZoomedImage(null)}
+        >
+          <button
+            onClick={() => setZoomedImage(null)}
+            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white text-2xl transition-colors z-10"
+          >
+            ×
+          </button>
+          <img
+            src={zoomedImage}
+            alt="Zoom"
+            className="max-w-full max-h-full object-contain cursor-default"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

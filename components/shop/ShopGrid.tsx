@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { useTranslations } from "next-intl";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -29,10 +29,28 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const { fireHeartConfetti, fireConfetti } = useConfetti();
   const { playCartAdd, playClick, playHover } = useSoundEffects();
 
-  const formats = {
+  const allFormats = {
     "A4": { width: 21, height: 29.7, priceMultiplier: 1.0 },
     "A3": { width: 29.7, height: 42, priceMultiplier: 1.5 },
     "A2": { width: 42, height: 59.4, priceMultiplier: 2.0 },
+  };
+
+  // Formats disponibles selon la catégorie de la photo
+  const getAvailableFormats = (photo: PhotoMetadata | null) => {
+    if (!photo) return allFormats;
+
+    // Série limitée = PAS de A4 (règle métier Guillaume Farré)
+    const isLimitedEdition = photo.categories?.includes('limited') ||
+                             photo.edition?.type === 'limited' ||
+                             photo.isNumberedSeries;
+
+    if (isLimitedEdition) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { A4, ...formatsWithoutA4 } = allFormats;
+      return formatsWithoutA4;
+    }
+
+    return allFormats;
   };
 
   const frames = {
@@ -42,10 +60,23 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   };
 
   const calculatePrice = (basePrice: number, format: string, frame: string) => {
-    const formatPrice = basePrice * formats[format as keyof typeof formats].priceMultiplier;
+    const formatPrice = basePrice * allFormats[format as keyof typeof allFormats].priceMultiplier;
     const framePrice = frames[frame as keyof typeof frames].price;
     return Math.round(formatPrice + framePrice);
   };
+
+  // Réinitialiser le format quand une photo est sélectionnée
+  useEffect(() => {
+    if (selectedPhoto) {
+      const availableFormats = getAvailableFormats(selectedPhoto);
+      const formatKeys = Object.keys(availableFormats);
+
+      // Si le format actuel n'est pas disponible, prendre le premier disponible
+      if (!formatKeys.includes(selectedFormat)) {
+        setSelectedFormat(formatKeys[0] || 'A3');
+      }
+    }
+  }, [selectedPhoto]);
 
   const handleAddToCart = () => {
     if (!selectedPhoto) return;
@@ -220,7 +251,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               <div>
                 <h3 className="text-lg font-light tracking-wide mb-4">Format</h3>
                 <div className="grid grid-cols-3 gap-4">
-                  {Object.entries(formats).map(([key, value]) => (
+                  {Object.entries(getAvailableFormats(selectedPhoto)).map(([key, value]) => (
                     <button
                       key={key}
                       onClick={() => setSelectedFormat(key)}

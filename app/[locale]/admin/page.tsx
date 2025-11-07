@@ -19,6 +19,7 @@ export default function AdminPage() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const [seriesSuggestions, setSeriesSuggestions] = useState<SeriesSuggestion[] | null>(null);
   const [analyzingSeries, setAnalyzingSeries] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     loadPhotos();
@@ -55,6 +56,8 @@ export default function AdminPage() {
 
       // Recharger les photos
       await loadPhotos();
+      // Force le re-render de l'UI
+      setRefreshKey(prev => prev + 1);
 
       // Si 2+ photos uploadées, analyser pour suggérer des séries
       if (uploadData.files && uploadData.files.length >= 2) {
@@ -261,7 +264,7 @@ export default function AdminPage() {
         </div>
 
         {/* Photos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div key={refreshKey} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {filteredPhotos.map((photo, index) => {
             const globalIndex = photos.findIndex(p => p.path === photo.path);
             return (

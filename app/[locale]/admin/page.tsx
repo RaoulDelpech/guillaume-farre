@@ -17,6 +17,7 @@ import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [adminToken, setAdminToken] = useState<string>("");
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
   const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState("all");
@@ -33,6 +34,7 @@ export default function AdminPage() {
     const token = sessionStorage.getItem("admin_token");
     if (token) {
       setIsAuthenticated(true);
+      setAdminToken(token);
     }
   }, []);
 
@@ -301,7 +303,7 @@ export default function AdminPage() {
         {/* Similar Images Panel */}
         <div className="mb-12">
           <SimilarImagesPanel
-            token={sessionStorage.getItem("admin_token") || ""}
+            token={adminToken}
             onStatusChange={(filename, status) => {
               const photoIndex = photos.findIndex(p => p.filename === filename);
               if (photoIndex !== -1) {

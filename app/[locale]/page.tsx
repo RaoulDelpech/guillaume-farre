@@ -101,64 +101,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Témoignages de collectionneurs */}
-      <section className="bg-gradient-to-b from-background to-muted/20 py-20 md:py-28 border-t border-border">
-        <div className="container px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-light tracking-wide text-center mb-16">Ce que disent les collectionneurs</h2>
-
-          <div className="grid md:grid-cols-3 gap-10 md:gap-12 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 bg-muted rounded-full flex items-center justify-center text-xl font-light text-muted-foreground">
-                  JP
-                </div>
-                <div>
-                  <div className="font-light tracking-wide text-lg">Jean-Pierre M.</div>
-                  <div className="text-sm text-muted-foreground font-light">Collectionneur, Paris</div>
-                </div>
-              </div>
-              <p className="text-foreground/80 text-base leading-relaxed mb-4 font-light">
-                "J'ai acheté ma première empreinte il y a 2 ans. Aujourd'hui,
-                j'en possède 4. Chaque pièce raconte une histoire unique."
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 bg-muted rounded-full flex items-center justify-center text-xl font-light text-muted-foreground">
-                  SM
-                </div>
-                <div>
-                  <div className="font-light tracking-wide text-lg">Sophie M.</div>
-                  <div className="text-sm text-muted-foreground font-light">Galeriste, Monaco</div>
-                </div>
-              </div>
-              <p className="text-foreground/80 text-base leading-relaxed mb-4 font-light">
-                "Un concept totalement inédit. Mes clients sont fascinés
-                par cette fusion entre art contemporain et culture automobile."
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 bg-muted rounded-full flex items-center justify-center text-xl font-light text-muted-foreground">
-                  AL
-                </div>
-                <div>
-                  <div className="font-light tracking-wide text-lg">Antoine L.</div>
-                  <div className="text-sm text-muted-foreground font-light">Collectionneur, Genève</div>
-                </div>
-              </div>
-              <p className="text-foreground/80 text-base leading-relaxed mb-4 font-light">
-                "Une œuvre qui ne cesse de m'émerveiller. Chaque détail raconte
-                l'intensité du moment de la création. Un véritable coup de cœur."
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
       {/* CTA final puissant */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         {/* Fond avec dégradé subtil pour créer du contraste */}

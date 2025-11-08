@@ -61,7 +61,13 @@
     "conceptCarArt": "Ferrari Live Performance",
     "livePerformance": "Le Ferrari creano dal vivo al laboratorio",
     "selectionTitle": "Galleria — Selezione",
-    "shopTitle": "Negozio — Novità"
+    "shopTitle": "Negozio — Novità",
+    "artist": {
+      "label": "L'Artista",
+      "name": "Guillaume Farré",
+      "bio": "Scultore e artista plastico, Guillaume trasforma la Ferrari in strumento creativo. Ogni opera cattura l'istante in cui 500 cavalli incontrano la tela. Un approccio unico dove il movimento automobilistico diventa gesto artistico.",
+      "cta": "Scoprire la storia"
+    }
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. Tutti i diritti riservati.",

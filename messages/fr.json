@@ -61,7 +61,13 @@
     "conceptCarArt": "Concept Car Art",
     "livePerformance": "Performance live à l'atelier",
     "selectionTitle": "Galerie — Sélection",
-    "shopTitle": "Boutique — Nouveautés"
+    "shopTitle": "Boutique — Nouveautés",
+    "artist": {
+      "label": "L'Artiste",
+      "name": "Guillaume Farré",
+      "bio": "Sculpteur et artiste plasticien, Guillaume transforme la Ferrari en outil créateur. Chaque œuvre capture l'instant où 500 chevaux rencontrent la toile. Une démarche unique où le mouvement automobile devient geste artistique.",
+      "cta": "Découvrir l'histoire"
+    }
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. Tous droits réservés.",

@@ -61,7 +61,13 @@
     "conceptCarArt": "Ferrari Live Performance",
     "livePerformance": "Ferraris create live at the workshop",
     "selectionTitle": "Gallery — Selection",
-    "shopTitle": "Shop — New arrivals"
+    "shopTitle": "Shop — New arrivals",
+    "artist": {
+      "label": "The Artist",
+      "name": "Guillaume Farré",
+      "bio": "Sculptor and visual artist, Guillaume transforms the Ferrari into a creative tool. Each work captures the moment when 500 horses meet the canvas. A unique approach where automotive movement becomes artistic gesture.",
+      "cta": "Discover the story"
+    }
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. All rights reserved.",

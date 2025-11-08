@@ -77,7 +77,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[50vh] md:h-[55vh] lg:h-[60vh] overflow-hidden bg-background">
+    <section className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -86,31 +86,37 @@ export default function HeroCarousel() {
             index === current ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          {/* Background Image */}
+          {/* Background Image - Premium fullscreen */}
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center scale-105"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            {/* Overlay beaucoup plus sombre pour lisibilité */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/75" />
+            {/* Overlay subtil premium (world-class) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
           </div>
 
-          {/* Content */}
-          <div className="relative h-full container flex flex-col justify-center items-start text-white px-6 lg:px-8">
-            {/* Boîte semi-transparente derrière le texte pour garantir lisibilité */}
-            <div className="max-w-4xl bg-black/30 backdrop-blur-md p-8 md:p-12 rounded-lg">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-light tracking-wide mb-4 md:mb-6 animate-fade-in drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          {/* Content - Centré world-class */}
+          <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-6 lg:px-8">
+            <div className="max-w-5xl">
+              {/* Titre principal - Plus gros, plus premium */}
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-wider mb-6 md:mb-8 animate-fade-in leading-tight">
                 {slide.title}
               </h1>
-              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic mb-6 md:mb-8 text-white animate-fade-in-delay-1 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+
+              {/* Sous-titre premium */}
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-8 md:mb-10 text-white/95 animate-fade-in-delay-1 tracking-wide">
                 {slide.subtitle}
               </p>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light mb-8 md:mb-12 text-white/95 max-w-3xl leading-relaxed animate-fade-in-delay-2 drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)]">
+
+              {/* Description - Plus lisible, plus spacieux */}
+              <p className="text-lg sm:text-xl md:text-2xl font-light mb-10 md:mb-14 text-white/90 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay-2">
                 {slide.description}
               </p>
+
+              {/* CTA Premium - Plus visible */}
               <Link
                 href={slide.cta.href}
-                className="inline-block px-8 py-4 md:px-10 md:py-5 bg-white/90 hover:bg-white text-foreground hover:text-foreground text-base md:text-lg font-medium tracking-wide rounded backdrop-blur-sm transition-all animate-fade-in-delay-3 shadow-lg"
+                className="inline-block px-12 py-5 md:px-16 md:py-6 bg-white hover:bg-white/95 text-black text-lg md:text-xl font-light tracking-wider rounded-sm transition-all animate-fade-in-delay-3 shadow-2xl hover:shadow-3xl hover:scale-105 duration-300"
               >
                 {slide.cta.text}
               </Link>
@@ -165,6 +171,26 @@ export default function HeroCarousel() {
         >
           {t("boutique")}
         </Link>
+      </div>
+
+      {/* Scroll Indicator - Premium touch */}
+      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-bounce">
+        <div className="text-white/70 text-xs md:text-sm tracking-widest uppercase">
+          Défiler
+        </div>
+        <svg
+          className="w-6 h-6 md:w-8 md:h-8 text-white/70"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
       </div>
     </section>
   );

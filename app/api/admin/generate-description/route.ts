@@ -43,9 +43,25 @@ export async function POST(request: NextRequest) {
   try {
     const { photoPath, photoFilename, category, seriesName } = await request.json();
 
+    // Vérification clé API avec message détaillé
     if (!process.env.ANTHROPIC_API_KEY) {
+      console.error('[generate-description] ANTHROPIC_API_KEY manquante dans .env.local');
       return NextResponse.json(
-        { error: 'ANTHROPIC_API_KEY non configurée' },
+        {
+          error: 'Clé API Anthropic manquante. Ajoutez ANTHROPIC_API_KEY dans .env.local puis redémarrez le serveur.',
+          details: 'Configuration requise: ANTHROPIC_API_KEY=sk-ant-api03-...'
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.ANTHROPIC_API_KEY.startsWith('sk-ant-')) {
+      console.error('[generate-description] Format clé API invalide:', process.env.ANTHROPIC_API_KEY.substring(0, 10) + '...');
+      return NextResponse.json(
+        {
+          error: 'Format de clé API invalide. La clé doit commencer par "sk-ant-"',
+          details: 'Obtenez une nouvelle clé sur https://console.anthropic.com/settings/keys'
+        },
         { status: 500 }
       );
     }
@@ -65,29 +81,76 @@ export async function POST(request: NextRequest) {
     const mimeType = photoPath.endsWith('.png') ? 'image/png' : 'image/jpeg';
 
     // Appel API Anthropic Claude Vision
-    const message = await anthropic.messages.create({
-      model: 'claude-3-sonnet-20240229',
-      max_tokens: 300,
-      messages: [
-        {
-          role: 'user',
-          content: [
-            {
-              type: 'image',
-              source: {
-                type: 'base64',
-                media_type: mimeType,
-                data: base64Image,
+    let message;
+    try {
+      console.log('[generate-description] Appel API Anthropic pour:', photoFilename);
+      message = await anthropic.messages.create({
+        model: 'claude-3-sonnet-20240229',
+        max_tokens: 300,
+        messages: [
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'image',
+                source: {
+                  type: 'base64',
+                  media_type: mimeType,
+                  data: base64Image,
+                },
               },
-            },
-            {
-              type: 'text',
-              text: getPrompt(category, seriesName),
-            },
-          ],
+              {
+                type: 'text',
+                text: getPrompt(category, seriesName),
+              },
+            ],
+          },
+        ],
+      });
+      console.log('[generate-description] Succès API Anthropic');
+    } catch (apiError: any) {
+      console.error('[generate-description] Erreur API Anthropic:', apiError);
+
+      // Erreurs spécifiques Anthropic
+      if (apiError.status === 401) {
+        return NextResponse.json(
+          {
+            error: 'Clé API Anthropic invalide ou expirée',
+            details: 'Générez une nouvelle clé sur https://console.anthropic.com/settings/keys'
+          },
+          { status: 401 }
+        );
+      }
+
+      if (apiError.status === 404) {
+        return NextResponse.json(
+          {
+            error: 'Modèle Claude non disponible',
+            details: 'Le modèle "claude-3-sonnet-20240229" n\'est pas accessible. Vérifiez vos permissions API.'
+          },
+          { status: 404 }
+        );
+      }
+
+      if (apiError.status === 429) {
+        return NextResponse.json(
+          {
+            error: 'Limite de requêtes dépassée',
+            details: 'Attendez quelques secondes avant de réessayer.'
+          },
+          { status: 429 }
+        );
+      }
+
+      // Erreur générique API
+      return NextResponse.json(
+        {
+          error: apiError.message || 'Erreur lors de l\'appel à l\'API Anthropic',
+          details: apiError.error?.message || apiError.toString()
         },
-      ],
-    });
+        { status: apiError.status || 500 }
+      );
+    }
 
     const description = message.content[0].type === 'text'
       ? message.content[0].text
@@ -101,7 +164,7 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Erreur génération description IA:', error);
+    console.error('[generate-description] Erreur inattendue:', error);
     return NextResponse.json(
       {
         error: error instanceof Error ? error.message : 'Erreur inconnue',

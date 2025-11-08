@@ -44,13 +44,22 @@ export default function PhotoDescriptionAI({
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Erreur lors de la génération');
+        // Erreur API Claude - message plus clair
+        if (response.status === 404) {
+          throw new Error('Modèle Claude non disponible. Vérifiez votre clé API Anthropic dans .env.local');
+        }
+        if (response.status === 401) {
+          throw new Error('Clé API Anthropic invalide. Vérifiez ANTHROPIC_API_KEY dans .env.local');
+        }
+        throw new Error(data.error || `Erreur ${response.status}: ${response.statusText}`);
       }
 
       setDescription(data.description);
       setIsOpen(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erreur inconnue');
+      const errorMessage = err instanceof Error ? err.message : 'Erreur inconnue';
+      console.error('PhotoDescriptionAI error:', errorMessage);
+      setError(errorMessage);
     } finally {
       setIsGenerating(false);
     }
@@ -105,10 +114,40 @@ export default function PhotoDescriptionAI({
 
       {/* Erreur */}
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-sm text-red-700">
-            ⚠️ {error}
-          </p>
+        <div className="p-4 bg-red-50 border-2 border-red-300 rounded-lg shadow-sm">
+          <div className="flex items-start gap-3">
+            <span className="text-2xl">⚠️</span>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-red-900 mb-1">
+                Erreur génération IA
+              </p>
+              <p className="text-sm text-red-700 leading-relaxed">
+                {error}
+              </p>
+              {error.includes('clé API') && (
+                <div className="mt-3 p-3 bg-white rounded border border-red-200">
+                  <p className="text-xs font-mono text-gray-700">
+                    1. Vérifiez que .env.local contient:<br />
+                    <span className="text-purple-600">ANTHROPIC_API_KEY=sk-ant-api03-...</span>
+                  </p>
+                  <p className="text-xs font-mono text-gray-700 mt-2">
+                    2. Créez une nouvelle clé sur:<br />
+                    <a
+                      href="https://console.anthropic.com/settings/keys"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      console.anthropic.com/settings/keys
+                    </a>
+                  </p>
+                  <p className="text-xs font-mono text-gray-700 mt-2">
+                    3. Redémarrez le serveur après modification
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
 

@@ -17,6 +17,7 @@ export default function CommercialDashboard({ photos }: { photos: PhotoMetadata[
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState<'all' | 'critical' | 'high' | 'medium'>('all');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     analyzeAllPhotos();
@@ -115,14 +116,29 @@ export default function CommercialDashboard({ photos }: { photos: PhotoMetadata[
   };
 
   return (
-    <div className="bg-card border rounded-lg p-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">💼 Performance Commerciale</h2>
-        <p className="text-sm text-muted-foreground">
-          Détection automatique des œuvres à fort potentiel commercial
-        </p>
-      </div>
+    <div className="bg-card border rounded-lg">
+      {/* Header cliquable */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full px-6 py-4 flex items-center justify-between hover:bg-muted/50 transition-colors"
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">{isExpanded ? '▼' : '▶'}</span>
+          <div className="text-left">
+            <h2 className="text-xl font-bold">💼 Performance Commerciale</h2>
+            <p className="text-xs text-muted-foreground">
+              Détection automatique des œuvres à fort potentiel commercial
+            </p>
+          </div>
+        </div>
+        <div className="text-sm text-muted-foreground">
+          {isExpanded ? 'Cliquez pour masquer' : 'Cliquez pour afficher'}
+        </div>
+      </button>
 
+      {/* Contenu dépliable */}
+      {isExpanded && (
+        <div className="px-6 pb-6 pt-2 border-t">
       {/* Stats */}
       <div className="grid grid-cols-4 gap-4 mb-6">
         <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-lg">
@@ -278,6 +294,8 @@ export default function CommercialDashboard({ photos }: { photos: PhotoMetadata[
           <div><strong className="text-blue-500">📈 Volume :</strong> Faible concurrence + Volume 20+ unités/an</div>
         </div>
       </div>
+        </div>
+      )}
     </div>
   );
 }

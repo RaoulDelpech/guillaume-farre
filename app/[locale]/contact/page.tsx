@@ -17,11 +17,6 @@ export default async function ContactPage() {
       cta: "Voir les disponibilités",
     },
     {
-      title: "Rejoindre le club",
-      description: "Devenir collectionneur privilégié",
-      cta: "Candidater au club",
-    },
-    {
       title: "Demande presse",
       description: "Interview, visuels HD, informations",
       cta: "Accès presse",
@@ -337,18 +332,12 @@ export default async function ContactPage() {
             <p className="text-2xl font-light text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
               Découvrez les œuvres disponibles ou rejoignez le club des collectionneurs
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex justify-center">
               <Link
                 href="/boutique"
                 className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded text-xl transition-all"
               >
                 Voir la boutique
-              </Link>
-              <Link
-                href="/collectionneurs"
-                className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded text-xl transition-all"
-              >
-                Rejoindre le club
               </Link>
             </div>
 

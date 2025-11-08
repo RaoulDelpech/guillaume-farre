@@ -5,7 +5,7 @@
     "boutique": "Boutique",
     "histoire": "Histoire",
     "atelier": "Atelier",
-    "conceptCarArt": "Ferrari Live",
+    "conceptCarArt": "Concept car art",
     "presse": "Presse",
     "contact": "Contact",
     "panier": "Panier"
@@ -36,10 +36,10 @@
       "cta": "Voir la galerie"
     },
     "conceptCarArt": {
-      "title": "Ferrari Live Performance",
-      "subtitle": "La création en direct",
-      "description": "Sur scène, une toile de 10 mètres. Pendant 45 minutes, je dirige la Ferrari comme un instrument. Le public assiste à la naissance de l'œuvre dans le rugissement du V12. À la fin, la toile existe. Elle ne peut plus être modifiée.",
-      "cta": "Prochaines performances"
+      "title": "Concept Car Art",
+      "subtitle": "Quand l'automobile devient pinceau",
+      "description": "Un événement unique où la Ferrari rouge rejoint la petite voiture n°20. L'atelier ouvre ses portes pour une performance live.",
+      "cta": "Découvrir l'événement"
     },
     "acquerir": {
       "title": "Acquérir une œuvre",
@@ -58,8 +58,8 @@
   },
   "home": {
     "nextEvent": "Prochain évènement :",
-    "conceptCarArt": "Ferrari Live Performance",
-    "livePerformance": "Les Ferrari créent en direct à l'atelier",
+    "conceptCarArt": "Concept Car Art",
+    "livePerformance": "Performance live à l'atelier",
     "selectionTitle": "Galerie — Sélection",
     "shopTitle": "Boutique — Nouveautés"
   },

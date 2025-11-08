@@ -160,14 +160,50 @@ Projet: Guillaume Farré - Site artiste sculpteur
 
 ---
 
+### 6. ✅ Page Concept Car Art restaurée
+**ÉTAT**: COMPLÉTÉ
+
+**Demande client**:
+- Raoul: "je veux que tu remettes l'evenemnt car art cars tel qu'il existait avant"
+- Restaurer page "Ferrari Live Performance"
+
+**Vérification**:
+- Page déjà restaurée dans commit précédent
+- Contenu correct: titre "🏎️ Ferrari Live Performance"
+- Toutes sections présentes (Le Concept, Le Processus, L'Origine, Événements, etc.)
+- Fichier: `app/[locale]/concept-car-art/page.tsx`
+
+**Statut**: Aucune action requise, page déjà correcte
+
+---
+
+### 7. ✅ Modèles Anthropic - Vérification
+**ÉTAT**: VÉRIFIÉ - DÉJÀ CORRECT
+
+**Vérification effectuée**:
+- Erreurs 404 dans logs dev étaient d'une version antérieure (cache navigateur)
+- Code actuel utilise déjà le bon modèle: `claude-3-haiku-20240307`
+- Fichier `app/api/admin/generate-description/route.ts` (ligne 88): ✅ Correct
+- Fichier `app/api/admin/suggest-series/route.ts` (ligne 53): ✅ Correct
+
+**Modèles utilisés (tous valides)**:
+- `claude-3-haiku-20240307` → Descriptions photos IA
+- `claude-3-haiku-20240307` → Suggestions séries IA
+
+**Statut**: Aucune action requise, code déjà correct
+
+---
+
 ## COMMITS SESSION 2025-11-08
 
 1. `3e63b4f` - feat: Bouton manuel suggestions séries IA
 2. `7f74680` - fix: Chemins images doublons (ajout slash initial)
 3. `66c947c` - fix: Clarification détection doublons (compteur groupes visible)
 4. `0825630` - fix: Détection doublons + Suggestions séries IA (feedback Raoul)
+5. `9dbd92f` - docs: Mise à jour consignes session 2025-11-08
+6. `a21b37c` - fix: Suppression champ Lieux (inutilisé)
 
-**Total**: 4 commits, 3 fichiers créés, 5 fichiers modifiés
+**Total**: 6 commits, 3 fichiers créés, 6 fichiers modifiés
 
 ---
 

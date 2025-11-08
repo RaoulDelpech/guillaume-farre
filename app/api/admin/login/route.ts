@@ -1,16 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import crypto from "crypto";
+import { generateToken, addToken } from "@/lib/auth";
 
 // Mot de passe stocké dans .env.local
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Guillaumedinoman2025!";
-
-// Générer un token simple mais sécurisé
-function generateToken(): string {
-  return crypto.randomBytes(32).toString("hex");
-}
-
-// Stocker les tokens valides en mémoire (session serveur)
-const validTokens = new Set<string>();
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,12 +12,7 @@ export async function POST(request: NextRequest) {
     if (password === ADMIN_PASSWORD) {
       // Générer un token unique
       const token = generateToken();
-      validTokens.add(token);
-
-      // Token expire après 8 heures
-      setTimeout(() => {
-        validTokens.delete(token);
-      }, 8 * 60 * 60 * 1000);
+      addToken(token); // Ajoute le token avec expiration automatique (8h par défaut)
 
       return NextResponse.json({
         success: true,
@@ -43,12 +30,6 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Fonction pour vérifier un token (utilisée par autres routes admin)
-export function verifyAdminToken(token: string | null): boolean {
-  if (!token) return false;
-  return validTokens.has(token);
 }
 
 // Lalou

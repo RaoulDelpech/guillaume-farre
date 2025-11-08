@@ -113,15 +113,10 @@ export default function InstagramSuggestionPanel({
       <button
         onClick={handleGenerate}
         disabled={loading}
-        className="w-full px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white rounded-md hover:from-pink-700 hover:to-purple-700 transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
-        style={{
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          marginBottom: '10px',
-        }}
+        className="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 text-white rounded-md hover:from-pink-600 hover:to-purple-700 transition-all shadow-sm flex items-center justify-center disabled:opacity-50"
+        title="Générer post Instagram"
       >
-        {loading ? '⏳ Génération...' : '📱 Générer post Instagram'}
+        {loading ? '⏳' : '📷'}
       </button>
 
       {/* MODAL FULLSCREEN */}

@@ -138,6 +138,47 @@ export default function AdminPage() {
     setHasChanges(true);
   }
 
+  // IA AUTO: Génération automatique de description quand statut → active
+  async function handleStatusChange(index: number, newStatus: string) {
+    const photo = photos[index];
+    const oldStatus = photo.status || 'active';
+
+    // Update status first
+    updatePhoto(index, { status: newStatus as 'active' | 'trash' | 'to-sort' });
+
+    // Si changement vers "active" ET pas de description → générer automatiquement
+    if (newStatus === 'active' && oldStatus !== 'active' && !photo.description?.trim()) {
+      console.log('🤖 IA Auto: Génération description pour', photo.filename);
+
+      try {
+        const response = await fetch('/api/admin/generate-description', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            photoPath: photo.path,
+            photoFilename: photo.filename,
+            category: photo.category || 'autres',
+            seriesName: photo.seriesName
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.description) {
+          // Mettre à jour avec la description générée
+          updatePhoto(index, {
+            description: data.description,
+            aiGenerated: true
+          });
+          console.log('✅ Description IA générée:', data.description.substring(0, 50) + '...');
+        }
+      } catch (err) {
+        console.error('❌ Erreur IA Auto:', err);
+        // On ne bloque pas le changement de statut en cas d'erreur
+      }
+    }
+  }
+
   function handleApplySeries(seriesName: string, photoPaths: string[]) {
     const newPhotos = [...photos];
     photoPaths.forEach((photoPath) => {
@@ -358,7 +399,7 @@ export default function AdminPage() {
                     </label>
                     <select
                       value={photo.status || 'active'}
-                      onChange={(e) => updatePhoto(globalIndex, { status: e.target.value as 'active' | 'trash' | 'to-sort' })}
+                      onChange={(e) => handleStatusChange(globalIndex, e.target.value)}
                       className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
                     >
                       <option value="active">✅ Active</option>

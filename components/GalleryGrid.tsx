@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import Lightbox from "@/components/lightbox/Lightbox";
 import type { Work } from "@/lib/works";
@@ -27,7 +28,18 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
               onClick={() => { setSelectedSlug(w.slug); setOpen(true); }}
             >
               {primaryImage(w) ? (
-                <img src={primaryImage(w)!} alt={altForWork(w)} loading="lazy" className="w-full h-auto block" />
+                <div className="relative w-full aspect-[4/5]">
+                  <Image
+                    src={primaryImage(w)!}
+                    alt={altForWork(w)}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
+                  />
+                </div>
               ) : (
                 <div className="w-full h-48 rounded-md bg-muted" />
               )}

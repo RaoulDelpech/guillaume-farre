@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface ImageZoomProps {
@@ -53,7 +54,15 @@ export default function ImageZoom({ src, alt, className = "" }: ImageZoomProps) 
         onClick={handleToggleZoom}
         onMouseMove={handleMouseMove}
       >
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={90}
+          priority
+        />
 
         {/* Zoom hint */}
         <div className="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full flex items-center gap-1 opacity-0 hover:opacity-100 transition-opacity pointer-events-none">

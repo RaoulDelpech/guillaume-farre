@@ -106,7 +106,7 @@ async function scanForDuplicates(): Promise<DuplicateGroup[]> {
           const hash = await getFileHash(fullPath);
 
           const fileInfo = {
-            path: relPath,
+            path: '/' + relPath.replace(/\\/g, '/'), // Chemin web avec / initial
             fileName: entry.name,
             size: stats.size,
             fullPath: fullPath,

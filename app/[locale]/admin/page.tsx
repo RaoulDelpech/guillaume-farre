@@ -214,11 +214,24 @@ export default function AdminPage() {
   });
 
   const categories = [...new Set(photos.map(p => p.category))].sort();
+  // Statistiques enrichies - DONNÉES RÉELLES
   const stats = {
     total: photos.length,
     visible: photos.filter(p => p.visible).length,
     hidden: photos.filter(p => !p.visible).length,
     forSale: photos.filter(p => p.forSale).length,
+
+    // Stats séries limitées
+    limitedEditions: photos.filter(p => p.categories?.includes('limited')).length,
+    soldOut: photos.filter(p => p.limitedEdition?.available === 0).length,
+
+    // Valeur totale inventaire (estimation si pas de prix précis)
+    totalValue: photos.reduce((sum, p) => {
+      if (!p.forSale) return sum;
+      // Valeur moyenne estimée pour calcul approximatif
+      const avgPrice = p.price || 500;
+      return sum + avgPrice;
+    }, 0)
   };
 
   if (loading) {
@@ -247,23 +260,33 @@ export default function AdminPage() {
           </p>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-          <div className="bg-card border border-border rounded-lg p-8">
-            <div className="text-4xl font-light text-foreground mb-2">{stats.total}</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">Total</div>
+        {/* Stats enrichies - DONNÉES RÉELLES */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 mb-16">
+          <div className="bg-card border border-border rounded-lg p-6 md:p-8">
+            <div className="text-3xl md:text-4xl font-light text-foreground mb-2">{stats.total}</div>
+            <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide">Total</div>
           </div>
-          <div className="bg-card border border-primary/30 rounded-lg p-8">
-            <div className="text-4xl font-light text-primary mb-2">{stats.visible}</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">Visibles</div>
+          <div className="bg-card border border-primary/30 rounded-lg p-6 md:p-8">
+            <div className="text-3xl md:text-4xl font-light text-primary mb-2">{stats.visible}</div>
+            <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide">Visibles</div>
           </div>
-          <div className="bg-card border border-border rounded-lg p-8">
-            <div className="text-4xl font-light text-muted-foreground mb-2">{stats.hidden}</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">Masquées</div>
+          <div className="bg-card border border-green-500/30 rounded-lg p-6 md:p-8">
+            <div className="text-3xl md:text-4xl font-light text-green-500 mb-2">{stats.forSale}</div>
+            <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide">À vendre</div>
           </div>
-          <div className="bg-card border border-primary/30 rounded-lg p-8">
-            <div className="text-4xl font-light text-primary mb-2">{stats.forSale}</div>
-            <div className="text-sm text-muted-foreground uppercase tracking-wide">À vendre</div>
+          <div className="bg-card border border-purple-500/30 rounded-lg p-6 md:p-8">
+            <div className="text-3xl md:text-4xl font-light text-purple-500 mb-2">{stats.limitedEditions}</div>
+            <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide">Éditions limitées</div>
+          </div>
+          <div className="bg-card border border-orange-500/30 rounded-lg p-6 md:p-8">
+            <div className="text-3xl md:text-4xl font-light text-orange-500 mb-2">{stats.soldOut}</div>
+            <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide">Épuisées</div>
+          </div>
+          <div className="bg-card border border-green-500/30 rounded-lg p-6 md:p-8">
+            <div className="text-2xl md:text-3xl font-light text-green-500 mb-2">
+              {stats.totalValue.toLocaleString('fr-FR')}€
+            </div>
+            <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide">Valeur totale</div>
           </div>
         </div>
 

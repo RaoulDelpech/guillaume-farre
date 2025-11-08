@@ -11,6 +11,7 @@ import AdminLogin from "@/components/admin/AdminLogin";
 import DragDropUpload from "@/components/admin/DragDropUpload";
 import PhotoDescriptionAI from "@/components/admin/PhotoDescriptionAI";
 import PricingManager from "@/components/admin/PricingManager";
+import SeriesSuggestButton from "@/components/admin/SeriesSuggestButton";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -351,6 +352,11 @@ export default function AdminPage() {
             >
               Actualiser
             </button>
+
+            <SeriesSuggestButton
+              photos={filteredPhotos.map((p) => ({ path: p.path, filename: p.filename }))}
+              onSuggestionsReady={(suggestions) => setSeriesSuggestions(suggestions)}
+            />
 
             <div className="col-span-full">
               <DragDropUpload

@@ -27,16 +27,17 @@ export async function POST(request: NextRequest) {
     // Charger toutes les photos
     const allPhotos = await mergePhotoData();
 
-    // Filtrer les photos actives uniquement (pas trash, pas to-sort)
-    const activePhotos = allPhotos.filter(photo => photo.status === 'active');
+    // Analyser toutes les photos (sauf trash)
+    // On veut détecter les doublons même dans "à trier"
+    const photosToAnalyze = allPhotos.filter(photo => photo.status !== 'trash');
 
     // Convertir les chemins relatifs en chemins absolus
     const publicDir = path.join(process.cwd(), 'public');
-    const imagePaths = activePhotos.map(photo =>
+    const imagePaths = photosToAnalyze.map(photo =>
       path.join(publicDir, photo.path)
     );
 
-    console.log(`Analyzing ${imagePaths.length} active photos for similarity (threshold: ${threshold}%)`);
+    console.log(`Analyzing ${imagePaths.length} photos for similarity (threshold: ${threshold}%)`);
 
     // Trouver les groupes de photos similaires
     const similarGroups = await findSimilarImages(imagePaths, threshold);

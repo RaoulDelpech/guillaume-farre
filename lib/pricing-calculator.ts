@@ -259,7 +259,12 @@ export function getManualPriceKeys(config: PricingConfig): PricingKey[] {
  * @returns Prix formatté (ex: "1 500 €")
  */
 export function formatPrice(price: number): string {
-  return price.toLocaleString('fr-FR') + ' €';
+  const rounded = Math.round(price);
+  return rounded.toLocaleString('fr-FR', {
+    useGrouping: true,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).replace(/\u202F/g, ' ') + ' €';
 }
 
 /**

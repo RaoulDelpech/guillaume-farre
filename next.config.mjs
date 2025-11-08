@@ -12,6 +12,19 @@ const nextConfig = {
       },
     ],
   },
+  // Fix sharp WASM files not being bundled correctly
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push({
+        sharp: 'commonjs sharp'
+      });
+    }
+    return config;
+  },
+  // Ensure server-side only modules are not bundled for client
+  experimental: {
+    serverComponentsExternalPackages: ['sharp', 'imghash']
+  },
 };
 
 export default withNextIntl(nextConfig);

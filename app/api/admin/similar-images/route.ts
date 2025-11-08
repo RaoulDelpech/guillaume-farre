@@ -4,6 +4,10 @@ import { mergePhotoData } from '@/lib/admin/photo-manager';
 import { findSimilarImages } from '@/lib/image-similarity';
 import path from 'path';
 
+// Force dynamic rendering to avoid build-time errors with sharp
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 export async function POST(request: NextRequest) {
   try {
     // Vérifier l'authentification

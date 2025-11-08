@@ -202,7 +202,13 @@ export default function DuplicateDetector() {
 
       {/* Liste des doublons */}
       {showDuplicates && duplicates.length > 0 && (
-        <div className="space-y-4 max-h-[600px] overflow-y-auto">
+        <div className="space-y-4">
+          <div className="sticky top-0 z-10 bg-background p-3 border-b border-border">
+            <div className="text-sm font-medium text-muted-foreground">
+              📋 Affichage de {duplicates.length} groupe{duplicates.length > 1 ? 's' : ''} de doublons ({summary?.duplicateFilesCount} fichiers à supprimer au total)
+            </div>
+          </div>
+          <div className="max-h-[600px] overflow-y-auto">
           {duplicates.map((group, idx) => (
             <div key={group.hash} className="border rounded-lg p-4 bg-background">
               <div className="flex items-center justify-between mb-3">
@@ -289,6 +295,7 @@ export default function DuplicateDetector() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       )}
 

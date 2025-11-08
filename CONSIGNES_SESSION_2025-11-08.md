@@ -84,6 +84,54 @@ Projet: Guillaume Farré - Site artiste sculpteur
 
 ---
 
+### 4. ✅ Détection doublons par contenu UNIQUEMENT (pas nom)
+**ÉTAT**: COMPLÉTÉ
+
+**Problème initial**:
+- Détection hybride: hash MD5 (contenu) + normalisation noms
+- Raoul: "l'analyse de l'image doit primer sur le nom"
+- Faux positifs possibles avec noms similaires
+
+**Solution implémentée**:
+- SUPPRIMÉ détection par nom similaire (50 lignes code)
+- GARDÉ UNIQUEMENT hash MD5 (contenu réel fichier)
+- UI affiche "Contenu d'image identique" + hash MD5
+- Aucun faux positif possible
+
+**Fichiers modifiés**:
+- `app/api/admin/duplicates/route.ts` (supprimé fonctions normalizeFileName, detectSimilarNames)
+- `components/admin/DuplicateDetector.tsx` (UI simplifiée, pas de mention "similaires nom")
+
+**Commit**: `0825630` - "fix: Détection doublons + Suggestions séries IA (feedback Raoul)"
+
+---
+
+### 5. ✅ Suggestions séries IA - Prompt renforcé
+**ÉTAT**: COMPLÉTÉ
+
+**Problème initial**:
+- IA regroupait photos très différentes visuellement
+- Raoul montré screenshot: photos sans rapport dans même série
+- Prompt trop permissif sur "similitudes"
+
+**Solution implémentée**:
+- Nouveau prompt avec 5 critères OBLIGATOIRES:
+  1. Palette couleurs quasi-identique
+  2. Composition similaire
+  3. Sujet principal identique/proche
+  4. Éclairage et ambiance comparables
+  5. Style visuel cohérent
+- Exemples EXPLICITES de vraies/fausses séries
+- Règle absolue: "SI TU HÉSITES, NE CRÉE PAS DE SÉRIE"
+- Confiance "high" uniquement si similitudes TRÈS fortes
+
+**Fichiers modifiés**:
+- `app/api/admin/suggest-series/route.ts` (prompt renforcé, lignes 62-104)
+
+**Commit**: `0825630` - "fix: Détection doublons + Suggestions séries IA (feedback Raoul)"
+
+---
+
 ## RÈGLES ABSOLUES RAPPELÉES
 
 1. **Commit régulier**: Toutes les 10-15 minutes
@@ -117,8 +165,9 @@ Projet: Guillaume Farré - Site artiste sculpteur
 1. `3e63b4f` - feat: Bouton manuel suggestions séries IA
 2. `7f74680` - fix: Chemins images doublons (ajout slash initial)
 3. `66c947c` - fix: Clarification détection doublons (compteur groupes visible)
+4. `0825630` - fix: Détection doublons + Suggestions séries IA (feedback Raoul)
 
-**Total**: 3 commits, 3 fichiers créés, 4 fichiers modifiés
+**Total**: 4 commits, 3 fichiers créés, 5 fichiers modifiés
 
 ---
 

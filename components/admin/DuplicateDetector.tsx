@@ -214,17 +214,14 @@ export default function DuplicateDetector() {
               <div className="flex items-center justify-between mb-3">
                 <div>
                   <div className="font-medium">
-                    Groupe #{idx + 1} - {group.count} fichiers
-                    {group.type === 'exact' ? ' identiques (MD5)' : ' similaires (nom)'}
+                    Groupe #{idx + 1} - {group.count} fichiers identiques (contenu exact)
                   </div>
-                  {group.pattern && (
-                    <div className="text-xs text-muted-foreground mt-1">
-                      Pattern: {group.pattern}
-                    </div>
-                  )}
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Hash MD5: {group.hash.substring(0, 12)}...
+                  </div>
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  {group.type === 'exact' ? '🔴 Doublons exacts' : '🟡 Doublons suspects'}
+                  🔴 Contenu d'image identique
                 </div>
               </div>
 

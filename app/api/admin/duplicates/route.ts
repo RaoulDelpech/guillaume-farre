@@ -34,57 +34,6 @@ async function getFileHash(filePath: string): Promise<string> {
 }
 
 /**
- * Normalise un nom de fichier pour détecter les similitudes
- * Ex: "1762086816982_WhatsApp_Image_2025-11-01_at_18.59.11.jpeg"
- *  -> "WhatsApp_Image_2025-11-01_at_18.59"
- */
-function normalizeFileName(fileName: string): string {
-  // Enlever l'extension
-  const nameWithoutExt = fileName.replace(/\.(jpg|jpeg|png|webp)$/i, '');
-
-  // Enlever le timestamp au début (13+ chiffres)
-  const withoutTimestamp = nameWithoutExt.replace(/^\d{10,}_/, '');
-
-  // Enlever les suffixes comme __1_, __2_, __3_, etc.
-  const withoutSuffix = withoutTimestamp.replace(/__\d+_$/g, '').replace(/_\(\d+\)$/g, '');
-
-  // Enlever les suffixes de secondes/millisecondes dans les timestamps WhatsApp
-  const normalized = withoutSuffix.replace(/\.\d{2}$/, '');
-
-  return normalized;
-}
-
-/**
- * Détecte les groupes de fichiers avec des noms similaires
- */
-function detectSimilarNames(files: Array<{ path: string; fileName: string; size: number; fullPath: string }>): DuplicateGroup[] {
-  const nameGroups = new Map<string, typeof files>();
-
-  files.forEach(file => {
-    const normalized = normalizeFileName(file.fileName);
-    if (!nameGroups.has(normalized)) {
-      nameGroups.set(normalized, []);
-    }
-    nameGroups.get(normalized)!.push(file);
-  });
-
-  const similarGroups: DuplicateGroup[] = [];
-  nameGroups.forEach((groupFiles, pattern) => {
-    if (groupFiles.length > 1) {
-      similarGroups.push({
-        hash: crypto.createHash('md5').update(pattern).digest('hex'),
-        type: 'similar-name',
-        pattern: pattern,
-        files: groupFiles,
-        count: groupFiles.length,
-      });
-    }
-  });
-
-  return similarGroups;
-}
-
-/**
  * Scanne récursivement les photos et détecte les doublons
  */
 async function scanForDuplicates(): Promise<DuplicateGroup[]> {
@@ -127,7 +76,8 @@ async function scanForDuplicates(): Promise<DuplicateGroup[]> {
 
   await scanDirectory(PUBLIC_DIR);
 
-  // Doublons exacts (hash MD5 identique)
+  // Doublons UNIQUEMENT basés sur le contenu réel de l'image (hash MD5)
+  // JAMAIS sur le nom du fichier
   const exactDuplicates: DuplicateGroup[] = [];
   hashMap.forEach((files, hash) => {
     if (files.length > 1) {
@@ -140,21 +90,10 @@ async function scanForDuplicates(): Promise<DuplicateGroup[]> {
     }
   });
 
-  // Doublons par similarité de nom
-  const nameSimilarDuplicates = detectSimilarNames(allFiles);
+  // Trier par nombre de doublons (plus nombreux d'abord)
+  exactDuplicates.sort((a, b) => b.count - a.count);
 
-  // Combiner les deux types
-  const allDuplicates = [...exactDuplicates, ...nameSimilarDuplicates];
-
-  // Trier: d'abord par type (exact avant similar), puis par nombre
-  allDuplicates.sort((a, b) => {
-    if (a.type !== b.type) {
-      return a.type === 'exact' ? -1 : 1;
-    }
-    return b.count - a.count;
-  });
-
-  return allDuplicates;
+  return exactDuplicates;
 }
 
 /**

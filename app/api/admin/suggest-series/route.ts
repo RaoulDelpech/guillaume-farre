@@ -59,36 +59,49 @@ export async function POST(request: NextRequest) {
             ...imageContents,
             {
               type: 'text',
-              text: `Tu es un expert en art et en photographie. Analyse ces ${photos.length} photos uploadées par Guillaume Farré, un artiste qui travaille avec la peinture et la photographie.
+              text: `Tu es un expert en photographie d'art. Analyse ces ${photos.length} photos uploadées par Guillaume Farré.
 
-Ton rôle est de suggérer des regroupements en séries cohérentes basées sur :
-- Les similitudes visuelles (couleurs, compositions, textures)
-- Les sujets ou thèmes communs
-- Le style ou la technique utilisée
-- L'atmosphère ou l'émotion dégagée
+RÈGLE ABSOLUE : Ne suggère des séries QUE si les photos se ressemblent VISUELLEMENT de manière ÉVIDENTE et FORTE.
 
-**IMPORTANT** : Ne suggère des séries QUE si tu identifies de vraies similitudes fortes. Si les photos sont trop différentes, dis simplement qu'aucune série cohérente ne se dégage.
+Critères de similitude visuelle STRICTE (tous requis) :
+1. PALETTE DE COULEURS quasi-identique (mêmes dominantes, mêmes tons)
+2. COMPOSITION similaire (cadrage, angles, disposition éléments)
+3. SUJET principal identique ou très proche (même objet, même scène, même type)
+4. ÉCLAIRAGE et AMBIANCE comparables (même luminosité, même atmosphère)
+5. STYLE VISUEL cohérent (même rendu, même traitement)
 
-Pour chaque série suggérée, fournis :
-1. Un nom de série court et évocateur (2-4 mots max)
-2. Les indices des photos à inclure (0, 1, 2, etc.)
-3. Une explication concise de pourquoi ces photos forment une série
-4. Un niveau de confiance : "high" (similitudes très fortes), "medium" (similitudes modérées), ou "low" (similitudes faibles)
+EXEMPLES DE VRAIES SÉRIES (similitudes FORTES) :
+✅ Plusieurs photos de la MÊME voiture rouge sous différents angles
+✅ Série de peintures abstraites ROUGE/NOIR avec traces similaires
+✅ Suite de close-ups d'un même motif mécanique (pneus, carrosserie)
 
-Réponds UNIQUEMENT avec un JSON valide au format suivant :
+EXEMPLES DE FAUSSES SÉRIES (similitudes FAIBLES - À REJETER) :
+❌ Une voiture rouge + une voiture grise (couleurs différentes = pas série)
+❌ Un atelier avec voitures + un close-up de pneu (composition trop différente = pas série)
+❌ Peinture rouge abstraite + photo réaliste de Ferrari (style trop différent = pas série)
+
+**SI TU HÉSITES, NE CRÉE PAS DE SÉRIE.** Mieux vaut retourner aucune suggestion que de regrouper des photos qui ne se ressemblent pas vraiment.
+
+Pour chaque série suggérée (SEULEMENT si similitude ÉVIDENTE), fournis :
+1. Nom de série court (2-4 mots max)
+2. Indices photos (0, 1, 2, etc.)
+3. Explication PRÉCISE des similitudes visuelles
+4. Confiance : "high" (uniquement si similitudes TRÈS fortes)
+
+Réponds UNIQUEMENT avec un JSON valide :
 
 {
   "suggestions": [
     {
       "seriesName": "Nom de la série",
       "photoIndices": [0, 2, 4],
-      "reasoning": "Explication de la cohérence",
+      "reasoning": "Explication précise des similitudes visuelles",
       "confidence": "high"
     }
   ]
 }
 
-Si aucune série ne se dégage clairement, retourne : { "suggestions": [] }`,
+Si aucune similitude visuelle FORTE et ÉVIDENTE, retourne : { "suggestions": [] }`,
             },
           ],
         },

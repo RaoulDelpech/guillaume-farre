@@ -12,6 +12,7 @@ import DragDropUpload from "@/components/admin/DragDropUpload";
 import PhotoDescriptionAI from "@/components/admin/PhotoDescriptionAI";
 import PricingManager from "@/components/admin/PricingManager";
 import SeriesSuggestButton from "@/components/admin/SeriesSuggestButton";
+import SimilarImagesPanel from "@/components/admin/SimilarImagesPanel";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -295,6 +296,25 @@ export default function AdminPage() {
         {/* Duplicate Detector */}
         <div className="mb-12">
           <DuplicateDetector />
+        </div>
+
+        {/* Similar Images Panel */}
+        <div className="mb-12">
+          <SimilarImagesPanel
+            token={sessionStorage.getItem("admin_token") || ""}
+            onStatusChange={(filename, status) => {
+              const photoIndex = photos.findIndex(p => p.filename === filename);
+              if (photoIndex !== -1) {
+                const updatedPhotos = [...photos];
+                updatedPhotos[photoIndex] = {
+                  ...updatedPhotos[photoIndex],
+                  status
+                };
+                setPhotos(updatedPhotos);
+                setHasChanges(true);
+              }
+            }}
+          />
         </div>
 
         {/* Instagram Configuration */}

@@ -91,6 +91,9 @@
     "filterProjections": "Projections"
   },
   "shop": {
+    "heroTag": "OFFICIAL SHOP",
+    "heroTitle": "Available Works",
+    "heroDescription": "Discover contemporary automotive art. Each work is certified, numbered, and delivered with its certificate of authenticity.",
     "title": "Available Works",
     "subtitle": "Art Photographs — Limited Editions",
     "intro": "These photographs capture the moment when the Ferrari created the canvas. Fine Art Giclée printing, museum quality.",

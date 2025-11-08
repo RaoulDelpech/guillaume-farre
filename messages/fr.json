@@ -91,6 +91,9 @@
     "filterProjections": "Projections"
   },
   "shop": {
+    "heroTag": "BOUTIQUE OFFICIELLE",
+    "heroTitle": "Œuvres disponibles",
+    "heroDescription": "Découvrez l'art automobile contemporain. Chaque œuvre est certifiée, numérotée et livrée avec son certificat d'authenticité.",
     "title": "Œuvres disponibles",
     "subtitle": "Photographies d'art — Éditions limitées",
     "intro": "Ces photographies capturent le moment où la Ferrari a créé la toile. Impression Fine Art Giclée, qualité musée.",

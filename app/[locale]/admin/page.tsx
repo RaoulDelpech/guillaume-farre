@@ -81,6 +81,9 @@ export default function AdminPage() {
       // Force le re-render de l'UI
       setRefreshKey(prev => prev + 1);
 
+      // Switcher automatiquement vers "À trier" pour voir les photos uploadées
+      setFilterVisibility("to-sort");
+
       // Si 2+ photos uploadées, analyser pour suggérer des séries
       if (uploadData.files && uploadData.files.length >= 2) {
         setAnalyzingSeries(true);

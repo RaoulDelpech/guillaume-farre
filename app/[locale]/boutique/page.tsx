@@ -34,14 +34,13 @@ export default async function BoutiquePage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <div className="inline-block px-6 py-3 bg-primary rounded-full text-sm font-light tracking-widest mb-6">
-                BOUTIQUE OFFICIELLE
+                {t("heroTag")}
               </div>
               <h1 className="text-6xl md:text-7xl font-light tracking-wide mb-8">
-                Œuvres disponibles
+                {t("heroTitle")}
               </h1>
               <p className="text-2xl font-light text-muted-foreground max-w-4xl mx-auto mb-10 leading-relaxed">
-                Découvrez l'art automobile contemporain. Chaque œuvre est certifiée,
-                numérotée et livrée avec son certificat d'authenticité.
+                {t("heroDescription")}
               </p>
             </div>
 

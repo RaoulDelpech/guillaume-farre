@@ -10,11 +10,11 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/origins/atelier-deux-voitures-grises.jpg",
-      title: t("origine.title"),
-      subtitle: t("origine.subtitle"),
-      description: t("origine.description"),
-      cta: { text: t("origine.cta"), href: "/histoire" },
+      image: "/images/works/empreintes/empreintes-013.jpg",
+      title: t("creations.title"),
+      subtitle: t("creations.subtitle"),
+      description: t("creations.description"),
+      cta: { text: t("creations.cta"), href: "/histoire" },
     },
     {
       image: "/images/origins/atelier-deux-voitures-grises.jpg",
@@ -24,13 +24,6 @@ export default function HeroCarousel() {
       cta: { text: t("atelier.cta"), href: "/atelier" },
     },
     {
-      image: "/images/works/atelier/atelier-005.jpg",
-      title: t("creations.title"),
-      subtitle: t("creations.subtitle"),
-      description: t("creations.description"),
-      cta: { text: t("creations.cta"), href: "/histoire" },
-    },
-    {
       image: "/images/works/empreintes/empreintes-007.jpg",
       title: t("photographies.title"),
       subtitle: t("photographies.subtitle"),
@@ -38,11 +31,18 @@ export default function HeroCarousel() {
       cta: { text: t("photographies.cta"), href: "/galerie" },
     },
     {
-      image: "/images/works/atelier/atelier-011.jpg",
+      image: "/images/works/projection/projection-027.jpg",
       title: t("conceptCarArt.title"),
       subtitle: t("conceptCarArt.subtitle"),
       description: t("conceptCarArt.description"),
       cta: { text: t("conceptCarArt.cta"), href: "/concept-car-art" },
+    },
+    {
+      image: "/images/works/empreintes/empreintes-001.jpg",
+      title: t("origine.title"),
+      subtitle: t("origine.subtitle"),
+      description: t("origine.description"),
+      cta: { text: t("origine.cta"), href: "/histoire" },
     },
     {
       image: "/images/works/projection/projection-011.jpg",

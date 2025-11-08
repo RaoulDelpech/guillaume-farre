@@ -451,6 +451,47 @@ export default function AdminPage() {
                     </div>
                   </div>
 
+                  {/* Multi-categorisation: Locations et Tags */}
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs text-muted-foreground mb-1 uppercase tracking-wide">
+                        Lieux (séparés par virgules)
+                      </label>
+                      <input
+                        type="text"
+                        value={(photo.locations || []).join(', ')}
+                        onChange={(e) => {
+                          const locations = e.target.value
+                            .split(',')
+                            .map(l => l.trim())
+                            .filter(l => l.length > 0);
+                          updatePhoto(globalIndex, { locations });
+                        }}
+                        placeholder="Ex: Paris, Atelier, Circuit Paul Ricard"
+                        className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs text-muted-foreground mb-1 uppercase tracking-wide">
+                        Tags (séparés par virgules)
+                      </label>
+                      <input
+                        type="text"
+                        value={(photo.tags || []).join(', ')}
+                        onChange={(e) => {
+                          const tags = e.target.value
+                            .split(',')
+                            .map(t => t.trim())
+                            .filter(t => t.length > 0);
+                          updatePhoto(globalIndex, { tags });
+                        }}
+                        placeholder="Ex: rouge, Ferrari F40, noir et blanc"
+                        className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                      />
+                    </div>
+                  </div>
+
                   <label className="flex items-center gap-3 cursor-pointer group">
                     <input
                       type="checkbox"

@@ -11,6 +11,10 @@ export interface PhotoMetadata {
   year?: number;
   seriesName?: string;
 
+  // Multi-categorisation
+  locations?: string[]; // Ex: ["Paris", "Atelier", "Circuit Paul Ricard"]
+  tags?: string[]; // Ex: ["rouge", "Ferrari F40", "noir et blanc"]
+
   // Catégories multiples (une photo peut être dans plusieurs catégories)
   categories: ('unlimited' | 'limited' | 'xxl' | 'monumental')[];
 

@@ -29,9 +29,9 @@ export async function getWorksFromMetadata(): Promise<Work[]> {
     const data = await fs.readFile(metadataPath, 'utf-8');
     const photos = JSON.parse(data);
 
-    // Filter only visible and for sale photos
+    // Filter only visible photos with active status
     return photos
-      .filter((photo: any) => photo.visible && photo.forSale)
+      .filter((photo: any) => photo.visible && photo.status === 'active')
       .map((photo: any) => {
         // Extract number from filename for slug
         const match = photo.filename.match(/(\d+)/);

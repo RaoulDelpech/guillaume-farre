@@ -332,7 +332,6 @@ export default function AdminPage() {
                 }}
                 accept="image/*,video/*"
                 multiple={true}
-                maxFiles={50}
               />
             </div>
 

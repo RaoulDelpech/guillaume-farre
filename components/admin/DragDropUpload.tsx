@@ -5,14 +5,12 @@ interface DragDropUploadProps {
   onFilesSelected: (files: File[]) => void;
   accept?: string;
   multiple?: boolean;
-  maxFiles?: number;
 }
 
 export default function DragDropUpload({
   onFilesSelected,
   accept = "image/*,video/*",
   multiple = true,
-  maxFiles = 50,
 }: DragDropUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragCounter, setDragCounter] = useState(0);
@@ -49,11 +47,6 @@ export default function DragDropUpload({
 
     const files = Array.from(e.dataTransfer.files);
 
-    if (files.length > maxFiles) {
-      alert(`Maximum ${maxFiles} fichiers autorisés`);
-      return;
-    }
-
     // Filter by accepted types
     const acceptedFiles = files.filter(file => {
       if (accept === "image/*,video/*") {
@@ -85,11 +78,6 @@ export default function DragDropUpload({
     if (!files || files.length === 0) return;
 
     const fileArray = Array.from(files);
-
-    if (fileArray.length > maxFiles) {
-      alert(`Maximum ${maxFiles} fichiers autorisés`);
-      return;
-    }
 
     onFilesSelected(fileArray);
 
@@ -152,8 +140,6 @@ export default function DragDropUpload({
             </div>
             <p className="text-xs text-muted-foreground mt-4">
               Formats acceptés: JPG, PNG, WebP, MP4, MOV
-              <br />
-              Maximum {maxFiles} fichiers
             </p>
           </>
         )}

@@ -215,7 +215,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               )}
 
               <p className="text-2xl font-light text-amber-600 mb-6">
-                À partir de {photo.price || 2000}€
+                {photo.price || 2000}€
               </p>
 
               <button

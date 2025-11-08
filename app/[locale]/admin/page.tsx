@@ -197,11 +197,12 @@ export default function AdminPage() {
   }
 
   const filteredPhotos = photos.filter(p => {
-    // Filtre statut (par défaut on affiche active seulement)
+    // Filtre statut
     const status = p.status || 'active';
     if (filterVisibility === "trash" && status !== "trash") return false;
     if (filterVisibility === "to-sort" && status !== "to-sort") return false;
-    if (filterVisibility !== "trash" && filterVisibility !== "to-sort" && status !== "active") return false;
+    if (filterVisibility === "active" && status !== "active") return false;
+    // Si filterVisibility === "all", on affiche TOUTES les photos (pas de filtre status)
 
     // Filtre catégorie
     if (filterCategory !== "all" && p.category !== filterCategory) return false;

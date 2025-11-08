@@ -13,6 +13,8 @@ import PhotoDescriptionAI from "@/components/admin/PhotoDescriptionAI";
 import PricingManager from "@/components/admin/PricingManager";
 import SeriesSuggestButton from "@/components/admin/SeriesSuggestButton";
 import SimilarImagesPanel from "@/components/admin/SimilarImagesPanel";
+import PhotoFilters from "@/components/admin/PhotoFilters";
+import PhotoEditor, { EditedPhotoData } from "@/components/admin/PhotoEditor";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -22,12 +24,19 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterVisibility, setFilterVisibility] = useState("all");
+  const [filters, setFilters] = useState({
+    status: 'active' as string,
+    mainCategory: 'all' as string,
+    subCategories: [] as string[],
+    series: 'all' as string,
+  });
   const [hasChanges, setHasChanges] = useState(false);
   const [saving, setSaving] = useState(false);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
   const [seriesSuggestions, setSeriesSuggestions] = useState<SeriesSuggestion[] | null>(null);
   const [analyzingSeries, setAnalyzingSeries] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [editingPhoto, setEditingPhoto] = useState<PhotoMetadata | null>(null);
 
   // Vérifier si déjà authentifié au chargement
   useEffect(() => {
@@ -200,20 +209,54 @@ export default function AdminPage() {
     alert(`Série "${seriesName}" appliquée à ${photoPaths.length} photo(s)`);
   }
 
+  async function handleSaveEditedPhoto(editedData: EditedPhotoData) {
+    try {
+      const response = await fetch('/api/admin/edit-photo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editedData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Recharger les photos pour afficher la nouvelle photo éditée
+        await loadPhotos();
+        setRefreshKey(prev => prev + 1);
+        alert(`Photo éditée sauvegardée: ${data.editedFile}`);
+      } else {
+        throw new Error(data.error || 'Erreur lors de l\'édition');
+      }
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde:', error);
+      throw error; // Re-throw pour que PhotoEditor puisse gérer l'erreur
+    }
+  }
+
   const filteredPhotos = photos.filter(p => {
     // Filtre statut
     const status = p.status || 'active';
-    if (filterVisibility === "trash" && status !== "trash") return false;
-    if (filterVisibility === "to-sort" && status !== "to-sort") return false;
-    if (filterVisibility === "active" && status !== "active") return false;
-    // Si filterVisibility === "all", on affiche TOUTES les photos (pas de filtre status)
+    if (filters.status !== 'all') {
+      if (status !== filters.status) return false;
+    }
 
-    // Filtre catégorie
-    if (filterCategory !== "all" && p.category !== filterCategory) return false;
+    // Filtre catégorie principale
+    if (filters.mainCategory !== 'all') {
+      if (p.category !== filters.mainCategory) return false;
+    }
 
-    // Filtre visibilité (ancien système)
-    if (filterVisibility === "visible" && !p.visible) return false;
-    if (filterVisibility === "hidden" && p.visible) return false;
+    // Filtre sous-catégories (multi-sélection)
+    if (filters.subCategories.length > 0) {
+      const hasAnySubCategory = filters.subCategories.some(subCat =>
+        p.categories?.includes(subCat as 'unlimited' | 'limited' | 'xxl' | 'monumental')
+      );
+      if (!hasAnySubCategory) return false;
+    }
+
+    // Filtre série
+    if (filters.series !== 'all') {
+      if (p.seriesName !== filters.series) return false;
+    }
 
     return true;
   });
@@ -334,39 +377,22 @@ export default function AdminPage() {
           <PricingManager />
         </div>
 
-        {/* Actions */}
-        <div className="bg-card border border-border rounded-lg p-8 mb-12">
-          <div className="flex flex-wrap gap-6 items-center">
-            <div>
-              <label className="block text-sm text-muted-foreground mb-2 uppercase tracking-wide">Catégorie</label>
-              <select
-                value={filterCategory}
-                onChange={(e) => setFilterCategory(e.target.value)}
-                className="px-4 py-3 bg-background border border-border rounded-md text-foreground focus:outline-none focus:border-primary transition-colors"
-              >
-                <option value="all">Toutes ({photos.length})</option>
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
-                ))}
-              </select>
-            </div>
+        {/* Layout avec sidebar filtres + contenu principal */}
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 mb-12">
+          {/* Sidebar Filtres */}
+          <div className="lg:sticky lg:top-6 lg:self-start">
+            <PhotoFilters
+              photos={photos}
+              filters={filters}
+              onFiltersChange={setFilters}
+            />
+          </div>
 
-            <div>
-              <label className="block text-sm text-muted-foreground mb-2 uppercase tracking-wide">Statut</label>
-              <select
-                value={filterVisibility}
-                onChange={(e) => setFilterVisibility(e.target.value)}
-                className="px-4 py-3 bg-background border border-border rounded-md text-foreground focus:outline-none focus:border-primary transition-colors"
-              >
-                <option value="all">Actives ({photos.filter(p => (p.status || 'active') === 'active').length})</option>
-                <option value="visible">Visibles</option>
-                <option value="hidden">Masquées</option>
-                <option value="to-sort">⏳ À trier ({photos.filter(p => p.status === 'to-sort').length})</option>
-                <option value="trash">🗑️ Corbeille ({photos.filter(p => p.status === 'trash').length})</option>
-              </select>
-            </div>
-
-            <div className="flex-1"></div>
+          {/* Contenu principal */}
+          <div className="space-y-6">
+            {/* Actions */}
+            <div className="bg-card border border-border rounded-lg p-6">
+              <div className="flex flex-wrap gap-4 items-center">
 
             <button
               onClick={loadPhotos}
@@ -590,6 +616,8 @@ export default function AdminPage() {
             Aucun média trouvé
           </div>
         )}
+          </div>
+        </div>
       </div>
 
       {/* Modal de zoom */}

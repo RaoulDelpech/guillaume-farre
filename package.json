@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.68.0",
+    "@radix-ui/react-slot": "^1.2.4",
     "@stripe/stripe-js": "^8.3.0",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
@@ -27,6 +28,7 @@
     "next-intl": "^4.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-easy-crop": "^5.5.3",
     "same-runtime": "^0.0.1",
     "sharp": "^0.34.5",
     "stripe": "14.0.0",

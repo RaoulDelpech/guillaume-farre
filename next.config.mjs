@@ -22,9 +22,7 @@ const nextConfig = {
     return config;
   },
   // Ensure server-side only modules are not bundled for client
-  experimental: {
-    serverComponentsExternalPackages: ['sharp', 'imghash']
-  },
+  serverExternalPackages: ['sharp', 'imghash'],
 };
 
 export default withNextIntl(nextConfig);

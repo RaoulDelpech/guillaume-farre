@@ -10,6 +10,7 @@ import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
 import AdminLogin from "@/components/admin/AdminLogin";
 import DragDropUpload from "@/components/admin/DragDropUpload";
 import PhotoDescriptionAI from "@/components/admin/PhotoDescriptionAI";
+import PricingManager from "@/components/admin/PricingManager";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -235,6 +236,11 @@ export default function AdminPage() {
         {/* Commercial Performance Dashboard */}
         <div className="mb-12">
           <CommercialDashboard photos={photos} />
+        </div>
+
+        {/* Pricing Management */}
+        <div className="mb-12">
+          <PricingManager />
         </div>
 
         {/* Actions */}

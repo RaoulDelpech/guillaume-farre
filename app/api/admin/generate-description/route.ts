@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
 
     // Appel API Anthropic Claude Vision
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-5-sonnet-20240620',
       max_tokens: 300,
       messages: [
         {

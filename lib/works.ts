@@ -19,6 +19,16 @@ export interface Work {
   };
   images: string[];
   description?: string;
+
+  // Nouvelles propriétés pour multi-catégorisation
+  categories?: ('unlimited' | 'limited' | 'xxl' | 'monumental')[];
+  limitedEdition?: {
+    total: number;
+    sold: number;
+    available: number;
+    closed: boolean;
+  };
+  forSale?: boolean;
 }
 
 // Load works from photo metadata

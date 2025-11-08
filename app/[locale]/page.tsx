@@ -35,11 +35,13 @@ export default async function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
-          {featuredWorks.slice(0, 6).map((work, idx) => {
-            // Simuler des badges de rareté (à remplacer par vraies données)
-            const isLimited = idx % 3 === 0;
-            const isLastOne = idx % 5 === 0;
-            const isSold = idx % 7 === 0;
+          {featuredWorks.slice(0, 6).map((work) => {
+            // VRAIES DONNÉES séries limitées (pas simulées)
+            const isLimitedEdition = work.categories?.includes('limited') || work.edition?.type === 'limited';
+            const available = work.limitedEdition?.available || 0;
+            const total = work.limitedEdition?.total || 7;
+            const isSold = available === 0;
+            const isLastOne = available === 1;
 
             return (
               <Link
@@ -47,16 +49,16 @@ export default async function HomePage() {
                 href={`/galerie-item/${work.slug}`}
                 className="group block overflow-hidden rounded-lg border hover:border-amber-500 transition-all relative"
               >
-                {/* Badges */}
+                {/* Badges RÉELS */}
                 <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
-                  {isLimited && !isSold && (
+                  {isLimitedEdition && !isSold && (
                     <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white/90 text-xs font-light tracking-wide rounded border border-white/20">
-                      Édition 3/7
+                      Édition {total - available}/{total}
                     </span>
                   )}
                   {isLastOne && !isSold && (
-                    <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white/90 text-xs font-light tracking-wide rounded border border-white/20">
-                      Dernière disponible
+                    <span className="px-3 py-1.5 bg-black/60 backdrop-blur-sm text-white/90 text-xs font-light tracking-wide rounded border border-amber-500/50">
+                      ⚠️ Dernière disponible
                     </span>
                   )}
                   {isSold && (

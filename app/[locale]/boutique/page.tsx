@@ -16,12 +16,17 @@ export default async function BoutiquePage() {
     console.error('Error loading shop photos:', error);
   }
 
-  // Calculer quelques stats
+  // Calculer stats RÉELLES (pas fake)
   const stats = {
     total: photosForSale.length,
-    limitedEditions: Math.floor(photosForSale.length * 0.3), // 30% éditions limitées
-    lastSoldDate: "Il y a 2 jours",
-    collectors: 47
+    limitedEditions: photosForSale.filter(p => p.categories?.includes('limited')).length, // VRAI compteur
+    unlimited: photosForSale.filter(p => p.categories?.includes('unlimited')).length,
+    soldOut: photosForSale.filter(p => p.limitedEdition?.available === 0).length,
+    lowStock: photosForSale.filter(p => {
+      const avail = p.limitedEdition?.available || 0;
+      return avail > 0 && avail <= 2;
+    }).length
+    // TODO: Implémenter tracking vraies ventes Stripe pour lastSoldDate et collectors
   };
 
   return (
@@ -44,8 +49,8 @@ export default async function BoutiquePage() {
               </p>
             </div>
 
-            {/* Stats de la boutique */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-12 max-w-4xl mx-auto">
+            {/* Stats de la boutique - DONNÉES RÉELLES */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12 max-w-4xl mx-auto">
               <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
                 <div className="text-4xl md:text-5xl font-light tracking-wide text-primary mb-3">{stats.total}</div>
                 <div className="text-sm text-muted-foreground font-light">Œuvres disponibles</div>
@@ -55,8 +60,12 @@ export default async function BoutiquePage() {
                 <div className="text-sm text-muted-foreground font-light">Éditions limitées</div>
               </div>
               <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
-                <div className="text-4xl md:text-5xl font-light tracking-wide text-secondary mb-3">{stats.collectors}</div>
-                <div className="text-sm text-muted-foreground font-light">Collectionneurs</div>
+                <div className="text-4xl md:text-5xl font-light tracking-wide text-orange-500 mb-3">{stats.lowStock}</div>
+                <div className="text-sm text-muted-foreground font-light">Derniers exemplaires</div>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
+                <div className="text-4xl md:text-5xl font-light tracking-wide text-blue-500 mb-3">{stats.unlimited}</div>
+                <div className="text-sm text-muted-foreground font-light">Tirages illimités</div>
               </div>
             </div>
 

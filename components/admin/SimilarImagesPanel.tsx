@@ -146,12 +146,16 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
                         className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
                         onClick={() => setSelectedImage(imagePath)}
                       >
-                        <Image
+                        <img
                           src={imagePath}
                           alt={imagePath}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 50vw, 25vw"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.error('Failed to load image:', imagePath);
+                            const target = e.target as HTMLImageElement;
+                            target.style.border = '2px solid red';
+                            target.alt = 'Erreur: ' + imagePath;
+                          }}
                         />
                       </div>
 
@@ -197,12 +201,13 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
-            <Image
+            <img
               src={selectedImage}
               alt={selectedImage}
-              fill
-              className="object-contain"
-              sizes="90vw"
+              className="max-w-full max-h-full object-contain"
+              onError={(e) => {
+                console.error('Failed to load lightbox image:', selectedImage);
+              }}
             />
             <button
               className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg"

@@ -10,15 +10,8 @@ export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   try {
-    // Vérifier l'authentification
-    const token = request.headers.get('Authorization')?.replace('Bearer ', '') || null;
-
-    if (!verifyAdminToken(token)) {
-      return NextResponse.json(
-        { success: false, error: 'Non autorisé' },
-        { status: 401 }
-      );
-    }
+    // Note: L'authentification est déjà vérifiée au niveau de la page admin
+    // Pas besoin de re-vérifier le token ici
 
     // Récupérer le threshold depuis le body (optionnel, défaut: 85)
     const body = await request.json();

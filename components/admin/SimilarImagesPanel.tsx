@@ -136,19 +136,19 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {group.images.map((filename) => (
+                  {group.images.map((imagePath) => (
                     <div
-                      key={filename}
+                      key={imagePath}
                       className="space-y-2 border rounded-lg p-3 hover:border-blue-400 transition-colors"
                     >
                       {/* Miniature cliquable */}
                       <div
                         className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
-                        onClick={() => setSelectedImage(filename)}
+                        onClick={() => setSelectedImage(imagePath)}
                       >
                         <Image
-                          src={`/images/works/${filename}`}
-                          alt={filename}
+                          src={imagePath}
+                          alt={imagePath}
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 50vw, 25vw"
@@ -156,15 +156,15 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
                       </div>
 
                       {/* Nom fichier */}
-                      <p className="text-xs text-gray-600 truncate" title={filename}>
-                        {filename}
+                      <p className="text-xs text-gray-600 truncate" title={imagePath}>
+                        {imagePath.split('/').pop()}
                       </p>
 
                       {/* Sélecteur de statut */}
                       <select
                         defaultValue="active"
                         onChange={(e) =>
-                          handleStatusChange(filename, e.target.value as 'active' | 'trash' | 'to-sort')
+                          handleStatusChange(imagePath.split('/').pop() || imagePath, e.target.value as 'active' | 'trash' | 'to-sort')
                         }
                         className="w-full px-3 py-2 bg-background border border-border rounded-md text-xs text-foreground focus:outline-none focus:border-primary transition-colors"
                       >
@@ -198,7 +198,7 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
         >
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
             <Image
-              src={`/images/works/${selectedImage}`}
+              src={selectedImage}
               alt={selectedImage}
               fill
               className="object-contain"

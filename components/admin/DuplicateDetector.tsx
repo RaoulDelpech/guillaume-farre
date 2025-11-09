@@ -258,6 +258,10 @@ export default function DuplicateDetector() {
                           src={file.path}
                           alt={file.fileName}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                          onError={(e) => {
+                            console.error('Erreur chargement image:', file.path);
+                            (e.target as HTMLImageElement).style.border = '2px solid red';
+                          }}
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                           <span className="text-white opacity-0 group-hover:opacity-100 text-xs font-medium">
@@ -268,7 +272,9 @@ export default function DuplicateDetector() {
 
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium truncate">{file.fileName}</div>
-                        <div className="text-xs text-muted-foreground truncate">{file.path}</div>
+                        <div className="text-xs text-muted-foreground truncate">
+                          <span className="font-mono">{file.path}</span>
+                        </div>
                       </div>
 
                       <div className="text-xs text-muted-foreground whitespace-nowrap">

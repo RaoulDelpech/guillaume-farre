@@ -121,6 +121,24 @@ export default function PhotoFilters({ photos, filters, onFiltersChange }: Photo
         </div>
       </div>
 
+      {/* Afficher photos groupées */}
+      <div className="px-4 py-3 border-b border-border bg-muted/10">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={filters.showGrouped}
+            onChange={(e) => onFiltersChange({ ...filters, showGrouped: e.target.checked })}
+            className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
+          />
+          <span className="text-sm text-foreground font-medium">
+            Voir toutes les photos (groupées incluses)
+          </span>
+        </label>
+        <p className="text-xs text-muted-foreground mt-1 ml-6">
+          Par défaut, les photos avec un nom de série sont masquées
+        </p>
+      </div>
+
       {/* Statut */}
       <div className="border-b border-border">
         <button

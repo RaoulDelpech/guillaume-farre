@@ -22,8 +22,8 @@ export interface PhotoMetadata {
   description?: string;
   aiGenerated?: boolean;
 
-  // Statuts
-  status: 'active' | 'trash' | 'to-sort';
+  // Statuts (simplifié: juste corbeille et à trier, le reste c'est "visible")
+  status: 'trash' | 'to-sort' | null;
 
   // Visibilité et vente
   visible: boolean;
@@ -106,7 +106,7 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
                 path: `${dir.prefix}${item}/${file}`,
                 category: item,
                 categories: ['unlimited'] as ('unlimited' | 'limited' | 'xxl' | 'monumental')[],
-                status: 'to-sort' as 'active' | 'trash' | 'to-sort',
+                status: 'to-sort' as 'trash' | 'to-sort' | null,
                 visible: true,
                 forSale: false,
                 isNumberedSeries: false,
@@ -124,7 +124,7 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
               path: `${dir.prefix}${item}`,
               category: categoryName,
               categories: ['unlimited'] as ('unlimited' | 'limited' | 'xxl' | 'monumental')[],
-              status: 'to-sort' as 'active' | 'trash' | 'to-sort',
+              status: 'to-sort' as 'trash' | 'to-sort' | null,
               visible: true,
               forSale: false,
               isNumberedSeries: false,

@@ -7,7 +7,7 @@ interface PhotoMetadata {
   filename: string;
   path: string;
   category?: string;
-  status?: 'active' | 'trash' | 'to-sort';
+  status?: 'trash' | 'to-sort' | null;
   categories?: ('unlimited' | 'limited' | 'xxl' | 'monumental')[];
   seriesName?: string;
   visible: boolean;
@@ -19,6 +19,7 @@ interface FilterState {
   mainCategory: string;
   subCategories: string[];
   series: string;
+  showGrouped: boolean;
 }
 
 interface PhotoFiltersProps {
@@ -45,7 +46,6 @@ export default function PhotoFilters({ photos, filters, onFiltersChange }: Photo
   // Calculer stats pour chaque filtre
   const statusCounts = {
     all: photos.length,
-    active: photos.filter(p => (p.status || 'active') === 'active').length,
     'to-sort': photos.filter(p => p.status === 'to-sort').length,
     trash: photos.filter(p => p.status === 'trash').length,
   };
@@ -96,10 +96,11 @@ export default function PhotoFilters({ photos, filters, onFiltersChange }: Photo
 
   const resetFilters = () => {
     onFiltersChange({
-      status: 'active',
+      status: 'all',
       mainCategory: 'all',
       subCategories: [],
       series: 'all',
+      showGrouped: false,
     });
   };
 
@@ -135,22 +136,6 @@ export default function PhotoFilters({ photos, filters, onFiltersChange }: Photo
         </button>
         {expandedSections.status && (
           <div className="px-4 pb-3 space-y-2">
-            <label className="flex items-center justify-between py-1.5 cursor-pointer hover:bg-muted/30 px-2 rounded">
-              <div className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  name="status"
-                  value="active"
-                  checked={filters.status === 'active'}
-                  onChange={() => handleStatusChange('active')}
-                  className="w-4 h-4"
-                />
-                <span className="text-sm text-foreground">✅ Actives</span>
-              </div>
-              <span className="text-xs text-muted-foreground font-medium">
-                {statusCounts.active}
-              </span>
-            </label>
             <label className="flex items-center justify-between py-1.5 cursor-pointer hover:bg-muted/30 px-2 rounded">
               <div className="flex items-center gap-2">
                 <input

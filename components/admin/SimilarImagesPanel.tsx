@@ -11,7 +11,7 @@ interface SimilarImageGroup {
 
 interface SimilarImagesPanelProps {
   token: string;
-  onStatusChange?: (filename: string, status: 'active' | 'trash' | 'to-sort') => void;
+  onStatusChange?: (filename: string, status: 'trash' | 'to-sort' | null) => void;
 }
 
 export default function SimilarImagesPanel({ token, onStatusChange }: SimilarImagesPanelProps) {
@@ -51,7 +51,7 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
     }
   };
 
-  const handleStatusChange = (filename: string, status: 'active' | 'trash' | 'to-sort') => {
+  const handleStatusChange = (filename: string, status: 'trash' | 'to-sort' | null) => {
     if (onStatusChange) {
       onStatusChange(filename, status);
     }
@@ -166,13 +166,13 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
 
                       {/* Sélecteur de statut */}
                       <select
-                        defaultValue="active"
+                        defaultValue=""
                         onChange={(e) =>
-                          handleStatusChange(imagePath.split('/').pop() || imagePath, e.target.value as 'active' | 'trash' | 'to-sort')
+                          handleStatusChange(imagePath.split('/').pop() || imagePath, (e.target.value || null) as 'trash' | 'to-sort' | null)
                         }
                         className="w-full px-3 py-2 bg-background border border-border rounded-md text-xs text-foreground focus:outline-none focus:border-primary transition-colors"
                       >
-                        <option value="active">✅ Active</option>
+                        <option value="">✅ Visible</option>
                         <option value="to-sort">⏳ À trier</option>
                         <option value="trash">🗑️ Corbeille</option>
                       </select>

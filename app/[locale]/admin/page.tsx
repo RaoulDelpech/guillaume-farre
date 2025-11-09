@@ -25,10 +25,11 @@ export default function AdminPage() {
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterVisibility, setFilterVisibility] = useState("all");
   const [filters, setFilters] = useState({
-    status: 'active' as string,
+    status: 'all' as string, // 'all', 'to-sort', 'trash', 'grouped' (photos avec seriesName)
     mainCategory: 'all' as string,
     subCategories: [] as string[],
     series: 'all' as string,
+    showGrouped: false, // Nouvelle option: afficher les photos qui ont un seriesName
   });
   const [hasChanges, setHasChanges] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -154,45 +155,8 @@ export default function AdminPage() {
     setHasChanges(true);
   }
 
-  // IA AUTO: Génération automatique de description quand statut → active
-  async function handleStatusChange(index: number, newStatus: string) {
-    const photo = photos[index];
-    const oldStatus = photo.status || 'active';
-
-    // Update status first
-    updatePhoto(index, { status: newStatus as 'active' | 'trash' | 'to-sort' });
-
-    // Si changement vers "active" ET pas de description → générer automatiquement
-    if (newStatus === 'active' && oldStatus !== 'active' && !photo.description?.trim()) {
-      console.log('🤖 IA Auto: Génération description pour', photo.filename);
-
-      try {
-        const response = await fetch('/api/admin/generate-description', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            photoPath: photo.path,
-            photoFilename: photo.filename,
-            category: photo.category || 'autres',
-            seriesName: photo.seriesName
-          })
-        });
-
-        const data = await response.json();
-
-        if (response.ok && data.description) {
-          // Mettre à jour avec la description générée
-          updatePhoto(index, {
-            description: data.description,
-            aiGenerated: true
-          });
-          console.log('✅ Description IA générée:', data.description.substring(0, 50) + '...');
-        }
-      } catch (err) {
-        console.error('❌ Erreur IA Auto:', err);
-        // On ne bloque pas le changement de statut en cas d'erreur
-      }
-    }
+  function handleStatusChange(index: number, newStatus: string) {
+    updatePhoto(index, { status: newStatus as 'trash' | 'to-sort' | null });
   }
 
   function handleApplySeries(seriesName: string, photoPaths: string[]) {
@@ -234,10 +198,15 @@ export default function AdminPage() {
   }
 
   const filteredPhotos = photos.filter(p => {
+    // Masquer les photos groupées (avec seriesName) sauf si showGrouped est actif
+    if (!filters.showGrouped && p.seriesName && p.seriesName.trim() !== '') {
+      return false;
+    }
+
     // Filtre statut
-    const status = p.status || 'active';
     if (filters.status !== 'all') {
-      if (status !== filters.status) return false;
+      const currentStatus = p.status || null;
+      if (currentStatus !== filters.status) return false;
     }
 
     // Filtre catégorie principale
@@ -478,11 +447,11 @@ export default function AdminPage() {
                       Statut
                     </label>
                     <select
-                      value={photo.status || 'active'}
+                      value={photo.status || ''}
                       onChange={(e) => handleStatusChange(globalIndex, e.target.value)}
                       className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
                     >
-                      <option value="active">✅ Active</option>
+                      <option value="">✅ Visible</option>
                       <option value="to-sort">⏳ À trier</option>
                       <option value="trash">🗑️ Corbeille</option>
                     </select>

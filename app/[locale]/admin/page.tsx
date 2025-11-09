@@ -513,34 +513,39 @@ export default function AdminPage() {
                     </div>
                   </div>
 
-                  <label className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="checkbox"
-                      checked={photo.forSale}
-                      onChange={(e) => updatePhoto(globalIndex, { forSale: e.target.checked })}
-                      className="w-4 h-4 rounded border-border"
-                    />
-                    <span className="text-sm group-hover:text-primary transition-colors">
-                      À vendre
-                    </span>
-                  </label>
+                  {/* Options de vente masquées pour photos corbeille */}
+                  {photo.status !== 'trash' && (
+                    <>
+                      <label className="flex items-center gap-3 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          checked={photo.forSale}
+                          onChange={(e) => updatePhoto(globalIndex, { forSale: e.target.checked })}
+                          className="w-4 h-4 rounded border-border"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          À vendre
+                        </span>
+                      </label>
 
-                  {/* AI Analysis Button */}
-                  <AIAnalysisPanel
-                    photoFilename={photo.filename}
-                    category={photo.category || 'autres'}
-                    currentPrice={photo.price}
-                    onApplySuggestions={(suggestions) => {
-                      updatePhoto(globalIndex, {
-                        price: suggestions.price,
-                        forSale: true,
-                        edition: {
-                          type: suggestions.isLimitedEdition ? 'limited' : 'open',
-                          count: suggestions.editionNumber
-                        }
-                      });
-                    }}
-                  />
+                      {/* AI Analysis Button */}
+                      <AIAnalysisPanel
+                        photoFilename={photo.filename}
+                        category={photo.category || 'autres'}
+                        currentPrice={photo.price}
+                        onApplySuggestions={(suggestions) => {
+                          updatePhoto(globalIndex, {
+                            price: suggestions.price,
+                            forSale: true,
+                            edition: {
+                              type: suggestions.isLimitedEdition ? 'limited' : 'open',
+                              count: suggestions.editionNumber
+                            }
+                          });
+                        }}
+                      />
+                    </>
+                  )}
 
                   {/* Photo Description AI */}
                   <PhotoDescriptionAI

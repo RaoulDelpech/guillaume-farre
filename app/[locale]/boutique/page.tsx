@@ -11,7 +11,11 @@ export default async function BoutiquePage() {
   let photosForSale: any[] = [];
   try {
     const allPhotos = await loadPhotoMetadata();
-    photosForSale = allPhotos.filter(photo => photo.visible && photo.forSale);
+    photosForSale = allPhotos.filter(photo =>
+      photo.visible &&
+      photo.forSale &&
+      photo.status === 'active'
+    );
   } catch (error) {
     console.error('Error loading shop photos:', error);
   }

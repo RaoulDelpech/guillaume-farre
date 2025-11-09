@@ -657,6 +657,27 @@ export default function AdminPage() {
           </button>
         </div>
       )}
+
+      {/* Modal de suggestions de séries IA */}
+      {seriesSuggestions && seriesSuggestions.length > 0 && (
+        <SeriesSuggestionModal
+          suggestions={seriesSuggestions}
+          onApply={(seriesName: string, photoPaths: string[]) => {
+            // Appliquer le nom de série aux photos correspondantes
+            const updatedPhotos = photos.map(photo => {
+              if (photoPaths.includes(photo.path)) {
+                return { ...photo, seriesName };
+              }
+              return photo;
+            });
+            setPhotos(updatedPhotos);
+            setHasChanges(true);
+          }}
+          onClose={() => setSeriesSuggestions(null)}
+        />
+      )}
     </div>
   );
 }
+
+// Lalou

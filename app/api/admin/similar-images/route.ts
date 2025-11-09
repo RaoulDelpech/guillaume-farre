@@ -35,9 +35,23 @@ export async function POST(request: NextRequest) {
     // Trouver les groupes de photos similaires
     const similarGroups = await findSimilarImages(imagePaths, threshold);
 
+    // Convertir les noms de fichiers en chemins web complets
+    const groupsWithPaths = similarGroups.map(group => {
+      const imagesWithPaths = group.images.map(filename => {
+        // Trouver la photo correspondante dans photosToAnalyze
+        const photo = photosToAnalyze.find(p => p.path.endsWith(filename));
+        return photo ? photo.path : `/images/works/${filename}`; // Fallback si pas trouvé
+      });
+
+      return {
+        ...group,
+        images: imagesWithPaths,
+      };
+    });
+
     return NextResponse.json({
       success: true,
-      groups: similarGroups,
+      groups: groupsWithPaths,
       totalPhotosAnalyzed: imagePaths.length,
       threshold,
     });

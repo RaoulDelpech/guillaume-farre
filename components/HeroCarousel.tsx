@@ -10,21 +10,21 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/works/empreintes/empreintes-013.jpg",
+      image: "/images/works/atelier/atelier-004.jpg",
       title: t("creations.title"),
       subtitle: t("creations.subtitle"),
       description: t("creations.description"),
       cta: { text: t("creations.cta"), href: "/histoire" },
     },
     {
-      image: "/images/origins/atelier-deux-voitures-grises.jpg",
+      image: "/images/works/empreintes/empreintes-025.jpg",
       title: t("atelier.title"),
       subtitle: t("atelier.subtitle"),
       description: t("atelier.description"),
       cta: { text: t("atelier.cta"), href: "/atelier" },
     },
     {
-      image: "/images/works/empreintes/empreintes-007.jpg",
+      image: "/images/works/a-trier/1762579267635_WhatsApp_Image_2025-11-02_at_09.22.45__13_.jpeg",
       title: t("photographies.title"),
       subtitle: t("photographies.subtitle"),
       description: t("photographies.description"),
@@ -53,6 +53,7 @@ export default function HeroCarousel() {
     },
   ];
 
+  // Autoplay effect
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
@@ -60,6 +61,22 @@ export default function HeroCarousel() {
     }, 9000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        goToPrevious();
+      } else if (e.key === "ArrowRight") {
+        goToNext();
+      } else if (e.code === "Space") {
+        e.preventDefault();
+        setIsAutoPlaying(!isAutoPlaying);
+      }
+    };
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [isAutoPlaying]);
 
   const goToSlide = (index: number) => {
     setCurrent(index);
@@ -77,7 +94,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden bg-background">
+    <section className="relative w-full h-[60vh] md:h-[65vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -86,9 +103,11 @@ export default function HeroCarousel() {
             index === current ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          {/* Background Image - Premium fullscreen */}
+          {/* Background Image - Premium fullscreen with subtle zoom */}
           <div
-            className="absolute inset-0 bg-cover bg-center scale-105"
+            className={`absolute inset-0 bg-cover bg-center transition-transform duration-1000 ${
+              index === current ? "scale-110" : "scale-105"
+            }`}
             style={{ backgroundImage: `url(${slide.image})` }}
           >
             {/* Overlay subtil premium (world-class) */}
@@ -173,13 +192,10 @@ export default function HeroCarousel() {
         </Link>
       </div>
 
-      {/* Scroll Indicator - Premium touch */}
-      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-bounce">
-        <div className="text-white/70 text-xs md:text-sm tracking-widest uppercase">
-          Défiler
-        </div>
+      {/* Scroll Indicator - Premium touch with fade out */}
+      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-pulse opacity-50">
         <svg
-          className="w-6 h-6 md:w-8 md:h-8 text-white/70"
+          className="w-5 h-5 md:w-6 md:h-6 text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

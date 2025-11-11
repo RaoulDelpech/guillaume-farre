@@ -14,7 +14,8 @@ export default async function BoutiquePage() {
     photosForSale = allPhotos.filter(photo =>
       photo.visible &&
       photo.forSale &&
-      photo.status !== 'trash' // Exclure corbeille uniquement
+      photo.status !== 'trash' &&
+      photo.status !== 'to-sort' // Exclure corbeille ET à trier
     );
   } catch (error) {
     console.error('Error loading shop photos:', error);

@@ -123,5 +123,48 @@
     "email": "Email",
     "message": "Message",
     "send": "Envoyer"
+  },
+  "dino": {
+    "tag": "La Dino en mouvement",
+    "title": "La Ferrari Dino",
+    "subtitle": "L'instrument rouge qui peint. L'histoire d'une obsession devenue réalité.",
+    "origin": {
+      "label": "L'Origine",
+      "title": "De la rose à la rouge",
+      "text1": "Quarante ans après avoir croisé la Ferrari rose de son enfance, Guillaume a décidé de transformer son obsession en méthode créative. La Dino rouge n'est pas juste un véhicule. C'est un instrument de création, une extension de sa volonté artistique.",
+      "text2": "Chaque courbe, chaque accélération, chaque freinage est contrôlé. La Dino danse sur la toile, laissant des traces irréversibles. C'est ce geste unique, ce dialogue entre l'homme et la machine, que Guillaume capture."
+    },
+    "specs": {
+      "label": "Caractéristiques",
+      "title": "Fiche technique",
+      "model": "Modèle",
+      "modelValue": "Ferrari 206 GT Dino",
+      "year": "Année",
+      "yearValue": "1974",
+      "color": "Couleur",
+      "colorValue": "Rosso Corsa (Rouge Ferrari)",
+      "engine": "Moteur",
+      "engineValue": "V6 2.0L biturbo, configuration longitudinale arrière",
+      "power": "Puissance",
+      "powerValue": "190 ch à 7600 tr/min",
+      "weight": "Poids",
+      "weightValue": "1020 kg"
+    },
+    "creative": {
+      "label": "Son Rôle",
+      "title": "Un instrument de création",
+      "text1": "La Dino n'est pas préservée dans un musée. Elle vit, elle crée, elle peint. Ses pneus laissent des marques. Son poids produit des traces. Sa vitesse génère des éclaboussures.",
+      "text2": "Chaque passage est unique. Chaque création est irréversible. C'est cette impermanence qui donne sa valeur à chaque œuvre."
+    },
+    "gallery": {
+      "label": "Galerie",
+      "title": "La Dino en images"
+    },
+    "cta": {
+      "title": "Voir la Dino en action",
+      "text": "Découvrez comment cet instrument millénaire peint sur la toile. Une fusion entre l'automobile, l'art et l'obsession.",
+      "button1": "Découvrir l'atelier",
+      "button2": "Voir les œuvres"
+    }
   }
 }

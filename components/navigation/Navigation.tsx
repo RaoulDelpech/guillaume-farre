@@ -13,6 +13,7 @@ export default function Navigation() {
   const links = [
     { href: "/", label: t("accueil") },
     { href: "/galerie", label: "Galerie" },
+    { href: "/dino", label: "Dino" },
     { href: "/boutique", label: t("boutique") },
     { href: "/origine", label: "Origine" },
     { href: "/performances", label: "Performances" },

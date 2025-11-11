@@ -12,6 +12,7 @@ export default function MobileNav() {
   const links = [
     { href: "/", label: t("accueil") },
     { href: "/galerie", label: t("galerie") },
+    { href: "/dino", label: "Dino" },
     { href: "/boutique", label: t("boutique") },
     { href: "/histoire", label: t("histoire") },
     { href: "/atelier", label: t("atelier") },

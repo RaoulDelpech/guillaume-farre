@@ -1,269 +1,263 @@
-# DeepL API - Setup & Utilisation
+# Configuration DeepL API - Traductions Professionnelles
 
-Date: 2025-11-07
-Par: Lalou
-Objectif: Traductions professionnelles FR → EN/IT
+**Temps requis**: 5 minutes  
+**Coût**: GRATUIT (500 000 caractères/mois)  
+**Usage estimé**: ~4000 caractères (< 1% du quota)
 
----
-
-## POURQUOI DEEPL
-
-**Problème actuel**: Traductions manuelles incomplètes + qualité médiocre.
-
-**Solution DeepL**:
-- Qualité traduction supérieure Google Translate
-- Nuances préservées
-- Contexte compris
-- API simple
+**Mis à jour**: 2025-11-15  
+**Par**: Lalou
 
 ---
 
-## PLANS DEEPL
+## Pourquoi DeepL ?
 
-### Plan Gratuit (DeepL API Free)
+DeepL est le meilleur service de traduction automatique pour:
+- ✅ **Qualité supérieure** à Google Translate (surtout FR→EN/IT)
+- ✅ **Préserve le ton artistique** des textes
+- ✅ **API gratuite** jusqu'à 500k caractères/mois
+- ✅ **Traductions professionnelles** utilisées par entreprises Fortune 500
 
-**Limites**:
-- 500,000 caractères/mois
-- Pas de garantie SLA
-- Watermark "Translated with DeepL"
-
-**Prix**: €0
-
-**Suffisant pour Guillaume Farré?** OUI ✅
-- messages/fr.json ≈ 15,000 caractères
-- Traduction FR→EN + FR→IT = 30,000 chars
-- Largement dans limite gratuite
-
-### Plan Pro (DeepL API Pro)
-
-**Limites**:
-- À partir €5.49/mois (pay-as-you-go)
-- €0.000025/caractère
-- Pas de watermark
-- SLA garanti
-
-**Utile si**: Volume > 500k chars/mois (pas le cas ici).
+**Problème actuel du site**:
+- `messages/en.json` et `messages/it.json` incomplets (manque section `dino`)
+- Traductions faites à la main (qualité variable)
+- ~43 lignes manquantes par langue
 
 ---
 
-## SIGNUP (5 min)
+## Étapes d'inscription
 
-### Étape 1: Créer compte
+### 1. Créer un compte gratuit
 
-1. Aller sur https://www.deepl.com/pro-api
-2. Cliquer "Try DeepL API Free"
-3. Options:
-   - Email + password
-   - OU Google account
-4. Valider email
+Accédez à: https://www.deepl.com/pro-api
 
-### Étape 2: Obtenir API key
+Cliquez sur **"Sign up for free"**
 
-1. Connecté sur https://www.deepl.com/account/
-2. Onglet "API Keys"
-3. Cliquer "Create new key"
-4. Copier clé (format: `xxxx-xxxx-xxxx-xxxx:fx`)
+Remplissez:
+- Email professionnel
+- Mot de passe
+- Prénom/Nom
+- Pays: France
 
-### Étape 3: Ajouter .env.local
+**Choisissez le plan**: **DeepL API Free**
+- 500 000 caractères/mois
+- Pas de carte bancaire requise
+- Suffisant pour toutes les traductions du site
+
+### 2. Vérifier votre email
+
+Cliquez sur le lien de vérification reçu par email.
+
+### 3. Récupérer votre clé API
+
+Une fois connecté:
+1. Allez dans **"Account" → "Account"** (menu en haut à droite)
+2. Scrollez jusqu'à **"Authentication Key for DeepL API"**
+3. Copiez votre clé API (format: `12345678-abcd-1234-abcd-123456789abc:fx`)
+4. Gardez-la confidentielle (ne JAMAIS la partager)
+
+### 4. Ajouter la clé dans le projet
+
+Ouvrez le fichier `.env.local` à la racine du projet.
+
+Ajoutez cette ligne:
 
 ```bash
-# .env.local
-DEEPL_API_KEY=your_key_here:fx
-DEEPL_API_URL=https://api-free.deepl.com/v2
+# DeepL API pour traductions professionnelles FR→EN/IT
+DEEPL_API_KEY=votre_cle_api_ici
 ```
 
-**Note**: URL API Free = `api-free.deepl.com` (pas `api.deepl.com`)
+Remplacez `votre_cle_api_ici` par votre vraie clé copiée à l'étape 3.
 
----
-
-## USAGE API
-
-### Endpoint principal
-
-**Traduire texte**:
-```
-POST https://api-free.deepl.com/v2/translate
-```
-
-**Headers**:
-```
-Authorization: DeepL-Auth-Key YOUR_KEY_HERE
-Content-Type: application/json
-```
-
-**Body**:
-```json
-{
-  "text": ["Texte à traduire"],
-  "source_lang": "FR",
-  "target_lang": "EN"
-}
-```
-
-**Response**:
-```json
-{
-  "translations": [
-    {
-      "detected_source_language": "FR",
-      "text": "Text to translate"
-    }
-  ]
-}
-```
-
----
-
-## LANGUES SUPPORTÉES
-
-**Source**: FR (Français)
-
-**Cibles** (Guillaume Farré):
-- EN (Anglais)
-- IT (Italien)
-
-Autres cibles disponibles: DE, ES, PT, RU, JA, ZH, etc.
-
----
-
-## SCRIPT TRADUCTION (skeleton)
-
-Créer `scripts/translate-deepl.ts`:
-
-```typescript
-// Traduire messages/fr.json → en.json + it.json
-
-import fs from 'fs';
-import path from 'path';
-
-const API_KEY = process.env.DEEPL_API_KEY || '';
-const API_URL = 'https://api-free.deepl.com/v2/translate';
-
-async function translateText(text: string, targetLang: 'EN' | 'IT'): Promise<string> {
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Authorization': `DeepL-Auth-Key ${API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      text: [text],
-      source_lang: 'FR',
-      target_lang: targetLang,
-    }),
-  });
-
-  const data = await response.json();
-  return data.translations[0].text;
-}
-
-async function translateJSON(sourcePath: string, targetPath: string, targetLang: 'EN' | 'IT') {
-  const source = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
-  const target: any = {};
-
-  // Traduire récursivement
-  async function translateObject(obj: any, parent: any, key?: string) {
-    if (typeof obj === 'string') {
-      // Traduire string
-      const translated = await translateText(obj, targetLang);
-      if (key) parent[key] = translated;
-      return translated;
-    } else if (typeof obj === 'object') {
-      // Parcourir objet
-      for (const [k, v] of Object.entries(obj)) {
-        if (!target[k]) target[k] = {};
-        await translateObject(v, target[k], k);
-      }
-    }
-  }
-
-  await translateObject(source, target);
-
-  fs.writeFileSync(targetPath, JSON.stringify(target, null, 2));
-  console.log(`✅ Traduction ${targetLang} terminée: ${targetPath}`);
-}
-
-async function main() {
-  const frPath = path.join(process.cwd(), 'messages/fr.json');
-  const enPath = path.join(process.cwd(), 'messages/en.json');
-  const itPath = path.join(process.cwd(), 'messages/it.json');
-
-  console.log('🌍 Traduction FR → EN...');
-  await translateJSON(frPath, enPath, 'EN');
-
-  console.log('🌍 Traduction FR → IT...');
-  await translateJSON(frPath, itPath, 'IT');
-
-  console.log('✅ Toutes traductions terminées!');
-}
-
-main().catch(console.error);
-```
-
-**Exécution**:
+**Exemple**:
 ```bash
-bun scripts/translate-deepl.ts
+DEEPL_API_KEY=12345678-abcd-1234-abcd-123456789abc:fx
+```
+
+Sauvegardez le fichier.
+
+---
+
+## Utilisation du script de traduction
+
+### Lancer la traduction automatique
+
+```bash
+bun run translate:deepl
+```
+
+**Ce que fait le script**:
+1. ✅ Lit `messages/fr.json` (source vérité)
+2. ✅ Détecte clés manquantes dans `messages/en.json` et `messages/it.json`
+3. ✅ Traduit UNIQUEMENT les clés manquantes (économise quota)
+4. ✅ Crée un backup automatique avant modification
+5. ✅ Affiche progression en temps réel
+6. ✅ Sauvegarde fichiers traduits
+
+**Sortie attendue**:
+```
+🌍 TRADUCTION DEEPL - Guillaume Farré
+
+📂 Chargement fichiers traduction...
+
+✅ FR: 10 sections
+✅ EN: 9 sections
+✅ IT: 9 sections
+
+🔍 Détection clés manquantes...
+
+🇬🇧 EN: 12 clés manquantes
+🇮🇹 IT: 12 clés manquantes
+
+📦 Backup créé: en.backup-2025-11-15T14-30-00.json
+📦 Backup créé: it.backup-2025-11-15T14-30-00.json
+
+🇬🇧 TRADUCTION EN (Anglais britannique)...
+
+📝 Clé: dino.tag
+  🔄 Traduction: "La Dino en mouvement"
+  ✅ Résultat: "The Dino in Motion"
+
+[...]
+
+✅ TRADUCTION TERMINÉE!
+
+🇫🇷 FR: 10 sections (source)
+🇬🇧 EN: 10 sections (+12 traduites)
+🇮🇹 IT: 10 sections (+12 traduites)
+```
+
+### Vérifier les traductions
+
+Après exécution, vérifiez:
+- `messages/en.json` → traduit en anglais
+- `messages/it.json` → traduit en italien
+
+Si une traduction ne vous plaît pas, éditez manuellement le fichier.
+
+---
+
+## Commandes utiles
+
+### Traduire clés manquantes
+```bash
+bun run translate:deepl
+```
+
+### Forcer retraduction complète
+Si vous voulez retraduire TOUT (pas juste clés manquantes):
+1. Supprimez `messages/en.json` et `messages/it.json`
+2. Créez fichiers vides: `echo '{}' > messages/en.json && echo '{}' > messages/it.json`
+3. Lancez `bun run translate:deepl`
+
+### Restaurer un backup
+Si traduction échoue:
+```bash
+# Trouver le dernier backup
+ls -lt messages/*.backup-*.json | head -2
+
+# Restaurer
+cp messages/en.backup-2025-11-15T14-30-00.json messages/en.json
+cp messages/it.backup-2025-11-15T14-30-00.json messages/it.json
 ```
 
 ---
 
-## LIMITES & BONNES PRATIQUES
+## Quota et limites
 
-### Limites Free Plan
+### Plan gratuit
+- **500 000 caractères/mois**
+- Pas de limite par requête
+- Pas de carte bancaire
 
-500k caractères/mois:
-- messages/fr.json (15k chars) x 2 langues = 30k chars
-- Reste: 470k chars (largement suffisant)
+### Estimation usage site Guillaume Farré
+- Fichier FR complet: ~8400 caractères
+- Section `dino` manquante: ~2000 caractères
+- Total à traduire: ~4000 caractères (EN + IT)
+- **Usage: < 1% du quota mensuel**
 
-### Bonnes pratiques
+### Consulter usage
+Connectez-vous sur https://www.deepl.com/account/usage
 
-1. **Préserver placeholders**:
-   - `{count}` dans texte → doit rester `{count}` après traduction
-   - Utiliser `tag_handling: "xml"` si nécessaire
-
-2. **Contexte**:
-   - DeepL utilise contexte pour meilleure traduction
-   - Traduire phrases entières (pas mot par mot)
-
-3. **Vérification manuelle**:
-   - Relire traductions générées
-   - Ajuster si nécessaire (surtout termes techniques)
-
----
-
-## MONITORING USAGE
-
-Dashboard DeepL:
-1. https://www.deepl.com/account/usage
-2. Voir caractères utilisés ce mois
-3. Alerte si approche limite
+Vous verrez:
+- Caractères utilisés ce mois
+- Caractères restants
+- Historique traductions
 
 ---
 
-## ALTERNATIVE SI BESOIN
+## Dépannage
 
-Si dépassement limite gratuite:
+### Erreur "Invalid authentication key"
 
-**Option A**: Passer Plan Pro (€5.49/mois)
+**Cause**: Clé API incorrecte ou mal copiée
 
-**Option B**: Google Cloud Translation API
-- 500k chars/mois gratuit aussi
-- Qualité légèrement inférieure DeepL
+**Solution**:
+1. Vérifiez `.env.local` → pas d'espaces avant/après clé
+2. Reconnectez-vous sur https://www.deepl.com/account
+3. Vérifiez que clé est bien celle de votre compte (section "Authentication Key for DeepL API")
+4. Essayez de régénérer la clé API
+
+### Erreur "Quota exceeded"
+
+**Cause**: Quota mensuel dépassé (500k caractères)
+
+**Solution**:
+1. Attendez début du mois prochain (reset auto)
+2. OU passez au plan payant (~5€/mois pour 1M caractères)
+
+### Erreur "Network error" ou timeout
+
+**Cause**: Problème connexion internet ou trop de requêtes
+
+**Solution**:
+1. Vérifiez connexion internet
+2. Le script fait une pause de 100ms entre chaque requête (rate limiting)
+3. Réessayez dans quelques secondes
+4. Vérifiez firewall/VPN si bloqué
+
+### Module 'deepl-node' introuvable
+
+**Cause**: Package DeepL non installé
+
+**Solution**:
+```bash
+bun install
+```
+
+Le package `deepl-node` est déjà dans `package.json`, il sera installé automatiquement.
 
 ---
 
-## PROCHAINES ÉTAPES
+## Sécurité
 
-1. Signup DeepL Free
-2. Obtenir API key
-3. Ajouter .env.local
-4. Créer scripts/translate-deepl.ts
-5. Tester sur messages/fr.json
-6. Vérifier qualité EN + IT
-7. Commit traductions
+### ⚠️ RÈGLES ABSOLUES
 
-**Temps**: 1h total
+1. **JAMAIS commiter `.env.local` sur Git**
+   - Fichier déjà dans `.gitignore`
+   - Contient clés API secrètes
+
+2. **JAMAIS partager clé API DeepL**
+   - Personnelle et confidentielle
+   - Si compromise → régénérer immédiatement sur https://www.deepl.com/account
+
+3. **Backups automatiques**
+   - Script crée backups avant modification
+   - Conservés dans `messages/*.backup-*.json`
+   - Saufs à supprimer après validation
 
 ---
 
-Lalou
+## Résumé (checklist)
+
+- [ ] Créer compte gratuit DeepL → https://www.deepl.com/pro-api
+- [ ] Récupérer clé API → Account → "Authentication Key for DeepL API"
+- [ ] Ajouter dans `.env.local` → `DEEPL_API_KEY=...`
+- [ ] Lancer traduction → `bun run translate:deepl`
+- [ ] Vérifier résultats → `messages/en.json` + `messages/it.json`
+- [ ] Tester site multilingue → http://localhost:3000/en et /it
+- [ ] Commit si tout est OK
+
+---
+
+**Maintenu par**: Lalou  
+**Date**: 2025-11-15

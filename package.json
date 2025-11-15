@@ -10,6 +10,7 @@
     "format": "bunx biome format --write",
     "migrate-metadata": "bun scripts/migrate-metadata.ts",
     "translate": "npx tsx scripts/translate.ts",
+    "translate:deepl": "bun scripts/translate-deepl.ts",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage"

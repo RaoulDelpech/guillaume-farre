@@ -404,9 +404,11 @@ export default function AdminPage() {
                   onClick={() => setZoomedImage(photo.path)}
                 >
                   <img
-                    src={photo.path}
+                    key={`${photo.path}-${refreshKey}`}
+                    src={`${photo.path}?t=${refreshKey}`}
                     alt={photo.filename}
                     className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                    loading="eager"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <span className="text-white opacity-0 group-hover:opacity-100 text-sm font-medium">

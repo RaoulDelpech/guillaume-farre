@@ -20,25 +20,25 @@
     "atelier": {
       "title": "L'atelier",
       "subtitle": "Quatre Ferrari. Des outils de 1200 kilos.",
-      "description": "Dans mon atelier, ces voitures sont des instruments. 1200 kilos de métal qui laissent des empreintes sur la toile. Chaque accélération, chaque freinage, chaque dérapage contrôlé produit quelque chose que je ne peux pas reproduire à la main. C'est ce geste irréplicable que je cherche.",
+      "description": "Dans mon atelier, ces voitures sont des instruments. 1200 kilos de métal qui laissent des empreintes sur la toile. Une accélération brusque, un freinage violent, un dérapage calculé : aucune main ne pourrait reproduire ces gestes. C'est précisément ce que je cherche.",
       "cta": "Découvrir l'atelier"
     },
     "creations": {
       "title": "Deux formes, un processus",
       "subtitle": "Toiles uniques & Photographies documentaires",
-      "description": "Les toiles naissent du passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Les photographies, elles, capturent ce moment de création. L'instant où le mouvement devient matière.",
+      "description": "Les toiles naissent du passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Les photographies documentent ce moment : quand le mouvement laisse sa trace physique.",
       "cta": "Comprendre le processus"
     },
     "photographies": {
       "title": "Trois séries photographiques",
       "subtitle": "Empreintes • Atelier • Projections",
-      "description": "Les empreintes montrent les marques laissées par les roues et la carrosserie. L'atelier révèle les voitures au repos, entre deux sessions. Les projections figent la violence contrôlée du processus. Chaque série documente une facette différente de la création.",
+      "description": "Les empreintes montrent les marques laissées par les roues et la carrosserie. L'atelier révèle les voitures au repos, entre deux sessions. Les projections figent la violence maîtrisée de l'action. Trois regards différents sur la même démarche.",
       "cta": "Voir la galerie"
     },
     "conceptCarArt": {
       "title": "Concept Car Art",
       "subtitle": "Quand l'automobile devient pinceau",
-      "description": "Un événement unique où la Ferrari rouge rejoint la petite voiture n°20. L'atelier ouvre ses portes pour une performance live.",
+      "description": "La Ferrari rouge rejoint la petite voiture n°20 de mon enfance. L'atelier ouvre ses portes pour une session en public.",
       "cta": "Découvrir l'événement"
     },
     "acquerir": {
@@ -65,7 +65,7 @@
     "artist": {
       "label": "L'Artiste",
       "name": "Guillaume Farré",
-      "bio": "Sculpteur et artiste plasticien, Guillaume transforme la Ferrari en outil créateur. Chaque œuvre capture l'instant où 500 chevaux rencontrent la toile. Une démarche unique où le mouvement automobile devient geste artistique.",
+      "bio": "Sculpteur et artiste plasticien, Guillaume transforme la Ferrari en outil de création. Ses œuvres capturent le moment où 500 chevaux rencontrent la toile. Le mouvement automobile devient geste artistique.",
       "cta": "Découvrir l'histoire"
     }
   },
@@ -77,7 +77,7 @@
   "gallery": {
     "title": "Galerie",
     "subtitle": "Trois séries photographiques",
-    "intro": "Ces images documentent le processus de création. Il n'y a jamais de « deuxième prise ».",
+    "intro": "Ces images documentent la création des toiles. Il n'y a jamais de deuxième prise.",
     "empreintes": {
       "title": "Empreintes",
       "description": "Les marques laissées par les roues, la carrosserie, le châssis. Peinture industrielle sous pression. Chaque contact produit un résultat différent."
@@ -88,7 +88,7 @@
     },
     "projections": {
       "title": "Projections",
-      "description": "Le mouvement figé. Les éclaboussures de peinture sur les murs, le sol, les toiles. La violence contrôlée du geste."
+      "description": "Le mouvement figé. Peinture projetée sur les murs, le sol, les toiles. La violence maîtrisée."
     },
     "allWorks": "Toutes les œuvres",
     "filterAll": "Tout voir",
@@ -132,7 +132,7 @@
       "label": "L'Origine",
       "title": "De la rose à la rouge",
       "text1": "Quarante ans après avoir croisé la Ferrari rose de son enfance, Guillaume a décidé de transformer son obsession en méthode créative. La Dino rouge n'est pas juste un véhicule. C'est un instrument de création, une extension de sa volonté artistique.",
-      "text2": "Chaque courbe, chaque accélération, chaque freinage est contrôlé. La Dino danse sur la toile, laissant des traces irréversibles. C'est ce geste unique, ce dialogue entre l'homme et la machine, que Guillaume capture."
+      "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, laissant des traces définitives. Guillaume capture ce dialogue entre l'homme et la machine."
     },
     "specs": {
       "label": "Caractéristiques",
@@ -154,7 +154,7 @@
       "label": "Son Rôle",
       "title": "Un instrument de création",
       "text1": "La Dino n'est pas préservée dans un musée. Elle vit, elle crée, elle peint. Ses pneus laissent des marques. Son poids produit des traces. Sa vitesse génère des éclaboussures.",
-      "text2": "Chaque passage est unique. Chaque création est irréversible. C'est cette impermanence qui donne sa valeur à chaque œuvre."
+      "text2": "Chaque passage est différent. Chaque création est définitive. Cette impossibilité de recommencer fait la valeur de l'œuvre."
     },
     "gallery": {
       "label": "Galerie",
@@ -162,7 +162,7 @@
     },
     "cta": {
       "title": "Voir la Dino en action",
-      "text": "Découvrez comment cet instrument millénaire peint sur la toile. Une fusion entre l'automobile, l'art et l'obsession.",
+      "text": "Découvrez comment cette machine mythique peint sur la toile. Automobile, art et obsession réunis.",
       "button1": "Découvrir l'atelier",
       "button2": "Voir les œuvres"
     }

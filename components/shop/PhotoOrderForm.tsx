@@ -5,6 +5,7 @@ import { WHITEWALL_FORMATS, WHITEWALL_MATERIALS } from '@/lib/printing/whitewall
 interface PhotoOrderFormProps {
   photoPath: string;
   photoTitle: string;
+  isLimitedEdition?: boolean; // Si true, format A4 interdit
   onAddToCart: (order: OrderConfig) => void;
 }
 
@@ -18,11 +19,26 @@ export interface OrderConfig {
   totalPrice: number;
 }
 
-export default function PhotoOrderForm({ photoPath, photoTitle, onAddToCart }: PhotoOrderFormProps) {
+export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition = false, onAddToCart }: PhotoOrderFormProps) {
   const [format, setFormat] = useState<keyof typeof WHITEWALL_FORMATS>('A3');
   const [material, setMaterial] = useState<keyof typeof WHITEWALL_MATERIALS>('fine-art');
   const [frame, setFrame] = useState<'black-wood' | 'white-wood' | 'aluminum' | 'none'>('none');
   const [quantity, setQuantity] = useState(1);
+
+  // Filtrer les formats selon le type d'édition
+  const getAvailableFormats = () => {
+    const allFormats = Object.entries(WHITEWALL_FORMATS);
+
+    if (isLimitedEdition) {
+      // Édition limitée: A3, A2, A1 UNIQUEMENT (PAS de A4)
+      return allFormats.filter(([key]) => key === 'A3' || key === 'A2' || key === 'A1');
+    } else {
+      // Tirage illimité: A4, A3, A2 UNIQUEMENT (PAS de A1)
+      return allFormats.filter(([key]) => key === 'A4' || key === 'A3' || key === 'A2');
+    }
+  };
+
+  const availableFormats = getAvailableFormats();
 
   // Calcul du prix en temps réel
   const calculatePrice = () => {
@@ -68,9 +84,16 @@ export default function PhotoOrderForm({ photoPath, photoTitle, onAddToCart }: P
 
       {/* Sélection du format */}
       <div>
-        <label className="block text-sm font-medium mb-2">Format</label>
+        <label className="block text-sm font-medium mb-2">
+          Format
+          {isLimitedEdition && (
+            <span className="ml-2 text-xs px-2 py-0.5 bg-amber-500/10 text-amber-600 rounded-full border border-amber-500/20">
+              Édition limitée
+            </span>
+          )}
+        </label>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {Object.entries(WHITEWALL_FORMATS).map(([key, data]) => (
+          {availableFormats.map(([key, data]) => (
             <button
               key={key}
               onClick={() => setFormat(key as any)}
@@ -85,10 +108,17 @@ export default function PhotoOrderForm({ photoPath, photoTitle, onAddToCart }: P
             </button>
           ))}
         </div>
-        <p className="text-xs text-muted-foreground mt-2">
-          {format.includes('MEGA') && '🎨 Format XXXXXXXL - Impression monumentale !'}
-          {format.includes('XXL') && '🖼️ Format XXL - Grand format premium'}
-        </p>
+        {isLimitedEdition && (
+          <p className="text-xs text-amber-600 mt-2 flex items-center gap-1">
+            <span>ℹ️</span>
+            <span>Format A4 non disponible pour les éditions limitées</span>
+          </p>
+        )}
+        {!isLimitedEdition && (
+          <p className="text-xs text-muted-foreground mt-2">
+            Tirage illimité - Formats A4, A3, A2 disponibles
+          </p>
+        )}
       </div>
 
       {/* Sélection du matériau */}

@@ -24,7 +24,7 @@ export default function HeroCarousel() {
       cta: { text: t("atelier.cta"), href: "/atelier" },
     },
     {
-      image: "/images/works/a-trier/1762579267635_WhatsApp_Image_2025-11-02_at_09.22.45__13_.jpeg",
+      image: "/images/works/empreintes/empreintes-023.jpg",
       title: t("photographies.title"),
       subtitle: t("photographies.subtitle"),
       description: t("photographies.description"),
@@ -94,7 +94,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[60vh] md:h-[65vh] overflow-hidden bg-background">
+    <section className="relative w-full h-[50vh] md:h-[55vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -117,13 +117,13 @@ export default function HeroCarousel() {
           {/* Content - Centré world-class */}
           <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-6 lg:px-8">
             <div className="max-w-5xl">
-              {/* Titre principal - Plus gros, plus premium */}
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-wider mb-6 md:mb-8 animate-fade-in leading-tight">
+              {/* Titre principal - Taille optimale lisible */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wider mb-6 md:mb-8 animate-fade-in leading-tight">
                 {slide.title}
               </h1>
 
               {/* Sous-titre premium */}
-              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-8 md:mb-10 text-white/95 animate-fade-in-delay-1 tracking-wide">
+              <p className="text-lg sm:text-xl md:text-2xl font-light mb-8 md:mb-10 text-white/95 animate-fade-in-delay-1 tracking-wide">
                 {slide.subtitle}
               </p>
 

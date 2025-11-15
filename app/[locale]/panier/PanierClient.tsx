@@ -35,14 +35,21 @@ export default function PanierClient() {
 
       const data = await response.json();
 
+      if (!response.ok) {
+        // Erreur API (400, 500, etc.)
+        console.error('[Panier] Erreur API:', data);
+        throw new Error(data.error || 'Erreur lors de la création de la session de paiement');
+      }
+
       if (data.url) {
-        // Rediriger vers Stripe Checkout
+        // Succès - rediriger vers Stripe Checkout
+        console.log('[Panier] Redirection vers Stripe:', data.url);
         window.location.href = data.url;
       } else {
-        setError('Erreur lors de la création de la session de paiement');
+        throw new Error('URL de paiement non reçue');
       }
     } catch (err: any) {
-      console.error('Checkout error:', err);
+      console.error('[Panier] Erreur checkout:', err);
       setError(err.message || 'Une erreur est survenue');
     } finally {
       setLoading(false);

@@ -15,6 +15,7 @@ import SeriesSuggestButton from "@/components/admin/SeriesSuggestButton";
 import SimilarImagesPanel from "@/components/admin/SimilarImagesPanel";
 import PhotoFilters from "@/components/admin/PhotoFilters";
 import PhotoEditor, { EditedPhotoData } from "@/components/admin/PhotoEditor";
+import BulkActions from "@/components/admin/BulkActions";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -38,6 +39,7 @@ export default function AdminPage() {
   const [analyzingSeries, setAnalyzingSeries] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [editingPhoto, setEditingPhoto] = useState<PhotoMetadata | null>(null);
+  const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]); // Selection multiple pour bulk actions
 
   // Vérifier si déjà authentifié au chargement
   useEffect(() => {
@@ -194,6 +196,40 @@ export default function AdminPage() {
     } catch (error) {
       console.error('Erreur lors de la sauvegarde:', error);
       throw error; // Re-throw pour que PhotoEditor puisse gérer l'erreur
+    }
+  }
+
+  // Bulk actions handlers
+  function handleBulkUpdate(paths: string[], updates: Partial<PhotoMetadata>) {
+    const newPhotos = [...photos];
+    paths.forEach((path) => {
+      const index = newPhotos.findIndex((p) => p.path === path);
+      if (index !== -1) {
+        newPhotos[index] = { ...newPhotos[index], ...updates };
+      }
+    });
+    setPhotos(newPhotos);
+    setHasChanges(true);
+  }
+
+  function handleBulkDelete(paths: string[]) {
+    // Supprimer définitivement (pas juste mettre en trash)
+    const newPhotos = photos.filter((p) => !paths.includes(p.path));
+    setPhotos(newPhotos);
+    setHasChanges(true);
+  }
+
+  function togglePhotoSelection(path: string) {
+    setSelectedPhotos((prev) =>
+      prev.includes(path) ? prev.filter((p) => p !== path) : [...prev, path]
+    );
+  }
+
+  function toggleSelectAll() {
+    if (selectedPhotos.length === filteredPhotos.length) {
+      setSelectedPhotos([]);
+    } else {
+      setSelectedPhotos(filteredPhotos.map((p) => p.path));
     }
   }
 
@@ -370,6 +406,13 @@ export default function AdminPage() {
               Actualiser
             </button>
 
+            <button
+              onClick={toggleSelectAll}
+              className="px-6 py-3 bg-card hover:bg-muted border border-border rounded-md text-foreground font-medium transition-colors"
+            >
+              {selectedPhotos.length === filteredPhotos.length ? '☐ Tout désélectionner' : '☑ Tout sélectionner'}
+            </button>
+
             <SeriesSuggestButton
               photos={filteredPhotos.map((p) => ({ path: p.path, filename: p.filename }))}
               onSuggestionsReady={(suggestions) => setSeriesSuggestions(suggestions)}
@@ -396,13 +439,23 @@ export default function AdminPage() {
               <div
                 key={photo.path}
                 className={`bg-card border rounded-lg overflow-hidden transition-all ${
-                  photo.visible ? 'border-border' : 'border-muted-foreground/30'
+                  selectedPhotos.includes(photo.path) ? 'border-primary border-2' : photo.visible ? 'border-border' : 'border-muted-foreground/30'
                 }`}
               >
                 <div
                   className="relative aspect-square bg-muted cursor-zoom-in group"
                   onClick={() => setZoomedImage(photo.path)}
                 >
+                  {/* Checkbox sélection en haut à gauche */}
+                  <div className="absolute top-2 left-2 z-10" onClick={(e) => e.stopPropagation()}>
+                    <input
+                      type="checkbox"
+                      checked={selectedPhotos.includes(photo.path)}
+                      onChange={() => togglePhotoSelection(photo.path)}
+                      className="w-5 h-5 rounded border-2 border-white shadow-lg cursor-pointer"
+                    />
+                  </div>
+
                   <img
                     key={`${photo.path}-${refreshKey}`}
                     src={`${photo.path}?t=${refreshKey}`}
@@ -631,6 +684,15 @@ export default function AdminPage() {
           onClose={() => setSeriesSuggestions(null)}
         />
       )}
+
+      {/* Bulk Actions Menu */}
+      <BulkActions
+        selectedPhotos={selectedPhotos}
+        allPhotos={photos}
+        onBulkUpdate={handleBulkUpdate}
+        onBulkDelete={handleBulkDelete}
+        onClearSelection={() => setSelectedPhotos([])}
+      />
 
       {/* Bouton Sauvegarder Sticky */}
       {hasChanges && (

@@ -110,8 +110,8 @@ export default function HeroCarousel() {
             }`}
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            {/* Overlay subtil premium (world-class) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+            {/* Overlay léger pour lisibilité texte */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
           </div>
 
           {/* Content - Centré world-class */}

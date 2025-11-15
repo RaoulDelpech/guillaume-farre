@@ -29,7 +29,7 @@ interface NewPhotoMetadata {
   categories: ('unlimited' | 'limited' | 'xxl' | 'monumental')[];
   description?: string;
   aiGenerated?: boolean;
-  status: 'active' | 'trash' | 'to-sort';
+  status: null | 'trash' | 'to-sort';
   visible: boolean;
   forSale: boolean;
   category?: string; // Gardé pour compatibilité
@@ -90,8 +90,8 @@ async function migrateMetadata() {
       categories.push('unlimited');
     }
 
-    // Déterminer statut
-    const status: 'active' | 'trash' | 'to-sort' = old.visible ? 'active' : 'to-sort';
+    // Déterminer statut (null = active, sinon trash/to-sort)
+    const status: null | 'trash' | 'to-sort' = old.visible ? null : 'to-sort';
 
     // Créer limitedEdition si série limitée
     const limitedEdition = categories.includes('limited')
@@ -153,7 +153,8 @@ async function migrateMetadata() {
     total: newData.length,
     unlimited: newData.filter((p) => p.categories.includes('unlimited')).length,
     limited: newData.filter((p) => p.categories.includes('limited')).length,
-    active: newData.filter((p) => p.status === 'active').length,
+    active: newData.filter((p) => p.status === null).length,
+    trash: newData.filter((p) => p.status === 'trash').length,
     toSort: newData.filter((p) => p.status === 'to-sort').length,
   };
 
@@ -161,6 +162,7 @@ async function migrateMetadata() {
   console.log(`   - Tirages illimités: ${stats.unlimited}`);
   console.log(`   - Séries limitées:   ${stats.limited}`);
   console.log(`   - Statut active:     ${stats.active}`);
+  console.log(`   - Statut trash:      ${stats.trash}`);
   console.log(`   - Statut to-sort:    ${stats.toSort}`);
 
   console.log('\n✅ Migration terminée avec succès!\n');

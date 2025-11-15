@@ -14,6 +14,7 @@ import PricingManager from "@/components/admin/PricingManager";
 import SeriesSuggestButton from "@/components/admin/SeriesSuggestButton";
 import SimilarImagesPanel from "@/components/admin/SimilarImagesPanel";
 import PhotoFilters from "@/components/admin/PhotoFilters";
+import PhotoFiltersPills from "@/components/admin/PhotoFiltersPills";
 import PhotoEditor, { EditedPhotoData } from "@/components/admin/PhotoEditor";
 import BulkActions from "@/components/admin/BulkActions";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
@@ -430,6 +431,13 @@ export default function AdminPage() {
 
           </div>
         </div>
+
+        {/* Filtres Pills - Version minimaliste */}
+        <PhotoFiltersPills
+          photos={photos}
+          filters={filters}
+          onFiltersChange={setFilters}
+        />
 
         {/* Photos Grid */}
         <div key={refreshKey} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

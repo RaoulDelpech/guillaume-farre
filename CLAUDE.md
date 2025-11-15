@@ -5,6 +5,43 @@ Maintenu par: Lalou
 
 ---
 
+## RÈGLES ABSOLUES DE COMMUNICATION
+
+### RÈGLE #1 : Validation Point par Point
+
+**Quand poser une question à Guillaume** :
+- ✅ TOUJOURS proposer 3-4 options concrètes
+- ✅ TOUJOURS étayer chaque option (avantages/inconvénients)
+- ✅ TOUJOURS donner UNE recommandation claire
+- ✅ TOUJOURS attendre validation avant de passer à la question suivante
+- ❌ JAMAIS poser plusieurs questions d'un coup
+- ❌ JAMAIS proposer d'options sans justification
+
+**Format requis** :
+```
+QUESTION X : [Titre question]
+
+CONTEXTE : [Pourquoi cette question]
+
+OPTION 1 : [Description]
+✅ Avantages : ...
+❌ Inconvénients : ...
+
+OPTION 2 : [Description]
+✅ Avantages : ...
+❌ Inconvénients : ...
+
+OPTION 3 : [Description]
+✅ Avantages : ...
+❌ Inconvénients : ...
+
+💡 RECOMMANDATION : Option X parce que [raison claire]
+
+Votre choix : _______
+```
+
+---
+
 ## RÈGLES MÉTIER ABSOLUES
 
 ### Ce que Guillaume Farré vend

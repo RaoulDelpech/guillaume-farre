@@ -77,9 +77,10 @@ export class GelatoClient {
 
   constructor(config: GelatoConfig) {
     this.apiKey = config.apiKey;
+    // URLs officielles Gelato API
     this.baseUrl = config.sandbox
-      ? 'https://api-sandbox.gelato.com/v1'
-      : 'https://api.gelato.com/v1';
+      ? 'https://connect.test.gelato.tech'
+      : 'https://connect.live.gelato.tech';
   }
 
   /**
@@ -89,50 +90,39 @@ export class GelatoClient {
     console.log('🖨️ Creating Gelato order:', order.orderReferenceId);
 
     try {
-      const response = await fetch(`${this.baseUrl}/orders`, {
+      const response = await fetch(`${this.baseUrl}/v4/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-API-Key': this.apiKey,
+          'X-API-KEY': this.apiKey, // Gelato utilise X-API-KEY (pas X-API-Key)
         },
         body: JSON.stringify({
-          order: {
-            orderReferenceId: order.orderReferenceId,
-            customerReferenceId: order.customerReferenceId,
-            currency: order.currency,
-            items: order.items.map(item => ({
-              itemReferenceId: item.itemReferenceId,
-              productUid: this.mapFormatToProductUid(item.options?.format),
-              files: item.files,
-              quantity: item.quantity,
-              options: {
-                ...item.options,
-                // Ajouter options spécifiques Fine Art
-                enhanceColors: true,
-                archivalQuality: true
-              }
-            })),
-            shippingAddress: {
-              firstName: order.recipient.name.split(' ')[0],
-              lastName: order.recipient.name.split(' ').slice(1).join(' '),
-              addressLine1: order.shippingAddress.line1,
-              addressLine2: order.shippingAddress.line2,
-              city: order.shippingAddress.city,
-              postCode: order.shippingAddress.postCode,
-              country: order.shippingAddress.country,
-              email: order.recipient.email,
-              phone: order.recipient.phone,
-            },
-            // Options de livraison
-            shipping: {
-              service: 'standard', // ou 'express' pour livraison rapide
-            },
-            // Métadonnées pour tracking
-            metadata: {
-              ...order.metadata,
-              source: 'guillaume-farre-website',
-              timestamp: new Date().toISOString()
-            }
+          orderType: 'order', // 'order' = production réelle, 'draft' = test
+          orderReferenceId: order.orderReferenceId,
+          customerReferenceId: order.customerReferenceId,
+          currency: order.currency,
+          items: order.items.map(item => ({
+            itemReferenceId: item.itemReferenceId,
+            productUid: this.mapFormatToProductUid(item.options?.format),
+            files: item.files,
+            quantity: item.quantity,
+          })),
+          shippingAddress: {
+            firstName: order.recipient.name.split(' ')[0] || 'Client',
+            lastName: order.recipient.name.split(' ').slice(1).join(' ') || 'Guillaume Farré',
+            addressLine1: order.shippingAddress.line1,
+            addressLine2: order.shippingAddress.line2,
+            city: order.shippingAddress.city,
+            postCode: order.shippingAddress.postCode,
+            country: order.shippingAddress.country,
+            email: order.recipient.email,
+            phone: order.recipient.phone,
+          },
+          shipmentMethodUid: 'standard', // 'standard' ou 'express'
+          metadata: {
+            ...order.metadata,
+            source: 'guillaume-farre-website',
+            timestamp: new Date().toISOString()
           }
         })
       });
@@ -182,9 +172,9 @@ export class GelatoClient {
    * Vérifier le statut d'une commande
    */
   async getOrderStatus(orderId: string): Promise<GelatoOrderResponse> {
-    const response = await fetch(`${this.baseUrl}/orders/${orderId}`, {
+    const response = await fetch(`${this.baseUrl}/v4/orders/${orderId}`, {
       headers: {
-        'X-API-Key': this.apiKey,
+        'X-API-KEY': this.apiKey,
       }
     });
 
@@ -210,10 +200,10 @@ export class GelatoClient {
    * Annuler une commande (si pas encore en production)
    */
   async cancelOrder(orderId: string): Promise<boolean> {
-    const response = await fetch(`${this.baseUrl}/orders/${orderId}/cancel`, {
+    const response = await fetch(`${this.baseUrl}/v4/orders/${orderId}/cancel`, {
       method: 'POST',
       headers: {
-        'X-API-Key': this.apiKey,
+        'X-API-KEY': this.apiKey,
       }
     });
 
@@ -224,9 +214,9 @@ export class GelatoClient {
    * Obtenir la liste des produits disponibles
    */
   async getProducts(country = 'FR'): Promise<any[]> {
-    const response = await fetch(`${this.baseUrl}/products?country=${country}`, {
+    const response = await fetch(`${this.baseUrl}/v4/products?country=${country}`, {
       headers: {
-        'X-API-Key': this.apiKey,
+        'X-API-KEY': this.apiKey,
       }
     });
 
@@ -237,30 +227,28 @@ export class GelatoClient {
     const result = await response.json();
 
     // Filtrer pour ne garder que les produits Fine Art
-    return result.products.filter((p: any) =>
+    return result.products?.filter((p: any) =>
       p.category === 'fine_art' ||
-      p.name.includes('Giclee') ||
-      p.name.includes('Fine Art')
-    );
+      p.name?.includes('Giclee') ||
+      p.name?.includes('Fine Art')
+    ) || [];
   }
 
   /**
    * Calculer le prix d'une commande (sans la créer)
    */
   async calculatePrice(order: Partial<GelatoOrder>): Promise<number> {
-    const response = await fetch(`${this.baseUrl}/orders/quote`, {
+    const response = await fetch(`${this.baseUrl}/v4/orders/quote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': this.apiKey,
+        'X-API-KEY': this.apiKey,
       },
       body: JSON.stringify({
-        order: {
-          currency: order.currency || 'EUR',
-          items: order.items,
-          shippingAddress: {
-            country: order.shippingAddress?.country || 'FR'
-          }
+        currency: order.currency || 'EUR',
+        items: order.items,
+        shippingAddress: {
+          country: order.shippingAddress?.country || 'FR'
         }
       })
     });

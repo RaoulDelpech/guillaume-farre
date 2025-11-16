@@ -10,6 +10,7 @@ import ShareButtons from "@/components/ShareButtons";
 import SizeVisualizer from "@/components/SizeVisualizer";
 import StockBadge from "@/components/StockBadge";
 import DeliveryEstimate from "@/components/DeliveryEstimate";
+import SocialProof from "@/components/SocialProof";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -242,8 +243,18 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               )}
 
               {/* Délai de livraison */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <DeliveryEstimate variant="compact" />
+              </div>
+
+              {/* Social proof */}
+              <div className="mb-6">
+                <SocialProof
+                  photoPath={photo.path}
+                  stockAvailable={photo.limitedEdition?.available}
+                  stockTotal={photo.limitedEdition?.total}
+                  variant="compact"
+                />
               </div>
 
               <button
@@ -336,6 +347,15 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
               {/* Délai de livraison détaillé */}
               <DeliveryEstimate variant="detailed" className="mb-6" />
+
+              {/* Social proof détaillé */}
+              <SocialProof
+                photoPath={selectedPhoto.path}
+                stockAvailable={selectedPhoto.limitedEdition?.available}
+                stockTotal={selectedPhoto.limitedEdition?.total}
+                variant="detailed"
+                className="mb-6"
+              />
 
               {/* Prix total et ajout */}
               <div className="bg-muted rounded-lg p-8">

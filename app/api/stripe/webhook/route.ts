@@ -5,7 +5,7 @@ import { getGelatoClient } from '@/lib/gelato-client';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-10-29.clover',
 });
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
@@ -20,7 +20,7 @@ async function sendToGelato(session: Stripe.Checkout.Session) {
   }
 
   const lineItems = session.line_items?.data || [];
-  const shippingDetails = session.shipping_details;
+  const shippingDetails = session.shipping_cost?.address;
   const customerDetails = session.customer_details;
 
   // Préparer les items pour Gelato

@@ -30,7 +30,11 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         q: 'Puis-je payer en plusieurs fois ?',
-        a: 'Oui ! Pour les commandes de 500€ et plus, le paiement en 3 ou 4 fois sans frais est disponible via Stripe. L\'option vous sera proposée automatiquement lors du paiement.',
+        a: 'Oui ! Pour les commandes de 100€ et plus, le paiement en 3x ou 4x sans frais est disponible via Alma. L\'option vous sera proposée automatiquement lors du paiement. Exemple : pour une œuvre à 2,000€, payez 4x 500€/mois sans aucun frais supplémentaire. Validation instantanée, vous recevez immédiatement votre œuvre.',
+      },
+      {
+        q: 'Comment fonctionne le paiement en plusieurs fois Alma ?',
+        a: 'Alma vous permet de payer en 3 ou 4 fois sans frais. Lors du paiement, sélectionnez "Alma" comme moyen de paiement, vous serez redirigé vers leur plateforme sécurisée. Alma vérifie votre éligibilité instantanément (moins de 30 secondes), puis vous payez la première mensualité. Les suivantes sont prélevées automatiquement chaque mois. Nous recevons le paiement complet immédiatement et vous expédions l\'œuvre sans délai. Aucun frais caché, aucun intérêt.',
       },
       {
         q: 'Ma commande est-elle sécurisée ?',

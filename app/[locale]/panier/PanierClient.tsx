@@ -256,6 +256,34 @@ export default function PanierClient() {
               </div>
             </div>
 
+            {/* Section Alma - Paiement 3x/4x sans frais */}
+            {totalPrice >= 100 && (
+              <div className="bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">💳</span>
+                  <div>
+                    <p className="font-medium text-green-900 dark:text-green-100 mb-1">
+                      Paiement en 3x ou 4x sans frais
+                    </p>
+                    <p className="text-sm text-green-700 dark:text-green-300 mb-2">
+                      Payez en plusieurs fois via Alma, sans frais supplémentaires
+                    </p>
+                    <div className="text-xs text-green-600 dark:text-green-400 space-y-1">
+                      {totalPrice >= 100 && totalPrice < 300 && (
+                        <p>• 3x {Math.round(totalPrice / 3)}€/mois</p>
+                      )}
+                      {totalPrice >= 300 && (
+                        <>
+                          <p>• 3x {Math.round(totalPrice / 3)}€/mois</p>
+                          <p>• 4x {Math.round(totalPrice / 4)}€/mois</p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {error && (
               <div className="mb-4 p-4 bg-destructive/10 border border-destructive/20 rounded-lg text-sm text-destructive">
                 {error}

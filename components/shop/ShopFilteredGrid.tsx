@@ -2,6 +2,7 @@
 import { useState, useMemo } from "react";
 import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import ShopGrid from "./ShopGrid";
+import ProductFilters, { FilterState } from "./ProductFilters";
 import { useFavorites } from "@/hooks/useFavorites";
 
 interface ShopFilteredGridProps {
@@ -15,6 +16,24 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [activeSort, setActiveSort] = useState<SortType>("default");
   const { favorites } = useFavorites();
+
+  // Calculer prix min/max pour le slider
+  const priceRange = useMemo(() => {
+    const prices = photos.map(p => p.price || 2000);
+    return {
+      min: Math.min(...prices),
+      max: Math.max(...prices),
+    };
+  }, [photos]);
+
+  // State filtres avancés
+  const [advancedFilters, setAdvancedFilters] = useState<FilterState>({
+    priceRange: [priceRange.min, priceRange.max],
+    formats: [],
+    series: [],
+    editions: [],
+    availability: [],
+  });
 
   // Calculate stats
   const stats = useMemo(() => {
@@ -32,9 +51,9 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
     };
   }, [photos]);
 
-  // Filtered and sorted photos
+  // Filtered and sorted photos (avec filtres avancés)
   const processedPhotos = useMemo(() => {
-    // 1. Filter
+    // 1. Filtres basiques
     let filtered = [...photos];
 
     if (activeFilter === "limited") {
@@ -47,7 +66,55 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
       filtered = filtered.filter((p) => favorites.includes(p.path));
     }
 
-    // 2. Sort
+    // 2. Filtres avancés
+
+    // Prix
+    filtered = filtered.filter(p => {
+      const price = p.price || 2000;
+      return price >= advancedFilters.priceRange[0] && price <= advancedFilters.priceRange[1];
+    });
+
+    // Formats (TODO: Nécessite metadata formats dans PhotoMetadata)
+    // if (advancedFilters.formats.length > 0) {
+    //   filtered = filtered.filter(p =>
+    //     advancedFilters.formats.some(f => p.availableFormats?.includes(f))
+    //   );
+    // }
+
+    // Séries
+    if (advancedFilters.series.length > 0) {
+      filtered = filtered.filter(p =>
+        advancedFilters.series.some(s => p.seriesName?.toLowerCase().includes(s))
+      );
+    }
+
+    // Éditions
+    if (advancedFilters.editions.length > 0) {
+      filtered = filtered.filter(p => {
+        const isLimited = p.categories?.includes('limited') || p.edition?.type === 'limited';
+        const isUnlimited = p.categories?.includes('unlimited') || !isLimited;
+
+        return advancedFilters.editions.some(e =>
+          (e === 'limited' && isLimited) || (e === 'unlimited' && isUnlimited)
+        );
+      });
+    }
+
+    // Disponibilité
+    if (advancedFilters.availability.length > 0) {
+      filtered = filtered.filter(p => {
+        const available = p.limitedEdition?.available || 999;
+
+        return advancedFilters.availability.some(a => {
+          if (a === 'available') return available >= 3;
+          if (a === 'few-left') return available > 0 && available <= 2;
+          if (a === 'sold-out') return available === 0;
+          return false;
+        });
+      });
+    }
+
+    // 3. Tri
     if (activeSort === "price_asc") {
       filtered.sort((a, b) => (a.price || 2000) - (b.price || 2000));
     } else if (activeSort === "price_desc") {
@@ -61,11 +128,22 @@ export default function ShopFilteredGrid({ photos }: ShopFilteredGridProps) {
     }
 
     return filtered;
-  }, [photos, activeFilter, activeSort, favorites]);
+  }, [photos, activeFilter, activeSort, favorites, advancedFilters]);
 
   return (
     <div>
-      {/* Filtres élégants */}
+      {/* Filtres avancés */}
+      <div className="mb-8">
+        <ProductFilters
+          filters={advancedFilters}
+          onFiltersChange={setAdvancedFilters}
+          minPrice={priceRange.min}
+          maxPrice={priceRange.max}
+          totalResults={processedPhotos.length}
+        />
+      </div>
+
+      {/* Filtres rapides élégants */}
       <div className="max-w-5xl mx-auto mb-12">
         <div className="flex flex-wrap gap-4">
           <button

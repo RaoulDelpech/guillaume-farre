@@ -4,7 +4,7 @@ import { createWhiteWallOrder } from '@/lib/printing/whitewall-api';
 import type { WhiteWallOrder, WhiteWallProduct, ShippingAddress } from '@/lib/printing/whitewall-api';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-10-29.clover',
 });
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';

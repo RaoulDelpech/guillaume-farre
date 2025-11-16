@@ -226,6 +226,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 {photo.price || 2000}€
               </p>
 
+              {/* Badge paiement 3x/4x si montant ≥ €100 */}
+              {(photo.price || 2000) >= 100 && (
+                <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 mb-4">
+                  <span>💳</span>
+                  <span className="font-medium">Paiement 3x/4x sans frais</span>
+                </div>
+              )}
+
               {/* Délai de livraison */}
               <div className="mb-6">
                 <DeliveryEstimate variant="compact" />

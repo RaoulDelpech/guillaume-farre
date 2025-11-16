@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-10-29.clover',
 });
 
 export async function POST(request: Request) {
@@ -56,9 +56,9 @@ export async function POST(request: Request) {
 
     console.log(`[Stripe] Création session pour ${validatedItems.length} item(s)`);
 
-    // Créer une session de paiement Stripe
+    // Créer une session de paiement Stripe avec support Alma (3x/4x sans frais)
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'alma'], // Alma activé pour paiement fractionné 3x/4x
       line_items: validatedItems.map((item: { title: string; price: number; category: string; images: string[] }) => ({
         price_data: {
           currency: 'eur',

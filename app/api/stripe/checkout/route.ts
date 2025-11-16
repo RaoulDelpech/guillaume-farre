@@ -37,6 +37,13 @@ export async function POST(request: Request) {
       const absoluteImages = (item.images || []).map((img: string) => {
         if (img.startsWith('http')) return img;
         return `${baseUrl}${img.startsWith('/') ? '' : '/'}${img}`;
+      }).filter((img: string) => {
+        // Stripe n'accepte que les URLs HTTPS publiques
+        // En dev local (localhost), on retire les images pour éviter les erreurs
+        if (img.includes('localhost') || img.startsWith('http://')) {
+          return false;
+        }
+        return true;
       });
 
       return {

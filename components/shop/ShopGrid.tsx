@@ -100,6 +100,12 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     if (cart.length === 0) return;
 
     try {
+      console.log('[ShopGrid] Envoi checkout avec items:', cart.map(item => ({
+        title: item.photo.title || item.photo.filename,
+        price: item.price,
+        category: item.photo.category,
+      })));
+
       const response = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -116,14 +122,22 @@ export default function ShopGrid({ photos }: ShopGridProps) {
       });
 
       const data = await response.json();
+      console.log('[ShopGrid] Réponse Stripe:', data);
+
+      if (!response.ok) {
+        console.error('[ShopGrid] Erreur HTTP:', response.status, data);
+        alert(`Erreur: ${data.error || 'Erreur lors de la création de la session de paiement'}`);
+        return;
+      }
+
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert('Erreur lors de la création de la session de paiement');
+        alert('Erreur: Pas d\'URL de redirection reçue');
       }
     } catch (error) {
-      console.error('Checkout error:', error);
-      alert('Erreur lors du paiement');
+      console.error('[ShopGrid] Checkout error:', error);
+      alert(`Erreur lors du paiement: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
     }
   };
 

@@ -107,7 +107,7 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
                 category: item,
                 categories: ['unlimited'] as ('unlimited' | 'limited' | 'xxl' | 'monumental')[],
                 status: 'to-sort' as 'trash' | 'to-sort' | null,
-                visible: true,
+                visible: false,
                 forSale: false,
                 isNumberedSeries: false,
               }));
@@ -125,7 +125,7 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
               category: categoryName,
               categories: ['unlimited'] as ('unlimited' | 'limited' | 'xxl' | 'monumental')[],
               status: 'to-sort' as 'trash' | 'to-sort' | null,
-              visible: true,
+              visible: false,
               forSale: false,
               isNumberedSeries: false,
             };

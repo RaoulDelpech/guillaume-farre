@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { getGelatoClient } from '@/lib/gelato-client';
+import { getPennylaneClient } from '@/lib/pennylane-client';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
@@ -20,7 +21,8 @@ async function sendToGelato(session: Stripe.Checkout.Session) {
   }
 
   const lineItems = session.line_items?.data || [];
-  const shippingDetails = session.shipping_cost?.address;
+  // @ts-ignore - Shipping details structure changed in Stripe API 2025
+  const shippingDetails = session.shipping_details || session.shipping_cost?.address;
   const customerDetails = session.customer_details;
 
   // Préparer les items pour Gelato
@@ -122,12 +124,13 @@ async function processOrder(session: Stripe.Checkout.Session) {
   try {
     // Récupérer les détails complets de la session
     const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
-      expand: ['line_items', 'customer_details', 'shipping_details']
+      expand: ['line_items', 'customer_details']
     });
 
     const lineItems = fullSession.line_items?.data || [];
     const customerDetails = fullSession.customer_details;
-    const shippingDetails = fullSession.shipping_details;
+    // @ts-ignore - Shipping details structure changed in Stripe API 2025
+    const shippingDetails = fullSession.shipping_details || fullSession.shipping_cost?.address;
 
     console.log('📦 Order details:', {
       customer: customerDetails?.email,
@@ -151,11 +154,16 @@ async function processOrder(session: Stripe.Checkout.Session) {
       }
     }
 
+    // Créer facture Pennylane automatiquement
+    try {
+      await syncToPennylane(fullSession, lineItems);
+    } catch (error) {
+      console.error('⚠️ Pennylane sync failed, but order processed:', error);
+      // On continue même si Pennylane échoue
+    }
+
     // TODO: Envoyer email de confirmation au client
     // await sendConfirmationEmail(customerDetails?.email, fullSession);
-
-    // TODO: Sauvegarder la commande en base de données
-    // await saveOrderToDatabase(fullSession);
 
     console.log('✅ Order processed successfully');
 
@@ -180,6 +188,61 @@ function isLimitedEdition(item: Stripe.LineItem): boolean {
   return description.includes('limitée') ||
          description.includes('limited') ||
          description.includes('edition');
+}
+
+// Synchroniser avec Pennylane (comptabilité automatique)
+async function syncToPennylane(
+  session: Stripe.Checkout.Session,
+  lineItems: Stripe.LineItem[]
+) {
+  const pennylane = getPennylaneClient();
+
+  if (!pennylane) {
+    console.log('[Pennylane] Skipping - not configured');
+    return;
+  }
+
+  // Vérifier si facture existe déjà (éviter duplicatas)
+  const exists = await pennylane.invoiceExists(session.id);
+  if (exists) {
+    console.log('[Pennylane] Invoice already exists for session', session.id);
+    return;
+  }
+
+  const customerDetails = session.customer_details;
+  // @ts-ignore - Shipping details structure changed in Stripe API 2025
+  const shippingDetails = session.shipping_details || session.shipping_cost?.address;
+  const address = shippingDetails?.address || customerDetails?.address;
+
+  // Préparer ligne items
+  const pennylaneLineItems = lineItems.map((item) => ({
+    label: item.description || 'Photo Fine Art',
+    quantity: item.quantity || 1,
+    unit_price: (item.amount_total || 0) / 100, // Centimes → Euros
+    vat_rate: pennylane.getVatRate(address?.country || 'FR'),
+  }));
+
+  // Créer facture
+  await pennylane.createInvoice({
+    date: new Date().toISOString().split('T')[0],
+    deadline: new Date().toISOString().split('T')[0], // Payé immédiatement
+    customer: {
+      name: customerDetails?.name || 'Client anonyme',
+      email: customerDetails?.email,
+      address: address?.line1,
+      postal_code: address?.postal_code,
+      city: address?.city,
+      country_alpha2: address?.country || 'FR',
+    },
+    line_items: pennylaneLineItems,
+    paid: true, // Déjà payé via Stripe
+    payment_method: session.payment_method_types?.[0] === 'alma'
+      ? 'Alma (paiement fractionné)'
+      : 'Carte bancaire',
+    external_id: session.id, // Lien unique avec Stripe
+  });
+
+  console.log('[Pennylane] Facture créée automatiquement pour session', session.id);
 }
 
 export async function POST(req: NextRequest) {

@@ -4,11 +4,13 @@ import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MobileNav from "./MobileNav";
 import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/hooks/useWishlist";
 
 export default function Navigation() {
   const pathname = usePathname();
   const t = useTranslations("nav");
   const { totalItems } = useCart();
+  const { count: wishlistCount } = useWishlist();
 
   const links = [
     { href: "/", label: t("accueil") },
@@ -44,8 +46,21 @@ export default function Navigation() {
               </Link>
             ))}
             <Link
+              href="/favoris"
+              className="relative text-sm font-light tracking-wide hover:text-primary transition-colors"
+              title="Mes favoris"
+            >
+              ♡
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground text-xs rounded-full flex items-center justify-center font-medium">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
+            <Link
               href="/panier"
               className="relative text-sm font-light tracking-wide hover:text-primary transition-colors"
+              title="Mon panier"
             >
               🛒
               {totalItems > 0 && (

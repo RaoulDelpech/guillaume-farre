@@ -74,7 +74,8 @@ export async function POST(request: Request) {
       });
 
       // Adresse de livraison depuis Stripe
-      const shippingDetails = session.shipping_details || session.customer_details;
+      // @ts-ignore - Shipping details structure changed in Stripe API 2025
+      const shippingDetails = session.shipping_details || session.shipping_cost?.address || session.customer_details;
       const shippingAddress: ShippingAddress = {
         firstName: shippingDetails?.name?.split(' ')[0] || '',
         lastName: shippingDetails?.name?.split(' ').slice(1).join(' ') || '',

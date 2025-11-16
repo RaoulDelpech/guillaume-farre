@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { useTranslations } from "next-intl";
 import { useFavorites } from "@/hooks/useFavorites";
+import { useWishlist } from "@/hooks/useWishlist";
 import { useConfetti } from "@/hooks/useConfetti";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import ShareButtons from "@/components/ShareButtons";
@@ -28,6 +29,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const [selectedFormat, setSelectedFormat] = useState("A3");
   const [selectedFrame, setSelectedFrame] = useState("none");
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const { fireHeartConfetti, fireConfetti } = useConfetti();
   const { playCartAdd, playClick, playHover } = useSoundEffects();
 
@@ -181,20 +183,25 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 className="w-full h-full object-cover"
               />
 
-              {/* Favorite button */}
+              {/* Wishlist button */}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const wasNotFavorite = !isFavorite(photo.path);
-                  toggleFavorite(photo.path);
-                  if (wasNotFavorite) {
+                  const wasNotInWishlist = !isInWishlist(photo.path);
+                  toggleWishlist({
+                    photoPath: photo.path,
+                    title: photo.title || photo.filename,
+                    price: photo.price,
+                    thumbnailUrl: photo.path,
+                  });
+                  if (wasNotInWishlist) {
                     fireHeartConfetti();
                   }
                 }}
                 className="absolute top-3 left-3 bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white p-2.5 rounded-full transition-all hover:scale-110 z-10"
-                title={isFavorite(photo.path) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                title={isInWishlist(photo.path) ? "Retirer des favoris" : "Ajouter aux favoris"}
               >
-                {isFavorite(photo.path) ? (
+                {isInWishlist(photo.path) ? (
                   <span className="text-lg">♥</span>
                 ) : (
                   <span className="text-lg">♡</span>

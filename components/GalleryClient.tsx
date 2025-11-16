@@ -10,8 +10,11 @@ interface GalleryClientProps {
   works: Work[];
 }
 
+const ITEMS_PER_PAGE = 24; // 24 photos par page (grille 4x6)
+
 export default function GalleryClient({ works }: GalleryClientProps) {
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Filtrage des œuvres selon le filtre actif
   const filteredWorks = useMemo(() => {
@@ -21,6 +24,19 @@ export default function GalleryClient({ works }: GalleryClientProps) {
     if (activeFilter === 'limited') return works.filter(w => w.edition.type === 'limited');
     return works;
   }, [works, activeFilter]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredWorks.length / ITEMS_PER_PAGE);
+  const paginatedWorks = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredWorks.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredWorks, currentPage]);
+
+  // Reset page quand filtre change
+  const handleFilterChange = (filter: FilterType) => {
+    setActiveFilter(filter);
+    setCurrentPage(1);
+  };
 
   const filterButtons: { key: FilterType; label: string }[] = [
     { key: 'all', label: 'Toutes' },
@@ -38,7 +54,7 @@ export default function GalleryClient({ works }: GalleryClientProps) {
             {filterButtons.map(({ key, label }) => (
               <button
                 key={key}
-                onClick={() => setActiveFilter(key)}
+                onClick={() => handleFilterChange(key)}
                 className={`px-8 py-3 border font-light tracking-wide rounded transition-all ${
                   activeFilter === key
                     ? 'border-primary text-primary bg-primary/5'
@@ -59,9 +75,60 @@ export default function GalleryClient({ works }: GalleryClientProps) {
             <div className="text-center mb-12">
               <p className="text-muted-foreground text-sm">
                 {filteredWorks.length} œuvre{filteredWorks.length > 1 ? 's' : ''} {activeFilter !== 'all' && 'dans cette catégorie'}
+                {totalPages > 1 && ` • Page ${currentPage}/${totalPages}`}
               </p>
             </div>
-            <GalleryGrid works={filteredWorks} />
+            <GalleryGrid works={paginatedWorks} />
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="mt-16 flex items-center justify-center gap-4">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-6 py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground"
+                >
+                  ← Précédent
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    let pageNum: number;
+                    if (totalPages <= 5) {
+                      pageNum = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNum = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      pageNum = totalPages - 4 + i;
+                    } else {
+                      pageNum = currentPage - 2 + i;
+                    }
+
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        className={`w-10 h-10 flex items-center justify-center rounded transition-all ${
+                          currentPage === pageNum
+                            ? 'bg-primary text-primary-foreground font-medium'
+                            : 'border border-border hover:border-primary text-foreground hover:text-primary'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-6 py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground"
+                >
+                  Suivant →
+                </button>
+              </div>
+            )}
           </>
         ) : (
           <div className="text-center py-20">

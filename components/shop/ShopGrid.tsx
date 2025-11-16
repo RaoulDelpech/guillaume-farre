@@ -7,6 +7,7 @@ import { useConfetti } from "@/hooks/useConfetti";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 import ShareButtons from "@/components/ShareButtons";
 import SizeVisualizer from "@/components/SizeVisualizer";
+import StockBadge from "@/components/StockBadge";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -200,21 +201,13 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               </button>
 
               {/* Badge édition limitée avec compteur disponibilité */}
-              {(photo.categories?.includes('limited') || photo.edition?.type === 'limited') && (
-                <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white/90 px-3 py-1.5 rounded text-xs font-light tracking-wide border border-white/20">
-                  {photo.limitedEdition ? (
-                    <>
-                      Édition limitée · {photo.limitedEdition.available}/{photo.limitedEdition.total} restants
-                      {photo.limitedEdition.available <= 2 && photo.limitedEdition.available > 0 && (
-                        <span className="ml-2 text-amber-400">⚠️</span>
-                      )}
-                      {photo.limitedEdition.available === 0 && (
-                        <span className="ml-2 text-red-400">ÉPUISÉ</span>
-                      )}
-                    </>
-                  ) : (
-                    `Édition limitée ${photo.edition?.count || '1-7'}`
-                  )}
+              {(photo.categories?.includes('limited') || photo.edition?.type === 'limited') && photo.limitedEdition && (
+                <div className="absolute top-3 right-3">
+                  <StockBadge
+                    available={photo.limitedEdition.available}
+                    total={photo.limitedEdition.total}
+                    size="sm"
+                  />
                 </div>
               )}
             </div>

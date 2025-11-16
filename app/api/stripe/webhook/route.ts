@@ -228,10 +228,10 @@ async function syncToPennylane(
     deadline: new Date().toISOString().split('T')[0], // Payé immédiatement
     customer: {
       name: customerDetails?.name || 'Client anonyme',
-      email: customerDetails?.email,
-      address: address?.line1,
-      postal_code: address?.postal_code,
-      city: address?.city,
+      email: customerDetails?.email || undefined,
+      address: address?.line1 || undefined,
+      postal_code: address?.postal_code || undefined,
+      city: address?.city || undefined,
       country_alpha2: address?.country || 'FR',
     },
     line_items: pennylaneLineItems,

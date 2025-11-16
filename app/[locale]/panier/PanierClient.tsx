@@ -7,7 +7,7 @@ import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
 export default function PanierClient() {
-  const { items, removeItem, clearCart, totalPrice } = useCart();
+  const { items, removeItem, clearCart, totalPrice, daysUntilExpiration } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const locale = useLocale();
@@ -237,6 +237,18 @@ export default function PanierClient() {
         {/* Résumé et checkout */}
         <div className="lg:col-span-1">
           <div className="bg-card border rounded-lg p-8 sticky top-24">
+            {/* Indicateur panier persistant */}
+            {daysUntilExpiration !== null && (
+              <div className="mb-6 p-4 bg-muted/50 rounded-lg border border-border/50">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span>🕐</span>
+                  <span>
+                    Panier conservé {daysUntilExpiration === 30 ? '' : `encore `}
+                    <strong className="text-foreground">{daysUntilExpiration} jours</strong>
+                  </span>
+                </div>
+              </div>
+            )}
             <h3 className="text-xl font-light mb-6">Résumé de la commande</h3>
 
             <div className="space-y-4 mb-8">

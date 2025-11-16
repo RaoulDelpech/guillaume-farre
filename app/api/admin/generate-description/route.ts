@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     try {
       console.log('[generate-description] Appel API Anthropic pour:', photoFilename);
       message = await anthropic.messages.create({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-3-5-sonnet-20241022', // Sonnet pour meilleure qualité descriptions artistiques
         max_tokens: 300,
         messages: [
           {

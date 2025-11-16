@@ -93,13 +93,21 @@ export default function AdminPage() {
         return;
       }
 
-      // Recharger les photos
+      // Recharger les photos immédiatement
       await loadPhotos();
-      // Force le re-render de l'UI
-      setRefreshKey(prev => prev + 1);
 
       // Switcher automatiquement vers "À trier" pour voir les photos uploadées
       setFilterVisibility("to-sort");
+      setFilters(prev => ({ ...prev, status: 'to-sort' }));
+
+      // Force le re-render de l'UI avec un délai pour assurer le refresh
+      setRefreshKey(prev => prev + 1);
+
+      // Double refresh pour assurer l'affichage des miniatures
+      setTimeout(async () => {
+        await loadPhotos();
+        setRefreshKey(prev => prev + 1);
+      }, 300);
 
       // Si 2+ photos uploadées, analyser pour suggérer des séries
       if (uploadData.files && uploadData.files.length >= 2) {

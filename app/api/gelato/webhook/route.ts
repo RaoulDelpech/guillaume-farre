@@ -16,6 +16,16 @@
 
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
+import {
+  sendShippingNotificationEmail,
+  sendDeliveryConfirmationEmail,
+  sendOrderProblemEmail,
+} from '@/lib/resend-client';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+  apiVersion: '2025-10-29.clover',
+});
 
 /**
  * Payload webhook Gelato
@@ -106,25 +116,83 @@ async function logWebhookEvent(payload: GelatoWebhookPayload) {
 async function sendCustomerEmail(payload: GelatoWebhookPayload) {
   const { event, orderReferenceId, data } = payload;
 
-  // TODO: Récupérer email client depuis Stripe session
-  // const session = await stripe.checkout.sessions.retrieve(orderReferenceId);
-  // const customerEmail = session.customer_details?.email;
+  try {
+    // Récupérer email client depuis Stripe session
+    const session = await stripe.checkout.sessions.retrieve(orderReferenceId, {
+      expand: ['line_items', 'customer_details'],
+    });
 
-  console.log(`[Gelato Webhook] TODO: Envoyer email "${event}" au client`);
+    const customerEmail = session.customer_details?.email;
+    const customerName = session.customer_details?.name || 'Client';
+    const lineItems = session.line_items?.data || [];
 
-  // TODO: Implémenter avec Resend
-  // if (event === 'order.shipped' && data.tracking) {
-  //   await resend.emails.send({
-  //     from: 'Guillaume Farré <noreply@guillaumefarre.com>',
-  //     to: customerEmail,
-  //     subject: 'Votre commande a été expédiée 📦',
-  //     html: `
-  //       <h1>Votre œuvre est en route !</h1>
-  //       <p>Numéro de suivi : ${data.tracking.trackingNumber}</p>
-  //       <a href="${data.tracking.trackingUrl}">Suivre ma commande</a>
-  //     `,
-  //   });
-  // }
+    if (!customerEmail) {
+      console.warn('[Gelato Webhook] No customer email found');
+      return;
+    }
+
+    // Préparer les items pour l'email
+    const items = lineItems.map((item) => ({
+      title: item.description || 'Photo Fine Art',
+      format: extractFormatFromDescription(item.description || ''),
+      frame: extractFrameFromDescription(item.description || ''),
+    }));
+
+    // Envoyer email selon type événement
+    if (event === 'order.shipped' && data.tracking) {
+      await sendShippingNotificationEmail({
+        to: customerEmail,
+        customerName,
+        orderNumber: orderReferenceId,
+        carrier: data.tracking.carrier || 'Transporteur',
+        trackingNumber: data.tracking.trackingNumber || '',
+        trackingUrl: data.tracking.trackingUrl || '',
+        estimatedDelivery: '2-3 jours',
+        items,
+      });
+      console.log('[Gelato Webhook] 📧 Shipping email sent to:', customerEmail);
+    } else if (event === 'order.delivered') {
+      await sendDeliveryConfirmationEmail({
+        to: customerEmail,
+        customerName,
+        orderNumber: orderReferenceId,
+        items,
+      });
+      console.log('[Gelato Webhook] 📧 Delivery email sent to:', customerEmail);
+    } else if (event === 'order.on-hold' && data.error) {
+      await sendOrderProblemEmail({
+        to: customerEmail,
+        customerName,
+        orderNumber: orderReferenceId,
+        problemDescription: data.error.message || 'Un problème technique est survenu',
+      });
+      console.log('[Gelato Webhook] 📧 Problem email sent to:', customerEmail);
+    }
+  } catch (error) {
+    console.error('[Gelato Webhook] Failed to send customer email:', error);
+    // On ne throw pas pour ne pas bloquer le webhook
+  }
+}
+
+// Helper functions
+function extractFormatFromDescription(description: string): string {
+  const formats = ['A4', 'A3', 'A2', 'A1', 'XXL', 'MONUMENTAL'];
+  const found = formats.find((f) => description.toUpperCase().includes(f));
+  return found || 'A3';
+}
+
+function extractFrameFromDescription(description: string): string {
+  const lowerDesc = description.toLowerCase();
+  if (lowerDesc.includes('cadre noir') || lowerDesc.includes('black frame')) {
+    return 'Cadre noir';
+  }
+  if (lowerDesc.includes('cadre blanc') || lowerDesc.includes('white frame')) {
+    return 'Cadre blanc';
+  }
+  if (lowerDesc.includes('sans cadre') || lowerDesc.includes('no frame')) {
+    return 'Sans cadre';
+  }
+  return 'Sans cadre';
 }
 
 /**

@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 import { getGelatoClient } from '@/lib/gelato-client';
 import { getPennylaneClient } from '@/lib/pennylane-client';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
+import { sendOrderConfirmationEmail } from '@/lib/resend-client';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
   apiVersion: '2025-10-29.clover',
@@ -96,6 +97,21 @@ function extractFormatFromDescription(description: string): string {
   return found || 'A3';
 }
 
+// Extraire le type de cadre depuis la description
+function extractFrameFromDescription(description: string): string {
+  const lowerDesc = description.toLowerCase();
+  if (lowerDesc.includes('cadre noir') || lowerDesc.includes('black frame')) {
+    return 'Cadre noir';
+  }
+  if (lowerDesc.includes('cadre blanc') || lowerDesc.includes('white frame')) {
+    return 'Cadre blanc';
+  }
+  if (lowerDesc.includes('sans cadre') || lowerDesc.includes('no frame')) {
+    return 'Sans cadre';
+  }
+  return 'Sans cadre';
+}
+
 // Mapper le format vers l'ID produit Gelato
 function mapFormatToGelatoProduct(format: string): string {
   const map: Record<string, string> = {
@@ -162,8 +178,33 @@ async function processOrder(session: Stripe.Checkout.Session) {
       // On continue même si Pennylane échoue
     }
 
-    // TODO: Envoyer email de confirmation au client
-    // await sendConfirmationEmail(customerDetails?.email, fullSession);
+    // Envoyer email de confirmation au client
+    if (customerDetails?.email) {
+      try {
+        await sendOrderConfirmationEmail({
+          to: customerDetails.email,
+          customerName: customerDetails.name || 'Client',
+          orderNumber: fullSession.id,
+          items: lineItems.map(item => ({
+            title: item.description || 'Photo Fine Art',
+            format: extractFormatFromDescription(item.description || ''),
+            frame: extractFrameFromDescription(item.description || ''),
+            price: (item.amount_total || 0) / 100,
+          })),
+          totalAmount: (fullSession.amount_total || 0) / 100,
+          shippingAddress: {
+            line1: shippingDetails?.address?.line1 || '',
+            city: shippingDetails?.address?.city || '',
+            postalCode: shippingDetails?.address?.postal_code || '',
+            country: shippingDetails?.address?.country || 'FR',
+          },
+        });
+        console.log('📧 Confirmation email sent to:', customerDetails.email);
+      } catch (error) {
+        console.error('⚠️ Failed to send confirmation email:', error);
+        // On continue même si l'email échoue
+      }
+    }
 
     console.log('✅ Order processed successfully');
 

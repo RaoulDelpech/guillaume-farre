@@ -8,6 +8,7 @@ import { useSoundEffects } from "@/hooks/useSoundEffects";
 import ShareButtons from "@/components/ShareButtons";
 import SizeVisualizer from "@/components/SizeVisualizer";
 import StockBadge from "@/components/StockBadge";
+import DeliveryEstimate from "@/components/DeliveryEstimate";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -221,9 +222,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 <p className="text-sm text-muted-foreground font-light mb-4">{photo.year}</p>
               )}
 
-              <p className="text-2xl font-light text-amber-600 mb-6">
+              <p className="text-2xl font-light text-amber-600 mb-4">
                 {photo.price || 2000}€
               </p>
+
+              {/* Délai de livraison */}
+              <div className="mb-6">
+                <DeliveryEstimate variant="compact" />
+              </div>
 
               <button
                 onClick={() => setSelectedPhoto(photo)}
@@ -312,6 +318,9 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                   ))}
                 </div>
               </div>
+
+              {/* Délai de livraison détaillé */}
+              <DeliveryEstimate variant="detailed" className="mb-6" />
 
               {/* Prix total et ajout */}
               <div className="bg-muted rounded-lg p-8">

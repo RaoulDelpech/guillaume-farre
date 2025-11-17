@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/contexts/CartContext';
+import StructuredData from '@/components/StructuredData';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -96,6 +97,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <StructuredData type="organization" />
+        <StructuredData type="website" />
+      </head>
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <CartProvider>

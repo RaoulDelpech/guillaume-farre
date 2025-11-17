@@ -515,9 +515,36 @@ export default function AdminPage() {
                     >
                       <option value="">✅ Visible</option>
                       <option value="to-sort">⏳ À trier</option>
-                      <option value="trash">🗑️ Corbeille</option>
                     </select>
                   </div>
+
+                  {/* Bouton suppression définitive */}
+                  <button
+                    onClick={async () => {
+                      if (!confirm(`Supprimer DÉFINITIVEMENT ${photo.filename} ? Cette action est IRRÉVERSIBLE.`)) return;
+
+                      try {
+                        const res = await fetch('/api/admin/delete-photo', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ path: photo.path }),
+                        });
+
+                        if (res.ok) {
+                          // Retirer de la liste locale
+                          setPhotos(photos.filter(p => p.path !== photo.path));
+                          alert('Photo supprimée définitivement');
+                        } else {
+                          alert('Erreur lors de la suppression');
+                        }
+                      } catch (error) {
+                        alert('Erreur lors de la suppression');
+                      }
+                    }}
+                    className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md text-sm font-medium transition-colors"
+                  >
+                    🗑️ Supprimer définitivement
+                  </button>
 
                   {/* Catégorie ancienne (legacy) */}
                   <select

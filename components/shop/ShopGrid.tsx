@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { useTranslations } from "next-intl";
 import { useFavorites } from "@/hooks/useFavorites";
@@ -178,10 +179,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
             className="bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all shadow-lg"
           >
             <div className="relative aspect-[4/3] bg-zinc-900 group">
-              <img
+              <Image
                 src={photo.path}
                 alt={photo.title || photo.filename}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover"
+                loading="lazy"
+                quality={85}
               />
 
               {/* Wishlist button */}

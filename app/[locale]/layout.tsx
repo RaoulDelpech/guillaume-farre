@@ -8,8 +8,69 @@ import { CartProvider } from '@/contexts/CartContext';
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Guillaume Farré - Artiste Sculpteur",
-  description: "Découvrez l'univers artistique de Guillaume Farré",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com'),
+  title: {
+    default: "Guillaume Farré - Artiste Sculpteur & Collectionneur Ferrari",
+    template: "%s | Guillaume Farré",
+  },
+  description: "Découvrez l'univers artistique unique de Guillaume Farré : tableaux abstraits créés par le passage direct de Ferrari sur toile, photographies d'art en séries limitées. Collection exclusive.",
+  keywords: ["Guillaume Farré", "artiste sculpteur", "Ferrari", "art abstrait", "photographie d'art", "séries limitées", "tableaux contemporains", "collectionneur"],
+  authors: [{ name: "Guillaume Farré" }],
+  creator: "Guillaume Farré",
+  publisher: "Guillaume Farré",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    alternateLocale: ["en_US", "it_IT"],
+    url: "https://guillaumefarre.com",
+    siteName: "Guillaume Farré",
+    title: "Guillaume Farré - Artiste Sculpteur & Collectionneur Ferrari",
+    description: "Découvrez l'univers artistique unique de Guillaume Farré : tableaux abstraits créés par le passage direct de Ferrari sur toile, photographies d'art en séries limitées.",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Guillaume Farré - Artiste Sculpteur",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Guillaume Farré - Artiste Sculpteur & Collectionneur Ferrari",
+    description: "Découvrez l'univers artistique unique de Guillaume Farré : tableaux abstraits créés par Ferrari, photographies d'art en séries limitées.",
+    images: ["/images/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: "https://guillaumefarre.com",
+    languages: {
+      'fr': "https://guillaumefarre.com/fr",
+      'en': "https://guillaumefarre.com/en",
+      'it': "https://guillaumefarre.com/it",
+    },
+  },
+  verification: {
+    // À ajouter après création comptes
+    // google: "google-site-verification-code",
+    // yandex: "yandex-verification-code",
+    // bing: "bing-verification-code",
+  },
 };
 
 export function generateStaticParams() {

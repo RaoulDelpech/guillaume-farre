@@ -1,0 +1,23 @@
+# robots.txt - Guillaume Farré
+
+# Autoriser tous les robots
+User-agent: *
+Allow: /
+
+# Bloquer pages admin
+Disallow: /*/admin
+Disallow: /admin
+Disallow: /api/
+
+# Bloquer pages temporaires
+Disallow: /*/panier
+Disallow: /*/favoris
+Disallow: /*/comparer
+
+# Sitemap
+Sitemap: https://guillaumefarre.com/sitemap.xml
+
+# Crawl delay (optionnel, pour éviter surcharge)
+Crawl-delay: 1
+
+# Lalou

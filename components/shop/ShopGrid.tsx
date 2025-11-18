@@ -29,7 +29,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const t = useTranslations("shop");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoMetadata | null>(null);
-  const [selectedFormat, setSelectedFormat] = useState("A3");
+  const [selectedFormat, setSelectedFormat] = useState("A2");
   const [selectedFrame, setSelectedFrame] = useState("none");
   const [selectedMaterial, setSelectedMaterial] = useState("semi-glossy");
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
@@ -38,26 +38,16 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const { playCartAdd, playClick, playHover } = useSoundEffects();
 
   const allFormats = {
-    "A4": { width: 21, height: 29.7, priceMultiplier: 1.0 },
-    "A3": { width: 29.7, height: 42, priceMultiplier: 1.5 },
-    "A2": { width: 42, height: 59.4, priceMultiplier: 2.0 },
+    "A2": { width: 42, height: 59.4, priceMultiplier: 1.0 },
+    "A1": { width: 59.4, height: 84.1, priceMultiplier: 1.5 },
+    "A0": { width: 84.1, height: 118.9, priceMultiplier: 2.0 },
   };
 
   // Formats disponibles selon la catégorie de la photo
   const getAvailableFormats = (photo: PhotoMetadata | null) => {
     if (!photo) return allFormats;
 
-    // Série limitée = PAS de A4 (règle métier Guillaume Farré)
-    const isLimitedEdition = photo.categories?.includes('limited') ||
-                             photo.edition?.type === 'limited' ||
-                             photo.isNumberedSeries;
-
-    if (isLimitedEdition) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { A4, ...formatsWithoutA4 } = allFormats;
-      return formatsWithoutA4;
-    }
-
+    // Tous les formats disponibles : A2, A1, A0
     return allFormats;
   };
 
@@ -95,7 +85,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
       // Si le format actuel n'est pas disponible, prendre le premier disponible
       if (!formatKeys.includes(selectedFormat)) {
-        setSelectedFormat(formatKeys[0] || 'A3');
+        setSelectedFormat(formatKeys[0] || 'A2');
       }
     }
   }, [selectedPhoto]);

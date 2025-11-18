@@ -123,5 +123,48 @@
     "email": "Email",
     "message": "Message",
     "send": "Send"
+  },
+  "dino": {
+    "tag": "The Dino in Motion",
+    "title": "The Ferrari Dino",
+    "subtitle": "The red instrument that paints. The story of an obsession turned into reality.",
+    "origin": {
+      "label": "The Origin",
+      "title": "From Pink to Red",
+      "text1": "Forty years after encountering the pink Ferrari of his childhood, Guillaume decided to transform his obsession into a creative method. The red Dino isn't just a vehicle. It's an instrument of creation, an extension of his artistic will.",
+      "text2": "Curves, accelerations, braking: everything is controlled. The Dino dances on the canvas, leaving definitive traces. Guillaume captures this dialogue between man and machine."
+    },
+    "specs": {
+      "label": "Specifications",
+      "title": "Technical Sheet",
+      "model": "Model",
+      "modelValue": "Ferrari 206 GT Dino",
+      "year": "Year",
+      "yearValue": "1974",
+      "color": "Color",
+      "colorValue": "Rosso Corsa (Ferrari Red)",
+      "engine": "Engine",
+      "engineValue": "V6 2.0L twin-turbo, rear longitudinal configuration",
+      "power": "Power",
+      "powerValue": "190 hp at 7600 rpm",
+      "weight": "Weight",
+      "weightValue": "1020 kg"
+    },
+    "creative": {
+      "label": "Its Role",
+      "title": "An Instrument of Creation",
+      "text1": "The Dino isn't preserved in a museum. It lives, it creates, it paints. Its tires leave marks. Its weight produces traces. Its speed generates splashes.",
+      "text2": "Each passage is different. Each creation is final. This impossibility to redo makes the value of the work."
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "The Dino in Images"
+    },
+    "cta": {
+      "title": "See the Dino in Action",
+      "text": "Discover how this mythical machine paints on canvas. Automotive, art and obsession united.",
+      "button1": "Discover the workshop",
+      "button2": "View the works"
+    }
   }
 }

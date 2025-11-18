@@ -123,5 +123,48 @@
     "email": "Email",
     "message": "Messaggio",
     "send": "Invia"
+  },
+  "dino": {
+    "tag": "La Dino in Movimento",
+    "title": "La Ferrari Dino",
+    "subtitle": "Lo strumento rosso che dipinge. La storia di un'ossessione diventata realtà.",
+    "origin": {
+      "label": "L'Origine",
+      "title": "Dal Rosa al Rosso",
+      "text1": "Quarant'anni dopo aver incontrato la Ferrari rosa della sua infanzia, Guillaume ha deciso di trasformare la sua ossessione in metodo creativo. La Dino rossa non è solo un veicolo. È uno strumento di creazione, un'estensione della sua volontà artistica.",
+      "text2": "Curve, accelerazioni, frenate: tutto è controllato. La Dino danza sulla tela, lasciando tracce definitive. Guillaume cattura questo dialogo tra uomo e macchina."
+    },
+    "specs": {
+      "label": "Caratteristiche",
+      "title": "Scheda Tecnica",
+      "model": "Modello",
+      "modelValue": "Ferrari 206 GT Dino",
+      "year": "Anno",
+      "yearValue": "1974",
+      "color": "Colore",
+      "colorValue": "Rosso Corsa (Rosso Ferrari)",
+      "engine": "Motore",
+      "engineValue": "V6 2.0L biturbo, configurazione longitudinale posteriore",
+      "power": "Potenza",
+      "powerValue": "190 CV a 7600 giri/min",
+      "weight": "Peso",
+      "weightValue": "1020 kg"
+    },
+    "creative": {
+      "label": "Il Suo Ruolo",
+      "title": "Uno Strumento di Creazione",
+      "text1": "La Dino non è conservata in un museo. Vive, crea, dipinge. I suoi pneumatici lasciano segni. Il suo peso produce tracce. La sua velocità genera schizzi.",
+      "text2": "Ogni passaggio è diverso. Ogni creazione è definitiva. Questa impossibilità di rifare costituisce il valore dell'opera."
+    },
+    "gallery": {
+      "label": "Galleria",
+      "title": "La Dino in Immagini"
+    },
+    "cta": {
+      "title": "Vedere la Dino in Azione",
+      "text": "Scopri come questa macchina mitica dipinge sulla tela. Automobile, arte e ossessione riunite.",
+      "button1": "Scoprire l'atelier",
+      "button2": "Vedere le opere"
+    }
   }
 }

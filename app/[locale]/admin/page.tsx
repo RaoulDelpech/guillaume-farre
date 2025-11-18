@@ -611,6 +611,90 @@ export default function AdminPage() {
                     </div>
                   </div>
 
+                  {/* Matériau d'impression */}
+                  <div>
+                    <label className="block text-xs text-muted-foreground mb-2 uppercase tracking-wide">
+                      Matériau
+                    </label>
+                    <select
+                      value={photo.material || 'semi-glossy'}
+                      onChange={(e) => updatePhoto(globalIndex, { material: e.target.value as 'semi-glossy' | 'aluminum' })}
+                      className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
+                    >
+                      <option value="semi-glossy">Papier Semi-Brillant (€13.20)</option>
+                      <option value="aluminum">Aluminium Brossé (€16.81)</option>
+                    </select>
+                  </div>
+
+                  {/* Orientation */}
+                  <div className="space-y-3">
+                    <label className="block text-xs text-muted-foreground mb-2 uppercase tracking-wide">
+                      Orientation
+                    </label>
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-3 cursor-pointer group">
+                        <input
+                          type="radio"
+                          name={`orientation-${photo.path}`}
+                          checked={photo.orientation === 'auto' || !photo.orientation}
+                          onChange={() => {
+                            updatePhoto(globalIndex, { orientation: 'auto' });
+                            // Déclencher la détection IA si pas déjà détectée
+                            if (!photo.aiDetectedOrientation) {
+                              fetch('/api/admin/detect-orientation', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ photoPath: photo.path }),
+                              })
+                                .then(res => res.json())
+                                .then(data => {
+                                  if (data.success) {
+                                    updatePhoto(globalIndex, {
+                                      aiDetectedOrientation: data.orientation
+                                    });
+                                  }
+                                })
+                                .catch(err => console.error('Erreur détection orientation:', err));
+                            }
+                          }}
+                          className="w-4 h-4 rounded-full border-border"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          ✅ Automatique (IA détecte)
+                          {photo.orientation === 'auto' && photo.aiDetectedOrientation && (
+                            <span className="ml-2 text-xs text-muted-foreground">
+                              → {photo.aiDetectedOrientation === 'vertical' ? '📐 Vertical' : '📐 Horizontal'}
+                            </span>
+                          )}
+                        </span>
+                      </label>
+                      <label className="flex items-center gap-3 cursor-pointer group">
+                        <input
+                          type="radio"
+                          name={`orientation-${photo.path}`}
+                          checked={photo.orientation === 'vertical'}
+                          onChange={() => updatePhoto(globalIndex, { orientation: 'vertical' })}
+                          className="w-4 h-4 rounded-full border-border"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          📐 Vertical (forcer)
+                        </span>
+                      </label>
+                      <label className="flex items-center gap-3 cursor-pointer group">
+                        <input
+                          type="radio"
+                          name={`orientation-${photo.path}`}
+                          checked={photo.orientation === 'horizontal'}
+                          onChange={() => updatePhoto(globalIndex, { orientation: 'horizontal' })}
+                          className="w-4 h-4 rounded-full border-border"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          📐 Horizontal (forcer)
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+
                   {/* Options de vente masquées pour photos corbeille */}
                   {photo.status !== 'trash' && (
                     <>

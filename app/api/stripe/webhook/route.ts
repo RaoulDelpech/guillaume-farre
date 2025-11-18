@@ -26,14 +26,20 @@ async function sendToGelato(session: Stripe.Checkout.Session) {
   const shippingDetails = session.shipping_details || session.shipping_cost?.address;
   const customerDetails = session.customer_details;
 
+  // Extraire les métadonnées de la session
+  const itemsMaterials = session.metadata?.items_materials?.split(',') || [];
+  const itemsOrientations = session.metadata?.items_orientations?.split(',') || [];
+
   // Préparer les items pour Gelato
   const gelatoItems = lineItems.map((item, index) => {
     const productName = item.description || 'Photo Fine Art';
     const format = extractFormatFromDescription(productName);
+    const material = itemsMaterials[index] || 'semi-glossy';
+    const orientation = itemsOrientations[index] || 'vertical';
 
     return {
       itemReferenceId: `${session.id}-${index}`,
-      productUid: mapFormatToGelatoProduct(format),
+      productUid: mapFormatToGelatoProduct(format, material, orientation),
       files: [{
         url: extractImageUrl(item),
         type: 'default' as const
@@ -41,7 +47,9 @@ async function sendToGelato(session: Stripe.Checkout.Session) {
       quantity: item.quantity || 1,
       options: {
         format,
-        paperType: 'fine_art_matte',
+        material,
+        orientation,
+        paperType: material === 'aluminum' ? 'aluminum' : 'fine_art_matte',
         finish: 'none'
       }
     };
@@ -113,16 +121,37 @@ function extractFrameFromDescription(description: string): string {
 }
 
 // Mapper le format vers l'ID produit Gelato
-function mapFormatToGelatoProduct(format: string): string {
-  const map: Record<string, string> = {
-    'A4': 'fine_art_paper_matte_200gsm_a4',
-    'A3': 'fine_art_paper_matte_200gsm_a3',
-    'A2': 'fine_art_paper_matte_200gsm_a2',
-    'A1': 'fine_art_paper_matte_200gsm_a1',
-    'XXL': 'fine_art_paper_matte_200gsm_80x120cm',
-    'MONUMENTAL': 'fine_art_paper_matte_200gsm_120x180cm',
+function mapFormatToGelatoProduct(format: string, material: string = 'semi-glossy', orientation: string = 'vertical'): string {
+  // Utiliser la même logique que dans gelato-client.ts
+  const orient = orientation === 'horizontal' ? 'hor' : 'ver';
+  const isMetal = material === 'aluminum';
+
+  const formatMap: Record<string, Record<string, string>> = {
+    'A2': {
+      'semi-glossy-ver': 'flat_a2_200-gsm-80lb-coated-silk_4-0_ver',
+      'semi-glossy-hor': 'flat_a2_200-gsm-80lb-coated-silk_4-0_hor',
+      'aluminum-ver': 'metallic_400x600-mm-16x24-inch_3-mm_4-0_ver',
+      'aluminum-hor': 'metallic_400x600-mm-16x24-inch_3-mm_4-0_hor',
+    },
+    'A1': {
+      'semi-glossy-ver': 'flat_a1_200-gsm-80lb-coated-silk_4-0_ver',
+      'semi-glossy-hor': 'flat_a1_200-gsm-80lb-coated-silk_4-0_hor',
+      'aluminum-ver': 'metallic_500x750-mm-20x30-inch_3-mm_4-0_ver',
+      'aluminum-hor': 'metallic_500x750-mm-20x30-inch_3-mm_4-0_hor',
+    },
+    'A0': {
+      'semi-glossy-ver': 'flat_a0_200-gsm-80lb-coated-silk_4-0_ver',
+      'semi-glossy-hor': 'flat_a0_200-gsm-80lb-coated-silk_4-0_hor',
+      'aluminum-ver': 'metallic_700x1000-mm-28x40-inch_3-mm_4-0_ver',
+      'aluminum-hor': 'metallic_700x1000-mm-28x40-inch_3-mm_4-0_hor',
+    },
   };
-  return map[format] || 'fine_art_paper_matte_200gsm_a3';
+
+  const materialKey = isMetal ? 'aluminum' : 'semi-glossy';
+  const mapKey = `${materialKey}-${orient}`;
+  const formatKey = format?.toUpperCase() || 'A2';
+
+  return formatMap[formatKey]?.[mapKey] || formatMap['A2']['semi-glossy-ver'];
 }
 
 // Extraire l'URL de l'image depuis le line item

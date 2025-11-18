@@ -45,6 +45,8 @@ interface GelatoOrderItem {
   quantity: number;
   options?: {
     format?: string; // A3, A2, A1, etc.
+    material?: string; // semi-glossy ou aluminum
+    orientation?: string; // vertical ou horizontal
     paperType?: string;
     finish?: string;
   };
@@ -103,7 +105,11 @@ export class GelatoClient {
           currency: order.currency,
           items: order.items.map(item => ({
             itemReferenceId: item.itemReferenceId,
-            productUid: this.mapFormatToProductUid(item.options?.format),
+            productUid: this.mapFormatToProductUid(
+              item.options?.format,
+              item.options?.material,
+              item.options?.orientation
+            ),
             files: item.files,
             quantity: item.quantity,
           })),
@@ -155,17 +161,39 @@ export class GelatoClient {
   /**
    * Mapper le format (A3, A2, etc.) vers l'ID produit Gelato
    */
-  private mapFormatToProductUid(format?: string): string {
-    const formatMap: Record<string, string> = {
-      'A4': 'fine_art_paper_matte_200gsm_a4',
-      'A3': 'fine_art_paper_matte_200gsm_a3',
-      'A2': 'fine_art_paper_matte_200gsm_a2',
-      'A1': 'fine_art_paper_matte_200gsm_a1',
-      'XXL': 'fine_art_paper_matte_200gsm_80x120cm',
-      'MONUMENTAL': 'fine_art_paper_matte_200gsm_120x180cm',
+  private mapFormatToProductUid(format?: string, material?: string, orientation?: string): string {
+    // Orientation : 'ver' (vertical/portrait) ou 'hor' (horizontal/landscape)
+    const orient = orientation === 'horizontal' ? 'hor' : 'ver';
+
+    // Material : 'semi-glossy' (papier) ou 'aluminum'
+    const isMetal = material === 'aluminum';
+
+    const formatMap: Record<string, Record<string, string>> = {
+      'A2': {
+        'semi-glossy-ver': 'flat_a2_200-gsm-80lb-coated-silk_4-0_ver',
+        'semi-glossy-hor': 'flat_a2_200-gsm-80lb-coated-silk_4-0_hor',
+        'aluminum-ver': 'metallic_400x600-mm-16x24-inch_3-mm_4-0_ver',
+        'aluminum-hor': 'metallic_400x600-mm-16x24-inch_3-mm_4-0_hor',
+      },
+      'A1': {
+        'semi-glossy-ver': 'flat_a1_200-gsm-80lb-coated-silk_4-0_ver',
+        'semi-glossy-hor': 'flat_a1_200-gsm-80lb-coated-silk_4-0_hor',
+        'aluminum-ver': 'metallic_500x750-mm-20x30-inch_3-mm_4-0_ver',
+        'aluminum-hor': 'metallic_500x750-mm-20x30-inch_3-mm_4-0_hor',
+      },
+      'A0': {
+        'semi-glossy-ver': 'flat_a0_200-gsm-80lb-coated-silk_4-0_ver',
+        'semi-glossy-hor': 'flat_a0_200-gsm-80lb-coated-silk_4-0_hor',
+        'aluminum-ver': 'metallic_700x1000-mm-28x40-inch_3-mm_4-0_ver',
+        'aluminum-hor': 'metallic_700x1000-mm-28x40-inch_3-mm_4-0_hor',
+      },
     };
 
-    return formatMap[format?.toUpperCase() || 'A3'] || 'fine_art_paper_matte_200gsm_a3';
+    const materialKey = isMetal ? 'aluminum' : 'semi-glossy';
+    const mapKey = `${materialKey}-${orient}`;
+    const formatKey = format?.toUpperCase() || 'A2';
+
+    return formatMap[formatKey]?.[mapKey] || formatMap['A2']['semi-glossy-ver'];
   }
 
   /**

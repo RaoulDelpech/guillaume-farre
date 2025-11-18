@@ -51,6 +51,8 @@ export async function POST(request: Request) {
         price: item.price,
         category: item.category || 'Non catégorisé',
         images: absoluteImages,
+        material: item.material || 'semi-glossy',
+        orientation: item.orientation || 'vertical',
       };
     });
 
@@ -59,13 +61,17 @@ export async function POST(request: Request) {
     // Créer une session de paiement Stripe avec support Alma (3x/4x sans frais)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card', 'alma'], // Alma activé pour paiement fractionné 3x/4x
-      line_items: validatedItems.map((item: { title: string; price: number; category: string; images: string[] }) => ({
+      line_items: validatedItems.map((item: { title: string; price: number; category: string; images: string[]; material: string; orientation: string }) => ({
         price_data: {
           currency: 'eur',
           product_data: {
             name: item.title,
             description: item.category,
             images: item.images.slice(0, 8), // Stripe limite à 8 images max
+            metadata: {
+              material: item.material,
+              orientation: item.orientation,
+            },
           },
           unit_amount: Math.round(item.price * 100), // Prix validé > 0
         },
@@ -77,6 +83,10 @@ export async function POST(request: Request) {
       locale: locale as Stripe.Checkout.SessionCreateParams.Locale,
       shipping_address_collection: {
         allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC', 'IT', 'ES', 'DE', 'GB', 'US'],
+      },
+      metadata: {
+        items_materials: validatedItems.map((item: any) => item.material).join(','),
+        items_orientations: validatedItems.map((item: any) => item.orientation).join(','),
       },
     });
 

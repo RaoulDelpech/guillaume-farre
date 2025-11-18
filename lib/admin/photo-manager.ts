@@ -22,6 +22,11 @@ export interface PhotoMetadata {
   description?: string;
   aiGenerated?: boolean;
 
+  // Matériau et orientation (nouveau)
+  material?: 'semi-glossy' | 'aluminum'; // Papier semi-brillant ou aluminium brossé
+  orientation?: 'vertical' | 'horizontal' | 'auto'; // auto = détection IA
+  aiDetectedOrientation?: 'vertical' | 'horizontal'; // Suggestion IA
+
   // Statuts (simplifié: juste corbeille et à trier, le reste c'est "visible")
   status: 'trash' | 'to-sort' | null;
 

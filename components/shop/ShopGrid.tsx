@@ -21,6 +21,7 @@ interface CartItem {
   photo: PhotoMetadata;
   format: string;
   frame: string;
+  material: string;
   price: number;
 }
 
@@ -30,6 +31,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoMetadata | null>(null);
   const [selectedFormat, setSelectedFormat] = useState("A3");
   const [selectedFrame, setSelectedFrame] = useState("none");
+  const [selectedMaterial, setSelectedMaterial] = useState("semi-glossy");
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { fireHeartConfetti, fireConfetti } = useConfetti();
@@ -65,10 +67,24 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     "aluminum": { label: "Cadre aluminium", price: 200 },
   };
 
-  const calculatePrice = (basePrice: number, format: string, frame: string) => {
+  const materials = {
+    "semi-glossy": {
+      label: "Papier Semi-Brillant",
+      price: 13.20,
+      description: "Papier Fine Art 200gsm, finition semi-brillante, rendu des couleurs exceptionnel"
+    },
+    "aluminum": {
+      label: "Aluminium Brossé",
+      price: 16.81,
+      description: "Impression directe sur aluminium, effet moderne et durable, résistant aux UV"
+    },
+  };
+
+  const calculatePrice = (basePrice: number, format: string, frame: string, material: string) => {
     const formatPrice = basePrice * allFormats[format as keyof typeof allFormats].priceMultiplier;
     const framePrice = frames[frame as keyof typeof frames].price;
-    return Math.round(formatPrice + framePrice);
+    const materialPrice = materials[material as keyof typeof materials].price;
+    return Math.round(formatPrice + framePrice + materialPrice);
   };
 
   // Réinitialiser le format quand une photo est sélectionnée
@@ -87,11 +103,12 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const handleAddToCart = () => {
     if (!selectedPhoto) return;
 
-    const price = calculatePrice(selectedPhoto.price || 2000, selectedFormat, selectedFrame);
+    const price = calculatePrice(selectedPhoto.price || 2000, selectedFormat, selectedFrame, selectedMaterial);
     const item: CartItem = {
       photo: selectedPhoto,
       format: selectedFormat,
       frame: selectedFrame,
+      material: selectedMaterial,
       price,
     };
 
@@ -122,6 +139,10 @@ export default function ShopGrid({ photos }: ShopGridProps) {
             category: item.photo.category,
             price: item.price,
             images: [item.photo.path],
+            material: item.material,
+            orientation: item.photo.orientation === 'auto'
+              ? item.photo.aiDetectedOrientation || 'vertical'
+              : item.photo.orientation || 'vertical',
           })),
           locale: 'fr',
         }),
@@ -327,6 +348,34 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 </div>
               </div>
 
+              {/* Matériau */}
+              <div>
+                <h3 className="text-lg font-light tracking-wide mb-4">Matériau</h3>
+                <div className="space-y-3">
+                  {Object.entries(materials).map(([key, value]) => (
+                    <button
+                      key={key}
+                      onClick={() => setSelectedMaterial(key)}
+                      className={`w-full p-5 rounded-lg border transition-all ${
+                        selectedMaterial === key
+                          ? 'border-primary bg-primary/5'
+                          : 'border-border hover:border-primary/50'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="font-light tracking-wide">{value.label}</span>
+                        <span className="text-muted-foreground font-light">
+                          +{value.price.toFixed(2)}€
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground text-left">
+                        {value.description}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Cadre */}
               <div>
                 <h3 className="text-lg font-light tracking-wide mb-4">Encadrement</h3>
@@ -367,7 +416,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 <div className="flex justify-between items-center mb-6">
                   <span className="text-lg font-light tracking-wide">Prix total</span>
                   <span className="text-3xl font-light text-amber-600">
-                    {calculatePrice(selectedPhoto.price || 2000, selectedFormat, selectedFrame)}€
+                    {calculatePrice(selectedPhoto.price || 2000, selectedFormat, selectedFrame, selectedMaterial)}€
                   </span>
                 </div>
                 <button

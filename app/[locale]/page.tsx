@@ -141,45 +141,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA final puissant */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        {/* Fond avec dégradé subtil pour créer du contraste */}
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-muted/50 to-muted/30" />
-
-        <div className="container relative z-10 px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-8 text-foreground">
-              Rejoignez la communauté
-            </h2>
-            <p className="text-2xl text-foreground/70 font-light mb-12 leading-relaxed">
-              Chaque trace raconte une histoire.<br />
-              Éditions limitées. Pièces uniques.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/boutique"
-                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all shadow-lg hover:shadow-xl"
-              >
-                Réserver une œuvre
-              </Link>
-              <Link
-                href="/contact"
-                className="px-12 py-6 bg-background hover:bg-muted border-2 border-foreground/20 hover:border-foreground/40 text-foreground font-light tracking-wide rounded-lg text-xl transition-all shadow-md hover:shadow-lg"
-              >
-                Contacter l'artiste
-              </Link>
-            </div>
-
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 md:gap-8 text-base text-muted-foreground font-light">
-              <div>Certificat d'authenticité</div>
-              <div className="w-px h-5 bg-border"></div>
-              <div>Livraison sécurisée</div>
-              <div className="w-px h-5 bg-border"></div>
-              <div>Paiement en 3x</div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

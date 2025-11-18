@@ -24,7 +24,7 @@ export default async function DinoPage() {
 
         {/* Contenu centré */}
         <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl">
-          <div className="text-accent text-xs font-light mb-6 tracking-[0.3em] uppercase">
+          <div className="text-white/60 text-xs font-light mb-6 tracking-[0.3em] uppercase">
             {t("tag")}
           </div>
           <h1 className="text-6xl md:text-8xl font-light tracking-wide mb-6 text-white">
@@ -83,7 +83,7 @@ export default async function DinoPage() {
               {/* Gauche */}
               <div className="space-y-8">
                 <div>
-                  <div className="text-sm uppercase tracking-widest text-accent mb-3 font-light">
+                  <div className="text-sm uppercase tracking-widest text-muted-foreground mb-3 font-light">
                     {t("specs.model")}
                   </div>
                   <p className="text-2xl font-light text-foreground">
@@ -91,7 +91,7 @@ export default async function DinoPage() {
                   </p>
                 </div>
                 <div>
-                  <div className="text-sm uppercase tracking-widest text-accent mb-3 font-light">
+                  <div className="text-sm uppercase tracking-widest text-muted-foreground mb-3 font-light">
                     {t("specs.year")}
                   </div>
                   <p className="text-2xl font-light text-foreground">
@@ -99,7 +99,7 @@ export default async function DinoPage() {
                   </p>
                 </div>
                 <div>
-                  <div className="text-sm uppercase tracking-widest text-accent mb-3 font-light">
+                  <div className="text-sm uppercase tracking-widest text-muted-foreground mb-3 font-light">
                     {t("specs.color")}
                   </div>
                   <p className="text-2xl font-light text-foreground">
@@ -111,7 +111,7 @@ export default async function DinoPage() {
               {/* Droite */}
               <div className="space-y-8">
                 <div>
-                  <div className="text-sm uppercase tracking-widest text-accent mb-3 font-light">
+                  <div className="text-sm uppercase tracking-widest text-muted-foreground mb-3 font-light">
                     {t("specs.engine")}
                   </div>
                   <p className="text-lg font-light text-muted-foreground">
@@ -119,7 +119,7 @@ export default async function DinoPage() {
                   </p>
                 </div>
                 <div>
-                  <div className="text-sm uppercase tracking-widest text-accent mb-3 font-light">
+                  <div className="text-sm uppercase tracking-widest text-muted-foreground mb-3 font-light">
                     {t("specs.power")}
                   </div>
                   <p className="text-lg font-light text-muted-foreground">
@@ -127,7 +127,7 @@ export default async function DinoPage() {
                   </p>
                 </div>
                 <div>
-                  <div className="text-sm uppercase tracking-widest text-accent mb-3 font-light">
+                  <div className="text-sm uppercase tracking-widest text-muted-foreground mb-3 font-light">
                     {t("specs.weight")}
                   </div>
                   <p className="text-lg font-light text-muted-foreground">
@@ -205,7 +205,7 @@ export default async function DinoPage() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-24 md:py-32 bg-accent/10 border-b border-border">
+      <section className="py-24 md:py-32 bg-muted/20 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-8">

@@ -2,7 +2,7 @@
   "nav": {
     "accueil": "Home",
     "galerie": "Galleria",
-    "boutique": "Negozio",
+    "boutique": "Ordini",
     "histoire": "Storia",
     "atelier": "Laboratorio",
     "conceptCarArt": "Ferrari Live",
@@ -54,7 +54,7 @@
       "cta": "Leggere la storia completa"
     },
     "galerie": "Galleria",
-    "boutique": "Negozio"
+    "boutique": "Ordini"
   },
   "home": {
     "nextEvent": "Prossimo evento:",

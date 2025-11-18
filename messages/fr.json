@@ -2,7 +2,7 @@
   "nav": {
     "accueil": "Accueil",
     "galerie": "Galerie",
-    "boutique": "Boutique",
+    "boutique": "Commandes",
     "histoire": "Histoire",
     "atelier": "Atelier",
     "conceptCarArt": "Concept car art",
@@ -54,7 +54,7 @@
       "cta": "Lire l'histoire complète"
     },
     "galerie": "Galerie",
-    "boutique": "Boutique"
+    "boutique": "Commandes"
   },
   "home": {
     "nextEvent": "Prochain évènement :",

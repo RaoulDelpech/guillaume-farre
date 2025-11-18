@@ -17,6 +17,7 @@ export default function Navigation() {
     { href: "/galerie", label: "Galerie" },
     { href: "/dino", label: "Dino" },
     { href: "/boutique", label: t("boutique") },
+    { href: "/atelier", label: "Atelier" },
     { href: "/origine", label: "Origine" },
     { href: "/performances", label: "Performances" },
     { href: "/contact", label: t("contact") },

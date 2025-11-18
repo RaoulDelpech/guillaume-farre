@@ -88,9 +88,9 @@ export default function BulkActions({
               onBulkUpdate([path], {
                 categories: newCategories as any,
                 limitedEdition: {
-                  total: 7,
+                  total: 9,
                   sold: 0,
-                  available: 7,
+                  available: 9,
                   closed: false,
                 },
               });

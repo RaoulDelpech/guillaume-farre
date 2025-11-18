@@ -34,7 +34,7 @@ interface NewPhotoMetadata {
   forSale: boolean;
   category?: string; // Gardé pour compatibilité
   limitedEdition?: {
-    total: 7;
+    total: 9;
     sold: number;
     available: number;
     closed: boolean;
@@ -96,9 +96,9 @@ async function migrateMetadata() {
     // Créer limitedEdition si série limitée
     const limitedEdition = categories.includes('limited')
       ? {
-          total: 7 as 7,
+          total: 9 as 9,
           sold: 0,
-          available: 7,
+          available: 9,
           closed: false,
         }
       : undefined;

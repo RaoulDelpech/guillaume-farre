@@ -82,7 +82,7 @@ export default function AddToCartSection({
         {/* Édition limitée */}
         <div className="flex items-center gap-2 text-sm">
           <span className="px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full border border-amber-500/20">
-            Édition limitée 7 ex.
+            Édition limitée 9 ex.
           </span>
         </div>
 

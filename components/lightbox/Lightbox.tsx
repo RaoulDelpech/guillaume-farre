@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { Link } from "@/i18n/routing";
 import type { Work } from "@/lib/works";
 import { altForWork } from "@/lib/images";
 
@@ -48,7 +49,14 @@ export default function Lightbox({ open, work, onClose }: LightboxProps) {
         )}
         <div className="mt-4 text-white text-center">
           <h2 className="text-xl font-bold">{work.title}</h2>
-          <p className="text-sm text-gray-300">{work.year}</p>
+          <p className="text-sm text-gray-300 mb-4">{work.year}</p>
+          <Link
+            href="/boutique"
+            className="inline-block px-8 py-3 bg-white hover:bg-gray-200 text-black font-light tracking-wide rounded transition-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Voir dans la boutique
+          </Link>
         </div>
       </div>
     </div>

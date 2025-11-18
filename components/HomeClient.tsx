@@ -1,7 +1,5 @@
 "use client";
-import SoundToggle from "./SoundToggle";
 import ScrollProgress from "./ScrollProgress";
-import BackToTop from "./BackToTop";
 import { useEffect, useState } from "react";
 
 export default function HomeClient() {
@@ -17,12 +15,6 @@ export default function HomeClient() {
     <>
       {/* Scroll Progress Bar */}
       <ScrollProgress />
-
-      {/* Sound Toggle */}
-      <SoundToggle />
-
-      {/* Back to Top Button */}
-      <BackToTop />
     </>
   );
 }

@@ -10,42 +10,42 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/works/atelier/atelier-004.jpg",
+      image: "/images/works/atelier/atelier-033.jpg",
       title: t("creations.title"),
       subtitle: t("creations.subtitle"),
       description: t("creations.description"),
       cta: { text: t("creations.cta"), href: "/histoire" },
     },
     {
-      image: "/images/works/empreintes/empreintes-025.jpg",
+      image: "/images/works/atelier/atelier-042.jpg",
       title: t("atelier.title"),
       subtitle: t("atelier.subtitle"),
       description: t("atelier.description"),
       cta: { text: t("atelier.cta"), href: "/atelier" },
     },
     {
-      image: "/images/works/empreintes/empreintes-023.jpg",
+      image: "/images/works/atelier/atelier-028.jpg",
       title: t("photographies.title"),
       subtitle: t("photographies.subtitle"),
       description: t("photographies.description"),
       cta: { text: t("photographies.cta"), href: "/galerie" },
     },
     {
-      image: "/images/works/projection/projection-027.jpg",
+      image: "/images/works/atelier/atelier-050.jpg",
       title: t("conceptCarArt.title"),
       subtitle: t("conceptCarArt.subtitle"),
       description: t("conceptCarArt.description"),
       cta: { text: t("conceptCarArt.cta"), href: "/concept-car-art" },
     },
     {
-      image: "/images/works/empreintes/empreintes-001.jpg",
+      image: "/images/works/atelier/atelier-068.jpg",
       title: t("origine.title"),
       subtitle: t("origine.subtitle"),
       description: t("origine.description"),
       cta: { text: t("origine.cta"), href: "/histoire" },
     },
     {
-      image: "/images/works/projection/projection-011.jpg",
+      image: "/images/works/atelier/atelier-072.jpg",
       title: t("acquerir.title"),
       subtitle: t("acquerir.subtitle"),
       description: t("acquerir.description"),
@@ -94,7 +94,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[50vh] md:h-[55vh] overflow-hidden bg-background">
+    <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -103,15 +103,17 @@ export default function HeroCarousel() {
             index === current ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          {/* Background Image - Premium fullscreen with subtle zoom */}
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-transform duration-1000 ${
-              index === current ? "scale-110" : "scale-105"
-            }`}
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
-            {/* Overlay léger pour lisibilité texte */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
+          {/* Background Image - Contain pour éviter déformation */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className={`w-full max-w-4xl h-full bg-contain bg-center bg-no-repeat transition-transform duration-1000 ${
+                index === current ? "scale-105" : "scale-100"
+              }`}
+              style={{ backgroundImage: `url(${slide.image})` }}
+            >
+              {/* Overlay léger pour lisibilité texte */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
+            </div>
           </div>
 
           {/* Content - Centré world-class */}

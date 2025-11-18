@@ -39,9 +39,9 @@ export interface PhotoMetadata {
 
   // Éditions limitées (si categories contient 'limited')
   limitedEdition?: {
-    total: 7; // Toujours 7 pour Guillaume
-    sold: number; // Combien vendus (0-7)
-    available: number; // Restants (7 - sold)
+    total: 9; // Toujours 9 pour Guillaume
+    sold: number; // Combien vendus (0-9)
+    available: number; // Restants (9 - sold)
     closed: boolean; // Série close manuellement
   };
 

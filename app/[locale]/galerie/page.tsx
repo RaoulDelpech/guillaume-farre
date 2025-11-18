@@ -29,42 +29,13 @@ export default async function GaleriePage() {
             {t("title")}
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Toiles. Photographies. Traces de Ferrari.<br />
-            Chaque œuvre est unique. Irréversible.
+            Toiles. Photographies. Empreintes irréversibles.
           </p>
         </div>
       </div>
 
       {/* Filtres et Galerie avec interactivité */}
       <GalleryClient works={works} />
-
-      {/* CTA élégant */}
-      <section className="bg-muted/20 border-t border-border py-28 md:py-32">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-8">
-              Vous souhaitez acquérir une œuvre ?
-            </h2>
-            <p className="text-xl font-light text-muted-foreground mb-12 leading-relaxed">
-              Les œuvres disponibles. Rejoignez ceux qui possèdent une trace.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <a
-                href="/boutique"
-                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded text-xl transition-all"
-              >
-                Voir la boutique
-              </a>
-              <a
-                href="/contact"
-                className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded text-xl transition-all"
-              >
-                Nous contacter
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }

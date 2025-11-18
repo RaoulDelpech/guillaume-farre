@@ -36,6 +36,10 @@ export default function PanierClient() {
         category: item.category,
         images: [item.image],
         photoPath: item.photoPath,
+        format: item.format || 'A2',
+        material: item.material || 'semi-glossy',
+        orientation: item.orientation || 'vertical',
+        frame: item.frame || 'none',
       }));
 
       console.log('[Panier] Items du panier:', items);

@@ -6,7 +6,10 @@ export interface CartItem {
   id: string;
   title: string;
   price: number;
-  format: string; // "60x40", "120x80", etc.
+  format: string; // "A2", "A1", "A0"
+  material: string; // "semi-glossy", "aluminum"
+  orientation: string; // "vertical", "horizontal"
+  frame: string; // "none", "black", "white"
   image: string;
   category: string;
   photoPath: string;

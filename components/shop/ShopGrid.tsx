@@ -52,9 +52,9 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   };
 
   const frames = {
-    "none": { label: "Sans cadre", price: 0 },
-    "black": { label: "Cadre noir (bois)", price: 150 },
-    "aluminum": { label: "Cadre aluminium", price: 200 },
+    "none": { label: "Sans cadre", price: 0, description: "Impression livrée à plat ou roulée" },
+    "black": { label: "Cadre bois noir", price: 150, description: "Cadre en bois noir avec plexiglas (encadrement artisanal après impression)" },
+    "white": { label: "Cadre bois blanc", price: 150, description: "Cadre en bois blanc avec plexiglas (encadrement artisanal après impression)" },
   };
 
   const materials = {
@@ -129,10 +129,13 @@ export default function ShopGrid({ photos }: ShopGridProps) {
             category: item.photo.category,
             price: item.price,
             images: [item.photo.path],
+            photoPath: item.photo.path,
+            format: item.format,
             material: item.material,
             orientation: item.photo.orientation === 'auto'
               ? item.photo.aiDetectedOrientation || 'vertical'
               : item.photo.orientation || 'vertical',
+            frame: item.frame,
           })),
           locale: 'fr',
         }),
@@ -374,16 +377,21 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                     <button
                       key={key}
                       onClick={() => setSelectedFrame(key)}
-                      className={`w-full p-5 rounded-lg border transition-all flex justify-between items-center ${
+                      className={`w-full p-5 rounded-lg border transition-all ${
                         selectedFrame === key
                           ? 'border-primary bg-primary/5'
                           : 'border-border hover:border-primary/50'
                       }`}
                     >
-                      <span className="font-light tracking-wide">{value.label}</span>
-                      <span className="text-muted-foreground font-light">
-                        {value.price > 0 ? `+${value.price}€` : 'Inclus'}
-                      </span>
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="font-light tracking-wide">{value.label}</span>
+                        <span className="text-muted-foreground font-light">
+                          {value.price > 0 ? `+${value.price}€` : 'Inclus'}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground text-left">
+                        {value.description}
+                      </p>
                     </button>
                   ))}
                 </div>

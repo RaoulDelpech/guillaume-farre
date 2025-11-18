@@ -44,9 +44,10 @@ interface GelatoOrderItem {
   }[];
   quantity: number;
   options?: {
-    format?: string; // A3, A2, A1, etc.
+    format?: string; // A2, A1, A0
     material?: string; // semi-glossy ou aluminum
     orientation?: string; // vertical ou horizontal
+    frame?: 'none' | 'black' | 'white'; // Type de cadre
     paperType?: string;
     finish?: string;
   };
@@ -87,23 +88,42 @@ export class GelatoClient {
 
   /**
    * Créer une commande d'impression Gelato
+   * Gère automatiquement les cadres : si frame !== 'none', envoie 2 items (frame + poster)
    */
   async createOrder(order: GelatoOrder): Promise<GelatoOrderResponse> {
     console.log('🖨️ Creating Gelato order:', order.orderReferenceId);
 
     try {
-      const response = await fetch(`${this.baseUrl}/v4/orders`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-API-KEY': this.apiKey, // Gelato utilise X-API-KEY (pas X-API-Key)
-        },
-        body: JSON.stringify({
-          orderType: 'order', // 'order' = production réelle, 'draft' = test
-          orderReferenceId: order.orderReferenceId,
-          customerReferenceId: order.customerReferenceId,
-          currency: order.currency,
-          items: order.items.map(item => ({
+      // Construire les items Gelato en gérant les cadres
+      const gelatoItems: any[] = [];
+
+      for (const item of order.items) {
+        const hasFrame = item.options?.frame && item.options.frame !== 'none';
+
+        if (hasFrame) {
+          // AVEC CADRE : envoyer 2 items (frame + poster)
+          const frameSize = this.getFrameSizeInMm(item.options?.format || 'A2');
+
+          // Item 1 : Le cadre
+          gelatoItems.push({
+            itemReferenceId: `${item.itemReferenceId}-frame`,
+            productUid: this.buildFrameProductUid(frameSize, item.options?.frame || 'black'),
+            quantity: item.quantity,
+          });
+
+          // Item 2 : Le poster (à mettre dans le cadre)
+          gelatoItems.push({
+            itemReferenceId: `${item.itemReferenceId}-poster`,
+            productUid: this.buildPosterProductUid(
+              frameSize,
+              item.options?.orientation || 'vertical'
+            ),
+            files: item.files,
+            quantity: item.quantity,
+          });
+        } else {
+          // SANS CADRE : juste le poster sur matériau choisi
+          gelatoItems.push({
             itemReferenceId: item.itemReferenceId,
             productUid: this.mapFormatToProductUid(
               item.options?.format,
@@ -112,7 +132,22 @@ export class GelatoClient {
             ),
             files: item.files,
             quantity: item.quantity,
-          })),
+          });
+        }
+      }
+
+      const response = await fetch(`${this.baseUrl}/v4/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': this.apiKey,
+        },
+        body: JSON.stringify({
+          orderType: 'order',
+          orderReferenceId: order.orderReferenceId,
+          customerReferenceId: order.customerReferenceId,
+          currency: order.currency,
+          items: gelatoItems,
           shippingAddress: {
             firstName: order.recipient.name.split(' ')[0] || 'Client',
             lastName: order.recipient.name.split(' ').slice(1).join(' ') || 'Guillaume Farré',
@@ -124,7 +159,7 @@ export class GelatoClient {
             email: order.recipient.email,
             phone: order.recipient.phone,
           },
-          shipmentMethodUid: 'standard', // 'standard' ou 'express'
+          shipmentMethodUid: 'standard',
           metadata: {
             ...order.metadata,
             source: 'guillaume-farre-website',
@@ -159,7 +194,36 @@ export class GelatoClient {
   }
 
   /**
-   * Mapper le format (A3, A2, etc.) vers l'ID produit Gelato
+   * Convertir format (A2/A1/A0) en dimensions millimètres
+   */
+  private getFrameSizeInMm(format: string): string {
+    const sizeMap: Record<string, string> = {
+      'A2': '420x594-mm',   // 42.0 x 59.4 cm
+      'A1': '594x841-mm',   // 59.4 x 84.1 cm
+      'A0': '841x1189-mm',  // 84.1 x 118.9 cm
+    };
+    return sizeMap[format.toUpperCase()] || '420x594-mm';
+  }
+
+  /**
+   * Construire le product UID Gelato pour un cadre
+   */
+  private buildFrameProductUid(frameSize: string, frameColor: string): string {
+    // Format Gelato : frame_and_poster_product_frs_{size}_frc_{color}_frm_wood_frp_w12xt22-mm_gt_plexiglass
+    return `frame_and_poster_product_frs_${frameSize}_frc_${frameColor}_frm_wood_frp_w12xt22-mm_gt_plexiglass`;
+  }
+
+  /**
+   * Construire le product UID Gelato pour un poster (à mettre dans cadre)
+   */
+  private buildPosterProductUid(posterSize: string, orientation: string): string {
+    const orient = orientation === 'horizontal' ? 'hor' : 'ver';
+    // Format Gelato : flat_product_pf_{size}_pt_170-gsm-coated-silk_cl_4-0_ct_none_prt_none_{orientation}
+    return `flat_product_pf_${posterSize}_pt_200-gsm-coated-silk_cl_4-0_ct_none_prt_none_${orient}`;
+  }
+
+  /**
+   * Mapper le format (A2, A1, A0) vers l'ID produit Gelato (SANS CADRE)
    */
   private mapFormatToProductUid(format?: string, material?: string, orientation?: string): string {
     // Orientation : 'ver' (vertical/portrait) ou 'hor' (horizontal/landscape)

@@ -10,14 +10,14 @@ export default function HeroCarousel() {
 
   const slides = [
     {
-      image: "/images/works/atelier/atelier-033.jpg",
+      image: "/images/works/atelier/atelier-004.jpg",
       title: t("creations.title"),
       subtitle: t("creations.subtitle"),
       description: t("creations.description"),
       cta: { text: t("creations.cta"), href: "/histoire" },
     },
     {
-      image: "/images/works/atelier/atelier-042.jpg",
+      image: "/images/works/atelier/atelier-020.jpg",
       title: t("atelier.title"),
       subtitle: t("atelier.subtitle"),
       description: t("atelier.description"),
@@ -31,14 +31,14 @@ export default function HeroCarousel() {
       cta: { text: t("photographies.cta"), href: "/galerie" },
     },
     {
-      image: "/images/works/atelier/atelier-050.jpg",
+      image: "/images/works/atelier/atelier-045.jpg",
       title: t("conceptCarArt.title"),
       subtitle: t("conceptCarArt.subtitle"),
       description: t("conceptCarArt.description"),
       cta: { text: t("conceptCarArt.cta"), href: "/concept-car-art" },
     },
     {
-      image: "/images/works/atelier/atelier-068.jpg",
+      image: "/images/works/atelier/atelier-063.jpg",
       title: t("origine.title"),
       subtitle: t("origine.subtitle"),
       description: t("origine.description"),

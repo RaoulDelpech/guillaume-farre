@@ -567,6 +567,21 @@ bun run migrate-metadata
 - Documentation JSDoc
 - Logging approprié
 
+**RÈGLE CRITIQUE #32 : Photo Metadata = Serveur fait foi**
+
+```
+❌ INTERDIT : Copier data/photo-metadata.json LOCAL → PRODUCTION
+✅ AUTORISÉ : Copier data/photo-metadata.json PRODUCTION → LOCAL
+
+Le fichier data/photo-metadata.json du SERVEUR est la SOURCE DE VÉRITÉ.
+Guillaume travaille dans l'admin en production.
+Ne JAMAIS écraser ce fichier depuis le local.
+
+Exception : Migrations de schema (avec backup automatique avant).
+```
+
+**Incident 2025-11-19** : J'ai copié le metadata local vers production, écrasant les modifications récentes de Guillaume (photos supprimées + photos validées). Récupération partielle via logs PM2. Ne JAMAIS reproduire cette erreur.
+
 ---
 
 ## DÉPLOIEMENT

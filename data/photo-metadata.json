@@ -1,71 +1,11 @@
 [
   {
-    "filename": "atelier-001.jpg",
-    "path": "/images/works/atelier/atelier-001.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": true,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "price": 3000,
-    "edition": {
-      "type": "limited",
-      "count": 30
-    }
-  },
-  {
-    "filename": "atelier-002.jpg",
-    "path": "/images/works/atelier/atelier-002.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": true,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "price": 3500,
-    "edition": {
-      "type": "limited",
-      "count": 30
-    }
-  },
-  {
     "filename": "atelier-003.jpg",
     "path": "/images/works/atelier/atelier-003.jpg",
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -95,7 +35,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -120,7 +60,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -145,7 +85,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -170,7 +110,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -195,7 +135,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -220,32 +160,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-010.jpg",
-    "path": "/images/works/atelier/atelier-010.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -270,7 +185,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -295,58 +210,8 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-013.jpg",
-    "path": "/images/works/atelier/atelier-013.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-014.jpg",
-    "path": "/images/works/atelier/atelier-014.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
+    "status": "trash",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 7,
@@ -370,7 +235,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -395,7 +260,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -420,32 +285,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-018.jpg",
-    "path": "/images/works/atelier/atelier-018.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -470,7 +310,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -495,7 +335,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -520,7 +360,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -545,7 +385,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -570,7 +410,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -595,7 +435,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -620,32 +460,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-026.jpg",
-    "path": "/images/works/atelier/atelier-026.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -670,7 +485,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -695,32 +510,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-029.jpg",
-    "path": "/images/works/atelier/atelier-029.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -745,7 +535,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -770,82 +560,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-032.jpg",
-    "path": "/images/works/atelier/atelier-032.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-033.jpg",
-    "path": "/images/works/atelier/atelier-033.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-034.jpg",
-    "path": "/images/works/atelier/atelier-034.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -870,7 +585,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -895,7 +610,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -920,7 +635,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -945,32 +660,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-039.jpg",
-    "path": "/images/works/atelier/atelier-039.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -995,32 +685,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-041.jpg",
-    "path": "/images/works/atelier/atelier-041.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1045,7 +710,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1070,32 +735,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-044.jpg",
-    "path": "/images/works/atelier/atelier-044.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1120,7 +760,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1145,7 +785,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1170,7 +810,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1195,7 +835,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1220,7 +860,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1245,7 +885,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1270,7 +910,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1295,7 +935,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1320,7 +960,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1345,57 +985,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-055.jpg",
-    "path": "/images/works/atelier/atelier-055.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-056.jpg",
-    "path": "/images/works/atelier/atelier-056.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1420,7 +1010,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1445,32 +1035,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-059.jpg",
-    "path": "/images/works/atelier/atelier-059.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1495,7 +1060,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1520,7 +1085,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1545,7 +1110,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1570,7 +1135,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1595,7 +1160,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1620,7 +1185,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1645,7 +1210,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1670,7 +1235,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1695,7 +1260,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1720,7 +1285,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1745,32 +1310,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-071.jpg",
-    "path": "/images/works/atelier/atelier-071.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1795,7 +1335,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1820,7 +1360,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1845,7 +1385,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1870,57 +1410,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-076.jpg",
-    "path": "/images/works/atelier/atelier-076.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-077.jpg",
-    "path": "/images/works/atelier/atelier-077.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1945,32 +1435,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "atelier-079.jpg",
-    "path": "/images/works/atelier/atelier-079.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -1995,7 +1460,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -2025,7 +1490,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -2055,7 +1520,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2080,7 +1545,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2105,32 +1570,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "empreintes",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "empreintes-011.jpg",
-    "path": "/images/works/empreintes/empreintes-011.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2155,7 +1595,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2180,32 +1620,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "empreintes",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "empreintes-017.jpg",
-    "path": "/images/works/empreintes/empreintes-017.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2230,7 +1645,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2255,7 +1670,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2280,7 +1695,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2305,7 +1720,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2330,7 +1745,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2355,7 +1770,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2380,7 +1795,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2405,7 +1820,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2430,7 +1845,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2449,7 +1864,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2468,7 +1883,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2487,7 +1902,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2506,7 +1921,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2525,7 +1940,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -2555,7 +1970,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -2585,7 +2000,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2610,7 +2025,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2635,7 +2050,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2660,7 +2075,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2685,7 +2100,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2710,7 +2125,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2735,7 +2150,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2760,7 +2175,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2785,7 +2200,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2810,32 +2225,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 7,
-      "sold": 0,
-      "available": 7,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200
-      }
-    },
-    "category": "projection",
-    "isNumberedSeries": true
-  },
-  {
-    "filename": "projection-025.jpg",
-    "path": "/images/works/projection/projection-025.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2860,7 +2250,7 @@
     "categories": [
       "limited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "limitedEdition": {
@@ -2885,7 +2275,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2904,7 +2294,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2923,7 +2313,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2942,7 +2332,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2961,7 +2351,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2980,7 +2370,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -2999,7 +2389,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3018,7 +2408,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3037,7 +2427,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3056,7 +2446,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3075,7 +2465,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3094,7 +2484,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3113,7 +2503,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3132,7 +2522,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3151,7 +2541,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3170,7 +2560,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3189,7 +2579,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3208,7 +2598,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3227,7 +2617,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3246,7 +2636,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3265,7 +2655,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3284,7 +2674,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3303,7 +2693,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3322,7 +2712,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {
@@ -3341,7 +2731,7 @@
     "categories": [
       "unlimited"
     ],
-    "status": null,
+    "status": "active",
     "visible": true,
     "forSale": false,
     "prices": {

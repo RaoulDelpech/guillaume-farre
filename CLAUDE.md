@@ -1,7 +1,16 @@
 # Guillaume Farré - Site Artiste & Boutique Fine Art
 
-Dernière mise à jour: 2025-11-07
+Dernière mise à jour: 2025-11-29
 Maintenu par: Lalou
+
+---
+
+## IMPORTANT : LIRE D'ABORD ~/CLAUDE.md
+
+Ce fichier contient les règles spécifiques au projet Guillaume Farré.
+Les 5 Règles Absolues et instructions générales sont dans `~/CLAUDE.md`.
+
+**EXCEPTION** : Ce projet a sa propre charte graphique (pas Juris-Power).
 
 ---
 

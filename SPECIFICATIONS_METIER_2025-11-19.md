@@ -1,6 +1,6 @@
 # SPÉCIFICATIONS MÉTIER - Guillaume Farré
 
-**Dernière mise à jour** : 2025-11-19 00:12
+**Dernière mise à jour** : 2025-11-29 (corrigé 7 exemplaires)
 **Maintenu par** : Lalou
 
 ---
@@ -32,12 +32,11 @@
 
 ---
 
-### 2. PHOTOGRAPHIES - Séries limitées numérotées (1/9)
+### 2. PHOTOGRAPHIES - Séries limitées numérotées (1/7)
 
 **Description** :
 - Photos documentant l'instant où Ferrari peint sur toile
-- Éditions limitées à **9 exemplaires** (1/9, 2/9... 9/9)
-- **CHANGEMENT 2025-11** : Passage de 7 à 9 exemplaires
+- Éditions limitées à **7 exemplaires** (1/7, 2/7... 7/7)
 - Signées par Guillaume Farré
 - Certificat d'authenticité fourni
 - Numérotées à la main
@@ -57,19 +56,19 @@
 - Montages premium si disponibles : Alu-Dibond, Acrylique
 
 **Règles éditions limitées** :
-- Une fois 9/9 vendus, série close DÉFINITIVEMENT
-- Afficher compteur "X/9 restants" sur boutique
+- Une fois 7/7 vendus, série close DÉFINITIVEMENT
+- Afficher compteur "X/7 restants" sur boutique
 - Certificat authenticité inclus avec numéro d'exemplaire
-- Possibilité de clore manuellement une série avant 9/9
+- Possibilité de clore manuellement une série avant 7/7
 
 **Metadata** :
 ```typescript
 {
   categories: ['limited'],
   limitedEdition: {
-    total: 9,
+    total: 7,
     sold: 3, // Exemple
-    available: 6, // 9 - sold
+    available: 4, // 7 - sold
     closed: false
   },
   prices: {
@@ -134,7 +133,7 @@
 
 **Catégories disponibles** :
 - `unlimited` : Tirage illimité (A4/A3/A2)
-- `limited` : Série limitée 1-9 (A3/A2/A1)
+- `limited` : Série limitée 1-7 (A3/A2/A1)
 - `xxl` : Format XXL 80x120cm (sur devis)
 - `monumental` : Format monumental 120cm+ (sur devis)
 
@@ -145,7 +144,7 @@
   categories: ["unlimited", "limited", "xxl"],
   // Signifie :
   // - Disponible en tirage illimité (A4/A3/A2) à 150/250/400€
-  // - ET en série limitée 1-9 (A3/A2/A1) à 500/800/1200€
+  // - ET en série limitée 1-7 (A3/A2/A1) à 500/800/1200€
   // - ET en format XXL (sur devis)
 }
 ```
@@ -153,7 +152,7 @@
 **Interface boutique** :
 1. Client sélectionne une photo
 2. Choix catégorie :
-   - "Édition limitée (1-9)" → formats A3/A2/A1 uniquement
+   - "Édition limitée (1-7)" → formats A3/A2/A1 uniquement
    - "Tirage illimité" → formats A4/A3/A2 uniquement
    - "Format XXL/Monumental" → formulaire devis
 3. Choix format selon catégorie
@@ -240,9 +239,9 @@ export interface PhotoMetadata {
 
   // Éditions limitées (si categories contient 'limited')
   limitedEdition?: {
-    total: 9; // Toujours 9 pour Guillaume
-    sold: number; // Combien vendus (0-9)
-    available: number; // Restants (9 - sold)
+    total: 7; // Toujours 7 pour Guillaume
+    sold: number; // Combien vendus (0-7)
+    available: number; // Restants (7 - sold)
     closed: boolean; // Série close manuellement
   };
 
@@ -340,8 +339,8 @@ export interface PhotoMetadata {
 
 ### 3. Choix catégorie
 Si photo disponible en plusieurs catégories :
-- Radio buttons : "Tirage illimité" / "Série limitée 1-9"
-- Affichage compteur si série limitée : "X/9 restants"
+- Radio buttons : "Tirage illimité" / "Série limitée 1-7"
+- Affichage compteur si série limitée : "X/7 restants"
 - Explication différences (prix, qualité, signature)
 
 ### 4. Choix format
@@ -366,7 +365,7 @@ Formats disponibles selon catégorie choisie :
 
 ### 8. Confirmation et production
 - Email confirmation avec récap commande
-- Si série limitée : attribution numéro d'exemplaire (ex: 3/9)
+- Si série limitée : attribution numéro d'exemplaire (ex: 3/7)
 - Webhook Stripe → Gelato API (création commande impression)
 - Décrément compteur série limitée
 - Email tracking expédition
@@ -376,10 +375,10 @@ Formats disponibles selon catégorie choisie :
 ## RÈGLES MÉTIER CRITIQUES
 
 ### Éditions limitées
-- ✅ Toujours 9 exemplaires (pas 7, pas 10)
-- ✅ Numérotation 1/9, 2/9... 9/9
-- ✅ Une fois 9/9 vendus → série close automatiquement
-- ✅ Guillaume peut clore manuellement avant 9/9
+- ✅ Toujours 7 exemplaires
+- ✅ Numérotation 1/7, 2/7... 7/7
+- ✅ Une fois 7/7 vendus → série close automatiquement
+- ✅ Guillaume peut clore manuellement avant 7/7
 - ✅ Série close = pas de réouverture possible
 - ✅ Chaque vente → décrément compteur automatique via webhook Stripe
 
@@ -436,7 +435,7 @@ Formats disponibles selon catégorie choisie :
 
 **Série** : Ensemble de photos thématiques (Atelier, Empreintes, Projection)
 
-**Édition limitée** : Photo numérotée 1/9 à 9/9, série close après vente complète
+**Édition limitée** : Photo numérotée 1/7 à 7/7, série close après vente complète
 
 **Tirage illimité** : Photo non numérotée, quantité infinie, prix réduit
 

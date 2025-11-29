@@ -196,7 +196,7 @@ Fichiers de documentation session précédente (19 nov 00:05) :
 
 4. **SPECIFICATIONS_METIER_2025-11-19.md** (459 lignes)
    - Ce que Guillaume vend
-   - Règles éditions limitées (9 ex, pas 7)
+   - Règles éditions limitées (7 exemplaires)
    - Schema metadata
 
 5. **CLAUDE.md** (mis à jour)
@@ -376,9 +376,9 @@ Photos disponibles paysage : 32 au total (voir liste complète ci-dessus)
 
 ---
 
-### 4. Éditions limitées = 9 exemplaires (PAS 7)
+### 4. Éditions limitées = 7 exemplaires
 
-Erreur dans ancienne doc : les séries limitées sont **9 exemplaires**, pas 7.
+Les séries limitées sont **7 exemplaires** (1/7 à 7/7).
 
 Voir `SPECIFICATIONS_METIER_2025-11-19.md` pour règles exactes.
 

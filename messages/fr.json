@@ -37,7 +37,7 @@
     },
     "conceptCarArt": {
       "title": "Concept Car Art",
-      "subtitle": "Quand l'automobile devient pinceau",
+      "subtitle": "Quand l'automobile devient instrument",
       "description": "La Ferrari rouge rejoint la petite voiture n°20 de mon enfance. L'atelier ouvre ses portes pour une session en public.",
       "cta": "Découvrir l'événement"
     },
@@ -65,7 +65,7 @@
     "artist": {
       "label": "L'Artiste",
       "name": "Guillaume Farré",
-      "bio": "Sculpteur et artiste plasticien, Guillaume transforme la Ferrari en outil de création. Ses œuvres capturent le moment où 500 chevaux rencontrent la toile. Le mouvement automobile devient geste artistique.",
+      "bio": "Sculpteur et artiste plasticien, Guillaume utilise la Ferrari comme matière première de son art. 500 chevaux qui rencontrent la toile. Ce qui naît de cette collision n'appartient qu'à l'instant.",
       "cta": "Découvrir l'histoire"
     }
   },
@@ -80,7 +80,7 @@
     "intro": "Ces images documentent la création des toiles. Il n'y a jamais de deuxième prise.",
     "empreintes": {
       "title": "Empreintes",
-      "description": "Les marques laissées par les roues, la carrosserie, le châssis. Peinture industrielle sous pression. Chaque contact produit un résultat différent."
+      "description": "Ce que les roues, la carrosserie et le châssis ont imprimé. Peinture industrielle sous pression. Chaque contact, un résultat différent."
     },
     "atelier": {
       "title": "Atelier",
@@ -88,7 +88,7 @@
     },
     "projections": {
       "title": "Projections",
-      "description": "Le mouvement figé. Peinture projetée sur les murs, le sol, les toiles. La violence maîtrisée."
+      "description": "L'action figée. Peinture projetée sur les murs, le sol, les surfaces. L'énergie brute capturée."
     },
     "allWorks": "Toutes les œuvres",
     "filterAll": "Tout voir",
@@ -127,12 +127,12 @@
   "dino": {
     "tag": "La Dino en mouvement",
     "title": "La Ferrari Dino",
-    "subtitle": "L'instrument rouge qui peint. L'histoire d'une obsession devenue réalité.",
+    "subtitle": "L'instrument rouge en action. L'histoire d'une obsession devenue réalité.",
     "origin": {
       "label": "L'Origine",
       "title": "De la rose à la rouge",
       "text1": "Quarante ans après avoir croisé la Ferrari rose de son enfance, Guillaume a décidé de transformer son obsession en méthode créative. La Dino rouge n'est pas juste un véhicule. C'est un instrument de création, une extension de sa volonté artistique.",
-      "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, laissant des traces définitives. Guillaume capture ce dialogue entre l'homme et la machine."
+      "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, déposant sa signature mécanique. Guillaume saisit ce dialogue entre l'homme et la machine."
     },
     "specs": {
       "label": "Caractéristiques",
@@ -153,8 +153,8 @@
     "creative": {
       "label": "Son Rôle",
       "title": "Un instrument de création",
-      "text1": "La Dino n'est pas préservée dans un musée. Elle vit, elle crée, elle peint. Ses pneus laissent des marques. Son poids produit des traces. Sa vitesse génère des éclaboussures.",
-      "text2": "Chaque passage est différent. Chaque création est définitive. Cette impossibilité de recommencer fait la valeur de l'œuvre."
+      "text1": "La Dino n'est pas préservée dans un musée. Elle vit, elle travaille, elle imprime. Ses pneus gravent la toile. Son poids écrase les pigments. Sa vitesse propulse la couleur.",
+      "text2": "Chaque passage est différent. Chaque résultat est sans retour. C'est cette impossibilité de recommencer qui donne sa valeur à l'œuvre."
     },
     "gallery": {
       "label": "Galerie",
@@ -162,7 +162,7 @@
     },
     "cta": {
       "title": "Voir la Dino en action",
-      "text": "Découvrez comment cette machine mythique peint sur la toile. Automobile, art et obsession réunis.",
+      "text": "Découvrez cette machine mythique à l'œuvre sur la toile. Automobile, art et obsession réunis.",
       "button1": "Découvrir l'atelier",
       "button2": "Voir les œuvres"
     }

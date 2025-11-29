@@ -94,7 +94,7 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden bg-background">
+    <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-background">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div

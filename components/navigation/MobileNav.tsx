@@ -13,11 +13,10 @@ export default function MobileNav() {
     { href: "/", label: t("accueil") },
     { href: "/galerie", label: t("galerie") },
     { href: "/dino", label: "Dino" },
-    { href: "/boutique", label: t("boutique") },
+    { href: "/boutique", label: "Commandes" },
     { href: "/histoire", label: t("histoire") },
     { href: "/atelier", label: t("atelier") },
-    { href: "/concept-car-art", label: t("conceptCarArt") },
-    { href: "/presse", label: t("presse") },
+    { href: "/origine", label: "Origine" },
     { href: "/contact", label: t("contact") },
     { href: "/panier", label: t("panier") },
   ];

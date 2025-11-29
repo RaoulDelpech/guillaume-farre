@@ -134,10 +134,10 @@ export default function HeroCarousel() {
                 {slide.description}
               </p>
 
-              {/* CTA Premium - Plus visible */}
+              {/* CTA discret et élégant */}
               <Link
                 href={slide.cta.href}
-                className="inline-block px-12 py-5 md:px-16 md:py-6 bg-white hover:bg-white/95 text-black text-lg md:text-xl font-light tracking-wider rounded-sm transition-all animate-fade-in-delay-3 shadow-2xl hover:shadow-3xl hover:scale-105 duration-300"
+                className="inline-block px-8 py-3 md:px-10 md:py-4 border border-white/50 hover:border-white text-white text-base md:text-lg font-light tracking-wide rounded-sm transition-all animate-fade-in-delay-3 hover:bg-white/10 duration-300"
               >
                 {slide.cta.text}
               </Link>
@@ -178,19 +178,19 @@ export default function HeroCarousel() {
         ))}
       </div>
 
-      {/* Quick Access Menu */}
+      {/* Quick Access Menu - discret */}
       <div className="absolute top-2 right-2 md:top-4 md:right-4 flex gap-2 z-10">
         <Link
           href="/galerie"
-          className="px-3 py-1.5 md:px-4 md:py-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-md text-white text-xs md:text-sm transition-all"
+          className="px-3 py-1.5 md:px-4 md:py-2 border border-white/30 hover:border-white/60 backdrop-blur-sm rounded-sm text-white/80 hover:text-white text-xs md:text-sm transition-all"
         >
           {t("galerie")}
         </Link>
         <Link
           href="/boutique"
-          className="px-3 py-1.5 md:px-4 md:py-2 bg-primary/80 backdrop-blur-sm hover:bg-primary rounded-md text-white text-xs md:text-sm transition-all"
+          className="px-3 py-1.5 md:px-4 md:py-2 border border-white/30 hover:border-white/60 backdrop-blur-sm rounded-sm text-white/80 hover:text-white text-xs md:text-sm transition-all"
         >
-          {t("boutique")}
+          Commandes
         </Link>
       </div>
 

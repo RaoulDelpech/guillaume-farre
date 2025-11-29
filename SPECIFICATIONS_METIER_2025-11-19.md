@@ -41,13 +41,15 @@
 - Certificat d'authenticité fourni
 - Numérotées à la main
 
-**Formats disponibles** :
-- ✅ A3 (29.7 x 42 cm) : **500 €**
-- ✅ A2 (42 x 59.4 cm) : **800 €**
+**Grands formats (9 exemplaires par format)** :
+- ✅ 2A0 (118.9 x 168.2 cm) : **Sur devis**
+- ✅ A0 (84.1 x 118.9 cm) : **Sur devis**
 - ✅ A1 (59.4 x 84.1 cm) : **1200 €**
-- ✅ XXL (80 x 120 cm) : **Sur devis**
-- ✅ Monumental (120+ cm) : **Sur devis**
-- ❌ **PAS de A4** (trop petit/cheap pour édition limitée)
+
+**Petits formats (99 exemplaires par format)** :
+- ✅ A2 (42 x 59.4 cm) : **800 €**
+- ✅ A3 (29.7 x 42 cm) : **500 €**
+- ✅ A4 (21 x 29.7 cm) : **250 €**
 
 **Finitions** :
 - Papier Fine Art Giclee (12 couleurs, 200 gsm archival)
@@ -56,10 +58,11 @@
 - Montages premium si disponibles : Alu-Dibond, Acrylique
 
 **Règles éditions limitées** :
-- Une fois 7/7 vendus, série close DÉFINITIVEMENT
-- Afficher compteur "X/7 restants" sur boutique
+- Grands formats : 9 exemplaires max par format (2A0, A0, A1)
+- Petits formats : 99 exemplaires max par format (A2, A3, A4)
+- Afficher compteur "X/9 restants" ou "X/99 restants" sur boutique
 - Certificat authenticité inclus avec numéro d'exemplaire
-- Possibilité de clore manuellement une série avant 7/7
+- Possibilité de clore manuellement une série
 
 **Metadata** :
 ```typescript
@@ -83,59 +86,15 @@
 
 ---
 
-### 3. PHOTOGRAPHIES - Tirages illimités
-
-**Description** :
-- Mêmes photos que séries limitées
-- Éditions NON numérotées
-- Quantité infinie disponible
-- NON signées (ou signature imprimée)
-- PAS de certificat authenticité
-
-**Formats disponibles** :
-- ✅ A4 (21 x 29.7 cm) : **150 €**
-- ✅ A3 (29.7 x 42 cm) : **250 €**
-- ✅ A2 (42 x 59.4 cm) : **400 €**
-
-**Finitions** :
-- Papier photo standard (qualité correcte mais pas archival)
-- Impression 4 couleurs CMYK (vs 12 couleurs Giclee)
-- Options encadrement : noir, blanc, sans cadre
-
-**Différence avec séries limitées** :
-- Prix réduits (~50% moins cher que séries limitées)
-- Pas de limitation quantité
-- Qualité impression légèrement inférieure
-- Papier standard vs archival
-- Pas de signature
-- Pas de numérotation
-- Pas de certificat
-
-**Metadata** :
-```typescript
-{
-  categories: ['unlimited'],
-  prices: {
-    unlimited: {
-      a4: 150,
-      a3: 250,
-      a2: 400
-    }
-  }
-}
-```
-
----
-
-## MULTI-CATÉGORISATION
+## STRUCTURE DES FORMATS
 
 **IMPORTANT** : Une photo peut être dans PLUSIEURS catégories simultanément.
 
-**Catégories disponibles** :
-- `unlimited` : Tirage illimité (A4/A3/A2)
-- `limited` : Série limitée 1-7 (A3/A2/A1)
-- `xxl` : Format XXL 80x120cm (sur devis)
-- `monumental` : Format monumental 120cm+ (sur devis)
+**Catégories de formats** :
+- `grands` : Formats 2A0, A0, A1 → **9 exemplaires** par format
+- `petits` : Formats A2, A3, A4 → **99 exemplaires** par format
+
+Tous les tirages sont numérotés et signés.
 
 **Exemple réel** :
 ```typescript

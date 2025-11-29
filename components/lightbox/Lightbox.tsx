@@ -52,10 +52,10 @@ export default function Lightbox({ open, work, onClose }: LightboxProps) {
           <p className="text-sm text-gray-300 mb-4">{work.year}</p>
           <Link
             href="/boutique"
-            className="inline-block px-8 py-3 bg-white hover:bg-gray-200 text-black font-light tracking-wide rounded transition-all"
+            className="inline-block px-6 py-2 border border-white/50 hover:border-white text-white font-light tracking-wide rounded-sm transition-all hover:bg-white/10"
             onClick={(e) => e.stopPropagation()}
           >
-            Voir dans la boutique
+            Commander cette œuvre
           </Link>
         </div>
       </div>

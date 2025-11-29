@@ -26,25 +26,25 @@
     "creations": {
       "title": "Deux formes, un processus",
       "subtitle": "Toiles uniques & Photographies documentaires",
-      "description": "Les toiles naissent du passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Les photographies documentent ce moment : quand le mouvement laisse sa trace physique.",
-      "cta": "Comprendre le processus"
+      "description": "Mes toiles naissent du passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Mes photographies documentent ce moment : quand le mouvement dépose sa signature.",
+      "cta": "Découvrir l'atelier"
     },
     "photographies": {
       "title": "Trois séries photographiques",
       "subtitle": "Empreintes • Atelier • Projections",
-      "description": "Les empreintes montrent les marques laissées par les roues et la carrosserie. L'atelier révèle les voitures au repos, entre deux sessions. Les projections figent la violence maîtrisée de l'action. Trois regards différents sur la même démarche.",
+      "description": "Mes empreintes montrent ce que les roues et la carrosserie ont imprimé. Mon atelier révèle les voitures au repos, entre deux sessions. Mes projections figent l'énergie brute de l'action. Trois regards différents sur ma démarche.",
       "cta": "Voir la galerie"
     },
     "conceptCarArt": {
       "title": "Concept Car Art",
       "subtitle": "Quand l'automobile devient instrument",
-      "description": "La Ferrari rouge rejoint la petite voiture n°20 de mon enfance. L'atelier ouvre ses portes pour une session en public.",
+      "description": "Ma Ferrari rejoint la petite voiture n°20 de mon enfance. J'ouvre les portes de mon atelier pour une session en public.",
       "cta": "Découvrir l'événement"
     },
     "acquerir": {
       "title": "Acquérir une œuvre",
       "subtitle": "Éditions limitées numérotées — Qualité musée",
-      "description": "Ces photographies documentent le moment où la Ferrari a créé la toile. Formats A2, A3, A4. Encadrement professionnel noir ou aluminium. Impression Fine Art Giclée 12 couleurs, papier archival 200 gsm.",
+      "description": "Mes photographies documentent le moment où ma Ferrari a créé la toile. Formats 2A0 à A4. Encadrement professionnel noir ou aluminium. Impression Fine Art Giclée 12 couleurs, papier archival 200 gsm.",
       "cta": "Voir les œuvres disponibles"
     },
     "histoire": {
@@ -65,8 +65,8 @@
     "artist": {
       "label": "L'Artiste",
       "name": "Guillaume Farré",
-      "bio": "Sculpteur et artiste plasticien, Guillaume utilise la Ferrari comme matière première de son art. 500 chevaux qui rencontrent la toile. Ce qui naît de cette collision n'appartient qu'à l'instant.",
-      "cta": "Découvrir l'histoire"
+      "bio": "Sculpteur et artiste plasticien, j'utilise la Ferrari comme matière première de mon art. 500 chevaux qui rencontrent la toile. Ce qui naît de cette collision n'appartient qu'à l'instant.",
+      "cta": "Découvrir mon histoire"
     }
   },
   "footer": {
@@ -76,15 +76,15 @@
   },
   "gallery": {
     "title": "Galerie",
-    "subtitle": "Trois séries photographiques",
-    "intro": "Ces images documentent la création des toiles. Il n'y a jamais de deuxième prise.",
+    "subtitle": "Toiles. Photographies. Empreintes irréversibles.",
+    "intro": "Ces images documentent ma création. Il n'y a jamais de deuxième prise.",
     "empreintes": {
       "title": "Empreintes",
-      "description": "Ce que les roues, la carrosserie et le châssis ont imprimé. Peinture industrielle sous pression. Chaque contact, un résultat différent."
+      "description": "Ce que mes roues, ma carrosserie et mon châssis ont imprimé. Peinture industrielle sous pression. Chaque contact, un résultat différent."
     },
     "atelier": {
       "title": "Atelier",
-      "description": "Les Ferrari au repos, entre deux sessions de travail. Quatre voitures qui attendent leur prochain passage sur la toile."
+      "description": "Mes Ferrari au repos, entre deux sessions. Quatre voitures qui attendent leur prochain passage sur la toile."
     },
     "projections": {
       "title": "Projections",
@@ -97,12 +97,12 @@
     "filterProjections": "Projections"
   },
   "shop": {
-    "heroTag": "BOUTIQUE OFFICIELLE",
-    "heroTitle": "Œuvres disponibles",
-    "heroDescription": "Découvrez l'art automobile contemporain. Chaque œuvre est certifiée, numérotée et livrée avec son certificat d'authenticité.",
+    "heroTag": "COMMANDES",
+    "heroTitle": "Mes œuvres disponibles",
+    "heroDescription": "Découvrez mon art automobile. Chaque œuvre est certifiée, numérotée et livrée avec son certificat d'authenticité.",
     "title": "Œuvres disponibles",
     "subtitle": "Photographies d'art — Éditions limitées",
-    "intro": "Ces photographies capturent le moment où la Ferrari a créé la toile. Impression Fine Art Giclée, qualité musée.",
+    "intro": "Mes photographies capturent le moment où ma Ferrari a créé la toile. Impression Fine Art Giclée, qualité musée.",
     "quality": {
       "title": "Qualité professionnelle",
       "certificate": "Certificat d'authenticité signé",
@@ -127,12 +127,12 @@
   "dino": {
     "tag": "La Dino en mouvement",
     "title": "La Ferrari Dino",
-    "subtitle": "L'instrument rouge en action. L'histoire d'une obsession devenue réalité.",
+    "subtitle": "Mon instrument en action. L'histoire d'une obsession devenue réalité.",
     "origin": {
       "label": "L'Origine",
-      "title": "De la rose à la rouge",
-      "text1": "Quarante ans après avoir croisé la Ferrari rose de son enfance, Guillaume a décidé de transformer son obsession en méthode créative. La Dino rouge n'est pas juste un véhicule. C'est un instrument de création, une extension de sa volonté artistique.",
-      "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, déposant sa signature mécanique. Guillaume saisit ce dialogue entre l'homme et la machine."
+      "title": "De l'enfance à l'atelier",
+      "text1": "Quarante ans après avoir croisé la Ferrari de mon enfance, j'ai décidé de transformer mon obsession en méthode créative. Ma Dino n'est pas juste un véhicule. C'est un instrument de création, une extension de ma volonté artistique.",
+      "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, déposant sa signature mécanique. Je saisis ce dialogue entre l'homme et la machine."
     },
     "specs": {
       "label": "Caractéristiques",
@@ -141,8 +141,8 @@
       "modelValue": "Ferrari 206 GT Dino",
       "year": "Année",
       "yearValue": "1974",
-      "color": "Couleur",
-      "colorValue": "Rosso Corsa (Rouge Ferrari)",
+      "color": "Finition",
+      "colorValue": "Rosso Corsa",
       "engine": "Moteur",
       "engineValue": "V6 2.0L biturbo, configuration longitudinale arrière",
       "power": "Puissance",
@@ -152,8 +152,8 @@
     },
     "creative": {
       "label": "Son Rôle",
-      "title": "Un instrument de création",
-      "text1": "La Dino n'est pas préservée dans un musée. Elle vit, elle travaille, elle imprime. Ses pneus gravent la toile. Son poids écrase les pigments. Sa vitesse propulse la couleur.",
+      "title": "Mon instrument de création",
+      "text1": "Ma Dino n'est pas préservée dans un musée. Elle vit, elle travaille, elle imprime. Ses pneus gravent la toile. Son poids écrase les pigments. Sa vitesse propulse la matière.",
       "text2": "Chaque passage est différent. Chaque résultat est sans retour. C'est cette impossibilité de recommencer qui donne sa valeur à l'œuvre."
     },
     "gallery": {

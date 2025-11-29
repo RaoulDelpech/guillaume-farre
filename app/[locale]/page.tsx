@@ -60,15 +60,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Œuvres en vedette avec badges de rareté */}
+      {/* Dernières œuvres */}
       <section className="container py-20 md:py-28 border-t px-6 lg:px-8">
         <div className="flex items-center justify-between mb-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-3 text-foreground">Œuvres disponibles</h2>
-            <p className="text-lg text-muted-foreground font-light">Éditions limitées et pièces uniques</p>
+            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-3 text-foreground">Dernières œuvres</h2>
+            <p className="text-lg text-muted-foreground font-light">Toiles. Photographies. Empreintes irréversibles.</p>
           </div>
-          <Link href="/boutique" className="text-amber-500 hover:text-amber-400 font-light tracking-wide">
-            Voir tout →
+          <Link href="/galerie" className="text-foreground/70 hover:text-foreground font-light tracking-wide border-b border-current pb-1">
+            Voir la galerie →
           </Link>
         </div>
 
@@ -133,10 +133,10 @@ export default async function HomePage() {
 
         <div className="mt-16 text-center">
           <Link
-            href="/boutique"
-            className="inline-block px-10 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-lg transition-all transform hover:scale-105"
+            href="/galerie"
+            className="inline-block px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide rounded-sm text-lg transition-all"
           >
-            Voir toutes les œuvres disponibles
+            Voir toute la galerie
           </Link>
         </div>
       </section>

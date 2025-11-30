@@ -21,7 +21,7 @@ export default async function DinoHistoirePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1600&q=80")',
+            backgroundImage: 'url("https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=1600&q=80")',
           }}
         >
           <div className="absolute inset-0 bg-black/60" />
@@ -80,8 +80,8 @@ export default async function DinoHistoirePage() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80"
-                  alt="Ferrari Dino classique"
+                  src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80"
+                  alt="Ferrari Dino classique rouge"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -148,8 +148,8 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80"
-                  alt="Ferrari Dino 206 GT vintage"
+                  src="https://images.unsplash.com/photo-1626668893632-6f3a4466d22f?w=800&q=80"
+                  alt="Ferrari Dino 206 GT rouge"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -228,8 +228,8 @@ export default async function DinoHistoirePage() {
             <div>
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80"
-                  alt="Ferrari Dino 246 GTS classique"
+                  src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80"
+                  alt="Ferrari Dino 246 GTS rouge"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -319,8 +319,8 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1605559424843-9e4c3febae90?w=800&q=80"
-                  alt="Ferrari Dino rouge dans l'atelier"
+                  src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&q=80"
+                  alt="Ferrari rouge dans l'atelier"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -36,6 +36,28 @@ export default async function DinoPage() {
         </div>
       </div>
 
+      {/* Lien vers l'histoire de la Dino */}
+      <section className="py-12 bg-primary/5 border-b border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="text-lg font-light text-foreground">
+                Découvrez l'histoire fascinante de la Ferrari Dino dans le monde automobile
+              </p>
+              <p className="text-muted-foreground font-light">
+                De Alfredo Ferrari au mythe intemporel
+              </p>
+            </div>
+            <Link
+              href="/dino-histoire"
+              className="px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide rounded transition-all whitespace-nowrap"
+            >
+              L'histoire de la Dino →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Section L'Origine */}
       <section className="py-24 md:py-32 bg-muted/30 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">

@@ -16,21 +16,24 @@ export default function middleware(request: NextRequest) {
 
   // Routes publiques (pas besoin d'auth)
   if (
-    pathname === '/login' ||
+    pathname.endsWith('/login') ||
     pathname.startsWith('/api/') ||
     pathname.startsWith('/_next/') ||
     pathname.startsWith('/images/') ||
     pathname.includes('.')
   ) {
-    return NextResponse.next();
+    return intlMiddleware(request);
   }
 
   // Vérifier le cookie d'authentification
   const authCookie = request.cookies.get(COOKIE_NAME);
 
   if (!authCookie || authCookie.value !== 'authenticated') {
-    // Rediriger vers login
-    return NextResponse.redirect(new URL('/login', request.url));
+    // Rediriger vers login avec la bonne locale
+    const locale = pathname.split('/')[1] || 'fr';
+    const validLocales = ['fr', 'en', 'it'];
+    const targetLocale = validLocales.includes(locale) ? locale : 'fr';
+    return NextResponse.redirect(new URL(`/${targetLocale}/login`, request.url));
   }
 
   // Utilisateur authentifié, continuer avec le middleware i18n

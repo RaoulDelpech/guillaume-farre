@@ -1,9 +1,42 @@
+import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 
-export default createMiddleware(routing);
+const COOKIE_NAME = "gf_auth";
+
+const intlMiddleware = createMiddleware(routing);
+
+/**
+ * Middleware avec protection mot de passe simple
+ * @author Lalou
+ * @date 2025-11-30
+ */
+export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Routes publiques (pas besoin d'auth)
+  if (
+    pathname === '/login' ||
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/images/') ||
+    pathname.includes('.')
+  ) {
+    return NextResponse.next();
+  }
+
+  // Vérifier le cookie d'authentification
+  const authCookie = request.cookies.get(COOKIE_NAME);
+
+  if (!authCookie || authCookie.value !== 'authenticated') {
+    // Rediriger vers login
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Utilisateur authentifié, continuer avec le middleware i18n
+  return intlMiddleware(request);
+}
 
 export const config = {
-  // Match all pathnames except for API routes, static files, etc.
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!_next|_vercel|.*\\..*).*)']
 };

@@ -16,12 +16,12 @@ export default async function DinoHistoirePage() {
     <main className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero immersif */}
+      {/* Hero immersif - Image historique Ferrari Dino */}
       <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url("/images/works/atelier/atelier-004.jpg")',
+            backgroundImage: 'url("https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1600&q=80")',
           }}
         >
           <div className="absolute inset-0 bg-black/60" />
@@ -80,8 +80,8 @@ export default async function DinoHistoirePage() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-020.jpg"
-                  alt="Ferrari Dino"
+                  src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80"
+                  alt="Ferrari Dino classique"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -148,8 +148,8 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-028.jpg"
-                  alt="Dino 206 GT"
+                  src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80"
+                  alt="Ferrari Dino 206 GT vintage"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -228,8 +228,8 @@ export default async function DinoHistoirePage() {
             <div>
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-045.jpg"
-                  alt="Dino 246 GTS"
+                  src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80"
+                  alt="Ferrari Dino 246 GTS classique"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -319,8 +319,8 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-063.jpg"
-                  alt="La Dino de Guillaume Farré dans l'atelier"
+                  src="https://images.unsplash.com/photo-1605559424843-9e4c3febae90?w=800&q=80"
+                  alt="Ferrari Dino rouge dans l'atelier"
                   className="w-full h-full object-cover"
                 />
               </div>

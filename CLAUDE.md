@@ -72,21 +72,26 @@ Votre choix : _______
 
 ---
 
-#### 2. PHOTOGRAPHIES - Séries limitées numérotées (1/7)
+#### 2. PHOTOGRAPHIES - Séries limitées numérotées (MISE À JOUR 2025-11-29)
 
 **Description** :
 - Photos documentant l'instant où Ferrari peint sur toile
-- Éditions limitées à 7 exemplaires (1/7, 2/7... 7/7)
-- Signées par Guillaume Farré
+- **TOUS les tirages sont numérotés et signés**
 - Certificat d'authenticité fourni
 
-**Formats disponibles** :
-- ✅ A3 (29.7 x 42 cm) : €500
-- ✅ A2 (42 x 59.4 cm) : €800
-- ✅ A1 (59.4 x 84.1 cm) : €1200
+**RÈGLE EXEMPLAIRES (CONFIRMÉE 2025-11-29)** :
+- **Grands formats (2A0, A0, A1)** : **9 exemplaires** par format (1/9 à 9/9)
+- **Petits formats (A2, A3, A4)** : **99 exemplaires** par format (1/99 à 99/99)
+
+**Formats et prix** :
+- ✅ 2A0 (118.9 x 168.2 cm) : Sur devis - 9 ex.
+- ✅ A0 (84.1 x 118.9 cm) : Sur devis - 9 ex.
+- ✅ A1 (59.4 x 84.1 cm) : €1200 - 9 ex.
+- ✅ A2 (42 x 59.4 cm) : €800 - 99 ex.
+- ✅ A3 (29.7 x 42 cm) : €500 - 99 ex.
+- ✅ A4 (21 x 29.7 cm) : €250 - 99 ex.
 - ✅ XXL (80 x 120 cm) : Sur devis
 - ✅ Monumental (120+ cm) : Sur devis
-- ❌ **PAS de A4** (trop cheap pour édition limitée)
 
 **Finitions** :
 - Papier Fine Art Giclee (12 couleurs, 200 gsm archival)
@@ -94,44 +99,26 @@ Votre choix : _______
 - Montages premium si disponibles : Alu-Dibond, Acrylique
 
 **Règles éditions** :
-- Une fois 7/7 vendus, série close définitivement
-- Afficher compteur "X/7 restants" sur boutique
+- Une fois tous vendus → série close définitivement
+- Afficher compteur "X/9 restants" ou "X/99 restants" selon format
 - Certificat authenticité inclus
 
 ---
 
-#### 3. PHOTOGRAPHIES - Tirages illimités
+#### ~~3. PHOTOGRAPHIES - Tirages illimités~~ SUPPRIMÉ
 
-**Description** :
-- Mêmes photos que séries limitées
-- Éditions NON numérotées
-- Quantité infinie disponible
-- NON signées (ou signature imprimée)
-- PAS de certificat authenticité
-
-**Formats disponibles** :
-- ✅ A4 (21 x 29.7 cm) : €150
-- ✅ A3 (29.7 x 42 cm) : €250
-- ✅ A2 (42 x 59.4 cm) : €400
-
-**Finitions** :
-- Papier photo standard (qualité correcte mais pas archival)
-- Options encadrement : noir, blanc, sans cadre
-
-**Différence avec séries limitées** :
-- Prix réduits (~50% moins cher)
-- Pas de limitation quantité
-- Qualité impression légèrement inférieure (4 couleurs CMYK vs 12 Giclee)
-- Papier standard vs archival
+**⚠️ PLUS DE TIRAGES ILLIMITÉS (décision 2025-11-29)**
+- Tous les tirages sont désormais numérotés et signés
+- Petits formats (A4, A3, A2) : 99 exemplaires au lieu d'illimité
 
 ---
 
-### Catégorisation photos (metadata)
+### Catégorisation photos (metadata) - MISE À JOUR 2025-11-29
 
-**Une photo peut être dans PLUSIEURS catégories simultanément** :
+**Plus de catégorie "unlimited"** - Tous les tirages sont "limited" avec compteurs différents selon format.
 
-- `unlimited` : Tirage illimité (A4/A3/A2)
-- `limited` : Série limitée 1-7 (A3/A2/A1 uniquement)
+**Catégories** :
+- `limited` : Tous les tirages numérotés (9 ex. grands formats / 99 ex. petits formats)
 - `xxl` : Format XXL 80x120cm (sur devis)
 - `monumental` : Format monumental 120cm+ (sur devis)
 
@@ -139,16 +126,15 @@ Votre choix : _______
 ```typescript
 {
   filename: "ferrari-noir-atelier-23.jpg",
-  categories: ["unlimited", "limited", "xxl"],
-  // Signifie : dispo en tirage illimité (A4/A3/A2)
-  //            ET en série limitée (A3/A2/A1)
-  //            ET en XXL (sur devis)
+  categories: ["limited"],
+  limitedEditionGrand: { total: 9, sold: 0, available: 9, closed: false },
+  limitedEditionPetit: { total: 99, sold: 0, available: 99, closed: false }
 }
 ```
 
 **Interface boutique** :
-- Si client choisit "Édition limitée" → formats A3/A2/A1 uniquement (PAS A4)
-- Si client choisit "Tirage illimité" → formats A4/A3/A2 uniquement
+- Grands formats (A1, A0, 2A0) : "Édition X/9"
+- Petits formats (A4, A3, A2) : "Édition X/99"
 
 ---
 

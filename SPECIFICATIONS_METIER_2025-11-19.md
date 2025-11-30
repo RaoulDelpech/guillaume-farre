@@ -1,6 +1,6 @@
 # SPÉCIFICATIONS MÉTIER - Guillaume Farré
 
-**Dernière mise à jour** : 2025-11-29 (corrigé 7 exemplaires)
+**Dernière mise à jour** : 2025-11-29 (CORRIGÉ : 9 exemplaires grands formats, 99 petits formats)
 **Maintenu par** : Lalou
 
 ---
@@ -32,14 +32,17 @@
 
 ---
 
-### 2. PHOTOGRAPHIES - Séries limitées numérotées (1/7)
+### 2. PHOTOGRAPHIES - Séries limitées numérotées
 
 **Description** :
 - Photos documentant l'instant où Ferrari peint sur toile
-- Éditions limitées à **7 exemplaires** (1/7, 2/7... 7/7)
 - Signées par Guillaume Farré
 - Certificat d'authenticité fourni
 - Numérotées à la main
+
+**RÈGLE EXEMPLAIRES (CONFIRMÉE 2025-11-29)** :
+- **Grands formats (2A0, A0, A1)** : **9 exemplaires** par format (1/9, 2/9... 9/9)
+- **Petits formats (A2, A3, A4)** : **99 exemplaires** par format (1/99, 2/99... 99/99)
 
 **Grands formats (9 exemplaires par format)** :
 - ✅ 2A0 (118.9 x 168.2 cm) : **Sur devis**
@@ -58,9 +61,9 @@
 - Montages premium si disponibles : Alu-Dibond, Acrylique
 
 **Règles éditions limitées** :
-- Grands formats : 9 exemplaires max par format (2A0, A0, A1)
-- Petits formats : 99 exemplaires max par format (A2, A3, A4)
-- Afficher compteur "X/9 restants" ou "X/99 restants" sur boutique
+- Grands formats (2A0, A0, A1) : **9 exemplaires** max par format
+- Petits formats (A2, A3, A4) : **99 exemplaires** max par format
+- Afficher compteur "X/9 restants" ou "X/99 restants" sur boutique selon format
 - Certificat authenticité inclus avec numéro d'exemplaire
 - Possibilité de clore manuellement une série
 
@@ -68,17 +71,26 @@
 ```typescript
 {
   categories: ['limited'],
-  limitedEdition: {
-    total: 7,
-    sold: 3, // Exemple
-    available: 4, // 7 - sold
+  // Pour grands formats (A1, A0, 2A0)
+  limitedEditionGrand: {
+    total: 9,
+    sold: 2, // Exemple
+    available: 7, // 9 - sold
+    closed: false
+  },
+  // Pour petits formats (A2, A3, A4)
+  limitedEditionPetit: {
+    total: 99,
+    sold: 5, // Exemple
+    available: 94, // 99 - sold
     closed: false
   },
   prices: {
     limited: {
-      a3: 500,
-      a2: 800,
-      a1: 1200
+      a4: 250,  // Petit format
+      a3: 500,  // Petit format
+      a2: 800,  // Petit format
+      a1: 1200  // Grand format
     }
   }
 }
@@ -86,37 +98,37 @@
 
 ---
 
-## STRUCTURE DES FORMATS
+## STRUCTURE DES FORMATS (MISE À JOUR 2025-11-29)
 
-**IMPORTANT** : Une photo peut être dans PLUSIEURS catégories simultanément.
+**IMPORTANT** : Plus de "tirages illimités". Tous les tirages sont désormais numérotés et signés.
 
 **Catégories de formats** :
-- `grands` : Formats 2A0, A0, A1 → **9 exemplaires** par format
-- `petits` : Formats A2, A3, A4 → **99 exemplaires** par format
+- `grands` : Formats 2A0, A0, A1 → **9 exemplaires** par format (1/9 à 9/9)
+- `petits` : Formats A2, A3, A4 → **99 exemplaires** par format (1/99 à 99/99)
 
-Tous les tirages sont numérotés et signés.
+**Tous les tirages sont numérotés et signés.**
 
 **Exemple réel** :
 ```typescript
 {
   filename: "ferrari-noir-atelier-23.jpg",
-  categories: ["unlimited", "limited", "xxl"],
-  // Signifie :
-  // - Disponible en tirage illimité (A4/A3/A2) à 150/250/400€
-  // - ET en série limitée 1-7 (A3/A2/A1) à 500/800/1200€
-  // - ET en format XXL (sur devis)
+  categories: ["limited"],
+  // Pour cette photo :
+  // - Grands formats (A1, A0, 2A0) : 9 exemplaires chacun
+  // - Petits formats (A2, A3, A4) : 99 exemplaires chacun
+  limitedEditionGrand: { total: 9, sold: 0, available: 9, closed: false },
+  limitedEditionPetit: { total: 99, sold: 0, available: 99, closed: false }
 }
 ```
 
 **Interface boutique** :
 1. Client sélectionne une photo
-2. Choix catégorie :
-   - "Édition limitée (1-7)" → formats A3/A2/A1 uniquement
-   - "Tirage illimité" → formats A4/A3/A2 uniquement
-   - "Format XXL/Monumental" → formulaire devis
-3. Choix format selon catégorie
-4. Choix encadrement
-5. Ajout au panier
+2. Choix format :
+   - Grands formats (A1, A0, 2A0) : "Édition limitée X/9"
+   - Petits formats (A2, A3, A4) : "Édition limitée X/99"
+   - Format XXL/Monumental → formulaire devis
+3. Choix encadrement
+4. Ajout au panier
 
 ---
 
@@ -196,11 +208,19 @@ export interface PhotoMetadata {
   // Ancien champ category gardé pour compatibilité
   category?: string;
 
-  // Éditions limitées (si categories contient 'limited')
-  limitedEdition?: {
-    total: 7; // Toujours 7 pour Guillaume
-    sold: number; // Combien vendus (0-7)
-    available: number; // Restants (7 - sold)
+  // Éditions limitées GRANDS formats (A1, A0, 2A0)
+  limitedEditionGrand?: {
+    total: 9; // 9 exemplaires pour grands formats
+    sold: number; // Combien vendus (0-9)
+    available: number; // Restants (9 - sold)
+    closed: boolean; // Série close manuellement
+  };
+
+  // Éditions limitées PETITS formats (A2, A3, A4)
+  limitedEditionPetit?: {
+    total: 99; // 99 exemplaires pour petits formats
+    sold: number; // Combien vendus (0-99)
+    available: number; // Restants (99 - sold)
     closed: boolean; // Série close manuellement
   };
 
@@ -331,25 +351,25 @@ Formats disponibles selon catégorie choisie :
 
 ---
 
-## RÈGLES MÉTIER CRITIQUES
+## RÈGLES MÉTIER CRITIQUES (MISE À JOUR 2025-11-29)
 
 ### Éditions limitées
-- ✅ Toujours 7 exemplaires
-- ✅ Numérotation 1/7, 2/7... 7/7
-- ✅ Une fois 7/7 vendus → série close automatiquement
-- ✅ Guillaume peut clore manuellement avant 7/7
+- ✅ **Grands formats (A1, A0, 2A0)** : 9 exemplaires (1/9 à 9/9)
+- ✅ **Petits formats (A2, A3, A4)** : 99 exemplaires (1/99 à 99/99)
+- ✅ Une fois tous vendus → série close automatiquement
+- ✅ Guillaume peut clore manuellement avant épuisement
 - ✅ Série close = pas de réouverture possible
 - ✅ Chaque vente → décrément compteur automatique via webhook Stripe
 
-### Formats exclusifs
-- ❌ A4 interdit pour séries limitées (trop cheap)
-- ❌ A1 interdit pour tirages illimités (réservé aux séries limitées)
+### Plus de tirages illimités
+- ❌ **"Unlimited" supprimé** - Tous les tirages sont numérotés
+- ✅ Tous les tirages sont signés et certifiés
 - ✅ Validation côté serveur pour éviter bypass
 
 ### Prix fixes
 - Prix définis dans `prices` metadata
 - Pas de promotions / soldes
-- Prix identiques pour toutes photos d'une même catégorie
+- Prix identiques pour toutes photos d'un même format
 - Exceptions : XXL et Monumental (sur devis)
 
 ### Statuts
@@ -394,9 +414,9 @@ Formats disponibles selon catégorie choisie :
 
 **Série** : Ensemble de photos thématiques (Atelier, Empreintes, Projection)
 
-**Édition limitée** : Photo numérotée 1/7 à 7/7, série close après vente complète
+**Édition limitée grand format** : Photo numérotée 1/9 à 9/9 (formats A1, A0, 2A0)
 
-**Tirage illimité** : Photo non numérotée, quantité infinie, prix réduit
+**Édition limitée petit format** : Photo numérotée 1/99 à 99/99 (formats A2, A3, A4)
 
 **Giclee** : Procédé d'impression fine art 12 couleurs, qualité musée
 
@@ -413,5 +433,5 @@ Formats disponibles selon catégorie choisie :
 ---
 
 **Maintenu par** : Lalou
-**Dernière mise à jour** : 2025-11-19 00:12
+**Dernière mise à jour** : 2025-11-29 (9/99 exemplaires confirmés)
 

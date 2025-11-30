@@ -1598,56 +1598,48 @@ kill %1
 - ✅ Vendus lors d'expositions uniquement
 - ❌ **PAS vendus sur boutique en ligne**
 
-#### 2. PHOTOGRAPHIES - Séries Limitées (1/7)
+#### 2. PHOTOGRAPHIES - Séries Limitées (MISE À JOUR 2025-11-29)
 
 **Description** :
 - Photos documentant l'instant où Ferrari peint
-- Éditions limitées à 7 exemplaires (1/7, 2/7... 7/7)
-- Signées par Guillaume Farré
+- **TOUS les tirages sont numérotés et signés**
 - Certificat d'authenticité fourni
 
-**Formats** :
-- ✅ A3 (29.7×42 cm) : 500€
-- ✅ A2 (42×59.4 cm) : 800€
-- ✅ A1 (59.4×84.1 cm) : 1200€
+**RÈGLE EXEMPLAIRES (CONFIRMÉE 2025-11-29)** :
+- **Grands formats (2A0, A0, A1)** : **9 exemplaires** par format (1/9 à 9/9)
+- **Petits formats (A2, A3, A4)** : **99 exemplaires** par format (1/99 à 99/99)
+
+**Formats et prix** :
+- ✅ 2A0 (118.9×168.2 cm) : Sur devis - 9 ex.
+- ✅ A0 (84.1×118.9 cm) : Sur devis - 9 ex.
+- ✅ A1 (59.4×84.1 cm) : 1200€ - 9 ex.
+- ✅ A2 (42×59.4 cm) : 800€ - 99 ex.
+- ✅ A3 (29.7×42 cm) : 500€ - 99 ex.
+- ✅ A4 (21×29.7 cm) : 250€ - 99 ex.
 - ✅ XXL (80×120 cm) : Sur devis
 - ✅ Monumental (120+ cm) : Sur devis
-- ❌ **PAS de A4** (trop cheap pour édition limitée)
 
 **Règles** :
-- Une fois 7/7 vendus, série close définitivement
-- Compteur "X/7 restants" sur boutique
+- Une fois tous vendus → série close définitivement
+- Compteur "X/9 restants" ou "X/99 restants" sur boutique
 - Certificat authenticité inclus
 
-#### 3. PHOTOGRAPHIES - Tirages Illimités
+#### ~~3. PHOTOGRAPHIES - Tirages Illimités~~ SUPPRIMÉ
 
-**Description** :
-- Mêmes photos que séries limitées
-- Éditions NON numérotées
-- Quantité infinie disponible
-- NON signées
-- PAS de certificat authenticité
-
-**Formats** :
-- ✅ A4 (21×29.7 cm) : 150€
-- ✅ A3 (29.7×42 cm) : 250€
-- ✅ A2 (42×59.4 cm) : 400€
-
-**Différence avec séries limitées** :
-- Prix réduits (~50% moins cher)
-- Pas de limitation quantité
-- Qualité impression standard (4 couleurs vs 12 Giclee)
-- Papier standard vs archival
+**⚠️ PLUS DE TIRAGES ILLIMITÉS (décision 2025-11-29)**
+- Tous les tirages sont désormais numérotés et signés
+- Petits formats (A4, A3, A2) : 99 exemplaires au lieu d'illimité
 
 ### Formats Selon Catégorie
 
-**RÈGLE ABSOLUE** :
-- **Éditions limitées** : PAS de A4 (formats A3/A2/A1 uniquement)
-- **Tirages illimités** : A4/A3/A2 autorisés
+**RÈGLE ABSOLUE (2025-11-29)** :
+- **Grands formats (A1, A0, 2A0)** : 9 exemplaires max
+- **Petits formats (A4, A3, A2)** : 99 exemplaires max
 
 **Interface boutique** :
-- Si client choisit "Édition limitée" → formats A3/A2/A1 uniquement
-- Si client choisit "Tirage illimité" → formats A4/A3/A2 uniquement
+- Afficher compteur selon format choisi
+- Grands formats : "Édition X/9"
+- Petits formats : "Édition X/99"
 
 ---
 
@@ -1761,11 +1753,18 @@ kill %1
 
 ---
 
-**DOCUMENT_MAITRE.md v2.0**
+**DOCUMENT_MAITRE.md v3.0**
 
 **Maintenu par** : Lalou (Raoul Delpech)
-**Dernière MAJ** : 2025-11-17 10h15
-**Prochaine MAJ** : Avant prochain compactage
+**Dernière MAJ** : 2025-11-29
+
+**MISES À JOUR SESSION 2025-11-29** :
+- ✅ Exemplaires : 9 (grands formats) / 99 (petits formats)
+- ✅ Plus de tirages illimités - tous numérotés
+- ✅ Textes en 1ère personne ("je" au lieu de "Guillaume")
+- ✅ Boutons discrets et élégants
+- ✅ Page /performances supprimée
+- ✅ "Boutique" renommé "Commandes"
 
 **Ce document incorpore 100% du projet. Aucune déperdition de contexte tolérée.**
 

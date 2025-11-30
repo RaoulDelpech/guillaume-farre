@@ -21,7 +21,7 @@ export default async function DinoHistoirePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url("/images/works/atelier/atelier-001.jpg")',
+            backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Dino_246_GT_%2824627987921%29.jpg/1600px-Dino_246_GT_%2824627987921%29.jpg")',
           }}
         >
           <div className="absolute inset-0 bg-black/60" />
@@ -80,8 +80,8 @@ export default async function DinoHistoirePage() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-010.jpg"
-                  alt="Ferrari Dino"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dino_206_GT_%2815406731344%29.jpg/800px-Dino_206_GT_%2815406731344%29.jpg"
+                  alt="Ferrari Dino 206 GT"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -148,8 +148,8 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-020.jpg"
-                  alt="Ferrari Dino 206 GT"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Petersen_Museum_%2852042599362%29.jpg/800px-Petersen_Museum_%2852042599362%29.jpg"
+                  alt="Ferrari Dino au Petersen Museum"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -228,8 +228,8 @@ export default async function DinoHistoirePage() {
             <div>
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-030.jpg"
-                  alt="Ferrari Dino 246 GTS"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/1973_Dino_246GTS.jpg/800px-1973_Dino_246GTS.jpg"
+                  alt="Ferrari Dino 246 GTS 1973"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -319,8 +319,8 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="/images/works/atelier/atelier-040.jpg"
-                  alt="Ferrari Dino dans l'atelier"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/1972_Ferrari_Dino_246_GTS_2.4_Interior.jpg/800px-1972_Ferrari_Dino_246_GTS_2.4_Interior.jpg"
+                  alt="Intérieur Ferrari Dino 246 GTS 1972"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -52,12 +52,24 @@ Suite de la session 2025-11-29. Après compactage, relecture complète de toute 
 - ✅ git stash + pull + build + restart sur serveur
 - ✅ HTTP 200 sur /fr/boutique
 
+### 6. Galerie immersive
+- ✅ galerie/page.tsx : hero avec image pleine page et overlay sombre
+- ✅ Lightbox.tsx : fond noir pur, interface minimale, sans filtre blanc
+
+### 7. Page Histoire de la Dino
+- ✅ CRÉATION /dino-histoire : page complète sur l'histoire de la Ferrari Dino
+- ✅ Contenu : Alfredo Ferrari, moteur V6, 206 GT, 246 GT/GTS, héritage
+- ✅ Images : Unsplash (libres de droit, pas images de la galerie Guillaume)
+- ✅ Lien ajouté depuis /dino vers /dino-histoire
+- ✅ Déployé en production
+
 ---
 
 ## COMMITS CETTE SESSION
 
 1. `4e6766a` - docs: mise à jour complète documentation + migration metadata 9/99 exemplaires
 2. `baa1b92` - feat: adapter interface boutique pour compteurs 9/99 selon format
+3. `e13a897` - fix: images Unsplash libres de droit pour page dino-histoire
 
 ---
 
@@ -126,11 +138,20 @@ data/photo-metadata.json
 
 ---
 
+## ACCÈS AU SITE
+
+**URL** : https://guillaumefarre.com
+**Login** : `x`
+**Password** : `LHOOQladino246`
+
+**Admin** : https://guillaumefarre.com/fr/admin
+**Password admin** : `LHOOQladino246`
+
+---
+
 ## CE QUI RESTE À FAIRE
 
-1. **Galerie** : "photo pleine page, sans filtre blanc" - style non modifié en profondeur
-2. **"La Dino en images"** : à faire plus tard
-3. **Traductions EN/IT** : DeepL pas fait (demandé de ne pas faire)
+1. **Traductions EN/IT** : DeepL pas fait (demandé de ne pas faire)
 
 ---
 

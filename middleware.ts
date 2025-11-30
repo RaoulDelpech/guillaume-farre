@@ -14,10 +14,14 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Routes publiques (pas besoin d'auth)
+  // API routes - pas de middleware i18n ni auth
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
+  // Routes publiques (pas besoin d'auth mais besoin i18n)
   if (
     pathname.endsWith('/login') ||
-    pathname.startsWith('/api/') ||
     pathname.startsWith('/_next/') ||
     pathname.startsWith('/images/') ||
     pathname.includes('.')

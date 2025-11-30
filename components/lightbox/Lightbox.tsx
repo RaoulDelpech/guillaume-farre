@@ -10,6 +10,13 @@ interface LightboxProps {
   onClose: () => void;
 }
 
+/**
+ * Lightbox pleine page immersive
+ * Photo sans filtre, fond noir pur, interface minimale
+ *
+ * @author Lalou
+ * @updated 2025-11-30 - Style immersif sans filtre blanc
+ */
 export default function Lightbox({ open, work, onClose }: LightboxProps) {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -29,33 +36,41 @@ export default function Lightbox({ open, work, onClose }: LightboxProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
       onClick={onClose}
     >
+      {/* Bouton fermer - discret en haut à droite */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-white text-2xl hover:text-red-500"
+        className="absolute top-6 right-6 z-20 w-12 h-12 flex items-center justify-center text-white/70 hover:text-white text-3xl transition-colors"
         aria-label="Fermer"
       >
-        ✕
+        ×
       </button>
-      <div className="relative max-w-7xl max-h-[90vh] p-4" onClick={(e) => e.stopPropagation()}>
+
+      {/* Photo pleine page */}
+      <div className="relative w-full h-full flex items-center justify-center p-4 md:p-8" onClick={(e) => e.stopPropagation()}>
         {work.images.length > 0 && (
           <img
             src={work.images[0]}
             alt={altForWork(work)}
-            className="max-w-full max-h-[85vh] object-contain"
+            className="max-w-full max-h-full object-contain"
           />
         )}
-        <div className="mt-4 text-white text-center">
-          <h2 className="text-xl font-bold">{work.title}</h2>
-          <p className="text-sm text-gray-300 mb-4">{work.year}</p>
+      </div>
+
+      {/* Info et CTA en bas - minimaliste */}
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8" onClick={(e) => e.stopPropagation()}>
+        <div className="max-w-4xl mx-auto flex items-end justify-between">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-light text-white tracking-wide">{work.title}</h2>
+            <p className="text-white/60 font-light mt-1">{work.year}</p>
+          </div>
           <Link
             href="/boutique"
-            className="inline-block px-6 py-2 border border-white/50 hover:border-white text-white font-light tracking-wide rounded-sm transition-all hover:bg-white/10"
-            onClick={(e) => e.stopPropagation()}
+            className="px-8 py-3 border border-white/40 hover:border-white text-white font-light tracking-wide rounded-sm transition-all hover:bg-white/10"
           >
-            Commander cette œuvre
+            Commander
           </Link>
         </div>
       </div>

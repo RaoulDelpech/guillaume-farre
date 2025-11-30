@@ -21,10 +21,10 @@ export default async function DinoHistoirePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url("/images/origins/dino-hero.jpg")',
+            backgroundImage: 'url("/images/works/atelier/atelier-004.jpg")',
           }}
         >
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl">
@@ -78,13 +78,12 @@ export default async function DinoHistoirePage() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] bg-muted/50 rounded-lg overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">🏎️</div>
-                    <p className="font-light">Portrait d'Alfredo "Dino" Ferrari</p>
-                  </div>
-                </div>
+              <div className="aspect-[4/5] rounded-lg overflow-hidden">
+                <img
+                  src="/images/works/atelier/atelier-020.jpg"
+                  alt="Ferrari Dino dans l'atelier"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-primary/10 p-6 rounded-lg border border-primary/20">
                 <p className="text-sm font-light text-foreground italic">
@@ -147,13 +146,12 @@ export default async function DinoHistoirePage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
-              <div className="aspect-video bg-muted/50 rounded-lg overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">🚗</div>
-                    <p className="font-light">Dino 206 GT - 1967</p>
-                  </div>
-                </div>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <img
+                  src="/images/works/atelier/atelier-028.jpg"
+                  alt="Dino 206 GT"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div className="order-1 md:order-2">
@@ -228,13 +226,12 @@ export default async function DinoHistoirePage() {
               </div>
             </div>
             <div>
-              <div className="aspect-video bg-muted/50 rounded-lg overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">🏁</div>
-                    <p className="font-light">Dino 246 GTS - 1972</p>
-                  </div>
-                </div>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <img
+                  src="/images/works/atelier/atelier-045.jpg"
+                  alt="Dino 246 GTS"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="mt-8 p-6 bg-background rounded-lg border border-border">
                 <h4 className="font-light text-lg mb-4 text-foreground">Versions produites</h4>
@@ -320,13 +317,12 @@ export default async function DinoHistoirePage() {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
-              <div className="aspect-video bg-muted/50 rounded-lg overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                  <div className="text-center p-8">
-                    <div className="text-6xl mb-4">🎨</div>
-                    <p className="font-light">La Dino de Guillaume Farré</p>
-                  </div>
-                </div>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <img
+                  src="/images/works/atelier/atelier-063.jpg"
+                  alt="La Dino de Guillaume Farré dans l'atelier"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div className="order-1 md:order-2">

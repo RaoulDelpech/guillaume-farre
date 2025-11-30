@@ -21,7 +21,7 @@ export default async function DinoHistoirePage() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/1969_Ferrari_Dino_246_GT_-_fvr.jpg/1280px-1969_Ferrari_Dino_246_GT_-_fvr.jpg")',
+            backgroundImage: 'url("/images/works/atelier/atelier-004.jpg")',
           }}
         >
           <div className="absolute inset-0 bg-black/60" />
@@ -80,8 +80,8 @@ export default async function DinoHistoirePage() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-lg overflow-hidden">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Enzo_Ferrari_%281898-1988%29.jpg/440px-Enzo_Ferrari_%281898-1988%29.jpg"
-                  alt="Enzo Ferrari"
+                  src="/images/works/atelier/atelier-020.jpg"
+                  alt="Ferrari Dino"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -148,7 +148,7 @@ export default async function DinoHistoirePage() {
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Ferrari_Dino_206_GT_-_Flickr_-_Alexandre_Pr%C3%A9vot_%281%29.jpg/1280px-Ferrari_Dino_206_GT_-_Flickr_-_Alexandre_Pr%C3%A9vot_%281%29.jpg"
+                  src="/images/works/atelier/atelier-028.jpg"
                   alt="Dino 206 GT"
                   className="w-full h-full object-cover"
                 />
@@ -228,8 +228,8 @@ export default async function DinoHistoirePage() {
             <div>
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/1972_Ferrari_Dino_246_GTS_-_red_-_fvl.jpg/1280px-1972_Ferrari_Dino_246_GTS_-_red_-_fvl.jpg"
-                  alt="Dino 246 GTS 1972"
+                  src="/images/works/atelier/atelier-045.jpg"
+                  alt="Dino 246 GTS"
                   className="w-full h-full object-cover"
                 />
               </div>

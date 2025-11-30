@@ -37,10 +37,25 @@ export default function ShopGrid({ photos }: ShopGridProps) {
   const { fireHeartConfetti, fireConfetti } = useConfetti();
   const { playCartAdd, playClick, playHover } = useSoundEffects();
 
+  // Formats disponibles avec info grand/petit
   const allFormats = {
-    "A2": { width: 42, height: 59.4, priceMultiplier: 1.0 },
-    "A1": { width: 59.4, height: 84.1, priceMultiplier: 1.5 },
-    "A0": { width: 84.1, height: 118.9, priceMultiplier: 2.0 },
+    "A4": { width: 21, height: 29.7, priceMultiplier: 0.31, type: 'petit' as const, price: 250 },
+    "A3": { width: 29.7, height: 42, priceMultiplier: 0.63, type: 'petit' as const, price: 500 },
+    "A2": { width: 42, height: 59.4, priceMultiplier: 1.0, type: 'petit' as const, price: 800 },
+    "A1": { width: 59.4, height: 84.1, priceMultiplier: 1.5, type: 'grand' as const, price: 1200 },
+    "A0": { width: 84.1, height: 118.9, priceMultiplier: 2.0, type: 'grand' as const, price: null }, // Sur devis
+  };
+
+  // Helper pour déterminer si un format est grand ou petit
+  const isGrandFormat = (format: string) => ['A1', 'A0', '2A0'].includes(format);
+  const isPetitFormat = (format: string) => ['A2', 'A3', 'A4'].includes(format);
+
+  // Obtenir le stock selon le format sélectionné
+  const getStockForFormat = (photo: PhotoMetadata, format: string) => {
+    if (isGrandFormat(format)) {
+      return photo.limitedEditionGrand || photo.limitedEdition || { total: 9, available: 9, sold: 0, closed: false };
+    }
+    return photo.limitedEditionPetit || photo.limitedEdition || { total: 99, available: 99, sold: 0, closed: false };
   };
 
   // Formats disponibles selon la catégorie de la photo
@@ -228,13 +243,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 )}
               </button>
 
-              {/* Badge édition limitée avec compteur disponibilité */}
-              {(photo.categories?.includes('limited') || photo.edition?.type === 'limited') && photo.limitedEdition && (
+              {/* Badge édition limitée - Affiche petits formats par défaut (99 ex.) */}
+              {(photo.categories?.includes('limited') || photo.edition?.type === 'limited') && (
                 <div className="absolute top-3 right-3">
                   <StockBadge
-                    available={photo.limitedEdition.available}
-                    total={photo.limitedEdition.total}
+                    available={photo.limitedEditionPetit?.available || photo.limitedEdition?.available || 99}
+                    total={photo.limitedEditionPetit?.total || photo.limitedEdition?.total || 99}
                     size="sm"
+                    formatType="petit"
                   />
                 </div>
               )}
@@ -321,23 +337,35 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               {/* Format */}
               <div>
                 <h3 className="text-lg font-light tracking-wide mb-4">Format</h3>
-                <div className="grid grid-cols-3 gap-4">
-                  {Object.entries(getAvailableFormats(selectedPhoto)).map(([key, value]) => (
-                    <button
-                      key={key}
-                      onClick={() => setSelectedFormat(key)}
-                      className={`p-5 rounded-lg border transition-all ${
-                        selectedFormat === key
-                          ? 'border-primary bg-primary/5'
-                          : 'border-border hover:border-primary/50'
-                      }`}
-                    >
-                      <div className="font-light text-lg tracking-wide">{key}</div>
-                      <div className="text-sm text-muted-foreground font-light">
-                        {value.width} × {value.height} cm
-                      </div>
-                    </button>
-                  ))}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {Object.entries(getAvailableFormats(selectedPhoto)).map(([key, value]) => {
+                    const stock = getStockForFormat(selectedPhoto, key);
+                    const formatInfo = allFormats[key as keyof typeof allFormats];
+                    const isGrand = formatInfo?.type === 'grand';
+
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => setSelectedFormat(key)}
+                        className={`p-5 rounded-lg border transition-all ${
+                          selectedFormat === key
+                            ? 'border-primary bg-primary/5'
+                            : 'border-border hover:border-primary/50'
+                        }`}
+                      >
+                        <div className="font-light text-lg tracking-wide">{key}</div>
+                        <div className="text-sm text-muted-foreground font-light">
+                          {value.width} × {value.height} cm
+                        </div>
+                        <div className="text-xs text-amber-600 mt-1">
+                          {isGrand ? `Édition ${stock.total - stock.available + 1}/9` : `Édition ${stock.total - stock.available + 1}/99`}
+                        </div>
+                        <div className="text-sm font-medium mt-1">
+                          {formatInfo?.price ? `${formatInfo.price}€` : 'Sur devis'}
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -400,14 +428,19 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               {/* Délai de livraison détaillé */}
               <DeliveryEstimate variant="detailed" className="mb-6" />
 
-              {/* Social proof détaillé */}
-              <SocialProof
-                photoPath={selectedPhoto.path}
-                stockAvailable={selectedPhoto.limitedEdition?.available}
-                stockTotal={selectedPhoto.limitedEdition?.total}
-                variant="detailed"
-                className="mb-6"
-              />
+              {/* Social proof détaillé - selon format sélectionné */}
+              {(() => {
+                const stock = getStockForFormat(selectedPhoto, selectedFormat);
+                return (
+                  <SocialProof
+                    photoPath={selectedPhoto.path}
+                    stockAvailable={stock.available}
+                    stockTotal={stock.total}
+                    variant="detailed"
+                    className="mb-6"
+                  />
+                );
+              })()}
 
               {/* Prix total et ajout */}
               <div className="bg-muted rounded-lg p-8">

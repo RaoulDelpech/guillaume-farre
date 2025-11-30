@@ -5,9 +5,18 @@ interface StockBadgeProps {
   total: number;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  formatType?: 'grand' | 'petit'; // Pour afficher le bon label
 }
 
-export default function StockBadge({ available, total, size = 'md', className = '' }: StockBadgeProps) {
+/**
+ * Badge de stock pour éditions limitées
+ * - Grands formats (A1, A0, 2A0) : X/9
+ * - Petits formats (A2, A3, A4) : X/99
+ *
+ * @author Lalou
+ * @updated 2025-11-29 - Support 9/99 exemplaires
+ */
+export default function StockBadge({ available, total, size = 'md', className = '', formatType }: StockBadgeProps) {
   // Déterminer couleur selon disponibilité
   const getColorClasses = () => {
     if (available === 0) {
@@ -33,6 +42,9 @@ export default function StockBadge({ available, total, size = 'md', className = 
 
   // Texte selon disponibilité
   const getText = () => {
+    // Label du type de format
+    const formatLabel = formatType === 'grand' ? 'Grand format' : formatType === 'petit' ? 'Petit format' : '';
+
     if (available === 0) {
       return '❌ ÉPUISÉ';
     }
@@ -42,7 +54,8 @@ export default function StockBadge({ available, total, size = 'md', className = 
     if (available <= 2) {
       return `⚠️ ${available}/${total} restants`;
     }
-    return `${available}/${total} disponibles`;
+    // Afficher X/9 ou X/99 selon le total
+    return `Édition ${total - available + 1}/${total}`;
   };
 
   return (

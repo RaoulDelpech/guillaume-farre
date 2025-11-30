@@ -37,11 +37,27 @@ export interface PhotoMetadata {
   // Ancien champ category gardé pour compatibilité (à migrer)
   category?: string;
 
-  // Éditions limitées (si categories contient 'limited')
+  // Éditions limitées (ancien champ, conservé pour compatibilité)
   limitedEdition?: {
-    total: 9; // Toujours 9 pour Guillaume
+    total: number;
+    sold: number;
+    available: number;
+    closed: boolean;
+  };
+
+  // Éditions limitées GRANDS formats (A1, A0, 2A0) - 9 exemplaires
+  limitedEditionGrand?: {
+    total: 9;
     sold: number; // Combien vendus (0-9)
     available: number; // Restants (9 - sold)
+    closed: boolean; // Série close manuellement
+  };
+
+  // Éditions limitées PETITS formats (A2, A3, A4) - 99 exemplaires
+  limitedEditionPetit?: {
+    total: 99;
+    sold: number; // Combien vendus (0-99)
+    available: number; // Restants (99 - sold)
     closed: boolean; // Série close manuellement
   };
 

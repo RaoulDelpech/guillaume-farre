@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/contexts/CartContext';
 import StructuredData from '@/components/StructuredData';
+import AdminWrapper from '@/components/admin/AdminWrapper';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -104,10 +105,12 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <CartProvider>
-            <div className="flex-1">
-              {children}
-            </div>
-            <Footer />
+            <AdminWrapper>
+              <div className="flex-1">
+                {children}
+              </div>
+              <Footer />
+            </AdminWrapper>
           </CartProvider>
         </NextIntlClientProvider>
       </body>

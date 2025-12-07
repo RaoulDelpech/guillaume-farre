@@ -1,7 +1,30 @@
 # Guillaume Farré - Site Artiste & Boutique Fine Art
 
-Dernière mise à jour: 2025-11-29
+Dernière mise à jour: 2025-12-07
 Maintenu par: Lalou
+
+---
+
+## NOUVEAUTÉS SESSION 2025-12-07
+
+### 1. Système d'authentification simplifié
+- Plus de HTTP Basic Auth nginx
+- Page de login custom `/fr/login` avec juste mot de passe
+- **Mot de passe** : `LHOOQladino246`
+- Cookie `gf_auth` valide 30 jours
+
+### 2. Page /dino-histoire
+- Histoire complète de la Ferrari Dino
+- Images Wikipedia Commons (pas Unsplash, pas galerie Guillaume)
+- Lien depuis /dino
+
+### 3. Mode admin édition inline
+- Accès : ajouter `?admin=true` à n'importe quelle URL
+- Barre flottante "Mode Édition" en bas
+- Cliquer sur texte pour modifier
+- Sauvegarder enregistre dans messages/fr.json
+- Architecture prête pour migration DB future
+- **Page convertie** : /histoire (les autres à faire)
 
 ---
 
@@ -639,4 +662,25 @@ ls -lh ETAT*.md CORRECTIONS*.md GELATO*.md
 ---
 
 Maintenu par: Lalou
-Dernière mise à jour: 2025-11-07 après session intensive avec Guillaume
+Dernière mise à jour: 2025-12-07
+
+---
+
+## FICHIERS MODE ADMIN (NOUVEAUX 2025-12-07)
+
+```
+contexts/AdminModeContext.tsx      # État global mode admin
+components/admin/EditableText.tsx  # Composant texte éditable
+components/admin/AdminToolbar.tsx  # Barre flottante sauvegarde
+components/admin/AdminWrapper.tsx  # Provider wrapper
+components/pages/HistoireContent.tsx # Page histoire éditable
+lib/content-manager.ts             # Service stockage (JSON → DB)
+app/api/admin/content/route.ts     # API sauvegarde textes
+app/[locale]/login/page.tsx        # Page login
+app/api/auth/login/route.ts        # API login
+```
+
+### Pour convertir une page en éditable
+1. Créer `components/pages/[NomPage]Content.tsx`
+2. Remplacer textes par `<EditableText textKey="..." as="p">Texte</EditableText>`
+3. Importer dans la page

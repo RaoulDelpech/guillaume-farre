@@ -49,5 +49,12 @@ jobs:
             ip addr show | grep -E "inet |state UP"
             echo "🔍 Nginx config sites..."
             ls -la /etc/nginx/sites-enabled/ || true
-            cat /etc/nginx/sites-enabled/guillaumefarre 2>/dev/null | head -30 || cat /etc/nginx/sites-enabled/default 2>/dev/null | head -30
+            cat /etc/nginx/sites-available/guillaumefarre.com 2>/dev/null | head -50
+            echo "🔍 Testing public IP from server..."
+            curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 http://51.38.35.238/ || echo "public IP failed"
+            curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 https://guillaumefarre.com/ || echo "domain failed"
+            echo "🔍 Nginx error logs..."
+            sudo tail -20 /var/log/nginx/error.log || true
+            echo "🔍 Checking IP address..."
+            curl -s ifconfig.me || true
             echo "✅ Déploiement terminé !"

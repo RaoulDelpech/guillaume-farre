@@ -17,12 +17,16 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/guillaume-farre
-            git pull origin main
+            echo "📦 Fetching latest code..."
+            git fetch origin main
+            git reset --hard origin/main
             npm install
             echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" > .env.local
             echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.local
             echo "NEXT_PUBLIC_SITE_URL=https://guillaumefarre.com" >> .env.local
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
-            npm run build
+            echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
+            echo "🔨 Building with increased memory..."
+            NODE_OPTIONS="--max-old-space-size=4096" npm run build
             pm2 restart guillaumefarre
             echo "✅ Déploiement terminé !"

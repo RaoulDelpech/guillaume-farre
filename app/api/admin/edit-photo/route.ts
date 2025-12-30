@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 /**
  * API endpoint pour éditer une photo (crop + rotation)
@@ -10,6 +11,9 @@ import path from 'path';
  * @route POST /api/admin/edit-photo
  */
 export async function POST(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
     const { filename, cropArea, rotation } = body;

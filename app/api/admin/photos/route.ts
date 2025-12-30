@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import { mergePhotoData, savePhotoMetadata, type PhotoMetadata } from '@/lib/admin/photo-manager';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 export async function GET() {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const photos = await mergePhotoData();
     return NextResponse.json(photos);
@@ -12,6 +16,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const photos: PhotoMetadata[] = await request.json();
     await savePhotoMetadata(photos);

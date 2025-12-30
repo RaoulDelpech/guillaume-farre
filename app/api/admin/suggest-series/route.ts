@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -15,6 +16,9 @@ export interface SeriesSuggestion {
 }
 
 export async function POST(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const { photos } = await request.json();
 

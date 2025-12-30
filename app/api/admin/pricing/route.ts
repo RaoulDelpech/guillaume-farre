@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { DEFAULT_PRICING, type PricingConfig } from '@/lib/pricing-config';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 /**
  * API routes pricing Guillaume Farré
@@ -19,6 +20,9 @@ const PRICING_FILE = path.join(process.cwd(), 'data', 'pricing-config.json');
  * Récupère la configuration pricing actuelle
  */
 export async function GET() {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     // Lire fichier config si existe
     const fileContent = await fs.readFile(PRICING_FILE, 'utf-8');
@@ -43,6 +47,9 @@ export async function GET() {
  * Sauvegarde une nouvelle configuration pricing
  */
 export async function POST(request: Request) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
     const { config } = body;

@@ -9,12 +9,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || '',
 });
 
 export async function POST(req: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const { photoPath } = await req.json();
 

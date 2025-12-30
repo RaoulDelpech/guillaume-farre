@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAdminToken } from '@/lib/auth';
 import { mergePhotoData } from '@/lib/admin/photo-manager';
 import { findSimilarImages } from '@/lib/image-similarity';
 import path from 'path';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 // Force dynamic rendering to avoid build-time errors with sharp
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
-  try {
-    // Note: L'authentification est déjà vérifiée au niveau de la page admin
-    // Pas besoin de re-vérifier le token ici
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
 
+  try {
     // Récupérer le threshold depuis le body (optionnel, défaut: 85)
     const body = await request.json();
     const threshold = body.threshold || 85;

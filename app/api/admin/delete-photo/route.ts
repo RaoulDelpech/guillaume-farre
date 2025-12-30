@@ -2,8 +2,12 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { loadPhotoMetadata, savePhotoMetadata } from '@/lib/admin/photo-manager';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 export async function POST(request: Request) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const { path: photoPath } = await request.json();
 

@@ -9,6 +9,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import crypto from 'crypto';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 
@@ -99,7 +100,10 @@ async function scanForDuplicates(): Promise<DuplicateGroup[]> {
 /**
  * GET - Détecte les doublons
  */
-export async function GET(request: Request) {
+export async function GET() {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     console.log('🔍 Scan des doublons en cours...');
     const duplicates = await scanForDuplicates();
@@ -130,6 +134,9 @@ export async function GET(request: Request) {
  * DELETE - Supprime les doublons sélectionnés
  */
 export async function DELETE(request: Request) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const { filesToDelete }: { filesToDelete: string[] } = await request.json();
 

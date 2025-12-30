@@ -155,32 +155,34 @@ export default async function ContactPage() {
                 <p className="text-sm text-muted-foreground font-light">Réponse sous 24h</p>
               </a>
 
-              {/* Téléphone */}
+              {/* Instagram */}
               <a
-                href="tel:+33612345678"
-                className="bg-card border border-border rounded-lg p-12 text-center hover:border-primary/50 transition-all group"
-              >
-                <div className="text-6xl font-light mb-6 text-primary">☎</div>
-                <h3 className="text-2xl font-light tracking-wide mb-4">Téléphone</h3>
-                <p className="text-primary group-hover:text-primary/80 font-light text-base mb-3 tracking-wide">
-                  +33 6 12 34 56 78
-                </p>
-                <p className="text-sm text-muted-foreground font-light">Lun-Ven 9h-18h</p>
-              </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/33612345678"
+                href="https://instagram.com/guillaumefarre.art"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-card border border-border rounded-lg p-12 text-center hover:border-primary/50 transition-all group"
               >
-                <div className="text-6xl font-light mb-6 text-primary">✉</div>
-                <h3 className="text-2xl font-light tracking-wide mb-4">WhatsApp</h3>
+                <div className="text-6xl font-light mb-6 text-primary">IG</div>
+                <h3 className="text-2xl font-light tracking-wide mb-4">Instagram</h3>
                 <p className="text-primary group-hover:text-primary/80 font-light text-base mb-3 tracking-wide">
-                  +33 6 12 34 56 78
+                  @guillaumefarre.art
                 </p>
-                <p className="text-sm text-muted-foreground font-light">Réponse rapide</p>
+                <p className="text-sm text-muted-foreground font-light">Messages directs</p>
+              </a>
+
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com/in/guillaumefarre"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-card border border-border rounded-lg p-12 text-center hover:border-primary/50 transition-all group"
+              >
+                <div className="text-6xl font-light mb-6 text-primary">LI</div>
+                <h3 className="text-2xl font-light tracking-wide mb-4">LinkedIn</h3>
+                <p className="text-primary group-hover:text-primary/80 font-light text-base mb-3 tracking-wide">
+                  Guillaume Farré
+                </p>
+                <p className="text-sm text-muted-foreground font-light">Réseau professionnel</p>
               </a>
             </div>
 
@@ -271,7 +273,7 @@ export default async function ContactPage() {
                   Visitez l'atelier
                 </h2>
                 <p className="text-xl font-light text-muted-foreground mb-12 leading-relaxed">
-                  L'atelier est situé à Paris, 18ème arrondissement.
+                  L'atelier est situé à Toulouse.
                   Visites possibles sur rendez-vous pour découvrir le processus créatif,
                   voir les œuvres en cours, et rencontrer Guillaume.
                 </p>
@@ -280,8 +282,8 @@ export default async function ContactPage() {
                   <div className="flex items-start gap-4">
                     <span className="text-primary text-xl mt-1">—</span>
                     <div>
-                      <div className="font-light tracking-wide text-lg mb-2">Adresse</div>
-                      <div className="text-muted-foreground font-light">75018 Paris, France</div>
+                      <div className="font-light tracking-wide text-lg mb-2">Localisation</div>
+                      <div className="text-muted-foreground font-light">Toulouse, France</div>
                       <div className="text-sm text-muted-foreground font-light">(Adresse exacte communiquée sur RDV)</div>
                     </div>
                   </div>
@@ -290,15 +292,15 @@ export default async function ContactPage() {
                     <span className="text-primary text-xl mt-1">—</span>
                     <div>
                       <div className="font-light tracking-wide text-lg mb-2">Horaires de visite</div>
-                      <div className="text-muted-foreground font-light">Vendredi 14h-18h (sur RDV)</div>
+                      <div className="text-muted-foreground font-light">Sur rendez-vous uniquement</div>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
                     <span className="text-primary text-xl mt-1">—</span>
                     <div>
-                      <div className="font-light tracking-wide text-lg mb-2">Accès</div>
-                      <div className="text-muted-foreground font-light">Métro Marcadet-Poissonniers (L12)</div>
+                      <div className="font-light tracking-wide text-lg mb-2">Contact</div>
+                      <div className="text-muted-foreground font-light">contact@guillaumefarre.com</div>
                     </div>
                   </div>
                 </div>

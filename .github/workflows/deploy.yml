@@ -36,4 +36,10 @@ jobs:
             sudo systemctl restart nginx || sudo service nginx restart || echo "Failed to restart nginx"
             echo "🔍 Checking open ports..."
             ss -tlnp | grep -E ':80|:443' || echo "Ports 80/443 not listening"
+            echo "🔍 Checking firewall..."
+            sudo ufw status || echo "ufw not available"
+            sudo iptables -L INPUT -n | head -20 || echo "iptables failed"
+            echo "🔍 Opening firewall ports..."
+            sudo ufw allow 80/tcp || true
+            sudo ufw allow 443/tcp || true
             echo "✅ Déploiement terminé !"

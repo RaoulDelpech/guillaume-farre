@@ -8,12 +8,6 @@ interface BoutiqueContentProps {
     heroTitle: string;
     heroDescription: string;
   };
-  stats: {
-    total: number;
-    limitedEditions: number;
-    unlimited: number;
-    lowStock: number;
-  };
 }
 
 /**
@@ -22,7 +16,7 @@ interface BoutiqueContentProps {
  * @author Lalou
  * @date 2025-12-29
  */
-export default function BoutiqueContent({ translations: t, stats }: BoutiqueContentProps) {
+export default function BoutiqueContent({ translations: t }: BoutiqueContentProps) {
   return (
     <div className="bg-gradient-to-b from-accent/20 to-background border-b border-border py-16 md:py-24">
       <div className="container mx-auto px-6 lg:px-8">
@@ -48,58 +42,6 @@ export default function BoutiqueContent({ translations: t, stats }: BoutiqueCont
             >
               {t.heroDescription}
             </EditableText>
-          </div>
-
-          {/* Stats de la boutique - DONNÉES RÉELLES */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12 max-w-4xl mx-auto">
-            <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
-              <div className="text-4xl md:text-5xl font-light tracking-wide text-primary mb-3">
-                {stats.total}
-              </div>
-              <EditableText
-                textKey="shop.stats.available"
-                as="div"
-                className="text-sm text-muted-foreground font-light"
-              >
-                Œuvres disponibles
-              </EditableText>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
-              <div className="text-4xl md:text-5xl font-light tracking-wide text-accent mb-3">
-                {stats.limitedEditions}
-              </div>
-              <EditableText
-                textKey="shop.stats.limited"
-                as="div"
-                className="text-sm text-muted-foreground font-light"
-              >
-                Éditions limitées
-              </EditableText>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
-              <div className="text-4xl md:text-5xl font-light tracking-wide text-orange-500 mb-3">
-                {stats.lowStock}
-              </div>
-              <EditableText
-                textKey="shop.stats.lowStock"
-                as="div"
-                className="text-sm text-muted-foreground font-light"
-              >
-                Derniers exemplaires
-              </EditableText>
-            </div>
-            <div className="bg-card border border-border rounded-lg p-6 md:p-8 text-center hover:border-accent/50 transition-colors">
-              <div className="text-4xl md:text-5xl font-light tracking-wide text-blue-500 mb-3">
-                {stats.unlimited}
-              </div>
-              <EditableText
-                textKey="shop.stats.unlimited"
-                as="div"
-                className="text-sm text-muted-foreground font-light"
-              >
-                Tirages illimités
-              </EditableText>
-            </div>
           </div>
 
           {/* Avantages */}

@@ -23,19 +23,6 @@ export default async function BoutiquePage() {
     console.error('Error loading shop photos:', error);
   }
 
-  // Calculer stats RÉELLES (pas fake)
-  const stats = {
-    total: photosForSale.length,
-    limitedEditions: photosForSale.filter(p => p.categories?.includes('limited')).length, // VRAI compteur
-    unlimited: photosForSale.filter(p => p.categories?.includes('unlimited')).length,
-    soldOut: photosForSale.filter(p => p.limitedEdition?.available === 0).length,
-    lowStock: photosForSale.filter(p => {
-      const avail = p.limitedEdition?.available || 0;
-      return avail > 0 && avail <= 2;
-    }).length
-    // TODO: Implémenter tracking vraies ventes Stripe pour lastSoldDate et collectors
-  };
-
   const translations = {
     heroTag: t("heroTag"),
     heroTitle: t("heroTitle"),
@@ -45,7 +32,7 @@ export default async function BoutiquePage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <BoutiqueContent translations={translations} stats={stats} />
+      <BoutiqueContent translations={translations} />
 
       {/* Galerie */}
       <div className="container mx-auto px-6 lg:px-8 py-16 md:py-20">

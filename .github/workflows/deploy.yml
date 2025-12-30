@@ -57,4 +57,15 @@ jobs:
             sudo tail -20 /var/log/nginx/error.log || true
             echo "🔍 Checking IP address..."
             curl -s ifconfig.me || true
+            echo "🔍 PM2 logs..."
+            pm2 logs guillaumefarre --lines 50 --nostream || true
+            echo "🔍 Checking port 3000..."
+            ss -tlnp | grep 3000 || echo "Port 3000 not listening"
+            lsof -i :3000 || echo "No process on 3000"
+            echo "🔍 Restarting PM2 with logs..."
+            pm2 delete guillaumefarre || true
+            cd /var/www/guillaume-farre && pm2 start npm --name guillaumefarre -- start
+            sleep 5
+            pm2 logs guillaumefarre --lines 20 --nostream || true
+            ss -tlnp | grep 3000 || echo "Still no port 3000"
             echo "✅ Déploiement terminé !"

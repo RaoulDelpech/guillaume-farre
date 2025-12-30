@@ -30,4 +30,5 @@ jobs:
             echo "🔨 Building with increased memory..."
             NODE_OPTIONS="--max-old-space-size=4096" npm run build
             pm2 restart guillaumefarre
+            sudo systemctl restart nginx || sudo service nginx restart || true
             echo "✅ Déploiement terminé !"

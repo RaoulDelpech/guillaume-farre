@@ -30,5 +30,10 @@ jobs:
             echo "🔨 Building with increased memory..."
             NODE_OPTIONS="--max-old-space-size=4096" npm run build
             pm2 restart guillaumefarre
-            sudo systemctl restart nginx || sudo service nginx restart || true
+            echo "🔍 Checking nginx status..."
+            sudo systemctl status nginx || echo "nginx not running via systemctl"
+            sudo nginx -t || echo "nginx config test failed"
+            sudo systemctl restart nginx || sudo service nginx restart || echo "Failed to restart nginx"
+            echo "🔍 Checking open ports..."
+            ss -tlnp | grep -E ':80|:443' || echo "Ports 80/443 not listening"
             echo "✅ Déploiement terminé !"

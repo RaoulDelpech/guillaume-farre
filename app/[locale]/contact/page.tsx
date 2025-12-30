@@ -1,6 +1,16 @@
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import { Link } from "@/i18n/routing";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Contactez Guillaume Farré : acquisition d'œuvres, visite d'atelier, demandes presse ou collaborations. Atelier situé à Toulouse.",
+  openGraph: {
+    title: "Contact | Guillaume Farré",
+    description: "Prenez contact avec Guillaume Farré pour une acquisition ou une visite d'atelier.",
+  },
+};
 
 export default async function ContactPage() {
   const t = await getTranslations("contact");

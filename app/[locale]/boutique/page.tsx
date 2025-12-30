@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import ShopFilteredGrid from "@/components/shop/ShopFilteredGrid";
@@ -5,6 +6,15 @@ import BoutiqueContent from "@/components/pages/BoutiqueContent";
 import BoutiqueGarantiesContent from "@/components/pages/BoutiqueGarantiesContent";
 import { loadPhotoMetadata } from "@/lib/admin/photo-manager";
 import { Link } from "@/i18n/routing";
+
+export const metadata: Metadata = {
+  title: "Boutique",
+  description: "Acquérez une photographie d'art de Guillaume Farré. Éditions limitées numérotées, impression Fine Art Giclée, certificat d'authenticité. Formats A4 à A1.",
+  openGraph: {
+    title: "Boutique | Guillaume Farré",
+    description: "Photographies d'art en éditions limitées. Qualité musée, livraison assurée, paiement en 3x sans frais.",
+  },
+};
 
 export default async function BoutiquePage() {
   const t = await getTranslations("shop");

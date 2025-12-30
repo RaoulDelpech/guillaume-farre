@@ -1,5 +1,15 @@
+import { Metadata } from "next";
 import Navigation from "@/components/navigation/Navigation";
 import { Link } from "@/i18n/routing";
+
+export const metadata: Metadata = {
+  title: "Origine",
+  description: "L'origine du projet : de la petite Ferrari n°20 à 6 ans aux vraies Ferrari Dino. Comment un rêve d'enfant est devenu une démarche artistique unique.",
+  openGraph: {
+    title: "Origine | Guillaume Farré",
+    description: "Découvrez comment tout a commencé avec une petite Ferrari n°20.",
+  },
+};
 
 export default function OriginePage() {
   return (

@@ -19,10 +19,10 @@ interface AddToCartSectionProps {
 }
 
 const FORMATS: Format[] = [
-  { size: "60×40 cm", price: 1200, available: true },
-  { size: "120×80 cm", price: 2400, available: true },
-  { size: "180×120 cm", price: 4800, available: true },
-  { size: "300×200 cm", price: 0, available: false }, // Sur demande
+  { size: "A4 (21×29.7 cm)", price: 250, available: true },
+  { size: "A3 (29.7×42 cm)", price: 500, available: true },
+  { size: "A2 (42×59.4 cm)", price: 800, available: true },
+  { size: "A1 (59.4×84.1 cm)", price: 1200, available: true },
 ];
 
 export default function AddToCartSection({
@@ -32,7 +32,7 @@ export default function AddToCartSection({
   productCategory,
   photoPath,
 }: AddToCartSectionProps) {
-  const [selectedFormat, setSelectedFormat] = useState<Format>(FORMATS[1]); // 120×80 par défaut
+  const [selectedFormat, setSelectedFormat] = useState<Format>(FORMATS[1]); // A3 par défaut
   const [showSuccess, setShowSuccess] = useState(false);
   const { addItem } = useCart();
   const router = useRouter();

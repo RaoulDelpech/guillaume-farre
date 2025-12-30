@@ -5,8 +5,6 @@
     "boutique": "Orders",
     "histoire": "Story",
     "atelier": "Workshop",
-    "conceptCarArt": "Ferrari Live",
-    "presse": "Press",
     "contact": "Contact",
     "panier": "Cart"
   },
@@ -34,12 +32,6 @@
       "subtitle": "Imprints • Workshop • Projections",
       "description": "The imprints show the marks left by the wheels and body. The workshop reveals the cars at rest, between sessions. The projections freeze the controlled violence of the process. Each series documents a different facet of creation.",
       "cta": "View the gallery"
-    },
-    "conceptCarArt": {
-      "title": "Ferrari Live Performance: Creation Becomes Spectacle",
-      "subtitle": "A stage. A 10-meter canvas. A Ferrari.",
-      "description": "For 45 minutes, I direct the car like an instrument. Each movement projects paint onto the canvas. The audience watches the artwork being created live, in the deafening noise of the V12 engine. At the end, the canvas is unique. It cannot be redone.",
-      "cta": "Upcoming performances"
     },
     "acquerir": {
       "title": "Own a Trace, Not a Reproduction",

@@ -5,8 +5,6 @@
     "boutique": "Commandes",
     "histoire": "Histoire",
     "atelier": "Atelier",
-    "conceptCarArt": "Concept car art",
-    "presse": "Presse",
     "contact": "Contact",
     "panier": "Panier"
   },
@@ -34,12 +32,6 @@
       "subtitle": "Empreintes • Atelier • Projections",
       "description": "Mes empreintes montrent ce que les roues et la carrosserie ont imprimé. Mon atelier révèle les voitures au repos, entre deux sessions. Mes projections figent l'énergie brute de l'action. Trois regards différents sur ma démarche.",
       "cta": "Voir la galerie"
-    },
-    "conceptCarArt": {
-      "title": "Concept Car Art",
-      "subtitle": "Quand l'automobile devient instrument",
-      "description": "Ma Ferrari rejoint la petite voiture n°20 de mon enfance. J'ouvre les portes de mon atelier pour une session en public.",
-      "cta": "Découvrir l'événement"
     },
     "acquerir": {
       "title": "Acquérir une œuvre",

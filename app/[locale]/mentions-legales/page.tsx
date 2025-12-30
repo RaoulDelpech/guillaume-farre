@@ -12,7 +12,7 @@ export default async function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Éditeur du site</h2>
             <p>
               <strong>Guillaume Farré</strong><br />
-              Artiste sculpteur - Concept car art<br />
+              Artiste - Action painting automobile<br />
               Email : contact@guillaumefarre.com<br />
               Site web : guillaumefarre.com
             </p>
@@ -29,9 +29,9 @@ export default async function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Hébergement</h2>
             <p>
               Le site est hébergé par :<br />
-              [Nom de l'hébergeur]<br />
-              [Adresse]<br />
-              [Pays]
+              IONOS SE<br />
+              Elgendorfer Str. 57, 56410 Montabaur<br />
+              Allemagne
             </p>
           </section>
 

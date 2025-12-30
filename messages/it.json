@@ -5,8 +5,6 @@
     "boutique": "Ordini",
     "histoire": "Storia",
     "atelier": "Laboratorio",
-    "conceptCarArt": "Ferrari Live",
-    "presse": "Stampa",
     "contact": "Contatto",
     "panier": "Carrello"
   },
@@ -34,12 +32,6 @@
       "subtitle": "Impronte • Atelier • Proiezioni",
       "description": "Le impronte mostrano i segni lasciati dalle ruote e dalla carrozzeria. L'atelier rivela le auto a riposo, tra le sessioni. Le proiezioni congelano la violenza controllata del processo. Ogni serie documenta una diversa sfaccettatura della creazione.",
       "cta": "Vedere la galleria"
-    },
-    "conceptCarArt": {
-      "title": "Ferrari Live Performance",
-      "subtitle": "La creazione dal vivo",
-      "description": "Sul palco, una tela di 10 metri. Per 45 minuti, dirigo la Ferrari come uno strumento. Il pubblico assiste alla nascita dell'opera nel ruggito del V12. Alla fine, la tela esiste. Non può più essere modificata.",
-      "cta": "Prossime performance"
     },
     "acquerir": {
       "title": "Acquisire un'opera",

@@ -39,25 +39,31 @@ export interface PricingConfig {
 
 /**
  * Configuration par défaut validée avec Guillaume
- * Date: 2025-11-08, 00h20
+ * Date: 2025-11-29 (mise à jour prix)
+ *
+ * PRIX OFFICIELS (CLAUDE.md 2025-11-29):
+ * - A4: 250€ (99 ex.)
+ * - A3: 500€ (99 ex.)
+ * - A2: 800€ (99 ex.)
+ * - A1: 1200€ (9 ex.)
  */
 export const DEFAULT_PRICING: PricingConfig = {
   // Prix de base
-  prixBaseUnlimited: 150,   // A4 unlimited = 150 €
-  prixBaseLimited: 1500,    // A3 limited = 1500 €
+  prixBaseUnlimited: 250,   // A4 = 250 €
+  prixBaseLimited: 500,     // A3 = 500 €
 
-  // Multiplicateurs unlimited
+  // Multiplicateurs (depuis A4 base pour unlimited)
   multipliersUnlimited: {
-    a4: 1.0,    // 150 € (base)
-    a3: 1.67,   // 250 € (+67%)
-    a2: 2.67,   // 400 € (+167%)
+    a4: 1.0,    // 250 € (base)
+    a3: 2.0,    // 500 €
+    a2: 3.2,    // 800 €
   },
 
-  // Multiplicateurs limited
+  // Multiplicateurs (depuis A3 base pour limited/grands formats)
   multipliersLimited: {
-    a3: 1.0,    // 1500 € (base)
-    a2: 1.53,   // 2300 € (+53%)
-    a1: 2.0,    // 3000 € (+100%)
+    a3: 1.0,    // 500 € (base)
+    a2: 1.6,    // 800 €
+    a1: 2.4,    // 1200 €
   },
 
   // Pas d'override manuel par défaut

@@ -120,7 +120,7 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Cette question simple a donné naissance à un concept artistique unique : les Ferrari Live Performances. Le principe reste le même qu'enfant - faire rouler une Ferrari dans la peinture pour créer des empreintes - mais à l'échelle 1:1, capturées en photographie.
+              Cette question simple a donné naissance à un concept artistique unique. Le principe reste le même qu'enfant - faire rouler une Ferrari dans la peinture pour créer des empreintes - mais à l'échelle 1:1, capturées en photographie.
             </EditableText>
           </div>
 
@@ -140,7 +140,7 @@ export default function HistoireContent() {
               <h3 className="text-lg font-bold mb-2">Aujourd'hui</h3>
               <p className="text-sm text-muted-foreground">
                 Ferrari authentique (échelle 1:1)
-                <br />Performances photographiées
+                <br />Processus photographié
                 <br />Éditions limitées
               </p>
             </div>
@@ -187,7 +187,7 @@ export default function HistoireContent() {
                   as="p"
                   className="text-sm text-muted-foreground"
                 >
-                  Performance live, action painting, art conceptuel
+                  Action painting, art conceptuel, automobile
                 </EditableText>
               </div>
 
@@ -218,7 +218,7 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Chaque œuvre est strictement unique - impossible à reproduire, car elle capture un moment précis : la pression des roues, la trajectoire du véhicule, la viscosité de la peinture à cet instant T, les conditions de cette performance-là.
+              Chaque œuvre est strictement unique - impossible à reproduire, car elle capture un moment précis : la pression des roues, la trajectoire du véhicule, la viscosité de la peinture à cet instant T, les conditions de cette création.
             </EditableText>
           </div>
         </div>
@@ -235,10 +235,10 @@ export default function HistoireContent() {
               Découvrir les œuvres
             </a>
             <a
-              href="/concept-car-art"
+              href="/boutique"
               className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-bold hover:bg-primary/90 transition-colors text-center"
             >
-              Ferrari Live Performance
+              Acquérir une œuvre
             </a>
           </div>
         </div>

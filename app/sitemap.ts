@@ -19,12 +19,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/boutique',     // Boutique
     '/histoire',     // Histoire artiste
     '/atelier',      // Atelier
-    '/concept-car-art', // Concept car art
-    '/presse',       // Presse
     '/contact',      // Contact
     '/panier',       // Panier
     '/favoris',      // Favoris
     '/dino',         // Page Dino
+    '/origine',      // Page Origine
   ];
 
   // Générer URLs pour toutes les langues

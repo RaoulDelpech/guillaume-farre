@@ -31,13 +31,6 @@ export default function HeroCarousel() {
       cta: { text: t("photographies.cta"), href: "/galerie" },
     },
     {
-      image: "/images/works/atelier/atelier-045.jpg",
-      title: t("conceptCarArt.title"),
-      subtitle: t("conceptCarArt.subtitle"),
-      description: t("conceptCarArt.description"),
-      cta: { text: t("conceptCarArt.cta"), href: "/concept-car-art" },
-    },
-    {
       image: "/images/works/atelier/atelier-063.jpg",
       title: t("origine.title"),
       subtitle: t("origine.subtitle"),

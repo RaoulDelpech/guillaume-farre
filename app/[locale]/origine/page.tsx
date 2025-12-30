@@ -181,7 +181,7 @@ export default function OriginePage() {
               <div className="order-1 md:order-2">
                 <div className="bg-card border border-border rounded-lg p-16 md:p-20 text-center">
                   <div className="text-8xl font-light text-primary/20 mb-8">03</div>
-                  <div className="text-4xl font-light text-primary mb-8">Ferrari Live Performance</div>
+                  <div className="text-4xl font-light text-primary mb-8">Le processus créatif</div>
                   <div className="text-muted-foreground font-light flex flex-col gap-3">
                     <span>Vraie Ferrari</span>
                     <span className="text-primary">·</span>

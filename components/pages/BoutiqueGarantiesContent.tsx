@@ -52,7 +52,7 @@ export default function BoutiqueGarantiesContent() {
                 className="text-base text-muted-foreground font-light leading-relaxed"
                 multiline
               >
-                Œuvres uniques créées lors de performances live. Standards muséaux pour chaque pièce.
+                Œuvres uniques créées dans l'atelier de l'artiste. Standards muséaux pour chaque pièce.
               </EditableText>
             </div>
             <div className="text-center">

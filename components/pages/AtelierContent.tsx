@@ -99,7 +99,7 @@ export default function AtelierContent() {
                   as="p"
                   className="text-sm text-muted-foreground"
                 >
-                  Polyvalentes, elles s'adaptent à tous les types de performances.
+                  Polyvalentes, elles s'adaptent à tous les types de créations.
                 </EditableText>
               </div>
             </div>
@@ -190,8 +190,8 @@ export default function AtelierContent() {
               </div>
               <div className="p-4 border rounded-lg bg-card/30 text-center">
                 <div className="text-3xl mb-2">2</div>
-                <h4 className="font-bold mb-1">Performance</h4>
-                <p className="text-xs text-muted-foreground">La Dino en action</p>
+                <h4 className="font-bold mb-1">Action</h4>
+                <p className="text-xs text-muted-foreground">La Dino en mouvement</p>
               </div>
               <div className="p-4 border rounded-lg bg-card/30 text-center">
                 <div className="text-3xl mb-2">3</div>
@@ -223,10 +223,10 @@ export default function AtelierContent() {
               Voir les œuvres
             </a>
             <a
-              href="/concept-car-art"
+              href="/boutique"
               className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-bold hover:bg-primary/90 transition-colors text-center"
             >
-              Concept Car Art
+              Acquérir une œuvre
             </a>
           </div>
         </div>

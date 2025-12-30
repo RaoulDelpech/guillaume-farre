@@ -12,9 +12,9 @@ export default async function ContactPage() {
       cta: "Demander un rendez-vous",
     },
     {
-      title: "Réserver une performance",
-      description: "Événement privé ou public",
-      cta: "Voir les disponibilités",
+      title: "Visiter l'atelier",
+      description: "Découvrir le processus créatif",
+      cta: "Réserver une visite",
     },
     {
       title: "Demande presse",
@@ -45,10 +45,6 @@ export default async function ContactPage() {
     {
       q: "Comment acheter une œuvre ?",
       a: "Directement sur la boutique en ligne, ou contactez-moi pour un accompagnement personnalisé. Paiement en 3x disponible dès 500€."
-    },
-    {
-      q: "Organisez-vous des performances privées ?",
-      a: "Oui, pour les événements corporate, collections privées, ou occasions spéciales. Budget à partir de 15 000€. Devis sur demande."
     }
   ];
 
@@ -74,7 +70,7 @@ export default async function ContactPage() {
             Parlons de votre projet
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed">
-            Acquisition, performance privée, collaboration. Je réponds personnellement
+            Acquisition, visite d'atelier, collaboration. Je réponds personnellement
             à chaque message sous 24h.
           </p>
 

@@ -20,6 +20,7 @@ jobs:
             echo "📦 Fetching latest code..."
             git fetch origin main
             git reset --hard origin/main
+            git clean -fd
             npm install
             echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" > .env.local
             echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.local

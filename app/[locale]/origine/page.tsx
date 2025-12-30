@@ -140,7 +140,7 @@ export default function OriginePage() {
             <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-center">
               <div className="order-2 md:order-1">
                 <div className="text-xs font-light tracking-[0.2em] uppercase text-primary mb-8">
-                  2018 — Première performance
+                  2018 — Première création
                 </div>
                 <h2 className="text-5xl md:text-6xl font-light tracking-wide mb-10">
                   Le rêve devient réalité
@@ -152,7 +152,7 @@ export default function OriginePage() {
                   </p>
                   <p>
                     Les roues touchent la toile. La trace apparaît. Unique. Irréversible.
-                    Le V12 rugit. Les pneus glissent sur la matière. Le public retient son souffle.
+                    Le moteur rugit. Les pneus glissent sur la matière.
                   </p>
                   <p className="text-xl font-light text-primary">
                     La Ferrari n'est plus un objet. Elle devient l'artiste.
@@ -160,7 +160,7 @@ export default function OriginePage() {
                   <ul className="space-y-4 mt-10">
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">—</span>
-                      <span>Performance live</span>
+                      <span>Action painting automobile</span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-primary mt-1">—</span>
@@ -216,21 +216,6 @@ export default function OriginePage() {
                 Une vision devenue réalité
               </h2>
 
-              <div className="grid md:grid-cols-3 gap-12 mb-16 max-w-4xl mx-auto">
-                <div className="text-center">
-                  <div className="text-6xl font-light text-primary mb-3">47</div>
-                  <div className="text-muted-foreground font-light">Collectionneurs</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-6xl font-light text-primary mb-3">12</div>
-                  <div className="text-muted-foreground font-light">Performances live</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-6xl font-light text-primary mb-3">850K€</div>
-                  <div className="text-muted-foreground font-light">Valeur totale</div>
-                </div>
-              </div>
-
               <div className="space-y-8 max-w-4xl mx-auto text-center text-muted-foreground font-light text-lg leading-relaxed">
                 <p>
                   Je continue. Photographies. Événements automobiles. Collaborations.
@@ -273,10 +258,10 @@ export default function OriginePage() {
                 Découvrir les œuvres
               </Link>
               <Link
-                href="/performances"
+                href="/galerie"
                 className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded text-xl transition-all"
               >
-                Voir les performances
+                Voir la galerie
               </Link>
               <Link
                 href="/contact"

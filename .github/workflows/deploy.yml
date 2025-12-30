@@ -20,7 +20,6 @@ jobs:
             echo "📦 Fetching latest code..."
             git fetch origin main
             git reset --hard origin/main
-            git clean -fd
             npm install
             echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" > .env.local
             echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.local
@@ -29,43 +28,11 @@ jobs:
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "🔨 Building with increased memory..."
             NODE_OPTIONS="--max-old-space-size=4096" npm run build
-            pm2 restart guillaumefarre
-            echo "🔍 Checking nginx status..."
-            sudo systemctl status nginx || echo "nginx not running via systemctl"
-            sudo nginx -t || echo "nginx config test failed"
-            sudo systemctl restart nginx || sudo service nginx restart || echo "Failed to restart nginx"
-            echo "🔍 Checking open ports..."
-            ss -tlnp | grep -E ':80|:443' || echo "Ports 80/443 not listening"
-            echo "🔍 Checking firewall..."
-            sudo ufw status || echo "ufw not available"
-            sudo iptables -L INPUT -n | head -20 || echo "iptables failed"
-            echo "🔍 Opening firewall ports..."
-            sudo ufw allow 80/tcp || true
-            sudo ufw allow 443/tcp || true
-            echo "🔍 Testing local access..."
-            curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/ || echo "localhost:3000 failed"
-            curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/ || echo "127.0.0.1:80 failed"
-            echo "🔍 Network interfaces..."
-            ip addr show | grep -E "inet |state UP"
-            echo "🔍 Nginx config sites..."
-            ls -la /etc/nginx/sites-enabled/ || true
-            cat /etc/nginx/sites-available/guillaumefarre.com 2>/dev/null | head -50
-            echo "🔍 Testing public IP from server..."
-            curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 http://51.38.35.238/ || echo "public IP failed"
-            curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 https://guillaumefarre.com/ || echo "domain failed"
-            echo "🔍 Nginx error logs..."
-            sudo tail -20 /var/log/nginx/error.log || true
-            echo "🔍 Checking IP address..."
-            curl -s ifconfig.me || true
-            echo "🔍 PM2 logs..."
-            pm2 logs guillaumefarre --lines 50 --nostream || true
+            echo "♻️ Restarting PM2..."
+            pm2 restart guillaumefarre || pm2 start npm --name guillaumefarre -- start
+            echo "⏳ Waiting for Next.js to start..."
+            sleep 15
             echo "🔍 Checking port 3000..."
-            ss -tlnp | grep 3000 || echo "Port 3000 not listening"
-            lsof -i :3000 || echo "No process on 3000"
-            echo "🔍 Restarting PM2 with logs..."
-            pm2 delete guillaumefarre || true
-            cd /var/www/guillaume-farre && pm2 start npm --name guillaumefarre -- start
-            sleep 5
-            pm2 logs guillaumefarre --lines 20 --nostream || true
-            ss -tlnp | grep 3000 || echo "Still no port 3000"
+            ss -tlnp | grep 3000 || echo "Port 3000 not listening!"
+            curl -s -o /dev/null -w "localhost: %{http_code}\n" http://localhost:3000/ || echo "localhost failed"
             echo "✅ Déploiement terminé !"

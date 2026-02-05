@@ -47,58 +47,75 @@ interface DinoContentProps {
       button2: string;
     };
   };
+  /** Images configurables depuis data/page-images.json */
+  images?: {
+    heroBackground?: string;
+    originPhoto?: string;
+    creativePhoto?: string;
+    gallery?: string[];
+  };
 }
 
 /**
  * Contenu de la page Dino avec textes éditables
+ * Ambiance rétro années 60-70 - Décision audit 2025-01-20
  *
  * @author Lalou
- * @date 2025-12-29
+ * @date 2025-01-20
  */
-export default function DinoContent({ translations: t }: DinoContentProps) {
+export default function DinoContent({ translations: t, images }: DinoContentProps) {
+  // Images avec fallbacks
+  const heroBackground = images?.heroBackground || "/images/origins/atelier-deux-voitures-grises.jpg";
+  const originPhoto = images?.originPhoto || "/images/origins/atelier-deux-voitures.jpg";
+  const creativePhoto = images?.creativePhoto || "/images/works/atelier/atelier-030.jpg";
+  const galleryImages = images?.gallery || [
+    "/images/works/empreintes/empreintes-001.jpg",
+    "/images/works/atelier/atelier-010.jpg",
+    "/images/works/projection/projection-001.jpg"
+  ];
   return (
     <>
-      {/* Hero avec image Dino */}
-      <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      {/* Hero avec image Dino - Les VRAIES Dino de Guillaume */}
+      <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1605559424843-9e4c3febae90?w=1600&q=80")',
+            backgroundImage: `url("${heroBackground}")`,
           }}
         >
-          {/* Overlay sombre pour lisibilité texte */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+          {/* Overlay sobre */}
+          <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        {/* Contenu centré */}
+        {/* Contenu centré - Typo serif rétro */}
         <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl">
           <EditableText
             textKey="dino.tag"
             as="div"
-            className="text-white/60 text-xs font-light mb-6 tracking-[0.3em] uppercase"
+            className="text-white/60 text-xs mb-8 tracking-[0.4em] uppercase"
           >
             {t.tag}
           </EditableText>
           <EditableText
             textKey="dino.title"
             as="h1"
-            className="text-6xl md:text-8xl font-light tracking-wide mb-6 text-white"
+            className="text-5xl md:text-6xl lg:text-7xl font-retro tracking-wide mb-8 text-white"
           >
             {t.title}
           </EditableText>
           <EditableText
             textKey="dino.subtitle"
             as="p"
-            className="text-2xl md:text-3xl font-light text-white/90 leading-relaxed"
+            className="text-xl md:text-2xl font-light text-white/80 leading-relaxed max-w-2xl mx-auto"
           >
             {t.subtitle}
           </EditableText>
+
         </div>
       </div>
 
       {/* Lien vers l'histoire de la Dino */}
-      <section className="py-12 bg-primary/5 border-b border-border">
+      <section className="py-12 bg-muted/10 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
@@ -111,7 +128,7 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
             </div>
             <Link
               href="/dino-histoire"
-              className="px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide rounded transition-all whitespace-nowrap"
+              className="px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all whitespace-nowrap"
             >
               L'histoire de la Dino →
             </Link>
@@ -120,15 +137,15 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
       </section>
 
       {/* Section L'Origine */}
-      <section className="py-24 md:py-32 bg-muted/30 border-b border-border">
+      <section className="py-24 md:py-32 bg-muted/10 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            {/* Image */}
+            {/* VRAIE photo des Dino de Guillaume */}
             <div className="order-2 md:order-1">
               <img
-                src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=800&q=80"
-                alt="Ferrari Dino détails"
-                className="w-full h-auto object-cover rounded-lg"
+                src={originPhoto}
+                alt="Les Ferrari Dino de Guillaume Farré"
+                className="w-full h-auto object-cover"
               />
             </div>
 
@@ -137,7 +154,7 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
               <EditableText
                 textKey="dino.origin.label"
                 as="div"
-                className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-light"
+                className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4"
               >
                 {t.origin.label}
               </EditableText>
@@ -169,14 +186,14 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
         </div>
       </section>
 
-      {/* Section Caractéristiques */}
+      {/* Section Caractéristiques - Style fiche technique rétro */}
       <section className="py-24 md:py-32 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <EditableText
               textKey="dino.specs.label"
               as="div"
-              className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-light"
+              className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4"
             >
               {t.specs.label}
             </EditableText>
@@ -274,7 +291,7 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
       </section>
 
       {/* Section Rôle Créatif */}
-      <section className="py-24 md:py-32 bg-muted/30 border-b border-border">
+      <section className="py-24 md:py-32 bg-muted/10 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Texte */}
@@ -282,7 +299,7 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
               <EditableText
                 textKey="dino.creative.label"
                 as="div"
-                className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-light"
+                className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4"
               >
                 {t.creative.label}
               </EditableText>
@@ -311,11 +328,11 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
               </EditableText>
             </div>
 
-            {/* Image */}
+            {/* Image du processus créatif */}
             <div>
               <img
-                src="https://images.unsplash.com/photo-1600181087505-57e38b27ea59?w=800&q=80"
-                alt="Ferrari en mouvement"
+                src={creativePhoto}
+                alt="La Dino en action sur la toile"
                 className="w-full h-auto object-cover rounded-lg"
               />
             </div>
@@ -323,14 +340,14 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
         </div>
       </section>
 
-      {/* Section Galerie */}
+      {/* Section Galerie - Mix couleur et N&B selon audit */}
       <section className="py-24 md:py-32 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <EditableText
               textKey="dino.gallery.label"
               as="div"
-              className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-light"
+              className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4"
             >
               {t.gallery.label}
             </EditableText>
@@ -343,34 +360,28 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
             </EditableText>
           </div>
 
+          {/* Grille des vraies photos de Guillaume - Mix couleur/N&B */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <img
-              src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=80"
-              alt="Dino rouge détail"
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1617654112368-307921291f42?w=400&q=80"
-              alt="Dino intérieur"
-              className="w-full h-80 object-cover rounded-lg"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1605559424843-9e4c3febae90?w=400&q=80"
-              alt="Dino vue latérale"
-              className="w-full h-80 object-cover rounded-lg"
-            />
+            {galleryImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Œuvre ${index + 1}`}
+                className="w-full h-80 object-cover rounded-lg"
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="py-24 md:py-32 bg-muted/20 border-b border-border">
+      {/* CTA Final - Style rétro */}
+      <section className="py-24 md:py-32 bg-muted/10 border-b border-border">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <EditableText
               textKey="dino.cta.title"
               as="h2"
-              className="text-4xl md:text-5xl font-light tracking-wide mb-8"
+              className="text-3xl md:text-4xl font-light tracking-wide mb-8"
             >
               {t.cta.title}
             </EditableText>
@@ -385,13 +396,13 @@ export default function DinoContent({ translations: t }: DinoContentProps) {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/atelier"
-                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded text-xl transition-all"
+                className="px-10 py-5 bg-foreground hover:bg-foreground/90 text-background font-light tracking-wide transition-all"
               >
                 {t.cta.button1}
               </Link>
               <Link
                 href="/galerie"
-                className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded text-xl transition-all"
+                className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all"
               >
                 {t.cta.button2}
               </Link>

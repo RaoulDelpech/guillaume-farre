@@ -7,9 +7,9 @@ const COOKIE_NAME = "gf_auth";
 const intlMiddleware = createMiddleware(routing);
 
 /**
- * Middleware avec protection mot de passe simple
+ * Middleware avec protection mot de passe pour tout le site
+ * Ambiance confidentielle / club privé
  * @author Lalou
- * @date 2025-11-30
  */
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

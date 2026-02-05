@@ -3,9 +3,9 @@ import Stripe from 'stripe';
 import { createWhiteWallOrder } from '@/lib/printing/whitewall-api';
 import type { WhiteWallOrder, WhiteWallProduct, ShippingAddress } from '@/lib/printing/whitewall-api';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-10-29.clover',
-});
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
+  : null;
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
@@ -14,6 +14,10 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
  * Webhook Stripe qui envoie automatiquement à WhiteWall après paiement réussi
  */
 export async function POST(request: Request) {
+  if (!stripe) {
+    return NextResponse.json({ error: 'Stripe non configuré' }, { status: 503 });
+  }
+
   try {
     const body = await request.text();
     const signature = request.headers.get('stripe-signature');

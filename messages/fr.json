@@ -10,21 +10,21 @@
   },
   "hero": {
     "origine": {
-      "title": "La Ferrari rose n°20",
+      "title": "La voiture rose n°20",
       "subtitle": "J'avais 4 ans. Elle m'a marqué pour toujours.",
-      "description": "Je me souviens de cette Ferrari de course, immense et rose. À 4 ans, face à elle, je n'ai pas rêvé de la posséder un jour. J'ai rêvé de fusionner avec sa puissance. Quarante ans plus tard, j'en ai quatre dans mon atelier. Elles ne sont pas là pour être admirées. Elles créent.",
+      "description": "Je me souviens de cette voiture de course, immense et rose. À 4 ans, face à elle, je n'ai pas rêvé de la posséder un jour. J'ai rêvé de fusionner avec sa puissance. Quarante ans plus tard, j'ai ma Dino dans mon atelier. Elle n'est pas là pour être admirée. Elle crée.",
       "cta": "Découvrir l'histoire"
     },
     "atelier": {
       "title": "L'atelier",
-      "subtitle": "Quatre Ferrari. Des outils de 1200 kilos.",
+      "subtitle": "La Dino. 1020 kilos d'instrument de création.",
       "description": "Dans mon atelier, ces voitures sont des instruments. 1200 kilos de métal qui laissent des empreintes sur la toile. Une accélération brusque, un freinage violent, un dérapage calculé : aucune main ne pourrait reproduire ces gestes. C'est précisément ce que je cherche.",
       "cta": "Découvrir l'atelier"
     },
     "creations": {
       "title": "Deux formes, un processus",
-      "subtitle": "Toiles uniques & Photographies documentaires",
-      "description": "Mes toiles naissent du passage direct de la Ferrari sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Mes photographies documentent ce moment : quand le mouvement dépose sa signature.",
+      "subtitle": "Toiles originales & Photographies documentaires",
+      "description": "Mes toiles naissent du passage direct de la Dino sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Mes photographies documentent ce moment : quand le mouvement dépose sa signature.",
       "cta": "Découvrir l'atelier"
     },
     "photographies": {
@@ -36,13 +36,13 @@
     "acquerir": {
       "title": "Acquérir une œuvre",
       "subtitle": "Éditions limitées numérotées — Qualité musée",
-      "description": "Mes photographies documentent le moment où ma Ferrari a créé la toile. Formats 2A0 à A4. Encadrement professionnel noir ou aluminium. Impression Fine Art Giclée 12 couleurs, papier archival 200 gsm.",
+      "description": "Mes photographies documentent le moment où ma Dino a créé la toile. Formats 2A0 à A4. Encadrement professionnel noir ou aluminium. Impression Fine Art Giclée 12 couleurs, papier archival 200 gsm.",
       "cta": "Voir les œuvres disponibles"
     },
     "histoire": {
-      "title": "De la Ferrari rose aux quatre Ferrari",
+      "title": "De l'enfance à la Dino",
       "subtitle": "1985 - 2025 : quarante ans",
-      "description": "Enfant, j'étais fasciné par les Ferrari de course. J'ai passé des années à les dessiner, à construire des maquettes, à rêver devant elles. Un jour, j'ai pris une décision : arrêter de les regarder. Les utiliser pour créer. C'est l'histoire d'une obsession transformée en méthode.",
+      "description": "Enfant, j'étais fasciné par les voitures de course. J'ai passé des années à les dessiner, à construire des maquettes, à rêver devant elles. Un jour, j'ai pris une décision : arrêter de les regarder. Les utiliser pour créer. C'est l'histoire d'une obsession transformée en méthode.",
       "cta": "Lire l'histoire complète"
     },
     "galerie": "Galerie",
@@ -57,7 +57,7 @@
     "artist": {
       "label": "L'Artiste",
       "name": "Guillaume Farré",
-      "bio": "Sculpteur et artiste plasticien, j'utilise la Ferrari comme matière première de mon art. 500 chevaux qui rencontrent la toile. Ce qui naît de cette collision n'appartient qu'à l'instant.",
+      "bio": "J'avais 4 ans quand j'ai vu ma première voiture de course. Quarante ans plus tard, j'ai une Dino dans mon atelier. Elle ne décore pas mon garage. Elle peint.",
       "cta": "Découvrir mon histoire"
     }
   },
@@ -68,7 +68,7 @@
   },
   "gallery": {
     "title": "Galerie",
-    "subtitle": "Toiles. Photographies. Empreintes irréversibles.",
+    "subtitle": "Toiles. Photographies. Traces définitives.",
     "intro": "Ces images documentent ma création. Il n'y a jamais de deuxième prise.",
     "empreintes": {
       "title": "Empreintes",
@@ -76,7 +76,7 @@
     },
     "atelier": {
       "title": "Atelier",
-      "description": "Mes Ferrari au repos, entre deux sessions. Quatre voitures qui attendent leur prochain passage sur la toile."
+      "description": "Ma Dino au repos, entre deux sessions. Elle attend son prochain passage sur la toile."
     },
     "projections": {
       "title": "Projections",
@@ -94,7 +94,7 @@
     "heroDescription": "Découvrez mon art automobile. Chaque œuvre est certifiée, numérotée et livrée avec son certificat d'authenticité.",
     "title": "Œuvres disponibles",
     "subtitle": "Photographies d'art — Éditions limitées",
-    "intro": "Mes photographies capturent le moment où ma Ferrari a créé la toile. Impression Fine Art Giclée, qualité musée.",
+    "intro": "Mes photographies capturent le moment où ma Dino a créé la toile. Impression Fine Art Giclée, qualité musée.",
     "quality": {
       "title": "Qualité professionnelle",
       "certificate": "Certificat d'authenticité signé",
@@ -118,12 +118,12 @@
   },
   "dino": {
     "tag": "La Dino en mouvement",
-    "title": "La Ferrari Dino",
+    "title": "La Dino",
     "subtitle": "Mon instrument en action. L'histoire d'une obsession devenue réalité.",
     "origin": {
       "label": "L'Origine",
       "title": "De l'enfance à l'atelier",
-      "text1": "Quarante ans après avoir croisé la Ferrari de mon enfance, j'ai décidé de transformer mon obsession en méthode créative. Ma Dino n'est pas juste un véhicule. C'est un instrument de création, une extension de ma volonté artistique.",
+      "text1": "Quarante ans après avoir croisé la voiture de mon enfance, j'ai décidé de transformer mon obsession en méthode créative. Ma Dino n'est pas juste un véhicule. C'est un instrument de création, une extension de ma volonté artistique.",
       "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, déposant sa signature mécanique. Je saisis ce dialogue entre l'homme et la machine."
     },
     "specs": {

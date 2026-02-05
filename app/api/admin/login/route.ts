@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { generateToken, addToken } from "@/lib/auth";
 
 // Mot de passe stocké dans .env.local
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "Guillaumedinoman2025!";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "dino246";
 
 export async function POST(request: NextRequest) {
   try {

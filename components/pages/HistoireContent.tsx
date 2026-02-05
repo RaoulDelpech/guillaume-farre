@@ -17,7 +17,7 @@ export default function HistoireContent() {
           <EditableText
             textKey="histoire.hero.title"
             as="h1"
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-5xl md:text-7xl font-light tracking-wide mb-6"
           >
             L'Histoire
           </EditableText>
@@ -37,9 +37,9 @@ export default function HistoireContent() {
           <EditableText
             textKey="histoire.origin.title"
             as="h2"
-            className="text-2xl md:text-3xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-light tracking-wide mb-6"
           >
-            Tout commence avec une petite Ferrari
+            Tout commence avec une petite voiture
           </EditableText>
 
           <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
@@ -49,7 +49,7 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Enfant, Guillaume possédait une petite voiture Ferrari n°20. Une simple voiture miniature, mais qui allait devenir le point de départ d'une démarche artistique unique.
+              Enfant, Guillaume possédait une petite voiture n°20. Une simple voiture miniature, mais qui allait devenir le point de départ d'une démarche artistique unique.
             </EditableText>
 
             <EditableText
@@ -58,7 +58,7 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Au lieu de simplement la faire rouler comme les autres enfants, Guillaume avait une idée différente : il trempait les roues de sa petite Ferrari dans de la peinture, puis la faisait rouler sur des feuilles de papier, créant ainsi des traces, des empreintes automobiles uniques.
+              Au lieu de simplement la faire rouler comme les autres enfants, Guillaume avait une idée différente : il trempait les roues dans de la peinture, puis la faisait rouler sur des feuilles de papier, créant ainsi des traces, des empreintes uniques.
             </EditableText>
 
             <div className="p-6 md:p-8 border-l-4 border-primary bg-card/50 rounded-r-lg my-8">
@@ -68,7 +68,7 @@ export default function HistoireContent() {
                 className="text-lg md:text-xl italic mb-4"
                 multiline
               >
-                « Cette petite Ferrari n°20 n'était pas qu'un jouet. C'était mon premier pinceau, mon premier outil créateur. Sans le savoir, je posais déjà les bases de tout mon travail futur. »
+                « Cette petite voiture n°20 n'était pas qu'un jouet. C'était mon premier outil créateur. Sans le savoir, je posais déjà les bases de tout mon travail futur. »
               </EditableText>
               <p className="text-sm text-muted-foreground">— Guillaume Farré</p>
             </div>
@@ -91,7 +91,7 @@ export default function HistoireContent() {
           <EditableText
             textKey="histoire.scale.title"
             as="h2"
-            className="text-2xl md:text-3xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-light tracking-wide mb-6"
           >
             De la miniature au monumental
           </EditableText>
@@ -103,15 +103,15 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Des années plus tard, devenu adulte, Guillaume n'a jamais oublié cette petite Ferrari n°20. Le rêve d'enfant est resté, mais l'ambition a grandi.
+              Des années plus tard, devenu adulte, Guillaume n'a jamais oublié cette petite voiture n°20. Le rêve d'enfant est resté, mais l'ambition a grandi.
             </EditableText>
 
             <EditableText
               textKey="histoire.scale.p2"
               as="p"
-              className="text-base md:text-lg leading-relaxed font-semibold text-foreground"
+              className="text-base md:text-lg leading-relaxed font-light text-foreground"
             >
-              Et si, au lieu d'une voiture miniature, j'utilisais une vraie Ferrari ?
+              Et si, au lieu d'une voiture miniature, j'utilisais une vraie Dino ?
             </EditableText>
 
             <EditableText
@@ -120,14 +120,14 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Cette question simple a donné naissance à un concept artistique unique. Le principe reste le même qu'enfant - faire rouler une Ferrari dans la peinture pour créer des empreintes - mais à l'échelle 1:1, capturées en photographie.
+              Cette question simple a donné naissance à un concept artistique unique. Le principe reste le même qu'enfant - faire rouler la Dino dans la peinture pour créer des empreintes - mais à l'échelle 1:1, capturées en photographie.
             </EditableText>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mt-8">
             <div className="p-6 border rounded-lg bg-card/30">
               <div className="text-4xl mb-3">👶</div>
-              <h3 className="text-lg font-bold mb-2">Enfance</h3>
+              <h3 className="text-lg font-light mb-2">Enfance</h3>
               <p className="text-sm text-muted-foreground">
                 Ferrari miniature n°20
                 <br />Feuilles de papier
@@ -137,7 +137,7 @@ export default function HistoireContent() {
 
             <div className="p-6 border rounded-lg bg-card/30">
               <div className="text-4xl mb-3">📸</div>
-              <h3 className="text-lg font-bold mb-2">Aujourd'hui</h3>
+              <h3 className="text-lg font-light mb-2">Aujourd'hui</h3>
               <p className="text-sm text-muted-foreground">
                 Ferrari authentique (échelle 1:1)
                 <br />Processus photographié
@@ -154,7 +154,7 @@ export default function HistoireContent() {
           <EditableText
             textKey="histoire.demarche.title"
             as="h2"
-            className="text-2xl md:text-3xl font-bold mb-6"
+            className="text-3xl md:text-4xl font-light tracking-wide mb-6"
           >
             Une démarche artistique unique
           </EditableText>
@@ -170,18 +170,18 @@ export default function HistoireContent() {
 
             <div className="grid md:grid-cols-3 gap-6 my-8">
               <div className="p-6 border rounded-lg bg-card/30">
-                <h3 className="text-lg font-bold mb-3">L'Automobile</h3>
+                <h3 className="text-lg font-light mb-3">L'Automobile</h3>
                 <EditableText
                   textKey="histoire.demarche.auto"
                   as="p"
                   className="text-sm text-muted-foreground"
                 >
-                  Passion des voitures de prestige, héritage Ferrari, culture automobile
+                  Passion des voitures de prestige, culture automobile
                 </EditableText>
               </div>
 
               <div className="p-6 border rounded-lg bg-card/30">
-                <h3 className="text-lg font-bold mb-3">L'Art Contemporain</h3>
+                <h3 className="text-lg font-light mb-3">L'Art Contemporain</h3>
                 <EditableText
                   textKey="histoire.demarche.art"
                   as="p"
@@ -192,7 +192,7 @@ export default function HistoireContent() {
               </div>
 
               <div className="p-6 border rounded-lg bg-card/30">
-                <h3 className="text-lg font-bold mb-3">La Photographie</h3>
+                <h3 className="text-lg font-light mb-3">La Photographie</h3>
                 <EditableText
                   textKey="histoire.demarche.photo"
                   as="p"
@@ -209,7 +209,7 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Ses œuvres ne sont pas de simples « peintures automobiles ». Ce sont des témoignages d'un instant unique, où une Ferrari devient pinceau géant, où le mouvement mécanique se transforme en geste artistique, où la puissance du moteur V12 s'exprime en traces de peinture sur la toile.
+              Ses œuvres ne sont pas de simples « peintures automobiles ». Ce sont des témoignages d'un instant unique, où le mouvement mécanique se transforme en geste artistique, où la puissance du moteur s'exprime en traces sur la toile.
             </EditableText>
 
             <EditableText
@@ -230,13 +230,13 @@ export default function HistoireContent() {
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/galerie"
-              className="px-6 py-3 border rounded-md font-bold hover:border-primary transition-colors text-center"
+              className="px-10 py-5 border border-foreground/30 hover:border-foreground font-light tracking-wide transition-colors text-center"
             >
               Découvrir les œuvres
             </a>
             <a
               href="/boutique"
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-bold hover:bg-primary/90 transition-colors text-center"
+              className="px-10 py-5 bg-foreground text-background hover:bg-foreground/90 font-light tracking-wide transition-colors text-center"
             >
               Acquérir une œuvre
             </a>

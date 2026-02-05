@@ -11,7 +11,7 @@ export default function ActualitesPage() {
       date: "3 Janvier 2025",
       category: "Événements",
       image: "/photos/atelier/ferrari-action.jpg",
-      excerpt: "Découvrez les coulisses de ma dernière performance devant 250 collectionneurs internationaux. Un moment intense où la Ferrari et la toile ne font qu'un.",
+      excerpt: "Découvrez les coulisses de ma dernière performance devant 250 collectionneurs internationaux. Un moment intense où la Dino et la toile ne font qu'un.",
       readTime: "5 min",
       featured: true
     },
@@ -28,12 +28,12 @@ export default function ActualitesPage() {
     },
     {
       id: 3,
-      title: "La technique de l'empreinte Ferrari expliquée",
-      slug: "technique-empreinte-ferrari",
+      title: "La technique de l'empreinte expliquée",
+      slug: "technique-empreinte-dino",
       date: "20 Décembre 2024",
       category: "Processus créatif",
       image: "/photos/atelier/ferrari-roues.jpg",
-      excerpt: "Plongée dans le processus créatif unique qui transforme les roues d'une Ferrari en pinceau géant. Peinture, vitesse, précision.",
+      excerpt: "Plongée dans le processus créatif unique. Peinture, vitesse, précision.",
       readTime: "6 min",
       featured: false
     },
@@ -50,8 +50,8 @@ export default function ActualitesPage() {
     },
     {
       id: 5,
-      title: "La Ferrari n°20 : De mon enfance à l'art monumental",
-      slug: "histoire-ferrari-numero-20",
+      title: "La voiture n°20 : De mon enfance à l'art monumental",
+      slug: "histoire-voiture-numero-20",
       date: "8 Décembre 2024",
       category: "Inspiration",
       image: "/photos/empreintes/empreinte-02.jpg",
@@ -66,7 +66,7 @@ export default function ActualitesPage() {
       date: "1 Décembre 2024",
       category: "Nouveautés",
       image: "/photos/projection/projection-01.jpg",
-      excerpt: "Découvrez en avant-première la nouvelle série sur laquelle je travaille. Projections lumineuses et traces de Ferrari pour des œuvres encore plus immersives.",
+      excerpt: "Découvrez en avant-première la nouvelle série sur laquelle je travaille. Projections lumineuses et traces pour des œuvres encore plus immersives.",
       readTime: "4 min",
       featured: false
     }

@@ -44,8 +44,8 @@ export default function DinoHistoireContent() {
           </EditableText>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
+        {/* Scroll indicator - animation subtile */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/60 transition-colors">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
           </svg>
@@ -405,7 +405,7 @@ export default function DinoHistoireContent() {
                   as="p"
                   multiline
                 >
-                  Parmi les quatre Ferrari de mon atelier, ma Dino 246 GT occupe une place particulière. Elle incarne cette période où Ferrari a osé démocratiser l'excellence.
+                  Ma Dino 246 GT occupe une place particulière dans mon atelier. Elle incarne cette période où Ferrari a osé démocratiser l'excellence.
                 </EditableText>
                 <EditableText
                   textKey="dinoHistoire.maDino.p2"

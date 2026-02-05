@@ -1,57 +1,35 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import EditableText from "@/components/admin/EditableText";
 
-export default function HeroCarousel() {
-  const t = useTranslations("hero");
+interface HeroCarouselProps {
+  /** Images des slides passées depuis le serveur (data/page-images.json) */
+  slides?: string[];
+}
+
+/**
+ * Hero Carousel - Images configurables via data/page-images.json
+ * @author Lalou
+ * @date 2025-01-20
+ */
+export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const slides = [
-    {
-      image: "/images/works/atelier/atelier-004.jpg",
-      title: t("creations.title"),
-      subtitle: t("creations.subtitle"),
-      description: t("creations.description"),
-      cta: { text: t("creations.cta"), href: "/histoire" },
-    },
-    {
-      image: "/images/works/atelier/atelier-020.jpg",
-      title: t("atelier.title"),
-      subtitle: t("atelier.subtitle"),
-      description: t("atelier.description"),
-      cta: { text: t("atelier.cta"), href: "/atelier" },
-    },
-    {
-      image: "/images/works/atelier/atelier-028.jpg",
-      title: t("photographies.title"),
-      subtitle: t("photographies.subtitle"),
-      description: t("photographies.description"),
-      cta: { text: t("photographies.cta"), href: "/galerie" },
-    },
-    {
-      image: "/images/works/atelier/atelier-063.jpg",
-      title: t("origine.title"),
-      subtitle: t("origine.subtitle"),
-      description: t("origine.description"),
-      cta: { text: t("origine.cta"), href: "/histoire" },
-    },
-    {
-      image: "/images/works/atelier/atelier-072.jpg",
-      title: t("acquerir.title"),
-      subtitle: t("acquerir.subtitle"),
-      description: t("acquerir.description"),
-      cta: { text: t("acquerir.cta"), href: "/boutique" },
-    },
-  ];
+  // Utilise les images passées en props ou les valeurs par défaut
+  const slides = (slideImages || [
+    "/images/works/atelier/atelier-063.jpg",
+    "/images/works/atelier/atelier-004.jpg",
+    "/images/works/atelier/atelier-020.jpg",
+  ]).map(image => ({ image }));
 
-  // Autoplay effect
+  // Autoplay - 12 secondes par slide (cinématographique)
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 9000);
+    }, 12000);
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
 
@@ -87,122 +65,97 @@ export default function HeroCarousel() {
   };
 
   return (
-    <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-background">
-      {/* Slides */}
+    <section className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden bg-black">
+      {/* Background Slides */}
       {slides.map((slide, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === current ? "opacity-100" : "opacity-0 pointer-events-none"
+            index === current ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Background Image - Contain pour éviter déformation */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className={`w-full max-w-4xl h-full bg-contain bg-center bg-no-repeat transition-transform duration-1000 ${
-                index === current ? "scale-105" : "scale-100"
-              }`}
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
-              {/* Overlay léger pour lisibilité texte */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
-            </div>
-          </div>
-
-          {/* Content - Centré world-class */}
-          <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-6 lg:px-8">
-            <div className="max-w-5xl">
-              {/* Titre principal - Taille optimale lisible */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wider mb-6 md:mb-8 animate-fade-in leading-tight">
-                {slide.title}
-              </h1>
-
-              {/* Sous-titre premium */}
-              <p className="text-lg sm:text-xl md:text-2xl font-light mb-8 md:mb-10 text-white/95 animate-fade-in-delay-1 tracking-wide">
-                {slide.subtitle}
-              </p>
-
-              {/* Description - Plus lisible, plus spacieux */}
-              <p className="text-lg sm:text-xl md:text-2xl font-light mb-10 md:mb-14 text-white/90 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay-2">
-                {slide.description}
-              </p>
-
-              {/* CTA discret et élégant */}
-              <Link
-                href={slide.cta.href}
-                className="inline-block px-8 py-3 md:px-10 md:py-4 border border-white/50 hover:border-white text-white text-base md:text-lg font-light tracking-wide rounded-sm transition-all animate-fade-in-delay-3 hover:bg-white/10 duration-300"
-              >
-                {slide.cta.text}
-              </Link>
-            </div>
-          </div>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${slide.image})`,
+              transition: "transform 12s linear",
+              transform: index === current ? "scale(1.1)" : "scale(1)"
+            }}
+          />
+          {/* Overlay pour lisibilité */}
+          <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
 
-      {/* Navigation Arrows */}
+      {/* Content - Fixe, ne change pas avec les slides */}
+      <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-6 lg:px-8 z-10">
+        <div className="max-w-4xl">
+          {/* Titre signature - Décision audit - Éditable en mode admin */}
+          <EditableText
+            textKey="hero.title"
+            as="h1"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wider mb-4 md:mb-6 animate-fade-in"
+          >
+            Une Dino pour pinceau
+          </EditableText>
+
+          {/* Sous-titre - Les 3 médiums - Éditable en mode admin */}
+          <EditableText
+            textKey="hero.subtitle"
+            as="p"
+            className="text-lg sm:text-xl md:text-2xl font-light mb-10 md:mb-14 text-white/90 tracking-wide animate-fade-in-delay-1"
+          >
+            Toiles. Photographies. Performances.
+          </EditableText>
+
+          {/* CTA - Décision audit - Éditable en mode admin */}
+          <Link
+            href="/atelier"
+            className="inline-block px-8 py-3 md:px-10 md:py-4 border border-white/70 hover:border-white text-white text-base md:text-lg font-light tracking-wide transition-all animate-fade-in-delay-2 hover:bg-white/10 duration-300"
+          >
+            <EditableText textKey="hero.cta" as="span">
+              Découvrir l'atelier
+            </EditableText>
+          </Link>
+        </div>
+      </div>
+
+      {/* Navigation Arrows - Plus discrets */}
       <button
         onClick={goToPrevious}
-        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white text-lg md:text-xl z-10"
-        aria-label="Diapositive précédente"
+        className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all flex items-center justify-center text-white/70 hover:text-white z-20"
+        aria-label="Image précédente"
       >
-        ←
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+        </svg>
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all flex items-center justify-center text-white text-lg md:text-xl z-10"
-        aria-label="Diapositive suivante"
+        className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all flex items-center justify-center text-white/70 hover:text-white z-20"
+        aria-label="Image suivante"
       >
-        →
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+        </svg>
       </button>
 
-      {/* Dots Navigation */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10">
+      {/* Dots Navigation - Discrets en bas */}
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+            className={`h-1.5 rounded-full transition-all duration-300 ${
               index === current
-                ? "bg-white w-6 md:w-8"
-                : "bg-white/50 hover:bg-white/70"
+                ? "bg-white w-8"
+                : "bg-white/40 hover:bg-white/60 w-1.5"
             }`}
-            aria-label={`Aller à la diapositive ${index + 1}`}
+            aria-label={`Image ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Quick Access Menu - discret */}
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 flex gap-2 z-10">
-        <Link
-          href="/galerie"
-          className="px-3 py-1.5 md:px-4 md:py-2 border border-white/30 hover:border-white/60 backdrop-blur-sm rounded-sm text-white/80 hover:text-white text-xs md:text-sm transition-all"
-        >
-          {t("galerie")}
-        </Link>
-        <Link
-          href="/boutique"
-          className="px-3 py-1.5 md:px-4 md:py-2 border border-white/30 hover:border-white/60 backdrop-blur-sm rounded-sm text-white/80 hover:text-white text-xs md:text-sm transition-all"
-        >
-          Commandes
-        </Link>
-      </div>
-
-      {/* Scroll Indicator - Premium touch with fade out */}
-      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-pulse opacity-50">
-        <svg
-          className="w-5 h-5 md:w-6 md:h-6 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </div>
     </section>
   );
 }

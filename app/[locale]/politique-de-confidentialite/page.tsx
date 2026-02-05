@@ -21,7 +21,7 @@ export default async function PolitiqueConfidentialitePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Responsable du traitement</h2>
             <p>
               <strong>Guillaume Farré</strong><br />
-              Artiste sculpteur - Concept car art<br />
+              Artiste - Action painting automobile<br />
               Email : contact@guillaumefarre.com
             </p>
           </section>
@@ -75,7 +75,7 @@ export default async function PolitiqueConfidentialitePage() {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Stripe :</strong> pour le traitement sécurisé des paiements</li>
-              <li><strong>WhiteWall :</strong> pour l'impression et la livraison des œuvres</li>
+              <li><strong>Gelato :</strong> pour l'impression et la livraison des œuvres</li>
               <li><strong>Transporteurs :</strong> pour la livraison de vos commandes</li>
             </ul>
             <p>

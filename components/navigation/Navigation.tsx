@@ -3,31 +3,34 @@ import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import MobileNav from "./MobileNav";
-import { useCart } from "@/contexts/CartContext";
-import { useWishlist } from "@/hooks/useWishlist";
+// MASQUE - E-commerce désactivé (code gardé pour réactivation future)
+// import { useCart } from "@/contexts/CartContext";
+// import { useWishlist } from "@/hooks/useWishlist";
 
 export default function Navigation() {
   const pathname = usePathname();
   const t = useTranslations("nav");
-  const { totalItems } = useCart();
-  const { count: wishlistCount } = useWishlist();
+  // MASQUE - E-commerce désactivé
+  // const { totalItems } = useCart();
+  // const { count: wishlistCount } = useWishlist();
 
+  // Navigation principale - Décisions audit 2025-01-20
   const links = [
-    { href: "/", label: t("accueil") },
-    { href: "/galerie", label: "Galerie" },
+    { href: "/galerie", label: "Créations" },
     { href: "/dino", label: "Dino" },
-    { href: "/boutique", label: "Commandes" },
-    { href: "/atelier", label: "Atelier" },
-    { href: "/origine", label: "Origine" },
-    { href: "/contact", label: t("contact") },
+    { href: "/atelier", label: "L'Atelier" },
+    { href: "/origine", label: "Origines" },
+    { href: "/contact", label: "Contact" },
   ];
 
-  // Pages temporairement retirées (à réactiver plus tard) :
+  // MASQUE - Pages désactivées (code gardé pour réactivation future) :
+  // { href: "/", label: t("accueil") },
+  // { href: "/boutique", label: "Commandes" },
   // { href: "/collectionneurs", label: "Club" },
   // { href: "/actualites", label: "Actualités" },
 
   return (
-    <nav className="bg-card border-b border-border text-foreground sticky top-0 z-40">
+    <nav className="bg-background/95 backdrop-blur-sm border-b border-border text-foreground sticky top-0 z-40">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="text-2xl font-light tracking-wide hover:text-primary transition-colors">
@@ -45,6 +48,7 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            {/* MASQUE - E-commerce désactivé (code gardé pour réactivation future)
             <Link
               href="/favoris"
               className="relative text-sm font-light tracking-wide hover:text-primary transition-colors"
@@ -69,6 +73,7 @@ export default function Navigation() {
                 </span>
               )}
             </Link>
+            */}
             <LanguageSwitcher />
           </div>
           <div className="md:hidden">

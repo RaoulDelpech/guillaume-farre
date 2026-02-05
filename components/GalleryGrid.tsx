@@ -52,7 +52,13 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
           </div>
         ))}
       </div>
-      <Lightbox open={open} work={selected} onClose={() => setOpen(false)} />
+      <Lightbox
+        open={open}
+        work={selected}
+        works={works}
+        onClose={() => setOpen(false)}
+        onNavigate={(work) => setSelectedSlug(work.slug)}
+      />
     </div>
   );
 }

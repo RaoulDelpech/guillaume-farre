@@ -23,9 +23,9 @@ import {
   sendOrderProblemEmail,
 } from '@/lib/resend-client';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-10-29.clover',
-});
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
+  : null;
 
 /**
  * Payload webhook Gelato
@@ -114,6 +114,11 @@ async function logWebhookEvent(payload: GelatoWebhookPayload) {
  * - order.on-hold → Email alerte problème
  */
 async function sendCustomerEmail(payload: GelatoWebhookPayload) {
+  if (!stripe) {
+    console.warn('[Gelato Webhook] Stripe non configuré, skip email');
+    return;
+  }
+
   const { event, orderReferenceId, data } = payload;
 
   try {

@@ -17,6 +17,7 @@ import PhotoFilters from "@/components/admin/PhotoFilters";
 import PhotoFiltersPills from "@/components/admin/PhotoFiltersPills";
 import PhotoEditor, { EditedPhotoData } from "@/components/admin/PhotoEditor";
 import BulkActions from "@/components/admin/BulkActions";
+import AdminQuickActions from "@/components/admin/AdminQuickActions";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 export default function AdminPage() {
@@ -321,6 +322,9 @@ export default function AdminPage() {
             {photos.length} média{photos.length > 1 ? 's' : ''} • Gestion de la galerie
           </p>
         </div>
+
+        {/* Actions rapides */}
+        <AdminQuickActions />
 
         {/* Stats enrichies - DONNÉES RÉELLES */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 mb-16">

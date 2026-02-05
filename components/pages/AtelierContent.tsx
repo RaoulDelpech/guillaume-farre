@@ -13,12 +13,12 @@ export default function AtelierContent() {
   return (
     <>
       {/* Hero */}
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
           <EditableText
             textKey="atelier.hero.title"
             as="h1"
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-5xl md:text-7xl font-light tracking-wide mb-6"
           >
             L'Atelier
           </EditableText>
@@ -27,15 +27,15 @@ export default function AtelierContent() {
             as="p"
             className="text-xl md:text-2xl text-muted-foreground"
           >
-            Quatre Ferrari. Des outils de 1200 kilos.
+            La Dino. 1020 kilos d'instrument de création.
           </EditableText>
         </div>
       </div>
 
       {/* Introduction */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
-          <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
+          <div className="space-y-6 text-muted-foreground">
             <EditableText
               textKey="atelier.intro.p1"
               as="p"
@@ -58,51 +58,26 @@ export default function AtelierContent() {
       </section>
 
       {/* Les Ferrari */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.ferrari.title"
             as="h2"
-            className="text-2xl md:text-3xl font-bold mb-6"
+            className="text-2xl md:text-3xl font-light tracking-wide mb-6"
           >
-            Mes quatre Ferrari
+            Ma Dino
           </EditableText>
 
-          <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
+          <div className="space-y-6 text-muted-foreground">
             <EditableText
               textKey="atelier.ferrari.p1"
               as="p"
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Je possède quatre Dino : une noire, deux grises, une rouge. Chacune a sa personnalité, sa façon de répondre aux sollicitations, sa manière unique de déposer la peinture sur la toile.
+              Ma Dino a sa personnalité, sa façon de répondre aux sollicitations, sa manière unique de déposer la peinture sur la toile.
             </EditableText>
 
-            <div className="grid md:grid-cols-2 gap-6 my-8">
-              <div className="p-6 border rounded-lg bg-card/30">
-                <div className="text-4xl mb-3">⚫</div>
-                <h3 className="text-lg font-bold mb-2">La Noire</h3>
-                <EditableText
-                  textKey="atelier.ferrari.noire"
-                  as="p"
-                  className="text-sm text-muted-foreground"
-                >
-                  Élégante et discrète, elle produit des traces fines et précises.
-                </EditableText>
-              </div>
-
-              <div className="p-6 border rounded-lg bg-card/30">
-                <div className="text-4xl mb-3">⚪</div>
-                <h3 className="text-lg font-bold mb-2">Les Grises</h3>
-                <EditableText
-                  textKey="atelier.ferrari.grises"
-                  as="p"
-                  className="text-sm text-muted-foreground"
-                >
-                  Polyvalentes, elles s'adaptent à tous les types de créations.
-                </EditableText>
-              </div>
-            </div>
 
             <EditableText
               textKey="atelier.ferrari.p2"
@@ -117,17 +92,17 @@ export default function AtelierContent() {
       </section>
 
       {/* L'espace de création */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.espace.title"
             as="h2"
-            className="text-2xl md:text-3xl font-bold mb-6"
+            className="text-2xl md:text-3xl font-light tracking-wide mb-6"
           >
             L'espace de création
           </EditableText>
 
-          <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
+          <div className="space-y-6 text-muted-foreground">
             <EditableText
               textKey="atelier.espace.p1"
               as="p"
@@ -162,17 +137,17 @@ export default function AtelierContent() {
       </section>
 
       {/* Le processus */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.processus.title"
             as="h2"
-            className="text-2xl md:text-3xl font-bold mb-6"
+            className="text-2xl md:text-3xl font-light tracking-wide mb-6"
           >
             Le processus créatif
           </EditableText>
 
-          <div className="prose prose-invert max-w-none space-y-6 text-muted-foreground">
+          <div className="space-y-6 text-muted-foreground">
             <EditableText
               textKey="atelier.processus.p1"
               as="p"
@@ -184,18 +159,18 @@ export default function AtelierContent() {
 
             <div className="grid md:grid-cols-3 gap-4 my-8">
               <div className="p-4 border rounded-lg bg-card/30 text-center">
-                <div className="text-3xl mb-2">1</div>
-                <h4 className="font-bold mb-1">Préparation</h4>
+                <div className="text-xl font-light mb-2">1</div>
+                <h4 className="font-light mb-1">Préparation</h4>
                 <p className="text-xs text-muted-foreground">Toile, peinture, trajectoire</p>
               </div>
               <div className="p-4 border rounded-lg bg-card/30 text-center">
-                <div className="text-3xl mb-2">2</div>
-                <h4 className="font-bold mb-1">Action</h4>
+                <div className="text-xl font-light mb-2">2</div>
+                <h4 className="font-light mb-1">Action</h4>
                 <p className="text-xs text-muted-foreground">La Dino en mouvement</p>
               </div>
               <div className="p-4 border rounded-lg bg-card/30 text-center">
-                <div className="text-3xl mb-2">3</div>
-                <h4 className="font-bold mb-1">Capture</h4>
+                <div className="text-xl font-light mb-2">3</div>
+                <h4 className="font-light mb-1">Capture</h4>
                 <p className="text-xs text-muted-foreground">Photographie de l'instant</p>
               </div>
             </div>
@@ -212,21 +187,99 @@ export default function AtelierContent() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      {/* Galerie photos de l'atelier */}
+      <section className="py-16 md:py-24 bg-muted/10 border-t border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <EditableText
+              textKey="atelier.galerie.title"
+              as="h2"
+              className="text-2xl md:text-3xl font-light tracking-wide mb-4"
+            >
+              L'atelier en images
+            </EditableText>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {[
+              "/images/works/atelier/atelier-063.jpg",
+              "/images/works/atelier/atelier-004.jpg",
+              "/images/works/atelier/atelier-020.jpg",
+              "/images/works/atelier/atelier-030.jpg",
+              "/images/works/atelier/atelier-010.jpg",
+              "/images/works/atelier/atelier-001.jpg",
+            ].map((img, index) => (
+              <div key={index} className="aspect-square bg-muted/30 rounded-lg overflow-hidden">
+                <img
+                  src={img}
+                  alt={`L'atelier ${index + 1}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Visiter l'atelier - Décision audit 2025-01-20 */}
+      <section className="py-24 md:py-32 bg-muted/10 border-t border-border">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <EditableText
+              textKey="atelier.visite.title"
+              as="h2"
+              className="text-3xl md:text-4xl font-light tracking-wide mb-6"
+            >
+              Visiter l'atelier
+            </EditableText>
+
+            <EditableText
+              textKey="atelier.visite.description"
+              as="p"
+              className="text-lg text-muted-foreground font-light leading-relaxed mb-4"
+              multiline
+            >
+              L'atelier se visite sur rendez-vous uniquement. Venez découvrir la Dino, les toiles en cours, et l'espace où naissent les œuvres.
+            </EditableText>
+
+            <EditableText
+              textKey="atelier.visite.location"
+              as="p"
+              className="text-base text-muted-foreground/80 font-light mb-10"
+            >
+              Toulouse, France
+            </EditableText>
+
+            <a
+              href="/contact?sujet=visite"
+              className="inline-block px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group"
+            >
+              <EditableText textKey="atelier.visite.cta" as="span">
+                Prendre rendez-vous
+              </EditableText>
+              <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
-          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/galerie"
-              className="px-6 py-3 border rounded-md font-bold hover:border-primary transition-colors text-center"
+              className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group"
             >
-              Voir les œuvres
+              Voir les créations
+              <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </a>
             <a
-              href="/boutique"
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-bold hover:bg-primary/90 transition-colors text-center"
+              href="/contact"
+              className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group"
             >
-              Acquérir une œuvre
+              Contacter Guillaume
+              <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </a>
           </div>
         </div>

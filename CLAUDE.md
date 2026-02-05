@@ -5,6 +5,27 @@ Maintenu par: Lalou
 
 ---
 
+## RÈGLE #5 OBLIGATOIRE : QUESTIONS AVEC OPTIONS ET RECOMMANDATION
+
+**JAMAIS de question sans options et recommandation étayée.**
+
+```
+[Question claire] ?
+
+Options:
+A) [Option 1] - [description]
+B) [Option 2] - [description]
+C) [Option 3] - [description]
+(D) Autre - préciser
+
+Ma recommandation: Option X
+Pourquoi: [argument factuel étayé]
+```
+
+**UNE SEULE QUESTION À LA FOIS.**
+
+---
+
 ## NOUVEAUTÉS SESSION 2025-12-07
 
 ### 1. Système d'authentification simplifié

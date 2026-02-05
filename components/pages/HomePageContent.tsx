@@ -12,6 +12,8 @@ interface HomePageContentProps {
       cta: string;
     };
   };
+  /** Photo de l'artiste depuis data/page-images.json */
+  artistPhoto?: string;
 }
 
 /**
@@ -20,16 +22,17 @@ interface HomePageContentProps {
  * @author Lalou
  * @date 2025-12-29
  */
-export default function HomePageContent({ translations: t }: HomePageContentProps) {
+export default function HomePageContent({ translations: t, artistPhoto }: HomePageContentProps) {
+  const photoUrl = artistPhoto || "/images/origins/atelier-deux-voitures-grises.jpg";
   return (
-    <section className="py-24 md:py-32 bg-muted/30">
+    <section className="py-24 md:py-32 bg-muted/10">
       <div className="container px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Image artiste */}
           <div className="order-2 md:order-1">
             <div className="relative overflow-hidden rounded-lg">
               <img
-                src="/images/origins/atelier-deux-voitures-grises.jpg"
+                src={photoUrl}
                 alt="Guillaume Farré dans son atelier"
                 className="w-full h-auto object-cover"
               />
@@ -62,10 +65,9 @@ export default function HomePageContent({ translations: t }: HomePageContentProp
             </EditableText>
             <Link
               href="/histoire"
-              className="inline-flex items-center text-lg font-light tracking-wide hover:text-foreground/80 transition-colors group"
+              className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all"
             >
-              <span className="border-b border-current pb-1">{t.artist.cta}</span>
-              <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              {t.artist.cta} →
             </Link>
           </div>
         </div>

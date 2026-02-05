@@ -15,9 +15,9 @@ export default async function CGVPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Informations légales</h2>
             <p>
               <strong>Guillaume Farré</strong><br />
-              Artiste sculpteur - Concept car art<br />
+              Artiste - Action painting automobile<br />
               Email : contact@guillaumefarre.com<br />
-              Téléphone : +33 (0)X XX XX XX XX
+              Atelier : Toulouse, France
             </p>
           </section>
 

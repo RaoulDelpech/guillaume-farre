@@ -9,6 +9,13 @@ interface ShareButtonsProps {
   imageUrl?: string;
 }
 
+/**
+ * Boutons de partage - Direction artistique galerie haut de gamme
+ * Style minimaliste et sobre
+ *
+ * @author Lalou
+ * @updated 2025-01-20 - Conformité direction artistique
+ */
 export default function ShareButtons({
   title,
   description = "Découvrez cette œuvre unique de Guillaume Farré",
@@ -79,9 +86,8 @@ export default function ShareButtons({
           setShowTooltip(!showTooltip);
           playClick();
         }}
-        className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg font-bold text-sm transition-all flex items-center gap-2"
+        className="px-4 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 font-light text-sm transition-all flex items-center gap-2"
       >
-        <span>🔗</span>
         <span>Partager</span>
       </button>
 
@@ -94,9 +100,9 @@ export default function ShareButtons({
             onClick={() => setShowTooltip(false)}
           />
 
-          {/* Menu */}
-          <div className="absolute top-full mt-2 right-0 bg-black border-2 border-white/20 rounded-xl p-4 z-50 shadow-2xl min-w-[280px]">
-            <div className="text-sm font-bold mb-3 text-gray-400">
+          {/* Menu - Style galerie minimaliste */}
+          <div className="absolute top-full mt-2 right-0 bg-background border border-border p-4 z-50 shadow-lg min-w-[280px]">
+            <div className="text-sm font-light mb-3 text-muted-foreground tracking-wide">
               Partager cette œuvre
             </div>
 
@@ -104,45 +110,40 @@ export default function ShareButtons({
               {/* Facebook */}
               <button
                 onClick={() => handleShare("facebook")}
-                className="flex items-center gap-2 px-3 py-2 bg-[#1877F2] hover:bg-[#166FE5] rounded-lg text-white text-sm font-semibold transition-all"
+                className="flex items-center gap-2 px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all"
               >
-                <span>📘</span>
                 <span>Facebook</span>
               </button>
 
               {/* Twitter/X */}
               <button
                 onClick={() => handleShare("twitter")}
-                className="flex items-center gap-2 px-3 py-2 bg-[#1DA1F2] hover:bg-[#1A8CD8] rounded-lg text-white text-sm font-semibold transition-all"
+                className="flex items-center gap-2 px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all"
               >
-                <span>𝕏</span>
                 <span>Twitter</span>
               </button>
 
               {/* LinkedIn */}
               <button
                 onClick={() => handleShare("linkedin")}
-                className="flex items-center gap-2 px-3 py-2 bg-[#0A66C2] hover:bg-[#095196] rounded-lg text-white text-sm font-semibold transition-all"
+                className="flex items-center gap-2 px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all"
               >
-                <span>💼</span>
                 <span>LinkedIn</span>
               </button>
 
               {/* WhatsApp */}
               <button
                 onClick={() => handleShare("whatsapp")}
-                className="flex items-center gap-2 px-3 py-2 bg-[#25D366] hover:bg-[#20BD5A] rounded-lg text-white text-sm font-semibold transition-all"
+                className="flex items-center gap-2 px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all"
               >
-                <span>💬</span>
                 <span>WhatsApp</span>
               </button>
 
               {/* Email */}
               <button
                 onClick={() => handleShare("email")}
-                className="flex items-center gap-2 px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white text-sm font-semibold transition-all"
+                className="flex items-center gap-2 px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all"
               >
-                <span>📧</span>
                 <span>Email</span>
               </button>
 
@@ -150,9 +151,8 @@ export default function ShareButtons({
               {shareLinks.pinterest && (
                 <button
                   onClick={() => handleShare("pinterest")}
-                  className="flex items-center gap-2 px-3 py-2 bg-[#E60023] hover:bg-[#D0001F] rounded-lg text-white text-sm font-semibold transition-all"
+                  className="flex items-center gap-2 px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all"
                 >
-                  <span>📌</span>
                   <span>Pinterest</span>
                 </button>
               )}
@@ -162,37 +162,28 @@ export default function ShareButtons({
             {typeof navigator !== "undefined" && navigator.share !== undefined && (
               <button
                 onClick={handleNativeShare}
-                className="w-full mb-2 px-3 py-2 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 rounded-lg text-white text-sm font-semibold transition-all"
+                className="w-full mb-2 px-3 py-2 bg-foreground hover:bg-foreground/90 text-background text-sm font-light transition-all"
               >
-                📱 Partager via...
+                Partager via...
               </button>
             )}
 
             {/* Copy link */}
             <button
               onClick={handleCopyLink}
-              className="w-full px-3 py-2 bg-white/10 hover:bg-white/20 border border-white/30 rounded-lg text-white text-sm font-semibold transition-all flex items-center justify-center gap-2"
+              className="w-full px-3 py-2 bg-muted/50 hover:bg-muted border border-border hover:border-foreground/30 text-foreground text-sm font-light transition-all flex items-center justify-center gap-2"
             >
               {copied ? (
-                <>
-                  <span>✓</span>
-                  <span>Lien copié !</span>
-                </>
+                <span>Lien copié</span>
               ) : (
-                <>
-                  <span>🔗</span>
-                  <span>Copier le lien</span>
-                </>
+                <span>Copier le lien</span>
               )}
             </button>
-
-            {/* Stats */}
-            <div className="mt-3 pt-3 border-t border-white/10 text-xs text-gray-400 text-center">
-              Partagez et aidez-nous à faire connaître l'art automobile ! 🏎️
-            </div>
           </div>
         </>
       )}
     </div>
   );
 }
+
+// Lalou

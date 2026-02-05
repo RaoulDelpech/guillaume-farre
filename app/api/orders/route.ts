@@ -3,9 +3,9 @@ import Stripe from 'stripe';
 import { createWhiteWallOrder, WHITEWALL_FORMATS, WHITEWALL_MATERIALS } from '@/lib/printing/whitewall-api';
 import type { WhiteWallOrder, WhiteWallProduct } from '@/lib/printing/whitewall-api';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-10-29.clover',
-});
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
+  : null;
 
 interface OrderItem {
   photoPath: string;
@@ -37,6 +37,10 @@ interface CreateOrderRequest {
  * Crée une commande complète : Stripe + WhiteWall automatiquement
  */
 export async function POST(request: Request) {
+  if (!stripe) {
+    return NextResponse.json({ error: 'Stripe non configuré' }, { status: 503 });
+  }
+
   try {
     const { items, customerInfo, locale = 'fr' }: CreateOrderRequest = await request.json();
 

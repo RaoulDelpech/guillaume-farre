@@ -2,18 +2,20 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import DinoContent from "@/components/pages/DinoContent";
+import { getPageImages } from "@/lib/page-images";
 
 export const metadata: Metadata = {
-  title: "Ferrari Dino",
-  description: "La Ferrari Dino 246 GT : l'instrument de création de Guillaume Farré. V6 de 195 chevaux, carrosserie Pininfarina, histoire d'Alfredo 'Dino' Ferrari.",
+  title: "La Dino",
+  description: "La Dino 246 GT : l'instrument de création de Guillaume Farré. V6 de 195 chevaux, carrosserie Pininfarina.",
   openGraph: {
-    title: "Ferrari Dino | Guillaume Farré",
-    description: "Découvrez la Ferrari Dino 246 GT, l'instrument au cœur du processus créatif de Guillaume Farré.",
+    title: "La Dino | Guillaume Farré",
+    description: "Découvrez la Dino 246 GT, l'instrument au cœur du processus créatif de Guillaume Farré.",
   },
 };
 
 export default async function DinoPage() {
   const t = await getTranslations("dino");
+  const pageImages = await getPageImages();
 
   // Préparer les traductions pour le composant client
   const translations = {
@@ -63,7 +65,7 @@ export default async function DinoPage() {
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
-      <DinoContent translations={translations} />
+      <DinoContent translations={translations} images={pageImages.dino} />
     </main>
   );
 }

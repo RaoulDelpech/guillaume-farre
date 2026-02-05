@@ -17,15 +17,15 @@ interface StockBadgeProps {
  * @updated 2025-11-29 - Support 9/99 exemplaires
  */
 export default function StockBadge({ available, total, size = 'md', className = '', formatType }: StockBadgeProps) {
-  // Déterminer couleur selon disponibilité
+  // Déterminer couleur selon disponibilité - Palette neutre direction artistique
   const getColorClasses = () => {
     if (available === 0) {
-      return 'bg-red-500/90 text-white border-red-600';
+      return 'bg-muted text-muted-foreground border-border';
     }
     if (available <= 2) {
-      return 'bg-orange-500/90 text-white border-orange-600 animate-pulse-subtle';
+      return 'bg-muted/80 text-foreground border-foreground/30';
     }
-    return 'bg-green-500/20 text-green-700 border-green-500';
+    return 'bg-muted/50 text-muted-foreground border-border';
   };
 
   // Taille du badge

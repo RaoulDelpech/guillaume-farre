@@ -4,6 +4,8 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Cacher l'icône de debug Next.js en bas à gauche
+  devIndicators: false,
   images: {
     remotePatterns: [
       {

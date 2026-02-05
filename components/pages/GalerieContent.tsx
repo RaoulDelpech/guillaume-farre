@@ -28,13 +28,13 @@ export default function GalerieContent({ translations: t }: GalerieContentProps)
         }}
       ></div>
       {/* Overlay sombre pour lisibilité du texte */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/50"></div>
 
       <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl py-28">
         <EditableText
           textKey="gallery.title"
           as="h1"
-          className="text-6xl md:text-8xl font-light tracking-wide mb-10 text-white"
+          className="text-5xl md:text-7xl font-light tracking-wide mb-10 text-white"
         >
           {t.title}
         </EditableText>

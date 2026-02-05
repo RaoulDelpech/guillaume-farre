@@ -6,9 +6,9 @@ import { getPennylaneClient } from '@/lib/pennylane-client';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
 import { sendOrderConfirmationEmail } from '@/lib/resend-client';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-10-29.clover',
-});
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
+  : null;
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
@@ -164,6 +164,11 @@ function extractImageUrl(item: Stripe.LineItem): string {
 
 // Fonction pour traiter la commande après paiement réussi
 async function processOrder(session: Stripe.Checkout.Session) {
+  if (!stripe) {
+    console.error('❌ Stripe non configuré');
+    return { success: false, error: 'Stripe non configuré' };
+  }
+
   console.log('🎉 Processing order for session:', session.id);
 
   try {
@@ -316,6 +321,10 @@ async function syncToPennylane(
 }
 
 export async function POST(req: NextRequest) {
+  if (!stripe) {
+    return NextResponse.json({ error: 'Stripe non configuré' }, { status: 503 });
+  }
+
   const body = await req.text();
   const headersList = await headers();
   const signature = headersList.get('stripe-signature') as string;

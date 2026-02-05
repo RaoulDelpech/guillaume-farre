@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Navigation from "@/components/navigation/Navigation";
 import OrigineContent from "@/components/pages/OrigineContent";
+import { getPageImages } from "@/lib/page-images";
 
 export const metadata: Metadata = {
   title: "Origine",
@@ -18,11 +19,13 @@ export const metadata: Metadata = {
  * @author Lalou
  * @date 2025-12-31
  */
-export default function OriginePage() {
+export default async function OriginePage() {
+  const pageImages = await getPageImages();
+
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
-      <OrigineContent />
+      <OrigineContent images={pageImages.origine} />
     </main>
   );
 }

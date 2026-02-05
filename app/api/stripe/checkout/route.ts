@@ -1,11 +1,21 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-10-29.clover',
-});
+// Stripe initialisé seulement si clé disponible
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2025-10-29.clover',
+    })
+  : null;
 
 export async function POST(request: Request) {
+  // Si Stripe pas configuré, renvoyer erreur
+  if (!stripe) {
+    return NextResponse.json(
+      { error: 'Stripe non configuré' },
+      { status: 503 }
+    );
+  }
   try {
     const { items, locale = 'fr' } = await request.json();
 

@@ -30,7 +30,7 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white hover:text-red-500 transition-colors"
+        className="flex items-center gap-2 px-3 py-2 text-sm font-light text-foreground hover:text-primary transition-colors"
         disabled={isPending}
       >
         <span className="text-xl">{currentLanguage?.flag}</span>
@@ -51,7 +51,7 @@ export default function LanguageSwitcher() {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-zinc-900 ring-1 ring-black ring-opacity-5 z-50">
+          <div className="absolute right-0 mt-2 w-48 shadow-lg bg-background border border-border z-50">
             <div className="py-1" role="menu">
               {languages.map((language) => (
                 <button
@@ -59,9 +59,9 @@ export default function LanguageSwitcher() {
                   onClick={() => onSelectChange(language.code)}
                   className={`${
                     locale === language.code
-                      ? 'bg-zinc-800 text-red-500'
-                      : 'text-white hover:bg-zinc-800'
-                  } flex items-center gap-3 w-full px-4 py-2 text-sm transition-colors`}
+                      ? 'bg-muted text-primary'
+                      : 'text-foreground hover:bg-muted'
+                  } flex items-center gap-3 w-full px-4 py-2 text-sm font-light transition-colors`}
                   role="menuitem"
                 >
                   <span className="text-xl">{language.flag}</span>

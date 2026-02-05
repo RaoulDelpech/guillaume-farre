@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import GalleryGrid from "@/components/GalleryGrid";
 import type { Work } from "@/lib/works";
 
-type FilterType = 'all' | 'photo' | 'toile' | 'limited';
+type FilterType = 'all' | 'photo' | 'toile' | 'limited' | 'empreintes' | 'atelier' | 'projections';
 
 interface GalleryClientProps {
   works: Work[];
@@ -13,8 +14,18 @@ interface GalleryClientProps {
 const ITEMS_PER_PAGE = 24; // 24 photos par page (grille 4x6)
 
 export default function GalleryClient({ works }: GalleryClientProps) {
+  const searchParams = useSearchParams();
+  const serieParam = searchParams.get('serie');
+
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Appliquer le filtre de série depuis l'URL
+  useEffect(() => {
+    if (serieParam && ['empreintes', 'atelier', 'projections'].includes(serieParam)) {
+      setActiveFilter(serieParam as FilterType);
+    }
+  }, [serieParam]);
 
   // Filtrage des œuvres selon le filtre actif
   const filteredWorks = useMemo(() => {
@@ -22,6 +33,10 @@ export default function GalleryClient({ works }: GalleryClientProps) {
     if (activeFilter === 'photo') return works.filter(w => w.type === 'photo');
     if (activeFilter === 'toile') return works.filter(w => w.type === 'toile');
     if (activeFilter === 'limited') return works.filter(w => w.edition.type === 'limited');
+    // Filtres par série
+    if (activeFilter === 'empreintes') return works.filter(w => w.slug.startsWith('empreintes'));
+    if (activeFilter === 'atelier') return works.filter(w => w.slug.startsWith('atelier'));
+    if (activeFilter === 'projections') return works.filter(w => w.slug.startsWith('projection'));
     return works;
   }, [works, activeFilter]);
 
@@ -40,15 +55,15 @@ export default function GalleryClient({ works }: GalleryClientProps) {
 
   const filterButtons: { key: FilterType; label: string }[] = [
     { key: 'all', label: 'Toutes' },
-    { key: 'photo', label: 'Photographies' },
-    { key: 'toile', label: 'Toiles' },
-    { key: 'limited', label: 'Éditions limitées' },
+    { key: 'empreintes', label: 'Empreintes' },
+    { key: 'atelier', label: 'Atelier' },
+    { key: 'projections', label: 'Projections' },
   ];
 
   return (
     <>
       {/* Section filtres élégante */}
-      <section className="bg-muted/20 border-b border-border py-12">
+      <section id="galerie-grid" className="bg-muted/10 border-b border-border py-8">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="flex flex-wrap gap-6 justify-center items-center">
             {filterButtons.map(({ key, label }) => (
@@ -69,7 +84,7 @@ export default function GalleryClient({ works }: GalleryClientProps) {
       </section>
 
       {/* Galerie */}
-      <section className="container mx-auto px-6 lg:px-8 py-28 md:py-36">
+      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20">
         {filteredWorks.length > 0 ? (
           <>
             <div className="text-center mb-12">

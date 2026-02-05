@@ -1,46 +1,1143 @@
 [
   {
-    "filename": "atelier-003.jpg",
-    "path": "/images/works/atelier/atelier-003.jpg",
+    "filename": "1762579267612_WhatsApp_Image_2025-11-05_at_23.14.34__3_.jpeg",
+    "path": "/images/works/a-trier/1762579267612_WhatsApp_Image_2025-11-05_at_23.14.34__3_.jpeg",
+    "category": "a-trier",
     "categories": [
-      "limited"
+      "unlimited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": true,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267614_WhatsApp_Image_2025-11-05_at_23.14.34__2_.jpeg",
+    "path": "/images/works/a-trier/1762579267614_WhatsApp_Image_2025-11-05_at_23.14.34__2_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267615_WhatsApp_Image_2025-11-05_at_23.14.34__1_.jpeg",
+    "path": "/images/works/a-trier/1762579267615_WhatsApp_Image_2025-11-05_at_23.14.34__1_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267616_WhatsApp_Image_2025-11-05_at_23.14.33__2_.jpeg",
+    "path": "/images/works/a-trier/1762579267616_WhatsApp_Image_2025-11-05_at_23.14.33__2_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267616_WhatsApp_Image_2025-11-05_at_23.14.34.jpeg",
+    "path": "/images/works/a-trier/1762579267616_WhatsApp_Image_2025-11-05_at_23.14.34.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267618_WhatsApp_Image_2025-11-05_at_23.14.33__1_.jpeg",
+    "path": "/images/works/a-trier/1762579267618_WhatsApp_Image_2025-11-05_at_23.14.33__1_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267625_WhatsApp_Image_2025-11-05_at_23.14.33.jpeg",
+    "path": "/images/works/a-trier/1762579267625_WhatsApp_Image_2025-11-05_at_23.14.33.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267628_WhatsApp_Image_2025-11-05_at_23.14.19__3_.jpeg",
+    "path": "/images/works/a-trier/1762579267628_WhatsApp_Image_2025-11-05_at_23.14.19__3_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267631_WhatsApp_Image_2025-11-05_at_23.14.19.jpeg",
+    "path": "/images/works/a-trier/1762579267631_WhatsApp_Image_2025-11-05_at_23.14.19.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267633_WhatsApp_Image_2025-11-02_at_09.22.46__1_.jpeg",
+    "path": "/images/works/a-trier/1762579267633_WhatsApp_Image_2025-11-02_at_09.22.46__1_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267635_WhatsApp_Image_2025-11-02_at_09.22.45__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267635_WhatsApp_Image_2025-11-02_at_09.22.45__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267635_WhatsApp_Image_2025-11-02_at_09.22.45__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267635_WhatsApp_Image_2025-11-02_at_09.22.45__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267636_WhatsApp_Image_2025-11-02_at_09.22.45__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267636_WhatsApp_Image_2025-11-02_at_09.22.45__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267636_WhatsApp_Image_2025-11-02_at_09.22.45__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267636_WhatsApp_Image_2025-11-02_at_09.22.45__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267637_WhatsApp_Image_2025-11-02_at_09.22.45__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267637_WhatsApp_Image_2025-11-02_at_09.22.45__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267637_WhatsApp_Image_2025-11-02_at_09.22.45__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267637_WhatsApp_Image_2025-11-02_at_09.22.45__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267638_WhatsApp_Image_2025-11-02_at_09.22.45__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267638_WhatsApp_Image_2025-11-02_at_09.22.45__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267639_WhatsApp_Image_2025-11-02_at_09.22.44__15_.jpeg",
+    "path": "/images/works/a-trier/1762579267639_WhatsApp_Image_2025-11-02_at_09.22.44__15_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267640_WhatsApp_Image_2025-11-02_at_09.22.44__14_.jpeg",
+    "path": "/images/works/a-trier/1762579267640_WhatsApp_Image_2025-11-02_at_09.22.44__14_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267641_WhatsApp_Image_2025-11-02_at_09.22.44__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267641_WhatsApp_Image_2025-11-02_at_09.22.44__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267642_WhatsApp_Image_2025-11-02_at_09.22.44__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267642_WhatsApp_Image_2025-11-02_at_09.22.44__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267642_WhatsApp_Image_2025-11-02_at_09.22.44__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267642_WhatsApp_Image_2025-11-02_at_09.22.44__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267643_WhatsApp_Image_2025-11-02_at_09.22.44__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267643_WhatsApp_Image_2025-11-02_at_09.22.44__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267644_WhatsApp_Image_2025-11-02_at_09.22.44__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267644_WhatsApp_Image_2025-11-02_at_09.22.44__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267646_WhatsApp_Image_2025-11-02_at_09.22.44__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267646_WhatsApp_Image_2025-11-02_at_09.22.44__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267647_WhatsApp_Image_2025-11-02_at_09.22.43__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267647_WhatsApp_Image_2025-11-02_at_09.22.43__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267648_WhatsApp_Image_2025-11-02_at_09.22.43__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267648_WhatsApp_Image_2025-11-02_at_09.22.43__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267649_WhatsApp_Image_2025-11-02_at_09.22.43__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267649_WhatsApp_Image_2025-11-02_at_09.22.43__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267650_WhatsApp_Image_2025-11-02_at_09.22.43__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267650_WhatsApp_Image_2025-11-02_at_09.22.43__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267651_WhatsApp_Image_2025-11-02_at_09.22.43__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267651_WhatsApp_Image_2025-11-02_at_09.22.43__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267651_WhatsApp_Image_2025-11-02_at_09.22.43__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267651_WhatsApp_Image_2025-11-02_at_09.22.43__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267652_WhatsApp_Image_2025-11-02_at_09.22.42__15_.jpeg",
+    "path": "/images/works/a-trier/1762579267652_WhatsApp_Image_2025-11-02_at_09.22.42__15_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267652_WhatsApp_Image_2025-11-02_at_09.22.43__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267652_WhatsApp_Image_2025-11-02_at_09.22.43__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267653_WhatsApp_Image_2025-11-02_at_09.22.42__14_.jpeg",
+    "path": "/images/works/a-trier/1762579267653_WhatsApp_Image_2025-11-02_at_09.22.42__14_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267655_WhatsApp_Image_2025-11-02_at_09.22.42__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267655_WhatsApp_Image_2025-11-02_at_09.22.42__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267656_WhatsApp_Image_2025-11-02_at_09.22.42__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267656_WhatsApp_Image_2025-11-02_at_09.22.42__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267660_WhatsApp_Image_2025-11-02_at_09.22.42__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267660_WhatsApp_Image_2025-11-02_at_09.22.42__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267663_WhatsApp_Image_2025-11-02_at_09.22.42__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267663_WhatsApp_Image_2025-11-02_at_09.22.42__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267664_WhatsApp_Image_2025-11-02_at_09.22.42__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267664_WhatsApp_Image_2025-11-02_at_09.22.42__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267665_WhatsApp_Image_2025-11-02_at_09.22.42__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267665_WhatsApp_Image_2025-11-02_at_09.22.42__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267671_WhatsApp_Image_2025-11-02_at_09.22.41__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267671_WhatsApp_Image_2025-11-02_at_09.22.41__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267674_WhatsApp_Image_2025-11-02_at_09.22.41__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267674_WhatsApp_Image_2025-11-02_at_09.22.41__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267683_WhatsApp_Image_2025-11-02_at_09.22.41__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267683_WhatsApp_Image_2025-11-02_at_09.22.41__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267689_WhatsApp_Image_2025-11-02_at_09.22.41__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267689_WhatsApp_Image_2025-11-02_at_09.22.41__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267690_WhatsApp_Image_2025-11-02_at_09.22.41__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267690_WhatsApp_Image_2025-11-02_at_09.22.41__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267698_WhatsApp_Image_2025-11-02_at_09.22.41__6_.jpeg",
+    "path": "/images/works/a-trier/1762579267698_WhatsApp_Image_2025-11-02_at_09.22.41__6_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267705_WhatsApp_Image_2025-11-02_at_09.22.40__15_.jpeg",
+    "path": "/images/works/a-trier/1762579267705_WhatsApp_Image_2025-11-02_at_09.22.40__15_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267706_WhatsApp_Image_2025-11-02_at_09.22.40__14_.jpeg",
+    "path": "/images/works/a-trier/1762579267706_WhatsApp_Image_2025-11-02_at_09.22.40__14_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267707_WhatsApp_Image_2025-11-02_at_09.22.40__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267707_WhatsApp_Image_2025-11-02_at_09.22.40__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267708_WhatsApp_Image_2025-11-02_at_09.22.40__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267708_WhatsApp_Image_2025-11-02_at_09.22.40__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267709_WhatsApp_Image_2025-11-02_at_09.22.40__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267709_WhatsApp_Image_2025-11-02_at_09.22.40__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267709_WhatsApp_Image_2025-11-02_at_09.22.40__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267709_WhatsApp_Image_2025-11-02_at_09.22.40__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267710_WhatsApp_Image_2025-11-02_at_09.22.40__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267710_WhatsApp_Image_2025-11-02_at_09.22.40__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267711_WhatsApp_Image_2025-11-02_at_09.22.39__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267711_WhatsApp_Image_2025-11-02_at_09.22.39__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267711_WhatsApp_Image_2025-11-02_at_09.22.39__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267711_WhatsApp_Image_2025-11-02_at_09.22.39__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267712_WhatsApp_Image_2025-11-02_at_09.22.39__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267712_WhatsApp_Image_2025-11-02_at_09.22.39__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267712_WhatsApp_Image_2025-11-02_at_09.22.39__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267712_WhatsApp_Image_2025-11-02_at_09.22.39__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267713_WhatsApp_Image_2025-11-02_at_09.22.39__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267713_WhatsApp_Image_2025-11-02_at_09.22.39__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267713_WhatsApp_Image_2025-11-02_at_09.22.39__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267713_WhatsApp_Image_2025-11-02_at_09.22.39__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267714_WhatsApp_Image_2025-11-02_at_09.22.38__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267714_WhatsApp_Image_2025-11-02_at_09.22.38__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267714_WhatsApp_Image_2025-11-02_at_09.22.38__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267714_WhatsApp_Image_2025-11-02_at_09.22.38__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267715_WhatsApp_Image_2025-11-02_at_09.22.38__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267715_WhatsApp_Image_2025-11-02_at_09.22.38__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267716_WhatsApp_Image_2025-11-02_at_09.22.38__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267716_WhatsApp_Image_2025-11-02_at_09.22.38__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267716_WhatsApp_Image_2025-11-02_at_09.22.38__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267716_WhatsApp_Image_2025-11-02_at_09.22.38__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267717_WhatsApp_Image_2025-11-02_at_09.22.38__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267717_WhatsApp_Image_2025-11-02_at_09.22.38__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267717_WhatsApp_Image_2025-11-02_at_09.22.38__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267717_WhatsApp_Image_2025-11-02_at_09.22.38__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267718_WhatsApp_Image_2025-11-02_at_09.22.37__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267718_WhatsApp_Image_2025-11-02_at_09.22.37__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267719_WhatsApp_Image_2025-11-02_at_09.22.37__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267719_WhatsApp_Image_2025-11-02_at_09.22.37__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267719_WhatsApp_Image_2025-11-02_at_09.22.37__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267719_WhatsApp_Image_2025-11-02_at_09.22.37__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267720_WhatsApp_Image_2025-11-02_at_09.22.37__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267720_WhatsApp_Image_2025-11-02_at_09.22.37__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267721_WhatsApp_Image_2025-11-02_at_09.22.37__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267721_WhatsApp_Image_2025-11-02_at_09.22.37__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267721_WhatsApp_Image_2025-11-02_at_09.22.37__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267721_WhatsApp_Image_2025-11-02_at_09.22.37__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267722_WhatsApp_Image_2025-11-02_at_09.22.36__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267722_WhatsApp_Image_2025-11-02_at_09.22.36__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267722_WhatsApp_Image_2025-11-02_at_09.22.37__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267722_WhatsApp_Image_2025-11-02_at_09.22.37__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267723_WhatsApp_Image_2025-11-02_at_09.22.36__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267723_WhatsApp_Image_2025-11-02_at_09.22.36__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267723_WhatsApp_Image_2025-11-02_at_09.22.36__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267723_WhatsApp_Image_2025-11-02_at_09.22.36__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267724_WhatsApp_Image_2025-11-02_at_09.22.36__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267724_WhatsApp_Image_2025-11-02_at_09.22.36__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267725_WhatsApp_Image_2025-11-02_at_09.22.36__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267725_WhatsApp_Image_2025-11-02_at_09.22.36__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267726_WhatsApp_Image_2025-11-02_at_09.22.36__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267726_WhatsApp_Image_2025-11-02_at_09.22.36__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267726_WhatsApp_Image_2025-11-02_at_09.22.36__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267726_WhatsApp_Image_2025-11-02_at_09.22.36__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267727_WhatsApp_Image_2025-11-02_at_09.22.35__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267727_WhatsApp_Image_2025-11-02_at_09.22.35__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267728_WhatsApp_Image_2025-11-02_at_09.22.35__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267728_WhatsApp_Image_2025-11-02_at_09.22.35__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267729_WhatsApp_Image_2025-11-02_at_09.22.35__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267729_WhatsApp_Image_2025-11-02_at_09.22.35__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267730_WhatsApp_Image_2025-11-02_at_09.22.35__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267730_WhatsApp_Image_2025-11-02_at_09.22.35__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267731_WhatsApp_Image_2025-11-02_at_09.22.35__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267731_WhatsApp_Image_2025-11-02_at_09.22.35__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267733_WhatsApp_Image_2025-11-02_at_09.22.35__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267733_WhatsApp_Image_2025-11-02_at_09.22.35__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267734_WhatsApp_Image_2025-11-02_at_09.22.34__13_.jpeg",
+    "path": "/images/works/a-trier/1762579267734_WhatsApp_Image_2025-11-02_at_09.22.34__13_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267735_WhatsApp_Image_2025-11-02_at_09.22.34__12_.jpeg",
+    "path": "/images/works/a-trier/1762579267735_WhatsApp_Image_2025-11-02_at_09.22.34__12_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267736_WhatsApp_Image_2025-11-02_at_09.22.34__11_.jpeg",
+    "path": "/images/works/a-trier/1762579267736_WhatsApp_Image_2025-11-02_at_09.22.34__11_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267737_WhatsApp_Image_2025-11-02_at_09.22.34__10_.jpeg",
+    "path": "/images/works/a-trier/1762579267737_WhatsApp_Image_2025-11-02_at_09.22.34__10_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267738_WhatsApp_Image_2025-11-02_at_09.22.34__9_.jpeg",
+    "path": "/images/works/a-trier/1762579267738_WhatsApp_Image_2025-11-02_at_09.22.34__9_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267739_WhatsApp_Image_2025-11-02_at_09.22.34__8_.jpeg",
+    "path": "/images/works/a-trier/1762579267739_WhatsApp_Image_2025-11-02_at_09.22.34__8_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "1762579267740_WhatsApp_Image_2025-11-02_at_09.22.34__7_.jpeg",
+    "path": "/images/works/a-trier/1762579267740_WhatsApp_Image_2025-11-02_at_09.22.34__7_.jpeg",
+    "category": "a-trier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "atelier-001.jpg",
+    "path": "/images/works/atelier/atelier-001.jpg",
     "category": "atelier",
-    "isNumberedSeries": true,
-    "price": 4000,
-    "edition": {
-      "type": "limited",
-      "count": 30
-    },
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
+    "categories": [
+      "unlimited"
+    ],
+    "status": "trash",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
+    "filename": "atelier-002.jpg",
+    "path": "/images/works/atelier/atelier-002.jpg",
+    "category": "atelier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
   },
   {
     "filename": "atelier-004.jpg",
@@ -50,7 +1147,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -86,8 +1183,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -124,8 +1221,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -162,46 +1259,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-008.jpg",
-    "path": "/images/works/atelier/atelier-008.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -238,122 +1297,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-011.jpg",
-    "path": "/images/works/atelier/atelier-011.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-012.jpg",
-    "path": "/images/works/atelier/atelier-012.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "trash",
+    "status": "to-sort",
     "visible": false,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-015.jpg",
-    "path": "/images/works/atelier/atelier-015.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -390,8 +1335,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -428,8 +1373,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -466,8 +1411,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -506,7 +1451,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -542,46 +1487,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-022.jpg",
-    "path": "/images/works/atelier/atelier-022.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -618,8 +1525,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -656,8 +1563,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -694,84 +1601,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-027.jpg",
-    "path": "/images/works/atelier/atelier-027.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-028.jpg",
-    "path": "/images/works/atelier/atelier-028.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -810,45 +1641,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-031.jpg",
-    "path": "/images/works/atelier/atelier-031.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -884,8 +1677,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -922,8 +1715,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -960,8 +1753,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -998,8 +1791,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1036,8 +1829,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1069,118 +1862,16 @@
     }
   },
   {
-    "filename": "atelier-042.jpg",
-    "path": "/images/works/atelier/atelier-042.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
+    "filename": "atelier-041.jpg",
+    "path": "/images/works/atelier/atelier-041.jpg",
     "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-043.jpg",
-    "path": "/images/works/atelier/atelier-043.jpg",
     "categories": [
-      "limited"
+      "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-045.jpg",
-    "path": "/images/works/atelier/atelier-045.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
+    "isNumberedSeries": false
   },
   {
     "filename": "atelier-046.jpg",
@@ -1188,46 +1879,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-047.jpg",
-    "path": "/images/works/atelier/atelier-047.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1264,46 +1917,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-049.jpg",
-    "path": "/images/works/atelier/atelier-049.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1340,8 +1955,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1378,8 +1993,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1411,118 +2026,16 @@
     }
   },
   {
-    "filename": "atelier-052.jpg",
-    "path": "/images/works/atelier/atelier-052.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
+    "filename": "atelier-055.jpg",
+    "path": "/images/works/atelier/atelier-055.jpg",
     "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-053.jpg",
-    "path": "/images/works/atelier/atelier-053.jpg",
     "categories": [
-      "limited"
+      "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "trash",
+    "visible": false,
     "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-054.jpg",
-    "path": "/images/works/atelier/atelier-054.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
+    "isNumberedSeries": false
   },
   {
     "filename": "atelier-057.jpg",
@@ -1530,8 +2043,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1568,8 +2081,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1601,13 +2114,25 @@
     }
   },
   {
+    "filename": "atelier-059.jpg",
+    "path": "/images/works/atelier/atelier-059.jpg",
+    "category": "atelier",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
     "filename": "atelier-060.jpg",
     "path": "/images/works/atelier/atelier-060.jpg",
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1644,8 +2169,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1682,8 +2207,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1722,83 +2247,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-064.jpg",
-    "path": "/images/works/atelier/atelier-064.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-065.jpg",
-    "path": "/images/works/atelier/atelier-065.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -1834,8 +2283,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1872,46 +2321,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "atelier",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
-    "filename": "atelier-068.jpg",
-    "path": "/images/works/atelier/atelier-068.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1948,8 +2359,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -1986,8 +2397,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2024,8 +2435,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2062,8 +2473,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2100,8 +2511,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2138,8 +2549,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2171,14 +2582,736 @@
     }
   },
   {
-    "filename": "atelier-078.jpg",
-    "path": "/images/works/atelier/atelier-078.jpg",
+    "filename": "page_26_img_1.jpeg",
+    "path": "/images/works/atelier/page_26_img_1.jpeg",
     "categories": [
       "limited"
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_27_img_1.jpeg",
+    "path": "/images/works/atelier/page_27_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_28_img_1.jpeg",
+    "path": "/images/works/atelier/page_28_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_29_img_1.jpeg",
+    "path": "/images/works/atelier/page_29_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "trash",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_30_img_1.jpeg",
+    "path": "/images/works/atelier/page_30_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_31_img_1.jpeg",
+    "path": "/images/works/atelier/page_31_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_32_img_1.jpeg",
+    "path": "/images/works/atelier/page_32_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_33_img_1.jpeg",
+    "path": "/images/works/atelier/page_33_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_34_img_1.jpeg",
+    "path": "/images/works/atelier/page_34_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_53_img_1.jpeg",
+    "path": "/images/works/atelier/page_53_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "trash",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_54_img_1.jpeg",
+    "path": "/images/works/atelier/page_54_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_54_img_2.jpeg",
+    "path": "/images/works/atelier/page_54_img_2.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_54_img_3.jpeg",
+    "path": "/images/works/atelier/page_54_img_3.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_55_img_1.jpeg",
+    "path": "/images/works/atelier/page_55_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_56_img_1.jpeg",
+    "path": "/images/works/atelier/page_56_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_56_img_2.jpeg",
+    "path": "/images/works/atelier/page_56_img_2.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_57_img_1.jpeg",
+    "path": "/images/works/atelier/page_57_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_57_img_2.jpeg",
+    "path": "/images/works/atelier/page_57_img_2.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_58_img_1.jpeg",
+    "path": "/images/works/atelier/page_58_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "atelier",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_58_img_2.jpeg",
+    "path": "/images/works/atelier/page_58_img_2.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -2214,7 +3347,7 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
+    "status": "trash",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -2295,44 +3428,6 @@
     }
   },
   {
-    "filename": "empreintes-005.jpg",
-    "path": "/images/works/empreintes/empreintes-005.jpg",
-    "categories": [
-      "limited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "limitedEdition": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "prices": {
-      "limited": {
-        "a3": 500,
-        "a2": 800,
-        "a1": 1200,
-        "a4": 250
-      }
-    },
-    "category": "empreintes",
-    "isNumberedSeries": true,
-    "limitedEditionGrand": {
-      "total": 9,
-      "sold": 0,
-      "available": 9,
-      "closed": false
-    },
-    "limitedEditionPetit": {
-      "total": 99,
-      "sold": 0,
-      "available": 99,
-      "closed": false
-    }
-  },
-  {
     "filename": "empreintes-007.jpg",
     "path": "/images/works/empreintes/empreintes-007.jpg",
     "categories": [
@@ -2340,7 +3435,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -2376,8 +3471,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2409,13 +3504,25 @@
     }
   },
   {
+    "filename": "empreintes-011.jpg",
+    "path": "/images/works/empreintes/empreintes-011.jpg",
+    "category": "empreintes",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
     "filename": "empreintes-013.jpg",
     "path": "/images/works/empreintes/empreintes-013.jpg",
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2454,7 +3561,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -2485,13 +3592,25 @@
     }
   },
   {
+    "filename": "empreintes-017.jpg",
+    "path": "/images/works/empreintes/empreintes-017.jpg",
+    "category": "empreintes",
+    "categories": [
+      "unlimited"
+    ],
+    "status": "to-sort",
+    "visible": false,
+    "forSale": false,
+    "isNumberedSeries": false
+  },
+  {
     "filename": "empreintes-019.jpg",
     "path": "/images/works/empreintes/empreintes-019.jpg",
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2528,8 +3647,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2566,8 +3685,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2604,8 +3723,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2642,8 +3761,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2680,8 +3799,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2718,8 +3837,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2756,8 +3875,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -2789,99 +3908,1448 @@
     }
   },
   {
-    "filename": "atelier-deux-voitures-grises.jpg",
-    "path": "/images/origins/atelier-deux-voitures-grises.jpg",
+    "filename": "page_03_img_1.jpeg",
+    "path": "/images/works/empreintes/page_03_img_1.jpeg",
     "categories": [
-      "unlimited"
+      "limited"
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
     "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
       }
     },
-    "category": "origins",
-    "isNumberedSeries": false
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
   },
   {
-    "filename": "atelier-deux-voitures.jpg",
-    "path": "/images/origins/atelier-deux-voitures.jpg",
+    "filename": "page_04_img_1.jpeg",
+    "path": "/images/works/empreintes/page_04_img_1.jpeg",
     "categories": [
-      "unlimited"
+      "limited"
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
     "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
       }
     },
-    "category": "origins",
-    "isNumberedSeries": false
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
   },
   {
-    "filename": "childhood-noir-blanc-1.jpg",
-    "path": "/images/origins/childhood-noir-blanc-1.jpg",
+    "filename": "page_05_img_1.jpeg",
+    "path": "/images/works/empreintes/page_05_img_1.jpeg",
     "categories": [
-      "unlimited"
+      "limited"
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
     "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
       }
     },
-    "category": "origins",
-    "isNumberedSeries": false
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
   },
   {
-    "filename": "childhood-noir-blanc-2.jpg",
-    "path": "/images/origins/childhood-noir-blanc-2.jpg",
+    "filename": "page_06_img_1.jpeg",
+    "path": "/images/works/empreintes/page_06_img_1.jpeg",
     "categories": [
-      "unlimited"
+      "limited"
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
     "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
       }
     },
-    "category": "origins",
-    "isNumberedSeries": false
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
   },
   {
-    "filename": "childhood-sepia.jpg",
-    "path": "/images/origins/childhood-sepia.jpg",
+    "filename": "page_10_img_1.jpeg",
+    "path": "/images/works/empreintes/page_10_img_1.jpeg",
     "categories": [
-      "unlimited"
+      "limited"
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
     "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
       }
     },
-    "category": "origins",
-    "isNumberedSeries": false
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_11_img_1.jpeg",
+    "path": "/images/works/empreintes/page_11_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_12_img_1.jpeg",
+    "path": "/images/works/empreintes/page_12_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_13_img_1.jpeg",
+    "path": "/images/works/empreintes/page_13_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_16_img_1.jpeg",
+    "path": "/images/works/empreintes/page_16_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_17_img_1.jpeg",
+    "path": "/images/works/empreintes/page_17_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_19_img_1.jpeg",
+    "path": "/images/works/empreintes/page_19_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_21_img_1.jpeg",
+    "path": "/images/works/empreintes/page_21_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_22_img_1.jpeg",
+    "path": "/images/works/empreintes/page_22_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_23_img_1.jpeg",
+    "path": "/images/works/empreintes/page_23_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_24_img_1.jpeg",
+    "path": "/images/works/empreintes/page_24_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_35_img_1.jpeg",
+    "path": "/images/works/empreintes/page_35_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_36_img_1.jpeg",
+    "path": "/images/works/empreintes/page_36_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_37_img_1.jpeg",
+    "path": "/images/works/empreintes/page_37_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_38_img_1.jpeg",
+    "path": "/images/works/empreintes/page_38_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "trash",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_39_img_1.jpeg",
+    "path": "/images/works/empreintes/page_39_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_41_img_1.jpeg",
+    "path": "/images/works/empreintes/page_41_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_42_img_1.jpeg",
+    "path": "/images/works/empreintes/page_42_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_43_img_1.jpeg",
+    "path": "/images/works/empreintes/page_43_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_44_img_1.jpeg",
+    "path": "/images/works/empreintes/page_44_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_45_img_1.jpeg",
+    "path": "/images/works/empreintes/page_45_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "trash",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_46_img_1.jpeg",
+    "path": "/images/works/empreintes/page_46_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_47_img_1.jpeg",
+    "path": "/images/works/empreintes/page_47_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "trash",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_48_img_1.jpeg",
+    "path": "/images/works/empreintes/page_48_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_49_img_1.jpeg",
+    "path": "/images/works/empreintes/page_49_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_50_img_1.jpeg",
+    "path": "/images/works/empreintes/page_50_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_51_img_1.jpeg",
+    "path": "/images/works/empreintes/page_51_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "empreintes",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_07_img_1.jpeg",
+    "path": "/images/works/projection/page_07_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_08_img_1.jpeg",
+    "path": "/images/works/projection/page_08_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_09_img_1.jpeg",
+    "path": "/images/works/projection/page_09_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_14_img_1.jpeg",
+    "path": "/images/works/projection/page_14_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_15_img_1.jpeg",
+    "path": "/images/works/projection/page_15_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_18_img_1.jpeg",
+    "path": "/images/works/projection/page_18_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
+  },
+  {
+    "filename": "page_20_img_1.jpeg",
+    "path": "/images/works/projection/page_20_img_1.jpeg",
+    "categories": [
+      "limited"
+    ],
+    "status": "active",
+    "visible": true,
+    "forSale": true,
+    "limitedEdition": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "prices": {
+      "limited": {
+        "a3": 500,
+        "a2": 800,
+        "a1": 1200,
+        "a4": 250
+      }
+    },
+    "category": "projection",
+    "isNumberedSeries": true,
+    "limitedEditionGrand": {
+      "total": 9,
+      "sold": 0,
+      "available": 9,
+      "closed": false
+    },
+    "limitedEditionPetit": {
+      "total": 99,
+      "sold": 0,
+      "available": 99,
+      "closed": false
+    }
   },
   {
     "filename": "projection-001.jpg",
@@ -2932,7 +5400,7 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
+    "status": "trash",
     "visible": true,
     "forSale": true,
     "limitedEdition": {
@@ -2977,7 +5445,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -3015,7 +5483,7 @@
     ],
     "status": "active",
     "visible": true,
-    "forSale": false,
+    "forSale": true,
     "limitedEdition": {
       "total": 9,
       "sold": 0,
@@ -3051,8 +5519,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3089,8 +5557,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3127,8 +5595,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "trash",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3165,8 +5633,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3203,8 +5671,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3241,8 +5709,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3279,8 +5747,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3317,8 +5785,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3355,8 +5823,8 @@
     "categories": [
       "limited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "limitedEdition": {
       "total": 9,
@@ -3388,13 +5856,13 @@
     }
   },
   {
-    "filename": "GF_004.jpg",
-    "path": "/uploads-preview/GF_004.jpg",
+    "filename": "atelier-deux-voitures-grises.jpg",
+    "path": "/images/origins/atelier-deux-voitures-grises.jpg",
     "categories": [
       "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "prices": {
       "unlimited": {
@@ -3403,17 +5871,17 @@
         "a2": 400
       }
     },
-    "category": "uploads-preview",
+    "category": "origins",
     "isNumberedSeries": false
   },
   {
-    "filename": "GF_005.jpg",
-    "path": "/uploads-preview/GF_005.jpg",
+    "filename": "atelier-deux-voitures.jpg",
+    "path": "/images/origins/atelier-deux-voitures.jpg",
     "categories": [
       "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "prices": {
       "unlimited": {
@@ -3422,17 +5890,17 @@
         "a2": 400
       }
     },
-    "category": "uploads-preview",
+    "category": "origins",
     "isNumberedSeries": false
   },
   {
-    "filename": "GF_009.jpg",
-    "path": "/uploads-preview/GF_009.jpg",
+    "filename": "childhood-noir-blanc-1.jpg",
+    "path": "/images/origins/childhood-noir-blanc-1.jpg",
     "categories": [
       "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "prices": {
       "unlimited": {
@@ -3441,17 +5909,17 @@
         "a2": 400
       }
     },
-    "category": "uploads-preview",
+    "category": "origins",
     "isNumberedSeries": false
   },
   {
-    "filename": "GF_010.jpg",
-    "path": "/uploads-preview/GF_010.jpg",
+    "filename": "childhood-noir-blanc-2.jpg",
+    "path": "/images/origins/childhood-noir-blanc-2.jpg",
     "categories": [
       "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "prices": {
       "unlimited": {
@@ -3460,17 +5928,17 @@
         "a2": 400
       }
     },
-    "category": "uploads-preview",
+    "category": "origins",
     "isNumberedSeries": false
   },
   {
-    "filename": "GF_014.jpg",
-    "path": "/uploads-preview/GF_014.jpg",
+    "filename": "childhood-sepia.jpg",
+    "path": "/images/origins/childhood-sepia.jpg",
     "categories": [
       "unlimited"
     ],
-    "status": "active",
-    "visible": true,
+    "status": "to-sort",
+    "visible": false,
     "forSale": false,
     "prices": {
       "unlimited": {
@@ -3479,387 +5947,7 @@
         "a2": 400
       }
     },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_017.jpg",
-    "path": "/uploads-preview/GF_017.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_027.jpg",
-    "path": "/uploads-preview/GF_027.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_028.jpg",
-    "path": "/uploads-preview/GF_028.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_031.jpg",
-    "path": "/uploads-preview/GF_031.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_035.jpg",
-    "path": "/uploads-preview/GF_035.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_037.jpg",
-    "path": "/uploads-preview/GF_037.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_038.jpg",
-    "path": "/uploads-preview/GF_038.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_043.jpg",
-    "path": "/uploads-preview/GF_043.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_046.jpg",
-    "path": "/uploads-preview/GF_046.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_051.jpg",
-    "path": "/uploads-preview/GF_051.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_053.jpg",
-    "path": "/uploads-preview/GF_053.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_055.jpg",
-    "path": "/uploads-preview/GF_055.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "GF_060.jpg",
-    "path": "/uploads-preview/GF_060.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_077.jpg",
-    "path": "/uploads-preview/img_077.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_111.jpg",
-    "path": "/uploads-preview/img_111.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_112.jpg",
-    "path": "/uploads-preview/img_112.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_114.jpg",
-    "path": "/uploads-preview/img_114.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_118.jpg",
-    "path": "/uploads-preview/img_118.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_134.jpg",
-    "path": "/uploads-preview/img_134.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
-    "isNumberedSeries": false
-  },
-  {
-    "filename": "img_142.jpg",
-    "path": "/uploads-preview/img_142.jpg",
-    "categories": [
-      "unlimited"
-    ],
-    "status": "active",
-    "visible": true,
-    "forSale": false,
-    "prices": {
-      "unlimited": {
-        "a4": 150,
-        "a3": 250,
-        "a2": 400
-      }
-    },
-    "category": "uploads-preview",
+    "category": "origins",
     "isNumberedSeries": false
   }
 ]

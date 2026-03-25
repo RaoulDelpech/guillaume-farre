@@ -3,12 +3,47 @@ import Navigation from "@/components/navigation/Navigation";
 import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
 import AddToCartSection from "@/components/AddToCartSection";
+import GalerieItemClient from "./GalerieItemClient";
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   const works = await getWorksFromMetadata();
   return works.map((work) => ({
     slug: work.slug,
   }));
+}
+
+// Lalou: Generate metadata with Open Graph for each artwork
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const works = await getWorksFromMetadata();
+  const work = works.find((w) => w.slug === slug);
+
+  if (!work) {
+    return {};
+  }
+
+  return {
+    title: work.title,
+    description: work.description || `${work.title} - Photographie d'art par Guillaume Farré`,
+    openGraph: {
+      title: work.title,
+      description: work.description || `${work.title} - Photographie d'art par Guillaume Farré`,
+      images: [
+        {
+          url: work.images[0],
+          width: 1200,
+          height: 900,
+          alt: work.title,
+        },
+      ],
+      type: "website",
+    },
+  };
 }
 
 export default async function GalerieItemPage({
@@ -24,8 +59,70 @@ export default async function GalerieItemPage({
     notFound();
   }
 
+  // Lalou: JSON-LD Product schema for SEO
+  const prices = work.prices;
+  const hasLimitedPrices = prices?.small || prices?.medium || prices?.large;
+
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": work.title,
+    "image": work.images.map((img) => `https://guillaumefarre.com${img}`),
+    "description": work.description || `${work.title} - Photographie d'art fine art par Guillaume Farré, créée avec une Ferrari Dino comme pinceau sur toile.`,
+    "brand": {
+      "@type": "Person",
+      "name": "Guillaume Farré"
+    },
+    "category": "Fine Art Photography",
+    ...(hasLimitedPrices && {
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": Math.min(
+          prices?.small || Infinity,
+          prices?.medium || Infinity,
+          prices?.large || Infinity
+        ).toString(),
+        "highPrice": Math.max(
+          prices?.small || 0,
+          prices?.medium || 0,
+          prices?.large || 0
+        ).toString(),
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": `https://guillaumefarre.com/fr/galerie-item/${work.slug}`,
+      }
+    }),
+    ...(work.edition?.type === 'limited' && work.edition.count && {
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Edition",
+        "value": `Édition limitée à ${work.edition.count} exemplaires`
+      }
+    })
+  };
+
   return (
     <main className="min-h-screen">
+      {/* Lalou: JSON-LD structured data for Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+
+      {/* GA4 tracking - View item */}
+      <GalerieItemClient
+        itemId={work.slug}
+        itemName={work.title}
+        itemPrice={
+          Math.min(
+            work.prices?.small || Infinity,
+            work.prices?.medium || Infinity,
+            work.prices?.large || Infinity
+          ) || 0
+        }
+        itemCategory={work.type === "photo" ? "Photographie" : "Toile"}
+      />
+
       <Navigation />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28">

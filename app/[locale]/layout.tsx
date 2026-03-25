@@ -15,6 +15,8 @@ import PageProgressBar from '@/components/PageProgressBar';
 import BackToTop from '@/components/BackToTop';
 import ScrollToTopOnNav from '@/components/ScrollToTopOnNav';
 import EarlyAccessOverlay from '@/components/early-access/EarlyAccessOverlay';
+import CookieConsent from '@/components/CookieConsent';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import "./globals.css";
 
 // SEO - Décisions audit 2025-01-20
@@ -74,16 +76,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://guillaumefarre.com",
     languages: {
-      'fr': "https://guillaumefarre.com/fr",
-      'en': "https://guillaumefarre.com/en",
-      'it': "https://guillaumefarre.com/it",
+      'fr-FR': "https://guillaumefarre.com/fr",
+      'en-US': "https://guillaumefarre.com/en",
+      'it-IT': "https://guillaumefarre.com/it",
+      'x-default': "https://guillaumefarre.com/fr", // Lalou: Fallback pour hreflang
     },
   },
   verification: {
-    // À ajouter après création comptes
-    // google: "google-site-verification-code",
-    // yandex: "yandex-verification-code",
-    // bing: "bing-verification-code",
+    // Lalou: Codes a remplacer avec vrais codes depuis Google/Bing Search Console
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+    other: {
+      bing: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "",
+    },
   },
 };
 
@@ -137,6 +141,10 @@ export default async function RootLayout({
               <Footer />
               {/* Bouton retour en haut */}
               <BackToTop />
+              {/* Cookie consent banner RGPD */}
+              <CookieConsent />
+              {/* Google Analytics 4 with RGPD consent */}
+              <GoogleAnalytics />
             </AdminWrapper>
           </CartProvider>
         </NextIntlClientProvider>

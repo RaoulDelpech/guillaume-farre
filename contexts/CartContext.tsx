@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { trackAddToCart, trackRemoveFromCart } from '@/lib/analytics';
 
 export interface CartItem {
   id: string;
@@ -131,12 +132,37 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return prev;
       }
 
+      // GA4 tracking - Add to cart
+      trackAddToCart({
+        id: item.id,
+        name: item.title,
+        price: item.price,
+        quantity: 1,
+        category: item.category,
+      });
+
       return [...prev, item];
     });
   };
 
   const removeItem = (id: string) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
+    setItems((prev) => {
+      // Trouver l'item à supprimer pour le tracking
+      const itemToRemove = prev.find((item) => item.id === id);
+
+      if (itemToRemove) {
+        // GA4 tracking - Remove from cart
+        trackRemoveFromCart({
+          id: itemToRemove.id,
+          name: itemToRemove.title,
+          price: itemToRemove.price,
+          quantity: 1,
+          category: itemToRemove.category,
+        });
+      }
+
+      return prev.filter((item) => item.id !== id);
+    });
   };
 
   const clearCart = () => {

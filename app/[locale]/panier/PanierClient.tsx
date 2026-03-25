@@ -7,6 +7,7 @@ import { useLocale } from "next-intl";
 import { useSearchParams, useRouter } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from "@/lib/early-access";
+import { trackBeginCheckout, trackPurchase } from "@/lib/analytics";
 
 // Seuil KYC (obligation LCB-FT pour vente d'art)
 const KYC_THRESHOLD = 10_000;
@@ -44,6 +45,10 @@ export default function PanierClient() {
   // Après checkout Stripe : vérifier si c'est un paiement immédiat (CB) ou en attente (virement)
   useEffect(() => {
     if (success === 'true') {
+      // Sauvegarder les items avant de vider le panier pour le tracking
+      const itemsForTracking = [...items];
+      const totalForTracking = finalPrice;
+
       clearCart();
 
       if (sessionId) {
@@ -52,7 +57,23 @@ export default function PanierClient() {
           .then(res => res.json())
           .then(data => {
             // 'paid' = CB/Alma (immédiat), 'unpaid' = virement SEPA (en attente)
-            setPaymentStatus(data.payment_status === 'paid' ? 'paid' : 'pending');
+            const isPaid = data.payment_status === 'paid';
+            setPaymentStatus(isPaid ? 'paid' : 'pending');
+
+            // GA4 tracking - Purchase (seulement si paiement immédiat)
+            if (isPaid && itemsForTracking.length > 0) {
+              trackPurchase(
+                sessionId,
+                itemsForTracking.map((item) => ({
+                  id: item.id,
+                  name: item.title,
+                  price: item.price,
+                  quantity: 1,
+                  category: item.category,
+                })),
+                totalForTracking
+              );
+            }
           })
           .catch(() => {
             // En cas d'erreur, afficher la page de succès par défaut
@@ -108,6 +129,18 @@ export default function PanierClient() {
       router.push(`/${locale}/engagements`);
       return;
     }
+
+    // GA4 tracking - Begin checkout
+    trackBeginCheckout(
+      items.map((item) => ({
+        id: item.id,
+        name: item.title,
+        price: item.price,
+        quantity: 1,
+        category: item.category,
+      })),
+      finalPrice
+    );
 
     setLoading(true);
     setError(null);

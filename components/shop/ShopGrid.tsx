@@ -13,6 +13,7 @@ import StockBadge from "@/components/StockBadge";
 import DeliveryEstimate from "@/components/DeliveryEstimate";
 import SocialProof from "@/components/SocialProof";
 import { isEarlyAccess } from "@/lib/early-access";
+import { trackViewItem, trackAddToCart } from "@/lib/analytics";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -126,6 +127,16 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     };
 
     setCart([...cart, item]);
+
+    // GA4 tracking - Add to cart
+    trackAddToCart({
+      id: selectedPhoto.filename,
+      name: selectedPhoto.title || selectedPhoto.filename,
+      price: price,
+      quantity: 1,
+      category: selectedPhoto.category || "Photographie",
+    });
+
     setSelectedPhoto(null);
     playCartAdd();
     fireConfetti();
@@ -321,7 +332,16 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 </button>
               ) : (
                 <button
-                  onClick={() => setSelectedPhoto(photo)}
+                  onClick={() => {
+                    setSelectedPhoto(photo);
+                    // GA4 tracking - View item when modal opens
+                    trackViewItem({
+                      id: photo.filename,
+                      name: photo.title || photo.filename,
+                      price: photo.price || 2000,
+                      category: photo.category || "Photographie",
+                    });
+                  }}
                   className="w-full bg-black hover:bg-gray-900 text-white py-3 px-6 rounded-lg font-light tracking-wide transition-colors min-h-[44px]"
                 >
                   {earlyCollectorMode ? tEarly("reserve") : t("addToCart")}

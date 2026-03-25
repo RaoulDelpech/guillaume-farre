@@ -146,8 +146,30 @@ export default function FAQPage() {
     ),
   })).filter((cat) => cat.questions.length > 0);
 
+  // Lalou: JSON-LD FAQPage schema for SEO
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQ_DATA.flatMap((cat) =>
+      cat.questions.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    )
+  };
+
   return (
     <main className="min-h-screen">
+      {/* Lalou: JSON-LD structured data for Google */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <Navigation />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28 max-w-4xl">
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide mb-6 sm:mb-8">

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from '@/lib/early-access';
+import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -20,6 +21,19 @@ export async function POST(request: Request) {
       { status: 503 }
     );
   }
+
+  // Rate limiting: 10 requêtes par IP par minute
+  const clientIP = getClientIP(request);
+  const rateLimitKey = `checkout:${clientIP}`;
+
+  if (isRateLimited(rateLimitKey, 10, 60000)) {
+    console.warn(`[Stripe Checkout] Rate limit dépassé pour IP ${clientIP}`);
+    return NextResponse.json(
+      { error: 'Trop de requêtes. Veuillez réessayer dans 1 minute.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const { items, locale = 'fr' } = await request.json();
 

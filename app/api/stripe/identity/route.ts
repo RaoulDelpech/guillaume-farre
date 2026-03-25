@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -8,10 +9,24 @@ const stripe = process.env.STRIPE_SECRET_KEY
 /**
  * Crée une session de vérification d'identité Stripe Identity.
  * Requis pour les commandes > 10 000 EUR (obligation LCB-FT art).
+ *
+ * Rate limit: 5 requêtes par IP par minute
  */
-export async function POST() {
+export async function POST(request: Request) {
   if (!stripe) {
     return NextResponse.json({ error: 'Stripe non configuré' }, { status: 503 });
+  }
+
+  // Rate limiting: 5 requêtes par IP par minute
+  const clientIP = getClientIP(request);
+  const rateLimitKey = `identity:${clientIP}`;
+
+  if (isRateLimited(rateLimitKey, 5, 60000)) {
+    console.warn(`[Stripe Identity] Rate limit dépassé pour IP ${clientIP}`);
+    return NextResponse.json(
+      { error: 'Trop de requêtes. Veuillez réessayer dans 1 minute.' },
+      { status: 429 }
+    );
   }
 
   try {

@@ -22,6 +22,7 @@ import {
   sendDeliveryConfirmationEmail,
   sendOrderProblemEmail,
 } from '@/lib/resend-client';
+import { getOrderByStripeSession, updateOrder } from '@/lib/orders';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -52,31 +53,80 @@ interface GelatoWebhookPayload {
 /**
  * Valider signature JWT webhook Gelato
  *
- * Gelato envoie JWT token dans header Authorization
- * On doit valider avec public key depuis leur ISS URL
+ * Gelato envoie JWT token dans header Authorization.
+ * On vérifie le token avec GELATO_WEBHOOK_SECRET si configuré.
  *
- * Pour simplifier v1, on skip validation (à implémenter en production)
+ * Pour dev (pas de secret), on accepte mais log warning.
+ *
+ * @author Lalou
  */
 function validateGelatoWebhook(authHeader: string | null): boolean {
-  // TODO: Implémenter validation JWT
-  // 1. Extraire token depuis "Bearer <token>"
-  // 2. Fetch public key depuis Gelato ISS URL
-  // 3. Vérifier signature avec jsonwebtoken ou jose
-  //
-  // Pour l'instant, on accepte tous les webhooks (développement)
-
   if (!authHeader) {
     console.warn('[Gelato Webhook] Pas d\'Authorization header');
+    // En dev sans secret, accepter quand même
+    if (!process.env.GELATO_WEBHOOK_SECRET) {
+      console.warn('[Gelato Webhook] Mode dev: pas de validation JWT (INSECURE)');
+      return true;
+    }
     return false;
   }
 
-  // En production, il faut valider le JWT
-  if (process.env.NODE_ENV === 'production') {
-    console.warn('[Gelato Webhook] JWT validation pas implémentée (INSECURE)');
-    // Retourner false si JWT invalide
+  // Extraire token depuis "Bearer <token>"
+  const tokenMatch = authHeader.match(/^Bearer\s+(.+)$/i);
+  if (!tokenMatch) {
+    console.error('[Gelato Webhook] Format Authorization invalide (attendu: Bearer <token>)');
+    return false;
   }
 
-  return true; // Accepter pour développement
+  const token = tokenMatch[1];
+
+  // Si pas de secret configuré (dev), accepter avec warning
+  const secret = process.env.GELATO_WEBHOOK_SECRET;
+  if (!secret) {
+    console.warn('[Gelato Webhook] GELATO_WEBHOOK_SECRET non configuré - validation skippée (INSECURE)');
+    console.warn('[Gelato Webhook] En production, configurer GELATO_WEBHOOK_SECRET dans .env');
+    return true;
+  }
+
+  // Validation JWT simple avec le secret (sans lib externe)
+  // Gelato utilise HS256 (HMAC SHA256)
+  try {
+    // Décoder JWT (format: header.payload.signature)
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      console.error('[Gelato Webhook] JWT malformé (attendu 3 parties)');
+      return false;
+    }
+
+    const [headerB64, payloadB64, signatureB64] = parts;
+
+    // Vérifier signature avec le secret
+    const crypto = require('crypto');
+    const signatureCheck = crypto
+      .createHmac('sha256', secret)
+      .update(`${headerB64}.${payloadB64}`)
+      .digest('base64url');
+
+    if (signatureCheck !== signatureB64) {
+      console.error('[Gelato Webhook] Signature JWT invalide');
+      return false;
+    }
+
+    // Décoder payload pour vérifier expiration
+    const payload = JSON.parse(Buffer.from(payloadB64, 'base64url').toString('utf8'));
+
+    // Vérifier exp (expiration)
+    if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) {
+      console.error('[Gelato Webhook] JWT expiré');
+      return false;
+    }
+
+    console.log('[Gelato Webhook] JWT validé avec succès');
+    return true;
+  } catch (error) {
+    console.error('[Gelato Webhook] Erreur validation JWT:', error);
+    return false;
+  }
 }
 
 /**
@@ -246,12 +296,41 @@ export async function POST(req: NextRequest) {
           trackingNumber: payload.data?.tracking?.trackingNumber,
         });
 
+        // Mettre à jour commande avec tracking
+        try {
+          const order = await getOrderByStripeSession(payload.orderReferenceId);
+          if (order) {
+            await updateOrder(order.orderNumber, {
+              status: 'shipped',
+              shippedAt: new Date().toISOString(),
+              trackingNumber: payload.data?.tracking?.trackingNumber,
+              trackingUrl: payload.data?.tracking?.trackingUrl,
+              carrier: payload.data?.tracking?.carrier,
+            });
+          }
+        } catch (error) {
+          console.error('[Gelato Webhook] Erreur mise à jour commande:', error);
+        }
+
         // Envoyer email tracking au client
         await sendCustomerEmail(payload);
         break;
 
       case 'order.delivered':
         console.log('🎉 Livraison confirmée:', payload.orderId);
+
+        // Mettre à jour commande
+        try {
+          const order = await getOrderByStripeSession(payload.orderReferenceId);
+          if (order) {
+            await updateOrder(order.orderNumber, {
+              status: 'delivered',
+              deliveredAt: new Date().toISOString(),
+            });
+          }
+        } catch (error) {
+          console.error('[Gelato Webhook] Erreur mise à jour commande:', error);
+        }
 
         // Envoyer email demande avis
         await sendCustomerEmail(payload);
@@ -267,6 +346,18 @@ export async function POST(req: NextRequest) {
           orderId: payload.orderId,
           error: payload.data?.error,
         });
+
+        // Mettre à jour commande
+        try {
+          const order = await getOrderByStripeSession(payload.orderReferenceId);
+          if (order) {
+            await updateOrder(order.orderNumber, {
+              status: 'problem',
+            });
+          }
+        } catch (error) {
+          console.error('[Gelato Webhook] Erreur mise à jour commande:', error);
+        }
 
         // Alerter Guillaume + envoyer email client
         await sendCustomerEmail(payload);

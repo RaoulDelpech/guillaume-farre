@@ -1,3 +1,20 @@
+/**
+ * ⚠️ LEGACY CODE - WhiteWall API (REMPLACÉ PAR GELATO)
+ *
+ * Ce fichier contient l'ancienne intégration WhiteWall.
+ * Il n'est PLUS utilisé depuis l'adoption de Gelato.
+ *
+ * Le flux actuel passe par:
+ * - Stripe Checkout Session (app/api/checkout/route.ts)
+ * - Webhook Stripe → Gelato (app/api/stripe/webhook/route.ts)
+ *
+ * Ce code est conservé pour référence historique uniquement.
+ * Il peut être supprimé après validation que Gelato fonctionne correctement.
+ *
+ * @deprecated Remplacé par Gelato API (2025-12)
+ * @author Lalou
+ */
+
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { createWhiteWallOrder, WHITEWALL_FORMATS, WHITEWALL_MATERIALS } from '@/lib/printing/whitewall-api';

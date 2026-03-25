@@ -155,7 +155,6 @@ export default function QuizPage() {
     setEmailSubmitted(true);
     fireFerrariConfetti();
     // Ici, envoyer l'email à un service (MailChimp, etc.)
-    console.log("Email collecté:", email, "Résultat:", result);
   };
 
   const restart = () => {

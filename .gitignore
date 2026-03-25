@@ -50,3 +50,9 @@ bun.lockb
 
 # orders data (contains customer information)
 /data/orders.json
+
+# Implementation reports (auto-generated, not for git)
+*_IMPLEMENTATION_REPORT.md
+*_SETUP.md
+*_FIXES_*.md
+*_AUDIT_*.md

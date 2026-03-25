@@ -33,6 +33,7 @@ export interface PhotoMetadata {
   // Visibilité et vente
   visible: boolean;
   forSale: boolean;
+  earlyAccess?: boolean;
 
   // Ancien champ category gardé pour compatibilité (à migrer)
   category?: string;

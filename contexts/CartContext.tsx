@@ -23,12 +23,17 @@ interface CartContextType {
   totalItems: number;
   totalPrice: number;
   daysUntilExpiration: number | null;
+  engagementsAccepted: boolean;
+  engagementsAcceptedAt: number | null;
+  acceptEngagements: () => void;
 }
 
 interface PersistedCart {
   items: CartItem[];
   createdAt: number; // Timestamp
   expiresAt: number; // Timestamp
+  engagementsAccepted: boolean;
+  engagementsAcceptedAt: number | null;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -42,6 +47,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [daysUntilExpiration, setDaysUntilExpiration] = useState<number | null>(null);
+  const [engagementsAccepted, setEngagementsAccepted] = useState(false);
+  const [engagementsAcceptedAt, setEngagementsAcceptedAt] = useState<number | null>(null);
 
   // Charger le panier depuis localStorage au montage (avec vérification expiration)
   useEffect(() => {
@@ -59,9 +66,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
           localStorage.removeItem(CART_STORAGE_KEY);
           setItems([]);
           setDaysUntilExpiration(null);
+          setEngagementsAccepted(false);
+          setEngagementsAcceptedAt(null);
         } else {
           // Panier encore valide
           setItems(persistedCart.items);
+
+          // Restaurer l'état des engagements
+          setEngagementsAccepted(persistedCart.engagementsAccepted || false);
+          setEngagementsAcceptedAt(persistedCart.engagementsAcceptedAt || null);
 
           // Calculer jours restants
           const msRemaining = persistedCart.expiresAt - now;
@@ -81,9 +94,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (isClient) {
       if (items.length === 0) {
-        // Panier vide : supprimer localStorage
+        // Panier vide : supprimer localStorage et reset engagements
         localStorage.removeItem(CART_STORAGE_KEY);
         setDaysUntilExpiration(null);
+        setEngagementsAccepted(false);
+        setEngagementsAcceptedAt(null);
       } else {
         const now = Date.now();
         const expiresAt = now + (CART_EXPIRATION_DAYS * MS_PER_DAY);
@@ -92,6 +107,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
           items,
           createdAt: now,
           expiresAt,
+          engagementsAccepted,
+          engagementsAcceptedAt,
         };
 
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(persistedCart));
@@ -100,7 +117,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setDaysUntilExpiration(CART_EXPIRATION_DAYS);
       }
     }
-  }, [items, isClient]);
+  }, [items, isClient, engagementsAccepted, engagementsAcceptedAt]);
 
   const addItem = (item: CartItem) => {
     setItems((prev) => {
@@ -126,6 +143,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems([]);
   };
 
+  const acceptEngagements = () => {
+    setEngagementsAccepted(true);
+    setEngagementsAcceptedAt(Date.now());
+  };
+
   const totalItems = items.length;
   const totalPrice = items.reduce((sum, item) => sum + item.price, 0);
 
@@ -139,6 +161,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         totalItems,
         totalPrice,
         daysUntilExpiration,
+        engagementsAccepted,
+        engagementsAcceptedAt,
+        acceptEngagements,
       }}
     >
       {children}

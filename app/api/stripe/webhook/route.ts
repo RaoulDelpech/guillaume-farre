@@ -4,7 +4,8 @@ import Stripe from 'stripe';
 import { getGelatoClient } from '@/lib/gelato-client';
 import { getPennylaneClient } from '@/lib/pennylane-client';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
-import { sendOrderConfirmationEmail } from '@/lib/resend-client';
+import { sendOrderConfirmationEmail, sendPaymentPendingEmail } from '@/lib/resend-client';
+import { isEarlyAccess } from '@/lib/early-access';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -232,6 +233,7 @@ async function processOrder(session: Stripe.Checkout.Session) {
             postalCode: shippingDetails?.address?.postal_code || '',
             country: shippingDetails?.address?.country || 'FR',
           },
+          isEarlyCollector: isEarlyAccess(),
         });
         console.log('📧 Confirmation email sent to:', customerDetails.email);
       } catch (error) {
@@ -246,6 +248,84 @@ async function processOrder(session: Stripe.Checkout.Session) {
   } catch (error) {
     console.error('❌ Error processing order:', error);
     throw error;
+  }
+}
+
+// Réserver une commande en attente de virement bancaire
+async function reserveOrder(session: Stripe.Checkout.Session) {
+  if (!stripe) return;
+
+  console.log('🏦 Réservation commande (virement en attente):', session.id);
+
+  try {
+    const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+      expand: ['line_items', 'customer_details']
+    });
+
+    const lineItems = fullSession.line_items?.data || [];
+    const customerDetails = fullSession.customer_details;
+
+    // Envoyer email "virement en attente" au client
+    if (customerDetails?.email) {
+      try {
+        await sendPaymentPendingEmail({
+          to: customerDetails.email,
+          customerName: customerDetails.name || 'Client',
+          orderNumber: fullSession.id,
+          items: lineItems.map(item => ({
+            title: item.description || 'Photo Fine Art',
+            format: extractFormatFromDescription(item.description || ''),
+            frame: extractFrameFromDescription(item.description || ''),
+            price: (item.amount_total || 0) / 100,
+          })),
+          totalAmount: (fullSession.amount_total || 0) / 100,
+        });
+        console.log('📧 Email "virement en attente" envoyé à:', customerDetails.email);
+      } catch (error) {
+        console.error('⚠️ Échec envoi email virement en attente:', error);
+      }
+    }
+
+    console.log('✅ Commande réservée, en attente de virement');
+  } catch (error) {
+    console.error('❌ Erreur réservation commande:', error);
+  }
+}
+
+// Annuler une réservation après échec de paiement asynchrone
+async function cancelReservation(session: Stripe.Checkout.Session) {
+  if (!stripe) return;
+
+  console.log('❌ Annulation réservation (virement échoué/expiré):', session.id);
+
+  try {
+    const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+      expand: ['line_items', 'customer_details']
+    });
+
+    const customerDetails = fullSession.customer_details;
+
+    // Notifier le client de l'échec
+    if (customerDetails?.email) {
+      const resend = await import('@/lib/resend-client');
+      // Utiliser l'email de problème existant pour notifier l'échec
+      try {
+        await resend.sendOrderConfirmationEmail({
+          to: customerDetails.email,
+          customerName: customerDetails.name || 'Client',
+          orderNumber: fullSession.id,
+          items: [],
+          totalAmount: 0,
+          shippingAddress: { line1: '', city: '', postalCode: '', country: '' },
+        });
+      } catch {
+        // Silencieux - l'email n'est pas critique ici
+      }
+    }
+
+    console.log('✅ Réservation annulée');
+  } catch (error) {
+    console.error('❌ Erreur annulation réservation:', error);
   }
 }
 
@@ -311,9 +391,11 @@ async function syncToPennylane(
     },
     line_items: pennylaneLineItems,
     paid: true, // Déjà payé via Stripe
-    payment_method: session.payment_method_types?.[0] === 'alma'
-      ? 'Alma (paiement fractionné)'
-      : 'Carte bancaire',
+    payment_method: session.payment_method_types?.includes('customer_balance')
+      ? 'Virement SEPA'
+      : session.payment_method_types?.[0] === 'alma'
+        ? 'Alma (paiement fractionné)'
+        : 'Carte bancaire',
     external_id: session.id, // Lien unique avec Stripe
   });
 
@@ -366,15 +448,44 @@ export async function POST(req: NextRequest) {
       console.log('💳 Checkout session completed:', session.id);
       console.log('💰 Payment status:', session.payment_status);
 
-      // Si le paiement est réussi, traiter la commande
       if (session.payment_status === 'paid') {
+        // Paiement immédiat (CB, Alma) — traiter la commande
         try {
           await processOrder(session);
         } catch (error) {
           console.error('❌ Failed to process order:', error);
-          // On retourne quand même 200 pour éviter que Stripe réessaie
-          // mais on log l'erreur pour investigation
         }
+      } else if (session.payment_status === 'unpaid') {
+        // Paiement asynchrone (virement SEPA) — réserver l'oeuvre
+        try {
+          await reserveOrder(session);
+        } catch (error) {
+          console.error('❌ Failed to reserve order:', error);
+        }
+      }
+      break;
+    }
+
+    case 'checkout.session.async_payment_succeeded': {
+      // Virement SEPA reçu — traiter la commande comme un paiement CB
+      const session = event.data.object as Stripe.Checkout.Session;
+      console.log('🏦 Virement SEPA reçu pour session:', session.id);
+      try {
+        await processOrder(session);
+      } catch (error) {
+        console.error('❌ Failed to process order after bank transfer:', error);
+      }
+      break;
+    }
+
+    case 'checkout.session.async_payment_failed': {
+      // Virement SEPA échoué/expiré — annuler la réservation
+      const session = event.data.object as Stripe.Checkout.Session;
+      console.log('❌ Virement SEPA échoué/expiré pour session:', session.id);
+      try {
+        await cancelReservation(session);
+      } catch (error) {
+        console.error('❌ Failed to cancel reservation:', error);
       }
       break;
     }
@@ -382,14 +493,12 @@ export async function POST(req: NextRequest) {
     case 'payment_intent.succeeded': {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
       console.log('✅ Payment succeeded:', paymentIntent.id);
-      // Ce cas est déjà géré par checkout.session.completed
       break;
     }
 
     case 'payment_intent.payment_failed': {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
       console.log('❌ Payment failed:', paymentIntent.id);
-      // TODO: Envoyer email d'échec au client
       break;
     }
 

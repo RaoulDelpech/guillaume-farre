@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from '@/lib/early-access';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -7,6 +8,9 @@ const stripe = process.env.STRIPE_SECRET_KEY
       apiVersion: '2025-10-29.clover',
     })
   : null;
+
+// Seuil à partir duquel on propose le virement SEPA (en euros)
+const BANK_TRANSFER_THRESHOLD = 1000;
 
 export async function POST(request: Request) {
   // Si Stripe pas configuré, renvoyer erreur
@@ -69,33 +73,88 @@ export async function POST(request: Request) {
       };
     });
 
-    console.log(`[Stripe] Création session pour ${validatedItems.length} item(s)`);
+    // Vérifier si en mode early access pour appliquer la réduction
+    const earlyCollectorMode = isEarlyAccess();
+    const originalTotal = validatedItems.reduce((sum: number, item: any) => sum + item.price, 0);
 
-    // Créer une session de paiement Stripe avec support Alma (3x/4x sans frais)
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'alma'], // Alma activé pour paiement fractionné 3x/4x
-      line_items: validatedItems.map((item: any) => ({
-        price_data: {
-          currency: 'eur',
-          product_data: {
-            name: item.title,
-            description: item.category,
-            images: item.images.slice(0, 8), // Stripe limite à 8 images max
-            metadata: {
-              format: item.format,
-              material: item.material,
-              orientation: item.orientation,
-              frame: item.frame,
-              photoPath: item.photoPath,
+    // Appliquer la réduction Early Collector si applicable
+    const discountAmount = earlyCollectorMode ? originalTotal * EARLY_ACCESS_DISCOUNT : 0;
+    const totalAmount = originalTotal - discountAmount;
+    const isHighValue = totalAmount >= BANK_TRANSFER_THRESHOLD;
+
+    console.log(`[Stripe] Création session pour ${validatedItems.length} item(s)`);
+    console.log(`[Stripe] Total original: ${originalTotal}€`);
+    if (earlyCollectorMode) {
+      console.log(`[Stripe] Early Collector -25%: -${discountAmount}€`);
+      console.log(`[Stripe] Total avec réduction: ${totalAmount}€`);
+    }
+    console.log(`[Stripe] Virement SEPA: ${isHighValue}`);
+
+    // Pour les gros montants, créer un Customer Stripe (requis pour bank transfers)
+    let customer: string | undefined;
+    if (isHighValue) {
+      const stripeCustomer = await stripe.customers.create({
+        metadata: { source: 'guillaumefarre.com' },
+      });
+      customer = stripeCustomer.id;
+      console.log('[Stripe] Customer créé pour virement SEPA:', stripeCustomer.id);
+    }
+
+    // Payment methods selon le montant
+    const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = isHighValue
+      ? ['card', 'alma', 'customer_balance']
+      : ['card', 'alma'];
+
+    // Config bank transfer SEPA pour gros montants
+    const paymentMethodOptions: Stripe.Checkout.SessionCreateParams.PaymentMethodOptions | undefined = isHighValue
+      ? {
+          customer_balance: {
+            bank_transfer: {
+              type: 'eu_bank_transfer',
+              eu_bank_transfer: { country: 'FR' },
             },
+            funding_type: 'bank_transfer',
           },
-          unit_amount: Math.round(item.price * 100), // Prix validé > 0
-        },
-        quantity: 1,
-      })),
+        }
+      : undefined;
+
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
+
+    // Créer une session de paiement Stripe
+    const session = await stripe.checkout.sessions.create({
+      ...(customer ? { customer } : {}),
+      payment_method_types: paymentMethodTypes,
+      ...(paymentMethodOptions ? { payment_method_options: paymentMethodOptions } : {}),
+      line_items: validatedItems.map((item: any) => {
+        // Appliquer la réduction Early Collector sur chaque item si applicable
+        const finalPrice = earlyCollectorMode
+          ? item.price * (1 - EARLY_ACCESS_DISCOUNT)
+          : item.price;
+
+        return {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: item.title,
+              description: item.category,
+              images: item.images.slice(0, 8), // Stripe limite à 8 images max
+              metadata: {
+                format: item.format,
+                material: item.material,
+                orientation: item.orientation,
+                frame: item.frame,
+                photoPath: item.photoPath,
+                ...(earlyCollectorMode && { original_price: item.price.toString() }),
+              },
+            },
+            unit_amount: Math.round(finalPrice * 100), // Prix avec réduction si applicable
+          },
+          quantity: 1,
+        };
+      }),
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com'}/${locale}/panier?success=true`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com'}/${locale}/panier?canceled=true`,
+      success_url: `${baseUrl}/${locale}/panier?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/${locale}/panier?canceled=true`,
       locale: locale as Stripe.Checkout.SessionCreateParams.Locale,
       shipping_address_collection: {
         allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC', 'IT', 'ES', 'DE', 'GB', 'US'],
@@ -105,6 +164,12 @@ export async function POST(request: Request) {
         items_materials: validatedItems.map((item: any) => item.material).join(','),
         items_orientations: validatedItems.map((item: any) => item.orientation).join(','),
         items_frames: validatedItems.map((item: any) => item.frame).join(','),
+        payment_type: isHighValue ? 'high_value' : 'standard',
+        ...(earlyCollectorMode && {
+          early_collector: 'true',
+          early_collector_discount: '25%',
+          original_total: originalTotal.toString(),
+        }),
       },
     });
 

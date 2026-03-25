@@ -1,6 +1,8 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { WHITEWALL_FORMATS, WHITEWALL_MATERIALS } from '@/lib/printing/whitewall-api';
+import { isEarlyAccess } from '@/lib/early-access';
+import { useTranslations } from 'next-intl';
 
 interface PhotoOrderFormProps {
   photoPath: string;
@@ -20,10 +22,17 @@ export interface OrderConfig {
 }
 
 export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition = false, onAddToCart }: PhotoOrderFormProps) {
+  const tEarly = useTranslations("earlyAccess");
   const [format, setFormat] = useState<keyof typeof WHITEWALL_FORMATS>('A3');
   const [material, setMaterial] = useState<keyof typeof WHITEWALL_MATERIALS>('fine-art');
   const [frame, setFrame] = useState<'black-wood' | 'white-wood' | 'aluminum' | 'none'>('none');
   const [quantity, setQuantity] = useState(1);
+  const [earlyCollectorMode, setEarlyCollectorMode] = useState(false);
+
+  // Vérifier si en mode early collector
+  useEffect(() => {
+    setEarlyCollectorMode(isEarlyAccess());
+  }, []);
 
   // Filtrer les formats selon le type d'édition
   const getAvailableFormats = () => {
@@ -79,7 +88,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
   };
 
   return (
-    <div className="bg-card border rounded-lg p-6 space-y-6">
+    <div className="bg-card border rounded-lg p-4 sm:p-6 space-y-6">
       <h3 className="text-xl font-bold">Configurez votre tirage</h3>
 
       {/* Sélection du format */}
@@ -97,7 +106,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
             <button
               key={key}
               onClick={() => setFormat(key as any)}
-              className={`p-3 border rounded-md text-sm transition-all ${
+              className={`p-3 border rounded-md text-sm transition-all min-h-[44px] ${
                 format === key
                   ? 'border-primary bg-primary/10 font-bold'
                   : 'border-border hover:border-primary/50'
@@ -129,7 +138,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
             <button
               key={key}
               onClick={() => setMaterial(key as any)}
-              className={`w-full p-3 border rounded-md text-left transition-all ${
+              className={`w-full p-3 border rounded-md text-left transition-all min-h-[44px] ${
                 material === key
                   ? 'border-primary bg-primary/10'
                   : 'border-border hover:border-primary/50'
@@ -155,7 +164,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setFrame('none')}
-            className={`p-3 border rounded-md text-sm ${
+            className={`p-3 border rounded-md text-sm min-h-[44px] ${
               frame === 'none'
                 ? 'border-primary bg-primary/10 font-bold'
                 : 'border-border hover:border-primary/50'
@@ -165,7 +174,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
           </button>
           <button
             onClick={() => setFrame('black-wood')}
-            className={`p-3 border rounded-md text-sm ${
+            className={`p-3 border rounded-md text-sm min-h-[44px] ${
               frame === 'black-wood'
                 ? 'border-primary bg-primary/10 font-bold'
                 : 'border-border hover:border-primary/50'
@@ -175,7 +184,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
           </button>
           <button
             onClick={() => setFrame('white-wood')}
-            className={`p-3 border rounded-md text-sm ${
+            className={`p-3 border rounded-md text-sm min-h-[44px] ${
               frame === 'white-wood'
                 ? 'border-primary bg-primary/10 font-bold'
                 : 'border-border hover:border-primary/50'
@@ -185,7 +194,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
           </button>
           <button
             onClick={() => setFrame('aluminum')}
-            className={`p-3 border rounded-md text-sm ${
+            className={`p-3 border rounded-md text-sm min-h-[44px] ${
               frame === 'aluminum'
                 ? 'border-primary bg-primary/10 font-bold'
                 : 'border-border hover:border-primary/50'
@@ -218,9 +227,9 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
 
         <button
           onClick={handleAddToCart}
-          className="w-full py-3 bg-primary text-primary-foreground rounded-md font-bold hover:bg-primary/90 transition-colors"
+          className="w-full py-3 bg-primary text-primary-foreground rounded-md font-bold hover:bg-primary/90 transition-colors min-h-[48px]"
         >
-          🛒 Ajouter au panier
+          🛒 {earlyCollectorMode ? tEarly("reserveThis") : "Ajouter au panier"}
         </button>
       </div>
 

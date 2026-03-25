@@ -12,6 +12,7 @@ import SizeVisualizer from "@/components/SizeVisualizer";
 import StockBadge from "@/components/StockBadge";
 import DeliveryEstimate from "@/components/DeliveryEstimate";
 import SocialProof from "@/components/SocialProof";
+import { isEarlyAccess } from "@/lib/early-access";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -27,15 +28,22 @@ interface CartItem {
 
 export default function ShopGrid({ photos }: ShopGridProps) {
   const t = useTranslations("shop");
+  const tEarly = useTranslations("earlyAccess");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoMetadata | null>(null);
   const [selectedFormat, setSelectedFormat] = useState("A2");
   const [selectedFrame, setSelectedFrame] = useState("none");
   const [selectedMaterial, setSelectedMaterial] = useState("semi-glossy");
+  const [earlyCollectorMode, setEarlyCollectorMode] = useState(false);
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { fireHeartConfetti, fireConfetti } = useConfetti();
   const { playCartAdd, playClick, playHover } = useSoundEffects();
+
+  // Vérifier si en mode early collector
+  useEffect(() => {
+    setEarlyCollectorMode(isEarlyAccess());
+  }, []);
 
   // Formats disponibles avec info grand/petit
   const allFormats = {
@@ -180,20 +188,20 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     <div>
       {/* Panier flottant */}
       {cart.length > 0 && (
-        <div className="fixed top-24 right-6 bg-card text-foreground p-6 rounded-lg shadow-2xl z-50 border border-border">
-          <h3 className="font-light tracking-wide text-lg mb-3">Panier ({cart.length})</h3>
-          <p className="text-base font-light mb-4">
+        <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-auto sm:top-24 sm:right-6 sm:w-80 bg-card text-foreground p-4 sm:p-6 rounded-lg shadow-2xl z-50 border border-border">
+          <h3 className="font-light tracking-wide text-base sm:text-lg mb-2 sm:mb-3">Panier ({cart.length})</h3>
+          <p className="text-sm sm:text-base font-light mb-3 sm:mb-4">
             Total: {cart.reduce((sum, item) => sum + item.price, 0)}€
           </p>
           <button
             onClick={handleCheckout}
-            className="w-full bg-black hover:bg-gray-900 text-white py-3 px-4 rounded-lg font-light tracking-wide transition-colors"
+            className="w-full bg-black hover:bg-gray-900 text-white py-3 px-4 rounded-lg font-light tracking-wide transition-colors min-h-[44px]"
           >
             Payer maintenant
           </button>
           <button
             onClick={() => setCart([])}
-            className="w-full mt-3 bg-muted hover:bg-muted/80 text-foreground py-2 px-4 rounded-lg text-sm font-light transition-colors"
+            className="w-full mt-2 sm:mt-3 bg-muted hover:bg-muted/80 text-foreground py-2 px-4 rounded-lg text-sm font-light transition-colors min-h-[44px]"
           >
             Vider le panier
           </button>
@@ -201,8 +209,12 @@ export default function ShopGrid({ photos }: ShopGridProps) {
       )}
 
       {/* Grille de photos */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
-        {photos.map((photo, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
+        {photos.map((photo, index) => {
+          // Note: Pour l'instant, on n'a que des photos, pas de toiles
+          // La logique de masquage des toiles sera implémentée quand on aura un champ pour les distinguer
+
+          return (
           <div
             key={photo.path}
             className="bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all shadow-lg"
@@ -243,6 +255,13 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 )}
               </button>
 
+              {/* Badge avant-premiere */}
+              {photo.earlyAccess && earlyCollectorMode && (
+                <div className="absolute top-14 left-3 sm:top-3 sm:left-14 bg-black text-white px-3 py-1 rounded-full text-xs font-medium tracking-wide z-10">
+                  {tEarly("preview")}
+                </div>
+              )}
+
               {/* Badge édition limitée - Affiche petits formats par défaut (99 ex.) */}
               {(photo.categories?.includes('limited') || photo.edition?.type === 'limited') && (
                 <div className="absolute top-3 right-3">
@@ -256,8 +275,8 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               )}
             </div>
 
-            <div className="p-8">
-              <h3 className="text-xl font-light tracking-wide mb-3">
+            <div className="p-4 sm:p-6 md:p-8">
+              <h3 className="text-lg sm:text-xl font-light tracking-wide mb-2 sm:mb-3">
                 {photo.title || `Photo ${index + 1}`}
               </h3>
 
@@ -292,39 +311,50 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 />
               </div>
 
-              <button
-                onClick={() => setSelectedPhoto(photo)}
-                className="w-full bg-black hover:bg-gray-900 text-white py-3 px-6 rounded-lg font-light tracking-wide transition-colors"
-              >
-                {t("addToCart")}
-              </button>
+              {/* Afficher "Bientot disponible" si l'oeuvre est early access mais la periode est terminee */}
+              {photo.earlyAccess && !earlyCollectorMode ? (
+                <button
+                  disabled
+                  className="w-full bg-gray-400 text-white py-3 px-6 rounded-lg font-light tracking-wide cursor-not-allowed min-h-[44px]"
+                >
+                  {tEarly("comingSoon")}
+                </button>
+              ) : (
+                <button
+                  onClick={() => setSelectedPhoto(photo)}
+                  className="w-full bg-black hover:bg-gray-900 text-white py-3 px-6 rounded-lg font-light tracking-wide transition-colors min-h-[44px]"
+                >
+                  {earlyCollectorMode ? tEarly("reserve") : t("addToCart")}
+                </button>
+              )}
             </div>
           </div>
-        ))}
+        );
+        })}
       </div>
 
-      {/* Modal de sélection */}
+      {/* Modal de selection */}
       {selectedPhoto && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-border">
-            <div className="sticky top-0 bg-muted border-b border-border p-8 rounded-t-2xl">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-3xl font-light tracking-wide mb-2">
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center sm:p-4">
+          <div className="bg-card rounded-t-2xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto border border-border">
+            <div className="sticky top-0 bg-muted border-b border-border p-4 sm:p-8 rounded-t-2xl">
+              <div className="flex justify-between items-start gap-4">
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-xl sm:text-3xl font-light tracking-wide mb-1 sm:mb-2 truncate">
                     {selectedPhoto.title || selectedPhoto.filename}
                   </h2>
-                  <p className="text-muted-foreground font-light">Sélectionnez vos options</p>
+                  <p className="text-muted-foreground font-light text-sm sm:text-base">Selectionnez vos options</p>
                 </div>
                 <button
                   onClick={() => setSelectedPhoto(null)}
-                  className="text-foreground hover:bg-background rounded-full p-2 transition-colors"
+                  className="text-foreground hover:bg-background rounded-full p-2 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
                 >
                   ✕
                 </button>
               </div>
             </div>
 
-            <div className="p-8 space-y-8">
+            <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
               {/* Aperçu */}
               <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden">
                 <img
@@ -337,7 +367,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               {/* Format */}
               <div>
                 <h3 className="text-lg font-light tracking-wide mb-4">Format</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
                   {Object.entries(getAvailableFormats(selectedPhoto)).map(([key, value]) => {
                     const stock = getStockForFormat(selectedPhoto, key);
                     const formatInfo = allFormats[key as keyof typeof allFormats];
@@ -347,21 +377,21 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                       <button
                         key={key}
                         onClick={() => setSelectedFormat(key)}
-                        className={`p-5 rounded-lg border transition-all ${
+                        className={`p-3 sm:p-5 rounded-lg border transition-all min-h-[44px] ${
                           selectedFormat === key
                             ? 'border-primary bg-primary/5'
                             : 'border-border hover:border-primary/50'
                         }`}
                       >
-                        <div className="font-light text-lg tracking-wide">{key}</div>
-                        <div className="text-sm text-muted-foreground font-light">
-                          {value.width} × {value.height} cm
+                        <div className="font-light text-base sm:text-lg tracking-wide">{key}</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground font-light">
+                          {value.width} x {value.height} cm
                         </div>
                         <div className="text-xs text-amber-600 mt-1">
-                          {isGrand ? `Édition ${stock.total - stock.available + 1}/9` : `Édition ${stock.total - stock.available + 1}/99`}
+                          {isGrand ? `${stock.total - stock.available + 1}/9` : `${stock.total - stock.available + 1}/99`}
                         </div>
-                        <div className="text-sm font-medium mt-1">
-                          {formatInfo?.price ? `${formatInfo.price}€` : 'Sur devis'}
+                        <div className="text-xs sm:text-sm font-medium mt-1">
+                          {formatInfo?.price ? `${formatInfo.price}€` : 'Devis'}
                         </div>
                       </button>
                     );
@@ -443,18 +473,18 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               })()}
 
               {/* Prix total et ajout */}
-              <div className="bg-muted rounded-lg p-8">
-                <div className="flex justify-between items-center mb-6">
-                  <span className="text-lg font-light tracking-wide">Prix total</span>
-                  <span className="text-3xl font-light text-amber-600">
+              <div className="bg-muted rounded-lg p-4 sm:p-8">
+                <div className="flex justify-between items-center mb-4 sm:mb-6">
+                  <span className="text-base sm:text-lg font-light tracking-wide">Prix total</span>
+                  <span className="text-2xl sm:text-3xl font-light text-amber-600">
                     {calculatePrice(selectedPhoto.price || 2000, selectedFormat, selectedFrame, selectedMaterial)}€
                   </span>
                 </div>
                 <button
                   onClick={handleAddToCart}
-                  className="w-full bg-black hover:bg-gray-900 text-white py-4 px-6 rounded-lg font-light tracking-wide text-lg transition-all"
+                  className="w-full bg-black hover:bg-gray-900 text-white py-4 px-6 rounded-lg font-light tracking-wide text-base sm:text-lg transition-all min-h-[48px]"
                 >
-                  Ajouter au panier
+                  {earlyCollectorMode ? tEarly("reserveThis") : "Ajouter au panier"}
                 </button>
               </div>
 

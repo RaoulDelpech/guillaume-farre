@@ -29,6 +29,7 @@ interface OrderConfirmationEmailProps {
     postalCode: string;
     country: string;
   };
+  isEarlyCollector?: boolean;
 }
 
 export default function OrderConfirmationEmail({
@@ -49,6 +50,7 @@ export default function OrderConfirmationEmail({
     postalCode: '75001',
     country: 'France',
   },
+  isEarlyCollector = false,
 }: OrderConfirmationEmailProps) {
   return (
     <Html>
@@ -115,6 +117,20 @@ export default function OrderConfirmationEmail({
                 {shippingAddress.country}
               </Text>
             </Section>
+
+            {/* Early Collector VIP Invitation */}
+            {isEarlyCollector && (
+              <Section style={styles.vipBox}>
+                <Text style={styles.vipTitle}>🎭 Votre invitation VIP</Text>
+                <Text style={styles.vipText}>
+                  En tant qu'Early Collector, vous serez convié en tant qu'hôte
+                  d'honneur à la première exposition de Guillaume Farré.
+                </Text>
+                <Text style={styles.vipText}>
+                  Nous vous contacterons dès que les détails seront annoncés.
+                </Text>
+              </Section>
+            )}
 
             {/* Timeline */}
             <Section style={styles.timeline}>
@@ -296,6 +312,27 @@ const styles = {
     fontSize: '15px',
     lineHeight: '1.5',
     margin: '0',
+  },
+  vipBox: {
+    backgroundColor: '#fef3c7',
+    border: '2px solid #fbbf24',
+    borderRadius: '8px',
+    padding: '25px',
+    margin: '30px 0',
+  },
+  vipTitle: {
+    color: '#92400e',
+    fontSize: '18px',
+    fontWeight: '500',
+    margin: '0 0 15px',
+    textAlign: 'center' as const,
+  },
+  vipText: {
+    color: '#78350f',
+    fontSize: '15px',
+    lineHeight: '1.6',
+    margin: '10px 0',
+    textAlign: 'center' as const,
   },
   timeline: {
     margin: '30px 0',

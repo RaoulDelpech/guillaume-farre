@@ -5,6 +5,7 @@ import HomeClient from "@/components/HomeClient";
 import HomePageContent from "@/components/pages/HomePageContent";
 import HomeWorksSection from "@/components/pages/HomeWorksSection";
 import HomeCitation from "@/components/pages/HomeCitation";
+import EarlyAccessCountdown from "@/components/early-access/EarlyAccessCountdown";
 import { getWorksFromMetadata } from "@/lib/works";
 import { getPageImages } from "@/lib/page-images";
 
@@ -33,6 +34,8 @@ export default async function HomePage() {
     <main className="min-h-[80vh]">
       <Navigation />
       <HomeClient />
+      {/* Compteur Early Access - avant le carousel */}
+      <EarlyAccessCountdown />
       <HeroCarousel slides={pageImages.hero.slides} />
       {/* Citation - Décision audit 2025-01-20 */}
       <HomeCitation />

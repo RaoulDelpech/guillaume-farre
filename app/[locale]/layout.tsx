@@ -14,6 +14,7 @@ import DarkEntry from '@/components/DarkEntry';
 import PageProgressBar from '@/components/PageProgressBar';
 import BackToTop from '@/components/BackToTop';
 import ScrollToTopOnNav from '@/components/ScrollToTopOnNav';
+import EarlyAccessOverlay from '@/components/early-access/EarlyAccessOverlay';
 import "./globals.css";
 
 // SEO - Décisions audit 2025-01-20
@@ -116,6 +117,8 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <CartProvider>
+            {/* Overlay Early Collector - premiere visite uniquement */}
+            <EarlyAccessOverlay />
             <AdminWrapper>
               {/* Scroll to top on navigation */}
               <ScrollToTopOnNav />

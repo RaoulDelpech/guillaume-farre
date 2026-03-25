@@ -158,5 +158,18 @@
       "button1": "Découvrir l'atelier",
       "button2": "Voir les œuvres"
     }
+  },
+  "earlyAccess": {
+    "reserve": "Réserver",
+    "reserveThis": "Réserver cette œuvre",
+    "privilegeTitle": "Privilège Early Collector",
+    "privilegeDescription": "En tant que visiteur avant l'ouverture officielle, vous bénéficiez d'une réduction exclusive.",
+    "discount": "-25%",
+    "originalPrice": "Prix catalogue",
+    "yourPrice": "Votre prix",
+    "checkout": "Réserver l'œuvre",
+    "preview": "Avant-première",
+    "comingSoon": "Bientôt disponible",
+    "vipInvitation": "Votre invitation VIP"
   }
 }

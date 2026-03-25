@@ -158,5 +158,18 @@
       "button1": "Discover the workshop",
       "button2": "View the works"
     }
+  },
+  "earlyAccess": {
+    "reserve": "Reserve",
+    "reserveThis": "Reserve this work",
+    "privilegeTitle": "Early Collector Privilege",
+    "privilegeDescription": "As a visitor before the official opening, you benefit from an exclusive discount.",
+    "discount": "-25%",
+    "originalPrice": "Catalog price",
+    "yourPrice": "Your price",
+    "checkout": "Reserve the work",
+    "preview": "Preview",
+    "comingSoon": "Coming soon",
+    "vipInvitation": "Your VIP invitation"
   }
 }

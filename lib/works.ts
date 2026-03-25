@@ -29,6 +29,7 @@ export interface Work {
     closed: boolean;
   };
   forSale?: boolean;
+  earlyAccess?: boolean;
 }
 
 // Load works from photo metadata

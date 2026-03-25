@@ -48,14 +48,14 @@ export default function OrigineContent({ images }: OrigineContentProps) {
           <EditableText
             textKey="origine.hero.title"
             as="h1"
-            className="text-5xl md:text-7xl font-light tracking-wide mb-8 text-foreground leading-tight"
+            className="text-3xl sm:text-5xl md:text-7xl font-light tracking-wide mb-6 sm:mb-8 text-foreground leading-tight"
           >
             J'avais 4 ans quand j'ai vu ma première voiture de course.
           </EditableText>
           <EditableText
             textKey="origine.hero.subtitle"
             as="p"
-            className="text-xl md:text-2xl font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-xl md:text-2xl font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
             Quarante ans plus tard, j'ai une Dino dans mon atelier.
           </EditableText>
@@ -139,7 +139,7 @@ export default function OrigineContent({ images }: OrigineContentProps) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/galerie"
-                className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group"
+                className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group min-h-[48px] flex items-center justify-center"
               >
                 Voir les créations
                 <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">
@@ -148,7 +148,7 @@ export default function OrigineContent({ images }: OrigineContentProps) {
               </Link>
               <Link
                 href="/atelier"
-                className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group"
+                className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group min-h-[48px] flex items-center justify-center"
               >
                 Visiter l'atelier
                 <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">

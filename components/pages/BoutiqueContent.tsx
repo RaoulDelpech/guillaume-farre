@@ -30,14 +30,14 @@ export default function BoutiqueContent({ translations: t }: BoutiqueContentProp
             <EditableText
               textKey="shop.heroTitle"
               as="h1"
-              className="text-6xl md:text-7xl font-light tracking-wide mb-8"
+              className="text-3xl sm:text-5xl md:text-7xl font-light tracking-wide mb-6 sm:mb-8"
             >
               {t.heroTitle}
             </EditableText>
             <EditableText
               textKey="shop.heroDescription"
               as="p"
-              className="text-2xl font-light text-muted-foreground max-w-4xl mx-auto mb-10 leading-relaxed"
+              className="text-lg sm:text-2xl font-light text-muted-foreground max-w-4xl mx-auto mb-8 sm:mb-10 leading-relaxed"
               multiline
             >
               {t.heroDescription}
@@ -45,8 +45,8 @@ export default function BoutiqueContent({ translations: t }: BoutiqueContentProp
           </div>
 
           {/* Avantages */}
-          <div className="bg-card border border-border rounded-xl p-8">
-            <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="bg-card border border-border rounded-xl p-4 sm:p-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center">
               <div>
                 <EditableText
                   textKey="shop.benefits.certificate.title"

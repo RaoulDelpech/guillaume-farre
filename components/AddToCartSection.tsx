@@ -66,12 +66,12 @@ export default function AddToCartSection({
   };
 
   return (
-    <div className="border border-border rounded-lg p-8 bg-card/50">
+    <div className="border border-border rounded-lg p-4 sm:p-8 bg-card/50">
       <div className="space-y-6">
         {/* Prix */}
         <div>
           <div className="text-sm text-muted-foreground mb-2">Prix</div>
-          <div className="text-4xl font-light tracking-wide">
+          <div className="text-3xl sm:text-4xl font-light tracking-wide">
             {selectedFormat.price.toLocaleString('fr-FR')} €
           </div>
           <div className="text-sm text-muted-foreground mt-1">
@@ -95,7 +95,7 @@ export default function AddToCartSection({
                 key={format.size}
                 onClick={() => format.available && setSelectedFormat(format)}
                 disabled={!format.available}
-                className={`px-4 py-3 border rounded-lg text-sm transition-all ${
+                className={`px-4 py-3 border rounded-lg text-sm transition-all min-h-[44px] ${
                   selectedFormat.size === format.size
                     ? 'border-2 border-primary bg-primary/5'
                     : format.available
@@ -125,14 +125,14 @@ export default function AddToCartSection({
           <button
             onClick={handleAddToCart}
             disabled={!selectedFormat.available}
-            className="w-full px-12 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
           >
             Ajouter au panier
           </button>
           <button
             onClick={handleBuyNow}
             disabled={!selectedFormat.available}
-            className="w-full px-12 py-5 border-2 border-border hover:border-primary text-foreground font-light tracking-wide rounded-lg text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-8 sm:px-12 py-4 sm:py-5 border-2 border-border hover:border-primary text-foreground font-light tracking-wide rounded-lg text-base sm:text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px]"
           >
             Acheter maintenant
           </button>

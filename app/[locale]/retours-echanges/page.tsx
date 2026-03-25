@@ -5,15 +5,15 @@ export default function RetoursPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28 max-w-4xl">
-        <h1 className="text-5xl md:text-6xl font-light tracking-wide mb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28 max-w-4xl">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide mb-8 sm:mb-12">
           Retours & Échanges
         </h1>
 
         <div className="prose prose-lg max-w-none">
           {/* Délai de rétractation */}
           <section className="mb-12">
-            <h2 className="text-3xl font-light mb-6">Délai de rétractation : 14 jours</h2>
+            <h2 className="text-2xl sm:text-3xl font-light mb-4 sm:mb-6">Délai de rétractation : 14 jours</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Conformément à la loi française, vous disposez de <strong>14 jours calendaires</strong> à compter de la réception de votre œuvre pour exercer votre droit de rétractation, <strong>sans avoir à justifier de motif</strong>.
             </p>
@@ -21,8 +21,8 @@ export default function RetoursPage() {
 
           {/* Conditions */}
           <section className="mb-12">
-            <h2 className="text-3xl font-light mb-6">Conditions</h2>
-            <div className="bg-card border border-border rounded-xl p-8 space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-light mb-4 sm:mb-6">Conditions</h2>
+            <div className="bg-card border border-border rounded-xl p-4 sm:p-8 space-y-4">
               <div className="flex items-start gap-3">
                 <span className="text-2xl">✅</span>
                 <p className="text-muted-foreground">
@@ -46,7 +46,7 @@ export default function RetoursPage() {
 
           {/* Procédure */}
           <section className="mb-12">
-            <h2 className="text-3xl font-light mb-6">Procédure de retour</h2>
+            <h2 className="text-2xl sm:text-3xl font-light mb-4 sm:mb-6">Procédure de retour</h2>
             <div className="space-y-6">
               <div className="bg-muted/30 border border-border rounded-lg p-6">
                 <div className="flex items-start gap-4">
@@ -98,8 +98,8 @@ export default function RetoursPage() {
 
           {/* Exceptions */}
           <section className="mb-12">
-            <h2 className="text-3xl font-light mb-6">Exceptions</h2>
-            <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-8 space-y-4">
+            <h2 className="text-2xl sm:text-3xl font-light mb-4 sm:mb-6">Exceptions</h2>
+            <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-4 sm:p-8 space-y-4">
               <div className="flex items-start gap-3">
                 <span className="text-2xl">❌</span>
                 <p className="text-muted-foreground">
@@ -117,8 +117,8 @@ export default function RetoursPage() {
 
           {/* Garantie Qualité */}
           <section className="mb-12">
-            <h2 className="text-3xl font-light mb-6">Garantie Qualité</h2>
-            <div className="bg-green-500/5 border border-green-500/20 rounded-xl p-8">
+            <h2 className="text-2xl sm:text-3xl font-light mb-4 sm:mb-6">Garantie Qualité</h2>
+            <div className="bg-green-500/5 border border-green-500/20 rounded-xl p-4 sm:p-8">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Si votre tirage présente un <strong className="text-foreground">défaut de qualité</strong> (couleurs incorrectes, dommage durant transport, défaut d'impression), nous le remplaçons <strong className="text-foreground">gratuitement</strong> ou vous remboursons <strong className="text-foreground">intégralement</strong>, frais de retour inclus.
               </p>
@@ -129,21 +129,21 @@ export default function RetoursPage() {
           </section>
 
           {/* Contact */}
-          <section className="bg-card border border-border rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-light mb-6">Une question sur votre commande ?</h3>
-            <p className="text-muted-foreground mb-8">
+          <section className="bg-card border border-border rounded-xl p-4 sm:p-8 text-center">
+            <h3 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6">Une question sur votre commande ?</h3>
+            <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
               Notre équipe est à votre disposition pour vous accompagner
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:contact@guillaumefarre.com"
-                className="inline-block px-12 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-lg transition-all"
+                className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
               >
                 📧 Nous contacter
               </a>
               <Link
                 href="/faq"
-                className="inline-block px-12 py-5 border-2 border-border hover:border-primary text-foreground font-light tracking-wide rounded-lg text-lg transition-all"
+                className="inline-block px-8 sm:px-12 py-4 sm:py-5 border-2 border-border hover:border-primary text-foreground font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
               >
                 📋 Voir la FAQ
               </Link>

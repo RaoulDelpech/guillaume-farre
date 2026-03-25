@@ -30,14 +30,14 @@ export default function DinoHistoireContent() {
           <EditableText
             textKey="dinoHistoire.hero.title"
             as="h1"
-            className="text-5xl md:text-7xl lg:text-8xl font-light tracking-wide mb-8 text-white"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-light tracking-wide mb-6 sm:mb-8 text-white"
           >
             La Ferrari Dino
           </EditableText>
           <EditableText
             textKey="dinoHistoire.hero.subtitle"
             as="p"
-            className="text-xl md:text-2xl font-light text-white/90 leading-relaxed max-w-3xl mx-auto"
+            className="text-base sm:text-xl md:text-2xl font-light text-white/90 leading-relaxed max-w-3xl mx-auto"
             multiline
           >
             L'hommage d'Enzo Ferrari à son fils. Une légende née de la tragédie, devenue icône du design automobile italien.
@@ -53,9 +53,9 @@ export default function DinoHistoireContent() {
       </div>
 
       {/* Section 1 : Alfredo "Dino" Ferrari */}
-      <section className="py-24 md:py-32 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-24 md:py-32 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
             <div>
               <div className="text-sm uppercase tracking-widest text-primary mb-4 font-light">
                 1932 - 1956
@@ -63,7 +63,7 @@ export default function DinoHistoireContent() {
               <EditableText
                 textKey="dinoHistoire.alfredo.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
               >
                 Alfredo "Dino" Ferrari
               </EditableText>
@@ -99,7 +99,7 @@ export default function DinoHistoireContent() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-primary/10 p-6 rounded-lg border border-primary/20">
+              <div className="mt-4 sm:absolute sm:-bottom-4 sm:-right-4 bg-primary/10 p-4 sm:p-6 rounded-lg border border-primary/20">
                 <EditableText
                   textKey="dinoHistoire.alfredo.quote"
                   as="p"
@@ -115,16 +115,16 @@ export default function DinoHistoireContent() {
       </section>
 
       {/* Section 2 : Le Moteur V6 */}
-      <section className="py-24 md:py-32 bg-muted/30 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-16">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/30 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center mb-8 sm:mb-16">
             <div className="text-sm uppercase tracking-widest text-primary mb-4 font-light">
               L'Héritage Technique
             </div>
             <EditableText
               textKey="dinoHistoire.moteur.title"
               as="h2"
-              className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
             >
               Le Moteur V6 Dino
             </EditableText>
@@ -139,7 +139,7 @@ export default function DinoHistoireContent() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-background p-8 rounded-lg border border-border">
+            <div className="bg-background p-4 sm:p-8 rounded-lg border border-border">
               <div className="text-4xl font-light text-primary mb-4">1956</div>
               <h3 className="text-xl font-light mb-4 text-foreground">Formule 2</h3>
               <EditableText
@@ -150,7 +150,7 @@ export default function DinoHistoireContent() {
                 Le premier moteur Dino V6 1.5L fait ses débuts en Formule 2, remportant immédiatement des victoires.
               </EditableText>
             </div>
-            <div className="bg-background p-8 rounded-lg border border-border">
+            <div className="bg-background p-4 sm:p-8 rounded-lg border border-border">
               <div className="text-4xl font-light text-primary mb-4">1958</div>
               <h3 className="text-xl font-light mb-4 text-foreground">Formule 1</h3>
               <EditableText
@@ -161,7 +161,7 @@ export default function DinoHistoireContent() {
                 Mike Hawthorn remporte le championnat du monde de F1 avec un moteur dérivé du V6 Dino. Le rêve de Dino se réalise.
               </EditableText>
             </div>
-            <div className="bg-background p-8 rounded-lg border border-border">
+            <div className="bg-background p-4 sm:p-8 rounded-lg border border-border">
               <div className="text-4xl font-light text-primary mb-4">1967</div>
               <h3 className="text-xl font-light mb-4 text-foreground">Route</h3>
               <EditableText
@@ -177,9 +177,9 @@ export default function DinoHistoireContent() {
       </section>
 
       {/* Section 3 : La Dino 206 GT */}
-      <section className="py-24 md:py-32 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-24 md:py-32 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
@@ -196,7 +196,7 @@ export default function DinoHistoireContent() {
               <EditableText
                 textKey="dinoHistoire.206gt.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
               >
                 Dino 206 GT
               </EditableText>
@@ -240,9 +240,9 @@ export default function DinoHistoireContent() {
       </section>
 
       {/* Section 4 : La Dino 246 GT */}
-      <section className="py-24 md:py-32 bg-muted/30 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/30 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
             <div>
               <div className="text-sm uppercase tracking-widest text-primary mb-4 font-light">
                 1969 - 1974
@@ -250,7 +250,7 @@ export default function DinoHistoireContent() {
               <EditableText
                 textKey="dinoHistoire.246gt.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
               >
                 Dino 246 GT & GTS
               </EditableText>
@@ -317,17 +317,17 @@ export default function DinoHistoireContent() {
       </section>
 
       {/* Section 5 : L'Héritage */}
-      <section className="py-24 md:py-32 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-8 sm:mb-16">
               <div className="text-sm uppercase tracking-widest text-primary mb-4 font-light">
                 Un Héritage Éternel
               </div>
               <EditableText
                 textKey="dinoHistoire.heritage.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
               >
                 La Dino Aujourd'hui
               </EditableText>
@@ -358,14 +358,14 @@ export default function DinoHistoireContent() {
             </div>
 
             <div className="mt-16 grid md:grid-cols-2 gap-8">
-              <div className="bg-muted/30 p-8 rounded-lg">
-                <div className="text-5xl font-light text-primary mb-4">50+</div>
+              <div className="bg-muted/30 p-4 sm:p-8 rounded-lg">
+                <div className="text-3xl sm:text-5xl font-light text-primary mb-4">50+</div>
                 <p className="text-foreground font-light">
                   années depuis la dernière Dino, et son design reste intemporel
                 </p>
               </div>
-              <div className="bg-muted/30 p-8 rounded-lg">
-                <div className="text-5xl font-light text-primary mb-4">3 913</div>
+              <div className="bg-muted/30 p-4 sm:p-8 rounded-lg">
+                <div className="text-3xl sm:text-5xl font-light text-primary mb-4">3 913</div>
                 <p className="text-foreground font-light">
                   exemplaires produits au total (206 GT + 246 GT/GTS)
                 </p>
@@ -376,9 +376,9 @@ export default function DinoHistoireContent() {
       </section>
 
       {/* Section 6 : La Dino de Guillaume */}
-      <section className="py-24 md:py-32 bg-muted/30 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/30 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
             <div className="order-2 md:order-1">
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
@@ -395,7 +395,7 @@ export default function DinoHistoireContent() {
               <EditableText
                 textKey="dinoHistoire.maDino.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
               >
                 Ma Dino 246 GT
               </EditableText>
@@ -418,7 +418,7 @@ export default function DinoHistoireContent() {
               <div className="mt-8">
                 <Link
                   href="/dino"
-                  className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide rounded transition-all"
+                  className="inline-block px-6 sm:px-8 py-3.5 sm:py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide rounded transition-all min-h-[44px]"
                 >
                   Voir ma Dino en action →
                 </Link>
@@ -429,13 +429,13 @@ export default function DinoHistoireContent() {
       </section>
 
       {/* CTA Final */}
-      <section className="py-24 md:py-32">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <EditableText
               textKey="dinoHistoire.cta.title"
               as="h2"
-              className="text-4xl md:text-5xl font-light tracking-wide mb-8 text-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
             >
               Découvrir les œuvres
             </EditableText>
@@ -450,13 +450,13 @@ export default function DinoHistoireContent() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/galerie"
-                className="px-12 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded transition-all"
+                className="px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded transition-all min-h-[48px] flex items-center justify-center"
               >
                 Voir la galerie
               </Link>
               <Link
                 href="/boutique"
-                className="px-12 py-5 border border-border hover:border-foreground text-foreground font-light tracking-wide rounded transition-all"
+                className="px-8 sm:px-12 py-4 sm:py-5 border border-border hover:border-foreground text-foreground font-light tracking-wide rounded transition-all min-h-[48px] flex items-center justify-center"
               >
                 Commander une œuvre
               </Link>

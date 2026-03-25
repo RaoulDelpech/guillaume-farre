@@ -10,17 +10,17 @@ import EditableText from "@/components/admin/EditableText";
  */
 export default function BoutiqueGarantiesContent() {
   return (
-    <div className="bg-card border-t border-border py-20 md:py-24">
-      <div className="container mx-auto px-6 lg:px-8">
+    <div className="bg-card border-t border-border py-10 sm:py-20 md:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <EditableText
             textKey="shop.guarantees.title"
             as="h3"
-            className="text-3xl md:text-4xl font-light tracking-wide text-center mb-16"
+            className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-center mb-8 sm:mb-16"
           >
             Nos garanties
           </EditableText>
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-12">
             <div className="text-center">
               <EditableText
                 textKey="shop.guarantees.authenticity.title"

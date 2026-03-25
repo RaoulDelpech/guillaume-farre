@@ -29,7 +29,7 @@ export default function MobileNav() {
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50"
+        className="md:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5 z-50"
         aria-label="Menu"
       >
         <span className={`w-6 h-0.5 bg-foreground transition-all ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
@@ -56,19 +56,19 @@ export default function MobileNav() {
             <span className="font-light tracking-wide text-white">Menu</span>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-8 h-8 flex items-center justify-center text-white/60 hover:text-white"
+              className="w-11 h-11 flex items-center justify-center text-white/60 hover:text-white"
               aria-label="Fermer"
             >
               ✕
             </button>
           </div>
-          <nav className="flex flex-col gap-5">
+          <nav className="flex flex-col gap-1">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`text-base font-light tracking-wide transition-colors ${
+                className={`text-base font-light tracking-wide transition-colors py-2.5 min-h-[44px] flex items-center ${
                   pathname === link.href ? "text-[#C4A570]" : "text-white/80 hover:text-white"
                 }`}
               >

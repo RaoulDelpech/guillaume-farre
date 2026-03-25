@@ -65,12 +65,12 @@ export default function GalleryClient({ works }: GalleryClientProps) {
       {/* Section filtres élégante */}
       <section id="galerie-grid" className="bg-muted/10 border-b border-border py-8">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex flex-wrap gap-6 justify-center items-center">
+          <div className="flex flex-wrap gap-2 sm:gap-6 justify-center items-center">
             {filterButtons.map(({ key, label }) => (
               <button
                 key={key}
                 onClick={() => handleFilterChange(key)}
-                className={`px-8 py-3 border font-light tracking-wide rounded transition-all ${
+                className={`px-4 sm:px-8 py-2.5 sm:py-3 border font-light tracking-wide rounded transition-all text-sm sm:text-base min-h-[44px] ${
                   activeFilter === key
                     ? 'border-primary text-primary bg-primary/5'
                     : 'border-border text-foreground hover:border-primary hover:text-primary'
@@ -97,13 +97,13 @@ export default function GalleryClient({ works }: GalleryClientProps) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="mt-16 flex items-center justify-center gap-4">
+              <div className="mt-12 sm:mt-16 flex items-center justify-center gap-2 sm:gap-4">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="px-6 py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground"
+                  className="px-3 sm:px-6 py-2.5 sm:py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground text-sm sm:text-base min-h-[44px]"
                 >
-                  ← Précédent
+                  ←<span className="hidden sm:inline"> Precedent</span>
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -123,7 +123,7 @@ export default function GalleryClient({ works }: GalleryClientProps) {
                       <button
                         key={pageNum}
                         onClick={() => setCurrentPage(pageNum)}
-                        className={`w-10 h-10 flex items-center justify-center rounded transition-all ${
+                        className={`w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded transition-all min-w-[44px] min-h-[44px] text-sm sm:text-base ${
                           currentPage === pageNum
                             ? 'bg-primary text-primary-foreground font-medium'
                             : 'border border-border hover:border-primary text-foreground hover:text-primary'
@@ -138,9 +138,9 @@ export default function GalleryClient({ works }: GalleryClientProps) {
                 <button
                   onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="px-6 py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground"
+                  className="px-3 sm:px-6 py-2.5 sm:py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground text-sm sm:text-base min-h-[44px]"
                 >
-                  Suivant →
+                  <span className="hidden sm:inline">Suivant </span>→
                 </button>
               </div>
             )}

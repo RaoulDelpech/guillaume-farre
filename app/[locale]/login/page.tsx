@@ -159,7 +159,7 @@ export default function LoginPage() {
           {/* Bouton Entrer */}
           <button
             onClick={handleEnter}
-            className="mt-16 text-white/30 text-xs tracking-[0.3em] uppercase hover:text-white/60 transition-colors pointer-events-auto animate-[fadeIn_1s_ease-out_1.5s_both]"
+            className="mt-12 sm:mt-16 text-white/30 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/60 transition-colors pointer-events-auto animate-[fadeIn_1s_ease-out_1.5s_both] min-h-[44px] px-6"
           >
             Entrer
           </button>
@@ -202,7 +202,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading || !password}
-                className="w-full py-3 text-white/40 text-xs tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-full py-3 text-white/40 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed min-h-[44px]"
               >
                 {loading ? "···" : "Valider"}
               </button>

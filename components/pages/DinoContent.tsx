@@ -99,14 +99,14 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
           <EditableText
             textKey="dino.title"
             as="h1"
-            className="text-5xl md:text-6xl lg:text-7xl font-retro tracking-wide mb-8 text-white"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-retro tracking-wide mb-6 sm:mb-8 text-white"
           >
             {t.title}
           </EditableText>
           <EditableText
             textKey="dino.subtitle"
             as="p"
-            className="text-xl md:text-2xl font-light text-white/80 leading-relaxed max-w-2xl mx-auto"
+            className="text-base sm:text-xl md:text-2xl font-light text-white/80 leading-relaxed max-w-2xl mx-auto"
           >
             {t.subtitle}
           </EditableText>
@@ -128,7 +128,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
             </div>
             <Link
               href="/dino-histoire"
-              className="px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all whitespace-nowrap"
+              className="px-6 sm:px-8 py-3.5 sm:py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all whitespace-nowrap min-h-[44px]"
             >
               L'histoire de la Dino →
             </Link>
@@ -161,7 +161,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
               <EditableText
                 textKey="dino.origin.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-6 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 text-foreground"
               >
                 {t.origin.title}
               </EditableText>
@@ -200,7 +200,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
             <EditableText
               textKey="dino.specs.title"
               as="h2"
-              className="text-4xl md:text-5xl font-light tracking-wide mb-16 text-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-8 sm:mb-16 text-foreground"
             >
               {t.specs.title}
             </EditableText>
@@ -306,7 +306,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
               <EditableText
                 textKey="dino.creative.title"
                 as="h2"
-                className="text-4xl md:text-5xl font-light tracking-wide mb-6 text-foreground"
+                className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6 text-foreground"
               >
                 {t.creative.title}
               </EditableText>
@@ -354,14 +354,14 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
             <EditableText
               textKey="dino.gallery.title"
               as="h2"
-              className="text-4xl md:text-5xl font-light tracking-wide text-foreground"
+              className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-foreground"
             >
               {t.gallery.title}
             </EditableText>
           </div>
 
           {/* Grille des vraies photos de Guillaume - Mix couleur/N&B */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {galleryImages.map((img, index) => (
               <img
                 key={index}
@@ -396,13 +396,13 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/atelier"
-                className="px-10 py-5 bg-foreground hover:bg-foreground/90 text-background font-light tracking-wide transition-all"
+                className="px-8 sm:px-10 py-4 sm:py-5 bg-foreground hover:bg-foreground/90 text-background font-light tracking-wide transition-all min-h-[48px] flex items-center justify-center"
               >
                 {t.cta.button1}
               </Link>
               <Link
                 href="/galerie"
-                className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all"
+                className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all min-h-[48px] flex items-center justify-center"
               >
                 {t.cta.button2}
               </Link>

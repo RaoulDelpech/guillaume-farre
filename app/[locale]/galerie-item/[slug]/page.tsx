@@ -28,19 +28,19 @@ export default async function GalerieItemPage({
     <main className="min-h-screen">
       <Navigation />
 
-      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28">
         <div className="max-w-6xl mx-auto">
           {/* Back link */}
           <Link
             href="/galerie"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary font-light text-sm mb-12 transition-colors"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary font-light text-sm mb-8 sm:mb-12 transition-colors min-h-[44px]"
           >
-            ← Retour à la galerie
+            ← Retour a la galerie
           </Link>
 
-          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
             {/* Image */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               {work.images.map((image, idx) => (
                 <div key={idx} className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden">
                   <img
@@ -53,12 +53,12 @@ export default async function GalerieItemPage({
             </div>
 
             {/* Details */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               <div>
-                <div className="text-xs font-light tracking-[0.2em] text-primary uppercase mb-4">
+                <div className="text-xs font-light tracking-[0.2em] text-primary uppercase mb-3 sm:mb-4">
                   {work.type === 'photo' ? 'Photographie' : 'Toile'}
                 </div>
-                <h1 className="text-4xl md:text-5xl font-light tracking-wide mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-4 sm:mb-6">
                   {work.title}
                 </h1>
                 <p className="text-xl font-light text-muted-foreground leading-relaxed">

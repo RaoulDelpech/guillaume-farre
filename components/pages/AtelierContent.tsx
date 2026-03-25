@@ -13,19 +13,19 @@ export default function AtelierContent() {
   return (
     <>
       {/* Hero */}
-      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
           <EditableText
             textKey="atelier.hero.title"
             as="h1"
-            className="text-5xl md:text-7xl font-light tracking-wide mb-6"
+            className="text-3xl sm:text-5xl md:text-7xl font-light tracking-wide mb-4 sm:mb-6"
           >
             L'Atelier
           </EditableText>
           <EditableText
             textKey="atelier.hero.subtitle"
             as="p"
-            className="text-xl md:text-2xl text-muted-foreground"
+            className="text-base sm:text-xl md:text-2xl text-muted-foreground"
           >
             La Dino. 1020 kilos d'instrument de création.
           </EditableText>
@@ -33,7 +33,7 @@ export default function AtelierContent() {
       </div>
 
       {/* Introduction */}
-      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <div className="space-y-6 text-muted-foreground">
             <EditableText
@@ -58,7 +58,7 @@ export default function AtelierContent() {
       </section>
 
       {/* Les Ferrari */}
-      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.ferrari.title"
@@ -92,7 +92,7 @@ export default function AtelierContent() {
       </section>
 
       {/* L'espace de création */}
-      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.espace.title"
@@ -137,7 +137,7 @@ export default function AtelierContent() {
       </section>
 
       {/* Le processus */}
-      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20 border-t border-border">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.processus.title"
@@ -157,7 +157,7 @@ export default function AtelierContent() {
               Chaque session commence par la préparation de la toile et de la peinture industrielle. Je choisis les couleurs en fonction de l'émotion que je veux capturer. Ensuite, la Dino entre en scène.
             </EditableText>
 
-            <div className="grid md:grid-cols-3 gap-4 my-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
               <div className="p-4 border rounded-lg bg-card/30 text-center">
                 <div className="text-xl font-light mb-2">1</div>
                 <h4 className="font-light mb-1">Préparation</h4>
@@ -188,8 +188,8 @@ export default function AtelierContent() {
       </section>
 
       {/* Galerie photos de l'atelier */}
-      <section className="py-16 md:py-24 bg-muted/10 border-t border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-8 sm:py-16 md:py-24 bg-muted/10 border-t border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <EditableText
               textKey="atelier.galerie.title"
@@ -222,8 +222,8 @@ export default function AtelierContent() {
       </section>
 
       {/* Section Visiter l'atelier - Décision audit 2025-01-20 */}
-      <section className="py-24 md:py-32 bg-muted/10 border-t border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/10 border-t border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <EditableText
               textKey="atelier.visite.title"
@@ -252,7 +252,7 @@ export default function AtelierContent() {
 
             <a
               href="/contact?sujet=visite"
-              className="inline-block px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group"
+              className="inline-block px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group min-h-[48px]"
             >
               <EditableText textKey="atelier.visite.cta" as="span">
                 Prendre rendez-vous
@@ -264,19 +264,19 @@ export default function AtelierContent() {
       </section>
 
       {/* CTA final */}
-      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-24">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/galerie"
-              className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
             >
               Voir les créations
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </a>
             <a
               href="/contact"
-              className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
             >
               Contacter Guillaume
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>

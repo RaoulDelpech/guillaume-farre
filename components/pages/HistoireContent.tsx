@@ -17,14 +17,14 @@ export default function HistoireContent() {
           <EditableText
             textKey="histoire.hero.title"
             as="h1"
-            className="text-5xl md:text-7xl font-light tracking-wide mb-6"
+            className="text-3xl sm:text-5xl md:text-7xl font-light tracking-wide mb-4 sm:mb-6"
           >
             L'Histoire
           </EditableText>
           <EditableText
             textKey="histoire.hero.subtitle"
             as="p"
-            className="text-xl md:text-2xl text-muted-foreground"
+            className="text-base sm:text-xl md:text-2xl text-muted-foreground"
           >
             D'une petite voiture d'enfance à l'art automobile contemporain
           </EditableText>
@@ -168,7 +168,7 @@ export default function HistoireContent() {
               Le travail de Guillaume Farré se situe à la croisée de plusieurs univers :
             </EditableText>
 
-            <div className="grid md:grid-cols-3 gap-6 my-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 my-6 sm:my-8">
               <div className="p-6 border rounded-lg bg-card/30">
                 <h3 className="text-lg font-light mb-3">L'Automobile</h3>
                 <EditableText
@@ -227,18 +227,18 @@ export default function HistoireContent() {
       {/* CTA */}
       <section className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
-          <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
               href="/galerie"
-              className="px-10 py-5 border border-foreground/30 hover:border-foreground font-light tracking-wide transition-colors text-center"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground font-light tracking-wide transition-colors text-center min-h-[48px] flex items-center justify-center"
             >
-              Découvrir les œuvres
+              Decouvrir les oeuvres
             </a>
             <a
               href="/boutique"
-              className="px-10 py-5 bg-foreground text-background hover:bg-foreground/90 font-light tracking-wide transition-colors text-center"
+              className="px-8 sm:px-10 py-4 sm:py-5 bg-foreground text-background hover:bg-foreground/90 font-light tracking-wide transition-colors text-center min-h-[48px] flex items-center justify-center"
             >
-              Acquérir une œuvre
+              Acquerir une oeuvre
             </a>
           </div>
         </div>

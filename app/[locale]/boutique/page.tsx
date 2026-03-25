@@ -45,12 +45,12 @@ export default async function BoutiquePage() {
       <BoutiqueContent translations={translations} />
 
       {/* Galerie */}
-      <div className="container mx-auto px-6 lg:px-8 py-16 md:py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20">
         {photosForSale.length > 0 ? (
           <ShopFilteredGrid photos={photosForSale} />
         ) : (
           <div className="text-center py-28 max-w-3xl mx-auto">
-            <p className="text-3xl md:text-4xl font-light tracking-wide mb-6">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide mb-6">
               Nouvelles œuvres bientôt disponibles
             </p>
             <p className="text-xl text-gray-400 font-light mb-10 leading-relaxed">
@@ -60,13 +60,13 @@ export default async function BoutiquePage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/collectionneurs"
-                className="px-10 py-5 bg-primary hover:bg-accent text-primary-foreground font-light tracking-wide rounded-lg transition-all"
+                className="px-8 sm:px-10 py-4 sm:py-5 bg-primary hover:bg-accent text-primary-foreground font-light tracking-wide rounded-lg transition-all min-h-[48px] flex items-center justify-center"
               >
                 Rejoindre le club
               </Link>
               <Link
                 href="/contact"
-                className="px-10 py-5 bg-card hover:bg-accent/20 border border-border text-foreground font-light tracking-wide rounded-lg transition-all"
+                className="px-8 sm:px-10 py-4 sm:py-5 bg-card hover:bg-accent/20 border border-border text-foreground font-light tracking-wide rounded-lg transition-all min-h-[48px] flex items-center justify-center"
               >
                 Me prévenir des nouveautés
               </Link>

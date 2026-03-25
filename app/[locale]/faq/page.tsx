@@ -149,34 +149,34 @@ export default function FAQPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28 max-w-4xl">
-        <h1 className="text-5xl md:text-6xl font-light tracking-wide mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28 max-w-4xl">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide mb-6 sm:mb-8">
           Foire Aux Questions
         </h1>
 
-        <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-          Toutes les réponses à vos questions sur nos œuvres, la commande, la livraison et le SAV.
+        <p className="text-base sm:text-xl text-muted-foreground mb-8 sm:mb-12 leading-relaxed">
+          Toutes les reponses a vos questions sur nos oeuvres, la commande, la livraison et le SAV.
         </p>
 
         {/* Recherche */}
-        <div className="mb-12">
+        <div className="mb-8 sm:mb-12">
           <input
             type="text"
-            placeholder="🔍 Rechercher une question..."
+            placeholder="Rechercher une question..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full px-6 py-4 border border-border rounded-lg text-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+            className="w-full px-4 sm:px-6 py-3.5 sm:py-4 border border-border rounded-lg text-base sm:text-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
           />
         </div>
 
         {/* Questions par catégorie */}
         {filteredFAQ.map((cat, catIndex) => (
-          <div key={catIndex} className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-3xl">{cat.icon}</span>
-              <h2 className="text-3xl font-light">{cat.category}</h2>
+          <div key={catIndex} className="mb-8 sm:mb-12">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <span className="text-2xl sm:text-3xl">{cat.icon}</span>
+              <h2 className="text-2xl sm:text-3xl font-light">{cat.category}</h2>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {cat.questions.map((item, qIndex) => {
                 const globalIndex = catIndex * 100 + qIndex;
                 const isOpen = openIndex === globalIndex;
@@ -185,9 +185,9 @@ export default function FAQPage() {
                   <div key={qIndex} className="border border-border rounded-lg overflow-hidden bg-card">
                     <button
                       onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
-                      className="w-full flex items-center justify-between p-6 text-left hover:bg-muted transition-colors"
+                      className="w-full flex items-center justify-between p-4 sm:p-6 text-left hover:bg-muted transition-colors min-h-[48px]"
                     >
-                      <span className="font-medium text-lg pr-4">{item.q}</span>
+                      <span className="font-medium text-base sm:text-lg pr-4">{item.q}</span>
                       <ChevronDown
                         className={`w-5 h-5 text-muted-foreground transition-transform flex-shrink-0 ${
                           isOpen ? 'rotate-180' : ''
@@ -195,7 +195,7 @@ export default function FAQPage() {
                       />
                     </button>
                     {isOpen && (
-                      <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                      <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
                         {item.a}
                       </div>
                     )}
@@ -220,17 +220,17 @@ export default function FAQPage() {
           </div>
         )}
 
-        {/* Contact si question non répondue */}
-        <div className="mt-16 bg-card border border-border rounded-xl p-8 text-center">
-          <h3 className="text-2xl font-light mb-4">Vous ne trouvez pas votre réponse ?</h3>
-          <p className="text-muted-foreground mb-8">
-            Notre équipe est à votre disposition pour répondre à toutes vos questions
+        {/* Contact si question non repondue */}
+        <div className="mt-12 sm:mt-16 bg-card border border-border rounded-xl p-5 sm:p-8 text-center">
+          <h3 className="text-xl sm:text-2xl font-light mb-3 sm:mb-4">Vous ne trouvez pas votre reponse ?</h3>
+          <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
+            Notre equipe est a votre disposition pour repondre a toutes vos questions
           </p>
           <a
             href="mailto:contact@guillaumefarre.com"
-            className="inline-block px-12 py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-lg transition-all"
+            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
           >
-            📧 Nous contacter
+            Nous contacter
           </a>
         </div>
       </div>

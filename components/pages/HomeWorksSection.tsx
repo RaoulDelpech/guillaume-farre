@@ -44,8 +44,8 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
         </EditableText>
       </div>
 
-      {/* Grille 9 œuvres - Décision audit 2025-01-20 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
+      {/* Grille 9 oeuvres - Decision audit 2025-01-20 */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-10">
         {works.slice(0, 9).map((work) => {
           // VRAIES DONNÉES séries limitées (pas simulées)
           const isLimitedEdition = work.categories?.includes("limited") || work.edition?.type === "limited";
@@ -83,9 +83,9 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
                   />
                 </div>
               )}
-              <div className="p-4 md:p-6 bg-card">
-                <h3 className="text-base md:text-lg font-light tracking-wide mb-2 truncate">{work.title}</h3>
-                <p className="text-sm text-muted-foreground font-light">
+              <div className="p-3 sm:p-4 md:p-6 bg-card">
+                <h3 className="text-sm sm:text-base md:text-lg font-light tracking-wide mb-1 sm:mb-2 truncate">{work.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground font-light">
                   {work.year} • {work.type === "photo" ? "Photographie" : "Toile"}
                 </p>
               </div>

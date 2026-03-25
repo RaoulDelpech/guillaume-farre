@@ -62,7 +62,7 @@ export default function ContactContent() {
           <EditableText
             textKey="contact.hero.title"
             as="h1"
-            className="text-5xl md:text-7xl font-light tracking-wide mb-8 text-foreground"
+            className="text-3xl sm:text-5xl md:text-7xl font-light tracking-wide mb-6 sm:mb-8 text-foreground"
           >
             Contact
           </EditableText>
@@ -159,7 +159,7 @@ export default function ContactContent() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all disabled:opacity-50"
+                  className="w-full py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all disabled:opacity-50 min-h-[48px]"
                 >
                   {isSubmitting ? "Envoi en cours..." : "Envoyer"}
                 </button>
@@ -209,16 +209,16 @@ export default function ContactContent() {
             >
               Découvrez les œuvres disponibles
             </EditableText>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 href="/galerie"
-                className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all"
+                className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center min-h-[48px] flex items-center justify-center"
               >
                 Voir la galerie
               </Link>
               <Link
                 href="/atelier"
-                className="px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all"
+                className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center min-h-[48px] flex items-center justify-center"
               >
                 Visiter l'atelier
               </Link>

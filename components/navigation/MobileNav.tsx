@@ -70,20 +70,20 @@ export default function MobileNav() {
         />
       )}
 
-      {/* Mobile Menu Panel - fond solide */}
+      {/* Mobile Menu Panel - utilise design token au lieu de hardcoded */}
       <div
         id="mobile-menu"
-        className={`fixed top-0 right-0 h-full w-72 bg-zinc-900 border-l border-zinc-700 z-50 transform transition-transform duration-300 md:hidden shadow-2xl ${
+        className={`fixed top-0 right-0 h-full w-72 bg-background border-l border-border z-50 transform transition-transform duration-300 md:hidden shadow-2xl ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onKeyDown={handleKeyDown}
       >
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">
-            <span className="font-light tracking-wide text-white">Menu</span>
+            <span className="font-light tracking-wide text-foreground">Menu</span>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-11 h-11 flex items-center justify-center text-white/60 hover:text-white"
+              className="w-11 h-11 flex items-center justify-center text-muted-foreground hover:text-foreground"
               aria-label="Fermer"
             >
               ✕
@@ -96,13 +96,13 @@ export default function MobileNav() {
                 href={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`text-base font-light tracking-wide transition-colors py-2.5 min-h-[44px] flex items-center ${
-                  pathname === link.href ? "text-[#C4A570]" : "text-white/80 hover:text-white"
+                  pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="mt-4 pt-4 border-t border-zinc-700">
+            <div className="mt-4 pt-4 border-t border-border">
               <LanguageSwitcher />
             </div>
           </nav>

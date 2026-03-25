@@ -222,15 +222,15 @@ export default function ShopGrid({ photos }: ShopGridProps) {
           return (
           <div
             key={photo.path}
-            className="bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-all shadow-lg"
+            className="bg-card rounded-lg overflow-hidden border border-border hover:border-primary hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 shadow-lg"
           >
-            <div className="relative aspect-[4/3] bg-zinc-900 group">
+            <div className="relative aspect-[4/3] bg-zinc-900 group overflow-hidden">
               <Image
                 src={photo.path}
                 alt={photo.title || photo.filename}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
                 quality={85}
               />

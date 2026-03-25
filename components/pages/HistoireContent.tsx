@@ -1,6 +1,7 @@
 "use client";
 
 import EditableText from "@/components/admin/EditableText";
+import { MotionSection } from "@/components/motion/MotionWrapper";
 
 /**
  * Contenu de la page Histoire avec textes éditables
@@ -12,7 +13,7 @@ export default function HistoireContent() {
   return (
     <>
       {/* Hero */}
-      <div className="container mx-auto px-4 py-12 md:py-20">
+      <MotionSection variant="fadeInUp" className="container mx-auto px-4 py-12 md:py-20">
         <div className="max-w-4xl mx-auto">
           <EditableText
             textKey="histoire.hero.title"
@@ -29,10 +30,10 @@ export default function HistoireContent() {
             D'une petite voiture d'enfance à l'art automobile contemporain
           </EditableText>
         </div>
-      </div>
+      </MotionSection>
 
       {/* L'origine - La Ferrari n°20 */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="histoire.origin.title"
@@ -83,10 +84,10 @@ export default function HistoireContent() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* Le passage à l'échelle réelle */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="histoire.scale.title"
@@ -146,10 +147,10 @@ export default function HistoireContent() {
             </div>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* La démarche artistique */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="histoire.demarche.title"
@@ -222,27 +223,27 @@ export default function HistoireContent() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* CTA */}
-      <section className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
               href="/galerie"
-              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground font-light tracking-wide transition-colors text-center min-h-[48px] flex items-center justify-center"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg font-light tracking-wide transition-all duration-300 text-center min-h-[48px] flex items-center justify-center"
             >
               Decouvrir les oeuvres
             </a>
             <a
               href="/boutique"
-              className="px-8 sm:px-10 py-4 sm:py-5 bg-foreground text-background hover:bg-foreground/90 font-light tracking-wide transition-colors text-center min-h-[48px] flex items-center justify-center"
+              className="px-8 sm:px-10 py-4 sm:py-5 bg-foreground text-background hover:bg-foreground/90 hover:scale-102 hover:shadow-lg font-light tracking-wide transition-all duration-300 text-center min-h-[48px] flex items-center justify-center"
             >
               Acquerir une oeuvre
             </a>
           </div>
         </div>
-      </section>
+      </MotionSection>
     </>
   );
 }

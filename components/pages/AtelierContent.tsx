@@ -2,6 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import Image from "next/image";
+import { MotionSection, MotionItem } from "@/components/motion/MotionWrapper";
 
 /**
  * Contenu de la page Atelier avec textes éditables
@@ -13,7 +14,7 @@ export default function AtelierContent() {
   return (
     <>
       {/* Hero */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28">
+      <MotionSection variant="fadeInUp" className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
           <EditableText
             textKey="atelier.hero.title"
@@ -30,10 +31,10 @@ export default function AtelierContent() {
             La Dino. 1020 kilos d'instrument de création.
           </EditableText>
         </div>
-      </div>
+      </MotionSection>
 
       {/* Introduction */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
+      <MotionSection variant="fadeInUp" delay={0.1} className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <div className="space-y-6 text-muted-foreground">
             <EditableText
@@ -55,10 +56,10 @@ export default function AtelierContent() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* Les Ferrari */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
+      <MotionSection variant="fadeInUp" delay={0.1} className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.ferrari.title"
@@ -89,10 +90,10 @@ export default function AtelierContent() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* L'espace de création */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
+      <MotionSection variant="fadeInUp" delay={0.1} className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.espace.title"
@@ -134,10 +135,10 @@ export default function AtelierContent() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* Le processus */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
+      <MotionSection variant="fadeInUp" delay={0.1} className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 border-t border-border">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="atelier.processus.title"
@@ -157,23 +158,23 @@ export default function AtelierContent() {
               Chaque session commence par la préparation de la toile et de la peinture industrielle. Je choisis les couleurs en fonction de l'émotion que je veux capturer. Ensuite, la Dino entre en scène.
             </EditableText>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
-              <div className="p-4 border rounded-lg bg-card/30 text-center">
+            <MotionSection stagger={true} className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
+              <MotionItem variant="scaleIn" className="p-4 border rounded-lg bg-card/30 text-center hover:border-foreground/30 transition-colors duration-300">
                 <div className="text-xl font-light mb-2">1</div>
                 <h4 className="font-light mb-1">Préparation</h4>
                 <p className="text-xs text-muted-foreground">Toile, peinture, trajectoire</p>
-              </div>
-              <div className="p-4 border rounded-lg bg-card/30 text-center">
+              </MotionItem>
+              <MotionItem variant="scaleIn" className="p-4 border rounded-lg bg-card/30 text-center hover:border-foreground/30 transition-colors duration-300">
                 <div className="text-xl font-light mb-2">2</div>
                 <h4 className="font-light mb-1">Action</h4>
                 <p className="text-xs text-muted-foreground">La Dino en mouvement</p>
-              </div>
-              <div className="p-4 border rounded-lg bg-card/30 text-center">
+              </MotionItem>
+              <MotionItem variant="scaleIn" className="p-4 border rounded-lg bg-card/30 text-center hover:border-foreground/30 transition-colors duration-300">
                 <div className="text-xl font-light mb-2">3</div>
                 <h4 className="font-light mb-1">Capture</h4>
                 <p className="text-xs text-muted-foreground">Photographie de l'instant</p>
-              </div>
-            </div>
+              </MotionItem>
+            </MotionSection>
 
             <EditableText
               textKey="atelier.processus.p2"
@@ -185,12 +186,12 @@ export default function AtelierContent() {
             </EditableText>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* Galerie photos de l'atelier */}
       <section className="py-8 sm:py-16 md:py-24 bg-muted/10 border-t border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <MotionSection variant="fadeInUp" className="text-center mb-12">
             <EditableText
               textKey="atelier.galerie.title"
               as="h2"
@@ -198,9 +199,9 @@ export default function AtelierContent() {
             >
               L'atelier en images
             </EditableText>
-          </div>
+          </MotionSection>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          <MotionSection stagger={true} className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               "/images/works/atelier/atelier-063.jpg",
               "/images/works/atelier/atelier-004.jpg",
@@ -209,20 +210,20 @@ export default function AtelierContent() {
               "/images/works/atelier/atelier-010.jpg",
               "/images/works/atelier/atelier-001.jpg",
             ].map((img, index) => (
-              <div key={index} className="aspect-square bg-muted/30 rounded-lg overflow-hidden">
+              <MotionItem key={index} variant="scaleIn" className="aspect-square bg-muted/30 rounded-lg overflow-hidden group">
                 <img
                   src={img}
                   alt={`L'atelier ${index + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-              </div>
+              </MotionItem>
             ))}
-          </div>
+          </MotionSection>
         </div>
       </section>
 
       {/* Section Visiter l'atelier - Décision audit 2025-01-20 */}
-      <section className="py-12 sm:py-24 md:py-32 bg-muted/10 border-t border-border">
+      <MotionSection variant="fadeInUp" className="py-12 sm:py-24 md:py-32 bg-muted/10 border-t border-border">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <EditableText
@@ -252,7 +253,7 @@ export default function AtelierContent() {
 
             <a
               href="/contact?sujet=visite"
-              className="inline-block px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group min-h-[48px]"
+              className="inline-block px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide transition-all group min-h-[48px]"
             >
               <EditableText textKey="atelier.visite.cta" as="span">
                 Prendre rendez-vous
@@ -261,29 +262,29 @@ export default function AtelierContent() {
             </a>
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* CTA final */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-24">
+      <MotionSection variant="fadeInUp" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-24">
         <div className="max-w-3xl mx-auto">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/galerie"
-              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
             >
               Voir les créations
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </a>
             <a
               href="/contact"
-              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
             >
               Contacter Guillaume
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </a>
           </div>
         </div>
-      </section>
+      </MotionSection>
     </>
   );
 }

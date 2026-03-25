@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing";
 import Lightbox from "@/components/lightbox/Lightbox";
 import type { Work } from "@/lib/works";
 import { altForWork, primaryImage } from "@/lib/images";
+import { MotionSection, MotionItem } from "@/components/motion/MotionWrapper";
 
 function editionLabel(w: Work) {
   if (w.edition.type === "limited") return `Édition limitée (${w.edition.count})`;
@@ -18,27 +19,29 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
 
   return (
     <div className="mt-6 md:mt-8">
-      <div className="masonry masonry-responsive">
+      <MotionSection stagger={true} className="masonry masonry-responsive">
         {works.map((w, index) => (
-          <div key={w.slug} className="masonry-item">
+          <MotionItem key={w.slug} variant="scaleIn" className="masonry-item">
             <button
               type="button"
               aria-label={`Agrandir ${w.title}`}
-              className="group block w-full border-0 outline-none bg-transparent p-0 cursor-pointer"
+              className="group block w-full border-0 outline-none bg-transparent p-0 cursor-pointer hover:scale-103 transition-transform duration-300"
               onClick={() => { setSelectedSlug(w.slug); setOpen(true); }}
             >
               {primaryImage(w) ? (
-                <div className="relative w-full aspect-[4/5]">
+                <div className="relative w-full aspect-[4/5] overflow-hidden group-hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={primaryImage(w)!}
                     alt={altForWork(w)}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                     quality={85}
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
                   />
+                  {/* Overlay subtil au hover */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                 </div>
               ) : (
                 <div className="w-full h-48 rounded-md bg-muted" />
@@ -49,9 +52,9 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
               <div className="text-xs md:text-sm text-muted-foreground">{w.year} — {w.type === 'photo' ? 'Photo' : 'Toile'}</div>
               <div className="text-xs text-muted-foreground truncate">{editionLabel(w)}</div>
             </div>
-          </div>
+          </MotionItem>
         ))}
-      </div>
+      </MotionSection>
       <Lightbox
         open={open}
         work={selected}

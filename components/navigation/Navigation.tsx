@@ -33,7 +33,7 @@ export default function Navigation() {
     <nav className="bg-background/95 backdrop-blur-sm border-b border-border text-foreground sticky top-0 z-40">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <Link href="/" className="text-2xl font-light tracking-wide hover:text-primary transition-colors">
+          <Link href="/" className="text-xl sm:text-2xl font-light tracking-wide hover:text-primary transition-colors">
             Guillaume Farré
           </Link>
           <div className="hidden md:flex items-center gap-8 lg:gap-10">

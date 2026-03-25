@@ -2,6 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
+import { MotionSection } from "@/components/motion/MotionWrapper";
 
 interface HomePageContentProps {
   translations: {
@@ -29,7 +30,7 @@ export default function HomePageContent({ translations: t, artistPhoto }: HomePa
       <div className="container px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Image artiste */}
-          <div className="order-2 md:order-1">
+          <MotionSection variant="fadeIn" delay={0.2} className="order-2 md:order-1">
             <div className="relative overflow-hidden rounded-lg">
               <img
                 src={photoUrl}
@@ -37,10 +38,10 @@ export default function HomePageContent({ translations: t, artistPhoto }: HomePa
                 className="w-full h-auto object-cover"
               />
             </div>
-          </div>
+          </MotionSection>
 
           {/* Texte artiste */}
-          <div className="order-1 md:order-2">
+          <MotionSection variant="fadeInUp" className="order-1 md:order-2">
             <EditableText
               textKey="home.artist.label"
               as="div"
@@ -65,11 +66,11 @@ export default function HomePageContent({ translations: t, artistPhoto }: HomePa
             </EditableText>
             <Link
               href="/histoire"
-              className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all"
+              className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground hover:scale-102 text-foreground font-light tracking-wide transition-all hover:shadow-lg"
             >
               {t.artist.cta} →
             </Link>
-          </div>
+          </MotionSection>
         </div>
       </div>
     </section>

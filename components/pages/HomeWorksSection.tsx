@@ -2,6 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
+import { MotionSection, MotionItem } from "@/components/motion/MotionWrapper";
 
 interface Work {
   slug: string;
@@ -27,7 +28,7 @@ interface HomeWorksSectionProps {
 export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
   return (
     <section className="container py-20 md:py-28 border-t px-6 lg:px-8">
-      <div className="mb-16 text-center">
+      <MotionSection variant="fadeInUp" className="mb-16 text-center">
         <EditableText
           textKey="home.works.title"
           as="h2"
@@ -42,10 +43,10 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
         >
           Toiles. Photographies. Empreintes irréversibles.
         </EditableText>
-      </div>
+      </MotionSection>
 
       {/* Grille 9 oeuvres - Decision audit 2025-01-20 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-10">
+      <MotionSection variant="fadeInUp" stagger={true} className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-10">
         {works.slice(0, 9).map((work) => {
           // VRAIES DONNÉES séries limitées (pas simulées)
           const isLimitedEdition = work.categories?.includes("limited") || work.edition?.type === "limited";
@@ -55,11 +56,11 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
           const isLastOne = available === 1;
 
           return (
-            <Link
-              key={work.slug}
-              href={`/galerie-item/${work.slug}`}
-              className="group block overflow-hidden border border-border hover:border-foreground/50 transition-all relative"
-            >
+            <MotionItem key={work.slug} variant="scaleIn">
+              <Link
+                href={`/galerie-item/${work.slug}`}
+                className="group block overflow-hidden border border-border hover:border-foreground/50 hover:scale-102 hover:shadow-xl transition-all duration-300 relative"
+              >
               {/* Badge discret édition limitée */}
               {isLimitedEdition && !isSold && (
                 <div className="absolute top-3 left-3 z-10">
@@ -89,23 +90,24 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
                   {work.year} • {work.type === "photo" ? "Photographie" : "Toile"}
                 </p>
               </div>
-            </Link>
+              </Link>
+            </MotionItem>
           );
         })}
-      </div>
+      </MotionSection>
 
       {/* CTA - Décision audit 2025-01-20 */}
-      <div className="mt-16 text-center">
+      <MotionSection variant="fadeInUp" delay={0.2} className="mt-16 text-center">
         <Link
           href="/galerie"
-          className="inline-block px-10 py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide text-lg transition-all group"
+          className="inline-block px-10 py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide text-lg transition-all duration-300 group"
         >
           <EditableText textKey="home.works.cta" as="span">
             Voir toute la galerie
           </EditableText>
           <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
         </Link>
-      </div>
+      </MotionSection>
     </section>
   );
 }

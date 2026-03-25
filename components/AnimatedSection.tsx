@@ -20,34 +20,35 @@ export default function AnimatedSection({
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1, triggerOnce: true });
 
   const getAnimationClass = () => {
-    const baseClass = "transition-all";
-    const durationClass = `duration-[${duration}ms]`;
-    const delayClass = delay > 0 ? `delay-[${delay}ms]` : "";
-
     if (!isVisible) {
       switch (animation) {
         case "fadeIn":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0`;
+          return "transition-all opacity-0";
         case "slideUp":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 translate-y-10`;
+          return "transition-all opacity-0 translate-y-10";
         case "slideLeft":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 translate-x-10`;
+          return "transition-all opacity-0 translate-x-10";
         case "slideRight":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 -translate-x-10`;
+          return "transition-all opacity-0 -translate-x-10";
         case "scaleIn":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 scale-95`;
+          return "transition-all opacity-0 scale-95";
         case "rotateIn":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 -rotate-3 scale-95`;
+          return "transition-all opacity-0 -rotate-3 scale-95";
         default:
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0`;
+          return "transition-all opacity-0";
       }
     }
 
-    return `${baseClass} ${durationClass} ${delayClass} opacity-100`;
+    return "transition-all opacity-100";
+  };
+
+  const inlineStyles = {
+    transitionDuration: `${duration}ms`,
+    transitionDelay: delay > 0 ? `${delay}ms` : undefined,
   };
 
   return (
-    <div ref={ref} className={`${getAnimationClass()} ${className}`}>
+    <div ref={ref} className={`${getAnimationClass()} ${className}`} style={inlineStyles}>
       {children}
     </div>
   );

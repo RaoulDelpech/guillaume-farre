@@ -29,6 +29,7 @@ interface ShippingNotificationEmailProps {
     format: string;
     frame: string;
   }[];
+  locale?: 'fr' | 'en' | 'it';
 }
 
 export default function ShippingNotificationEmail({
@@ -45,7 +46,77 @@ export default function ShippingNotificationEmail({
       frame: 'Cadre noir',
     },
   ],
+  locale = 'fr',
 }: ShippingNotificationEmailProps) {
+  const t = {
+    fr: {
+      subtitle: 'Artiste Sculpteur · Fine Art',
+      emoji: '📦',
+      heading: 'Votre œuvre est en route !',
+      hello: 'Bonjour',
+      intro: 'Excellente nouvelle : votre commande a été expédiée et est actuellement en chemin vers vous.',
+      trackingTitle: 'Informations de suivi',
+      order: 'Commande',
+      carrier: 'Transporteur',
+      trackingNumber: 'Numéro de suivi',
+      estimatedDelivery: 'Livraison estimée',
+      trackButton: 'Suivre mon colis en temps réel',
+      orderLink: 'Voir le statut de ma commande',
+      itemsTitle: 'Contenu du colis',
+      format: 'Format',
+      infoTitle: 'Conseils de réception',
+      infoText: '• Vérifiez l\'emballage à la réception (avant signature)\n• En cas de dommage visible, refusez le colis\n• Conservez l\'emballage 48h pour toute réclamation\n• Votre œuvre est assurée pendant le transport',
+      question: 'Vous avez une question sur votre livraison ?',
+      contactText: 'Contactez-nous à',
+      orderNumberText: 'En indiquant votre numéro de commande :',
+      footer: '© 2025 Guillaume Farré - Artiste Sculpteur',
+    },
+    en: {
+      subtitle: 'Sculptor Artist · Fine Art',
+      emoji: '📦',
+      heading: 'Your artwork is on its way!',
+      hello: 'Hello',
+      intro: 'Great news: your order has been shipped and is currently on its way to you.',
+      trackingTitle: 'Tracking information',
+      order: 'Order',
+      carrier: 'Carrier',
+      trackingNumber: 'Tracking number',
+      estimatedDelivery: 'Estimated delivery',
+      trackButton: 'Track my package in real time',
+      orderLink: 'View my order status',
+      itemsTitle: 'Package contents',
+      format: 'Format',
+      infoTitle: 'Delivery tips',
+      infoText: '• Check the packaging upon receipt (before signing)\n• In case of visible damage, refuse the package\n• Keep the packaging for 48h for any claim\n• Your artwork is insured during transport',
+      question: 'Do you have a question about your delivery?',
+      contactText: 'Contact us at',
+      orderNumberText: 'Indicating your order number:',
+      footer: '© 2025 Guillaume Farré - Sculptor Artist',
+    },
+    it: {
+      subtitle: 'Artista Scultore · Fine Art',
+      emoji: '📦',
+      heading: 'La tua opera è in viaggio!',
+      hello: 'Ciao',
+      intro: 'Ottima notizia: il tuo ordine è stato spedito ed è attualmente in viaggio verso di te.',
+      trackingTitle: 'Informazioni di tracciamento',
+      order: 'Ordine',
+      carrier: 'Corriere',
+      trackingNumber: 'Numero di tracciamento',
+      estimatedDelivery: 'Consegna stimata',
+      trackButton: 'Traccia il mio pacco in tempo reale',
+      orderLink: 'Visualizza lo stato del mio ordine',
+      itemsTitle: 'Contenuto del pacco',
+      format: 'Formato',
+      infoTitle: 'Consigli per la ricezione',
+      infoText: '• Controlla l\'imballaggio al ricevimento (prima della firma)\n• In caso di danni visibili, rifiuta il pacco\n• Conserva l\'imballaggio per 48 ore per eventuali reclami\n• La tua opera è assicurata durante il trasporto',
+      question: 'Hai domande sulla tua consegna?',
+      contactText: 'Contattaci a',
+      orderNumberText: 'Indicando il tuo numero d\'ordine:',
+      footer: '© 2025 Guillaume Farré - Artista Scultore',
+    },
+  }[locale];
+
   return (
     <Html>
       <Head />
@@ -54,40 +125,39 @@ export default function ShippingNotificationEmail({
           {/* Header */}
           <Section style={styles.header}>
             <Heading style={styles.title}>Guillaume Farré</Heading>
-            <Text style={styles.subtitle}>Artiste Sculpteur · Fine Art</Text>
+            <Text style={styles.subtitle}>{t.subtitle}</Text>
           </Section>
 
           {/* Main Content */}
           <Section style={styles.main}>
-            <Text style={styles.emoji}>📦</Text>
+            <Text style={styles.emoji}>{t.emoji}</Text>
 
             <Heading style={styles.heading}>
-              Votre œuvre est en route !
+              {t.heading}
             </Heading>
 
-            <Text style={styles.text}>Bonjour {customerName},</Text>
+            <Text style={styles.text}>{t.hello} {customerName},</Text>
 
             <Text style={styles.text}>
-              Excellente nouvelle : votre commande a été expédiée et est
-              actuellement en chemin vers vous.
+              {t.intro}
             </Text>
 
             {/* Tracking Box */}
             <Section style={styles.trackingBox}>
-              <Text style={styles.trackingTitle}>Informations de suivi</Text>
+              <Text style={styles.trackingTitle}>{t.trackingTitle}</Text>
 
-              <Text style={styles.trackingLabel}>Commande</Text>
+              <Text style={styles.trackingLabel}>{t.order}</Text>
               <Text style={styles.trackingValue}>{orderNumber}</Text>
 
-              <Text style={styles.trackingLabel}>Transporteur</Text>
+              <Text style={styles.trackingLabel}>{t.carrier}</Text>
               <Text style={styles.trackingValue}>{carrier}</Text>
 
-              <Text style={styles.trackingLabel}>Numéro de suivi</Text>
+              <Text style={styles.trackingLabel}>{t.trackingNumber}</Text>
               <Text style={styles.trackingValueBold}>{trackingNumber}</Text>
 
               {estimatedDelivery && (
                 <>
-                  <Text style={styles.trackingLabel}>Livraison estimée</Text>
+                  <Text style={styles.trackingLabel}>{t.estimatedDelivery}</Text>
                   <Text style={styles.trackingValue}>{estimatedDelivery}</Text>
                 </>
               )}
@@ -95,24 +165,24 @@ export default function ShippingNotificationEmail({
               <Hr style={styles.divider} />
 
               <Button href={trackingUrl} style={styles.trackingButton}>
-                Suivre mon colis en temps réel
+                {t.trackButton}
               </Button>
 
               <Text style={styles.trackingSecondary}>
-                <a href={`https://guillaumefarre.com/fr/commande?order=${orderNumber}`} style={styles.linkSecondary}>
-                  Voir le statut de ma commande
+                <a href={`https://guillaumefarre.com/${locale}/commande?order=${orderNumber}`} style={styles.linkSecondary}>
+                  {t.orderLink}
                 </a>
               </Text>
             </Section>
 
             {/* Items Summary */}
             <Section style={styles.itemsBox}>
-              <Text style={styles.itemsTitle}>Contenu du colis</Text>
+              <Text style={styles.itemsTitle}>{t.itemsTitle}</Text>
               {items.map((item, index) => (
                 <div key={index} style={styles.item}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
                   <Text style={styles.itemDetails}>
-                    Format {item.format} · {item.frame}
+                    {t.format} {item.format} · {item.frame}
                   </Text>
                 </div>
               ))}
@@ -120,35 +190,35 @@ export default function ShippingNotificationEmail({
 
             {/* Delivery Instructions */}
             <Section style={styles.infoBox}>
-              <Text style={styles.infoTitle}>Conseils de réception</Text>
+              <Text style={styles.infoTitle}>{t.infoTitle}</Text>
               <Text style={styles.infoText}>
-                • Vérifiez l'emballage à la réception (avant signature)
-                <br />
-                • En cas de dommage visible, refusez le colis
-                <br />
-                • Conservez l'emballage 48h pour toute réclamation
-                <br />• Votre œuvre est assurée pendant le transport
+                {t.infoText.split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
               </Text>
             </Section>
 
             {/* Footer */}
             <Section style={styles.footer}>
               <Text style={styles.footerText}>
-                Vous avez une question sur votre livraison ?
+                {t.question}
               </Text>
               <Text style={styles.footerSmall}>
-                Contactez-nous à{' '}
+                {t.contactText}{' '}
                 <a href="mailto:contact@guillaumefarre.com" style={styles.link}>
                   contact@guillaumefarre.com
                 </a>
                 <br />
-                En indiquant votre numéro de commande : {orderNumber}
+                {t.orderNumberText} {orderNumber}
               </Text>
 
               <Hr style={styles.divider} />
 
               <Text style={styles.footerTiny}>
-                © 2025 Guillaume Farré - Artiste Sculpteur
+                {t.footer}
                 <br />
                 www.guillaumefarre.com
               </Text>

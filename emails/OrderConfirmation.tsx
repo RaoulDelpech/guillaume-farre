@@ -30,6 +30,7 @@ interface OrderConfirmationEmailProps {
     country: string;
   };
   isEarlyCollector?: boolean;
+  locale?: 'fr' | 'en' | 'it';
 }
 
 export default function OrderConfirmationEmail({
@@ -51,7 +52,113 @@ export default function OrderConfirmationEmail({
     country: 'France',
   },
   isEarlyCollector = false,
+  locale = 'fr',
 }: OrderConfirmationEmailProps) {
+  const t = {
+    fr: {
+      subtitle: 'Artiste Sculpteur · Fine Art',
+      heading: 'Merci pour votre commande !',
+      hello: 'Bonjour',
+      intro: 'Votre commande a été confirmée. Nous commençons immédiatement l\'impression de votre œuvre d\'art avec la plus grande attention.',
+      order: 'Commande',
+      format: 'Format',
+      total: 'Total',
+      shippingTitle: 'Adresse de livraison',
+      vipTitle: '🎭 Votre invitation VIP',
+      vipText1: 'En tant qu\'Early Collector, vous serez convié en tant qu\'hôte d\'honneur à la première exposition de Guillaume Farré.',
+      vipText2: 'Nous vous contacterons dès que les détails seront annoncés.',
+      timelineTitle: 'Prochaines étapes',
+      timelinePayment: 'Paiement reçu',
+      timelineToday: 'Aujourd\'hui',
+      timelinePrinting: 'Impression Fine Art',
+      timelinePrintingDuration: '2-3 jours',
+      timelineShipping: 'Expédition sécurisée',
+      timelineShippingDuration: '1 semaine',
+      timelineDelivery: 'Livraison chez vous',
+      timelineDeliveryDuration: '2-3 semaines',
+      trackButton: 'Suivre ma commande',
+      shopLink: 'Continuer mes achats',
+      certificateTitle: '📜 Certificat d\'authenticité',
+      certificateText1: 'Votre certificat d\'authenticité est disponible au téléchargement depuis votre page de suivi de commande.',
+      certificateText2: 'Ce document officiel, signé par l\'artiste, atteste de l\'authenticité et de l\'édition limitée de votre œuvre.',
+      qualityTitle: 'Qualité garantie',
+      qualityItem1: 'Tirage numéroté et signé par l\'artiste',
+      qualityItem2: 'Papier Fine Art Giclee 300g/m² - Garantie 100 ans',
+      qualityItem3: 'Certificat d\'authenticité inclus',
+      qualityItem4: 'Livraison sécurisée avec tracking',
+      question: 'Une question ? Contactez-nous à',
+      footer: '© 2025 Guillaume Farré - Artiste Sculpteur',
+    },
+    en: {
+      subtitle: 'Sculptor Artist · Fine Art',
+      heading: 'Thank you for your order!',
+      hello: 'Hello',
+      intro: 'Your order has been confirmed. We are immediately starting the printing of your artwork with the utmost care.',
+      order: 'Order',
+      format: 'Format',
+      total: 'Total',
+      shippingTitle: 'Shipping address',
+      vipTitle: '🎭 Your VIP invitation',
+      vipText1: 'As an Early Collector, you will be invited as a guest of honor to Guillaume Farré\'s first exhibition.',
+      vipText2: 'We will contact you as soon as the details are announced.',
+      timelineTitle: 'Next steps',
+      timelinePayment: 'Payment received',
+      timelineToday: 'Today',
+      timelinePrinting: 'Fine Art printing',
+      timelinePrintingDuration: '2-3 days',
+      timelineShipping: 'Secure shipping',
+      timelineShippingDuration: '1 week',
+      timelineDelivery: 'Delivery to you',
+      timelineDeliveryDuration: '2-3 weeks',
+      trackButton: 'Track my order',
+      shopLink: 'Continue shopping',
+      certificateTitle: '📜 Certificate of authenticity',
+      certificateText1: 'Your certificate of authenticity is available for download from your order tracking page.',
+      certificateText2: 'This official document, signed by the artist, certifies the authenticity and limited edition of your artwork.',
+      qualityTitle: 'Guaranteed quality',
+      qualityItem1: 'Numbered and signed by the artist',
+      qualityItem2: 'Fine Art Giclee paper 300g/m² - 100 year guarantee',
+      qualityItem3: 'Certificate of authenticity included',
+      qualityItem4: 'Secure delivery with tracking',
+      question: 'Any questions? Contact us at',
+      footer: '© 2025 Guillaume Farré - Sculptor Artist',
+    },
+    it: {
+      subtitle: 'Artista Scultore · Fine Art',
+      heading: 'Grazie per il tuo ordine!',
+      hello: 'Ciao',
+      intro: 'Il tuo ordine è stato confermato. Iniziamo immediatamente la stampa della tua opera d\'arte con la massima attenzione.',
+      order: 'Ordine',
+      format: 'Formato',
+      total: 'Totale',
+      shippingTitle: 'Indirizzo di spedizione',
+      vipTitle: '🎭 Il tuo invito VIP',
+      vipText1: 'In qualità di Early Collector, sarai invitato come ospite d\'onore alla prima mostra di Guillaume Farré.',
+      vipText2: 'Ti contatteremo non appena verranno annunciati i dettagli.',
+      timelineTitle: 'Prossimi passi',
+      timelinePayment: 'Pagamento ricevuto',
+      timelineToday: 'Oggi',
+      timelinePrinting: 'Stampa Fine Art',
+      timelinePrintingDuration: '2-3 giorni',
+      timelineShipping: 'Spedizione sicura',
+      timelineShippingDuration: '1 settimana',
+      timelineDelivery: 'Consegna a casa tua',
+      timelineDeliveryDuration: '2-3 settimane',
+      trackButton: 'Traccia il mio ordine',
+      shopLink: 'Continua a fare acquisti',
+      certificateTitle: '📜 Certificato di autenticità',
+      certificateText1: 'Il certificato di autenticità è disponibile per il download dalla pagina di tracciamento dell\'ordine.',
+      certificateText2: 'Questo documento ufficiale, firmato dall\'artista, certifica l\'autenticità e l\'edizione limitata della tua opera.',
+      qualityTitle: 'Qualità garantita',
+      qualityItem1: 'Numerato e firmato dall\'artista',
+      qualityItem2: 'Carta Fine Art Giclee 300g/m² - Garanzia 100 anni',
+      qualityItem3: 'Certificato di autenticità incluso',
+      qualityItem4: 'Consegna sicura con tracciamento',
+      question: 'Hai domande? Contattaci a',
+      footer: '© 2025 Guillaume Farré - Artista Scultore',
+    },
+  }[locale];
+
   return (
     <Html>
       <Head />
@@ -60,28 +167,27 @@ export default function OrderConfirmationEmail({
           {/* Header */}
           <Section style={styles.header}>
             <Heading style={styles.title}>Guillaume Farré</Heading>
-            <Text style={styles.subtitle}>Artiste Sculpteur · Fine Art</Text>
+            <Text style={styles.subtitle}>{t.subtitle}</Text>
           </Section>
 
           {/* Main Content */}
           <Section style={styles.main}>
             <Heading style={styles.heading}>
-              Merci pour votre commande !
+              {t.heading}
             </Heading>
 
             <Text style={styles.text}>
-              Bonjour {customerName},
+              {t.hello} {customerName},
             </Text>
 
             <Text style={styles.text}>
-              Votre commande a été confirmée. Nous commençons immédiatement
-              l'impression de votre œuvre d'art avec la plus grande attention.
+              {t.intro}
             </Text>
 
             {/* Order Details */}
             <Section style={styles.orderBox}>
               <Text style={styles.orderNumber}>
-                Commande : <strong>{orderNumber}</strong>
+                {t.order} : <strong>{orderNumber}</strong>
               </Text>
 
               <Hr style={styles.divider} />
@@ -91,7 +197,7 @@ export default function OrderConfirmationEmail({
                 <div key={index} style={styles.item}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
                   <Text style={styles.itemDetails}>
-                    Format {item.format} · {item.frame}
+                    {t.format} {item.format} · {item.frame}
                   </Text>
                   <Text style={styles.itemPrice}>{item.price}€</Text>
                 </div>
@@ -101,14 +207,14 @@ export default function OrderConfirmationEmail({
 
               {/* Total */}
               <div style={styles.total}>
-                <Text style={styles.totalLabel}>Total</Text>
+                <Text style={styles.totalLabel}>{t.total}</Text>
                 <Text style={styles.totalAmount}>{totalAmount}€</Text>
               </div>
             </Section>
 
             {/* Shipping Address */}
             <Section style={styles.addressBox}>
-              <Text style={styles.addressTitle}>Adresse de livraison</Text>
+              <Text style={styles.addressTitle}>{t.shippingTitle}</Text>
               <Text style={styles.addressText}>
                 {shippingAddress.line1}
                 <br />
@@ -121,45 +227,44 @@ export default function OrderConfirmationEmail({
             {/* Early Collector VIP Invitation */}
             {isEarlyCollector && (
               <Section style={styles.vipBox}>
-                <Text style={styles.vipTitle}>🎭 Votre invitation VIP</Text>
+                <Text style={styles.vipTitle}>{t.vipTitle}</Text>
                 <Text style={styles.vipText}>
-                  En tant qu'Early Collector, vous serez convié en tant qu'hôte
-                  d'honneur à la première exposition de Guillaume Farré.
+                  {t.vipText1}
                 </Text>
                 <Text style={styles.vipText}>
-                  Nous vous contacterons dès que les détails seront annoncés.
+                  {t.vipText2}
                 </Text>
               </Section>
             )}
 
             {/* Timeline */}
             <Section style={styles.timeline}>
-              <Text style={styles.timelineTitle}>Prochaines étapes</Text>
+              <Text style={styles.timelineTitle}>{t.timelineTitle}</Text>
               <Text style={styles.timelineStep}>
-                ✅ <strong>Paiement reçu</strong> - Aujourd'hui
+                ✅ <strong>{t.timelinePayment}</strong> - {t.timelineToday}
               </Text>
               <Text style={styles.timelineStep}>
-                🖨️ <strong>Impression Fine Art</strong> - 2-3 jours
+                🖨️ <strong>{t.timelinePrinting}</strong> - {t.timelinePrintingDuration}
               </Text>
               <Text style={styles.timelineStep}>
-                📦 <strong>Expédition sécurisée</strong> - 1 semaine
+                📦 <strong>{t.timelineShipping}</strong> - {t.timelineShippingDuration}
               </Text>
               <Text style={styles.timelineStep}>
-                🎨 <strong>Livraison chez vous</strong> - 2-3 semaines
+                🎨 <strong>{t.timelineDelivery}</strong> - {t.timelineDeliveryDuration}
               </Text>
             </Section>
 
             {/* CTA */}
             <Section style={styles.cta}>
               <Button
-                href={`https://guillaumefarre.com/fr/commande?order=${orderNumber}`}
+                href={`https://guillaumefarre.com/${locale}/commande?order=${orderNumber}`}
                 style={styles.button}
               >
-                Suivre ma commande
+                {t.trackButton}
               </Button>
               <Text style={styles.ctaSecondary}>
-                <a href="https://guillaumefarre.com/boutique" style={styles.linkSecondary}>
-                  Continuer mes achats
+                <a href={`https://guillaumefarre.com/${locale}/boutique`} style={styles.linkSecondary}>
+                  {t.shopLink}
                 </a>
               </Text>
             </Section>
@@ -167,41 +272,41 @@ export default function OrderConfirmationEmail({
             {/* Certificat d'authenticité */}
             <Section style={styles.certificateBox}>
               <Text style={styles.certificateTitle}>
-                📜 Certificat d'authenticité
+                {t.certificateTitle}
               </Text>
               <Text style={styles.certificateText}>
-                Votre certificat d'authenticité est disponible au téléchargement depuis votre page de suivi de commande.
+                {t.certificateText1}
               </Text>
               <Text style={styles.certificateText}>
-                Ce document officiel, signé par l'artiste, atteste de l'authenticité et de l'édition limitée de votre œuvre.
+                {t.certificateText2}
               </Text>
             </Section>
 
             {/* Footer Info */}
             <Section style={styles.footer}>
               <Text style={styles.footerText}>
-                <strong>Qualité garantie</strong>
+                <strong>{t.qualityTitle}</strong>
               </Text>
               <Text style={styles.footerSmall}>
-                • Tirage numéroté et signé par l'artiste
+                • {t.qualityItem1}
                 <br />
-                • Papier Fine Art Giclee 300g/m² - Garantie 100 ans
+                • {t.qualityItem2}
                 <br />
-                • Certificat d'authenticité inclus
-                <br />• Livraison sécurisée avec tracking
+                • {t.qualityItem3}
+                <br />• {t.qualityItem4}
               </Text>
 
               <Hr style={styles.divider} />
 
               <Text style={styles.footerSmall}>
-                Une question ? Contactez-nous à{' '}
+                {t.question}{' '}
                 <a href="mailto:contact@guillaumefarre.com" style={styles.link}>
                   contact@guillaumefarre.com
                 </a>
               </Text>
 
               <Text style={styles.footerTiny}>
-                © 2025 Guillaume Farré - Artiste Sculpteur
+                {t.footer}
                 <br />
                 www.guillaumefarre.com
               </Text>

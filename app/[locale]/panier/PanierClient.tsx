@@ -160,18 +160,13 @@ export default function PanierClient() {
         frame: item.frame || 'none',
       }));
 
-      console.log('[Panier] Items du panier:', items);
-      console.log('[Panier] Items pour Stripe:', stripeItems);
-
       const response = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: stripeItems, locale }),
       });
 
-      console.log('[Panier] Response status:', response.status);
       const data = await response.json();
-      console.log('[Panier] Response data:', data);
 
       if (!response.ok) {
         // Erreur API (400, 500, etc.)
@@ -181,7 +176,6 @@ export default function PanierClient() {
 
       if (data.url) {
         // Succès - rediriger vers Stripe Checkout
-        console.log('[Panier] Redirection vers Stripe:', data.url);
         window.location.href = data.url;
       } else {
         throw new Error('URL de paiement non reçue');

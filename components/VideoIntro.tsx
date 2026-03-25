@@ -31,11 +31,8 @@ export default function VideoIntro() {
     // Check if user has already seen the intro
     const hasSeenIntro = getCookie("gf_intro_seen");
 
-    console.log("[VideoIntro] pathname:", pathname, "hasSeenIntro:", hasSeenIntro);
-
     // Show video if not seen before
     if (!hasSeenIntro) {
-      console.log("[VideoIntro] Showing video...");
       setTimeout(() => setShowVideo(true), 300);
     }
   }, [pathname]);
@@ -50,7 +47,6 @@ export default function VideoIntro() {
         video.muted = false;
         video.play().catch(() => {
           // Si autoplay avec son bloqué, essayer muted
-          console.log("Autoplay with sound blocked, trying muted");
           video.muted = true;
           video.play().catch(() => {
             // Silently fail if still blocked

@@ -44,9 +44,6 @@ export default function NewsletterPopup() {
 
     if (!email) return;
 
-    // Simulate submission (in reality, send to email service)
-    console.log("Newsletter signup:", email);
-
     setIsSubmitted(true);
     playSuccess();
     fireConfetti();

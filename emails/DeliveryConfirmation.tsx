@@ -25,6 +25,7 @@ interface DeliveryConfirmationEmailProps {
     format: string;
     frame: string;
   }[];
+  locale?: 'fr' | 'en' | 'it';
 }
 
 export default function DeliveryConfirmationEmail({
@@ -37,7 +38,89 @@ export default function DeliveryConfirmationEmail({
       frame: 'Cadre noir',
     },
   ],
+  locale = 'fr',
 }: DeliveryConfirmationEmailProps) {
+  const t = {
+    fr: {
+      subtitle: 'Artiste Sculpteur · Fine Art',
+      emoji: '🎉',
+      heading: 'Votre œuvre est arrivée !',
+      hello: 'Bonjour',
+      intro: 'Excellente nouvelle : votre commande a été livrée avec succès. Nous espérons que votre œuvre d\'art vous plaît et trouvera une place de choix dans votre intérieur.',
+      orderTitle: 'Votre commande',
+      orderNumber: 'N°',
+      format: 'Format',
+      careTitle: 'Conseils de conservation',
+      careIntro: 'Votre tirage Fine Art Giclee est imprimé sur papier archival 300g/m² garanti 100 ans. Pour préserver sa qualité :',
+      careItems: '• Évitez l\'exposition directe au soleil\n• Maintenez une humidité entre 40-60%\n• Nettoyez avec un chiffon doux et sec\n• Conservation garantie 100 ans dans ces conditions',
+      satisfactionTitle: 'Nous aimerions votre avis',
+      satisfactionText: 'Votre satisfaction est notre priorité. Prenez quelques instants pour partager votre expérience :',
+      ratingButton: '⭐ Très satisfait',
+      problemButton: '📧 Signaler un problème',
+      shareTitle: 'Partagez votre nouvelle œuvre',
+      shareText: 'Taguez-nous sur Instagram @guillaumefarre.artist pour être reposté sur notre galerie !',
+      ctaTitle: 'Découvrez nos autres créations',
+      ctaText: 'Explorez notre collection complète de photographies d\'art et trouvez votre prochaine pièce favorite.',
+      ctaButton: 'Voir la boutique',
+      helpTitle: 'Besoin d\'aide ?',
+      helpText: 'Contactez-nous à',
+      helpExtra: 'Nous sommes là pour vous accompagner.',
+      footer: '© 2025 Guillaume Farré - Artiste Sculpteur',
+    },
+    en: {
+      subtitle: 'Sculptor Artist · Fine Art',
+      emoji: '🎉',
+      heading: 'Your artwork has arrived!',
+      hello: 'Hello',
+      intro: 'Great news: your order has been successfully delivered. We hope you enjoy your artwork and that it will find a place of honor in your home.',
+      orderTitle: 'Your order',
+      orderNumber: 'No.',
+      format: 'Format',
+      careTitle: 'Care instructions',
+      careIntro: 'Your Fine Art Giclee print is printed on archival 300g/m² paper guaranteed for 100 years. To preserve its quality:',
+      careItems: '• Avoid direct sunlight exposure\n• Maintain humidity between 40-60%\n• Clean with a soft, dry cloth\n• 100-year preservation guaranteed under these conditions',
+      satisfactionTitle: 'We\'d love your feedback',
+      satisfactionText: 'Your satisfaction is our priority. Take a few moments to share your experience:',
+      ratingButton: '⭐ Very satisfied',
+      problemButton: '📧 Report an issue',
+      shareTitle: 'Share your new artwork',
+      shareText: 'Tag us on Instagram @guillaumefarre.artist to be reposted in our gallery!',
+      ctaTitle: 'Discover our other creations',
+      ctaText: 'Explore our complete collection of fine art photography and find your next favorite piece.',
+      ctaButton: 'View the shop',
+      helpTitle: 'Need help?',
+      helpText: 'Contact us at',
+      helpExtra: 'We\'re here to support you.',
+      footer: '© 2025 Guillaume Farré - Sculptor Artist',
+    },
+    it: {
+      subtitle: 'Artista Scultore · Fine Art',
+      emoji: '🎉',
+      heading: 'La tua opera è arrivata!',
+      hello: 'Ciao',
+      intro: 'Ottima notizia: il tuo ordine è stato consegnato con successo. Speriamo che la tua opera d\'arte ti piaccia e trovi un posto d\'onore nella tua casa.',
+      orderTitle: 'Il tuo ordine',
+      orderNumber: 'N.',
+      format: 'Formato',
+      careTitle: 'Consigli per la conservazione',
+      careIntro: 'La tua stampa Fine Art Giclee è stampata su carta archival 300g/m² garantita per 100 anni. Per preservarne la qualità:',
+      careItems: '• Evita l\'esposizione diretta al sole\n• Mantieni un\'umidità tra il 40-60%\n• Pulisci con un panno morbido e asciutto\n• Conservazione garantita per 100 anni in queste condizioni',
+      satisfactionTitle: 'Ci piacerebbe avere il tuo feedback',
+      satisfactionText: 'La tua soddisfazione è la nostra priorità. Dedica qualche istante a condividere la tua esperienza:',
+      ratingButton: '⭐ Molto soddisfatto',
+      problemButton: '📧 Segnala un problema',
+      shareTitle: 'Condividi la tua nuova opera',
+      shareText: 'Taggaci su Instagram @guillaumefarre.artist per essere ripubblicato nella nostra galleria!',
+      ctaTitle: 'Scopri le nostre altre creazioni',
+      ctaText: 'Esplora la nostra collezione completa di fotografia d\'arte e trova il tuo prossimo pezzo preferito.',
+      ctaButton: 'Visualizza il negozio',
+      helpTitle: 'Hai bisogno di aiuto?',
+      helpText: 'Contattaci a',
+      helpExtra: 'Siamo qui per supportarti.',
+      footer: '© 2025 Guillaume Farré - Artista Scultore',
+    },
+  }[locale];
+
   return (
     <Html>
       <Head />
@@ -46,30 +129,28 @@ export default function DeliveryConfirmationEmail({
           {/* Header */}
           <Section style={styles.header}>
             <Heading style={styles.title}>Guillaume Farré</Heading>
-            <Text style={styles.subtitle}>Artiste Sculpteur · Fine Art</Text>
+            <Text style={styles.subtitle}>{t.subtitle}</Text>
           </Section>
 
           {/* Main Content */}
           <Section style={styles.main}>
-            <Text style={styles.emoji}>🎉</Text>
+            <Text style={styles.emoji}>{t.emoji}</Text>
 
             <Heading style={styles.heading}>
-              Votre œuvre est arrivée !
+              {t.heading}
             </Heading>
 
-            <Text style={styles.text}>Bonjour {customerName},</Text>
+            <Text style={styles.text}>{t.hello} {customerName},</Text>
 
             <Text style={styles.text}>
-              Excellente nouvelle : votre commande a été livrée avec succès.
-              Nous espérons que votre œuvre d'art vous plaît et trouvera une
-              place de choix dans votre intérieur.
+              {t.intro}
             </Text>
 
             {/* Order Summary */}
             <Section style={styles.orderBox}>
-              <Text style={styles.orderTitle}>Votre commande</Text>
+              <Text style={styles.orderTitle}>{t.orderTitle}</Text>
               <Text style={styles.orderNumber}>
-                N° {orderNumber}
+                {t.orderNumber} {orderNumber}
               </Text>
 
               <Hr style={styles.divider} />
@@ -78,7 +159,7 @@ export default function DeliveryConfirmationEmail({
                 <div key={index} style={styles.item}>
                   <Text style={styles.itemTitle}>{item.title}</Text>
                   <Text style={styles.itemDetails}>
-                    Format {item.format} · {item.frame}
+                    {t.format} {item.format} · {item.frame}
                   </Text>
                 </div>
               ))}
@@ -86,94 +167,95 @@ export default function DeliveryConfirmationEmail({
 
             {/* Care Instructions */}
             <Section style={styles.careBox}>
-              <Text style={styles.careTitle}>Conseils de conservation</Text>
+              <Text style={styles.careTitle}>{t.careTitle}</Text>
               <Text style={styles.careText}>
-                <strong>Votre tirage Fine Art Giclee</strong> est imprimé sur
-                papier archival 300g/m² garanti 100 ans. Pour préserver sa
-                qualité :
+                <strong>{t.careIntro}</strong>
               </Text>
               <Text style={styles.careList}>
-                • Évitez l'exposition directe au soleil
-                <br />
-                • Maintenez une humidité entre 40-60%
-                <br />
-                • Nettoyez avec un chiffon doux et sec
-                <br />• Conservation garantie 100 ans dans ces conditions
+                {t.careItems.split('\n').map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
               </Text>
             </Section>
 
             {/* Satisfaction Check */}
             <Section style={styles.satisfactionBox}>
               <Text style={styles.satisfactionTitle}>
-                Nous aimerions votre avis
+                {t.satisfactionTitle}
               </Text>
               <Text style={styles.satisfactionText}>
-                Votre satisfaction est notre priorité. Prenez quelques instants
-                pour partager votre expérience :
+                {t.satisfactionText}
               </Text>
 
               <div style={styles.buttonGroup}>
                 <Button
-                  href="https://guillaumefarre.com/avis?rating=5"
+                  href={`https://guillaumefarre.com/${locale}/avis?rating=5`}
                   style={styles.buttonPositive}
                 >
-                  ⭐ Très satisfait
+                  {t.ratingButton}
                 </Button>
                 <Button
-                  href={`mailto:contact@guillaumefarre.com?subject=Commande ${orderNumber}`}
+                  href={`mailto:contact@guillaumefarre.com?subject=${orderNumber}`}
                   style={styles.buttonNeutral}
                 >
-                  📧 Signaler un problème
+                  {t.problemButton}
                 </Button>
               </div>
             </Section>
 
             {/* Share */}
             <Section style={styles.shareBox}>
-              <Text style={styles.shareTitle}>Partagez votre nouvelle œuvre</Text>
+              <Text style={styles.shareTitle}>{t.shareTitle}</Text>
               <Text style={styles.shareText}>
-                Taguez-nous sur Instagram{' '}
-                <a href="https://instagram.com/guillaumefarre.artist" style={styles.link}>
-                  @guillaumefarre.artist
-                </a>
-                <br />
-                pour être reposté sur notre galerie !
+                {t.shareText.includes('@') ? (
+                  <>
+                    {t.shareText.split('@')[0]}
+                    <a href="https://instagram.com/guillaumefarre.artist" style={styles.link}>
+                      @guillaumefarre.artist
+                    </a>
+                    {t.shareText.split('@guillaumefarre.artist')[1]}
+                  </>
+                ) : (
+                  t.shareText
+                )}
               </Text>
             </Section>
 
             {/* Next Purchase Incentive */}
             <Section style={styles.ctaBox}>
-              <Text style={styles.ctaTitle}>Découvrez nos autres créations</Text>
+              <Text style={styles.ctaTitle}>{t.ctaTitle}</Text>
               <Text style={styles.ctaText}>
-                Explorez notre collection complète de photographies d'art et
-                trouvez votre prochaine pièce favorite.
+                {t.ctaText}
               </Text>
               <Button
-                href="https://guillaumefarre.com/boutique"
+                href={`https://guillaumefarre.com/${locale}/boutique`}
                 style={styles.ctaButton}
               >
-                Voir la boutique
+                {t.ctaButton}
               </Button>
             </Section>
 
             {/* Footer */}
             <Section style={styles.footer}>
               <Text style={styles.footerText}>
-                <strong>Besoin d'aide ?</strong>
+                <strong>{t.helpTitle}</strong>
               </Text>
               <Text style={styles.footerSmall}>
-                Contactez-nous à{' '}
+                {t.helpText}{' '}
                 <a href="mailto:contact@guillaumefarre.com" style={styles.link}>
                   contact@guillaumefarre.com
                 </a>
                 <br />
-                Nous sommes là pour vous accompagner.
+                {t.helpExtra}
               </Text>
 
               <Hr style={styles.divider} />
 
               <Text style={styles.footerTiny}>
-                © 2025 Guillaume Farré - Artiste Sculpteur
+                {t.footer}
                 <br />
                 www.guillaumefarre.com
               </Text>

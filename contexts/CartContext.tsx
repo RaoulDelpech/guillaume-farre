@@ -63,7 +63,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
         // Vérifier si le panier a expiré
         if (now > persistedCart.expiresAt) {
-          console.log('[Cart] Panier expiré (>30 jours), suppression');
           localStorage.removeItem(CART_STORAGE_KEY);
           setItems([]);
           setDaysUntilExpiration(null);
@@ -81,8 +80,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
           const msRemaining = persistedCart.expiresAt - now;
           const daysRemaining = Math.ceil(msRemaining / MS_PER_DAY);
           setDaysUntilExpiration(daysRemaining);
-
-          console.log(`[Cart] Panier chargé (expire dans ${daysRemaining} jours)`);
         }
       } catch (e) {
         console.error('[Cart] Error loading cart:', e);

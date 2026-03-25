@@ -148,12 +148,6 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     if (cart.length === 0) return;
 
     try {
-      console.log('[ShopGrid] Envoi checkout avec items:', cart.map(item => ({
-        title: item.photo.title || item.photo.filename,
-        price: item.price,
-        category: item.photo.category,
-      })));
-
       const response = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -177,7 +171,6 @@ export default function ShopGrid({ photos }: ShopGridProps) {
       });
 
       const data = await response.json();
-      console.log('[ShopGrid] Réponse Stripe:', data);
 
       if (!response.ok) {
         console.error('[ShopGrid] Erreur HTTP:', response.status, data);

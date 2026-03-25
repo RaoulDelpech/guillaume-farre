@@ -8,6 +8,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from "@/lib/early-access";
 import { trackBeginCheckout, trackPurchase } from "@/lib/analytics";
+import { toast } from "sonner";
 
 // Seuil KYC (obligation LCB-FT pour vente d'art)
 const KYC_THRESHOLD = 10_000;

@@ -14,6 +14,7 @@ import DeliveryEstimate from "@/components/DeliveryEstimate";
 import SocialProof from "@/components/SocialProof";
 import { isEarlyAccess } from "@/lib/early-access";
 import { trackViewItem, trackAddToCart } from "@/lib/analytics";
+import { toast } from "sonner";
 
 interface ShopGridProps {
   photos: PhotoMetadata[];
@@ -140,7 +141,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
     setSelectedPhoto(null);
     playCartAdd();
     fireConfetti();
-    alert(`${selectedPhoto.title || selectedPhoto.filename} ajouté au panier`);
+    toast.success(`${selectedPhoto.title || selectedPhoto.filename} ajouté au panier`);
   };
 
   const handleCheckout = async () => {
@@ -180,18 +181,18 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
       if (!response.ok) {
         console.error('[ShopGrid] Erreur HTTP:', response.status, data);
-        alert(`Erreur: ${data.error || 'Erreur lors de la création de la session de paiement'}`);
+        toast.error(data.error || 'Erreur lors de la création de la session de paiement');
         return;
       }
 
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert('Erreur: Pas d\'URL de redirection reçue');
+        toast.error('Pas d\'URL de redirection reçue');
       }
     } catch (error) {
       console.error('[ShopGrid] Checkout error:', error);
-      alert(`Erreur lors du paiement: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
+      toast.error(`Erreur lors du paiement: ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
     }
   };
 

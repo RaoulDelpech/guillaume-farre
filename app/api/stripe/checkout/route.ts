@@ -13,6 +13,9 @@ const stripe = process.env.STRIPE_SECRET_KEY
 // Seuil à partir duquel on propose le virement SEPA (en euros)
 const BANK_TRANSFER_THRESHOLD = 1000;
 
+// Seuil KYC (obligation LCB-FT pour vente d'art)
+const KYC_THRESHOLD = 10_000;
+
 export async function POST(request: Request) {
   // Si Stripe pas configuré, renvoyer erreur
   if (!stripe) {
@@ -119,6 +122,13 @@ export async function POST(request: Request) {
     const discountAmount = earlyCollectorMode ? originalTotal * EARLY_ACCESS_DISCOUNT : 0;
     const totalAmount = originalTotal - discountAmount;
     const isHighValue = totalAmount >= BANK_TRANSFER_THRESHOLD;
+
+    // Vérification KYC serveur : si > 10K EUR et pas de vérification d'identité
+    if (totalAmount >= KYC_THRESHOLD) {
+      // Pour l'instant on accepte sans vérification stricte côté serveur
+      // La vérification KYC sera faite via Stripe Identity avant le paiement
+      console.log(`[Stripe] Commande > ${KYC_THRESHOLD}€ - KYC requis`);
+    }
 
     console.log(`[Stripe] Création session pour ${validatedItems.length} item(s)`);
     console.log(`[Stripe] Total original: ${originalTotal}€`);

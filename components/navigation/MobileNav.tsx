@@ -9,6 +9,31 @@ export default function MobileNav() {
   const pathname = usePathname();
   const t = useTranslations("nav");
 
+  // Focus trap pour accessibilité
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isOpen) return;
+
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+    }
+
+    if (e.key === 'Tab') {
+      const focusableElements = document.querySelectorAll(
+        '#mobile-menu a, #mobile-menu button'
+      );
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    }
+  };
+
   // Navigation mobile - Décisions audit 2025-01-20
   const links = [
     { href: "/galerie", label: "Créations" },
@@ -47,9 +72,11 @@ export default function MobileNav() {
 
       {/* Mobile Menu Panel - fond solide */}
       <div
+        id="mobile-menu"
         className={`fixed top-0 right-0 h-full w-72 bg-zinc-900 border-l border-zinc-700 z-50 transform transition-transform duration-300 md:hidden shadow-2xl ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        onKeyDown={handleKeyDown}
       >
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">

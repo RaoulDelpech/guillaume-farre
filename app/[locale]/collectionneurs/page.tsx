@@ -7,7 +7,7 @@ export default function CollectionneursPage() {
       <Navigation />
 
       {/* Hero élégant */}
-      <div className="relative min-h-[70vh] flex items-center justify-center overflow-hidden border-b border-border">
+      <div className="relative min-h-[50vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-gradient-to-b from-accent/20 to-background"></div>
         <div className="absolute inset-0 opacity-5"
           style={{
@@ -17,11 +17,11 @@ export default function CollectionneursPage() {
           }}
         ></div>
 
-        <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl py-28">
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl py-28">
           <div className="text-primary text-xs font-light mb-8 tracking-[0.3em] uppercase">
             Communauté
           </div>
-          <h1 className="text-6xl md:text-8xl font-light tracking-wide mb-10">
+          <h1 className="text-3xl sm:text-5xl md:text-8xl font-light tracking-wide mb-10">
             Collectionneurs
           </h1>
           <p className="text-2xl md:text-3xl font-light text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
@@ -31,13 +31,13 @@ export default function CollectionneursPage() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
               href="/contact"
-              className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
+              className="min-h-[48px] flex items-center justify-center px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
             >
               Nous contacter
             </Link>
             <Link
               href="/boutique"
-              className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded-lg text-xl transition-all"
+              className="min-h-[48px] flex items-center justify-center px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded-lg text-xl transition-all"
             >
               Voir les œuvres
             </Link>
@@ -203,13 +203,13 @@ export default function CollectionneursPage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
               <Link
                 href="/boutique"
-                className="px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
+                className="min-h-[48px] flex items-center justify-center px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
               >
                 Voir les œuvres disponibles
               </Link>
               <Link
                 href="/contact"
-                className="px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded-lg text-xl transition-all"
+                className="min-h-[48px] flex items-center justify-center px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded-lg text-xl transition-all"
               >
                 Nous contacter
               </Link>

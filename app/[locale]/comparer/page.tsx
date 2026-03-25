@@ -91,7 +91,7 @@ export default function ComparerPage() {
             <div className="inline-block px-4 py-2 bg-primary rounded-full text-sm font-semibold mb-6">
               COMPARATEUR
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
               Comparez vos favoris
             </h1>
             <p className="text-xl text-muted-foreground">
@@ -105,10 +105,10 @@ export default function ComparerPage() {
         {/* Selection area */}
         {photos.length > 0 && selectedPhotos.length < 3 && (
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">
               Sélectionnez des œuvres ({selectedPhotos.length}/3)
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {photos.map((photo) => {
                 const isSelected = selectedPhotos.find(
                   (p) => p.path === photo.path
@@ -117,7 +117,7 @@ export default function ComparerPage() {
                   <button
                     key={photo.path}
                     onClick={() => toggleSelection(photo)}
-                    className={`relative group rounded-xl overflow-hidden border-4 transition-all ${
+                    className={`relative group rounded-xl overflow-hidden border-4 transition-all min-h-[44px] ${
                       isSelected
                         ? "border-primary scale-105"
                         : "border-transparent hover:border-primary/50"

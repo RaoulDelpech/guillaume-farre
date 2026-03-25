@@ -242,7 +242,7 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
           max="10"
           value={quantity}
           onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-          className="w-full p-2 border rounded-md bg-background"
+          className="w-full p-2 border rounded-md bg-background min-h-[44px]"
         />
       </div>
 

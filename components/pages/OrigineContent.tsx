@@ -34,7 +34,7 @@ export default function OrigineContent({ images }: OrigineContentProps) {
   return (
     <>
       {/* Hero épuré */}
-      <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-[60vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 opacity-15"
           style={{
@@ -44,7 +44,7 @@ export default function OrigineContent({ images }: OrigineContentProps) {
           }}
         />
 
-        <div className="relative z-10 text-center px-6 lg:px-8 max-w-4xl py-32">
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl py-32">
           <EditableText
             textKey="origine.hero.title"
             as="h1"
@@ -63,8 +63,8 @@ export default function OrigineContent({ images }: OrigineContentProps) {
       </div>
 
       {/* Section centrale - L'essentiel */}
-      <section className="py-24 md:py-32">
-        <div className="container px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             {/* Image d'enfance si disponible */}
             <div className="mb-16 aspect-[4/3] bg-muted/30 rounded-lg overflow-hidden">
@@ -109,7 +109,7 @@ export default function OrigineContent({ images }: OrigineContentProps) {
 
       {/* Galerie d'images */}
       <section className="py-16 md:py-24 bg-muted/10">
-        <div className="container px-6 lg:px-8">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {galleryImages.map((img, index) => (
               <div key={index} className="aspect-square bg-muted/30 rounded-lg overflow-hidden">
@@ -125,8 +125,8 @@ export default function OrigineContent({ images }: OrigineContentProps) {
       </section>
 
       {/* CTA simple */}
-      <section className="py-24 md:py-32">
-        <div className="container px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <EditableText
               textKey="origine.cta.title"

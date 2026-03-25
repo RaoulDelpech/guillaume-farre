@@ -76,7 +76,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
   return (
     <>
       {/* Hero avec image Dino - Les VRAIES Dino de Guillaume */}
-      <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-[60vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -88,7 +88,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
         </div>
 
         {/* Contenu centré - Typo serif rétro */}
-        <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl">
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl">
           <EditableText
             textKey="dino.tag"
             as="div"
@@ -116,7 +116,7 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
 
       {/* Lien vers l'histoire de la Dino */}
       <section className="py-12 bg-muted/10 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <p className="text-lg font-light text-foreground">
@@ -137,8 +137,8 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
       </section>
 
       {/* Section L'Origine */}
-      <section className="py-24 md:py-32 bg-muted/10 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/10 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* VRAIE photo des Dino de Guillaume */}
             <div className="order-2 md:order-1">
@@ -187,8 +187,8 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
       </section>
 
       {/* Section Caractéristiques - Style fiche technique rétro */}
-      <section className="py-24 md:py-32 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <EditableText
               textKey="dino.specs.label"
@@ -291,8 +291,8 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
       </section>
 
       {/* Section Rôle Créatif */}
-      <section className="py-24 md:py-32 bg-muted/10 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/10 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Texte */}
             <div>
@@ -341,8 +341,8 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
       </section>
 
       {/* Section Galerie - Mix couleur et N&B selon audit */}
-      <section className="py-24 md:py-32 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <EditableText
               textKey="dino.gallery.label"
@@ -375,8 +375,8 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
       </section>
 
       {/* CTA Final - Style rétro */}
-      <section className="py-24 md:py-32 bg-muted/10 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32 bg-muted/10 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <EditableText
               textKey="dino.cta.title"

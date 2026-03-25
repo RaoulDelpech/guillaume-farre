@@ -250,7 +250,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                     fireHeartConfetti();
                   }
                 }}
-                className="absolute top-3 left-3 bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white p-2.5 rounded-full transition-all hover:scale-110 z-10"
+                className="absolute top-3 left-3 bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white w-11 h-11 rounded-full transition-all hover:scale-110 z-10 flex items-center justify-center"
                 title={isInWishlist(photo.path) ? "Retirer des favoris" : "Ajouter aux favoris"}
               >
                 {isInWishlist(photo.path) ? (
@@ -381,7 +381,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
               {/* Format */}
               <div>
                 <h3 className="text-lg font-light tracking-wide mb-4">Format</h3>
-                <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
                   {Object.entries(getAvailableFormats(selectedPhoto)).map(([key, value]) => {
                     const stock = getStockForFormat(selectedPhoto, key);
                     const formatInfo = allFormats[key as keyof typeof allFormats];
@@ -421,7 +421,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                     <button
                       key={key}
                       onClick={() => setSelectedMaterial(key)}
-                      className={`w-full p-5 rounded-lg border transition-all ${
+                      className={`w-full p-4 sm:p-5 rounded-lg border transition-all min-h-[44px] ${
                         selectedMaterial === key
                           ? 'border-primary bg-primary/5'
                           : 'border-border hover:border-primary/50'
@@ -449,7 +449,7 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                     <button
                       key={key}
                       onClick={() => setSelectedFrame(key)}
-                      className={`w-full p-5 rounded-lg border transition-all ${
+                      className={`w-full p-4 sm:p-5 rounded-lg border transition-all min-h-[44px] ${
                         selectedFrame === key
                           ? 'border-primary bg-primary/5'
                           : 'border-border hover:border-primary/50'

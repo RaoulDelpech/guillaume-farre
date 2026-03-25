@@ -13,7 +13,7 @@ export default function DinoHistoireContent() {
   return (
     <>
       {/* Hero immersif - Image historique Ferrari Dino */}
-      <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-[60vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -23,7 +23,7 @@ export default function DinoHistoireContent() {
           <div className="absolute inset-0 bg-black/60" />
         </div>
 
-        <div className="relative z-10 text-center px-6 lg:px-8 max-w-5xl">
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl">
           <div className="text-white/60 text-xs font-light mb-6 tracking-[0.3em] uppercase">
             Histoire Automobile
           </div>

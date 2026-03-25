@@ -250,7 +250,7 @@ export default function FAQPage() {
           </p>
           <a
             href="mailto:contact@guillaumefarre.com"
-            className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
+            className="inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
           >
             Nous contacter
           </a>

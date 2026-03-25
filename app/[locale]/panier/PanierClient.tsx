@@ -370,8 +370,8 @@ export default function PanierClient() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-0">
-      <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
         {/* Liste des produits */}
         <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           <div className="flex items-center justify-between mb-4 sm:mb-6">
@@ -417,7 +417,7 @@ export default function PanierClient() {
                   <div className="text-xl sm:text-2xl font-light">{item.price.toLocaleString('fr-FR')} €</div>
                   <button
                     onClick={() => removeItem(`${item.id}-${item.format}`)}
-                    className="text-sm text-muted-foreground hover:text-destructive transition-colors min-h-[44px] flex items-center"
+                    className="text-sm text-muted-foreground hover:text-destructive transition-colors min-h-[44px] flex items-center justify-center"
                   >
                     Retirer
                   </button>
@@ -597,7 +597,7 @@ export default function PanierClient() {
               <button
                 onClick={handleCheckout}
                 disabled={loading}
-                className="w-full px-6 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed mb-4 min-h-[48px]"
+                className="w-full px-6 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed mb-4 min-h-[48px] flex items-center justify-center"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">

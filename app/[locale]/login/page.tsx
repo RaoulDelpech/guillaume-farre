@@ -159,7 +159,7 @@ export default function LoginPage() {
           {/* Bouton Entrer */}
           <button
             onClick={handleEnter}
-            className="mt-12 sm:mt-16 text-white/30 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/60 transition-colors pointer-events-auto animate-[fadeIn_1s_ease-out_1.5s_both] min-h-[44px] px-6"
+            className="mt-12 sm:mt-16 text-white/30 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/60 transition-colors pointer-events-auto animate-[fadeIn_1s_ease-out_1.5s_both] min-h-[48px] px-6 flex items-center justify-center"
           >
             Entrer
           </button>
@@ -189,7 +189,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Mot de passe"
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors"
+                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors min-h-[44px]"
                 />
               </div>
 
@@ -202,7 +202,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading || !password}
-                className="w-full py-3 text-white/40 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed min-h-[44px]"
+                className="w-full py-3 text-white/40 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed min-h-[48px] flex items-center justify-center"
               >
                 {loading ? "···" : "Valider"}
               </button>

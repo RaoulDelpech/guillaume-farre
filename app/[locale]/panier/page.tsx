@@ -8,8 +8,8 @@ export default async function PanierPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28">
-        <h1 className="text-5xl md:text-6xl font-light tracking-wide mb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-28">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide mb-8 sm:mb-12">
           {t("panier")}
         </h1>
         <PanierClient />

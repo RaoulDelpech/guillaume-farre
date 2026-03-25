@@ -73,7 +73,7 @@ export default function MobileNav() {
       {/* Mobile Menu Panel - utilise design token au lieu de hardcoded */}
       <div
         id="mobile-menu"
-        className={`fixed top-0 right-0 h-full w-72 bg-background border-l border-border z-50 transform transition-transform duration-300 md:hidden shadow-2xl ${
+        className={`fixed top-0 right-0 h-full w-[85vw] max-w-xs bg-background border-l border-border z-50 transform transition-transform duration-300 md:hidden shadow-2xl ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onKeyDown={handleKeyDown}

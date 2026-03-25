@@ -111,7 +111,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
           {/* CTA - Décision audit - Éditable en mode admin */}
           <Link
             href="/atelier"
-            className="inline-block px-8 py-3 md:px-10 md:py-4 border border-white/70 hover:border-white text-white text-base md:text-lg font-light tracking-wide transition-all animate-fade-in-delay-2 hover:bg-white/10 duration-300"
+            className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 min-h-[48px] border border-white/70 hover:border-white text-white text-base md:text-lg font-light tracking-wide transition-all animate-fade-in-delay-2 hover:bg-white/10 duration-300"
           >
             <EditableText textKey="hero.cta" as="span">
               Découvrir l'atelier

@@ -122,23 +122,23 @@ export default function CommandePage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 py-12 px-4">
+    <div className="min-h-screen bg-muted/20 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-light text-zinc-900 mb-4">
+          <h1 className="text-2xl sm:text-4xl font-light text-foreground mb-4">
             Suivre ma commande
           </h1>
-          <p className="text-lg text-zinc-600">
+          <p className="text-lg text-muted-foreground">
             Entrez votre numéro de commande et email pour suivre votre livraison
           </p>
         </div>
 
         {/* Formulaire recherche */}
-        <div className="bg-white rounded-lg shadow-sm border border-zinc-200 p-8 mb-8">
+        <div className="bg-background rounded-lg shadow-sm border border-border p-8 mb-8">
           <form onSubmit={handleSearch} className="space-y-6">
             <div>
-              <label htmlFor="orderNumber" className="block text-sm font-medium text-zinc-700 mb-2">
+              <label htmlFor="orderNumber" className="block text-sm font-medium text-muted-foreground mb-2">
                 Numéro de commande
               </label>
               <input
@@ -147,16 +147,16 @@ export default function CommandePage() {
                 value={orderNumber}
                 onChange={(e) => setOrderNumber(e.target.value.toUpperCase())}
                 placeholder="GF-123456789"
-                className="w-full px-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-foreground focus:border-transparent min-h-[44px]"
                 required
               />
-              <p className="mt-2 text-sm text-zinc-500">
+              <p className="mt-2 text-sm text-muted-foreground">
                 Format: GF-XXXXXXXXX (trouvé dans votre email de confirmation)
               </p>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-zinc-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
                 Email
               </label>
               <input
@@ -165,7 +165,7 @@ export default function CommandePage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="votre@email.com"
-                className="w-full px-4 py-3 border border-zinc-300 rounded-lg focus:ring-2 focus:ring-zinc-900 focus:border-transparent"
+                className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-foreground focus:border-transparent min-h-[44px]"
                 required
               />
             </div>
@@ -180,7 +180,7 @@ export default function CommandePage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-zinc-900 text-white py-3 px-6 rounded-lg hover:bg-zinc-800 transition-colors disabled:bg-zinc-400 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-foreground text-background py-3 px-6 rounded-lg hover:bg-foreground/90 transition-colors disabled:bg-muted disabled:cursor-not-allowed flex items-center justify-center gap-2 min-h-[48px]"
             >
               {loading ? (
                 <>

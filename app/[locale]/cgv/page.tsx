@@ -5,10 +5,10 @@ export default async function CGVPage() {
   const t = await getTranslations("cgv");
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Navigation />
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8">Conditions Générales de Vente</h1>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
+        <h1 className="text-2xl sm:text-4xl font-bold mb-8">Conditions Générales de Vente</h1>
 
         <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
           <section>

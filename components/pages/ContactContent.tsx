@@ -57,8 +57,8 @@ export default function ContactContent() {
   return (
     <>
       {/* Hero minimaliste */}
-      <div className="py-24 md:py-32 border-b border-border">
-        <div className="container px-6 lg:px-8 max-w-4xl mx-auto text-center">
+      <div className="py-12 sm:py-24 md:py-32 border-b border-border">
+        <div className="container px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
           <EditableText
             textKey="contact.hero.title"
             as="h1"
@@ -79,7 +79,7 @@ export default function ContactContent() {
 
       {/* Formulaire de contact simple */}
       <section className="py-20 md:py-28 border-b border-border">
-        <div className="container px-6 lg:px-8">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-xl mx-auto">
             {submitStatus === "success" ? (
               <div className="text-center py-12">
@@ -171,7 +171,7 @@ export default function ContactContent() {
 
       {/* Contact direct - Une seule ligne épurée */}
       <section className="py-16 md:py-20 border-b border-border">
-        <div className="container px-6 lg:px-8">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
               <a
@@ -199,8 +199,8 @@ export default function ContactContent() {
       </section>
 
       {/* CTA final */}
-      <section className="py-24 md:py-32">
-        <div className="container px-6 lg:px-8">
+      <section className="py-12 sm:py-24 md:py-32">
+        <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <EditableText
               textKey="contact.cta.title"

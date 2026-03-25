@@ -34,6 +34,10 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
     setEarlyCollectorMode(isEarlyAccess());
   }, []);
 
+  // Helper pour déterminer si un format est grand ou petit
+  const isGrandFormat = (format: string) => ['A1', 'A0', '2A0'].includes(format);
+  const isPetitFormat = (format: string) => ['A2', 'A3', 'A4'].includes(format);
+
   // Filtrer les formats selon le type d'édition
   const getAvailableFormats = () => {
     const allFormats = Object.entries(WHITEWALL_FORMATS);
@@ -48,6 +52,18 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
   };
 
   const availableFormats = getAvailableFormats();
+
+  // Affichage stock selon format sélectionné (fictif pour l'instant, sera connecté plus tard)
+  const getStockForFormat = () => {
+    if (isGrandFormat(format)) {
+      // Grands formats: 9 exemplaires
+      return { available: 9, total: 9 };
+    }
+    // Petits formats: 99 exemplaires
+    return { available: 99, total: 99 };
+  };
+
+  const stock = getStockForFormat();
 
   // Calcul du prix en temps réel
   const calculatePrice = () => {
@@ -102,20 +118,32 @@ export default function PhotoOrderForm({ photoPath, photoTitle, isLimitedEdition
           )}
         </label>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-          {availableFormats.map(([key, data]) => (
-            <button
-              key={key}
-              onClick={() => setFormat(key as any)}
-              className={`p-3 border rounded-md text-sm transition-all min-h-[44px] ${
-                format === key
-                  ? 'border-primary bg-primary/10 font-bold'
-                  : 'border-border hover:border-primary/50'
-              }`}
-            >
-              <div className="font-medium">{data.label}</div>
-              <div className="text-xs text-muted-foreground mt-1">{data.price}€</div>
-            </button>
-          ))}
+          {availableFormats.map(([key, data]) => {
+            const formatStock = isGrandFormat(key)
+              ? { available: 9, total: 9 }
+              : { available: 99, total: 99 };
+            const remaining = formatStock.total - formatStock.available + 1;
+
+            return (
+              <button
+                key={key}
+                onClick={() => setFormat(key as any)}
+                className={`p-3 border rounded-md text-sm transition-all min-h-[44px] ${
+                  format === key
+                    ? 'border-primary bg-primary/10 font-bold'
+                    : 'border-border hover:border-primary/50'
+                }`}
+              >
+                <div className="font-medium">{data.label}</div>
+                <div className="text-xs text-muted-foreground mt-1">{data.price}€</div>
+                {isLimitedEdition && (
+                  <div className="text-xs text-amber-600 mt-1">
+                    {isGrandFormat(key) ? `${remaining}/9 restants` : `${remaining}/99 restants`}
+                  </div>
+                )}
+              </button>
+            );
+          })}
         </div>
         {isLimitedEdition && (
           <p className="text-xs text-amber-600 mt-2 flex items-center gap-1">

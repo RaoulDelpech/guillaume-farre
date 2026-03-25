@@ -49,6 +49,20 @@ export default function PhotoCard({ photo, onUpdate }: PhotoCardProps) {
         </label>
       </div>
 
+      {/* Status dropdown (en haut à droite) */}
+      <div className="mb-3">
+        <label className="block text-xs text-gray-200 mb-1 font-semibold">Statut</label>
+        <select
+          value={data.status || 'active'}
+          onChange={(e) => handleChange({ status: e.target.value === 'active' ? null : e.target.value as 'trash' | 'to-sort' })}
+          className="w-full px-3 py-2 text-sm border-2 border-gray-500 rounded-lg bg-black text-white font-medium"
+        >
+          <option value="active">Actif</option>
+          <option value="to-sort">À trier</option>
+          <option value="trash">Corbeille</option>
+        </select>
+      </div>
+
       {/* Category */}
       <div className="mb-3">
         <label className="block text-xs text-gray-200 mb-1 font-semibold">Catégorie</label>
@@ -65,6 +79,39 @@ export default function PhotoCard({ photo, onUpdate }: PhotoCardProps) {
           <option value="toiles">Toiles</option>
           <option value="autres">Autres</option>
         </select>
+      </div>
+
+      {/* Categories (multi-select via checkboxes) */}
+      <div className="mb-3">
+        <label className="block text-xs text-gray-200 mb-1 font-semibold">Catégories (plusieurs possibles)</label>
+        <div className="space-y-2">
+          {(['unlimited', 'limited', 'xxl', 'monumental'] as const).map((cat) => {
+            const labels = {
+              unlimited: 'Tirage illimité (A4/A3/A2)',
+              limited: 'Édition limitée (A3/A2/A1)',
+              xxl: 'Format XXL (80x120cm)',
+              monumental: 'Format monumental (120cm+)',
+            };
+            const isChecked = data.categories?.includes(cat) || false;
+            return (
+              <label key={cat} className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={(e) => {
+                    const currentCategories = data.categories || [];
+                    const newCategories = e.target.checked
+                      ? [...currentCategories, cat]
+                      : currentCategories.filter((c) => c !== cat);
+                    handleChange({ categories: newCategories });
+                  }}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm text-white">{labels[cat]}</span>
+              </label>
+            );
+          })}
+        </div>
       </div>
 
       {/* For Sale */}

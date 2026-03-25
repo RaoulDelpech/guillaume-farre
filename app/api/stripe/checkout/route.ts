@@ -46,6 +46,30 @@ export async function POST(request: Request) {
       );
     }
 
+    // Vérifier le stock pour chaque item (éditions limitées uniquement)
+    const { loadPhotoMetadata } = await import('@/lib/admin/photo-manager');
+    const allPhotos = await loadPhotoMetadata();
+
+    for (const item of items) {
+      const photo = allPhotos.find(p => p.path === item.photoPath || p.filename === item.filename);
+      if (!photo) continue;
+
+      // Si édition limitée, vérifier le stock
+      if (photo.categories?.includes('limited')) {
+        const format = item.format || 'A2';
+        const isGrandFormat = ['A1', 'A0', '2A0'].includes(format);
+        const stock = isGrandFormat ? photo.limitedEditionGrand : photo.limitedEditionPetit;
+
+        if (!stock || stock.available <= 0 || stock.closed) {
+          console.error(`[Stripe] Édition épuisée: ${photo.filename} (${format})`);
+          return NextResponse.json(
+            { error: `Cette édition est épuisée (${photo.title || photo.filename})` },
+            { status: 400 }
+          );
+        }
+      }
+    }
+
     // Validation et logs détaillés
     const validatedItems = items.map((item: any, index: number) => {
       console.log(`[Stripe] Item ${index + 1}:`, {

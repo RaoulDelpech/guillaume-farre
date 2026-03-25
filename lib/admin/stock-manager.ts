@@ -14,7 +14,21 @@ const METADATA_FILE = 'photos-metadata.json';
 interface PhotoMetadata {
   filename: string;
   categories?: string[];
+  // Ancien champ (compatibilité)
   limitedEdition?: {
+    total: number;
+    sold: number;
+    available: number;
+    closed: boolean;
+  };
+  // Nouveaux champs séparés par format
+  limitedEditionGrand?: {
+    total: number;
+    sold: number;
+    available: number;
+    closed: boolean;
+  };
+  limitedEditionPetit?: {
     total: number;
     sold: number;
     available: number;
@@ -60,14 +74,18 @@ async function writeMetadata(metadata: PhotoMetadata[]): Promise<void> {
  * Mettre à jour le stock d'une photo après vente
  *
  * @param photoFilename - Nom du fichier photo
+ * @param format - Format acheté (A4/A3/A2/A1/A0/2A0)
  * @param quantitySold - Nombre d'exemplaires vendus
  * @returns true si mise à jour réussie, false sinon
+ *
+ * // Lalou
  */
 export async function updatePhotoStock(
   photoFilename: string,
+  format: string,
   quantitySold: number = 1
 ): Promise<boolean> {
-  console.log(`📉 Updating stock for ${photoFilename}: -${quantitySold}`);
+  console.log(`📉 Updating stock for ${photoFilename} (${format}): -${quantitySold}`);
 
   try {
     const metadata = await readMetadata();
@@ -85,28 +103,43 @@ export async function updatePhotoStock(
     const photo = metadata[photoIndex];
 
     // Vérifier si c'est une édition limitée
-    if (!photo.categories?.includes('limited') || !photo.limitedEdition) {
+    if (!photo.categories?.includes('limited')) {
       console.log('ℹ️ Photo is not a limited edition, no stock update needed');
       return true;
     }
 
-    // Mettre à jour le stock
-    const currentSold = photo.limitedEdition.sold || 0;
-    const newSold = currentSold + quantitySold;
-    const maxAvailable = photo.limitedEdition.total || 7;
+    // Déterminer quel compteur mettre à jour
+    const isGrandFormat = ['A1', 'A0', '2A0'].includes(format);
+    const stockKey = isGrandFormat ? 'limitedEditionGrand' : 'limitedEditionPetit';
+    const maxTotal = isGrandFormat ? 9 : 99;
 
-    if (newSold > maxAvailable) {
-      console.error(`❌ Cannot sell more than ${maxAvailable} copies`);
+    // Initialiser le compteur si nécessaire
+    if (!photo[stockKey]) {
+      photo[stockKey] = {
+        total: maxTotal,
+        sold: 0,
+        available: maxTotal,
+        closed: false,
+      };
+    }
+
+    // Mettre à jour le stock
+    const stock = photo[stockKey];
+    const currentSold = stock.sold || 0;
+    const newSold = currentSold + quantitySold;
+
+    if (newSold > maxTotal) {
+      console.error(`❌ Cannot sell more than ${maxTotal} copies for ${stockKey}`);
       return false;
     }
 
-    photo.limitedEdition.sold = newSold;
-    photo.limitedEdition.available = maxAvailable - newSold;
+    stock.sold = newSold;
+    stock.available = maxTotal - newSold;
 
     // Fermer automatiquement la série si tout est vendu
-    if (newSold >= maxAvailable) {
-      photo.limitedEdition.closed = true;
-      console.log(`🔒 Limited edition series closed: ${photoFilename}`);
+    if (newSold >= maxTotal) {
+      stock.closed = true;
+      console.log(`🔒 Limited edition series closed: ${photoFilename} (${stockKey})`);
     }
 
     // Sauvegarder les métadonnées mises à jour
@@ -114,7 +147,7 @@ export async function updatePhotoStock(
     await writeMetadata(metadata);
 
     console.log(
-      `✅ Stock updated: ${photo.limitedEdition.available}/${maxAvailable} remaining`
+      `✅ Stock updated (${stockKey}): ${stock.available}/${maxTotal} remaining`
     );
 
     return true;

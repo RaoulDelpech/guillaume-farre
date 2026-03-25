@@ -273,14 +273,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
                 </div>
               )}
 
-              {/* Badge édition limitée - Affiche petits formats par défaut (99 ex.) */}
+              {/* Badge édition limitée - Affiche le plus restrictif (grand format 9 ex.) */}
               {(photo.categories?.includes('limited') || photo.edition?.type === 'limited') && (
                 <div className="absolute top-3 right-3">
                   <StockBadge
-                    available={photo.limitedEditionPetit?.available || photo.limitedEdition?.available || 99}
-                    total={photo.limitedEditionPetit?.total || photo.limitedEdition?.total || 99}
+                    available={photo.limitedEditionGrand?.available || photo.limitedEdition?.available || 9}
+                    total={photo.limitedEditionGrand?.total || photo.limitedEdition?.total || 9}
                     size="sm"
-                    formatType="petit"
+                    formatType="grand"
                   />
                 </div>
               )}

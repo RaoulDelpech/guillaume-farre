@@ -229,10 +229,13 @@ async function processOrder(session: Stripe.Checkout.Session) {
     }
 
     // Mettre à jour le stock pour les éditions limitées
-    for (const item of lineItems) {
+    const itemsFormats = fullSession.metadata?.items_formats?.split(',') || [];
+    for (let i = 0; i < lineItems.length; i++) {
+      const item = lineItems[i];
+      const format = itemsFormats[i] || extractFormatFromDescription(item.description || '');
       const photoFilename = extractPhotoFilename(item);
       if (photoFilename && isLimitedEdition(item)) {
-        await updatePhotoStock(photoFilename, item.quantity || 1);
+        await updatePhotoStock(photoFilename, format, item.quantity || 1);
       }
     }
 

@@ -63,6 +63,7 @@
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. Tous droits réservés.",
+    "account": "Mon compte",
     "legal": "Mentions légales",
     "privacy": "Politique de confidentialité"
   },
@@ -171,5 +172,55 @@
     "preview": "Avant-première",
     "comingSoon": "Bientôt disponible",
     "vipInvitation": "Votre invitation VIP"
+  },
+  "cookies": {
+    "message": "Ce site utilise des cookies pour améliorer votre expérience et analyser le trafic.",
+    "accept": "Accepter",
+    "refuse": "Refuser",
+    "learnMore": "En savoir plus"
+  },
+  "account": {
+    "login": {
+      "title": "Accédez à votre espace",
+      "subtitle": "Recevez un lien de connexion par email",
+      "emailLabel": "Adresse email",
+      "emailPlaceholder": "votre@email.com",
+      "submit": "Recevoir le lien",
+      "sending": "Envoi en cours...",
+      "helpText": "Vous recevrez un email avec un lien de connexion valable 1 heure",
+      "emailSentTitle": "Email envoyé",
+      "emailSentMessage": "Un lien de connexion a été envoyé à votre adresse email.",
+      "emailSentCheck": "Consultez votre boîte de réception (et vos spams si besoin)."
+    },
+    "dashboard": {
+      "greeting": "Bonjour {name}",
+      "logout": "Se déconnecter",
+      "ordersTitle": "Mes commandes",
+      "loading": "Chargement...",
+      "noOrders": "Aucune commande pour le moment",
+      "browseShop": "Découvrir la boutique",
+      "orderNumber": "Commande",
+      "orderDate": "Passée le {date}",
+      "total": "Total",
+      "trackOrder": "Suivre",
+      "certificate": "Certificat"
+    },
+    "status": {
+      "pending": "En attente",
+      "paid": "Payée",
+      "processing": "En impression",
+      "shipped": "Expédiée",
+      "delivered": "Livrée",
+      "problem": "Problème"
+    },
+    "errors": {
+      "invalidEmail": "Adresse email invalide",
+      "sendFailed": "Échec de l'envoi. Réessayez dans quelques instants.",
+      "network": "Erreur réseau. Vérifiez votre connexion.",
+      "loadFailed": "Erreur lors du chargement des commandes",
+      "invalidToken": "Lien invalide. Demandez un nouveau lien.",
+      "expiredToken": "Lien expiré. Demandez un nouveau lien.",
+      "server": "Erreur serveur. Réessayez plus tard."
+    }
   }
 }

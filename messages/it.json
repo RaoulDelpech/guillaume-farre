@@ -63,6 +63,7 @@
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. Tutti i diritti riservati.",
+    "account": "Il mio account",
     "legal": "Note legali",
     "privacy": "Informativa sulla privacy"
   },
@@ -171,5 +172,55 @@
     "preview": "Anteprima",
     "comingSoon": "Disponibile presto",
     "vipInvitation": "Il vostro invito VIP"
+  },
+  "cookies": {
+    "message": "Questo sito utilizza cookie per migliorare la tua esperienza e analizzare il traffico.",
+    "accept": "Accetta",
+    "refuse": "Rifiuta",
+    "learnMore": "Scopri di più"
+  },
+  "account": {
+    "login": {
+      "title": "Accedi al tuo account",
+      "subtitle": "Ricevi un link di accesso via email",
+      "emailLabel": "Indirizzo email",
+      "emailPlaceholder": "tuo@email.com",
+      "submit": "Ricevi il link",
+      "sending": "Invio in corso...",
+      "helpText": "Riceverai un'email con un link di accesso valido per 1 ora",
+      "emailSentTitle": "Email inviata",
+      "emailSentMessage": "Un link di accesso è stato inviato al tuo indirizzo email.",
+      "emailSentCheck": "Controlla la tua casella di posta (e lo spam se necessario)."
+    },
+    "dashboard": {
+      "greeting": "Ciao {name}",
+      "logout": "Disconnetti",
+      "ordersTitle": "I miei ordini",
+      "loading": "Caricamento...",
+      "noOrders": "Nessun ordine per il momento",
+      "browseShop": "Scopri il negozio",
+      "orderNumber": "Ordine",
+      "orderDate": "Effettuato il {date}",
+      "total": "Totale",
+      "trackOrder": "Traccia",
+      "certificate": "Certificato"
+    },
+    "status": {
+      "pending": "In attesa",
+      "paid": "Pagato",
+      "processing": "In stampa",
+      "shipped": "Spedito",
+      "delivered": "Consegnato",
+      "problem": "Problema"
+    },
+    "errors": {
+      "invalidEmail": "Indirizzo email non valido",
+      "sendFailed": "Invio fallito. Riprova tra qualche istante.",
+      "network": "Errore di rete. Controlla la tua connessione.",
+      "loadFailed": "Errore nel caricamento degli ordini",
+      "invalidToken": "Link non valido. Richiedi un nuovo link.",
+      "expiredToken": "Link scaduto. Richiedi un nuovo link.",
+      "server": "Errore del server. Riprova più tardi."
+    }
   }
 }

@@ -17,6 +17,7 @@ import { render } from '@react-email/components';
 import OrderConfirmationEmail from '@/emails/OrderConfirmation';
 import ShippingNotificationEmail from '@/emails/ShippingNotification';
 import DeliveryConfirmationEmail from '@/emails/DeliveryConfirmation';
+import MagicLinkEmail from '@/emails/MagicLink';
 
 /**
  * Initialiser client Resend
@@ -365,6 +366,46 @@ export async function sendPaymentPendingEmail(params: {
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi email:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+/**
+ * Envoyer email magic link (connexion compte sans mot de passe)
+ */
+export async function sendMagicLinkEmail(params: {
+  to: string;
+  magicLink: string;
+}): Promise<{ success: boolean; messageId?: string; error?: string }> {
+  const resend = getResendClient();
+
+  if (!resend) {
+    console.log('[Resend] Emails désactivés (pas d\'API key)');
+    return { success: false, error: 'Resend API key missing' };
+  }
+
+  try {
+    console.log('[Resend] Envoi magic link à:', params.to);
+
+    const { data, error } = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: params.to,
+      subject: 'Votre lien de connexion - Guillaume Farré',
+      react: MagicLinkEmail({
+        magicLink: params.magicLink,
+        email: params.to,
+      }),
+    });
+
+    if (error) {
+      console.error('[Resend] Erreur envoi magic link:', error);
+      return { success: false, error: error.message };
+    }
+
+    console.log('[Resend] ✅ Magic link envoyé:', data?.id);
+    return { success: true, messageId: data?.id };
+  } catch (error: any) {
+    console.error('[Resend] Exception envoi magic link:', error);
     return { success: false, error: error.message };
   }
 }

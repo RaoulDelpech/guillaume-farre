@@ -97,6 +97,12 @@ export default function ShippingNotificationEmail({
               <Button href={trackingUrl} style={styles.trackingButton}>
                 Suivre mon colis en temps réel
               </Button>
+
+              <Text style={styles.trackingSecondary}>
+                <a href={`https://guillaumefarre.com/fr/commande?order=${orderNumber}`} style={styles.linkSecondary}>
+                  Voir le statut de ma commande
+                </a>
+              </Text>
             </Section>
 
             {/* Items Summary */}
@@ -333,6 +339,16 @@ const styles = {
   },
   link: {
     color: '#3b82f6',
+    textDecoration: 'underline',
+  },
+  trackingSecondary: {
+    textAlign: 'center' as const,
+    margin: '15px 0 0',
+    fontSize: '14px',
+    color: '#666666',
+  },
+  linkSecondary: {
+    color: '#666666',
     textDecoration: 'underline',
   },
 };

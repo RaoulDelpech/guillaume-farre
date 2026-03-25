@@ -152,11 +152,29 @@ export default function OrderConfirmationEmail({
             {/* CTA */}
             <Section style={styles.cta}>
               <Button
-                href="https://guillaumefarre.com/boutique"
+                href={`https://guillaumefarre.com/fr/commande?order=${orderNumber}`}
                 style={styles.button}
               >
-                Continuer mes achats
+                Suivre ma commande
               </Button>
+              <Text style={styles.ctaSecondary}>
+                <a href="https://guillaumefarre.com/boutique" style={styles.linkSecondary}>
+                  Continuer mes achats
+                </a>
+              </Text>
+            </Section>
+
+            {/* Certificat d'authenticité */}
+            <Section style={styles.certificateBox}>
+              <Text style={styles.certificateTitle}>
+                📜 Certificat d'authenticité
+              </Text>
+              <Text style={styles.certificateText}>
+                Votre certificat d'authenticité est disponible au téléchargement depuis votre page de suivi de commande.
+              </Text>
+              <Text style={styles.certificateText}>
+                Ce document officiel, signé par l'artiste, atteste de l'authenticité et de l'édition limitée de votre œuvre.
+              </Text>
             </Section>
 
             {/* Footer Info */}
@@ -391,6 +409,37 @@ const styles = {
   link: {
     color: '#000000',
     textDecoration: 'underline',
+  },
+  ctaSecondary: {
+    textAlign: 'center' as const,
+    margin: '15px 0 0',
+    fontSize: '14px',
+    color: '#666666',
+  },
+  linkSecondary: {
+    color: '#666666',
+    textDecoration: 'underline',
+  },
+  certificateBox: {
+    backgroundColor: '#f9fafb',
+    border: '1px solid #e5e7eb',
+    borderRadius: '8px',
+    padding: '25px',
+    margin: '30px 0',
+  },
+  certificateTitle: {
+    color: '#333333',
+    fontSize: '16px',
+    fontWeight: '500',
+    margin: '0 0 15px',
+    textAlign: 'center' as const,
+  },
+  certificateText: {
+    color: '#555555',
+    fontSize: '14px',
+    lineHeight: '1.6',
+    margin: '10px 0',
+    textAlign: 'center' as const,
   },
 };
 

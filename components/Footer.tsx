@@ -90,6 +90,11 @@ export default function Footer() {
             </EditableText>
             <ul className="space-y-3 text-sm">
               <li>
+                <Link href="/compte" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                  {t("account")}
+                </Link>
+              </li>
+              <li>
                 <Link href="/mentions-legales" className="text-muted-foreground hover:text-primary transition-colors font-light">
                   {t("legal")}
                 </Link>

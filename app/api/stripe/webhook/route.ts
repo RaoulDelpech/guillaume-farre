@@ -6,6 +6,7 @@ import { getPennylaneClient } from '@/lib/pennylane-client';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
 import { sendOrderConfirmationEmail, sendPaymentPendingEmail } from '@/lib/resend-client';
 import { isEarlyAccess } from '@/lib/early-access';
+import { createOrder, updateOrder } from '@/lib/orders';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -189,9 +190,39 @@ async function processOrder(session: Stripe.Checkout.Session) {
       shipping: shippingDetails?.address
     });
 
+    // Créer commande dans notre système
+    const order = await createOrder({
+      stripeSessionId: fullSession.id,
+      customerEmail: customerDetails?.email || '',
+      customerName: customerDetails?.name || 'Client',
+      items: lineItems.map(item => ({
+        title: item.description || 'Photo Fine Art',
+        format: extractFormatFromDescription(item.description || ''),
+        frame: extractFrameFromDescription(item.description || ''),
+        price: (item.amount_total || 0) / 100,
+      })),
+      totalAmount: (fullSession.amount_total || 0) / 100,
+      status: 'paid',
+      paidAt: new Date().toISOString(),
+      isEarlyCollector: isEarlyAccess(),
+    });
+
+    // Générer ID certificat d'authenticité
+    const certificateId = `CERT-${order.orderNumber}-${Date.now()}`;
+    await updateOrder(order.orderNumber, { certificateId });
+
+    console.log('📝 Commande enregistrée:', order.orderNumber);
+
     // Envoyer la commande à Gelato API
     try {
-      await sendToGelato(fullSession);
+      const gelatoResult = await sendToGelato(fullSession);
+      if (gelatoResult?.id) {
+        // Mettre à jour commande avec ID Gelato
+        await updateOrder(order.orderNumber, {
+          gelatoOrderId: gelatoResult.id,
+          status: 'processing',
+        });
+      }
     } catch (error) {
       console.error('⚠️ Gelato order failed, but payment succeeded:', error);
       // On continue même si Gelato échoue, le paiement est réussi
@@ -219,7 +250,7 @@ async function processOrder(session: Stripe.Checkout.Session) {
         await sendOrderConfirmationEmail({
           to: customerDetails.email,
           customerName: customerDetails.name || 'Client',
-          orderNumber: fullSession.id,
+          orderNumber: order.orderNumber, // Utiliser notre numéro GF-XXXXXX
           items: lineItems.map(item => ({
             title: item.description || 'Photo Fine Art',
             format: extractFormatFromDescription(item.description || ''),

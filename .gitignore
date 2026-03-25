@@ -47,3 +47,6 @@ bun.lockb
 # photos à trier (keep folder but ignore uploaded files)
 /public/images/works/a-trier/*
 !/public/images/works/a-trier/.gitkeep
+
+# orders data (contains customer information)
+/data/orders.json

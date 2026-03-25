@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getPageImages, savePageImages, updatePageImage, type PageImages } from "@/lib/page-images";
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 /**
  * API pour gérer les images des pages
@@ -11,6 +12,9 @@ import { getPageImages, savePageImages, updatePageImage, type PageImages } from 
  */
 
 export async function GET() {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const images = await getPageImages();
     return NextResponse.json(images);
@@ -21,6 +25,9 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 

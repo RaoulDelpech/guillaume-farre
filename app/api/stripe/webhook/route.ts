@@ -445,17 +445,11 @@ export async function POST(req: NextRequest) {
   let event: Stripe.Event;
 
   if (!endpointSecret) {
-    console.error('⚠️ STRIPE_WEBHOOK_SECRET not configured');
-    // En développement sans secret, on peut accepter l'événement sans vérification
-    try {
-      event = JSON.parse(body) as Stripe.Event;
-    } catch (err) {
-      console.error('❌ Webhook error (parsing):', err);
-      return NextResponse.json(
-        { error: 'Invalid payload' },
-        { status: 400 }
-      );
-    }
+    console.error('❌ STRIPE_WEBHOOK_SECRET not configured - webhook rejected');
+    return NextResponse.json(
+      { error: 'Webhook secret required' },
+      { status: 500 }
+    );
   } else {
     // En production, vérifier la signature
     try {

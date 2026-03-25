@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireEnv } from "@/lib/require-env";
 
-const SITE_PASSWORD = process.env.SITE_PASSWORD || "LHOOQladino246";
+const SITE_PASSWORD = requireEnv('SITE_PASSWORD');
 const COOKIE_NAME = "gf_auth";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 jours
 

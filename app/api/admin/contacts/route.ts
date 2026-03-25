@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 const CONTACTS_FILE = path.join(process.cwd(), "data", "contacts.json");
 
@@ -36,6 +37,9 @@ async function saveContacts(contacts: ContactMessage[]): Promise<void> {
  * @date 2025-01-20
  */
 export async function GET() {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const contacts = await loadContacts();
     return NextResponse.json(contacts);
@@ -55,6 +59,9 @@ export async function GET() {
  * @date 2025-01-20
  */
 export async function PATCH(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
     const { id, read } = body;
@@ -90,6 +97,9 @@ export async function PATCH(request: NextRequest) {
  * @date 2025-01-20
  */
 export async function DELETE(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
     const { id } = body;

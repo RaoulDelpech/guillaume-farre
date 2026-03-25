@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import contentManager from "@/lib/content-manager";
-
-const ADMIN_PASSWORD = process.env.SITE_PASSWORD || "LHOOQladino246";
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 /**
  * API pour sauvegarder les modifications de contenu
@@ -13,12 +12,10 @@ const ADMIN_PASSWORD = process.env.SITE_PASSWORD || "LHOOQladino246";
  * @date 2025-11-30
  */
 export async function POST(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
-    // Vérifier l'authentification via cookie
-    const authCookie = request.cookies.get("gf_auth");
-    if (!authCookie || authCookie.value !== "authenticated") {
-      return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
-    }
 
     const body = await request.json();
     const { changes, locale = "fr" } = body;
@@ -68,11 +65,10 @@ export async function POST(request: NextRequest) {
  * Récupère tout le contenu d'une locale
  */
 export async function GET(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
-    const authCookie = request.cookies.get("gf_auth");
-    if (!authCookie || authCookie.value !== "authenticated") {
-      return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
-    }
 
     const { searchParams } = new URL(request.url);
     const locale = searchParams.get("locale") || "fr";

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -10,6 +11,12 @@ const stripe = process.env.STRIPE_SECRET_KEY
  * Utilisé côté client pour différencier CB (paid) et virement SEPA (unpaid/pending).
  */
 export async function GET(req: NextRequest) {
+  // Rate limiting: 100 req/min
+  const clientIP = getClientIP(req);
+  if (isRateLimited(`stripe-session-status:${clientIP}`, 100, 60000)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+  }
+
   if (!stripe) {
     return NextResponse.json({ error: 'Stripe non configuré' }, { status: 503 });
   }

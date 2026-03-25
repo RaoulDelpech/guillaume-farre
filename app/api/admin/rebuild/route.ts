@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { exec } from "child_process";
 import { promisify } from "util";
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 const execAsync = promisify(exec);
 
@@ -9,12 +10,10 @@ const execAsync = promisify(exec);
  * @author Lalou
  */
 export async function POST(request: NextRequest) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
-    // Vérifier authentification basique
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader || authHeader !== "Bearer dino246") {
-      return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
-    }
 
     // Lancer le rebuild en arrière-plan
     exec("cd /var/www/guillaumefarre && npm run build && pm2 restart guillaumefarre", (error, stdout, stderr) => {

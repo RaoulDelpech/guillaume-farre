@@ -80,12 +80,11 @@ function validateGelatoWebhook(authHeader: string | null): boolean {
 
   const token = tokenMatch[1];
 
-  // Si pas de secret configuré (dev), accepter avec warning
+  // Secret obligatoire en production
   const secret = process.env.GELATO_WEBHOOK_SECRET;
   if (!secret) {
-    console.warn('[Gelato Webhook] GELATO_WEBHOOK_SECRET non configuré - validation skippée (INSECURE)');
-    console.warn('[Gelato Webhook] En production, configurer GELATO_WEBHOOK_SECRET dans .env');
-    return true;
+    console.error('[Gelato Webhook] GELATO_WEBHOOK_SECRET non configuré - webhook rejeté');
+    return false;
   }
 
   // Validation JWT simple avec le secret (sans lib externe)

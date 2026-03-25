@@ -7,8 +7,9 @@
  */
 
 import crypto from 'crypto';
+import { requireEnv } from './require-env';
 
-const SECRET = process.env.MAGIC_LINK_SECRET || 'default-dev-secret-change-me-in-production';
+const SECRET = requireEnv('MAGIC_LINK_SECRET');
 
 /**
  * Token payload interface

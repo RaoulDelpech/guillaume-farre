@@ -222,5 +222,57 @@
       "expiredToken": "Link scaduto. Richiedi un nuovo link.",
       "server": "Errore del server. Riprova più tardi."
     }
+  },
+  "vip": {
+    "tag": "Invito privato",
+    "title": "Invito privato",
+    "subtitle": "Guillaume Farré ti invita a scoprire le sue tele",
+    "codeLabel": "Codice d'accesso",
+    "codePlaceholder": "XXXXXXXX",
+    "enter": "Accedi",
+    "invalid": "Codice non valido",
+    "expired": "Questo codice è scaduto",
+    "alreadyUsed": "Questo codice è già stato utilizzato",
+    "welcome": "Benvenuto nell'atelier",
+    "welcomeSubtitle": "Le tele ti aspettano"
+  },
+  "canvas": {
+    "tag": "Collezione privata",
+    "title": "Le tele",
+    "subtitle": "Pezzi unici — passaggio diretto della Dino 246 GT sulla tela",
+    "reserve": "Prenota questa tela",
+    "reserved": "Prenotata",
+    "dimensions": "Dimensioni",
+    "technique": "Tecnica",
+    "price": "Prezzo",
+    "disclaimer": "Le tele non sono in vendita online. La prenotazione ti garantisce un contatto diretto con Guillaume.",
+    "reserveForm": {
+      "name": "Il tuo nome",
+      "email": "La tua email",
+      "phone": "Il tuo telefono",
+      "message": "Messaggio (opzionale)",
+      "submit": "Conferma la prenotazione",
+      "cancel": "Annulla",
+      "success": "Prenotazione registrata — Guillaume ti contatterà entro 48 ore."
+    }
+  },
+  "adminVip": {
+    "title": "Codici VIP",
+    "tag": "Amministrazione",
+    "generate": "Genera un link",
+    "generating": "Generazione...",
+    "generated": "Codice generato",
+    "share": "Condividi",
+    "copy": "Copia",
+    "copied": "Copiato!",
+    "activeCodes": "Codici attivi",
+    "noActiveCodes": "Nessun codice attivo",
+    "loading": "Caricamento...",
+    "remaining": "rimanenti",
+    "status": {
+      "active": "Attivo",
+      "used": "Utilizzato",
+      "expired": "Scaduto"
+    }
   }
 }

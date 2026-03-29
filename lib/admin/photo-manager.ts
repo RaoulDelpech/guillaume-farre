@@ -35,6 +35,20 @@ export interface PhotoMetadata {
   forSale: boolean;
   earlyAccess?: boolean;
 
+  // Niveau d'acces requis pour voir cette oeuvre
+  accessLevel?: 'public' | 'early' | 'vip';
+
+  // Type de produit : photo (tirage) ou toile (piece unique)
+  productType?: 'photo' | 'canvas';
+
+  // Details specifiques aux toiles (si productType === 'canvas')
+  canvasDetails?: {
+    dimensions: string;      // "150 x 200 cm"
+    technique: string;       // "Peinture sur toile, passage Ferrari Dino"
+    price: number;           // En euros
+    weight?: string;         // "15 kg"
+  };
+
   // Ancien champ category gardé pour compatibilité (à migrer)
   category?: string;
 

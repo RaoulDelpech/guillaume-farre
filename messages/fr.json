@@ -222,5 +222,57 @@
       "expiredToken": "Lien expiré. Demandez un nouveau lien.",
       "server": "Erreur serveur. Réessayez plus tard."
     }
+  },
+  "vip": {
+    "tag": "Invitation privée",
+    "title": "Invitation privée",
+    "subtitle": "Guillaume Farré vous invite à découvrir ses toiles",
+    "codeLabel": "Code d'accès",
+    "codePlaceholder": "XXXXXXXX",
+    "enter": "Accéder",
+    "invalid": "Code invalide",
+    "expired": "Ce code a expiré",
+    "alreadyUsed": "Ce code a déjà été utilisé",
+    "welcome": "Bienvenue dans l'atelier",
+    "welcomeSubtitle": "Les toiles vous attendent"
+  },
+  "canvas": {
+    "tag": "Collection privée",
+    "title": "Les toiles",
+    "subtitle": "Pièces uniques — passage direct de la Dino 246 GT sur la toile",
+    "reserve": "Réserver cette toile",
+    "reserved": "Réservée",
+    "dimensions": "Dimensions",
+    "technique": "Technique",
+    "price": "Prix",
+    "disclaimer": "Les toiles ne sont pas en vente en ligne. La réservation vous garantit un contact direct avec Guillaume.",
+    "reserveForm": {
+      "name": "Votre nom",
+      "email": "Votre email",
+      "phone": "Votre téléphone",
+      "message": "Message (optionnel)",
+      "submit": "Confirmer la réservation",
+      "cancel": "Annuler",
+      "success": "Réservation enregistrée — Guillaume vous contactera sous 48h."
+    }
+  },
+  "adminVip": {
+    "title": "Codes VIP",
+    "tag": "Administration",
+    "generate": "Générer un lien",
+    "generating": "Génération...",
+    "generated": "Code généré",
+    "share": "Partager",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "activeCodes": "Codes actifs",
+    "noActiveCodes": "Aucun code actif",
+    "loading": "Chargement...",
+    "remaining": "restantes",
+    "status": {
+      "active": "Actif",
+      "used": "Utilisé",
+      "expired": "Expiré"
+    }
   }
 }

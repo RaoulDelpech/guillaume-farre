@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import confetti from "canvas-confetti";
 
 interface DashboardMetrics {
   totalPhotos: number;
@@ -88,8 +87,9 @@ export default function AdminDashboard() {
     }
   };
 
-  const celebrateSale = () => {
+  const celebrateSale = async () => {
     setShowCelebration(true);
+    const confetti = (await import("canvas-confetti")).default;
     confetti({
       particleCount: 100,
       spread: 70,
@@ -281,8 +281,17 @@ export default function AdminDashboard() {
   );
 }
 
-// Composant pour les cartes de métriques
-function MetricCard({ title, value, total, icon, color, trend, alert }: any) {
+interface MetricCardProps {
+  title: string;
+  value: string | number;
+  total?: number;
+  icon: string;
+  color: 'blue' | 'green' | 'purple' | 'orange';
+  trend?: string;
+  alert?: string;
+}
+
+function MetricCard({ title, value, total, icon, color, trend, alert }: MetricCardProps) {
   const colorClasses = {
     blue: "bg-blue-100 text-blue-700",
     green: "bg-green-100 text-green-700",
@@ -319,8 +328,14 @@ function MetricCard({ title, value, total, icon, color, trend, alert }: any) {
   );
 }
 
-// Composant pour les actions rapides
-function QuickAction({ icon, label, onClick, color }: any) {
+interface QuickActionProps {
+  icon: string;
+  label: string;
+  onClick: () => void;
+  color: 'blue' | 'green' | 'purple' | 'orange';
+}
+
+function QuickAction({ icon, label, onClick, color }: QuickActionProps) {
   const colorClasses = {
     blue: "hover:bg-blue-50 hover:border-blue-300",
     green: "hover:bg-green-50 hover:border-green-300",

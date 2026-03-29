@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Navigation from '@/components/navigation/Navigation';
 import { Link } from '@/i18n/routing';
 import { useWishlist } from '@/hooks/useWishlist';
@@ -18,7 +19,7 @@ export default function FavorisPage() {
     return (
       <main className="min-h-screen">
         <Navigation />
-        <div className="container mx-auto px-6 lg:px-8 py-20 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <p className="text-muted-foreground">Chargement...</p>
         </div>
       </main>
@@ -31,12 +32,12 @@ export default function FavorisPage() {
     <main className="min-h-screen">
       <Navigation />
 
-      <div className="container mx-auto px-6 lg:px-8 py-20 md:py-28 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 max-w-6xl">
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
             <Heart className="w-10 h-10 text-primary fill-primary" />
-            <h1 className="text-5xl md:text-6xl font-light tracking-wide">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-wide">
               Mes favoris
             </h1>
           </div>
@@ -90,10 +91,13 @@ export default function FavorisPage() {
                 {/* Image */}
                 <div className="relative aspect-[4/3] bg-muted">
                   {item.thumbnailUrl ? (
-                    <img
+                    <Image
                       src={item.thumbnailUrl}
                       alt={item.title || 'Œuvre'}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">

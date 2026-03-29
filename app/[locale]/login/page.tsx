@@ -8,31 +8,37 @@ import { useRouter } from "next/navigation";
  * Ambiance confidentielle / club privé
  *
  * Séquence :
- * 1. Portes fermées avec texte
- * 2. Clic "Entrer" → portes s'ouvrent
- * 3. Champ mot de passe apparaît
- * 4. Login → redirect vers site avec vidéo
+ * 1. Portes fermées + champ mot de passe
+ * 2. Mot de passe correct → portes s'ouvrent lentement
+ * 3. Message de bienvenue apparaît derrière les portes
+ * 4. Redirect vers site
  *
  * @author Lalou
  */
 export default function LoginPage() {
-  const [phase, setPhase] = useState<"doors" | "password" | "success">("doors");
+  const [phase, setPhase] = useState<"password" | "opening" | "welcome">("password");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus sur le champ password quand il apparaît
   useEffect(() => {
     if (phase === "password" && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 500);
+      setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [phase]);
 
-  const handleEnter = () => {
-    setPhase("password");
-  };
+  // Redirect après le message de bienvenue
+  useEffect(() => {
+    if (phase === "welcome") {
+      const timer = setTimeout(() => {
+        router.push("/fr");
+        router.refresh();
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [phase, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,25 +52,24 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
-      setPhase("success");
-      // Cookie pour déclencher la vidéo après login
       document.cookie = "gf_dark_entry_seen=true;path=/;max-age=604800";
-      setTimeout(() => {
-        router.push("/fr");
-        router.refresh();
-      }, 800);
+      setPhase("opening");
+      // Attendre que les portes soient ouvertes avant d'afficher le message
+      setTimeout(() => setPhase("welcome"), 3500);
     } else {
       setError(true);
       setLoading(false);
     }
   };
 
+  const doorsOpen = phase === "opening" || phase === "welcome";
+
   return (
     <div className="fixed inset-0 bg-black overflow-hidden">
       {/* Porte gauche */}
       <div
-        className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
-          phase !== "doors" ? "-translate-x-full" : "translate-x-0"
+        className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-[3000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+          doorsOpen ? "-translate-x-full" : "translate-x-0"
         }`}
         style={{
           background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
@@ -95,8 +100,8 @@ export default function LoginPage() {
 
       {/* Porte droite */}
       <div
-        className={`absolute top-0 right-0 w-1/2 h-full transition-transform duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
-          phase !== "doors" ? "translate-x-full" : "translate-x-0"
+        className={`absolute top-0 right-0 w-1/2 h-full transition-transform duration-[3000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+          doorsOpen ? "translate-x-full" : "translate-x-0"
         }`}
         style={{
           background: "linear-gradient(225deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
@@ -127,54 +132,15 @@ export default function LoginPage() {
 
       {/* Ligne centrale (jonction des portes) */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-black/50 transition-opacity duration-500 ${
-          phase !== "doors" ? "opacity-0" : "opacity-100"
+        className={`absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-black/50 transition-opacity duration-[3000ms] ${
+          doorsOpen ? "opacity-0" : "opacity-100"
         }`}
       />
 
-      {/* Contenu portes fermées */}
-      {phase === "doors" && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-          {/* Ligne fine horizontale */}
-          <div className="h-px w-32 md:w-48 bg-white/20 mb-12 animate-[fadeIn_1s_ease-out]" />
-
-          {/* Nom de l'artiste */}
-          <p className="text-white/50 text-xs md:text-sm tracking-[0.5em] uppercase font-light mb-6 animate-[fadeIn_1s_ease-out_0.3s_both]">
-            Guillaume Farré
-          </p>
-
-          {/* Phrase signature */}
-          <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-center px-8 animate-[fadeIn_1s_ease-out_0.6s_both]">
-            Une Dino pour pinceau
-          </h1>
-
-          {/* Sous-titre */}
-          <p className="text-white/40 text-sm md:text-base font-light tracking-widest mt-6 animate-[fadeIn_1s_ease-out_0.9s_both]">
-            Toiles · Photographies · Performances
-          </p>
-
-          {/* Ligne fine horizontale */}
-          <div className="h-px w-32 md:w-48 bg-white/20 mt-12 animate-[fadeIn_1s_ease-out_1.2s_both]" />
-
-          {/* Bouton Entrer */}
-          <button
-            onClick={handleEnter}
-            className="mt-12 sm:mt-16 text-white/30 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/60 transition-colors pointer-events-auto animate-[fadeIn_1s_ease-out_1.5s_both] min-h-[48px] px-6 flex items-center justify-center"
-          >
-            Entrer
-          </button>
-        </div>
-      )}
-
-      {/* Formulaire mot de passe (après ouverture des portes) */}
-      {(phase === "password" || phase === "success") && (
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
-            phase === "success" ? "opacity-0" : "opacity-100"
-          }`}
-          style={{ animationDelay: "1s" }}
-        >
-          <div className="w-full max-w-sm px-8 animate-[fadeIn_1s_ease-out_0.5s_both]">
+      {/* Formulaire mot de passe (portes fermées) */}
+      {phase === "password" && (
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="w-full max-w-sm px-8 animate-[fadeIn_1s_ease-out_0.3s_both]">
             <div className="text-center mb-12">
               <p className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">
                 Espace privé
@@ -204,9 +170,39 @@ export default function LoginPage() {
                 disabled={loading || !password}
                 className="w-full py-3 text-white/40 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed min-h-[48px] flex items-center justify-center"
               >
-                {loading ? "···" : "Valider"}
+                {loading ? "···" : "Entrer"}
               </button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Message de bienvenue (révélé après ouverture des portes) */}
+      {(phase === "opening" || phase === "welcome") && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-0">
+          <div className={`flex flex-col items-center transition-opacity duration-[2000ms] ${
+            phase === "welcome" ? "opacity-100" : "opacity-0"
+          }`}>
+            {/* Ligne fine horizontale */}
+            <div className="h-px w-32 md:w-48 bg-white/20 mb-12" />
+
+            {/* Nom de l'artiste */}
+            <p className="text-white/50 text-xs md:text-sm tracking-[0.5em] uppercase font-light mb-6">
+              Guillaume Farré
+            </p>
+
+            {/* Phrase signature */}
+            <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-center px-8">
+              Une Dino pour pinceau
+            </h1>
+
+            {/* Sous-titre */}
+            <p className="text-white/40 text-sm md:text-base font-light tracking-widest mt-6">
+              Toiles · Photographies · Performances
+            </p>
+
+            {/* Ligne fine horizontale */}
+            <div className="h-px w-32 md:w-48 bg-white/20 mt-12" />
           </div>
         </div>
       )}

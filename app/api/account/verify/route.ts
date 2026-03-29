@@ -20,7 +20,6 @@ export async function GET(req: NextRequest) {
     const token = searchParams.get('token');
 
     if (!token) {
-      console.warn('[Verify] Token manquant');
       return NextResponse.redirect(new URL('/fr/compte?error=invalid', req.url));
     }
 
@@ -28,12 +27,10 @@ export async function GET(req: NextRequest) {
     const result = verifyToken(token);
 
     if (!result) {
-      console.warn('[Verify] Token invalide ou expiré');
       return NextResponse.redirect(new URL('/fr/compte?error=expired', req.url));
     }
 
     const { email } = result;
-    console.log(`[Verify] ✅ Token valide pour ${email}`);
 
     // Set httpOnly cookie with email (24h expiry)
     const response = NextResponse.redirect(new URL('/fr/compte', req.url));

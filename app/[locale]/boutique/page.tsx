@@ -4,7 +4,7 @@ import Navigation from "@/components/navigation/Navigation";
 import ShopFilteredGrid from "@/components/shop/ShopFilteredGrid";
 import BoutiqueContent from "@/components/pages/BoutiqueContent";
 import BoutiqueGarantiesContent from "@/components/pages/BoutiqueGarantiesContent";
-import { loadPhotoMetadata } from "@/lib/admin/photo-manager";
+import { loadPhotoMetadata, PhotoMetadata } from "@/lib/admin/photo-manager";
 import { Link } from "@/i18n/routing";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default async function BoutiquePage() {
   const t = await getTranslations("shop");
 
   // Load all photos marked for sale
-  let photosForSale: any[] = [];
+  let photosForSale: PhotoMetadata[] = [];
   try {
     const allPhotos = await loadPhotoMetadata();
     photosForSale = allPhotos.filter(photo =>

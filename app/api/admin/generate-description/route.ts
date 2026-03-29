@@ -87,7 +87,6 @@ export async function POST(request: NextRequest) {
     // Appel API Anthropic Claude Vision
     let message;
     try {
-      console.log('[generate-description] Appel API Anthropic pour:', photoFilename);
       message = await anthropic.messages.create({
         model: 'claude-3-5-sonnet-20241022', // Sonnet pour meilleure qualité descriptions artistiques
         max_tokens: 300,
@@ -111,7 +110,6 @@ export async function POST(request: NextRequest) {
           },
         ],
       });
-      console.log('[generate-description] Succès API Anthropic');
     } catch (apiError: any) {
       console.error('[generate-description] Erreur API Anthropic:', apiError);
 

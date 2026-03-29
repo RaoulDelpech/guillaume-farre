@@ -44,7 +44,6 @@ export async function POST(req: NextRequest) {
     const rateLimitKey = `magic-link:${clientIP}:${normalizedEmail}`;
 
     if (isRateLimited(rateLimitKey, 3, 3600000)) {
-      console.warn(`[MagicLink] Rate limit dépassé pour ${normalizedEmail}`);
       // Always return success to prevent email enumeration
       return NextResponse.json({
         success: true,
@@ -59,7 +58,6 @@ export async function POST(req: NextRequest) {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
     const magicLink = `${baseUrl}/fr/compte?token=${token}`;
 
-    console.log(`[MagicLink] Génération lien pour ${normalizedEmail}`);
 
     // Send email
     const result = await sendMagicLinkEmail({

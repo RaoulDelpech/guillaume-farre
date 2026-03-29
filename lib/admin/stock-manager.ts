@@ -85,7 +85,6 @@ export async function updatePhotoStock(
   format: string,
   quantitySold: number = 1
 ): Promise<boolean> {
-  console.log(`📉 Updating stock for ${photoFilename} (${format}): -${quantitySold}`);
 
   try {
     const metadata = await readMetadata();
@@ -96,7 +95,6 @@ export async function updatePhotoStock(
     );
 
     if (photoIndex === -1) {
-      console.warn(`⚠️ Photo not found in metadata: ${photoFilename}`);
       return false;
     }
 
@@ -104,7 +102,6 @@ export async function updatePhotoStock(
 
     // Vérifier si c'est une édition limitée
     if (!photo.categories?.includes('limited')) {
-      console.log('ℹ️ Photo is not a limited edition, no stock update needed');
       return true;
     }
 
@@ -139,16 +136,11 @@ export async function updatePhotoStock(
     // Fermer automatiquement la série si tout est vendu
     if (newSold >= maxTotal) {
       stock.closed = true;
-      console.log(`🔒 Limited edition series closed: ${photoFilename} (${stockKey})`);
     }
 
     // Sauvegarder les métadonnées mises à jour
     metadata[photoIndex] = photo;
     await writeMetadata(metadata);
-
-    console.log(
-      `✅ Stock updated (${stockKey}): ${stock.available}/${maxTotal} remaining`
-    );
 
     return true;
   } catch (error) {
@@ -172,7 +164,6 @@ export async function getPhotoStock(
     const photo = metadata.find((p) => p.filename === photoFilename);
 
     if (!photo) {
-      console.warn(`⚠️ Photo not found: ${photoFilename}`);
       return null;
     }
 
@@ -224,7 +215,6 @@ export async function isPhotoAvailable(
 export async function resetPhotoStock(
   photoFilename: string
 ): Promise<boolean> {
-  console.log(`🔄 Resetting stock for ${photoFilename}`);
 
   try {
     const metadata = await readMetadata();
@@ -247,7 +237,6 @@ export async function resetPhotoStock(
       metadata[photoIndex] = photo;
       await writeMetadata(metadata);
 
-      console.log('✅ Stock reset successfully');
       return true;
     }
 

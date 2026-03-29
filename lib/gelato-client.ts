@@ -91,7 +91,6 @@ export class GelatoClient {
    * Gère automatiquement les cadres : si frame !== 'none', envoie 2 items (frame + poster)
    */
   async createOrder(order: GelatoOrder): Promise<GelatoOrderResponse> {
-    console.log('🖨️ Creating Gelato order:', order.orderReferenceId);
 
     try {
       // Construire les items Gelato en gérant les cadres
@@ -175,7 +174,6 @@ export class GelatoClient {
       }
 
       const result = await response.json();
-      console.log('✅ Gelato order created:', result);
 
       return {
         id: result.orderId,
@@ -359,7 +357,6 @@ let gelatoClient: GelatoClient | null = null;
 
 export function initGelatoClient(apiKey?: string) {
   if (!apiKey && !process.env.GELATO_API_KEY) {
-    console.warn('⚠️ Gelato API key not configured');
     return null;
   }
 

@@ -1,21 +1,8 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import Cropper from 'react-easy-crop';
+import Cropper, { type Point, type Area } from 'react-easy-crop';
 import { X, RotateCw, RotateCcw, Crop, Save, RotateCwSquare } from 'lucide-react';
-
-// Types locaux pour react-easy-crop
-interface Point {
-  x: number;
-  y: number;
-}
-
-interface Area {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-}
 
 interface PhotoEditorProps {
   photo: {
@@ -104,7 +91,7 @@ export default function PhotoEditor({ photo, onSave, onClose }: PhotoEditorProps
             crop={crop}
             zoom={zoom}
             rotation={rotation}
-            aspect={undefined} // Libre
+            aspect={4 / 3}
             onCropChange={setCrop}
             onZoomChange={setZoom}
             onRotationChange={setRotation}

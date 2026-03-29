@@ -31,7 +31,7 @@ export default async function HomePage() {
   };
 
   return (
-    <main className="min-h-[80vh]">
+    <main className="min-h-[60vh] sm:min-h-[80vh]">
       <Navigation />
       <HomeClient />
       {/* Compteur Early Access - avant le carousel */}

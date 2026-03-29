@@ -105,12 +105,10 @@ export async function GET() {
   if (authError) return authError;
 
   try {
-    console.log('🔍 Scan des doublons en cours...');
     const duplicates = await scanForDuplicates();
 
     const totalDuplicates = duplicates.reduce((sum, group) => sum + (group.count - 1), 0);
 
-    console.log(`✅ Scan terminé : ${duplicates.length} groupes de doublons, ${totalDuplicates} fichiers à supprimer`);
 
     return NextResponse.json({
       success: true,
@@ -147,7 +145,6 @@ export async function DELETE(request: Request) {
       );
     }
 
-    console.log(`🗑️ Suppression de ${filesToDelete.length} doublons...`);
 
     const deleted: string[] = [];
     const errors: Array<{ file: string; error: string }> = [];
@@ -158,7 +155,6 @@ export async function DELETE(request: Request) {
       try {
         await fs.unlink(fullPath);
         deleted.push(filePath);
-        console.log(`✅ Supprimé: ${filePath}`);
       } catch (error) {
         console.error(`❌ Erreur suppression ${filePath}:`, error);
         errors.push({

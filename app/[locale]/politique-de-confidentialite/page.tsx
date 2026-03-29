@@ -2,14 +2,14 @@ import Navigation from "@/components/navigation/Navigation";
 
 export default async function PolitiqueConfidentialitePage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-background">
       <Navigation />
       <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8">Politique de Confidentialité</h1>
+        <h1 className="text-2xl sm:text-4xl font-bold mb-8">Politique de Confidentialité</h1>
 
-        <div className="prose prose-lg max-w-none space-y-6 text-gray-700">
+        <div className="prose prose-lg max-w-none space-y-6 text-muted-foreground">
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">1. Introduction</h2>
             <p>
               La protection de vos données personnelles est une priorité pour Guillaume Farré.
               Cette politique de confidentialité explique quelles informations nous collectons,
@@ -18,7 +18,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Responsable du traitement</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">2. Responsable du traitement</h2>
             <p>
               <strong>Guillaume Farré</strong><br />
               Artiste - Action painting automobile<br />
@@ -27,7 +27,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Données collectées</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">3. Données collectées</h2>
             <p>
               Nous collectons les données suivantes :
             </p>
@@ -41,7 +41,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Finalités du traitement</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">4. Finalités du traitement</h2>
             <p>
               Vos données sont collectées pour :
             </p>
@@ -56,7 +56,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Base légale du traitement</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">5. Base légale du traitement</h2>
             <p>
               Le traitement de vos données repose sur :
             </p>
@@ -69,7 +69,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Destinataires des données</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">6. Destinataires des données</h2>
             <p>
               Vos données peuvent être transmises à :
             </p>
@@ -84,7 +84,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Durée de conservation</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">7. Durée de conservation</h2>
             <p>
               Vos données sont conservées pendant :
             </p>
@@ -96,7 +96,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Vos droits</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">8. Vos droits</h2>
             <p>
               Conformément au RGPD, vous disposez des droits suivants :
             </p>
@@ -115,7 +115,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Sécurité</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">9. Sécurité</h2>
             <p>
               Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre :
             </p>
@@ -130,7 +130,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Cookies</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">10. Cookies</h2>
             <p>
               Notre site utilise des cookies pour améliorer votre expérience de navigation.
               Vous pouvez configurer votre navigateur pour refuser les cookies.
@@ -146,7 +146,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Modifications</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">11. Modifications</h2>
             <p>
               Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment.
               Toute modification sera publiée sur cette page avec une nouvelle date de mise à jour.
@@ -154,7 +154,7 @@ export default async function PolitiqueConfidentialitePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Contact et réclamation</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">12. Contact et réclamation</h2>
             <p>
               Pour toute question concernant cette politique de confidentialité ou l'exercice de vos droits :
             </p>
@@ -169,12 +169,12 @@ export default async function PolitiqueConfidentialitePage() {
               3 Place de Fontenoy - TSA 80715<br />
               75334 PARIS CEDEX 07<br />
               Téléphone : 01 53 73 22 22<br />
-              <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.cnil.fr</a>
+              <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.cnil.fr</a>
             </p>
           </section>
 
-          <section className="border-t pt-6 mt-8">
-            <p className="text-sm text-gray-600">
+          <section className="border-t border-border pt-6 mt-8">
+            <p className="text-sm text-muted-foreground">
               <strong>Dernière mise à jour :</strong> {new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </section>

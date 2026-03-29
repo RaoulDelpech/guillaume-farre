@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 import AIAnalysisPanel from "@/components/admin/AIAnalysisPanel";
 import DuplicateDetector from "@/components/admin/DuplicateDetector";
@@ -115,7 +116,7 @@ export default function AdminPage() {
         setAnalyzingSeries(true);
 
         try {
-          const photoPaths = uploadData.files.map((f: any) => f.path);
+          const photoPaths = uploadData.files.map((f: { path: string }) => f.path);
           const suggestRes = await fetch('/api/admin/suggest-series', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -476,12 +477,14 @@ export default function AdminPage() {
                     />
                   </div>
 
-                  <img
+                  <Image
                     key={`${photo.path}-${refreshKey}`}
                     src={`${photo.path}?t=${refreshKey}`}
                     alt={photo.filename}
-                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                    loading="eager"
+                    fill
+                    className="object-cover transition-transform group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    priority
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <span className="text-white opacity-0 group-hover:opacity-100 text-sm font-medium">
@@ -783,10 +786,12 @@ export default function AdminPage() {
           >
             ×
           </button>
-          <img
+          <Image
             src={zoomedImage}
             alt="Zoom"
-            className="max-w-full max-h-full object-contain cursor-default"
+            fill
+            className="object-contain cursor-default"
+            sizes="100vw"
             onClick={(e) => e.stopPropagation()}
           />
         </div>

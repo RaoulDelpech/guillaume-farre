@@ -19,7 +19,6 @@ export async function POST(request: Request) {
     const fullPath = path.join(process.cwd(), 'public', photoPath);
     try {
       await fs.unlink(fullPath);
-      console.log(`[DELETE] Fichier supprimé: ${fullPath}`);
     } catch (error) {
       console.error(`[DELETE] Erreur suppression fichier ${fullPath}:`, error);
       // Continuer même si le fichier n'existe plus
@@ -30,7 +29,6 @@ export async function POST(request: Request) {
     const filteredMetadata = metadata.filter(p => p.path !== photoPath);
     await savePhotoMetadata(filteredMetadata);
 
-    console.log(`[DELETE] Metadata mise à jour, photo retirée: ${photoPath}`);
 
     return NextResponse.json({ success: true, message: 'Photo supprimée définitivement' });
   } catch (error) {

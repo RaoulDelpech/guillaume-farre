@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { X, ZoomIn, ZoomOut, RotateCw, Download, Sliders, Grid3x3, Eye, EyeOff, Sun, Contrast, Droplets, Palette, Move, Maximize } from "lucide-react";
 import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 
@@ -146,14 +147,19 @@ export default function PhotoPreview({ photo, isOpen, onClose, onSave }: PhotoPr
   const renderImage = (showEdits = true) => {
     const style = showEdits ? getFilterStyle() : { transform: `scale(${zoom})` };
     return (
-      <img
-        ref={imageRef}
-        src={photo.path}
-        alt={photo.filename}
-        className="max-w-full max-h-full object-contain transition-all duration-300"
-        style={style}
-        draggable={false}
-      />
+      <div className="relative w-full h-full">
+        <Image
+          ref={imageRef}
+          src={photo.path}
+          alt={photo.filename}
+          fill
+          sizes="100vw"
+          className="object-contain transition-all duration-300"
+          style={style}
+          draggable={false}
+          unoptimized
+        />
+      </div>
     );
   };
 

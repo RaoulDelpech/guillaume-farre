@@ -64,7 +64,7 @@ export default function GalleryClient({ works }: GalleryClientProps) {
     <>
       {/* Section filtres élégante */}
       <section id="galerie-grid" className="bg-muted/10 border-b border-border py-8">
-        <div className="container mx-auto px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2 sm:gap-6 justify-center items-center">
             {filterButtons.map(({ key, label }) => (
               <button
@@ -84,7 +84,7 @@ export default function GalleryClient({ works }: GalleryClientProps) {
       </section>
 
       {/* Galerie */}
-      <section className="container mx-auto px-6 lg:px-8 py-16 md:py-20">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         {filteredWorks.length > 0 ? (
           <>
             <div className="text-center mb-12">

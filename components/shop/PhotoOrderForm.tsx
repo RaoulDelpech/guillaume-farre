@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { WHITEWALL_FORMATS, WHITEWALL_MATERIALS } from '@/lib/printing/whitewall-api';
+import { WHITEWALL_FORMATS, WHITEWALL_MATERIALS } from '@/lib/printing/formats';
 import { isEarlyAccess } from '@/lib/early-access';
 import { useTranslations } from 'next-intl';
 

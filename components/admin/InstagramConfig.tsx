@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface InstagramStatus {
   connected: boolean;
@@ -105,11 +106,16 @@ export default function InstagramConfig() {
       {status?.connected ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '15px', backgroundColor: '#0a3d0a', borderRadius: '8px', border: '2px solid #0f0' }}>
           {status.profilePicture && (
-            <img
-              src={status.profilePicture}
-              alt={status.username}
-              style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #0f0' }}
-            />
+            <div style={{ position: 'relative', width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #0f0', overflow: 'hidden', flexShrink: 0 }}>
+              <Image
+                src={status.profilePicture}
+                alt={status.username || 'Instagram profile'}
+                fill
+                sizes="50px"
+                className="object-cover"
+                unoptimized
+              />
+            </div>
           )}
           <div>
             <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#0f0', marginBottom: '5px' }}>

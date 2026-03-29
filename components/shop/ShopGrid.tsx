@@ -370,11 +370,14 @@ export default function ShopGrid({ photos }: ShopGridProps) {
 
             <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
               {/* Aperçu */}
-              <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden">
-                <img
+              <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden relative">
+                <Image
                   src={selectedPhoto.path}
                   alt={selectedPhoto.title || selectedPhoto.filename}
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  unoptimized
                 />
               </div>
 

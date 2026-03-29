@@ -12,7 +12,7 @@ import EditableText from "@/components/admin/EditableText";
 export default function HomeCitation() {
   return (
     <section className="py-16 md:py-24 bg-background">
-      <div className="container px-6 lg:px-8">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <blockquote className="max-w-3xl mx-auto text-center">
           <EditableText
             textKey="home.citation"

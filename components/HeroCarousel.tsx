@@ -88,7 +88,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
       ))}
 
       {/* Content - Fixe, ne change pas avec les slides */}
-      <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-6 lg:px-8 z-10">
+      <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl">
           {/* Titre signature - Décision audit - Éditable en mode admin */}
           <EditableText

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, X } from 'lucide-react';
 
 interface ImageCarouselZoomProps {
@@ -101,28 +102,33 @@ export default function ImageCarouselZoom({
     <div className={`relative ${className}`}>
       {/* Main image container */}
       <div className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden group">
-        <img
-          ref={imageRef}
-          src={images[currentIndex]}
-          alt={`${title || 'Image'} - ${currentIndex + 1}/${images.length}`}
-          className={`w-full h-full object-contain transition-transform duration-200 ${
-            isDragging ? 'cursor-grabbing' : isZoomed && zoomLevel > 1 ? 'cursor-grab' : 'cursor-zoom-in'
-          }`}
-          style={{
-            transform: isZoomed ? `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)` : 'none',
-          }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onClick={() => {
-            if (!isZoomed) {
-              setIsZoomed(true);
-              setZoomLevel(2);
-            }
-          }}
-          draggable={false}
-        />
+        <div className="relative w-full h-full">
+          <Image
+            ref={imageRef}
+            src={images[currentIndex]}
+            alt={`${title || 'Image'} - ${currentIndex + 1}/${images.length}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 80vw"
+            className={`object-contain transition-transform duration-200 ${
+              isDragging ? 'cursor-grabbing' : isZoomed && zoomLevel > 1 ? 'cursor-grab' : 'cursor-zoom-in'
+            }`}
+            style={{
+              transform: isZoomed ? `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)` : 'none',
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onClick={() => {
+              if (!isZoomed) {
+                setIsZoomed(true);
+                setZoomLevel(2);
+              }
+            }}
+            draggable={false}
+            unoptimized
+          />
+        </div>
 
         {/* Navigation arrows */}
         {images.length > 1 && (
@@ -186,16 +192,19 @@ export default function ImageCarouselZoom({
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all relative ${
                 idx === currentIndex
                   ? 'border-primary ring-2 ring-primary/20'
                   : 'border-transparent hover:border-primary/50'
               }`}
             >
-              <img
+              <Image
                 src={img}
                 alt={`Miniature ${idx + 1}`}
-                className="w-full h-full object-cover"
+                fill
+                sizes="80px"
+                className="object-cover"
+                unoptimized
               />
             </button>
           ))}
@@ -231,11 +240,14 @@ export default function ImageCarouselZoom({
           <div
             className="relative max-w-7xl max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
+            style={{ width: '100%', height: '90vh' }}
           >
-            <img
+            <Image
               src={images[currentIndex]}
               alt={`${title || 'Image'} - Zoom`}
-              className={`max-w-full max-h-[90vh] object-contain ${
+              fill
+              sizes="100vw"
+              className={`object-contain ${
                 isDragging ? 'cursor-grabbing' : zoomLevel > 1 ? 'cursor-grab' : 'cursor-zoom-in'
               }`}
               style={{
@@ -246,6 +258,8 @@ export default function ImageCarouselZoom({
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
               draggable={false}
+              priority
+              unoptimized
             />
           </div>
 

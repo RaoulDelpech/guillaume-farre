@@ -3,6 +3,7 @@
 import { useCart } from "@/contexts/CartContext";
 import { Link } from "@/i18n/routing";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useSearchParams, useRouter } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
@@ -114,9 +115,9 @@ export default function PanierClient() {
 
       // Vérification terminée avec succès
       setIdentityVerified(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('[Panier] Erreur vérification identité:', err);
-      setError(err.message || 'Erreur lors de la vérification d\'identité');
+      setError(err instanceof Error ? err.message : 'Erreur lors de la vérification d\'identité');
     } finally {
       setVerifying(false);
     }
@@ -180,9 +181,9 @@ export default function PanierClient() {
       } else {
         throw new Error('URL de paiement non reçue');
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('[Panier] Erreur checkout:', err);
-      setError(err.message || 'Une erreur est survenue');
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     } finally {
       setLoading(false);
     }
@@ -392,11 +393,14 @@ export default function PanierClient() {
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6 bg-card border rounded-lg hover:border-primary/50 transition-colors"
             >
               {/* Image */}
-              <div className="w-full sm:w-32 h-48 sm:h-32 flex-shrink-0 bg-muted rounded-lg overflow-hidden">
-                <img
+              <div className="relative w-full sm:w-32 h-48 sm:h-32 flex-shrink-0 bg-muted rounded-lg overflow-hidden">
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 128px"
+                  loading="lazy"
                 />
               </div>
 

@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { analyzeCommercialPerformance } from '@/lib/commercial-performance';
 import type { PhotoMetadata } from '@/lib/admin/photo-manager';
 
@@ -219,11 +220,14 @@ export default function CommercialDashboard({ photos }: { photos: PhotoMetadata[
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-16 h-16 rounded overflow-hidden bg-muted flex-shrink-0">
-                    <img
+                  <div className="w-16 h-16 rounded overflow-hidden bg-muted flex-shrink-0 relative">
+                    <Image
                       src={opp.photo.path}
                       alt={opp.photo.filename}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <div>

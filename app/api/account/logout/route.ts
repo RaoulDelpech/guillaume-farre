@@ -14,7 +14,6 @@ import { NextRequest, NextResponse } from 'next/server';
  * Clear authentication cookie
  */
 export async function POST(req: NextRequest) {
-  console.log('[Logout] Déconnexion utilisateur');
 
   const response = NextResponse.json({ success: true });
 

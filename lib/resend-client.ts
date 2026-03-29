@@ -26,7 +26,6 @@ function getResendClient(): Resend | null {
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
-    console.warn('⚠️ RESEND_API_KEY manquante - Emails désactivés');
     return null;
   }
 
@@ -73,12 +72,10 @@ export async function sendOrderConfirmationEmail(params: {
   const resend = getResendClient();
 
   if (!resend) {
-    console.log('[Resend] Emails désactivés (pas d\'API key)');
     return { success: false, error: 'Resend API key missing' };
   }
 
   try {
-    console.log('[Resend] Envoi email confirmation commande:', params.orderNumber);
 
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -99,7 +96,6 @@ export async function sendOrderConfirmationEmail(params: {
       return { success: false, error: error.message };
     }
 
-    console.log('[Resend] ✅ Email envoyé:', data?.id);
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi email:', error);
@@ -123,12 +119,10 @@ export async function sendShippingNotificationEmail(params: {
   const resend = getResendClient();
 
   if (!resend) {
-    console.log('[Resend] Emails désactivés (pas d\'API key)');
     return { success: false, error: 'Resend API key missing' };
   }
 
   try {
-    console.log('[Resend] Envoi email expédition:', params.orderNumber);
 
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -150,7 +144,6 @@ export async function sendShippingNotificationEmail(params: {
       return { success: false, error: error.message };
     }
 
-    console.log('[Resend] ✅ Email envoyé:', data?.id);
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi email:', error);
@@ -170,12 +163,10 @@ export async function sendDeliveryConfirmationEmail(params: {
   const resend = getResendClient();
 
   if (!resend) {
-    console.log('[Resend] Emails désactivés (pas d\'API key)');
     return { success: false, error: 'Resend API key missing' };
   }
 
   try {
-    console.log('[Resend] Envoi email livraison:', params.orderNumber);
 
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -193,7 +184,6 @@ export async function sendDeliveryConfirmationEmail(params: {
       return { success: false, error: error.message };
     }
 
-    console.log('[Resend] ✅ Email envoyé:', data?.id);
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi email:', error);
@@ -213,12 +203,10 @@ export async function sendOrderProblemEmail(params: {
   const resend = getResendClient();
 
   if (!resend) {
-    console.log('[Resend] Emails désactivés (pas d\'API key)');
     return { success: false, error: 'Resend API key missing' };
   }
 
   try {
-    console.log('[Resend] Envoi email problème commande:', params.orderNumber);
 
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -240,7 +228,6 @@ export async function sendOrderProblemEmail(params: {
       return { success: false, error: error.message };
     }
 
-    console.log('[Resend] ✅ Email envoyé:', data?.id);
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi email:', error);
@@ -261,12 +248,10 @@ export async function sendPaymentPendingEmail(params: {
   const resend = getResendClient();
 
   if (!resend) {
-    console.log('[Resend] Emails désactivés (pas d\'API key)');
     return { success: false, error: 'Resend API key missing' };
   }
 
   try {
-    console.log('[Resend] Envoi email virement en attente:', params.orderNumber);
 
     const itemsHtml = params.items.map(item => `
       <tr>
@@ -362,7 +347,6 @@ export async function sendPaymentPendingEmail(params: {
       return { success: false, error: error.message };
     }
 
-    console.log('[Resend] ✅ Email virement en attente envoyé:', data?.id);
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi email:', error);
@@ -380,12 +364,10 @@ export async function sendMagicLinkEmail(params: {
   const resend = getResendClient();
 
   if (!resend) {
-    console.log('[Resend] Emails désactivés (pas d\'API key)');
     return { success: false, error: 'Resend API key missing' };
   }
 
   try {
-    console.log('[Resend] Envoi magic link à:', params.to);
 
     const { data, error } = await resend.emails.send({
       from: FROM_EMAIL,
@@ -402,7 +384,6 @@ export async function sendMagicLinkEmail(params: {
       return { success: false, error: error.message };
     }
 
-    console.log('[Resend] ✅ Magic link envoyé:', data?.id);
     return { success: true, messageId: data?.id };
   } catch (error: any) {
     console.error('[Resend] Exception envoi magic link:', error);

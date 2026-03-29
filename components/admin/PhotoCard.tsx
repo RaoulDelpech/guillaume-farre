@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 
 interface PhotoCardProps {
@@ -22,10 +23,13 @@ export default function PhotoCard({ photo, onUpdate }: PhotoCardProps) {
     <div className={`border-2 rounded-lg p-4 transition-all ${!data.visible ? 'opacity-60 bg-red-950/40 border-red-600' : 'bg-gray-950 border-gray-600'} ${hasChanges ? 'border-blue-400 border-4 shadow-xl shadow-blue-500/50' : ''}`}>
       {/* Image */}
       <div className="relative aspect-square mb-3 bg-black rounded-lg overflow-hidden border-2 border-gray-700">
-        <img
+        <Image
           src={data.path}
           alt={data.filename}
-          className="w-full h-full object-cover"
+          fill
+          sizes="300px"
+          className="object-cover"
+          unoptimized
         />
       </div>
 

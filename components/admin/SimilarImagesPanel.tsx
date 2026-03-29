@@ -146,16 +146,19 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
                         className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:opacity-75 transition-opacity"
                         onClick={() => setSelectedImage(imagePath)}
                       >
-                        <img
+                        <Image
                           src={imagePath}
                           alt={imagePath}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          className="object-cover"
                           onError={(e) => {
                             console.error('Failed to load image:', imagePath);
                             const target = e.target as HTMLImageElement;
                             target.style.border = '2px solid red';
                             target.alt = 'Erreur: ' + imagePath;
                           }}
+                          unoptimized
                         />
                       </div>
 
@@ -201,16 +204,20 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative w-full h-full max-w-6xl max-h-[90vh]">
-            <img
+            <Image
               src={selectedImage}
               alt={selectedImage}
-              className="max-w-full max-h-full object-contain"
+              fill
+              sizes="100vw"
+              className="object-contain"
               onError={(e) => {
                 console.error('Failed to load lightbox image:', selectedImage);
               }}
+              unoptimized
+              priority
             />
             <button
-              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg"
+              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg z-10"
               onClick={() => setSelectedImage(null)}
             >
               Fermer

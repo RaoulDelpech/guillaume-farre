@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface SizeVisualizerProps {
@@ -160,10 +161,13 @@ export default function SizeVisualizer({
                   maxWidth: "60%",
                 }}
               >
-                <img
+                <Image
                   src={imageUrl}
                   alt="Artwork"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="60vw"
+                  className="object-cover"
+                  unoptimized
                 />
 
                 {/* Dimension labels */}

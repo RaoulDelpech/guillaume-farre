@@ -98,7 +98,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log('✅ Orientation detected:', orientation, 'for', photoPath);
 
     return NextResponse.json({
       success: true,

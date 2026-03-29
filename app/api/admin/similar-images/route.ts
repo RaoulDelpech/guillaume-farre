@@ -30,7 +30,6 @@ export async function POST(request: NextRequest) {
       path.join(publicDir, photo.path)
     );
 
-    console.log(`Analyzing ${imagePaths.length} photos for similarity (threshold: ${threshold}%)`);
 
     // Trouver les groupes de photos similaires
     const similarGroups = await findSimilarImages(imagePaths, threshold);

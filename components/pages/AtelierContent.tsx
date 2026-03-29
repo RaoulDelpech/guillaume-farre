@@ -210,11 +210,14 @@ export default function AtelierContent() {
               "/images/works/atelier/atelier-010.jpg",
               "/images/works/atelier/atelier-001.jpg",
             ].map((img, index) => (
-              <MotionItem key={index} variant="scaleIn" className="aspect-square bg-muted/30 rounded-lg overflow-hidden group">
-                <img
+              <MotionItem key={index} variant="scaleIn" className="aspect-square bg-muted/30 rounded-lg overflow-hidden group relative">
+                <Image
                   src={img}
                   alt={`L'atelier ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
                 />
               </MotionItem>
             ))}

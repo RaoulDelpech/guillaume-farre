@@ -15,14 +15,37 @@ interface Suggestion {
   autoApply?: boolean;
 }
 
-export default function AIAssistant({ photos = [], onApplySuggestion }: any) {
+interface PhotoItem {
+  description?: string;
+  price?: number;
+  categories?: string[];
+  alt?: string;
+}
+
+interface PhotoAnalysis {
+  quality: number;
+  composition: string;
+  lighting: string;
+  marketValue: string;
+  suggestedCategories: string[];
+  suggestedTags: string[];
+  similarPhotos: number;
+  salesPotential: string;
+}
+
+interface AIAssistantProps {
+  photos?: PhotoItem[];
+  onApplySuggestion?: (suggestion: Suggestion) => void;
+}
+
+export default function AIAssistant({ photos = [], onApplySuggestion }: AIAssistantProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [autoMode, setAutoMode] = useState(true);
   const [appliedSuggestions, setAppliedSuggestions] = useState<Set<string>>(new Set());
-  const [currentPhotoAnalysis, setCurrentPhotoAnalysis] = useState<any>(null);
+  const [currentPhotoAnalysis, setCurrentPhotoAnalysis] = useState<PhotoAnalysis | null>(null);
 
   // Messages de l'assistant
   const assistantMessages = [
@@ -59,7 +82,7 @@ export default function AIAssistant({ photos = [], onApplySuggestion }: any) {
       const newSuggestions: Suggestion[] = [];
 
       // Analyser les photos sans description
-      const photosWithoutDescription = photos.filter((p: any) => !p.description);
+      const photosWithoutDescription = photos.filter((p) => !p.description);
       if (photosWithoutDescription.length > 0) {
         newSuggestions.push({
           id: "desc-1",
@@ -74,7 +97,7 @@ export default function AIAssistant({ photos = [], onApplySuggestion }: any) {
       }
 
       // Analyser les prix
-      const avgPrice = photos.reduce((sum: number, p: any) => sum + (p.price || 0), 0) / photos.length;
+      const avgPrice = photos.reduce((sum: number, p) => sum + (p.price || 0), 0) / photos.length;
       if (avgPrice < 300) {
         newSuggestions.push({
           id: "price-1",
@@ -89,7 +112,7 @@ export default function AIAssistant({ photos = [], onApplySuggestion }: any) {
       }
 
       // Suggérer des catégories
-      const uncategorized = photos.filter((p: any) => !p.categories || p.categories.length === 0);
+      const uncategorized = photos.filter((p) => !p.categories || p.categories.length === 0);
       if (uncategorized.length > 0) {
         newSuggestions.push({
           id: "cat-1",
@@ -115,7 +138,7 @@ export default function AIAssistant({ photos = [], onApplySuggestion }: any) {
       });
 
       // SEO
-      const photosWithoutAlt = photos.filter((p: any) => !p.alt);
+      const photosWithoutAlt = photos.filter((p) => !p.alt);
       if (photosWithoutAlt.length > 0) {
         newSuggestions.push({
           id: "seo-1",
@@ -204,7 +227,7 @@ export default function AIAssistant({ photos = [], onApplySuggestion }: any) {
     toast.info("Suggestion ignorée");
   };
 
-  const analyzePhoto = async (photo: any) => {
+  const analyzePhoto = async (_photo: PhotoItem) => {
     setCurrentPhotoAnalysis(null);
     setIsAnalyzing(true);
 

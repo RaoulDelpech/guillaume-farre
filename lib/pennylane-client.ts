@@ -42,7 +42,6 @@ export class PennylaneClient {
     this.apiKey = apiKey || process.env.PENNYLANE_API_KEY || '';
 
     if (!this.apiKey) {
-      console.warn('[Pennylane] API key not configured');
     }
   }
 
@@ -58,7 +57,6 @@ export class PennylaneClient {
    */
   async createInvoice(invoice: PennylaneInvoice): Promise<any> {
     if (!this.isConfigured()) {
-      console.warn('[Pennylane] Skipping invoice creation - not configured');
       return null;
     }
 
@@ -85,7 +83,6 @@ export class PennylaneClient {
       }
 
       const data = await response.json();
-      console.log('[Pennylane] Invoice created:', data.invoice?.id);
       return data.invoice;
 
     } catch (error) {
@@ -163,7 +160,6 @@ export function getPennylaneClient(): PennylaneClient | null {
   const apiKey = process.env.PENNYLANE_API_KEY;
 
   if (!apiKey) {
-    console.warn('[Pennylane] API key not configured in .env.local');
     return null;
   }
 

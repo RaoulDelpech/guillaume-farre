@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import Image from "next/image";
 import type { Work } from "@/lib/works";
 import { altForWork } from "@/lib/images";
 
@@ -123,11 +124,17 @@ export default function Lightbox({ open, work, works = [], onClose, onNavigate }
         onClick={(e) => e.stopPropagation()}
       >
         {work.images.length > 0 && (
-          <img
-            src={work.images[0]}
-            alt={altForWork(work)}
-            className="max-w-full max-h-full object-contain"
-          />
+          <div className="relative max-w-full max-h-full" style={{ width: '100%', height: '100%' }}>
+            <Image
+              src={work.images[0]}
+              alt={altForWork(work)}
+              fill
+              sizes="100vw"
+              className="object-contain"
+              priority
+              unoptimized
+            />
+          </div>
         )}
       </div>
 

@@ -125,7 +125,6 @@ export async function createOrder(data: Partial<Order>): Promise<Order> {
   if (data.stripeSessionId) {
     const existing = orders.find(o => o.stripeSessionId === data.stripeSessionId);
     if (existing) {
-      console.log('[Orders] Commande déjà existante:', existing.orderNumber);
       return existing;
     }
   }
@@ -153,7 +152,6 @@ export async function createOrder(data: Partial<Order>): Promise<Order> {
   orders.push(order);
   await writeOrders(orders);
 
-  console.log('[Orders] ✅ Nouvelle commande créée:', order.orderNumber);
   return order;
 }
 
@@ -177,7 +175,6 @@ export async function updateOrder(orderNumber: string, data: Partial<Order>): Pr
 
   await writeOrders(orders);
 
-  console.log('[Orders] ✅ Commande mise à jour:', orderNumber);
   return orders[index];
 }
 

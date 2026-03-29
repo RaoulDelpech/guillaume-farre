@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Navigation from "@/components/navigation/Navigation";
 import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
@@ -140,10 +141,14 @@ export default async function GalerieItemPage({
             <div className="space-y-4 sm:space-y-6">
               {work.images.map((image, idx) => (
                 <div key={idx} className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={image}
                     alt={`${work.title} - ${idx + 1}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={idx === 0}
+                    loading={idx === 0 ? undefined : "lazy"}
                   />
                 </div>
               ))}

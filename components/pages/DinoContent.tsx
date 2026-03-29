@@ -2,6 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 
 interface DinoContentProps {
   translations: {
@@ -141,11 +142,14 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* VRAIE photo des Dino de Guillaume */}
-            <div className="order-2 md:order-1">
-              <img
+            <div className="order-2 md:order-1 relative aspect-[4/3]">
+              <Image
                 src={originPhoto}
                 alt="Les Ferrari Dino de Guillaume Farré"
-                className="w-full h-auto object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
               />
             </div>
 
@@ -329,11 +333,14 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
             </div>
 
             {/* Image du processus créatif */}
-            <div>
-              <img
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+              <Image
                 src={creativePhoto}
                 alt="La Dino en action sur la toile"
-                className="w-full h-auto object-cover rounded-lg"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -363,12 +370,16 @@ export default function DinoContent({ translations: t, images }: DinoContentProp
           {/* Grille des vraies photos de Guillaume - Mix couleur/N&B */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {galleryImages.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt={`Œuvre ${index + 1}`}
-                className="w-full h-80 object-cover rounded-lg"
-              />
+              <div key={index} className="relative h-80 rounded-lg overflow-hidden">
+                <Image
+                  src={img}
+                  alt={`Œuvre ${index + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  className="object-cover"
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </div>

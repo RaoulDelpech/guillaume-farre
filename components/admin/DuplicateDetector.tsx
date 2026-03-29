@@ -1,5 +1,6 @@
 "use client";
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface DuplicateFile {
   path: string;
@@ -254,14 +255,17 @@ export default function DuplicateDetector() {
                         onClick={() => setZoomedImage(file.path)}
                         className="relative w-16 h-16 flex-shrink-0 cursor-zoom-in group overflow-hidden rounded border border-border hover:border-primary transition-colors"
                       >
-                        <img
+                        <Image
                           src={file.path}
                           alt={file.fileName}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                          fill
+                          sizes="64px"
+                          className="object-cover group-hover:scale-110 transition-transform"
                           onError={(e) => {
                             console.error('Erreur chargement image:', file.path);
                             (e.target as HTMLImageElement).style.border = '2px solid red';
                           }}
+                          unoptimized
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                           <span className="text-white opacity-0 group-hover:opacity-100 text-xs font-medium">
@@ -327,12 +331,17 @@ export default function DuplicateDetector() {
           >
             ×
           </button>
-          <img
-            src={zoomedImage}
-            alt="Zoom"
-            className="max-w-full max-h-full object-contain cursor-default"
-            onClick={(e) => e.stopPropagation()}
-          />
+          <div className="relative w-full h-full" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={zoomedImage}
+              alt="Zoom"
+              fill
+              sizes="100vw"
+              className="object-contain cursor-default"
+              unoptimized
+              priority
+            />
+          </div>
         </div>
       )}
     </div>

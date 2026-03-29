@@ -34,7 +34,6 @@ export async function GET() {
     });
   } catch (error) {
     // Si fichier n'existe pas, retourner config par défaut
-    console.log('Config pricing non trouvée, utilisation config par défaut');
 
     return NextResponse.json({
       success: true,

@@ -71,7 +71,7 @@ export default function GalerieSalles({ images }: GalerieSallesProps) {
 
   return (
     <section className="py-16 md:py-24 bg-background">
-      <div className="container px-6 lg:px-8">
+      <div className="container px-4 sm:px-6 lg:px-8">
         {/* Titre section */}
         <div className="text-center mb-12 md:mb-16">
           <EditableText

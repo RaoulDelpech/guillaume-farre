@@ -36,7 +36,6 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log('📱 Publication Instagram en cours...');
 
     // ÉTAPE 1: Créer le conteneur média (upload de l'image)
     const createMediaResponse = await fetch(
@@ -66,7 +65,6 @@ export async function POST(request: Request) {
     const mediaData = await createMediaResponse.json();
     const creationId = mediaData.id;
 
-    console.log('✅ Média créé:', creationId);
 
     // ÉTAPE 2: Publier le conteneur média
     const publishResponse = await fetch(
@@ -94,7 +92,6 @@ export async function POST(request: Request) {
 
     const publishData = await publishResponse.json();
 
-    console.log('✅ Post publié sur Instagram:', publishData.id);
 
     return NextResponse.json({
       success: true,

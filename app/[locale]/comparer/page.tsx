@@ -2,6 +2,7 @@
 import Navigation from "@/components/navigation/Navigation";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import type { PhotoMetadata } from "@/lib/admin/photo-manager";
 import { Link } from "@/i18n/routing";
 
@@ -123,11 +124,14 @@ export default function ComparerPage() {
                         : "border-transparent hover:border-primary/50"
                     }`}
                   >
-                    <div className="aspect-square bg-muted">
-                      <img
+                    <div className="relative aspect-square bg-muted">
+                      <Image
                         src={photo.path}
                         alt={photo.title || "Photo"}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                        loading="lazy"
                       />
                     </div>
                     {isSelected && (
@@ -170,10 +174,13 @@ export default function ComparerPage() {
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3]">
-                    <img
+                    <Image
                       src={photo.path}
                       alt={photo.title || "Photo"}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
                     />
                     <button
                       onClick={() => toggleSelection(photo)}

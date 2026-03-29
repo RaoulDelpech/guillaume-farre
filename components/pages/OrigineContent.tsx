@@ -2,6 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 
 interface OrigineContentProps {
   /** Images configurables depuis data/page-images.json */
@@ -67,11 +68,14 @@ export default function OrigineContent({ images }: OrigineContentProps) {
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             {/* Image d'enfance si disponible */}
-            <div className="mb-16 aspect-[4/3] bg-muted/30 rounded-lg overflow-hidden">
-              <img
+            <div className="mb-16 aspect-[4/3] bg-muted/30 rounded-lg overflow-hidden relative">
+              <Image
                 src={childhoodPhoto}
                 alt="L'enfance"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 800px"
+                className="object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
                 }}
@@ -112,11 +116,14 @@ export default function OrigineContent({ images }: OrigineContentProps) {
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {galleryImages.map((img, index) => (
-              <div key={index} className="aspect-square bg-muted/30 rounded-lg overflow-hidden">
-                <img
+              <div key={index} className="aspect-square bg-muted/30 rounded-lg overflow-hidden relative">
+                <Image
                   src={img}
                   alt={`Œuvre ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 33vw"
+                  className="object-cover"
+                  loading="lazy"
                 />
               </div>
             ))}

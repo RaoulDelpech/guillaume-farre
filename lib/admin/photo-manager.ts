@@ -160,7 +160,6 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
         }
       }
     } catch (error) {
-      console.log(`Dossier ${dir.path} non trouvé, ignoré`);
     }
   }
 

@@ -56,7 +56,6 @@ export function verifyToken(token: string): { email: string } | null {
     const [data, signature] = token.split('.');
 
     if (!data || !signature) {
-      console.warn('[MagicLink] Token malformed - missing parts');
       return null;
     }
 
@@ -67,7 +66,6 @@ export function verifyToken(token: string): { email: string } | null {
       .digest('base64url');
 
     if (signature !== expectedSignature) {
-      console.warn('[MagicLink] Invalid signature');
       return null;
     }
 
@@ -78,13 +76,11 @@ export function verifyToken(token: string): { email: string } | null {
 
     // Check expiration
     if (payload.exp < Date.now()) {
-      console.warn('[MagicLink] Token expired');
       return null;
     }
 
     // Validate email format
     if (!payload.email || !payload.email.includes('@')) {
-      console.warn('[MagicLink] Invalid email in token');
       return null;
     }
 

@@ -20,7 +20,6 @@ export async function POST(request: NextRequest) {
       if (error) {
         console.error("Rebuild error:", error);
       } else {
-        console.log("Rebuild completed successfully");
       }
     });
 

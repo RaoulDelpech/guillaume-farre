@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import type { SeriesSuggestion } from "@/app/api/admin/suggest-series/route";
 
 interface SeriesSuggestionModalProps {
@@ -169,12 +170,15 @@ export default function SeriesSuggestionModal({
                   {suggestion.photos.map((photo, photoIdx) => (
                     <div
                       key={photoIdx}
-                      className="aspect-square bg-muted rounded-lg overflow-hidden"
+                      className="aspect-square bg-muted rounded-lg overflow-hidden relative"
                     >
-                      <img
+                      <Image
                         src={photo}
                         alt={`Photo ${photoIdx + 1}`}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                        className="object-cover"
+                        unoptimized
                       />
                     </div>
                   ))}

@@ -108,8 +108,6 @@ export async function findSimilarImages(
   imagePaths: string[],
   threshold: number = 85
 ): Promise<SimilarImageGroup[]> {
-  console.log(`Analyzing ${imagePaths.length} images for similarity (threshold: ${threshold}%)`);
-
   // Calculate hashes for all images
   const imageHashes: { path: string; hash: string; filename: string }[] = [];
 
@@ -163,7 +161,6 @@ export async function findSimilarImages(
     count: group.size
   }));
 
-  console.log(`Found ${result.length} groups of similar images`);
   return result;
 }
 

@@ -37,7 +37,6 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    console.log(`[Orders] Récupération commandes pour ${email}`);
 
     // Get orders for this email
     const orders = await getOrdersByEmail(email);
@@ -62,7 +61,6 @@ export async function GET(req: NextRequest) {
       // DO NOT send: stripeSessionId, gelatoOrderId
     }));
 
-    console.log(`[Orders] ✅ ${sanitizedOrders.length} commandes trouvées`);
 
     return NextResponse.json({
       success: true,

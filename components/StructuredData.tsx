@@ -5,9 +5,18 @@
  * @author Lalou
  */
 
+interface ProductData {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  price?: number;
+  inStock?: boolean;
+}
+
 interface StructuredDataProps {
   type?: 'organization' | 'website' | 'product';
-  data?: any;
+  data?: ProductData;
 }
 
 export default function StructuredData({ type = 'organization', data }: StructuredDataProps) {

@@ -3,6 +3,7 @@
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
 import { MotionSection } from "@/components/motion/MotionWrapper";
+import Image from "next/image";
 
 interface HomePageContentProps {
   translations: {
@@ -27,15 +28,18 @@ export default function HomePageContent({ translations: t, artistPhoto }: HomePa
   const photoUrl = artistPhoto || "/images/origins/atelier-deux-voitures-grises.jpg";
   return (
     <section className="py-24 md:py-32 bg-muted/10">
-      <div className="container px-6 lg:px-8">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Image artiste */}
           <MotionSection variant="fadeIn" delay={0.2} className="order-2 md:order-1">
-            <div className="relative overflow-hidden rounded-lg">
-              <img
+            <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+              <Image
                 src={photoUrl}
                 alt="Guillaume Farré dans son atelier"
-                className="w-full h-auto object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                loading="lazy"
               />
             </div>
           </MotionSection>

@@ -10,8 +10,17 @@ export interface FilterState {
   sortBy: 'newest' | 'price-asc' | 'price-desc' | 'popular';
 }
 
+interface ShopPhoto {
+  categories?: string[];
+  limitedEdition?: { available?: number };
+  prices?: {
+    unlimited?: { a4?: number };
+    limited?: { a3?: number };
+  };
+}
+
 interface ShopFiltersProps {
-  photos: any[];
+  photos: ShopPhoto[];
   onFilterChange: (filters: FilterState) => void;
   initialFilters?: FilterState;
 }
@@ -63,7 +72,7 @@ export default function ShopFilters({ photos, onFilterChange, initialFilters }: 
   }, [photos]);
 
   // Helper pour obtenir le prix le plus bas d'une photo
-  function getLowestPrice(photo: any): number {
+  function getLowestPrice(photo: ShopPhoto): number {
     const prices = [];
     if (photo.prices?.unlimited) {
       prices.push(photo.prices.unlimited.a4 || 150);
@@ -74,7 +83,7 @@ export default function ShopFilters({ photos, onFilterChange, initialFilters }: 
     return prices.length > 0 ? Math.min(...prices) : 0;
   }
 
-  const updateFilter = (key: keyof FilterState, value: any) => {
+  const updateFilter = (key: keyof FilterState, value: string) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
     onFilterChange(newFilters);

@@ -1,9 +1,9 @@
 "use client";
-import confetti from "canvas-confetti";
 
 export function useConfetti() {
   // Confetti explosion basique
-  const fireConfetti = () => {
+  const fireConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     confetti({
       particleCount: 100,
       spread: 70,
@@ -13,7 +13,8 @@ export function useConfetti() {
   };
 
   // Confetti latéral (pour ajout favoris)
-  const fireSideConfetti = () => {
+  const fireSideConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     const end = Date.now() + 1000;
 
     (function frame() {
@@ -39,7 +40,8 @@ export function useConfetti() {
   };
 
   // Confetti pluie (pour achat réussi)
-  const fireRainConfetti = () => {
+  const fireRainConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     const duration = 2000;
     const end = Date.now() + duration;
 
@@ -66,7 +68,8 @@ export function useConfetti() {
   };
 
   // Canon de confetti (pour succès majeur)
-  const fireCannonConfetti = () => {
+  const fireCannonConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     const count = 200;
     const defaults = {
       origin: { y: 0.7 },
@@ -110,7 +113,8 @@ export function useConfetti() {
   };
 
   // Confetti Ferrari (rouge et or)
-  const fireFerrariConfetti = () => {
+  const fireFerrariConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     const duration = 3000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -144,7 +148,8 @@ export function useConfetti() {
   };
 
   // Coeurs (pour favoris)
-  const fireHeartConfetti = () => {
+  const fireHeartConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     const scalar = 2;
     const heart = confetti.shapeFromText({ text: "❤️", scalar });
 
@@ -158,7 +163,8 @@ export function useConfetti() {
   };
 
   // Emoji Ferrari
-  const fireFerrariEmojiConfetti = () => {
+  const fireFerrariEmojiConfetti = async () => {
+    const confetti = (await import("canvas-confetti")).default;
     const scalar = 2;
     const ferrari = confetti.shapeFromText({ text: "🏎️", scalar });
 

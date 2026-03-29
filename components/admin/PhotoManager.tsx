@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import Image from "next/image";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, rectSortingStrategy } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
@@ -57,11 +58,16 @@ function SortablePhoto({ photo, index, isSelected, onSelect, onUpdate, viewMode 
           className="w-5 h-5 rounded border-gray-300"
           onClick={(e) => e.stopPropagation()}
         />
-        <img
-          src={photo.path}
-          alt={photo.filename}
-          className="w-16 h-16 object-cover rounded"
-        />
+        <div className="relative w-16 h-16 flex-shrink-0">
+          <Image
+            src={photo.path}
+            alt={photo.filename}
+            fill
+            sizes="64px"
+            className="object-cover rounded"
+            unoptimized
+          />
+        </div>
         <div className="flex-1">
           <p className="font-medium text-gray-900">{photo.title || photo.filename}</p>
           <p className="text-sm text-gray-500">
@@ -99,11 +105,14 @@ function SortablePhoto({ photo, index, isSelected, onSelect, onUpdate, viewMode 
           onClick={(e) => e.stopPropagation()}
         />
       </div>
-      <div className="aspect-square bg-gray-100">
-        <img
+      <div className="aspect-square bg-gray-100 relative">
+        <Image
           src={photo.path}
           alt={photo.filename}
-          className="w-full h-full object-cover"
+          fill
+          sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+          className="object-cover"
+          unoptimized
         />
       </div>
       <div className="p-3">

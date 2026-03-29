@@ -82,13 +82,13 @@ export default function ActualitesPage() {
       <Navigation />
 
       {/* Hero */}
-      <div className="bg-gradient-to-b from-accent/20 to-background border-b border-border py-20 md:py-28">
-        <div className="container mx-auto px-6 lg:px-8">
+      <div className="bg-gradient-to-b from-accent/20 to-background border-b border-border py-16 sm:py-20 md:py-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="text-primary text-xs font-light mb-8 tracking-[0.3em] uppercase">
               Actualités
             </div>
-            <h1 className="text-6xl md:text-7xl font-light tracking-wide mb-8">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-light tracking-wide mb-8">
               Journal de bord
             </h1>
             <p className="text-xl md:text-2xl font-light text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -101,7 +101,7 @@ export default function ActualitesPage() {
 
       {/* Article à la une */}
       {featuredArticle && (
-        <section className="container mx-auto px-6 lg:px-8 py-20 md:py-28">
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
               <div className="text-primary text-xs font-light tracking-[0.2em] uppercase">
@@ -147,7 +147,7 @@ export default function ActualitesPage() {
       )}
 
       {/* Filtres par catégorie */}
-      <section className="container mx-auto px-6 lg:px-8 py-12">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap gap-4 mb-16">
             {categories.map((cat) => (
@@ -163,7 +163,7 @@ export default function ActualitesPage() {
       </section>
 
       {/* Grille d'articles */}
-      <section className="container mx-auto px-6 lg:px-8 pb-28">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-28">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-10">
             {regularArticles.map((article) => (
@@ -215,10 +215,10 @@ export default function ActualitesPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="container mx-auto px-6 lg:px-8 pb-28">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-28">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card border border-border rounded-2xl p-12 md:p-16 text-center">
-            <h2 className="text-4xl md:text-5xl font-light tracking-wide mb-6">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-light tracking-wide mb-6">
               Ne manquez aucune actualité
             </h2>
             <p className="text-xl font-light text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">

@@ -3,6 +3,7 @@
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
 import { MotionSection, MotionItem } from "@/components/motion/MotionWrapper";
+import Image from "next/image";
 
 interface Work {
   slug: string;
@@ -27,7 +28,7 @@ interface HomeWorksSectionProps {
  */
 export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
   return (
-    <section className="container py-20 md:py-28 border-t px-6 lg:px-8">
+    <section className="container py-16 sm:py-20 md:py-28 border-t px-4 sm:px-6 lg:px-8">
       <MotionSection variant="fadeInUp" className="mb-16 text-center">
         <EditableText
           textKey="home.works.title"
@@ -77,10 +78,13 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
 
               {work.images[0] && (
                 <div className="relative overflow-hidden aspect-[4/3]">
-                  <img
+                  <Image
                     src={work.images[0]}
                     alt={work.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
               )}

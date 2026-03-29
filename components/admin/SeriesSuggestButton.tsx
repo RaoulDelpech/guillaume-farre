@@ -54,9 +54,10 @@ export default function SeriesSuggestButton({
       } else {
         alert('ℹ️ L\'IA n\'a détecté aucune série cohérente.\n\nLes photos sont trop différentes pour être regroupées.');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Erreur analyse IA:', error);
-      alert(`❌ Erreur lors de l'analyse IA:\n\n${error.message || error}`);
+      const message = error instanceof Error ? error.message : String(error);
+      alert(`Erreur lors de l'analyse IA:\n\n${message}`);
     } finally {
       setAnalyzing(false);
     }

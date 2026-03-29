@@ -2,6 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 
 /**
  * Contenu de la page Histoire de la Dino avec textes éditables
@@ -92,11 +93,15 @@ export default function DinoHistoireContent() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden">
-                <img
+              <div className="aspect-[4/5] rounded-lg overflow-hidden relative">
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dino_206_GT_%2815406731344%29.jpg/800px-Dino_206_GT_%2815406731344%29.jpg"
                   alt="Ferrari Dino 206 GT"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                  unoptimized
                 />
               </div>
               <div className="mt-4 sm:absolute sm:-bottom-4 sm:-right-4 bg-primary/10 p-4 sm:p-6 rounded-lg border border-primary/20">
@@ -181,11 +186,15 @@ export default function DinoHistoireContent() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
             <div className="order-2 md:order-1">
-              <div className="aspect-video rounded-lg overflow-hidden">
-                <img
+              <div className="aspect-video rounded-lg overflow-hidden relative">
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Petersen_Museum_%2852042599362%29.jpg/800px-Petersen_Museum_%2852042599362%29.jpg"
                   alt="Ferrari Dino au Petersen Museum"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                  unoptimized
                 />
               </div>
             </div>
@@ -279,11 +288,15 @@ export default function DinoHistoireContent() {
               </div>
             </div>
             <div>
-              <div className="aspect-video rounded-lg overflow-hidden">
-                <img
+              <div className="aspect-video rounded-lg overflow-hidden relative">
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/1973_Dino_246GTS.jpg/800px-1973_Dino_246GTS.jpg"
                   alt="Ferrari Dino 246 GTS 1973"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                  unoptimized
                 />
               </div>
               <div className="mt-8 p-6 bg-background rounded-lg border border-border">
@@ -380,11 +393,15 @@ export default function DinoHistoireContent() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 sm:gap-16 items-center">
             <div className="order-2 md:order-1">
-              <div className="aspect-video rounded-lg overflow-hidden">
-                <img
+              <div className="aspect-video rounded-lg overflow-hidden relative">
+                <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/1972_Ferrari_Dino_246_GTS_2.4_Interior.jpg/800px-1972_Ferrari_Dino_246_GTS_2.4_Interior.jpg"
                   alt="Intérieur Ferrari Dino 246 GTS 1972"
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  loading="lazy"
+                  unoptimized
                 />
               </div>
             </div>

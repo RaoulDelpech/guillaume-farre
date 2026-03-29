@@ -10,39 +10,39 @@
   },
   "hero": {
     "origine": {
-      "title": "La voiture rose n°20",
-      "subtitle": "J'avais 4 ans. Elle m'a marqué pour toujours.",
-      "description": "Je me souviens de cette voiture de course, immense et rose. À 4 ans, face à elle, je n'ai pas rêvé de la posséder un jour. J'ai rêvé de fusionner avec sa puissance. Quarante ans plus tard, j'ai ma Dino dans mon atelier. Elle n'est pas là pour être admirée. Elle crée.",
+      "title": "Noël 1972",
+      "subtitle": "Un pot de peinture rouge, une monoplace à pédales, et toute une maison à traverser.",
+      "description": "J'avais sept ans. J'ai roulé trop vite, renversé le pot, et j'ai continué. Sur le plancher, les pneus laissaient leurs empreintes, dessinaient les trajectoires. Ma mère m'a enguirlandé. Moi, je trouvais ça beau. Cinquante ans plus tard, j'ai juste trouvé de meilleures roues.",
       "cta": "Découvrir l'histoire"
     },
     "atelier": {
       "title": "L'atelier",
-      "subtitle": "La Dino. 1020 kilos d'instrument de création.",
-      "description": "Dans mon atelier, ces voitures sont des instruments. 1200 kilos de métal qui laissent des empreintes sur la toile. Une accélération brusque, un freinage violent, un dérapage calculé : aucune main ne pourrait reproduire ces gestes. C'est précisément ce que je cherche.",
+      "subtitle": "Un garage, une Dino, et vingt ans de nuits blanches.",
+      "description": "Pendant vingt ans, je me suis levé la nuit pour aller peindre, seul avec mes voitures et une question qui ne me quittait pas : comment représenter le mouvement par des empreintes sur une toile ? La technique s'est précisée progressivement — vitesse de rotation, marche avant ou arrière, densité des produits, toiles fraîchement enduites, pluie parfois. Ce n'est plus l'accident magique.",
       "cta": "Découvrir l'atelier"
     },
     "creations": {
-      "title": "Deux formes, un processus",
-      "subtitle": "Toiles originales & Photographies documentaires",
-      "description": "Mes toiles naissent du passage direct de la Dino sur la surface. Peinture industrielle, friction, chaleur. Le résultat est définitif. Mes photographies documentent ce moment : quand le mouvement dépose sa signature.",
+      "title": "Toiles & Photographies",
+      "subtitle": "L'œuvre d'art qui produit une œuvre",
+      "description": "Mes toiles accumulent les couches de peinture comme une route qui se couvre de graisse, ou le sol d'un atelier après des décennies de vidanges. Je suis en mesure de peindre en fonction de la vitesse de rotation des roues — je sais à peu près ce qui va se produire. Mes photographies capturent cet instant où la Dino travaille sur la toile.",
       "cta": "Découvrir l'atelier"
     },
     "photographies": {
       "title": "Trois séries photographiques",
       "subtitle": "Empreintes • Atelier • Projections",
-      "description": "Mes empreintes montrent ce que les roues et la carrosserie ont imprimé. Mon atelier révèle les voitures au repos, entre deux sessions. Mes projections figent l'énergie brute de l'action. Trois regards différents sur ma démarche.",
+      "description": "Les empreintes montrent ce que les roues et la carrosserie ont déposé sur la toile. L'atelier, c'est l'envers du décor — les voitures maculées de peinture, les toiles empilées, le sol recouvert. Les projections saisissent le mouvement au moment où il se produit.",
       "cta": "Voir la galerie"
     },
     "acquerir": {
       "title": "Acquérir une œuvre",
-      "subtitle": "Éditions limitées numérotées — Qualité musée",
-      "description": "Mes photographies documentent le moment où ma Dino a créé la toile. Formats 2A0 à A4. Encadrement professionnel noir ou aluminium. Impression Fine Art Giclée 12 couleurs, papier archival 200 gsm.",
+      "subtitle": "Tirages numérotés et signés — Impression Fine Art",
+      "description": "Chaque photographie documente un moment de création qui ne se reproduira pas. Tirages Fine Art Giclée 12 couleurs sur papier archival, du format A4 au grand format 2A0. Certificat d'authenticité inclus.",
       "cta": "Voir les œuvres disponibles"
     },
     "histoire": {
-      "title": "De l'enfance à la Dino",
-      "subtitle": "1985 - 2025 : quarante ans",
-      "description": "Enfant, j'étais fasciné par les voitures de course. J'ai passé des années à les dessiner, à construire des maquettes, à rêver devant elles. Un jour, j'ai pris une décision : arrêter de les regarder. Les utiliser pour créer. C'est l'histoire d'une obsession transformée en méthode.",
+      "title": "Sur les traces de la Dino",
+      "subtitle": "De la monoplace à pédales au garage Meyerbeer",
+      "description": "À huit ans, devant Amicalement Vôtre, je savais déjà ce que je voulais : être Danny Wilde. L'esthétique de la Dino est entrée dans mon cœur d'enfant, et elle n'en est jamais sortie. J'ai squatté la concession de Toulouse, collectionné les catalogues, traqué une 250 GTO en Chapy. La passion ne m'a jamais lâché.",
       "cta": "Lire l'histoire complète"
     },
     "galerie": "Galerie",
@@ -57,7 +57,7 @@
     "artist": {
       "label": "L'Artiste",
       "name": "Guillaume Farré",
-      "bio": "J'avais 4 ans quand j'ai vu ma première voiture de course. Quarante ans plus tard, j'ai une Dino dans mon atelier. Elle ne décore pas mon garage. Elle peint.",
+      "bio": "À Noël 1972, j'ai renversé un pot de peinture rouge avec ma monoplace à pédales. Les traces sur le plancher, je trouvais ça beau. Cinquante ans plus tard, c'est une Dino 246 GT qui laisse ses empreintes — sur des toiles.",
       "cta": "Découvrir mon histoire"
     }
   },
@@ -69,19 +69,19 @@
   },
   "gallery": {
     "title": "Galerie",
-    "subtitle": "Toiles. Photographies. Traces définitives.",
-    "intro": "Ces images documentent ma création. Il n'y a jamais de deuxième prise.",
+    "subtitle": "Toiles, photographies, traces sur la toile.",
+    "intro": "Ce que la Dino dépose sur la toile ne se reproduit pas. Ici, c'est documenté.",
     "empreintes": {
       "title": "Empreintes",
-      "description": "Ce que mes roues, ma carrosserie et mon châssis ont imprimé. Peinture industrielle sous pression. Chaque contact, un résultat différent."
+      "description": "Les roues, la carrosserie, le châssis — tout ce qui entre en contact avec la toile y laisse sa marque. La peinture est industrielle, le résultat change à chaque passage."
     },
     "atelier": {
       "title": "Atelier",
-      "description": "Ma Dino au repos, entre deux sessions. Elle attend son prochain passage sur la toile."
+      "description": "La Dino entre les sessions, les toiles empilées contre les murs, le sol recouvert de couches accumulées au fil des années. L'envers du décor."
     },
     "projections": {
       "title": "Projections",
-      "description": "L'action figée. Peinture projetée sur les murs, le sol, les surfaces. L'énergie brute capturée."
+      "description": "La peinture en mouvement, au moment où elle quitte les roues et atteint la toile, les murs, le sol. Le geste saisi à l'instant où il se produit."
     },
     "allWorks": "Toutes les œuvres",
     "filterAll": "Tout voir",
@@ -91,11 +91,11 @@
   },
   "shop": {
     "heroTag": "COMMANDES",
-    "heroTitle": "Mes œuvres disponibles",
-    "heroDescription": "Découvrez mon art automobile. Chaque œuvre est certifiée, numérotée et livrée avec son certificat d'authenticité.",
+    "heroTitle": "Œuvres disponibles",
+    "heroDescription": "Tirages numérotés et signés, imprimés en Fine Art Giclée 12 couleurs sur papier archival. Certificat d'authenticité inclus.",
     "title": "Œuvres disponibles",
     "subtitle": "Photographies d'art — Éditions limitées",
-    "intro": "Mes photographies capturent le moment où ma Dino a créé la toile. Impression Fine Art Giclée, qualité musée.",
+    "intro": "Ces photographies documentent l'instant où la Dino travaille sur la toile. Chaque tirage est numéroté, signé, et imprimé en qualité musée.",
     "quality": {
       "title": "Qualité professionnelle",
       "certificate": "Certificat d'authenticité signé",
@@ -120,34 +120,34 @@
   "dino": {
     "tag": "La Dino en mouvement",
     "title": "La Dino",
-    "subtitle": "Mon instrument en action. L'histoire d'une obsession devenue réalité.",
+    "subtitle": "Châssis #04844, sortie du Salon de Paris 1972 sur le stand Pozzi. Elle est belle comme Sophia Loren.",
     "origin": {
       "label": "L'Origine",
-      "title": "De l'enfance à l'atelier",
-      "text1": "Quarante ans après avoir croisé la voiture de mon enfance, j'ai décidé de transformer mon obsession en méthode créative. Ma Dino n'est pas juste un véhicule. C'est un instrument de création, une extension de ma volonté artistique.",
-      "text2": "Courbes, accélérations, freinages : tout est contrôlé. La Dino danse sur la toile, déposant sa signature mécanique. Je saisis ce dialogue entre l'homme et la machine."
+      "title": "De Danny Wilde au garage Meyerbeer",
+      "text1": "À huit ans, devant Amicalement Vôtre, je savais que je voulais être Danny Wilde. La Dino 246 GT est entrée dans mon imaginaire d'enfant ce soir-là, et elle n'en est jamais sortie. J'ai squatté la concession Ferrari de Toulouse, collectionné les catalogues, traqué une 250 GTO en Chapy, puis un jour, à trente-trois ans, je l'ai trouvée au garage Meyerbeer à Nice.",
+      "text2": "Quand j'étais petit, j'aurais voulu être pilote de course ou voleur. Je n'ai été ni l'un ni l'autre — mais la Dino est devenue mon instrument, et l'atelier mon circuit."
     },
     "specs": {
       "label": "Caractéristiques",
       "title": "Fiche technique",
       "model": "Modèle",
-      "modelValue": "Ferrari 206 GT Dino",
+      "modelValue": "Dino 246 GT",
       "year": "Année",
-      "yearValue": "1974",
+      "yearValue": "1972",
       "color": "Finition",
-      "colorValue": "Rosso Corsa",
+      "colorValue": "Grigio Metallizzato",
       "engine": "Moteur",
-      "engineValue": "V6 2.0L biturbo, configuration longitudinale arrière",
+      "engineValue": "V6 2.4L atmosphérique, central arrière transversal",
       "power": "Puissance",
-      "powerValue": "190 ch à 7600 tr/min",
+      "powerValue": "195 ch à 7600 tr/min",
       "weight": "Poids",
-      "weightValue": "1020 kg"
+      "weightValue": "1080 kg"
     },
     "creative": {
       "label": "Son Rôle",
       "title": "Mon instrument de création",
-      "text1": "Ma Dino n'est pas préservée dans un musée. Elle vit, elle travaille, elle imprime. Ses pneus gravent la toile. Son poids écrase les pigments. Sa vitesse propulse la matière.",
-      "text2": "Chaque passage est différent. Chaque résultat est sans retour. C'est cette impossibilité de recommencer qui donne sa valeur à l'œuvre."
+      "text1": "La Dino n'est pas conservée sous housse. Elle travaille. Les pneus impriment la toile, le poids écrase les pigments, la vitesse de rotation détermine le motif. Je contrôle la marche avant, la marche arrière, la densité des produits. Parfois j'attends la pluie. Ce n'est plus l'accident magique de la monoplace à pédales — c'est une technique que j'ai mise vingt ans à construire.",
+      "text2": "Comme le disait Guy Depré : « C'est l'œuvre d'art qui produit une œuvre ». La Dino ne décore pas l'atelier. Elle le transforme."
     },
     "gallery": {
       "label": "Galerie",
@@ -155,7 +155,7 @@
     },
     "cta": {
       "title": "Voir la Dino en action",
-      "text": "Découvrez cette machine mythique à l'œuvre sur la toile. Automobile, art et obsession réunis.",
+      "text": "La Dino 246 GT #04844, du Salon de Paris à l'atelier de Biarritz.",
       "button1": "Découvrir l'atelier",
       "button2": "Voir les œuvres"
     }

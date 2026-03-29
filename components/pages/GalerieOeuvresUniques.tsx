@@ -13,7 +13,7 @@ import EditableText from "@/components/admin/EditableText";
 export default function GalerieOeuvresUniques() {
   return (
     <section className="py-16 md:py-24 bg-muted/10 border-t border-border">
-      <div className="container px-6 lg:px-8">
+      <div className="container px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <EditableText
             textKey="gallery.uniques.title"

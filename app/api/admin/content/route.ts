@@ -27,6 +27,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validation clés : bloquer path traversal (../ ou caractères dangereux)
+    const SAFE_KEY_PATTERN = /^[a-zA-Z0-9._-]+$/;
+    for (const key of Object.keys(changes)) {
+      if (!SAFE_KEY_PATTERN.test(key)) {
+        return NextResponse.json(
+          { error: `Clé invalide: ${key}` },
+          { status: 400 }
+        );
+      }
+    }
+
     // Valider la locale
     const validLocales = ["fr", "en", "it"];
     if (!validLocales.includes(locale)) {

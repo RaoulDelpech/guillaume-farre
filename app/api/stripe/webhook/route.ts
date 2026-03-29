@@ -19,7 +19,6 @@ async function sendToGelato(session: Stripe.Checkout.Session) {
   const gelato = getGelatoClient();
 
   if (!gelato) {
-    console.warn('⚠️ Gelato client not configured, skipping print order');
     return null;
   }
 
@@ -92,7 +91,6 @@ async function sendToGelato(session: Stripe.Checkout.Session) {
 
   try {
     const result = await gelato.createOrder(gelatoOrder);
-    console.log('🖨️ Gelato order created:', result.id);
     return result;
   } catch (error) {
     console.error('❌ Failed to create Gelato order:', error);
@@ -171,7 +169,6 @@ async function processOrder(session: Stripe.Checkout.Session) {
     return { success: false, error: 'Stripe non configuré' };
   }
 
-  console.log('🎉 Processing order for session:', session.id);
 
   try {
     // Récupérer les détails complets de la session
@@ -183,12 +180,6 @@ async function processOrder(session: Stripe.Checkout.Session) {
     const customerDetails = fullSession.customer_details;
     // @ts-ignore - Shipping details structure changed in Stripe API 2025
     const shippingDetails = fullSession.shipping_details || fullSession.shipping_cost?.address;
-
-    console.log('📦 Order details:', {
-      customer: customerDetails?.email,
-      items: lineItems.length,
-      shipping: shippingDetails?.address
-    });
 
     // Créer commande dans notre système
     const order = await createOrder({
@@ -211,7 +202,6 @@ async function processOrder(session: Stripe.Checkout.Session) {
     const certificateId = `CERT-${order.orderNumber}-${Date.now()}`;
     await updateOrder(order.orderNumber, { certificateId });
 
-    console.log('📝 Commande enregistrée:', order.orderNumber);
 
     // Envoyer la commande à Gelato API
     try {
@@ -269,14 +259,12 @@ async function processOrder(session: Stripe.Checkout.Session) {
           },
           isEarlyCollector: isEarlyAccess(),
         });
-        console.log('📧 Confirmation email sent to:', customerDetails.email);
       } catch (error) {
         console.error('⚠️ Failed to send confirmation email:', error);
         // On continue même si l'email échoue
       }
     }
 
-    console.log('✅ Order processed successfully');
 
     return { success: true, sessionId: session.id };
   } catch (error) {
@@ -289,7 +277,6 @@ async function processOrder(session: Stripe.Checkout.Session) {
 async function reserveOrder(session: Stripe.Checkout.Session) {
   if (!stripe) return;
 
-  console.log('🏦 Réservation commande (virement en attente):', session.id);
 
   try {
     const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
@@ -314,13 +301,11 @@ async function reserveOrder(session: Stripe.Checkout.Session) {
           })),
           totalAmount: (fullSession.amount_total || 0) / 100,
         });
-        console.log('📧 Email "virement en attente" envoyé à:', customerDetails.email);
       } catch (error) {
         console.error('⚠️ Échec envoi email virement en attente:', error);
       }
     }
 
-    console.log('✅ Commande réservée, en attente de virement');
   } catch (error) {
     console.error('❌ Erreur réservation commande:', error);
   }
@@ -330,7 +315,6 @@ async function reserveOrder(session: Stripe.Checkout.Session) {
 async function cancelReservation(session: Stripe.Checkout.Session) {
   if (!stripe) return;
 
-  console.log('❌ Annulation réservation (virement échoué/expiré):', session.id);
 
   try {
     const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
@@ -357,7 +341,6 @@ async function cancelReservation(session: Stripe.Checkout.Session) {
       }
     }
 
-    console.log('✅ Réservation annulée');
   } catch (error) {
     console.error('❌ Erreur annulation réservation:', error);
   }
@@ -387,14 +370,12 @@ async function syncToPennylane(
   const pennylane = getPennylaneClient();
 
   if (!pennylane) {
-    console.log('[Pennylane] Skipping - not configured');
     return;
   }
 
   // Vérifier si facture existe déjà (éviter duplicatas)
   const exists = await pennylane.invoiceExists(session.id);
   if (exists) {
-    console.log('[Pennylane] Invoice already exists for session', session.id);
     return;
   }
 
@@ -433,7 +414,6 @@ async function syncToPennylane(
     external_id: session.id, // Lien unique avec Stripe
   });
 
-  console.log('[Pennylane] Facture créée automatiquement pour session', session.id);
 }
 
 export async function POST(req: NextRequest) {
@@ -467,14 +447,11 @@ export async function POST(req: NextRequest) {
   }
 
   // Traiter les événements selon leur type
-  console.log(`📨 Received webhook event: ${event.type}`);
 
   switch (event.type) {
     case 'checkout.session.completed': {
       const session = event.data.object as Stripe.Checkout.Session;
 
-      console.log('💳 Checkout session completed:', session.id);
-      console.log('💰 Payment status:', session.payment_status);
 
       if (session.payment_status === 'paid') {
         // Paiement immédiat (CB, Alma) — traiter la commande
@@ -497,7 +474,6 @@ export async function POST(req: NextRequest) {
     case 'checkout.session.async_payment_succeeded': {
       // Virement SEPA reçu — traiter la commande comme un paiement CB
       const session = event.data.object as Stripe.Checkout.Session;
-      console.log('🏦 Virement SEPA reçu pour session:', session.id);
       try {
         await processOrder(session);
       } catch (error) {
@@ -509,7 +485,6 @@ export async function POST(req: NextRequest) {
     case 'checkout.session.async_payment_failed': {
       // Virement SEPA échoué/expiré — annuler la réservation
       const session = event.data.object as Stripe.Checkout.Session;
-      console.log('❌ Virement SEPA échoué/expiré pour session:', session.id);
       try {
         await cancelReservation(session);
       } catch (error) {
@@ -520,18 +495,15 @@ export async function POST(req: NextRequest) {
 
     case 'payment_intent.succeeded': {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log('✅ Payment succeeded:', paymentIntent.id);
       break;
     }
 
     case 'payment_intent.payment_failed': {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log('❌ Payment failed:', paymentIntent.id);
       break;
     }
 
     default:
-      console.log(`⚠️ Unhandled event type: ${event.type}`);
   }
 
   // Toujours retourner 200 pour confirmer la réception

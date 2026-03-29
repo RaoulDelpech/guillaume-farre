@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
+import { requireAdminAuth } from '@/lib/admin/auth';
 
 export async function POST(request: Request) {
+  const authError = await requireAdminAuth();
+  if (authError) return authError;
+
   try {
     const formData = await request.formData();
     const files = formData.getAll('files') as File[];
@@ -20,12 +24,10 @@ export async function POST(request: Request) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      // Créer un nom de fichier unique avec timestamp
       const timestamp = Date.now();
       const safeName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
       const filename = `${timestamp}_${safeName}`;
 
-      // Sauvegarder dans public/images/works/a-trier (dossier scanné par le système)
       const path = join(process.cwd(), 'public', 'images', 'works', 'a-trier', filename);
       await writeFile(path, buffer);
 

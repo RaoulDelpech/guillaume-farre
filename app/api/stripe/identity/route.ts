@@ -22,7 +22,6 @@ export async function POST(request: Request) {
   const rateLimitKey = `identity:${clientIP}`;
 
   if (isRateLimited(rateLimitKey, 5, 60000)) {
-    console.warn(`[Stripe Identity] Rate limit dépassé pour IP ${clientIP}`);
     return NextResponse.json(
       { error: 'Trop de requêtes. Veuillez réessayer dans 1 minute.' },
       { status: 429 }

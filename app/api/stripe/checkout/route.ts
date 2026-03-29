@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from '@/lib/early-access';
 import { isRateLimited, getClientIP } from '@/lib/rate-limit';
+import { DEFAULT_PRICING } from '@/lib/pricing-config';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -30,7 +31,6 @@ export async function POST(request: Request) {
   const rateLimitKey = `checkout:${clientIP}`;
 
   if (isRateLimited(rateLimitKey, 10, 60000)) {
-    console.warn(`[Stripe Checkout] Rate limit dépassé pour IP ${clientIP}`);
     return NextResponse.json(
       { error: 'Trop de requêtes. Veuillez réessayer dans 1 minute.' },
       { status: 429 }
@@ -45,6 +45,14 @@ export async function POST(request: Request) {
       console.error('[Stripe] Panier vide');
       return NextResponse.json(
         { error: 'Le panier est vide' },
+        { status: 400 }
+      );
+    }
+
+    // Limite quantité max
+    if (items.length > 10) {
+      return NextResponse.json(
+        { error: 'Maximum 10 articles par commande' },
         { status: 400 }
       );
     }
@@ -73,18 +81,27 @@ export async function POST(request: Request) {
       }
     }
 
+    // Table de prix canonique serveur (source de vérité)
+    const CANONICAL_PRICES: Record<string, number> = {
+      'A4': DEFAULT_PRICING.prixBaseUnlimited * DEFAULT_PRICING.multipliersUnlimited.a4,   // 250
+      'A3': DEFAULT_PRICING.prixBaseUnlimited * DEFAULT_PRICING.multipliersUnlimited.a3,   // 500
+      'A2': DEFAULT_PRICING.prixBaseUnlimited * DEFAULT_PRICING.multipliersUnlimited.a2,   // 800
+      'A1': DEFAULT_PRICING.prixBaseLimited * DEFAULT_PRICING.multipliersLimited.a1,       // 1200
+    };
+
     // Validation et logs détaillés
     const validatedItems = items.map((item: any, index: number) => {
-      console.log(`[Stripe] Item ${index + 1}:`, {
-        title: item.title,
-        price: item.price,
-        category: item.category,
-        hasImages: !!item.images?.length,
-      });
-
       // Validation prix
       if (!item.price || item.price <= 0) {
         throw new Error(`Prix invalide pour "${item.title || `Item ${index + 1}`}": ${item.price}€`);
+      }
+
+      // Validation prix serveur : recalculer à partir du format
+      const format = (item.format || 'A2').toUpperCase();
+      const expectedPrice = CANONICAL_PRICES[format];
+      if (expectedPrice && Math.abs(item.price - expectedPrice) > 0.01) {
+        console.error(`[Stripe] Prix manipulé détecté: ${item.price}€ vs ${expectedPrice}€ (${format})`);
+        throw new Error(`Prix incorrect pour format ${format}`);
       }
 
       // Convertir images relatives en absolues HTTPS (requis par Stripe)
@@ -124,19 +141,8 @@ export async function POST(request: Request) {
     const isHighValue = totalAmount >= BANK_TRANSFER_THRESHOLD;
 
     // Vérification KYC serveur : si > 10K EUR et pas de vérification d'identité
-    if (totalAmount >= KYC_THRESHOLD) {
-      // Pour l'instant on accepte sans vérification stricte côté serveur
-      // La vérification KYC sera faite via Stripe Identity avant le paiement
-      console.log(`[Stripe] Commande > ${KYC_THRESHOLD}€ - KYC requis`);
-    }
-
-    console.log(`[Stripe] Création session pour ${validatedItems.length} item(s)`);
-    console.log(`[Stripe] Total original: ${originalTotal}€`);
-    if (earlyCollectorMode) {
-      console.log(`[Stripe] Early Collector -25%: -${discountAmount}€`);
-      console.log(`[Stripe] Total avec réduction: ${totalAmount}€`);
-    }
-    console.log(`[Stripe] Virement SEPA: ${isHighValue}`);
+    // Pour l'instant on accepte sans vérification stricte côté serveur
+    // La vérification KYC sera faite via Stripe Identity avant le paiement
 
     // Pour les gros montants, créer un Customer Stripe (requis pour bank transfers)
     let customer: string | undefined;
@@ -145,7 +151,6 @@ export async function POST(request: Request) {
         metadata: { source: 'guillaumefarre.com' },
       });
       customer = stripeCustomer.id;
-      console.log('[Stripe] Customer créé pour virement SEPA:', stripeCustomer.id);
     }
 
     // Payment methods selon le montant
@@ -221,7 +226,6 @@ export async function POST(request: Request) {
       },
     });
 
-    console.log('[Stripe] Session créée:', session.id);
     return NextResponse.json({ url: session.url });
   } catch (error: any) {
     console.error('[Stripe] Erreur complète:', {

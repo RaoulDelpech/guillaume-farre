@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { requireEnv } from "@/lib/require-env";
 
 const SITE_PASSWORD = requireEnv('SITE_PASSWORD');
@@ -14,7 +15,13 @@ export async function POST(request: NextRequest) {
   try {
     const { password } = await request.json();
 
-    if (password === SITE_PASSWORD) {
+    const passwordBuf = Buffer.from(String(password));
+    const expectedBuf = Buffer.from(SITE_PASSWORD);
+    const isValid =
+      passwordBuf.length === expectedBuf.length &&
+      timingSafeEqual(passwordBuf, expectedBuf);
+
+    if (isValid) {
       const response = NextResponse.json({ success: true });
 
       response.cookies.set(COOKIE_NAME, "authenticated", {

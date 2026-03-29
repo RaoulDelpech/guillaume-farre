@@ -1,18 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { generateToken, addToken } from "@/lib/auth";
+import { requireEnv } from "@/lib/require-env";
 
-// Mot de passe stocké dans .env.local
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "dino246";
+const ADMIN_PASSWORD = requireEnv("ADMIN_PASSWORD");
 
 export async function POST(request: NextRequest) {
   try {
     const { password } = await request.json();
 
-    // Vérifier le mot de passe
-    if (password === ADMIN_PASSWORD) {
-      // Générer un token unique
+    const passwordBuf = Buffer.from(String(password));
+    const expectedBuf = Buffer.from(ADMIN_PASSWORD);
+    const isValid =
+      passwordBuf.length === expectedBuf.length &&
+      timingSafeEqual(passwordBuf, expectedBuf);
+
+    if (isValid) {
       const token = generateToken();
-      addToken(token); // Ajoute le token avec expiration automatique (8h par défaut)
+      addToken(token);
 
       return NextResponse.json({
         success: true,
@@ -24,7 +29,7 @@ export async function POST(request: NextRequest) {
       { success: false, error: "Mot de passe incorrect" },
       { status: 401 }
     );
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, error: "Erreur serveur" },
       { status: 500 }

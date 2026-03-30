@@ -21,6 +21,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             git clean -fd
+            rm -rf app/api/account
             echo "Installing dependencies..."
             npm install --production=false 2>&1 || echo "npm install warning (continuing)"
             echo "Writing env..."

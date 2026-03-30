@@ -29,6 +29,8 @@ jobs:
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "SITE_MODE=pre-launch" >> .env.local
+            echo "Cleaning build cache..."
+            rm -rf .next
             echo "Building with increased memory..."
             NODE_OPTIONS="--max-old-space-size=4096" npm run build
             echo "Restarting PM2..."

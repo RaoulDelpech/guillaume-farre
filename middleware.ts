@@ -78,9 +78,13 @@ export default function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // --- VIP (hidden ou secret) bypass le mode pre-launch ---
+  // --- VIP : acces restreint a /toiles uniquement ---
   if (hasVipAccess) {
-    return intlMiddleware(request);
+    if (pathname.match(/\/(fr|en|it)\/toiles/)) {
+      return intlMiddleware(request);
+    }
+    // Toute autre page → rediriger vers toiles
+    return NextResponse.redirect(new URL(`/${locale}/toiles`, request.url));
   }
 
   // --- Mode pre-launch : tout le site est cache ---

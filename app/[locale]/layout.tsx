@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
+import { cookies } from 'next/headers';
 import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
 import { CartProvider } from '@/contexts/CartContext';
@@ -113,6 +114,10 @@ export default async function RootLayout({
   // Providing all messages to the client
   const messages = await getMessages();
 
+  // VIP visitors get a stripped-down layout (no footer, no overlays)
+  const cookieStore = await cookies();
+  const isVipVisitor = !!cookieStore.get('gf_vip') && !cookieStore.get('gf_auth')?.value;
+
   return (
     <html lang={locale}>
       <head>
@@ -122,31 +127,24 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
           <CartProvider>
-            {/* Overlay Early Collector - premiere visite uniquement */}
-            <EarlyAccessOverlay />
+            {/* Overlay Early Collector - pas pour VIP */}
+            {!isVipVisitor && <EarlyAccessOverlay />}
             <AdminWrapper>
-              {/* Scroll to top on navigation */}
               <ScrollToTopOnNav />
-              {/* Barre de progression en haut */}
-              <Suspense fallback={null}>
-                <PageProgressBar />
-              </Suspense>
-              {/* Les portes d'entrée sont dans /login maintenant */}
-              {/* Animation bienvenue post-login - privilégiés */}
-              <WelcomeAnimation />
-              {/* Video intro - après entrée sombre si vidéo disponible */}
-              <VideoIntro />
+              {!isVipVisitor && (
+                <Suspense fallback={null}>
+                  <PageProgressBar />
+                </Suspense>
+              )}
+              {!isVipVisitor && <WelcomeAnimation />}
+              {!isVipVisitor && <VideoIntro />}
               <div className="flex-1">
                 {children}
               </div>
-              <Footer />
-              {/* Bouton retour en haut */}
-              <BackToTop />
-              {/* Cookie consent banner RGPD */}
+              {!isVipVisitor && <Footer />}
+              {!isVipVisitor && <BackToTop />}
               <CookieConsent />
-              {/* Google Analytics 4 with RGPD consent */}
               <GoogleAnalytics />
-              {/* Protection anti-copie images */}
               <ImageProtection />
             </AdminWrapper>
           </CartProvider>

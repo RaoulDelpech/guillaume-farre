@@ -99,7 +99,10 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
             {totalPages > 1 && (
               <div className="mt-12 sm:mt-16 flex items-center justify-center gap-2 sm:gap-4">
                 <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  onClick={() => {
+                    setCurrentPage(p => Math.max(1, p - 1));
+                    document.getElementById("galerie-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                   disabled={currentPage === 1}
                   className="px-3 sm:px-6 py-2.5 sm:py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground text-sm sm:text-base min-h-[44px]"
                 >
@@ -122,7 +125,10 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
                     return (
                       <button
                         key={pageNum}
-                        onClick={() => setCurrentPage(pageNum)}
+                        onClick={() => {
+                          setCurrentPage(pageNum);
+                          document.getElementById("galerie-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }}
                         className={`w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded transition-all min-w-[44px] min-h-[44px] text-sm sm:text-base ${
                           currentPage === pageNum
                             ? 'bg-primary text-primary-foreground font-medium'
@@ -136,7 +142,10 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
                 </div>
 
                 <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  onClick={() => {
+                    setCurrentPage(p => Math.min(totalPages, p + 1));
+                    document.getElementById("galerie-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                   disabled={currentPage === totalPages}
                   className="px-3 sm:px-6 py-2.5 sm:py-3 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground text-sm sm:text-base min-h-[44px]"
                 >

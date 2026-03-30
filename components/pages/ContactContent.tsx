@@ -3,6 +3,7 @@
 import { useState } from "react";
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 /**
  * Contenu de la page Contact - Style Shangti (minimaliste)
@@ -57,7 +58,7 @@ export default function ContactContent() {
   return (
     <>
       {/* Hero minimaliste */}
-      <div className="py-12 sm:py-24 md:py-32 border-b border-border">
+      <ScrollReveal className="py-12 sm:py-24 md:py-32 border-b border-border">
         <div className="container px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
           <EditableText
             textKey="contact.hero.title"
@@ -75,7 +76,7 @@ export default function ContactContent() {
             Acquisition, visite d'atelier, collaboration. Je réponds personnellement à chaque message.
           </EditableText>
         </div>
-      </div>
+      </ScrollReveal>
 
       {/* Formulaire de contact simple */}
       <section className="py-20 md:py-28 border-b border-border">
@@ -199,7 +200,7 @@ export default function ContactContent() {
       </section>
 
       {/* CTA final */}
-      <section className="py-12 sm:py-24 md:py-32">
+      <ScrollReveal className="py-12 sm:py-24 md:py-32">
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <EditableText
@@ -225,7 +226,7 @@ export default function ContactContent() {
             </div>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
     </>
   );
 }

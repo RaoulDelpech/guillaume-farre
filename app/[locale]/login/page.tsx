@@ -160,9 +160,17 @@ export default function LoginPage() {
               </div>
 
               {error && (
-                <p className="text-white/50 text-xs font-light text-center tracking-wide">
-                  Accès refusé
-                </p>
+                <div className="text-center space-y-4">
+                  <p className="text-white/50 text-xs font-light tracking-wide">
+                    Accès refusé
+                  </p>
+                  <a
+                    href="/"
+                    className="inline-block text-white/20 text-xs font-light tracking-widest uppercase hover:text-white/40 transition-colors"
+                  >
+                    Retour
+                  </a>
+                </div>
               )}
 
               <button

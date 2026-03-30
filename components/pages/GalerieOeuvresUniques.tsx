@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import EditableText from "@/components/admin/EditableText";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 /**
  * Section "Œuvres uniques" - Décision audit 2025-01-20
@@ -12,7 +13,7 @@ import EditableText from "@/components/admin/EditableText";
  */
 export default function GalerieOeuvresUniques() {
   return (
-    <section className="py-16 md:py-24 bg-muted/10 border-t border-border">
+    <ScrollReveal className="py-16 md:py-24 bg-muted/10 border-t border-border">
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <EditableText
@@ -51,6 +52,6 @@ export default function GalerieOeuvresUniques() {
           </Link>
         </div>
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

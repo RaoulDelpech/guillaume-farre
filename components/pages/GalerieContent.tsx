@@ -1,7 +1,7 @@
 "use client";
 
 import EditableText from "@/components/admin/EditableText";
-import { MotionSection } from "@/components/motion/MotionWrapper";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 interface GalerieContentProps {
   translations: {
@@ -31,7 +31,7 @@ export default function GalerieContent({ translations: t }: GalerieContentProps)
       {/* Overlay sombre pour lisibilité du texte */}
       <div className="absolute inset-0 bg-black/50"></div>
 
-      <MotionSection variant="fadeInUp" className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl py-28">
+      <ScrollReveal className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl py-28">
         <EditableText
           textKey="gallery.title"
           as="h1"
@@ -47,7 +47,7 @@ export default function GalerieContent({ translations: t }: GalerieContentProps)
         >
           {t.subtitle}
         </EditableText>
-      </MotionSection>
+      </ScrollReveal>
     </div>
   );
 }

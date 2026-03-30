@@ -44,24 +44,24 @@ export default function Footer() {
             >
               Navigation
             </EditableText>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 sm:space-y-3 text-sm">
               <li>
-                <Link href="/galerie" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                <Link href="/galerie" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   Créations
                 </Link>
               </li>
               <li>
-                <Link href="/atelier" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                <Link href="/atelier" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   L'Atelier
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/histoire" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                <Link href="/histoire" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   L'Histoire
                 </Link>
               </li>
@@ -77,14 +77,14 @@ export default function Footer() {
             >
               Informations
             </EditableText>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 sm:space-y-3 text-sm">
               <li>
-                <Link href="/mentions-legales" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                <Link href="/mentions-legales" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   {t("legal")}
                 </Link>
               </li>
               <li>
-                <Link href="/politique-de-confidentialite" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                <Link href="/politique-de-confidentialite" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   {t("privacy")}
                 </Link>
               </li>

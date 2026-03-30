@@ -57,7 +57,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     // Cleanup
     return () => {
       lenis.destroy();
-      gsap.ticker.remove(() => {});
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);

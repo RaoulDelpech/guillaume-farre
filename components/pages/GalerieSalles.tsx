@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import EditableText from "@/components/admin/EditableText";
 import { addRipple } from "@/components/ui/RippleButton";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 /**
  * Section séries de la galerie - 2 catégories principales + Atelier
@@ -70,7 +71,7 @@ export default function GalerieSalles({ images }: GalerieSallesProps) {
     <section className="py-16 md:py-24 bg-background">
       <div className="container px-4 sm:px-6 lg:px-8">
         {/* Titre section */}
-        <div className="text-center mb-12 md:mb-16">
+        <ScrollReveal className="text-center mb-12 md:mb-16">
           <EditableText
             textKey="gallery.salles.title"
             as="h2"
@@ -85,7 +86,7 @@ export default function GalerieSalles({ images }: GalerieSallesProps) {
           >
             Deux regards sur la création
           </EditableText>
-        </div>
+        </ScrollReveal>
 
         {/* 2 catégories principales - côte à côte */}
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">

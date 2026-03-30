@@ -146,10 +146,10 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+            className={`h-2 sm:h-1.5 rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
               index === current
-                ? "bg-white w-8"
-                : "bg-white/40 hover:bg-white/60 w-1.5"
+                ? "bg-white w-8 sm:w-8"
+                : "bg-white/40 hover:bg-white/60 w-2 sm:w-1.5"
             }`}
             aria-label={`Image ${index + 1}`}
           />

@@ -66,26 +66,34 @@ export default function AdminVipPage() {
     setGenerating(true);
     setSent(false);
 
+    // Ouvrir la fenetre AVANT le fetch (sinon popup bloque par Safari/iOS)
+    const waWindow = window.open('about:blank', '_blank');
+
     try {
       const res = await fetch("/api/vip/generate", { method: "POST" });
       if (res.ok) {
         const data = await res.json();
         const url = data.url;
 
-        // Ouvrir WhatsApp avec le message pre-rempli
         const message = `Invitation privée — Guillaume Farré\n\nDécouvrez mes toiles originales et photographies en accès exclusif (24h) :\n${url}`;
         const waUrl = `https://wa.me/${normalizePhone(phone)}?text=${encodeURIComponent(message)}`;
-        window.open(waUrl, '_blank');
+
+        if (waWindow) {
+          waWindow.location.href = waUrl;
+        } else {
+          // Fallback si popup bloque malgre tout
+          window.location.href = waUrl;
+        }
 
         setSent(true);
         setPhone("");
         loadCodes();
-
-        // Reset apres 3s
         setTimeout(() => setSent(false), 3000);
+      } else {
+        waWindow?.close();
       }
     } catch {
-      // Silent
+      waWindow?.close();
     } finally {
       setGenerating(false);
     }

@@ -1,35 +1,41 @@
 "use client";
 
 import EditableText from "@/components/admin/EditableText";
+import ScrollReveal from "@/components/animations/ScrollReveal";
+import LineReveal from "@/components/animations/LineReveal";
 
 /**
- * Section Citation sur la Homepage - Décision audit 2025-01-20
- * "Il n'y a jamais de deuxième prise."
- *
+ * Section Citation sur la Homepage
  * @author Lalou
- * @date 2025-01-20
  */
 export default function HomeCitation() {
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-20 md:py-32 bg-background">
       <div className="container px-4 sm:px-6 lg:px-8">
         <blockquote className="max-w-3xl mx-auto text-center">
-          <EditableText
-            textKey="home.citation"
-            as="p"
-            className="text-xl md:text-2xl lg:text-3xl font-light italic tracking-wide text-foreground/90 leading-relaxed"
-          >
-            Il n'y a jamais de deuxième prise.
-          </EditableText>
-          <footer className="mt-6">
+          <ScrollReveal>
             <EditableText
-              textKey="home.citationAuthor"
-              as="cite"
-              className="text-base font-light text-muted-foreground not-italic tracking-wider"
+              textKey="home.citation"
+              as="p"
+              className="text-xl md:text-2xl lg:text-3xl font-extralight italic tracking-wide text-foreground/90 leading-relaxed"
             >
-              — Guillaume Farré
+              Il n'y a jamais de deuxième prise.
             </EditableText>
-          </footer>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <footer className="mt-8">
+              <EditableText
+                textKey="home.citationAuthor"
+                as="cite"
+                className="text-base font-extralight text-muted-foreground not-italic tracking-[0.15em]"
+              >
+                — Guillaume Farré
+              </EditableText>
+            </footer>
+          </ScrollReveal>
+          <div className="mt-10 flex justify-center">
+            <LineReveal color="rgba(196,165,112,0.25)" width="60px" delay={0.4} />
+          </div>
         </blockquote>
       </div>
     </section>

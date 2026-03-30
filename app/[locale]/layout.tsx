@@ -19,6 +19,7 @@ import EarlyAccessOverlay from '@/components/early-access/EarlyAccessOverlay';
 import CookieConsent from '@/components/CookieConsent';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import ImageProtection from '@/components/ImageProtection';
+import SmoothScroll from '@/components/SmoothScroll';
 import "./globals.css";
 
 // SEO - Décisions audit 2025-01-20
@@ -138,9 +139,11 @@ export default async function RootLayout({
               )}
               {!isVipVisitor && <WelcomeAnimation />}
               {!isVipVisitor && <VideoIntro />}
-              <div className="flex-1">
-                {children}
-              </div>
+              <SmoothScroll>
+                <div className="flex-1">
+                  {children}
+                </div>
+              </SmoothScroll>
               {!isVipVisitor && <Footer />}
               {!isVipVisitor && <BackToTop />}
               <CookieConsent />

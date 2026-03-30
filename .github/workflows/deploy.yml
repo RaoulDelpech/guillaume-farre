@@ -30,6 +30,7 @@ jobs:
             echo "NEXT_PUBLIC_SITE_URL=https://guillaumefarre.com" >> .env.local
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
+            echo "SITE_PASSWORD=${{ secrets.SITE_PASSWORD }}" >> .env.local
             echo "SITE_MODE=pre-launch" >> .env.local
             echo "Cleaning build cache..."
             rm -rf .next

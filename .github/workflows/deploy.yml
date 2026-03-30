@@ -29,8 +29,10 @@ jobs:
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "SITE_MODE=pre-launch" >> .env.local
-            echo "Cleaning build cache..."
-            rm -rf .next
+            echo "Cleaning build cache and verifying source..."
+            rm -rf .next node_modules/.cache
+            echo "Checking magic-link source exists:"
+            ls app/api/account/magic-link/route.ts 2>&1 || echo "  -> CONFIRMED DELETED"
             echo "Building with increased memory..."
             NODE_OPTIONS="--max-old-space-size=4096" npm run build
             echo "Restarting PM2..."

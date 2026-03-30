@@ -22,8 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',      // Contact
     '/panier',       // Panier
     '/favoris',      // Favoris
-    '/dino',         // Page Dino
-    '/origine',      // Page Origine
+    // MASQUE - Pages désactivées
+    // '/dino',         // Page Dino
+    // '/origine',      // Page Origine
   ];
 
   // Générer URLs pour toutes les langues

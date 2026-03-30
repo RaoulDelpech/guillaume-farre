@@ -17,13 +17,13 @@ export default function Navigation() {
   // Navigation principale - Décisions audit 2025-01-20
   const links = [
     { href: "/galerie", label: "Créations" },
-    { href: "/dino", label: "Dino" },
     { href: "/atelier", label: "L'Atelier" },
-    { href: "/origine", label: "Origines" },
     { href: "/contact", label: "Contact" },
   ];
 
   // MASQUE - Pages désactivées (code gardé pour réactivation future) :
+  // { href: "/dino", label: "Dino" },
+  // { href: "/origine", label: "Origines" },
   // { href: "/", label: t("accueil") },
   // { href: "/boutique", label: "Commandes" },
   // { href: "/collectionneurs", label: "Club" },

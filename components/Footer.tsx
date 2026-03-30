@@ -51,18 +51,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/dino" className="text-muted-foreground hover:text-primary transition-colors font-light">
-                  Dino
-                </Link>
-              </li>
-              <li>
                 <Link href="/atelier" className="text-muted-foreground hover:text-primary transition-colors font-light">
                   L'Atelier
-                </Link>
-              </li>
-              <li>
-                <Link href="/origine" className="text-muted-foreground hover:text-primary transition-colors font-light">
-                  Origines
                 </Link>
               </li>
               <li>

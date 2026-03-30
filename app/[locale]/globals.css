@@ -142,6 +142,50 @@ img { display: block; max-width: 100%; height: auto; box-shadow: none !important
   animation: pulse-subtle 2s ease-in-out infinite;
 }
 
+/* === Hover glow pour photos === */
+.hover-glow {
+  transition: filter 500ms ease-out, box-shadow 500ms ease-out;
+}
+.hover-glow:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 8px 30px rgba(196, 165, 112, 0.15);
+}
+
+/* === Ripple effect bronze === */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(196, 165, 112, 0.3);
+  transform: scale(0);
+  animation: ripple 600ms ease-out forwards;
+  pointer-events: none;
+}
+
+/* === Bouton underline expand === */
+.btn-underline-expand {
+  position: relative;
+}
+.btn-underline-expand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: rgba(196, 165, 112, 0.6);
+  transition: width 400ms ease-out, left 400ms ease-out;
+}
+.btn-underline-expand:hover::after {
+  width: 100%;
+  left: 0;
+}
+
 /* Filtres images - Style épuré Shangti */
 .filter-bw {
   filter: grayscale(100%) contrast(1.05);
@@ -170,6 +214,26 @@ img { display: block; max-width: 100%; height: auto; box-shadow: none !important
   /* Désactivé */
 }
 
+/* === Protection anti-copie images === */
+.protected-image {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
+.protected-image-container {
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.protected-image-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: auto;
+}
+
 /* Accessibilité - Respect des préférences utilisateur pour les animations */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -178,4 +242,7 @@ img { display: block; max-width: 100%; height: auto; box-shadow: none !important
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .ripple-effect { animation: none !important; }
+  .btn-underline-expand::after { transition: none !important; }
+  .hover-glow:hover { filter: none !important; box-shadow: none !important; }
 }

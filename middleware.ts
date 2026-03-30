@@ -17,10 +17,23 @@ function getLocale(pathname: string): string {
 }
 
 /**
+ * Extraire le niveau d'acces depuis le cookie VIP
+ * Format : "CODE:level" ou "CODE" (legacy = secret)
+ */
+function getVipLevel(cookieValue: string): 'hidden' | 'secret' {
+  const colonIndex = cookieValue.indexOf(':');
+  if (colonIndex > 0) {
+    const level = cookieValue.substring(colonIndex + 1);
+    if (level === 'hidden' || level === 'secret') return level;
+  }
+  return 'secret'; // legacy
+}
+
+/**
  * Middleware 3 niveaux d'acces :
- * 1. Public (SITE_MODE=public) — tout le monde sauf /toiles
- * 2. Cache (SITE_MODE=pre-launch) — mot de passe requis
- * 3. VIP — code temporaire requis pour /toiles
+ * 1. Normal (mot de passe site) — oeuvres publiques, pas de prix
+ * 2. Hidden (lien VIP 24h) — toutes les oeuvres, pas de prix
+ * 3. Secret (lien VIP 24h) — tout + prix + /toiles
  *
  * @author Lalou
  */
@@ -52,14 +65,21 @@ export default function middleware(request: NextRequest) {
   const vipCookie = request.cookies.get(VIP_COOKIE);
   const hasVipAccess = !!vipCookie;
 
-  // --- Protection VIP : /toiles necessite un code VIP ---
-  // Verifie AVANT le check pre-launch pour que les VIP puissent acceder
-  // sans avoir le mot de passe du site
+  // --- Protection /toiles : seul le niveau 'secret' y accede ---
   if (pathname.match(/\/(fr|en|it)\/toiles/)) {
     if (!hasVipAccess) {
       return NextResponse.redirect(new URL(`/${locale}/vip`, request.url));
     }
-    // VIP valide → bypass le check pre-launch pour /toiles
+    const level = getVipLevel(vipCookie!.value);
+    if (level !== 'secret') {
+      // Niveau hidden → rediriger vers galerie (pas acces aux toiles/prix)
+      return NextResponse.redirect(new URL(`/${locale}/galerie`, request.url));
+    }
+    return intlMiddleware(request);
+  }
+
+  // --- VIP (hidden ou secret) bypass le mode pre-launch ---
+  if (hasVipAccess) {
     return intlMiddleware(request);
   }
 

@@ -7,6 +7,7 @@ import GalerieSalles from "@/components/pages/GalerieSalles";
 import GalerieOeuvresUniques from "@/components/pages/GalerieOeuvresUniques";
 import { getWorksFromMetadata } from "@/lib/works";
 import { getPageImages } from "@/lib/page-images";
+import { getAccessLevel } from "@/lib/access";
 
 export const metadata: Metadata = {
   title: "Créations",
@@ -19,8 +20,10 @@ export const metadata: Metadata = {
 
 export default async function GaleriePage() {
   const t = await getTranslations("gallery");
-  const works = await getWorksFromMetadata();
+  const accessLevel = await getAccessLevel();
+  const works = await getWorksFromMetadata(accessLevel);
   const pageImages = await getPageImages();
+  const showPrices = accessLevel === 'secret';
 
   const translations = {
     title: t("title"),
@@ -36,7 +39,7 @@ export default async function GaleriePage() {
       {/* Section Œuvres uniques - Décision audit 2025-01-20 */}
       <GalerieOeuvresUniques />
       {/* Galerie complète avec filtres */}
-      <GalleryClient works={works} />
+      <GalleryClient works={works} showPrices={showPrices} />
     </main>
   );
 }

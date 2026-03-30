@@ -13,6 +13,7 @@ export interface VipCode {
   expiresAt: string;       // ISO (createdAt + 24h)
   used: boolean;
   usedAt?: string;         // ISO
+  accessLevel: 'hidden' | 'secret'; // hidden = toutes oeuvres sans prix, secret = tout + prix
 }
 
 const VIP_CODES_PATH = path.join(process.cwd(), 'data', 'vip-codes.json');
@@ -42,7 +43,7 @@ export function generateVipCode(): string {
 }
 
 // Cree un nouveau code VIP, nettoie les expires, et retourne le code
-export async function createVipCode(): Promise<VipCode> {
+export async function createVipCode(accessLevel: 'hidden' | 'secret' = 'secret'): Promise<VipCode> {
   const codes = await readCodes();
 
   // Nettoyer les codes expires (plus de 48h)
@@ -55,6 +56,7 @@ export async function createVipCode(): Promise<VipCode> {
     createdAt: now.toISOString(),
     expiresAt: new Date(now.getTime() + CODE_DURATION_MS).toISOString(),
     used: false,
+    accessLevel,
   };
 
   cleaned.push(newCode);
@@ -64,7 +66,7 @@ export async function createVipCode(): Promise<VipCode> {
 }
 
 // Valide un code : verifie existence, expiration, usage
-export async function validateVipCode(code: string): Promise<{ valid: boolean; error?: string }> {
+export async function validateVipCode(code: string): Promise<{ valid: boolean; error?: string; accessLevel?: 'hidden' | 'secret' }> {
   const codes = await readCodes();
   const found = codes.find(c => c.code === code.toUpperCase());
 
@@ -80,7 +82,7 @@ export async function validateVipCode(code: string): Promise<{ valid: boolean; e
     return { valid: false, error: 'expired' };
   }
 
-  return { valid: true };
+  return { valid: true, accessLevel: found.accessLevel || 'secret' };
 }
 
 // Marque un code comme utilise

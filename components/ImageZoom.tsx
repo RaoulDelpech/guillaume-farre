@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { elegantEasing } from "@/components/motion/MotionWrapper";
 import { useSoundEffects } from "@/hooks/useSoundEffects";
 
 interface ImageZoomProps {
@@ -72,11 +74,16 @@ export default function ImageZoom({ src, alt, className = "" }: ImageZoomProps) 
       </div>
 
       {/* Zoomed overlay */}
-      {isZoomed && (
-        <div
-          className="fixed inset-0 z-[110] bg-black/95 flex items-center justify-center cursor-zoom-out"
-          onClick={handleToggleZoom}
-        >
+      <AnimatePresence>
+        {isZoomed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: elegantEasing }}
+            className="fixed inset-0 z-[110] bg-black/95 flex items-center justify-center cursor-zoom-out"
+            onClick={handleToggleZoom}
+          >
           {/* Instructions */}
           <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md text-white text-sm px-4 py-2 rounded-lg flex items-center gap-3">
             <span>🖱️ Bougez la souris pour explorer</span>
@@ -130,8 +137,9 @@ export default function ImageZoom({ src, alt, className = "" }: ImageZoomProps) 
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md text-white text-sm px-4 py-2 rounded-full">
             🔍 Zoom 200%
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </>
   );
 }

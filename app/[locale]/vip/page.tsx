@@ -22,6 +22,7 @@ export default function VipPage() {
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [accessLevel, setAccessLevel] = useState<'hidden' | 'secret'>('secret');
   const router = useRouter();
   const searchParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -43,16 +44,17 @@ export default function VipPage() {
     }
   }, [phase]);
 
-  // Redirect apres welcome
+  // Redirect apres welcome — galerie pour hidden, toiles pour secret
   useEffect(() => {
     if (phase === "welcome") {
       const timer = setTimeout(() => {
-        router.push(`/${locale}/toiles`);
+        const destination = accessLevel === 'secret' ? `/${locale}/toiles` : `/${locale}/galerie`;
+        router.push(destination);
         router.refresh();
       }, 4000);
       return () => clearTimeout(timer);
     }
-  }, [phase, router]);
+  }, [phase, router, accessLevel, locale]);
 
   async function handleValidate(codeToValidate?: string) {
     const finalCode = codeToValidate || code;
@@ -67,8 +69,10 @@ export default function VipPage() {
       });
 
       if (res.ok) {
+        const data = await res.json();
+        setAccessLevel(data.accessLevel || 'secret');
         setPhase("opening");
-        setTimeout(() => setPhase("welcome"), 3500);
+        setTimeout(() => setPhase("welcome"), 5500);
       } else {
         const data = await res.json();
         if (data.error === "expired") {
@@ -99,7 +103,7 @@ export default function VipPage() {
     <div className="fixed inset-0 bg-black overflow-hidden">
       {/* Porte gauche */}
       <div
-        className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-[3000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+        className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
           doorsOpen ? "-translate-x-full" : "translate-x-0"
         }`}
         style={{
@@ -122,7 +126,7 @@ export default function VipPage() {
 
       {/* Porte droite */}
       <div
-        className={`absolute top-0 right-0 w-1/2 h-full transition-transform duration-[3000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+        className={`absolute top-0 right-0 w-1/2 h-full transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
           doorsOpen ? "translate-x-full" : "translate-x-0"
         }`}
         style={{
@@ -145,7 +149,7 @@ export default function VipPage() {
 
       {/* Ligne centrale */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-black/50 transition-opacity duration-[3000ms] ${
+        className={`absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-black/50 transition-opacity duration-[5000ms] ${
           doorsOpen ? "opacity-0" : "opacity-100"
         }`}
       />

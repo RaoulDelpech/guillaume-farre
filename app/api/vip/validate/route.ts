@@ -5,7 +5,8 @@ const VIP_COOKIE = 'gf_vip';
 const VIP_COOKIE_MAX_AGE = 24 * 60 * 60; // 24h en secondes
 
 /**
- * Valide un code VIP et set cookie d'acces
+ * Valide un code VIP et set cookie d'acces avec niveau
+ * Cookie format : "CODE:level" (hidden ou secret)
  * @author Lalou
  */
 export async function POST(request: NextRequest) {
@@ -25,9 +26,11 @@ export async function POST(request: NextRequest) {
     // Marquer le code comme utilise
     await markCodeUsed(code);
 
-    // Set le cookie VIP
-    const response = NextResponse.json({ valid: true });
-    response.cookies.set(VIP_COOKIE, code.toUpperCase(), {
+    const accessLevel = result.accessLevel || 'secret';
+
+    // Set le cookie VIP avec le niveau d'acces encode
+    const response = NextResponse.json({ valid: true, accessLevel });
+    response.cookies.set(VIP_COOKIE, `${code.toUpperCase()}:${accessLevel}`, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',

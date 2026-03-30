@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { addRipple } from "@/components/ui/RippleButton";
 
 /**
  * Interface admin pour generer des codes VIP
@@ -16,7 +17,10 @@ interface VipCode {
   expiresAt: string;
   used: boolean;
   usedAt?: string;
+  accessLevel?: 'hidden' | 'secret';
 }
+
+type AccessLevel = 'hidden' | 'secret';
 
 export default function AdminVipPage() {
   const t = useTranslations("adminVip");
@@ -26,6 +30,7 @@ export default function AdminVipPage() {
   const [generating, setGenerating] = useState(false);
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [selectedLevel, setSelectedLevel] = useState<AccessLevel>('secret');
 
   useEffect(() => {
     loadCodes();
@@ -52,7 +57,11 @@ export default function AdminVipPage() {
     setCopied(false);
 
     try {
-      const res = await fetch("/api/vip/generate", { method: "POST" });
+      const res = await fetch("/api/vip/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ accessLevel: selectedLevel }),
+      });
       if (res.ok) {
         const data = await res.json();
         setGeneratedUrl(data.url);
@@ -131,12 +140,50 @@ export default function AdminVipPage() {
         </h1>
       </div>
 
+      {/* Selecteur niveau d'acces */}
+      <div className="max-w-md mx-auto mb-6">
+        <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mb-4 text-center">
+          {t("levelLabel")}
+        </p>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setSelectedLevel('secret')}
+            className={`flex-1 py-4 text-xs tracking-[0.2em] uppercase font-light border transition-all ${
+              selectedLevel === 'secret'
+                ? 'border-white/60 text-white bg-white/10'
+                : 'border-white/15 text-white/40 hover:border-white/30 hover:text-white/60'
+            }`}
+          >
+            {t("levelSecret")}
+            <span className="block text-[10px] mt-1 opacity-60 normal-case tracking-normal">
+              {t("levelSecretDesc")}
+            </span>
+          </button>
+          <button
+            onClick={() => setSelectedLevel('hidden')}
+            className={`flex-1 py-4 text-xs tracking-[0.2em] uppercase font-light border transition-all ${
+              selectedLevel === 'hidden'
+                ? 'border-white/60 text-white bg-white/10'
+                : 'border-white/15 text-white/40 hover:border-white/30 hover:text-white/60'
+            }`}
+          >
+            {t("levelHidden")}
+            <span className="block text-[10px] mt-1 opacity-60 normal-case tracking-normal">
+              {t("levelHiddenDesc")}
+            </span>
+          </button>
+        </div>
+      </div>
+
       {/* Bouton principal — gros, mobile-first */}
       <div className="max-w-md mx-auto mb-12">
         <button
-          onClick={handleGenerate}
+          onClick={(e) => {
+            addRipple(e);
+            handleGenerate();
+          }}
           disabled={generating}
-          className="w-full py-6 text-white text-sm tracking-[0.3em] uppercase font-light border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="relative overflow-hidden w-full py-6 text-white text-sm tracking-[0.3em] uppercase font-light border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
         >
           {generating ? t("generating") : t("generate")}
         </button>
@@ -156,14 +203,20 @@ export default function AdminVipPage() {
           </p>
           <div className="flex gap-4">
             <button
-              onClick={handleShare}
-              className="flex-1 py-4 text-white/60 text-xs tracking-[0.2em] uppercase border border-white/20 hover:border-white/40 hover:text-white/90 transition-all"
+              onClick={(e) => {
+                addRipple(e);
+                handleShare();
+              }}
+              className="relative overflow-hidden flex-1 py-4 text-white/60 text-xs tracking-[0.2em] uppercase border border-white/20 hover:border-white/40 hover:text-white/90 transition-all"
             >
               {t("share")}
             </button>
             <button
-              onClick={handleCopy}
-              className="flex-1 py-4 text-white/60 text-xs tracking-[0.2em] uppercase border border-white/20 hover:border-white/40 hover:text-white/90 transition-all"
+              onClick={(e) => {
+                addRipple(e);
+                handleCopy();
+              }}
+              className="relative overflow-hidden flex-1 py-4 text-white/60 text-xs tracking-[0.2em] uppercase border border-white/20 hover:border-white/40 hover:text-white/90 transition-all"
             >
               {copied ? t("copied") : t("copy")}
             </button>
@@ -195,9 +248,18 @@ export default function AdminVipPage() {
                       <p className="text-sm font-light tracking-[0.3em]">
                         {code.code}
                       </p>
-                      <p className="text-white/30 text-xs mt-1">
-                        {formatTime(code.createdAt)}
-                      </p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <p className="text-white/30 text-xs">
+                          {formatTime(code.createdAt)}
+                        </p>
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded ${
+                          code.accessLevel === 'hidden'
+                            ? 'bg-blue-500/20 text-blue-300/60'
+                            : 'bg-amber-500/20 text-amber-300/60'
+                        }`}>
+                          {code.accessLevel === 'hidden' ? 'galerie' : 'prix'}
+                        </span>
+                      </div>
                     </div>
                     <div className="text-right">
                       {status === "active" && (

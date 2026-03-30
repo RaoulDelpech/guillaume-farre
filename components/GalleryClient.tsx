@@ -9,11 +9,12 @@ type FilterType = 'all' | 'photo' | 'toile' | 'limited' | 'empreintes' | 'atelie
 
 interface GalleryClientProps {
   works: Work[];
+  showPrices?: boolean;
 }
 
 const ITEMS_PER_PAGE = 24; // 24 photos par page (grille 4x6)
 
-export default function GalleryClient({ works }: GalleryClientProps) {
+export default function GalleryClient({ works, showPrices = false }: GalleryClientProps) {
   const searchParams = useSearchParams();
   const serieParam = searchParams.get('serie');
 
@@ -56,7 +57,6 @@ export default function GalleryClient({ works }: GalleryClientProps) {
   const filterButtons: { key: FilterType; label: string }[] = [
     { key: 'all', label: 'Toutes' },
     { key: 'empreintes', label: 'Empreintes' },
-    { key: 'atelier', label: 'Atelier' },
     { key: 'projections', label: 'Projections' },
   ];
 
@@ -93,7 +93,7 @@ export default function GalleryClient({ works }: GalleryClientProps) {
                 {totalPages > 1 && ` • Page ${currentPage}/${totalPages}`}
               </p>
             </div>
-            <GalleryGrid works={paginatedWorks} />
+            <GalleryGrid works={paginatedWorks} showPrices={showPrices} />
 
             {/* Pagination */}
             {totalPages > 1 && (

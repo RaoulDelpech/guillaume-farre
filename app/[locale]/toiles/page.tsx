@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { addRipple } from "@/components/ui/RippleButton";
 
 /**
  * Page Toiles — VIP uniquement
@@ -190,9 +191,12 @@ export default function ToilesPage() {
                   />
                   <div className="flex gap-4 pt-2">
                     <button
-                      onClick={() => handleReserve(canvas.id)}
+                      onClick={(e) => {
+                        addRipple(e);
+                        handleReserve(canvas.id);
+                      }}
                       disabled={submitting || !form.name || !form.email || !form.phone}
-                      className="flex-1 py-3 text-white/60 text-xs tracking-[0.2em] uppercase hover:text-white/90 transition-colors border border-white/20 hover:border-white/40 disabled:opacity-30 disabled:cursor-not-allowed"
+                      className="relative overflow-hidden flex-1 py-3 text-white/60 text-xs tracking-[0.2em] uppercase hover:text-white/90 transition-colors border border-white/20 hover:border-white/40 disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                       {submitting ? "···" : t("reserveForm.submit")}
                     </button>
@@ -206,9 +210,12 @@ export default function ToilesPage() {
                 </div>
               ) : (
                 <button
-                  onClick={() => setSelectedCanvas(canvas.id)}
+                  onClick={(e) => {
+                    addRipple(e);
+                    setSelectedCanvas(canvas.id);
+                  }}
                   disabled={!canvas.available}
-                  className="w-full py-3 text-white/40 text-xs tracking-[0.3em] uppercase hover:text-white/80 transition-colors border border-white/15 hover:border-white/30 disabled:opacity-20 disabled:cursor-not-allowed"
+                  className="relative overflow-hidden w-full py-3 text-white/40 text-xs tracking-[0.3em] uppercase hover:text-white/80 transition-colors border border-white/15 hover:border-white/30 disabled:opacity-20 disabled:cursor-not-allowed"
                 >
                   {canvas.available ? t("reserve") : t("reserved")}
                 </button>

@@ -269,6 +269,11 @@
     "noActiveCodes": "Nessun codice attivo",
     "loading": "Caricamento...",
     "remaining": "rimanenti",
+    "levelLabel": "Livello di accesso",
+    "levelSecret": "Segreto",
+    "levelSecretDesc": "Tutte le opere + prezzi",
+    "levelHidden": "Galleria privata",
+    "levelHiddenDesc": "Tutte le opere, senza prezzi",
     "status": {
       "active": "Attivo",
       "used": "Utilizzato",

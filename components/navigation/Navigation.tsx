@@ -41,7 +41,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-light tracking-wide hover:text-primary transition-colors ${
+                className={`text-sm font-light tracking-wide hover:text-primary transition-colors btn-underline-expand ${
                   pathname === link.href ? "text-primary font-normal" : ""
                 }`}
               >

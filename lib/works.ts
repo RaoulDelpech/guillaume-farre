@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
+import type { AccessLevel } from './access';
 
 export type WorkType = 'photo' | 'toile';
 
@@ -30,10 +31,14 @@ export interface Work {
   };
   forSale?: boolean;
   earlyAccess?: boolean;
+
+  // Niveau d'acces requis pour voir cette oeuvre
+  // undefined/'normal' = visible par tous, 'hidden' = hidden+secret, 'secret' = secret uniquement
+  accessRequired?: 'hidden' | 'secret';
 }
 
-// Load works from photo metadata
-export async function getWorksFromMetadata(): Promise<Work[]> {
+// Load works from photo metadata, filtered by access level
+export async function getWorksFromMetadata(accessLevel: AccessLevel = 'normal'): Promise<Work[]> {
   const metadataPath = path.join(process.cwd(), 'data', 'photo-metadata.json');
 
   try {
@@ -41,7 +46,7 @@ export async function getWorksFromMetadata(): Promise<Work[]> {
     const photos = JSON.parse(data);
 
     // Filter only visible photos + exclude trash and to-sort statuses
-    return photos
+    const allWorks: Work[] = photos
       .filter((photo: any) => {
         // Must be visible and forSale
         if (!photo.visible || photo.forSale === false) return false;
@@ -67,12 +72,25 @@ export async function getWorksFromMetadata(): Promise<Work[]> {
           } : undefined,
           images: [photo.path],
           description: photo.description,
+          accessRequired: photo.accessRequired,
         };
       });
+
+    return filterWorksByAccess(allWorks, accessLevel);
   } catch (error) {
     console.error('Error loading photo metadata:', error);
-    return getDefaultWorks(); // Fallback to default
+    return filterWorksByAccess(getDefaultWorks(), accessLevel);
   }
+}
+
+// Filtre les oeuvres selon le niveau d'acces du visiteur
+function filterWorksByAccess(works: Work[], accessLevel: AccessLevel): Work[] {
+  return works.filter(w => {
+    if (!w.accessRequired) return true; // pas de restriction = visible par tous
+    if (w.accessRequired === 'hidden') return accessLevel === 'hidden' || accessLevel === 'secret';
+    if (w.accessRequired === 'secret') return accessLevel === 'secret';
+    return true;
+  });
 }
 
 // Default works if metadata file doesn't exist yet

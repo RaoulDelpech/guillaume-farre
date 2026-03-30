@@ -269,6 +269,11 @@
     "noActiveCodes": "No active codes",
     "loading": "Loading...",
     "remaining": "remaining",
+    "levelLabel": "Access level",
+    "levelSecret": "Secret",
+    "levelSecretDesc": "All works + prices",
+    "levelHidden": "Private gallery",
+    "levelHiddenDesc": "All works, no prices",
     "status": {
       "active": "Active",
       "used": "Used",

@@ -12,7 +12,7 @@ function editionLabel(w: Work) {
   return "Édition ouverte";
 }
 
-export default function GalleryGrid({ works }: { works: Work[] }) {
+export default function GalleryGrid({ works, showPrices = false }: { works: Work[]; showPrices?: boolean }) {
   const [open, setOpen] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const selected = works.find((w) => w.slug === selectedSlug) ?? null;
@@ -25,11 +25,11 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
             <button
               type="button"
               aria-label={`Agrandir ${w.title}`}
-              className="group block w-full border-0 outline-none bg-transparent p-0 cursor-pointer hover:scale-103 transition-transform duration-300"
+              className="group block w-full border-0 outline-none bg-transparent p-0 cursor-pointer hover:scale-[1.02] transition-all duration-500 ease-out hover-glow"
               onClick={() => { setSelectedSlug(w.slug); setOpen(true); }}
             >
               {primaryImage(w) ? (
-                <div className="relative w-full aspect-[4/5] overflow-hidden group-hover:shadow-2xl transition-shadow duration-300">
+                <div className="protected-image-container relative w-full aspect-[4/5] overflow-hidden group-hover:shadow-2xl transition-shadow duration-300">
                   <Image
                     src={primaryImage(w)!}
                     alt={altForWork(w)}
@@ -41,7 +41,7 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
                   />
                   {/* Overlay subtil au hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/0 to-transparent group-hover:from-black/15 transition-all duration-500" />
                 </div>
               ) : (
                 <div className="w-full h-48 rounded-md bg-muted" />
@@ -61,6 +61,7 @@ export default function GalleryGrid({ works }: { works: Work[] }) {
         works={works}
         onClose={() => setOpen(false)}
         onNavigate={(work) => setSelectedSlug(work.slug)}
+        showPrices={showPrices}
       />
     </div>
   );

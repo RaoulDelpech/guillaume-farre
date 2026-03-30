@@ -17,6 +17,7 @@ import ScrollToTopOnNav from '@/components/ScrollToTopOnNav';
 import EarlyAccessOverlay from '@/components/early-access/EarlyAccessOverlay';
 import CookieConsent from '@/components/CookieConsent';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import ImageProtection from '@/components/ImageProtection';
 import "./globals.css";
 
 // SEO - Décisions audit 2025-01-20
@@ -145,6 +146,8 @@ export default async function RootLayout({
               <CookieConsent />
               {/* Google Analytics 4 with RGPD consent */}
               <GoogleAnalytics />
+              {/* Protection anti-copie images */}
+              <ImageProtection />
             </AdminWrapper>
           </CartProvider>
         </NextIntlClientProvider>

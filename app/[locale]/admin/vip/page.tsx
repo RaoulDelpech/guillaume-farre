@@ -20,8 +20,6 @@ interface VipCode {
   accessLevel?: 'hidden' | 'secret';
 }
 
-type AccessLevel = 'hidden' | 'secret';
-
 export default function AdminVipPage() {
   const t = useTranslations("adminVip");
   const [codes, setCodes] = useState<VipCode[]>([]);
@@ -30,7 +28,6 @@ export default function AdminVipPage() {
   const [generating, setGenerating] = useState(false);
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [selectedLevel, setSelectedLevel] = useState<AccessLevel>('secret');
 
   useEffect(() => {
     loadCodes();
@@ -57,11 +54,7 @@ export default function AdminVipPage() {
     setCopied(false);
 
     try {
-      const res = await fetch("/api/vip/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ accessLevel: selectedLevel }),
-      });
+      const res = await fetch("/api/vip/generate", { method: "POST" });
       if (res.ok) {
         const data = await res.json();
         setGeneratedUrl(data.url);
@@ -140,41 +133,6 @@ export default function AdminVipPage() {
         </h1>
       </div>
 
-      {/* Selecteur niveau d'acces */}
-      <div className="max-w-md mx-auto mb-6">
-        <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mb-4 text-center">
-          {t("levelLabel")}
-        </p>
-        <div className="flex gap-3">
-          <button
-            onClick={() => setSelectedLevel('secret')}
-            className={`flex-1 py-4 text-xs tracking-[0.2em] uppercase font-light border transition-all ${
-              selectedLevel === 'secret'
-                ? 'border-white/60 text-white bg-white/10'
-                : 'border-white/15 text-white/40 hover:border-white/30 hover:text-white/60'
-            }`}
-          >
-            {t("levelSecret")}
-            <span className="block text-[10px] mt-1 opacity-60 normal-case tracking-normal">
-              {t("levelSecretDesc")}
-            </span>
-          </button>
-          <button
-            onClick={() => setSelectedLevel('hidden')}
-            className={`flex-1 py-4 text-xs tracking-[0.2em] uppercase font-light border transition-all ${
-              selectedLevel === 'hidden'
-                ? 'border-white/60 text-white bg-white/10'
-                : 'border-white/15 text-white/40 hover:border-white/30 hover:text-white/60'
-            }`}
-          >
-            {t("levelHidden")}
-            <span className="block text-[10px] mt-1 opacity-60 normal-case tracking-normal">
-              {t("levelHiddenDesc")}
-            </span>
-          </button>
-        </div>
-      </div>
-
       {/* Bouton principal — gros, mobile-first */}
       <div className="max-w-md mx-auto mb-12">
         <button
@@ -248,18 +206,9 @@ export default function AdminVipPage() {
                       <p className="text-sm font-light tracking-[0.3em]">
                         {code.code}
                       </p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <p className="text-white/30 text-xs">
-                          {formatTime(code.createdAt)}
-                        </p>
-                        <span className={`text-[10px] px-1.5 py-0.5 rounded ${
-                          code.accessLevel === 'hidden'
-                            ? 'bg-blue-500/20 text-blue-300/60'
-                            : 'bg-amber-500/20 text-amber-300/60'
-                        }`}>
-                          {code.accessLevel === 'hidden' ? 'galerie' : 'prix'}
-                        </span>
-                      </div>
+                      <p className="text-white/30 text-xs mt-1">
+                        {formatTime(code.createdAt)}
+                      </p>
                     </div>
                     <div className="text-right">
                       {status === "active" && (

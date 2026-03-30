@@ -1,27 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { requireAdminAuth } from '@/lib/admin/auth';
 import { createVipCode } from '@/lib/vip-codes';
 
 /**
- * Genere un code VIP temporaire (24h) avec niveau d'acces
+ * Genere un code VIP temporaire (24h) — toujours niveau secret (tout + prix)
  * Protege par auth admin
  * @author Lalou
  */
-export async function POST(request: NextRequest) {
+export async function POST() {
   const authError = await requireAdminAuth();
   if (authError) return authError;
 
   try {
-    // Lire le niveau d'acces demande (default: secret)
-    let accessLevel: 'hidden' | 'secret' = 'secret';
-    try {
-      const body = await request.json();
-      if (body.accessLevel === 'hidden') accessLevel = 'hidden';
-    } catch {
-      // Pas de body = default secret
-    }
-
-    const vipCode = await createVipCode(accessLevel);
+    const vipCode = await createVipCode('secret');
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
     const vipUrl = `${baseUrl}/fr/vip?code=${vipCode.code}`;

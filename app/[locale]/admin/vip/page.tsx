@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { addRipple } from "@/components/ui/RippleButton";
 
 /**
- * Interface admin pour generer des codes VIP
- * Mobile-first — Guillaume genere les liens depuis son telephone
+ * Interface admin pour envoyer des invitations VIP par WhatsApp
+ * Mobile-first — Guillaume envoie depuis son telephone
  *
  * @author Lalou
  */
@@ -23,11 +23,11 @@ interface VipCode {
 export default function AdminVipPage() {
   const t = useTranslations("adminVip");
   const [codes, setCodes] = useState<VipCode[]>([]);
-  const [generatedUrl, setGeneratedUrl] = useState<string | null>(null);
-  const [generatedCode, setGeneratedCode] = useState<string | null>(null);
+  const [phone, setPhone] = useState("");
   const [generating, setGenerating] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     loadCodes();
@@ -47,53 +47,47 @@ export default function AdminVipPage() {
     }
   }
 
-  async function handleGenerate() {
+  // Normaliser le numero : +33 si commence par 0, sinon garder tel quel
+  function normalizePhone(raw: string): string {
+    const digits = raw.replace(/[\s\-\.\(\)]/g, '');
+    if (digits.startsWith('0') && digits.length === 10) {
+      return '33' + digits.slice(1);
+    }
+    if (digits.startsWith('+')) return digits.slice(1);
+    return digits;
+  }
+
+  async function handleSend() {
+    if (!phone.trim()) {
+      inputRef.current?.focus();
+      return;
+    }
+
     setGenerating(true);
-    setGeneratedUrl(null);
-    setGeneratedCode(null);
-    setCopied(false);
+    setSent(false);
 
     try {
       const res = await fetch("/api/vip/generate", { method: "POST" });
       if (res.ok) {
         const data = await res.json();
-        setGeneratedUrl(data.url);
-        setGeneratedCode(data.code);
-        loadCodes(); // Refresh list
+        const url = data.url;
+
+        // Ouvrir WhatsApp avec le message pre-rempli
+        const message = `Invitation privée — Guillaume Farré\n\nDécouvrez mes toiles originales et photographies en accès exclusif (24h) :\n${url}`;
+        const waUrl = `https://wa.me/${normalizePhone(phone)}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+
+        setSent(true);
+        setPhone("");
+        loadCodes();
+
+        // Reset apres 3s
+        setTimeout(() => setSent(false), 3000);
       }
     } catch {
       // Silent
     } finally {
       setGenerating(false);
-    }
-  }
-
-  async function handleShare() {
-    if (!generatedUrl) return;
-
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Invitation privée — Guillaume Farré",
-          text: "Découvrez les toiles originales de Guillaume Farré",
-          url: generatedUrl,
-        });
-      } catch {
-        // User cancelled share
-      }
-    } else {
-      handleCopy();
-    }
-  }
-
-  async function handleCopy() {
-    if (!generatedUrl) return;
-    try {
-      await navigator.clipboard.writeText(generatedUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Fallback: select text
     }
   }
 
@@ -129,58 +123,46 @@ export default function AdminVipPage() {
           {t("tag")}
         </p>
         <h1 className="text-2xl font-light tracking-wide">
-          {t("title")}
+          Invitation privée
         </h1>
       </div>
 
-      {/* Bouton principal — gros, mobile-first */}
+      {/* Champ numero + bouton envoyer */}
       <div className="max-w-md mx-auto mb-12">
+        <label className="block text-white/40 text-xs tracking-[0.2em] uppercase font-light mb-4 text-center">
+          Numéro du destinataire
+        </label>
+        <div className="flex gap-3">
+          <input
+            ref={inputRef}
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+            placeholder="06 12 34 56 78"
+            className="flex-1 bg-transparent border border-white/20 text-white text-center text-lg tracking-[0.15em] font-light py-4 px-4 placeholder:text-white/15 focus:border-white/50 focus:outline-none transition-colors"
+            autoComplete="tel"
+            inputMode="tel"
+          />
+        </div>
         <button
           onClick={(e) => {
             addRipple(e);
-            handleGenerate();
+            handleSend();
           }}
-          disabled={generating}
-          className="relative overflow-hidden w-full py-6 text-white text-sm tracking-[0.3em] uppercase font-light border border-white/30 hover:border-white/60 hover:bg-white/5 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          disabled={generating || !phone.trim()}
+          className={`relative overflow-hidden w-full mt-4 py-5 text-sm tracking-[0.3em] uppercase font-light border transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
+            sent
+              ? 'border-emerald-500/60 text-emerald-400 bg-emerald-500/10'
+              : 'border-white/30 text-white hover:border-white/60 hover:bg-white/5'
+          }`}
         >
-          {generating ? t("generating") : t("generate")}
+          {generating ? "Génération..." : sent ? "Envoyé via WhatsApp" : "Envoyer via WhatsApp"}
         </button>
+        <p className="text-white/20 text-[10px] text-center mt-3 font-light">
+          Génère un lien exclusif 24h et ouvre WhatsApp
+        </p>
       </div>
-
-      {/* Code genere */}
-      {generatedUrl && (
-        <div className="max-w-md mx-auto mb-12 text-center animate-[fadeIn_0.3s_ease-out]">
-          <p className="text-white/40 text-xs tracking-[0.2em] uppercase font-light mb-4">
-            {t("generated")}
-          </p>
-          <p className="text-3xl font-light tracking-[0.5em] mb-6">
-            {generatedCode}
-          </p>
-          <p className="text-white/30 text-xs mb-8 break-all px-4">
-            {generatedUrl}
-          </p>
-          <div className="flex gap-4">
-            <button
-              onClick={(e) => {
-                addRipple(e);
-                handleShare();
-              }}
-              className="relative overflow-hidden flex-1 py-4 text-white/60 text-xs tracking-[0.2em] uppercase border border-white/20 hover:border-white/40 hover:text-white/90 transition-all"
-            >
-              {t("share")}
-            </button>
-            <button
-              onClick={(e) => {
-                addRipple(e);
-                handleCopy();
-              }}
-              className="relative overflow-hidden flex-1 py-4 text-white/60 text-xs tracking-[0.2em] uppercase border border-white/20 hover:border-white/40 hover:text-white/90 transition-all"
-            >
-              {copied ? t("copied") : t("copy")}
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Liste des codes actifs */}
       <div className="max-w-md mx-auto">

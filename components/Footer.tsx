@@ -60,10 +60,9 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
-              {/* Lien discret vers la boutique - e-commerce masqué mais accessible */}
-              <li className="pt-2 mt-2 border-t border-border/50">
-                <Link href="/boutique" className="text-muted-foreground/60 hover:text-primary transition-colors font-light text-xs">
-                  Commandes
+              <li>
+                <Link href="/histoire" className="text-muted-foreground hover:text-primary transition-colors font-light">
+                  L'Histoire
                 </Link>
               </li>
             </ul>
@@ -79,11 +78,6 @@ export default function Footer() {
               Informations
             </EditableText>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/compte" className="text-muted-foreground hover:text-primary transition-colors font-light">
-                  {t("account")}
-                </Link>
-              </li>
               <li>
                 <Link href="/mentions-legales" className="text-muted-foreground hover:text-primary transition-colors font-light">
                   {t("legal")}

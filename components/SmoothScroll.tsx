@@ -17,10 +17,16 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (mediaQuery.matches) {
-      return; // Ne pas initialiser Lenis si reduced-motion est activé
+      return;
     }
 
-    // Initialiser Lenis avec configuration ultra-luxe
+    // Desactiver sur mobile/tactile — le scroll natif est plus fluide
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouchDevice) {
+      return;
+    }
+
+    // Initialiser Lenis — desktop uniquement
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

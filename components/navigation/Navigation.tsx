@@ -36,8 +36,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-20">
           <Link
             href="/"
-            className={`text-xl sm:text-2xl font-extralight tracking-[0.08em] hover:text-primary transition-all duration-500 ${
-              scrolled ? "tracking-[0.04em]" : "tracking-[0.08em]"
+            className={`text-xl sm:text-2xl font-extralight hover:text-primary transition-all duration-500 ${
+              scrolled ? "tracking-[0.05em]" : "tracking-[0.08em]"
             }`}
           >
             Guillaume Farré

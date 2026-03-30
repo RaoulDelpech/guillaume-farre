@@ -180,17 +180,17 @@ export default function ToilesPage() {
                           onChange={(e) => setForm({ ...form, phone: e.target.value })}
                           className="w-full px-0 py-3 bg-transparent border-0 border-b border-white/10 text-white text-sm placeholder-white/20 font-light focus:outline-none focus:border-[rgba(196,165,112,0.4)] transition-colors"
                         />
-                        <div className="flex gap-4 pt-2">
+                        <div className="flex flex-col sm:flex-row gap-3 pt-2">
                           <button
                             onClick={() => handleReserve(canvas.id)}
                             disabled={submitting || !form.name || !form.email || !form.phone}
-                            className="flex-1 py-3 text-white/50 text-xs tracking-[0.25em] uppercase hover:text-white transition-colors border border-white/10 hover:border-[rgba(196,165,112,0.3)] disabled:opacity-20"
+                            className="flex-1 py-4 sm:py-3 text-white/50 text-xs tracking-[0.25em] uppercase hover:text-white transition-colors border border-white/10 hover:border-[rgba(196,165,112,0.3)] disabled:opacity-20 min-h-[44px]"
                           >
                             {submitting ? "···" : t("reserveForm.submit")}
                           </button>
                           <button
                             onClick={() => setSelectedCanvas(null)}
-                            className="px-6 py-3 text-white/20 text-xs tracking-[0.2em] uppercase hover:text-white/40 transition-colors"
+                            className="py-4 sm:py-3 px-6 text-white/20 text-xs tracking-[0.2em] uppercase hover:text-white/40 transition-colors min-h-[44px]"
                           >
                             ✕
                           </button>

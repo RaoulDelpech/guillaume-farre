@@ -50,21 +50,6 @@ export default function Footer() {
                   Créations
                 </Link>
               </li>
-              <li>
-                <Link href="/atelier" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
-                  L'Atelier
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/histoire" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
-                  L'Histoire
-                </Link>
-              </li>
             </ul>
           </div>
 

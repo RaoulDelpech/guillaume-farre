@@ -23,7 +23,7 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
 
   // Appliquer le filtre de série depuis l'URL
   useEffect(() => {
-    if (serieParam && ['empreintes', 'atelier', 'projections'].includes(serieParam)) {
+    if (serieParam && ['empreintes', 'atelier', 'projections', 'toile'].includes(serieParam)) {
       setActiveFilter(serieParam as FilterType);
     }
   }, [serieParam]);
@@ -56,8 +56,10 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
 
   const filterButtons: { key: FilterType; label: string }[] = [
     { key: 'all', label: 'Toutes' },
+    { key: 'toile', label: 'Toiles' },
     { key: 'empreintes', label: 'Empreintes' },
     { key: 'projections', label: 'Projections' },
+    { key: 'atelier', label: 'Atelier' },
   ];
 
   return (

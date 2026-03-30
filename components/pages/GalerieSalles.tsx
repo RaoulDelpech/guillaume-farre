@@ -160,14 +160,20 @@ export default function GalerieSalles({ images }: GalerieSallesProps) {
               La Dino au repos, entre deux sessions. Découvrez l'univers où naissent les œuvres,
               entre mécanique et création, dans l'intimité de l'atelier.
             </EditableText>
-            <Link
-              href="/atelier"
+            <button
+              onClick={() => {
+                const galerieSection = document.getElementById("galerie-grid");
+                if (galerieSection) {
+                  galerieSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+                router.push(`/${locale}/galerie?serie=atelier`, { scroll: false });
+              }}
               className="inline-flex items-center text-sm md:text-base font-light tracking-wide transition-colors hover:text-[rgba(196,165,112)]"
               style={{ color: "rgba(196, 165, 112)" }}
             >
-              Découvrir l'atelier
+              Voir les photos d'atelier
               <span className="ml-2 transition-transform hover:translate-x-1">→</span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

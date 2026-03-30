@@ -210,18 +210,12 @@ export default function ContactContent() {
             >
               Découvrez les œuvres disponibles
             </EditableText>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <div className="flex justify-center">
               <Link
                 href="/galerie"
                 className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center min-h-[48px] flex items-center justify-center"
               >
-                Voir la galerie
-              </Link>
-              <Link
-                href="/atelier"
-                className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all text-center min-h-[48px] flex items-center justify-center"
-              >
-                Visiter l'atelier
+                Voir les créations
               </Link>
             </div>
           </div>

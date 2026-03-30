@@ -20,8 +20,6 @@ export default function Navigation() {
 
   const links = [
     { href: "/galerie", label: "Créations" },
-    { href: "/atelier", label: "L'Atelier" },
-    { href: "/contact", label: "Contact" },
   ];
 
   return (

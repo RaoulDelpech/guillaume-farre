@@ -74,10 +74,10 @@ export default function HomePageContent({ translations: t, artistPhoto }: HomePa
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
               <Link
-                href="/histoire"
+                href="/galerie"
                 className="inline-block px-8 py-4 border border-foreground/20 hover:border-foreground/60 text-foreground font-light tracking-wide transition-all duration-500"
               >
-                {t.artist.cta} →
+                Voir les créations →
               </Link>
             </ScrollReveal>
           </div>

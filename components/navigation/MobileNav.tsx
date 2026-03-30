@@ -37,8 +37,6 @@ export default function MobileNav() {
   // Navigation mobile - Décisions audit 2025-01-20
   const links = [
     { href: "/galerie", label: "Créations" },
-    { href: "/atelier", label: "L'Atelier" },
-    { href: "/contact", label: "Contact" },
   ];
 
   // MASQUE - Pages désactivées (code gardé pour réactivation future) :

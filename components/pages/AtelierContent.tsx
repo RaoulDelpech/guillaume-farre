@@ -257,7 +257,7 @@ export default function AtelierContent() {
             </EditableText>
 
             <a
-              href="/contact?sujet=visite"
+              href="mailto:contact@guillaumefarre.com?subject=Visite atelier"
               className="inline-block px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide transition-all group min-h-[48px]"
             >
               <EditableText textKey="atelier.visite.cta" as="span">
@@ -281,7 +281,7 @@ export default function AtelierContent() {
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </a>
             <a
-              href="/contact"
+              href="mailto:contact@guillaumefarre.com"
               className="px-8 sm:px-10 py-4 sm:py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide transition-all text-center group min-h-[48px] flex items-center justify-center"
             >
               Contacter Guillaume

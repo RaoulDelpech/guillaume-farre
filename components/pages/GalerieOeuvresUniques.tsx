@@ -1,6 +1,5 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
 import EditableText from "@/components/admin/EditableText";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 
@@ -41,15 +40,15 @@ export default function GalerieOeuvresUniques() {
             Visibles uniquement à l'atelier, sur rendez-vous.
           </EditableText>
 
-          <Link
-            href="/contact"
+          <a
+            href="mailto:contact@guillaumefarre.com"
             className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all group"
           >
             <EditableText textKey="gallery.uniques.cta" as="span">
               Prendre rendez-vous
             </EditableText>
             <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
-          </Link>
+          </a>
         </div>
       </div>
     </ScrollReveal>

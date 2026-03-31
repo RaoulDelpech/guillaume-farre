@@ -1,7 +1,7 @@
 "use client";
 
 import EditableText from "@/components/admin/EditableText";
-import { MotionSection } from "@/components/motion/MotionWrapper";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 /**
  * Contenu de la page Histoire avec textes éditables
@@ -13,7 +13,7 @@ export default function HistoireContent() {
   return (
     <>
       {/* Hero */}
-      <MotionSection variant="fadeInUp" className="container mx-auto px-4 py-12 md:py-20">
+      <ScrollReveal className="container mx-auto px-4 py-12 md:py-20">
         <div className="max-w-4xl mx-auto">
           <EditableText
             textKey="histoire.hero.title"
@@ -30,10 +30,10 @@ export default function HistoireContent() {
             D'une petite voiture d'enfance à l'art automobile contemporain
           </EditableText>
         </div>
-      </MotionSection>
+      </ScrollReveal>
 
       {/* L'origine - La Ferrari n°20 */}
-      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <ScrollReveal delay={0.1} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="histoire.origin.title"
@@ -84,10 +84,10 @@ export default function HistoireContent() {
             </EditableText>
           </div>
         </div>
-      </MotionSection>
+      </ScrollReveal>
 
       {/* Le passage à l'échelle réelle */}
-      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <ScrollReveal delay={0.1} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="histoire.scale.title"
@@ -126,7 +126,7 @@ export default function HistoireContent() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mt-8">
-            <div className="p-6 border rounded-lg bg-card/30">
+            <ScrollReveal delay={0} className="p-6 border rounded-lg bg-card/30">
               <div className="text-4xl mb-3">👶</div>
               <h3 className="text-lg font-light mb-2">Enfance</h3>
               <p className="text-sm text-muted-foreground">
@@ -134,9 +134,9 @@ export default function HistoireContent() {
                 <br />Feuilles de papier
                 <br />Peinture pour enfants
               </p>
-            </div>
+            </ScrollReveal>
 
-            <div className="p-6 border rounded-lg bg-card/30">
+            <ScrollReveal delay={0.1} className="p-6 border rounded-lg bg-card/30">
               <div className="text-4xl mb-3">📸</div>
               <h3 className="text-lg font-light mb-2">Aujourd'hui</h3>
               <p className="text-sm text-muted-foreground">
@@ -144,13 +144,13 @@ export default function HistoireContent() {
                 <br />Processus photographié
                 <br />Éditions limitées
               </p>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
-      </MotionSection>
+      </ScrollReveal>
 
       {/* La démarche artistique */}
-      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <ScrollReveal delay={0.1} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <EditableText
             textKey="histoire.demarche.title"
@@ -170,7 +170,7 @@ export default function HistoireContent() {
             </EditableText>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 my-6 sm:my-8">
-              <div className="p-6 border rounded-lg bg-card/30">
+              <ScrollReveal delay={0} className="p-6 border rounded-lg bg-card/30">
                 <h3 className="text-lg font-light mb-3">L'Automobile</h3>
                 <EditableText
                   textKey="histoire.demarche.auto"
@@ -179,9 +179,9 @@ export default function HistoireContent() {
                 >
                   Passion des voitures de prestige, culture automobile
                 </EditableText>
-              </div>
+              </ScrollReveal>
 
-              <div className="p-6 border rounded-lg bg-card/30">
+              <ScrollReveal delay={0.1} className="p-6 border rounded-lg bg-card/30">
                 <h3 className="text-lg font-light mb-3">L'Art Contemporain</h3>
                 <EditableText
                   textKey="histoire.demarche.art"
@@ -190,9 +190,9 @@ export default function HistoireContent() {
                 >
                   Action painting, art conceptuel, automobile
                 </EditableText>
-              </div>
+              </ScrollReveal>
 
-              <div className="p-6 border rounded-lg bg-card/30">
+              <ScrollReveal delay={0.2} className="p-6 border rounded-lg bg-card/30">
                 <h3 className="text-lg font-light mb-3">La Photographie</h3>
                 <EditableText
                   textKey="histoire.demarche.photo"
@@ -201,7 +201,7 @@ export default function HistoireContent() {
                 >
                   Capture de l'instant, documentation du processus créatif
                 </EditableText>
-              </div>
+              </ScrollReveal>
             </div>
 
             <EditableText
@@ -210,7 +210,7 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Ses œuvres ne sont pas de simples « peintures automobiles ». Ce sont des témoignages d'un instant unique, où le mouvement mécanique se transforme en geste artistique, où la puissance du moteur s'exprime en traces sur la toile.
+              Ses oeuvres ne sont pas de simples « peintures automobiles ». Ce sont des témoignages d'un instant unique, où le mouvement mécanique se transforme en geste artistique, où la puissance du moteur s'exprime en traces sur la toile.
             </EditableText>
 
             <EditableText
@@ -219,14 +219,14 @@ export default function HistoireContent() {
               className="text-base md:text-lg leading-relaxed"
               multiline
             >
-              Chaque œuvre est strictement unique - impossible à reproduire, car elle capture un moment précis : la pression des roues, la trajectoire du véhicule, la viscosité de la peinture à cet instant T, les conditions de cette création.
+              Chaque oeuvre est strictement unique - impossible à reproduire, car elle capture un moment précis : la pression des roues, la trajectoire du véhicule, la viscosité de la peinture à cet instant T, les conditions de cette création.
             </EditableText>
           </div>
         </div>
-      </MotionSection>
+      </ScrollReveal>
 
       {/* CTA */}
-      <MotionSection variant="fadeInUp" delay={0.2} className="container mx-auto px-4 py-8 md:py-12 border-t">
+      <ScrollReveal delay={0.1} className="container mx-auto px-4 py-8 md:py-12 border-t">
         <div className="max-w-3xl mx-auto">
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <a
@@ -235,15 +235,9 @@ export default function HistoireContent() {
             >
               Decouvrir les oeuvres
             </a>
-            <a
-              href="/boutique"
-              className="px-8 sm:px-10 py-4 sm:py-5 bg-foreground text-background hover:bg-foreground/90 hover:scale-102 hover:shadow-lg font-light tracking-wide transition-all duration-300 text-center min-h-[48px] flex items-center justify-center"
-            >
-              Acquerir une oeuvre
-            </a>
           </div>
         </div>
-      </MotionSection>
+      </ScrollReveal>
     </>
   );
 }

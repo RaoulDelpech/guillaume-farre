@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default function OriginePage() {
-  redirect("/fr/galerie");
+export default async function OriginePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  redirect(`/${locale}/galerie`);
 }

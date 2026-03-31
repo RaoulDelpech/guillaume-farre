@@ -5,7 +5,7 @@ import { Link } from "@/i18n/routing";
 import Lightbox from "@/components/lightbox/Lightbox";
 import type { Work } from "@/lib/works";
 import { altForWork, primaryImage } from "@/lib/images";
-import { MotionSection, MotionItem } from "@/components/motion/MotionWrapper";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 
 function editionLabel(w: Work) {
   if (w.edition.type === "limited") return `Édition limitée (${w.edition.count})`;
@@ -19,9 +19,9 @@ export default function GalleryGrid({ works, showPrices = false }: { works: Work
 
   return (
     <div className="mt-6 md:mt-8">
-      <MotionSection stagger={true} className="masonry masonry-responsive">
+      <div className="masonry masonry-responsive">
         {works.map((w, index) => (
-          <MotionItem key={w.slug} variant="scaleIn" className="masonry-item">
+          <ScrollReveal key={w.slug} delay={index * 0.06} className="masonry-item">
             <button
               type="button"
               aria-label={`Agrandir ${w.title}`}
@@ -52,9 +52,9 @@ export default function GalleryGrid({ works, showPrices = false }: { works: Work
               <div className="text-xs md:text-sm text-muted-foreground">{w.year} — {w.type === 'photo' ? 'Photo' : 'Toile'}</div>
               <div className="text-xs text-muted-foreground truncate">{editionLabel(w)}</div>
             </div>
-          </MotionItem>
+          </ScrollReveal>
         ))}
-      </MotionSection>
+      </div>
       <Lightbox
         open={open}
         work={selected}

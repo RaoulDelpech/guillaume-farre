@@ -2,7 +2,7 @@
 
 import EditableText from "@/components/admin/EditableText";
 import { Link } from "@/i18n/routing";
-import { MotionSection, MotionItem } from "@/components/motion/MotionWrapper";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import Image from "next/image";
 
 interface Work {
@@ -21,7 +21,7 @@ interface HomeWorksSectionProps {
 }
 
 /**
- * Section Dernières œuvres sur la Homepage avec textes éditables
+ * Section Dernières oeuvres sur la Homepage avec textes éditables
  *
  * @author Lalou
  * @date 2025-12-29
@@ -29,13 +29,13 @@ interface HomeWorksSectionProps {
 export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
   return (
     <section className="container py-16 sm:py-20 md:py-28 border-t px-4 sm:px-6 lg:px-8">
-      <MotionSection variant="fadeInUp" className="mb-16 text-center">
+      <ScrollReveal className="mb-16 text-center">
         <EditableText
           textKey="home.works.title"
           as="h2"
           className="text-3xl md:text-4xl font-light tracking-wide mb-4 text-foreground"
         >
-          Dernières œuvres
+          Dernières oeuvres
         </EditableText>
         <EditableText
           textKey="home.works.subtitle"
@@ -44,25 +44,24 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
         >
           Toiles. Photographies. Empreintes irréversibles.
         </EditableText>
-      </MotionSection>
+      </ScrollReveal>
 
       {/* Grille 9 oeuvres - Decision audit 2025-01-20 */}
-      <MotionSection variant="fadeInUp" stagger={true} className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-10">
-        {works.slice(0, 9).map((work) => {
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-10">
+        {works.slice(0, 9).map((work, index) => {
           // VRAIES DONNÉES séries limitées (pas simulées)
           const isLimitedEdition = work.categories?.includes("limited") || work.edition?.type === "limited";
           const available = work.limitedEdition?.available || 0;
           const total = work.limitedEdition?.total || 7;
           const isSold = available === 0;
-          const isLastOne = available === 1;
 
           return (
-            <MotionItem key={work.slug} variant="scaleIn">
+            <ScrollReveal key={work.slug} delay={index * 0.08}>
               <Link
                 href={`/galerie-item/${work.slug}`}
                 className="group block overflow-hidden border border-border hover:border-foreground/50 hover:scale-102 hover:shadow-xl transition-all duration-300 relative"
               >
-              {/* Badge discret édition limitée */}
+              {/* Badge discret edition limitee */}
               {isLimitedEdition && !isSold && (
                 <div className="absolute top-3 left-3 z-10">
                   <span className="px-2 py-1 bg-black/50 backdrop-blur-sm text-white/80 text-xs font-light tracking-wide">
@@ -95,13 +94,13 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
                 </p>
               </div>
               </Link>
-            </MotionItem>
+            </ScrollReveal>
           );
         })}
-      </MotionSection>
+      </div>
 
-      {/* CTA - Décision audit 2025-01-20 */}
-      <MotionSection variant="fadeInUp" delay={0.2} className="mt-16 text-center">
+      {/* CTA - Decision audit 2025-01-20 */}
+      <ScrollReveal delay={0.2} className="mt-16 text-center">
         <Link
           href="/galerie"
           className="inline-block px-10 py-5 border border-foreground/30 hover:border-foreground hover:scale-102 hover:shadow-lg text-foreground font-light tracking-wide text-lg transition-all duration-300 group"
@@ -111,7 +110,7 @@ export default function HomeWorksSection({ works }: HomeWorksSectionProps) {
           </EditableText>
           <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
         </Link>
-      </MotionSection>
+      </ScrollReveal>
     </section>
   );
 }

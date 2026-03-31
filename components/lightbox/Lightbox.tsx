@@ -194,13 +194,13 @@ export default function Lightbox({ open, work, works = [], onClose, onNavigate, 
                   )}
                 </div>
 
-                {/* CTA - Décision audit : "Me contacter pour cette œuvre" */}
+                {/* CTA — mailto */}
                 <a
-                  href={`/contact?sujet=oeuvre&oeuvre=${encodeURIComponent(work.title)}`}
+                  href={`mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(`À propos de : ${work.title}`)}`}
                   onClick={(e) => addRipple(e)}
                   className="relative overflow-hidden px-8 py-4 border border-white/40 hover:border-white text-white font-light tracking-wide transition-all hover:bg-white/10 whitespace-nowrap"
                 >
-                  Me contacter pour cette œuvre
+                  Me contacter pour cette oeuvre
                 </a>
               </div>
 

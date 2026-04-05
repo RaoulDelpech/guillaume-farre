@@ -15,7 +15,7 @@ import path from 'path';
  */
 export interface Order {
   orderNumber: string;          // Format GF-XXXXXX
-  stripeSessionId: string;       // ID Stripe session
+  stripeSessionId: string;       // ID Stripe session (ou Invoice ID pour toiles)
   customerEmail: string;
   customerName: string;
   items: {
@@ -26,6 +26,7 @@ export interface Order {
   }[];
   totalAmount: number;
   status: 'pending' | 'paid' | 'processing' | 'shipped' | 'delivered' | 'problem';
+  type?: 'photo' | 'canvas';     // Type commande (photo ou toile)
   createdAt: string;             // ISO date
   paidAt?: string;
   shippedAt?: string;

@@ -416,6 +416,131 @@ async function syncToPennylane(
 
 }
 
+/**
+ * Traiter le paiement d'une facture toile (invoice.paid)
+ */
+async function processCanvasInvoicePaid(invoice: Stripe.Invoice) {
+  const { promises: fs } = await import('fs');
+  const path = await import('path');
+
+  const RESERVATIONS_PATH = path.join(process.cwd(), 'data', 'reservations.json');
+  const TOILES_PATH = path.join(process.cwd(), 'data', 'toiles.json');
+
+  // Lire réservations
+  let reservations: any[] = [];
+  try {
+    const data = await fs.readFile(RESERVATIONS_PATH, 'utf-8');
+    reservations = JSON.parse(data);
+  } catch {
+    console.error('❌ Impossible de lire reservations.json');
+    return;
+  }
+
+  // Trouver réservation
+  const reservationId = invoice.metadata?.reservationId;
+  const reservationIndex = reservations.findIndex((r) => r.id === reservationId);
+
+  if (reservationIndex === -1) {
+    console.error(`❌ Réservation ${reservationId} introuvable`);
+    return;
+  }
+
+  const reservation = reservations[reservationIndex];
+
+  // Lire toiles
+  let toiles: any[] = [];
+  try {
+    const data = await fs.readFile(TOILES_PATH, 'utf-8');
+    toiles = JSON.parse(data);
+  } catch {
+    console.error('❌ Impossible de lire toiles.json');
+  }
+
+  const toile = toiles.find((t) => t.name === reservation.canvasTitle);
+
+  // Mettre à jour réservation → paid
+  reservations[reservationIndex] = {
+    ...reservation,
+    status: 'paid',
+    paidAt: new Date().toISOString(),
+  };
+
+  // Sauvegarder réservations
+  try {
+    await fs.writeFile(RESERVATIONS_PATH, JSON.stringify(reservations, null, 2), 'utf-8');
+  } catch (error) {
+    console.error('❌ Impossible de sauvegarder reservations.json:', error);
+  }
+
+  // Créer commande dans lib/orders
+  try {
+    const { createOrder } = await import('@/lib/orders');
+
+    const order = await createOrder({
+      stripeSessionId: invoice.id, // Utiliser invoice ID comme session ID
+      customerEmail: reservation.email,
+      customerName: reservation.name,
+      type: 'canvas', // Type toile
+      items: [
+        {
+          title: reservation.canvasTitle,
+          format: toile?.dimensions || 'N/A',
+          frame: 'Toile originale',
+          price: (invoice.amount_paid || 0) / 100,
+        },
+      ],
+      totalAmount: (invoice.amount_paid || 0) / 100,
+      status: 'paid',
+      paidAt: new Date().toISOString(),
+    });
+
+    // Mettre à jour réservation avec orderNumber
+    reservations[reservationIndex].orderNumber = order.orderNumber;
+    await fs.writeFile(RESERVATIONS_PATH, JSON.stringify(reservations, null, 2), 'utf-8');
+  } catch (error) {
+    console.error('❌ Impossible de créer la commande:', error);
+  }
+
+  // Envoyer email confirmation à l'acheteur
+  try {
+    const { sendOrderConfirmationEmail } = await import('@/lib/resend-client');
+
+    await sendOrderConfirmationEmail({
+      to: reservation.email,
+      customerName: reservation.name,
+      orderNumber: reservations[reservationIndex].orderNumber || invoice.id,
+      items: [
+        {
+          title: reservation.canvasTitle,
+          format: toile?.dimensions || 'N/A',
+          frame: 'Toile originale',
+          price: (invoice.amount_paid || 0) / 100,
+        },
+      ],
+      totalAmount: (invoice.amount_paid || 0) / 100,
+      shippingAddress: {
+        line1: 'Toile retirée à l\'atelier',
+        city: '',
+        postalCode: '',
+        country: 'FR',
+      },
+    });
+  } catch (error) {
+    console.error('❌ Impossible d\'envoyer email confirmation:', error);
+  }
+
+  // Envoyer email notification à Guillaume
+  try {
+    const { sendTestEmail } = await import('@/lib/resend-client');
+
+    await sendTestEmail('contact@guillaumefarre.com');
+  } catch (error) {
+    console.error('❌ Impossible d\'envoyer email notification Guillaume:', error);
+  }
+
+  console.log(`✅ Facture toile payée: ${reservation.canvasTitle} par ${reservation.name}`);
+}
+
 export async function POST(req: NextRequest) {
   if (!stripe) {
     return NextResponse.json({ error: 'Stripe non configuré' }, { status: 503 });
@@ -500,6 +625,20 @@ export async function POST(req: NextRequest) {
 
     case 'payment_intent.payment_failed': {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
+      break;
+    }
+
+    case 'invoice.paid': {
+      const invoice = event.data.object as Stripe.Invoice;
+
+      // Vérifier que c'est une facture toile (metadata.reservationId)
+      if (invoice.metadata?.reservationId) {
+        try {
+          await processCanvasInvoicePaid(invoice);
+        } catch (error) {
+          console.error('❌ Failed to process canvas invoice payment:', error);
+        }
+      }
       break;
     }
 

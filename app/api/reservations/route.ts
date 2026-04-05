@@ -12,7 +12,12 @@ interface Reservation {
   phone: string;
   message?: string;
   createdAt: string;
-  status: 'pending' | 'confirmed' | 'declined';
+  status: 'pending' | 'confirmed' | 'declined' | 'invoiced' | 'paid';
+  stripeInvoiceId?: string;
+  stripeInvoiceUrl?: string;
+  stripeCustomerId?: string;
+  paidAt?: string;
+  orderNumber?: string;
 }
 
 const RESERVATIONS_PATH = path.join(process.cwd(), 'data', 'reservations.json');

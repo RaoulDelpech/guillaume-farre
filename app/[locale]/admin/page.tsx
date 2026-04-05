@@ -702,8 +702,179 @@ export default function AdminPage() {
                     </div>
                   </div>
 
-                  {/* Options de vente masquées pour photos corbeille */}
-                  {photo.status !== 'trash' && (
+                  {/* === TYPE D'OEUVRE === */}
+                  <div className="space-y-3 p-3 bg-card/50 border border-border rounded-lg">
+                    <label className="block text-xs text-muted-foreground mb-2 uppercase tracking-wide font-medium">
+                      Type d'oeuvre
+                    </label>
+                    <div className="flex gap-4">
+                      <label className="flex items-center gap-2 cursor-pointer group">
+                        <input
+                          type="radio"
+                          name={`productType-${photo.path}`}
+                          checked={photo.productType !== 'canvas'}
+                          onChange={() => updatePhoto(globalIndex, { productType: 'photo' })}
+                          className="w-4 h-4 rounded-full border-border"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">Photo</span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer group">
+                        <input
+                          type="radio"
+                          name={`productType-${photo.path}`}
+                          checked={photo.productType === 'canvas'}
+                          onChange={() => updatePhoto(globalIndex, { productType: 'canvas', photoCategory: undefined })}
+                          className="w-4 h-4 rounded-full border-border"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">Toile</span>
+                      </label>
+                    </div>
+
+                    {/* Si PHOTO : categorie */}
+                    {photo.productType !== 'canvas' && (
+                      <div className="mt-3 space-y-3">
+                        <label className="block text-xs text-muted-foreground uppercase tracking-wide">
+                          Categorie photo
+                        </label>
+                        <div className="flex gap-3">
+                          {(['empreinte', 'projection', 'atelier'] as const).map(cat => (
+                            <label key={cat} className="flex items-center gap-2 cursor-pointer group">
+                              <input
+                                type="radio"
+                                name={`photoCategory-${photo.path}`}
+                                checked={photo.photoCategory === cat}
+                                onChange={() => {
+                                  const updates: Partial<PhotoMetadata> = { photoCategory: cat };
+                                  if (cat === 'atelier') {
+                                    updates.forSale = false;
+                                    updates.priceSigned = undefined;
+                                    updates.priceUnsigned = undefined;
+                                  }
+                                  updatePhoto(globalIndex, updates);
+                                }}
+                                className="w-4 h-4 rounded-full border-border"
+                              />
+                              <span className="text-sm group-hover:text-primary transition-colors capitalize">{cat}</span>
+                            </label>
+                          ))}
+                        </div>
+
+                        {/* Badge non vendable pour atelier */}
+                        {photo.photoCategory === 'atelier' && (
+                          <div className="px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded text-xs text-amber-400">
+                            Les photos d'atelier ne sont pas mises en vente
+                          </div>
+                        )}
+
+                        {/* Prix signe / non signe pour empreinte et projection */}
+                        {(photo.photoCategory === 'empreinte' || photo.photoCategory === 'projection') && (
+                          <div className="grid grid-cols-2 gap-3 mt-2">
+                            <div>
+                              <label className="block text-xs text-muted-foreground mb-1">Prix non signe (EUR)</label>
+                              <input
+                                type="number"
+                                value={photo.priceUnsigned || ''}
+                                onChange={(e) => updatePhoto(globalIndex, { priceUnsigned: e.target.value ? Number(e.target.value) : undefined })}
+                                placeholder="Ex: 500"
+                                className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-xs text-muted-foreground mb-1">Prix signe (EUR)</label>
+                              <input
+                                type="number"
+                                value={photo.priceSigned || ''}
+                                onChange={(e) => updatePhoto(globalIndex, { priceSigned: e.target.value ? Number(e.target.value) : undefined })}
+                                placeholder="Ex: 800"
+                                className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Si TOILE : prix + dimensions + technique + date publication */}
+                    {photo.productType === 'canvas' && (
+                      <div className="mt-3 space-y-3">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="block text-xs text-muted-foreground mb-1">Prix (EUR)</label>
+                            <input
+                              type="number"
+                              value={photo.canvasDetails?.price || ''}
+                              onChange={(e) => updatePhoto(globalIndex, {
+                                canvasDetails: {
+                                  ...(photo.canvasDetails || { dimensions: '', technique: '' }),
+                                  price: e.target.value ? Number(e.target.value) : 0,
+                                }
+                              })}
+                              placeholder="Ex: 15000"
+                              className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-muted-foreground mb-1">Dimensions</label>
+                            <input
+                              type="text"
+                              value={photo.canvasDetails?.dimensions || ''}
+                              onChange={(e) => updatePhoto(globalIndex, {
+                                canvasDetails: {
+                                  ...(photo.canvasDetails || { price: 0, technique: '' }),
+                                  dimensions: e.target.value,
+                                }
+                              })}
+                              placeholder="Ex: 150 x 200 cm"
+                              className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-xs text-muted-foreground mb-1">Technique</label>
+                          <input
+                            type="text"
+                            value={photo.canvasDetails?.technique || ''}
+                            onChange={(e) => updatePhoto(globalIndex, {
+                              canvasDetails: {
+                                ...(photo.canvasDetails || { price: 0, dimensions: '' }),
+                                technique: e.target.value,
+                              }
+                            })}
+                            placeholder="Ex: Passage Ferrari Dino sur toile"
+                            className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-muted-foreground mb-1">Date de publication</label>
+                          <input
+                            type="date"
+                            value={photo.publishDate || ''}
+                            onChange={(e) => updatePhoto(globalIndex, { publishDate: e.target.value || undefined })}
+                            className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                          />
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Invisible sur le site standard jusqu'a cette date. Visible sur acces VIP/secret.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Collection (commun photos et toiles) */}
+                    <div className="mt-3">
+                      <label className="block text-xs text-muted-foreground mb-1">Collection</label>
+                      <input
+                        type="text"
+                        value={photo.collection || ''}
+                        onChange={(e) => updatePhoto(globalIndex, { collection: e.target.value || undefined })}
+                        placeholder="Ex: Collection Noir, Dino 2024"
+                        list="collections-list"
+                        className="w-full px-3 py-2 bg-background border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Options de vente (masquees pour corbeille et atelier) */}
+                  {photo.status !== 'trash' && photo.photoCategory !== 'atelier' && (
                     <>
                       <label className="flex items-center gap-3 cursor-pointer group">
                         <input
@@ -713,14 +884,14 @@ export default function AdminPage() {
                           className="w-4 h-4 rounded border-border"
                         />
                         <span className="text-sm group-hover:text-primary transition-colors">
-                          À vendre
+                          A vendre
                         </span>
                       </label>
 
                       {/* AI Analysis Button */}
                       <AIAnalysisPanel
                         photoFilename={photo.filename}
-                        category={photo.category || 'autres'}
+                        category={photo.photoCategory || photo.category || 'autres'}
                         currentPrice={photo.price}
                         onApplySuggestions={(suggestions) => {
                           updatePhoto(globalIndex, {
@@ -767,9 +938,16 @@ export default function AdminPage() {
 
         {filteredPhotos.length === 0 && (
           <div className="text-center py-20 text-muted-foreground">
-            Aucun média trouvé
+            Aucun media trouve
           </div>
         )}
+
+        {/* Datalist autocomplete collections */}
+        <datalist id="collections-list">
+          {[...new Set(photos.map(p => p.collection).filter(Boolean))].map(col => (
+            <option key={col} value={col!} />
+          ))}
+        </datalist>
           </div>
         </div>
       </div>

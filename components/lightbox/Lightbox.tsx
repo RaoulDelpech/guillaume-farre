@@ -171,7 +171,13 @@ export default function Lightbox({ open, work, works = [], onClose, onNavigate, 
                   <div className="flex items-center gap-4 text-white/60 font-light text-sm">
                     <span>{work.year}</span>
                     <span>•</span>
-                    <span>{work.type === "photo" ? "Photographie" : "Toile"}</span>
+                    <span>
+                      {work.type === "toile" ? "Toile" :
+                       work.photoCategory === "empreinte" ? "Empreinte" :
+                       work.photoCategory === "projection" ? "Projection" :
+                       work.photoCategory === "atelier" ? "Atelier" :
+                       "Photographie"}
+                    </span>
                     {work.edition?.type === "limited" && (
                       <>
                         <span>•</span>
@@ -181,15 +187,35 @@ export default function Lightbox({ open, work, works = [], onClose, onNavigate, 
                   </div>
                   {/* Prix — visible uniquement en mode secret */}
                   {showPrices && (
-                    <p className="text-white/80 font-light mt-2">
+                    <div className="text-white/80 font-light mt-2">
                       {(() => {
-                        if (!work.prices) return "Sur demande";
+                        // Toile : prix unique
+                        if (work.type === 'toile' && work.canvasDetails?.price) {
+                          return <p>{work.canvasDetails.price.toLocaleString('fr-FR')} EUR</p>;
+                        }
+                        // Photo empreinte/projection : prix signe + non signe
+                        if ((work.photoCategory === 'empreinte' || work.photoCategory === 'projection') && (work.priceSigned || work.priceUnsigned)) {
+                          return (
+                            <>
+                              {work.priceUnsigned && <p>Non signe : {work.priceUnsigned.toLocaleString('fr-FR')} EUR</p>}
+                              {work.priceSigned && <p>Signe : {work.priceSigned.toLocaleString('fr-FR')} EUR</p>}
+                            </>
+                          );
+                        }
+                        // Atelier : pas de prix
+                        if (work.photoCategory === 'atelier') return null;
+                        // Fallback ancien systeme
+                        if (!work.prices) return <p>Sur demande</p>;
                         const prices = work.prices;
-                        if (prices.small) return `À partir de ${prices.small}€`;
-                        if (prices.medium) return `À partir de ${prices.medium}€`;
-                        if (prices.large) return `${prices.large}€`;
-                        return "Sur demande";
+                        if (prices.small) return <p>A partir de {prices.small} EUR</p>;
+                        return <p>Sur demande</p>;
                       })()}
+                    </div>
+                  )}
+                  {/* Badge publication future */}
+                  {work.publishDate && work.publishDate > new Date().toISOString().split('T')[0] && (
+                    <p className="text-amber-400/80 text-sm mt-1">
+                      Publication le {new Date(work.publishDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
                     </p>
                   )}
                 </div>

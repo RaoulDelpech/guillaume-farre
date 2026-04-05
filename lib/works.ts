@@ -21,7 +21,28 @@ export interface Work {
   images: string[];
   description?: string;
 
-  // Nouvelles propriétés pour multi-catégorisation
+  // Categorie photo (empreinte, projection, atelier)
+  photoCategory?: 'empreinte' | 'projection' | 'atelier';
+
+  // Collection (nom libre)
+  collection?: string;
+
+  // Date de publication (toiles, ISO string)
+  publishDate?: string;
+
+  // Prix tirage signe / non signe (photos empreinte/projection)
+  priceSigned?: number;
+  priceUnsigned?: number;
+
+  // Details toile (piece unique)
+  canvasDetails?: {
+    dimensions: string;
+    technique: string;
+    price: number;
+    weight?: string;
+  };
+
+  // Multi-categorisation
   categories?: ('unlimited' | 'limited' | 'xxl' | 'monumental')[];
   limitedEdition?: {
     total: number;
@@ -33,7 +54,6 @@ export interface Work {
   earlyAccess?: boolean;
 
   // Niveau d'acces requis pour voir cette oeuvre
-  // undefined/'normal' = visible par tous, 'hidden' = hidden+secret, 'secret' = secret uniquement
   accessRequired?: 'hidden' | 'secret';
 }
 
@@ -45,25 +65,35 @@ export async function getWorksFromMetadata(accessLevel: AccessLevel = 'normal'):
     const data = await fs.readFile(metadataPath, 'utf-8');
     const photos = JSON.parse(data);
 
-    // Filter only visible photos + exclude trash and to-sort statuses
+    const now = new Date().toISOString().split('T')[0]; // "2026-03-31"
+
     const allWorks: Work[] = photos
       .filter((photo: any) => {
-        // Must be visible and forSale
-        if (!photo.visible || photo.forSale === false) return false;
-        // Exclude trash and to-sort explicitly
+        if (!photo.visible) return false;
         if (photo.status === 'trash' || photo.status === 'to-sort') return false;
+        // Atelier = jamais en vente (force)
+        if (photo.photoCategory === 'atelier') {
+          // Visible en galerie mais pas a vendre
+        } else if (photo.forSale === false) {
+          return false;
+        }
+        // Filtre date publication (toiles) : sur site normal, invisible avant la date
+        if (photo.publishDate && photo.publishDate > now && accessLevel === 'normal') {
+          return false;
+        }
         return true;
       })
       .map((photo: any) => {
-        // Extract number from filename for slug
         const match = photo.filename.match(/(\d+)/);
         const number = match ? match[1] : '001';
+        const categorySlug = photo.photoCategory || photo.category || 'oeuvre';
+        const isCanvas = photo.productType === 'canvas';
 
         return {
-          slug: `${photo.category}-${number}`,
-          title: photo.title || `${photo.category.charAt(0).toUpperCase() + photo.category.slice(1)} ${number}`,
+          slug: `${categorySlug}-${number}`,
+          title: photo.title || `${categorySlug.charAt(0).toUpperCase() + categorySlug.slice(1)} ${number}`,
           year: photo.year || 2024,
-          type: 'photo' as WorkType,
+          type: (isCanvas ? 'toile' : 'photo') as WorkType,
           edition: photo.edition || { type: 'open' },
           prices: photo.price ? {
             small: photo.price,
@@ -73,6 +103,13 @@ export async function getWorksFromMetadata(accessLevel: AccessLevel = 'normal'):
           images: [photo.path],
           description: photo.description,
           accessRequired: photo.accessRequired,
+          photoCategory: photo.photoCategory,
+          collection: photo.collection,
+          publishDate: photo.publishDate,
+          priceSigned: photo.priceSigned,
+          priceUnsigned: photo.priceUnsigned,
+          canvasDetails: photo.canvasDetails,
+          forSale: photo.photoCategory === 'atelier' ? false : photo.forSale,
         };
       });
 

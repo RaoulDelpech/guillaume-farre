@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import GalleryGrid from "@/components/GalleryGrid";
 import type { Work } from "@/lib/works";
 
-type FilterType = 'all' | 'photo' | 'toile' | 'limited' | 'empreintes' | 'atelier' | 'projections';
+type FilterType = 'all' | 'photo' | 'toile' | 'limited' | 'empreintes' | 'atelier' | 'projections' | string;
 
 interface GalleryClientProps {
   works: Work[];
@@ -21,23 +21,39 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Appliquer le filtre de série depuis l'URL
+  // Collecter les collections disponibles
+  const collections = useMemo(() => {
+    const cols = new Set<string>();
+    works.forEach(w => { if (w.collection) cols.add(w.collection); });
+    return Array.from(cols).sort();
+  }, [works]);
+
+  const collectionParam = searchParams.get('collection');
+
+  // Appliquer le filtre depuis l'URL
   useEffect(() => {
-    if (serieParam && ['empreintes', 'atelier', 'projections', 'toile'].includes(serieParam)) {
+    if (collectionParam) {
+      setActiveFilter(`collection:${collectionParam}`);
+    } else if (serieParam && ['empreintes', 'atelier', 'projections', 'toile'].includes(serieParam)) {
       setActiveFilter(serieParam as FilterType);
     }
-  }, [serieParam]);
+  }, [serieParam, collectionParam]);
 
-  // Filtrage des œuvres selon le filtre actif
+  // Filtrage des oeuvres selon le filtre actif
   const filteredWorks = useMemo(() => {
     if (activeFilter === 'all') return works;
     if (activeFilter === 'photo') return works.filter(w => w.type === 'photo');
     if (activeFilter === 'toile') return works.filter(w => w.type === 'toile');
     if (activeFilter === 'limited') return works.filter(w => w.edition.type === 'limited');
-    // Filtres par série
-    if (activeFilter === 'empreintes') return works.filter(w => w.slug.startsWith('empreintes'));
-    if (activeFilter === 'atelier') return works.filter(w => w.slug.startsWith('atelier'));
-    if (activeFilter === 'projections') return works.filter(w => w.slug.startsWith('projection'));
+    // Filtres par categorie photo
+    if (activeFilter === 'empreintes') return works.filter(w => w.photoCategory === 'empreinte' || w.slug.startsWith('empreintes'));
+    if (activeFilter === 'atelier') return works.filter(w => w.photoCategory === 'atelier' || w.slug.startsWith('atelier'));
+    if (activeFilter === 'projections') return works.filter(w => w.photoCategory === 'projection' || w.slug.startsWith('projection'));
+    // Filtre par collection
+    if (activeFilter.startsWith('collection:')) {
+      const colName = activeFilter.slice('collection:'.length);
+      return works.filter(w => w.collection === colName);
+    }
     return works;
   }, [works, activeFilter]);
 
@@ -60,6 +76,7 @@ export default function GalleryClient({ works, showPrices = false }: GalleryClie
     { key: 'empreintes', label: 'Empreintes' },
     { key: 'projections', label: 'Projections' },
     { key: 'atelier', label: 'Atelier' },
+    ...collections.map(col => ({ key: `collection:${col}`, label: col })),
   ];
 
   return (

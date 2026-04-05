@@ -8,8 +8,21 @@ import { altForWork, primaryImage } from "@/lib/images";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 
 function editionLabel(w: Work) {
-  if (w.edition.type === "limited") return `Édition limitée (${w.edition.count})`;
-  return "Édition ouverte";
+  if (w.edition.type === "limited") return `Edition limitee (${w.edition.count})`;
+  return "Edition ouverte";
+}
+
+function typeLabel(w: Work) {
+  if (w.type === 'toile') return 'Toile';
+  if (w.photoCategory === 'empreinte') return 'Empreinte';
+  if (w.photoCategory === 'projection') return 'Projection';
+  if (w.photoCategory === 'atelier') return 'Atelier';
+  return w.type === 'photo' ? 'Photographie' : 'Toile';
+}
+
+function isPublishDateFuture(w: Work) {
+  if (!w.publishDate) return false;
+  return w.publishDate > new Date().toISOString().split('T')[0];
 }
 
 export default function GalleryGrid({ works, showPrices = false }: { works: Work[]; showPrices?: boolean }) {
@@ -49,7 +62,15 @@ export default function GalleryGrid({ works, showPrices = false }: { works: Work
             </button>
             <div className="mt-2 md:mt-3">
               <Link href={`/galerie-item/${w.slug}`} className="text-sm md:text-base font-medium hover:underline block truncate">{w.title}</Link>
-              <div className="text-xs md:text-sm text-muted-foreground">{w.year} — {w.type === 'photo' ? 'Photo' : 'Toile'}</div>
+              <div className="text-xs md:text-sm text-muted-foreground">{w.year} — {typeLabel(w)}</div>
+              {w.collection && (
+                <div className="text-xs text-muted-foreground/70 truncate">{w.collection}</div>
+              )}
+              {isPublishDateFuture(w) && (
+                <div className="text-xs text-amber-400 mt-0.5">
+                  Publication le {new Date(w.publishDate!).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}
+                </div>
+              )}
               <div className="text-xs text-muted-foreground truncate">{editionLabel(w)}</div>
             </div>
           </ScrollReveal>

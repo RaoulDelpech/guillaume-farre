@@ -49,7 +49,24 @@ export interface PhotoMetadata {
     weight?: string;         // "15 kg"
   };
 
-  // Ancien champ category gardé pour compatibilité (à migrer)
+  // Categorie photo : empreinte, projection ou atelier (photos uniquement)
+  photoCategory?: 'empreinte' | 'projection' | 'atelier';
+
+  // Collection (nom libre, ex: "Collection Noir", "Dino 2024")
+  collection?: string;
+
+  // Date de publication (toiles uniquement, ISO "2026-04-15")
+  // null/undefined = publie immediatement
+  // Site standard : invisible avant cette date. Sites cache/secret : visible avec badge.
+  publishDate?: string;
+
+  // Prix tirage signe (photos empreinte/projection uniquement)
+  priceSigned?: number;
+
+  // Prix tirage non signe (photos empreinte/projection uniquement)
+  priceUnsigned?: number;
+
+  // Ancien champ category garde pour compatibilite
   category?: string;
 
   // Éditions limitées (ancien champ, conservé pour compatibilité)

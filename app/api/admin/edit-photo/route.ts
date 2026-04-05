@@ -18,11 +18,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { filename, cropArea, rotation } = body;
 
-    if (!filename || !cropArea) {
+    if (!filename || typeof filename !== 'string' || !cropArea) {
       return NextResponse.json(
         { error: 'Paramètres manquants (filename, cropArea requis)' },
         { status: 400 }
       );
+    }
+
+    // Sécurité : rejeter path traversal, ne garder que le basename
+    if (filename.includes('\0')) {
+      return NextResponse.json({ error: 'Invalid filename' }, { status: 403 });
+    }
+    const safeFilename = path.basename(filename);
+    if (safeFilename !== filename || safeFilename.includes('..')) {
+      return NextResponse.json({ error: 'Invalid filename' }, { status: 403 });
     }
 
     // Trouver le fichier dans le filesystem

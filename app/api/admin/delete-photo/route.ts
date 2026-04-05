@@ -11,12 +11,25 @@ export async function POST(request: Request) {
   try {
     const { path: photoPath } = await request.json();
 
-    if (!photoPath) {
+    if (!photoPath || typeof photoPath !== 'string') {
       return NextResponse.json({ error: 'Photo path required' }, { status: 400 });
     }
 
-    // Supprimer le fichier physique
-    const fullPath = path.join(process.cwd(), 'public', photoPath);
+    // Sécurité : rejeter path traversal
+    if (photoPath.includes('..') || photoPath.includes('\0')) {
+      return NextResponse.json({ error: 'Invalid path' }, { status: 403 });
+    }
+
+    // Vérifier que le chemin résolu reste dans les dossiers autorisés
+    const fullPath = path.resolve(process.cwd(), 'public', photoPath);
+    const allowedDirs = [
+      path.resolve(process.cwd(), 'public', 'images'),
+      path.resolve(process.cwd(), 'public', 'uploads'),
+    ];
+
+    if (!allowedDirs.some(dir => fullPath.startsWith(dir + path.sep))) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
     try {
       await fs.unlink(fullPath);
     } catch (error) {

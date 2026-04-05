@@ -6,6 +6,13 @@ const AUTH_COOKIE = "gf_auth";
 const VIP_COOKIE = "gf_vip";
 const VALID_LOCALES = ['fr', 'en', 'it'];
 
+// Origines autorisées pour les requêtes admin mutantes (CSRF)
+const ALLOWED_ORIGINS = [
+  'https://guillaumefarre.com',
+  'https://www.guillaumefarre.com',
+  'http://localhost:3000',
+];
+
 // "pre-launch" = site cache (mot de passe), "public" = site ouvert
 const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
 
@@ -39,6 +46,17 @@ function getVipLevel(cookieValue: string): 'hidden' | 'secret' {
  */
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // API admin mutantes — vérification CSRF Origin
+  if (pathname.startsWith('/api/admin/') && request.method !== 'GET') {
+    const origin = request.headers.get('origin');
+    if (!origin || !ALLOWED_ORIGINS.includes(origin)) {
+      return NextResponse.json(
+        { error: 'Forbidden: invalid origin' },
+        { status: 403 }
+      );
+    }
+  }
 
   // API routes — pas de middleware i18n ni auth
   if (pathname.startsWith('/api/')) {

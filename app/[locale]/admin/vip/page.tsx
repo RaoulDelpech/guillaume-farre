@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslations } from "next-intl";
+import { QRCodeCanvas } from "qrcode.react";
 import { addRipple } from "@/components/ui/RippleButton";
 
 /**
@@ -27,7 +28,9 @@ export default function AdminVipPage() {
   const [generating, setGenerating] = useState(false);
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [lastVipUrl, setLastVipUrl] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const qrRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     loadCodes();
@@ -74,6 +77,7 @@ export default function AdminVipPage() {
       if (res.ok) {
         const data = await res.json();
         const url = data.url;
+        setLastVipUrl(url);
 
         const message = `Invitation privée — Guillaume Farré\n\nDécouvrez mes toiles originales et photographies en accès exclusif (24h) :\n${url}`;
         const waUrl = `https://wa.me/${normalizePhone(phone)}?text=${encodeURIComponent(message)}`;
@@ -98,6 +102,32 @@ export default function AdminVipPage() {
       setGenerating(false);
     }
   }
+
+  async function handleQrOnly() {
+    setGenerating(true);
+    try {
+      const res = await fetch("/api/vip/generate", { method: "POST" });
+      if (res.ok) {
+        const data = await res.json();
+        setLastVipUrl(data.url);
+        loadCodes();
+      }
+    } catch {
+      // Silent
+    } finally {
+      setGenerating(false);
+    }
+  }
+
+  const downloadQr = useCallback(() => {
+    const canvas = qrRef.current;
+    if (!canvas) return;
+    const url = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "vip-qrcode.png";
+    a.click();
+  }, []);
 
   function getCodeStatus(code: VipCode): "active" | "used" | "expired" {
     if (code.used) return "used";
@@ -170,6 +200,46 @@ export default function AdminVipPage() {
         <p className="text-white/20 text-[10px] text-center mt-3 font-light">
           Génère un lien exclusif 24h et ouvre WhatsApp
         </p>
+
+        {/* Bouton QR code seul — pour montrer en face a face */}
+        <button
+          onClick={(e) => {
+            addRipple(e);
+            handleQrOnly();
+          }}
+          disabled={generating}
+          className="relative overflow-hidden w-full mt-3 py-4 text-xs tracking-[0.3em] uppercase font-light border border-white/15 text-white/50 hover:border-white/40 hover:text-white/70 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          {generating ? "Génération..." : "Générer QR code"}
+        </button>
+        <p className="text-white/20 text-[10px] text-center mt-2 font-light">
+          À montrer directement sur votre écran
+        </p>
+
+        {/* QR code genere */}
+        {lastVipUrl && (
+          <div className="mt-8 flex flex-col items-center gap-5 py-6 border border-white/10 bg-white/[0.02]">
+            <div className="p-4 bg-black">
+              <QRCodeCanvas
+                ref={qrRef}
+                value={lastVipUrl}
+                size={256}
+                bgColor="#000000"
+                fgColor="#FFFFFF"
+                level="M"
+              />
+            </div>
+            <p className="text-white/30 text-[10px] tracking-[0.15em] font-light max-w-[280px] text-center break-all">
+              {lastVipUrl}
+            </p>
+            <button
+              onClick={downloadQr}
+              className="py-3 px-8 text-white/40 text-xs tracking-[0.2em] uppercase font-light border border-white/10 hover:border-white/30 hover:text-white/60 transition-all"
+            >
+              Télécharger PNG
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Liste des codes actifs */}

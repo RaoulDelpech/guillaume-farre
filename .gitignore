@@ -56,3 +56,12 @@ bun.lockb
 *_SETUP.md
 *_FIXES_*.md
 *_AUDIT_*.md
+
+# Generated docs (PDFs, scripts, market reports)
+docs/*.pdf
+docs/generate_*.py
+RAPPORT_MARCHE_ART_*.md
+test-mobile.sh
+
+# Reservations data (contains client information)
+/data/reservations.json

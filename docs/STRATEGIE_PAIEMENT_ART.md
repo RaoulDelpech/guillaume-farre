@@ -348,25 +348,48 @@ Guillaume Farre
 
 ## 5. Points juridiques cles
 
-### 5.1 Droit de retractation — ZONE GRISE
+### 5.1 Droit de retractation — ANALYSE COMPLETE (mise a jour 5 avril 2026)
 
 **Principe** : tout achat a distance = droit de retractation de 14 jours (art L221-18 Code de la consommation).
 
-**Exception possible** : art L221-28 exclut les "biens confectionnes selon les specifications du consommateur ou nettement personnalises".
+**Peut-on y renoncer ?** NON. Un consommateur ne peut PAS renoncer par avance a son droit de retractation pour un bien physique achete en ligne. Une clause "Je renonce a mon droit de retractation" dans les CGV serait nulle (clause abusive). Le mecanisme de renonciation expresse de l'art L221-28 n'existe QUE pour les services et contenus numeriques, PAS pour les biens physiques.
 
-**Le probleme pour Guillaume** : les toiles sont des pieces uniques MAIS elles ne sont pas commandees par l'acheteur. Elles existent deja. La jurisprudence francaise interprete **restrictivement** cette exception :
+#### Les 3 cas de figure pour Guillaume
+
+**Cas 1 : Toile deja creee, achetee en ligne → retractation 14 jours APPLICABLE**
+
+L'oeuvre preexiste a la commande. Ce n'est PAS un bien "confectionne selon les specifications du consommateur" (art L221-28, 3°). La jurisprudence est restrictive :
+- Cass. Civ. 1ere, 17 janvier 2018 : meme des options de couleur et d'equipement sur un vehicule ne suffisent pas a qualifier un bien de "nettement personnalise"
 - CA Lyon, 7 juin 2018 : exige un "veritable travail specifique" de personnalisation
 - CA Poitiers, 15 nov. 2022 : une simple option de couleur ne suffit pas
 
-**Risque** : un acheteur pourrait invoquer le droit de retractation sur une oeuvre d'art achetee en ligne, meme unique, car elle n'a pas ete personnalisee "selon ses specifications".
+Une toile unique qui PREEXISTE a la commande ne remplit pas ce critere. Le droit de retractation s'applique.
 
-**Strategie recommandee** :
-1. **Mentionner clairement** le droit de retractation dans les CGV (obligation legale)
-2. **Prevoir le retour** dans les conditions : frais de retour a la charge de l'acheteur, oeuvre restituee en parfait etat
-3. **Oeuvres sur commande** : si Guillaume cree une oeuvre specifiquement pour un client, l'exception s'applique. Le mentionner explicitement dans le contrat.
-4. **Ne pas tenter d'exclure illegalement** le droit de retractation (sanctions : 15 000 EUR d'amende)
+**Cas 2 : Oeuvre commandee sur mesure → PAS de retractation**
 
-**Si retractation exercee** : remboursement integral dans les 14 jours. L'acheteur supporte les frais de retour.
+Si Guillaume cree une toile specifiquement pour un client (choix de couleurs, dimensions, technique sur demande), c'est un bien "confectionne selon les specifications du consommateur". L'exception L221-28 s'applique automatiquement. Documenter la commande : echange d'emails, brief creatif, specifications ecrites.
+
+**Cas 3 : Vente a un professionnel → PAS de retractation**
+
+Le droit de retractation est une protection consommateur. Si l'acheteur agit en qualite de professionnel (SIRET, achat pour revente, decoration d'entreprise), les regles du Code de la consommation ne s'appliquent pas.
+
+#### Pourquoi ce n'est PAS un probleme en pratique
+
+1. **Modele de Guillaume = lien secret a un acheteur identifie** : pas un achat impulsif anonyme. L'acheteur a vu l'oeuvre (expo, rencontre, Instagram), il y a eu un echange prealable. Risque de retractation tres faible.
+2. **Frais de retour a la charge de l'acheteur** (a mentionner dans les CGV). Pour une toile a 10 000 EUR avec transport specialise a 200-500 EUR, ca dissuade fortement.
+3. **Montants eleves = achat reflechi**. Les retractations sont exceptionnelles dans le marche de l'art.
+
+#### Strategie recommandee
+
+1. **Assumer le droit de retractation** dans les CGV (obligation legale, 15 000 EUR d'amende si exclusion illegale)
+2. **Formulaire type de retractation** obligatoire (annexe CGV)
+3. **Frais de retour a la charge de l'acheteur** (art L221-23) — effet dissuasif naturel
+4. **Oeuvres sur commande** : documenter le brief client pour activer l'exception L221-28
+5. **Ventes a des pros** : identifier le statut de l'acheteur (SIRET) pour exclure le Code de la consommation
+
+**Si retractation exercee** : remboursement integral dans les 14 jours. L'acheteur supporte les frais de retour. Oeuvre restituee en parfait etat.
+
+**Sources** : [Legifrance art L221-28](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044563170), [Fournol Avocat](https://www.fournol-avocat.fr/actualite/2019/11/27/lapplication-du-droit-de-rtractation-sur-le-march-de-lart), [Mr Expert](https://mr-expert.com/droit-de-retractation-lors-de-lachat-dune-oeuvre-dart/), [LegalPlace](https://www.legalplace.fr/guides/renoncement-express-droit-retractation/)
 
 ### 5.2 TVA sur les oeuvres d'art
 

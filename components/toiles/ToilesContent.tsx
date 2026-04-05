@@ -7,6 +7,7 @@ import TextReveal from "@/components/animations/TextReveal";
 import LineReveal from "@/components/animations/LineReveal";
 import ImageReveal from "@/components/animations/ImageReveal";
 import MagneticButton from "@/components/animations/MagneticButton";
+import AmericanFrame from "@/components/AmericanFrame";
 
 /**
  * Contenu page Toiles — VIP uniquement
@@ -98,25 +99,25 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
               {/* Image(s) */}
               <ImageReveal delay={index * 0.08}>
                 {toile.triptych && toile.images ? (
-                  <div className="flex gap-2 md:gap-4">
+                  <div className="flex gap-4 md:gap-6">
                     {toile.images.map((img, i) => (
-                      <div key={i} className="flex-1 aspect-[2/5] bg-zinc-900/30 overflow-hidden">
-                        <img
+                      <div key={i} className="flex-1">
+                        <AmericanFrame
                           src={img}
                           alt={`${toile.name} — ${i + 1}/3`}
-                          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
+                          frameColor="black"
+                          className="w-full"
                         />
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="aspect-[16/10] bg-zinc-900/30 overflow-hidden">
-                    <img
-                      src={toile.image}
-                      alt={toile.name}
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
-                    />
-                  </div>
+                  <AmericanFrame
+                    src={toile.image || ""}
+                    alt={toile.name}
+                    frameColor="black"
+                    className="w-full"
+                  />
                 )}
               </ImageReveal>
 

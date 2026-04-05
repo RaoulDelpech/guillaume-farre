@@ -61,6 +61,7 @@ bun.lockb
 docs/*.pdf
 docs/generate_*.py
 RAPPORT_MARCHE_ART_*.md
+ANALYSE_STRATEGIQUE_*.md
 test-mobile.sh
 
 # Reservations data (contains client information)

@@ -5,6 +5,7 @@ import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
 import AddToCartSection from "@/components/AddToCartSection";
 import GalerieItemClient from "./GalerieItemClient";
+import { safeJsonLd } from "@/lib/safe-json-ld";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -107,7 +108,7 @@ export default async function GalerieItemPage({
       {/* Lalou: JSON-LD structured data for Google */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(productSchema) }}
       />
 
       {/* GA4 tracking - View item */}
@@ -158,11 +159,20 @@ export default async function GalerieItemPage({
             <div className="space-y-6 sm:space-y-8">
               <div>
                 <div className="text-xs font-light tracking-[0.2em] text-primary uppercase mb-3 sm:mb-4">
-                  {work.type === 'photo' ? 'Photographie' : 'Toile'}
+                  {work.type === 'toile' ? 'Toile' :
+                   work.photoCategory === 'empreinte' ? 'Empreinte' :
+                   work.photoCategory === 'projection' ? 'Projection' :
+                   work.photoCategory === 'atelier' ? 'Atelier' :
+                   'Photographie'}
                 </div>
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-4 sm:mb-6">
                   {work.title}
                 </h1>
+                {work.collection && (
+                  <p className="text-sm font-light text-muted-foreground/70 mb-3">
+                    {work.collection}
+                  </p>
+                )}
                 <p className="text-xl font-light text-muted-foreground leading-relaxed">
                   {work.description}
                 </p>
@@ -171,25 +181,92 @@ export default async function GalerieItemPage({
               {/* Informations */}
               <div className="border-t border-border pt-8 space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-light text-muted-foreground">Année</span>
+                  <span className="text-sm font-light text-muted-foreground">Annee</span>
                   <span className="font-light">{work.year}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm font-light text-muted-foreground">Type</span>
-                  <span className="font-light capitalize">{work.type}</span>
+                  <span className="font-light capitalize">
+                    {work.type === 'toile' ? 'Toile' :
+                     work.photoCategory === 'empreinte' ? 'Empreinte' :
+                     work.photoCategory === 'projection' ? 'Projection' :
+                     work.photoCategory === 'atelier' ? 'Atelier' :
+                     'Photographie'}
+                  </span>
                 </div>
+                {/* Details toile */}
+                {work.type === 'toile' && work.canvasDetails && (
+                  <>
+                    {work.canvasDetails.dimensions && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-light text-muted-foreground">Dimensions</span>
+                        <span className="font-light">{work.canvasDetails.dimensions}</span>
+                      </div>
+                    )}
+                    {work.canvasDetails.technique && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-light text-muted-foreground">Technique</span>
+                        <span className="font-light">{work.canvasDetails.technique}</span>
+                      </div>
+                    )}
+                    {work.canvasDetails.price > 0 && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-light text-muted-foreground">Prix</span>
+                        <span className="font-light text-lg">{work.canvasDetails.price.toLocaleString('fr-FR')} EUR</span>
+                      </div>
+                    )}
+                  </>
+                )}
+                {/* Prix photos signe / non signe */}
+                {(work.photoCategory === 'empreinte' || work.photoCategory === 'projection') && (work.priceUnsigned || work.priceSigned) && (
+                  <>
+                    {work.priceUnsigned && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-light text-muted-foreground">Tirage non signe</span>
+                        <span className="font-light">{work.priceUnsigned.toLocaleString('fr-FR')} EUR</span>
+                      </div>
+                    )}
+                    {work.priceSigned && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-light text-muted-foreground">Tirage signe</span>
+                        <span className="font-light">{work.priceSigned.toLocaleString('fr-FR')} EUR</span>
+                      </div>
+                    )}
+                  </>
+                )}
+                {/* Badge publication future */}
+                {work.publishDate && work.publishDate > new Date().toISOString().split('T')[0] && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-light text-muted-foreground">Publication</span>
+                    <span className="font-light text-amber-400">
+                      {new Date(work.publishDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                  </div>
+                )}
               </div>
 
-              {/* Section achat */}
-              <div className="pt-8">
-                <AddToCartSection
-                  productId={work.slug}
-                  productTitle={work.title}
-                  productImage={work.images[0]}
-                  productCategory={work.type === 'photo' ? 'Photographie' : 'Toile'}
-                  photoPath={work.images[0]}
-                />
-              </div>
+              {/* Section achat (pas pour atelier) */}
+              {work.photoCategory !== 'atelier' && (
+                <div className="pt-8">
+                  <AddToCartSection
+                    productId={work.slug}
+                    productTitle={work.title}
+                    productImage={work.images[0]}
+                    productCategory={work.type === 'toile' ? 'Toile' : 'Photographie'}
+                    photoPath={work.images[0]}
+                  />
+                </div>
+              )}
+              {work.photoCategory === 'atelier' && (
+                <div className="pt-8">
+                  <a
+                    href={`mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(`A propos de : ${work.title}`)}`}
+                    className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all hover:bg-foreground/5"
+                  >
+                    Me contacter pour cette oeuvre
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>

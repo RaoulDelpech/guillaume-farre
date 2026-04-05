@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Navigation from '@/components/navigation/Navigation';
+import { safeJsonLd } from '@/lib/safe-json-ld';
 import { ChevronDown } from 'lucide-react';
 
 interface FAQItem {
@@ -167,7 +168,7 @@ export default function FAQPage() {
       {/* Lalou: JSON-LD structured data for Google */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqSchema) }}
       />
 
       <Navigation />

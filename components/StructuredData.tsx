@@ -5,6 +5,8 @@
  * @author Lalou
  */
 
+import { safeJsonLd } from '@/lib/safe-json-ld';
+
 interface ProductData {
   title?: string;
   description?: string;
@@ -97,7 +99,7 @@ export default function StructuredData({ type = 'organization', data }: Structur
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(schema, null, 2),
+        __html: safeJsonLd(schema),
       }}
     />
   );

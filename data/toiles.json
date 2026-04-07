@@ -1,22 +1,241 @@
 [
-  {"id": 1, "name": "Klein d'oeil", "dimensions": "100x130 cm", "technique": "Acrylique sur toile", "year": 2026, "price": 20000, "image": "/images/toiles/1.jpg"},
-  {"id": 2, "name": "Land HO", "dimensions": "46x50 cm", "technique": "Acrylique sur carton", "year": 2024, "price": 2500, "image": "/images/toiles/2.jpg"},
-  {"id": 3, "name": "Across the Ocean", "dimensions": "50x100 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 7500, "image": "/images/toiles/3.jpg"},
-  {"id": 4, "name": "Angle", "dimensions": "54x60 cm", "technique": "Acrylique sur carton", "year": 2022, "price": 2500, "image": "/images/toiles/4.jpg"},
-  {"id": 5, "name": "Evasion", "dimensions": "50x65 cm", "technique": "Acrylique sur carton", "year": 2022, "price": 2500, "image": "/images/toiles/5.jpg"},
-  {"id": 6, "name": "Tifosi", "dimensions": "60x80 cm", "technique": "Acrylique sur toile", "year": 2019, "price": 6000, "image": "/images/toiles/6.jpg"},
-  {"id": 7, "name": "Coquelicot", "dimensions": "60x80 cm", "technique": "Acrylique sur toile", "year": 2019, "price": 6500, "image": "/images/toiles/7.jpg"},
-  {"id": 8, "name": "Biarritz", "dimensions": "100x100 cm", "technique": "Acrylique sur toile", "year": 2025, "price": 15000, "image": "/images/toiles/8.jpg"},
-  {"id": 9, "name": "Shaolin Premium", "dimensions": "70x70 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 10000, "image": "/images/toiles/9.jpg"},
-  {"id": 10, "name": "BW Gum", "dimensions": "73x92 cm", "technique": "Acrylique sur toile", "year": 2025, "price": 13000, "image": "/images/toiles/10.jpg"},
-  {"id": 11, "name": "Cavalino", "dimensions": "50x100 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 7500, "image": "/images/toiles/11.jpg"},
-  {"id": 12, "name": "3451", "dimensions": "73x92 cm", "technique": "Acrylique sur toile", "year": 2025, "price": 13000, "image": "/images/toiles/12.jpg"},
-  {"id": 13, "name": "High efficiency", "dimensions": "50x150 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 12500, "image": "/images/toiles/13.jpg"},
-  {"id": 14, "name": "Shaolin Dream", "dimensions": "70x70 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 10000, "image": "/images/toiles/14.jpg"},
-  {"id": 15, "name": "Euskadi", "dimensions": "70x70 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 10000, "image": "/images/toiles/15.jpg"},
-  {"id": 16, "name": "Dino's Lament", "dimensions": "46x55 cm", "technique": "Acrylique sur carton", "year": 2025, "price": 2500, "image": "/images/toiles/16.jpg"},
-  {"id": 17, "name": "No U Turn", "dimensions": "40x100 cm chacun (triptyque)", "technique": "Acrylique sur toile", "year": 2025, "price": 18000, "triptych": true, "images": ["/images/toiles/17-gauche.jpg", "/images/toiles/17-milieu.jpg", "/images/toiles/17-droite.jpg"]},
-  {"id": 18, "name": "Divergence", "dimensions": "100x100 cm", "technique": "Acrylique sur toile", "year": 2025, "price": 15000, "image": "/images/toiles/18.jpg"},
-  {"id": 19, "name": "Traces", "dimensions": "50x100 cm", "technique": "Acrylique sur toile", "year": 2024, "price": 7500, "image": "/images/toiles/19.jpg"},
-  {"id": 20, "name": "Amazonia", "dimensions": "100x130 cm", "technique": "Acrylique sur toile", "year": 2026, "price": 20000, "image": "/images/toiles/20.jpg"}
+  {
+    "id": 1,
+    "name": "Klein d'oeil",
+    "dimensions": "100x130 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2026,
+    "price": 20000,
+    "image": "/images/toiles/1.jpg",
+    "imageWidth": 1262,
+    "imageHeight": 1660
+  },
+  {
+    "id": 2,
+    "name": "Land HO",
+    "dimensions": "46x50 cm",
+    "technique": "Acrylique sur carton",
+    "year": 2024,
+    "price": 2500,
+    "image": "/images/toiles/2.jpg",
+    "imageWidth": 1291,
+    "imageHeight": 1550
+  },
+  {
+    "id": 3,
+    "name": "Across the Ocean",
+    "dimensions": "50x100 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 7500,
+    "image": "/images/toiles/3.jpg",
+    "imageWidth": 988,
+    "imageHeight": 1968
+  },
+  {
+    "id": 4,
+    "name": "Angle",
+    "dimensions": "54x60 cm",
+    "technique": "Acrylique sur carton",
+    "year": 2022,
+    "price": 2500,
+    "image": "/images/toiles/4.jpg",
+    "imageWidth": 1687,
+    "imageHeight": 2058
+  },
+  {
+    "id": 5,
+    "name": "Evasion",
+    "dimensions": "50x65 cm",
+    "technique": "Acrylique sur carton",
+    "year": 2022,
+    "price": 2500,
+    "image": "/images/toiles/5.jpg",
+    "imageWidth": 1224,
+    "imageHeight": 1598
+  },
+  {
+    "id": 6,
+    "name": "Tifosi",
+    "dimensions": "60x80 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2019,
+    "price": 6000,
+    "image": "/images/toiles/6.jpg",
+    "imageWidth": 1495,
+    "imageHeight": 1989
+  },
+  {
+    "id": 7,
+    "name": "Coquelicot",
+    "dimensions": "60x80 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2019,
+    "price": 6500,
+    "image": "/images/toiles/7.jpg",
+    "imageWidth": 1260,
+    "imageHeight": 1677
+  },
+  {
+    "id": 8,
+    "name": "Biarritz",
+    "dimensions": "100x100 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2025,
+    "price": 15000,
+    "image": "/images/toiles/8.jpg",
+    "imageWidth": 1389,
+    "imageHeight": 1393
+  },
+  {
+    "id": 9,
+    "name": "Shaolin Premium",
+    "dimensions": "70x70 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 10000,
+    "image": "/images/toiles/9.jpg",
+    "imageWidth": 1281,
+    "imageHeight": 1281
+  },
+  {
+    "id": 10,
+    "name": "BW Gum",
+    "dimensions": "73x92 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2025,
+    "price": 13000,
+    "image": "/images/toiles/10.jpg",
+    "imageWidth": 1212,
+    "imageHeight": 1484
+  },
+  {
+    "id": 11,
+    "name": "Cavalino",
+    "dimensions": "50x100 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 7500,
+    "image": "/images/toiles/11.jpg",
+    "imageWidth": 1144,
+    "imageHeight": 2282
+  },
+  {
+    "id": 12,
+    "name": "3451",
+    "dimensions": "73x92 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2025,
+    "price": 13000,
+    "image": "/images/toiles/12.jpg",
+    "imageWidth": 1221,
+    "imageHeight": 1550
+  },
+  {
+    "id": 13,
+    "name": "High efficiency",
+    "dimensions": "50x150 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 12500,
+    "image": "/images/toiles/13.jpg",
+    "imageWidth": 900,
+    "imageHeight": 2344
+  },
+  {
+    "id": 14,
+    "name": "Shaolin Dream",
+    "dimensions": "70x70 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 10000,
+    "image": "/images/toiles/14.jpg",
+    "imageWidth": 1585,
+    "imageHeight": 1786
+  },
+  {
+    "id": 15,
+    "name": "Euskadi",
+    "dimensions": "70x70 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 10000,
+    "image": "/images/toiles/15.jpg",
+    "imageWidth": 1478,
+    "imageHeight": 1604
+  },
+  {
+    "id": 16,
+    "name": "Dino's Lament",
+    "dimensions": "46x55 cm",
+    "technique": "Acrylique sur carton",
+    "year": 2025,
+    "price": 2500,
+    "image": "/images/toiles/16.jpg",
+    "imageWidth": 1155,
+    "imageHeight": 1397
+  },
+  {
+    "id": 17,
+    "name": "No U Turn",
+    "dimensions": "40x100 cm chacun (triptyque)",
+    "technique": "Acrylique sur toile",
+    "year": 2025,
+    "price": 18000,
+    "triptych": true,
+    "images": [
+      "/images/toiles/17-gauche.jpg",
+      "/images/toiles/17-milieu.jpg",
+      "/images/toiles/17-droite.jpg"
+    ],
+    "panelDimensions": [
+      {
+        "imageWidth": 1091,
+        "imageHeight": 2808
+      },
+      {
+        "imageWidth": 1084,
+        "imageHeight": 2771
+      },
+      {
+        "imageWidth": 1100,
+        "imageHeight": 2939
+      }
+    ],
+    "imageWidth": 1091,
+    "imageHeight": 2808
+  },
+  {
+    "id": 18,
+    "name": "Divergence",
+    "dimensions": "100x100 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2025,
+    "price": 15000,
+    "image": "/images/toiles/18.jpg",
+    "imageWidth": 1612,
+    "imageHeight": 1492
+  },
+  {
+    "id": 19,
+    "name": "Traces",
+    "dimensions": "50x100 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2024,
+    "price": 7500,
+    "image": "/images/toiles/19.jpg",
+    "imageWidth": 675,
+    "imageHeight": 1344
+  },
+  {
+    "id": 20,
+    "name": "Amazonia",
+    "dimensions": "100x130 cm",
+    "technique": "Acrylique sur toile",
+    "year": 2026,
+    "price": 20000,
+    "image": "/images/toiles/20.jpg",
+    "imageWidth": 1031,
+    "imageHeight": 1377
+  }
 ]

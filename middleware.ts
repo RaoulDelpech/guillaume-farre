@@ -72,8 +72,8 @@ export default function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // Pages d'auth toujours accessibles (login + vip entry)
-  if (pathname.endsWith('/login') || pathname.endsWith('/vip')) {
+  // Pages toujours accessibles (auth + demos temporaires)
+  if (pathname.endsWith('/login') || pathname.endsWith('/vip') || pathname.includes('/nav-demo') || pathname.includes('/frame-demo')) {
     return intlMiddleware(request);
   }
 

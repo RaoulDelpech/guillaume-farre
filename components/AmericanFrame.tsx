@@ -7,222 +7,194 @@ type FrameColor = 'oak' | 'walnut' | 'black' | 'white'
 interface AmericanFrameProps {
   src: string
   alt: string
+  imageWidth?: number
+  imageHeight?: number
   frameColor?: FrameColor
-  frameWidth?: number
-  gapWidth?: number
-  rotation?: number
   className?: string
 }
 
-// --- Frame color themes ---
-// Each theme defines the 4 side tones (directional lighting from top-left),
-// wood grain patterns, inner edge color, and highlight/shadow values.
+// --- Visual tuning constants ---
+// Bordure proportionnelle : face(10) + bevel(1) + lip(3) + gap(6) = 20px/cote
+const FRAME_FACE_PX = 10
+const FRAME_LIP_PX = 3
+const GAP_PX = 6
+const RECESS_SHADOW =
+  '0 0 2px rgba(0,0,0,0.6), 1px 2px 5px rgba(0,0,0,0.4)'
 
+// --- Theme per frame color ---
 interface FrameTheme {
-  sides: { top: string; right: string; bottom: string; left: string }
-  innerEdge: string
-  grainFine: string
+  face: {
+    top: string
+    right: string
+    bottom: string
+    left: string
+  }
+  // Inner bevel — the step down from face into the lip
+  innerBevel: { top: string; right: string; bottom: string; left: string }
+  lip: string
+  fond: string
+  grain: string
   grainWide: string
-  mitreLineColor: string
   sheen: string
   lighting: string
-  highlightTop: string
-  highlightLeft: string
-  shadowBottom: string
-  shadowRight: string
-  outerEdge: string
+  fondShadow: string
+  // Box-shadow on the frame face for 3D relief (no external borders)
+  faceHighlight: string
+  faceShadow: string
 }
 
 const themes: Record<FrameColor, FrameTheme> = {
   black: {
-    sides: {
-      top: '#292929',
-      left: '#242424',
-      right: '#191919',
-      bottom: '#151515',
+    face: {
+      top: '#151515',     // tres sombre partout
+      left: '#121212',
+      right: '#0c0c0c',
+      bottom: '#090909',
     },
-    innerEdge: '#0a0a0a',
-    grainFine: `repeating-linear-gradient(
-      87deg,
-      transparent 0px, transparent 3px,
-      rgba(255,255,255,0.018) 3px, rgba(255,255,255,0.018) 3.8px,
-      transparent 3.8px, transparent 7.5px,
-      rgba(255,255,255,0.01) 7.5px, rgba(255,255,255,0.01) 8.3px
-    )`,
-    grainWide: `repeating-linear-gradient(
-      88deg,
-      transparent 0px, transparent 20px,
-      rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 23px,
-      transparent 23px, transparent 48px
-    )`,
-    mitreLineColor: 'rgba(0,0,0,0.35)',
-    sheen: 'radial-gradient(ellipse at 25% 20%, rgba(255,255,255,0.045) 0%, transparent 50%)',
-    lighting: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 35%, transparent 65%, rgba(0,0,0,0.04) 100%)',
-    highlightTop: 'rgba(255,255,255,0.09)',
-    highlightLeft: 'rgba(255,255,255,0.05)',
-    shadowBottom: 'rgba(0,0,0,0.25)',
-    shadowRight: 'rgba(0,0,0,0.18)',
-    outerEdge: 'rgba(0,0,0,0.5)',
+    innerBevel: {
+      top: '#030303',     // step down sombre = creux perceptible
+      left: '#040404',
+      right: '#1a1a1a',   // edge catch-light du bevel (cote lumiere)
+      bottom: '#1e1e1e',
+    },
+    lip: '#050505',
+    fond: '#080808',
+    // Grain tres discret (texture bois sans eclaircir)
+    grain: `repeating-linear-gradient(87deg, transparent 0px, transparent 3px, rgba(255,255,255,0.02) 3px, rgba(255,255,255,0.02) 3.8px, transparent 3.8px, transparent 7.5px)`,
+    grainWide: `repeating-linear-gradient(88deg, transparent 0px, transparent 20px, rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 23px, transparent 23px, transparent 48px)`,
+    // PAS de sheen (evite la tache grise) — juste le grain
+    sheen: 'none',
+    lighting: 'none',
+    fondShadow: 'rgba(0,0,0,0.95)',
+    // Relief par les aretes : fine ligne de lumiere en haut-gauche, ombre en bas-droite
+    faceHighlight: 'inset 1px 1px 0 rgba(255,255,255,0.10), inset 0 1px 2px rgba(255,255,255,0.06)',
+    faceShadow: 'inset -1px -1px 0 rgba(0,0,0,0.8), inset 0 -1px 2px rgba(0,0,0,0.4)',
   },
 
   oak: {
-    sides: {
-      top: '#c9a86c',
-      left: '#bfa060',
-      right: '#a88548',
-      bottom: '#9c7a3e',
+    face: {
+      top: '#d4b478',
+      left: '#c5a565',
+      right: '#a0803c',
+      bottom: '#907030',
     },
-    innerEdge: '#8a6832',
-    grainFine: `repeating-linear-gradient(
-      87deg,
-      transparent 0px, transparent 2.5px,
-      rgba(101,67,33,0.08) 2.5px, rgba(101,67,33,0.08) 3.5px,
-      transparent 3.5px, transparent 6px,
-      rgba(101,67,33,0.05) 6px, rgba(101,67,33,0.05) 7px
-    )`,
-    grainWide: `repeating-linear-gradient(
-      89deg,
-      transparent 0px, transparent 14px,
-      rgba(101,67,33,0.1) 14px, rgba(101,67,33,0.1) 17px,
-      transparent 17px, transparent 35px,
-      rgba(101,67,33,0.06) 35px, rgba(101,67,33,0.06) 37px
-    )`,
-    mitreLineColor: 'rgba(60,35,10,0.3)',
-    sheen: 'radial-gradient(ellipse at 25% 20%, rgba(255,220,160,0.1) 0%, transparent 50%)',
-    lighting: 'linear-gradient(135deg, rgba(255,235,200,0.08) 0%, transparent 35%, transparent 65%, rgba(60,35,10,0.08) 100%)',
-    highlightTop: 'rgba(255,220,160,0.18)',
-    highlightLeft: 'rgba(255,220,160,0.1)',
-    shadowBottom: 'rgba(80,50,20,0.22)',
-    shadowRight: 'rgba(80,50,20,0.15)',
-    outerEdge: 'rgba(100,60,20,0.35)',
+    innerBevel: {
+      top: '#8a6828',
+      left: '#906e2c',
+      right: '#c0a060',
+      bottom: '#c8a868',
+    },
+    lip: '#6e4c1e',
+    fond: '#3a2a14',
+    grain: `repeating-linear-gradient(87deg, transparent 0px, transparent 2.5px, rgba(101,67,33,0.09) 2.5px, rgba(101,67,33,0.09) 3.5px, transparent 3.5px, transparent 6px, rgba(101,67,33,0.05) 6px, rgba(101,67,33,0.05) 7px)`,
+    grainWide: `repeating-linear-gradient(89deg, transparent 0px, transparent 14px, rgba(101,67,33,0.11) 14px, rgba(101,67,33,0.11) 17px, transparent 17px, transparent 35px)`,
+    sheen: 'radial-gradient(ellipse at 25% 18%, rgba(255,220,160,0.14) 0%, transparent 55%)',
+    lighting: 'linear-gradient(140deg, rgba(255,235,200,0.1) 0%, transparent 35%, transparent 65%, rgba(60,35,10,0.1) 100%)',
+    fondShadow: 'rgba(80,50,20,0.4)',
+    faceHighlight: 'inset 1px 1px 0 rgba(255,220,160,0.15)',
+    faceShadow: 'inset -1px -1px 0 rgba(60,35,10,0.25)',
   },
 
   walnut: {
-    sides: {
-      top: '#6b4226',
-      left: '#624030',
-      right: '#4e2d1a',
-      bottom: '#452718',
+    face: {
+      top: '#7a5030',
+      left: '#6e4828',
+      right: '#50301a',
+      bottom: '#442414',
     },
-    innerEdge: '#321a0e',
-    grainFine: `repeating-linear-gradient(
-      86deg,
-      transparent 0px, transparent 2px,
-      rgba(30,15,5,0.1) 2px, rgba(30,15,5,0.1) 3px,
-      transparent 3px, transparent 5.5px,
-      rgba(30,15,5,0.07) 5.5px, rgba(30,15,5,0.07) 6.5px
-    )`,
-    grainWide: `repeating-linear-gradient(
-      87.5deg,
-      transparent 0px, transparent 12px,
-      rgba(30,15,5,0.12) 12px, rgba(30,15,5,0.12) 15px,
-      transparent 15px, transparent 30px,
-      rgba(30,15,5,0.08) 30px, rgba(30,15,5,0.08) 32px
-    )`,
-    mitreLineColor: 'rgba(20,10,0,0.4)',
-    sheen: 'radial-gradient(ellipse at 25% 20%, rgba(180,120,60,0.07) 0%, transparent 50%)',
-    lighting: 'linear-gradient(135deg, rgba(180,120,60,0.06) 0%, transparent 35%, transparent 65%, rgba(20,10,5,0.08) 100%)',
-    highlightTop: 'rgba(180,120,60,0.14)',
-    highlightLeft: 'rgba(180,120,60,0.08)',
-    shadowBottom: 'rgba(20,10,5,0.28)',
-    shadowRight: 'rgba(20,10,5,0.2)',
-    outerEdge: 'rgba(30,15,5,0.45)',
+    innerBevel: {
+      top: '#3a1e0c',
+      left: '#3e2010',
+      right: '#6a4828',
+      bottom: '#705030',
+    },
+    lip: '#281208',
+    fond: '#1e1008',
+    grain: `repeating-linear-gradient(86deg, transparent 0px, transparent 2px, rgba(30,15,5,0.11) 2px, rgba(30,15,5,0.11) 3px, transparent 3px, transparent 5.5px)`,
+    grainWide: `repeating-linear-gradient(87.5deg, transparent 0px, transparent 12px, rgba(30,15,5,0.13) 12px, rgba(30,15,5,0.13) 15px, transparent 15px, transparent 30px)`,
+    sheen: 'radial-gradient(ellipse at 25% 18%, rgba(180,120,60,0.09) 0%, transparent 55%)',
+    lighting: 'linear-gradient(140deg, rgba(180,120,60,0.08) 0%, transparent 35%, transparent 65%, rgba(20,10,5,0.1) 100%)',
+    fondShadow: 'rgba(20,10,5,0.45)',
+    faceHighlight: 'inset 1px 1px 0 rgba(180,120,60,0.12)',
+    faceShadow: 'inset -1px -1px 0 rgba(20,10,5,0.3)',
   },
 
   white: {
-    sides: {
-      top: '#f2efea',
-      left: '#edebe6',
-      right: '#e0ddd6',
-      bottom: '#d8d4cc',
+    face: {
+      top: '#f5f2ed',
+      left: '#efece7',
+      right: '#dedad2',
+      bottom: '#d4d0c8',
     },
-    innerEdge: '#ccc8be',
-    grainFine: `repeating-linear-gradient(
-      88deg,
-      transparent 0px, transparent 4px,
-      rgba(0,0,0,0.012) 4px, rgba(0,0,0,0.012) 5px,
-      transparent 5px, transparent 10px
-    )`,
-    grainWide: `repeating-linear-gradient(
-      89deg,
-      transparent 0px, transparent 25px,
-      rgba(0,0,0,0.018) 25px, rgba(0,0,0,0.018) 28px,
-      transparent 28px, transparent 55px
-    )`,
-    mitreLineColor: 'rgba(0,0,0,0.1)',
-    sheen: 'radial-gradient(ellipse at 25% 20%, rgba(255,255,255,0.35) 0%, transparent 50%)',
-    lighting: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 35%, transparent 65%, rgba(0,0,0,0.04) 100%)',
-    highlightTop: 'rgba(255,255,255,0.5)',
-    highlightLeft: 'rgba(255,255,255,0.3)',
-    shadowBottom: 'rgba(0,0,0,0.07)',
-    shadowRight: 'rgba(0,0,0,0.05)',
-    outerEdge: 'rgba(0,0,0,0.12)',
+    innerBevel: {
+      top: '#ccc8c0',
+      left: '#d0ccc4',
+      right: '#eae7e2',
+      bottom: '#edeae5',
+    },
+    lip: '#bfbab0',
+    fond: '#f5f3f0',
+    grain: `repeating-linear-gradient(88deg, transparent 0px, transparent 4px, rgba(0,0,0,0.015) 4px, rgba(0,0,0,0.015) 5px, transparent 5px, transparent 10px)`,
+    grainWide: `repeating-linear-gradient(89deg, transparent 0px, transparent 25px, rgba(0,0,0,0.02) 25px, rgba(0,0,0,0.02) 28px, transparent 28px, transparent 55px)`,
+    sheen: 'radial-gradient(ellipse at 25% 18%, rgba(255,255,255,0.4) 0%, transparent 55%)',
+    lighting: 'linear-gradient(140deg, rgba(255,255,255,0.2) 0%, transparent 35%, transparent 65%, rgba(0,0,0,0.05) 100%)',
+    fondShadow: 'rgba(0,0,0,0.2)',
+    faceHighlight: 'inset 1px 1px 0 rgba(255,255,255,0.35)',
+    faceShadow: 'inset -1px -1px 0 rgba(0,0,0,0.08)',
   },
 }
 
 /**
  * Build the multi-layer CSS background for the frame face.
- *
- * Layer stack (top to bottom):
- * 1. Specular sheen (radial-gradient, top-left hotspot)
- * 2. Directional lighting (linear-gradient, top-left to bottom-right)
- * 3. Fine wood grain (repeating-linear-gradient)
- * 4. Wide wood grain bands (repeating-linear-gradient)
- * 5-8. Mitre joint dark lines (4x linear-gradient, one per corner)
- * 9-12. Mitre base colors forming the 4 frame sides (4x linear-gradient)
+ * Uses a conic-gradient for seamless directional shading (no visible mitre lines).
  */
-function buildFrameFaceBackground(theme: FrameTheme): string {
-  const { top, right, bottom, left } = theme.sides
-  const ml = theme.mitreLineColor
+function buildFrameFace(theme: FrameTheme): string {
+  const { top, right, bottom, left } = theme.face
 
-  // Each corner quarter gets a gradient that splits diagonally.
-  // The gradient direction is chosen so the 50% iso-line runs from
-  // the outer corner to the center of the frame = the mitre line.
-  const mitreLines = [
-    `linear-gradient(to bottom left, transparent 48%, ${ml} 49.5%, ${ml} 50.5%, transparent 52%) 0 0 / 50% 50% no-repeat`,
-    `linear-gradient(to bottom right, transparent 48%, ${ml} 49.5%, ${ml} 50.5%, transparent 52%) 100% 0 / 50% 50% no-repeat`,
-    `linear-gradient(to top right, transparent 48%, ${ml} 49.5%, ${ml} 50.5%, transparent 52%) 100% 100% / 50% 50% no-repeat`,
-    `linear-gradient(to top left, transparent 48%, ${ml} 49.5%, ${ml} 50.5%, transparent 52%) 0 100% / 50% 50% no-repeat`,
-  ]
-
-  const mitreBase = [
-    `linear-gradient(to bottom left, ${top} 49%, ${left} 51%) 0 0 / 50% 50% no-repeat`,
-    `linear-gradient(to bottom right, ${top} 49%, ${right} 51%) 100% 0 / 50% 50% no-repeat`,
-    `linear-gradient(to top right, ${bottom} 49%, ${right} 51%) 100% 100% / 50% 50% no-repeat`,
-    `linear-gradient(to top left, ${bottom} 49%, ${left} 51%) 0 100% / 50% 50% no-repeat`,
-  ]
+  // Conic gradient: smooth transition around the frame surface
+  // 0deg = top center, 90deg = right, 180deg = bottom, 270deg = left
+  // Replicates how light falls on the 4 sides without any seam line
+  const directional = `conic-gradient(${top} 0deg, ${right} 90deg, ${bottom} 180deg, ${left} 270deg, ${top} 360deg)`
 
   return [
     theme.sheen,
     theme.lighting,
-    theme.grainFine,
+    theme.grain,
     theme.grainWide,
-    ...mitreLines,
-    ...mitreBase,
-  ].join(', ')
+    directional,
+  ].filter(layer => layer !== 'none').join(', ')
 }
 
+/**
+ * Caisse americaine (shadow box / American frame).
+ *
+ * Layers from outside in:
+ *   1. Wall shadow (outer div)
+ *   2. Frame face (wood grain, mitre joints, directional lighting, inset relief)
+ *   3. Inner bevel (step down into the caisson — gives 3D depth to the frame)
+ *   4. Frame lip (the depth of the L-profile, dark)
+ *   5. Fond du caisson (matte back panel, visible around canvas)
+ *   6. Canvas (artwork, recessed with cast shadow)
+ *
+ * @author Lalou
+ */
 export default function AmericanFrame({
   src,
   alt,
+  imageWidth = 1200,
+  imageHeight = 900,
   frameColor = 'black',
-  frameWidth = 24,
-  gapWidth = 10,
-  rotation = 0,
   className = '',
 }: AmericanFrameProps) {
   const theme = themes[frameColor]
+  const frameFaceBg = buildFrameFace(theme)
+  const ib = theme.innerBevel
 
-  // Clamp rotation to safe range
-  const clampedRotation = Math.max(-5, Math.min(5, rotation))
-
-  // Rabbet width proportional to frame (the inner step/depth)
-  const rabbetWidth = Math.max(2, Math.round(frameWidth * 0.14))
-
-  // Scale image slightly when rotated so corners don't show the gap background
-  const imageScale = clampedRotation !== 0 ? 1 + Math.abs(clampedRotation) * 0.02 : 1
-
-  const frameFaceBg = buildFrameFaceBackground(theme)
+  // Canvas texture
+  const canvasGrain = [
+    'repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
+    'repeating-linear-gradient(90deg, transparent 0px, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
+  ].join(', ')
 
   return (
     <div
@@ -230,77 +202,108 @@ export default function AmericanFrame({
       style={{
         display: 'inline-block',
         maxWidth: '100%',
-        // Wall shadow: the frame casts a shadow on the wall behind it
+        // Wall shadow
         boxShadow: [
-          '5px 8px 24px -4px rgba(0,0,0,0.50)',
-          '2px 3px 10px -2px rgba(0,0,0,0.35)',
-          '0 1px 4px rgba(0,0,0,0.25)',
+          '4px 6px 20px -3px rgba(0,0,0,0.5)',
+          '2px 3px 8px -2px rgba(0,0,0,0.35)',
+          '0 1px 3px rgba(0,0,0,0.2)',
         ].join(', '),
       }}
     >
-      {/* Frame face — the wide visible front with wood grain + mitre joints */}
+      {/* Frame face — visible front wood surface with inset relief */}
       <div
         style={{
-          padding: frameWidth,
+          padding: FRAME_FACE_PX,
           background: frameFaceBg,
-          // Edge bevels: highlight top-left (light source), shadow bottom-right
-          boxShadow: [
-            `inset 0 1px 0 0 ${theme.highlightTop}`,
-            `inset 1px 0 0 0 ${theme.highlightLeft}`,
-            `inset 0 -1px 0 0 ${theme.shadowBottom}`,
-            `inset -1px 0 0 0 ${theme.shadowRight}`,
-            `0 0 0 1px ${theme.outerEdge}`,
-          ].join(', '),
+          boxShadow: [theme.faceHighlight, theme.faceShadow].join(', '),
         }}
       >
-        {/* Inner rabbet — the depth step between face and gap */}
-        <div
-          style={{
-            padding: rabbetWidth,
-            background: theme.innerEdge,
-            boxShadow:
-              'inset 1px 2px 4px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(0,0,0,0.25)',
-          }}
-        >
-          {/* Gap — the dark recessed fond de caisse */}
+          {/* Inner bevel — step down from face surface into the lip (reverse lighting: top dark, bottom bright) */}
           <div
             style={{
-              padding: gapWidth,
-              background: '#080808',
+              padding: 0,
+              borderTop: `1px solid ${ib.top}`,
+              borderLeft: `1px solid ${ib.left}`,
+              borderRight: `1px solid ${ib.right}`,
+              borderBottom: `1px solid ${ib.bottom}`,
             }}
           >
-            {/* Canvas wrapper — the artwork floats above the gap */}
+            {/* Frame lip — the visible depth edge of the L-profile */}
             <div
               style={{
-                overflow: 'hidden',
-                lineHeight: 0,
-                position: 'relative',
+                padding: FRAME_LIP_PX,
+                background: theme.lip,
                 boxShadow: [
-                  '0 1px 4px rgba(0,0,0,0.75)',
-                  '1px 2px 8px rgba(0,0,0,0.45)',
-                  '0 0 1px rgba(0,0,0,0.9)',
+                  'inset 1px 2px 4px rgba(0,0,0,0.6)',
+                  'inset -1px -1px 3px rgba(0,0,0,0.25)',
                 ].join(', '),
               }}
             >
-              <Image
-                src={src}
-                alt={alt}
-                width={1200}
-                height={900}
-                sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
-                quality={90}
-                className="w-full h-auto"
+              {/* Fond du caisson — matte back panel */}
+              <div
                 style={{
-                  display: 'block',
-                  transform:
-                    clampedRotation !== 0
-                      ? `rotate(${clampedRotation}deg) scale(${imageScale})`
-                      : undefined,
+                  padding: GAP_PX,
+                  background: theme.fond,
+                  boxShadow: [
+                    `inset 0 2px 5px ${theme.fondShadow}`,
+                    `inset 2px 0 4px ${theme.fondShadow}`,
+                  ].join(', '),
                 }}
-              />
+              >
+                {/* Canvas — artwork, recessed with cast shadow + subtle edge highlight */}
+                <div
+                  style={{
+                    position: 'relative',
+                    overflow: 'hidden',
+                    lineHeight: 0,
+                    boxShadow: [
+                      RECESS_SHADOW,
+                      // Subtle edge catch-light (canvas edge reflecting overhead light)
+                      '0 -1px 0 rgba(255,255,255,0.02)',
+                      '-1px 0 0 rgba(255,255,255,0.015)',
+                    ].join(', '),
+                  }}
+                >
+                  <Image
+                    src={src}
+                    alt={alt}
+                    width={imageWidth}
+                    height={imageHeight}
+                    sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
+                    quality={90}
+                    className="w-full h-auto"
+                    style={{ display: 'block' }}
+                  />
+                  {/* Canvas woven texture */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: canvasGrain,
+                      mixBlendMode: 'multiply',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  {/* Vignette — edges slightly darker */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      boxShadow: [
+                        'inset 0 2px 8px rgba(0,0,0,0.1)',
+                        'inset 0 -1px 6px rgba(0,0,0,0.06)',
+                        'inset 2px 0 6px rgba(0,0,0,0.05)',
+                        'inset -2px 0 6px rgba(0,0,0,0.05)',
+                      ].join(', '),
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-name: Deploy to VPS OVH
+name: Deploy to VPS IONOS
 
 on:
   push:
@@ -32,6 +32,16 @@ jobs:
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "SITE_PASSWORD=${{ secrets.SITE_PASSWORD }}" >> .env.local
             echo "SITE_MODE=pre-launch" >> .env.local
+            echo "Fixing tsconfig (remove same-runtime artifact)..."
+            python3 -c "
+import json
+with open('tsconfig.json') as f:
+    data = json.load(f)
+if 'jsxImportSource' in data.get('compilerOptions', {}):
+    del data['compilerOptions']['jsxImportSource']
+    with open('tsconfig.json', 'w') as f:
+        json.dump(data, f, indent=2)
+"
             echo "Cleaning build cache..."
             rm -rf .next
             echo "Building with increased memory..."

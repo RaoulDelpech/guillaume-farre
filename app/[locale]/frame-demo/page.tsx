@@ -14,7 +14,7 @@ export default function FrameDemoPage() {
 
   return (
     <main className="min-h-screen bg-neutral-100 py-16 px-4 sm:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-light text-neutral-800 mb-2 tracking-wide">
           Caisse americaine — Demo
         </h1>

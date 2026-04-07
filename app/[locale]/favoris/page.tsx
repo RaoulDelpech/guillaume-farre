@@ -32,7 +32,7 @@ export default function FavorisPage() {
     <main className="min-h-screen">
       <Navigation />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 max-w-5xl">
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">

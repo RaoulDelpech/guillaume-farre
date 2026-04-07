@@ -56,7 +56,7 @@ export default function CollectionneursPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
           <div className="bg-card border border-border rounded-2xl p-10">
             <h3 className="text-2xl font-light tracking-wide mb-6">Accès prioritaire</h3>
             <ul className="space-y-4 text-muted-foreground font-light">
@@ -167,7 +167,7 @@ export default function CollectionneursPage() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
           <div className="text-center p-8 bg-card border border-border rounded-xl">
             <h3 className="font-light tracking-wide text-lg mb-3">Authenticité</h3>
             <p className="text-sm text-muted-foreground font-light leading-relaxed">Certificat d'authenticité et traçabilité</p>

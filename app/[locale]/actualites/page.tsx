@@ -102,7 +102,7 @@ export default function ActualitesPage() {
       {/* Article à la une */}
       {featuredArticle && (
         <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="mb-8">
               <div className="text-primary text-xs font-light tracking-[0.2em] uppercase">
                 À la une
@@ -148,7 +148,7 @@ export default function ActualitesPage() {
 
       {/* Filtres par catégorie */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="flex flex-wrap gap-4 mb-16">
             {categories.map((cat) => (
               <button
@@ -164,7 +164,7 @@ export default function ActualitesPage() {
 
       {/* Grille d'articles */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 pb-28">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-10">
             {regularArticles.map((article) => (
               <Link

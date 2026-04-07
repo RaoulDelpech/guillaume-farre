@@ -131,7 +131,7 @@ export default function AdminReservationsPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white">
-      <div className="max-w-7xl mx-auto px-8 py-20">
+      <div className="max-w-6xl mx-auto px-8 py-20">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-extralight tracking-[0.08em] uppercase mb-4">

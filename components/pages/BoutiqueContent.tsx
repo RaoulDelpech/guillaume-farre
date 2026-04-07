@@ -20,7 +20,7 @@ export default function BoutiqueContent({ translations: t }: BoutiqueContentProp
   return (
     <div className="bg-gradient-to-b from-accent/20 to-background border-b border-border py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-block px-6 py-3 bg-primary rounded-full text-sm font-light tracking-widest mb-6">
               <EditableText textKey="shop.heroTag" as="span">

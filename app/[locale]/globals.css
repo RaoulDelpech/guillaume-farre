@@ -5,11 +5,11 @@
 @layer base {
   :root {
     /* Light mode - Palette Artistique */
-    --background: 40 18% 97%; /* #FAF8F5 - Blanc cassé chaud */
+    --background: 40 35% 96%; /* #F9F6F1 - Ivoire chaud */
     --foreground: 30 8% 12%;
-    --card: 0 0% 100%;
+    --card: 40 15% 99%; /* Blanc légèrement chaud */
     --card-foreground: 30 8% 12%;
-    --popover: 0 0% 100%;
+    --popover: 40 15% 99%;
     --popover-foreground: 30 8% 12%;
     --primary: 38 45% 48%; /* #A68D5E - Or/Bronze plus foncé pour lisibilité */
     --primary-foreground: 40 18% 97%;
@@ -57,7 +57,8 @@
     @apply bg-background text-foreground;
     /* Typographie unifiée - Style Shangti : une seule famille */
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    /* Fond blanc cassé simple - PAS de bruit SVG */
+    /* Éclat soyeux subtil — radial gradient ivoire */
+    background-image: radial-gradient(ellipse at 50% 25%, rgba(255, 253, 245, 0.35) 0%, transparent 65%);
   }
   h1,h2,h3,h4,h5,h6 {
     /* Même famille que le body, différenciée par poids et taille */

@@ -12,7 +12,7 @@ export default function BoutiqueGarantiesContent() {
   return (
     <div className="bg-card border-t border-border py-10 sm:py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <EditableText
             textKey="shop.guarantees.title"
             as="h3"

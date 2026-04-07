@@ -371,7 +371,7 @@ export default function PanierClient() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid lg:grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
         {/* Liste des produits */}
         <div className="lg:col-span-2 space-y-4 sm:space-y-6">

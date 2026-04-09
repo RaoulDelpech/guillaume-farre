@@ -113,6 +113,15 @@ export interface PhotoMetadata {
     monumental?: number; // Sur devis
   };
 
+  // Editions par format (nouveau systeme avril 2026)
+  editions?: Record<string, {
+    total: number;
+    sold: number;
+    available: number;
+    numberingStart: number;
+    numberingEnd: number;
+  }>;
+
   // Anciens champs gardés pour compatibilité (à migrer)
   isNumberedSeries?: boolean;
   price?: number;

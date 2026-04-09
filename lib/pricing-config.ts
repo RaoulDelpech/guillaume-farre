@@ -1,128 +1,109 @@
 /**
- * Configuration système pricing dynamique Guillaume Farré
+ * Configuration pricing Guillaume Farre
  *
  * @author Lalou
- * @date 2025-11-08
+ * @date 2026-04-09
  *
- * Système avec 2 prix de base + multiplicateurs auto + override manuel
- * Inspiré de Peter Lik, Andreas Gursky, Jeff Koons
+ * Tous les tirages sont signes et numerotes.
+ * 30 exemplaires max par photo standard (9+9+9+3).
+ * Exception photo 15 : monumental, 1 exemplaire, sur demande.
  */
 
-export interface PricingConfig {
-  // Prix de base TIRAGE ILLIMITÉ (référence A4)
-  prixBaseUnlimited: number;
+/** Formats de tirage disponibles */
+export type PrintFormat = '24x36' | '40x60' | '80x120' | 'hors-format' | 'monumental';
 
-  // Prix de base SÉRIE LIMITÉE (référence A3)
-  prixBaseLimited: number;
+/** Configuration d'un format */
+export interface FormatConfig {
+  label: string;
+  dimensions: string;
+  price: number | null; // null = sur demande
+  exemplaires: number;
+  numberingStart: number;
+  numberingEnd: number;
+}
 
-  // Multiplicateurs TIRAGE ILLIMITÉ (depuis A4 base)
-  multipliersUnlimited: {
-    a4: number;  // Base (toujours 1.0)
-    a3: number;  // +67% typique
-    a2: number;  // +167% typique
-  };
+/** Structure des editions par format dans les metadonnees photo */
+export interface EditionInfo {
+  total: number;
+  sold: number;
+  available: number;
+  numberingStart: number;
+  numberingEnd: number;
+}
 
-  // Multiplicateurs SÉRIE LIMITÉE (depuis A3 base)
-  multipliersLimited: {
-    a3: number;  // Base série limitée (toujours 1.0)
-    a2: number;  // +53% typique
-    a1: number;  // +100% typique
-  };
+/** Configuration complete de tous les formats */
+export const FORMATS: Record<PrintFormat, FormatConfig> = {
+  '24x36': {
+    label: '24 × 36 cm',
+    dimensions: '24 × 36 cm',
+    price: 500,
+    exemplaires: 9,
+    numberingStart: 1,
+    numberingEnd: 9,
+  },
+  '40x60': {
+    label: '40 × 60 cm',
+    dimensions: '40 × 60 cm',
+    price: 1000,
+    exemplaires: 9,
+    numberingStart: 10,
+    numberingEnd: 18,
+  },
+  '80x120': {
+    label: '80 × 120 cm',
+    dimensions: '80 × 120 cm',
+    price: 2000,
+    exemplaires: 9,
+    numberingStart: 19,
+    numberingEnd: 27,
+  },
+  'hors-format': {
+    label: 'Hors Format',
+    dimensions: 'Sur mesure',
+    price: null,
+    exemplaires: 3,
+    numberingStart: 28,
+    numberingEnd: 30,
+  },
+  'monumental': {
+    label: 'Format Monumental',
+    dimensions: 'Sur mesure',
+    price: null,
+    exemplaires: 1,
+    numberingStart: 1,
+    numberingEnd: 1,
+  },
+};
 
-  // Overrides manuels (si Guillaume veut prix custom)
-  // Format: 'unlimited-a4' | 'unlimited-a3' | 'unlimited-a2' | 'limited-a3' | 'limited-a2' | 'limited-a1'
-  manualPrices: Record<string, number>;
+/** Formats disponibles pour les photos standard (toutes sauf photo 15) */
+export const STANDARD_FORMATS: PrintFormat[] = ['24x36', '40x60', '80x120', 'hors-format'];
 
-  // Dernière mise à jour
-  lastUpdated: string;
+/** Formats avec un prix fixe (achat direct possible) */
+export const PURCHASABLE_FORMATS: PrintFormat[] = ['24x36', '40x60', '80x120'];
+
+/** Total exemplaires par photo standard : 9 + 9 + 9 + 3 = 30 */
+export const TOTAL_EXEMPLAIRES_STANDARD = 30;
+
+/**
+ * Retourne le prix d'un format, ou null si sur demande
+ */
+export function getFormatPrice(format: PrintFormat): number | null {
+  return FORMATS[format]?.price ?? null;
 }
 
 /**
- * Configuration par défaut validée avec Guillaume
- * Date: 2025-11-29 (mise à jour prix)
- *
- * PRIX OFFICIELS (CLAUDE.md 2025-11-29):
- * - A4: 250€ (99 ex.)
- * - A3: 500€ (99 ex.)
- * - A2: 800€ (99 ex.)
- * - A1: 1200€ (9 ex.)
+ * Formate un prix en euros
  */
-export const DEFAULT_PRICING: PricingConfig = {
-  // Prix de base
-  prixBaseUnlimited: 250,   // A4 = 250 €
-  prixBaseLimited: 500,     // A3 = 500 €
-
-  // Multiplicateurs (depuis A4 base pour unlimited)
-  multipliersUnlimited: {
-    a4: 1.0,    // 250 € (base)
-    a3: 2.0,    // 500 €
-    a2: 3.2,    // 800 €
-  },
-
-  // Multiplicateurs (depuis A3 base pour limited/grands formats)
-  multipliersLimited: {
-    a3: 1.0,    // 500 € (base)
-    a2: 1.6,    // 800 €
-    a1: 2.4,    // 1200 €
-  },
-
-  // Pas d'override manuel par défaut
-  manualPrices: {},
-
-  // Timestamp
-  lastUpdated: new Date().toISOString(),
-};
-
-/**
- * Type pour les catégories de prix
- */
-export type PricingCategory = 'unlimited' | 'limited';
-
-/**
- * Type pour les formats
- */
-export type PricingFormat = 'a4' | 'a3' | 'a2' | 'a1';
-
-/**
- * Clé composite catégorie-format
- */
-export type PricingKey = `${PricingCategory}-${PricingFormat}`;
-
-/**
- * Résultat de calcul de prix
- */
-export interface PriceCalculation {
-  price: number;           // Prix calculé ou manuel
-  isManual: boolean;       // true si override manuel
-  multiplier?: number;     // Multiplicateur utilisé (si auto)
-  basePrice?: number;      // Prix de base utilisé (si auto)
-  calculation?: string;    // Formule de calcul (ex: "150 × 1.67")
+export function formatPrice(price: number): string {
+  return price.toLocaleString('fr-FR', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }) + ' \u20AC';
 }
 
 /**
- * Formats disponibles par catégorie
+ * Verifie si un format est achetable directement (prix fixe)
  */
-export const FORMATS_BY_CATEGORY: Record<PricingCategory, PricingFormat[]> = {
-  unlimited: ['a4', 'a3', 'a2'],
-  limited: ['a3', 'a2', 'a1'],
-};
-
-/**
- * Labels français des formats
- */
-export const FORMAT_LABELS: Record<PricingFormat, string> = {
-  a4: 'Format A4',
-  a3: 'Format A3',
-  a2: 'Format A2',
-  a1: 'Format A1',
-};
-
-/**
- * Dimensions des formats (en cm)
- */
-export const FORMAT_DIMENSIONS: Record<PricingFormat, { width: number; height: number }> = {
-  a4: { width: 21, height: 29.7 },
-  a3: { width: 29.7, height: 42 },
-  a2: { width: 42, height: 59.4 },
-  a1: { width: 59.4, height: 84.1 },
-};
+export function isPurchasable(format: PrintFormat): boolean {
+  return FORMATS[format]?.price !== null;
+}

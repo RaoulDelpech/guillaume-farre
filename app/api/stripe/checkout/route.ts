@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from '@/lib/early-access';
 import { isRateLimited, getClientIP } from '@/lib/rate-limit';
-import { DEFAULT_PRICING } from '@/lib/pricing-config';
+import { CANONICAL_PRICES } from '@/lib/pricing-calculator';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -65,29 +65,22 @@ export async function POST(request: Request) {
       const photo = allPhotos.find(p => p.path === item.photoPath || p.filename === item.filename);
       if (!photo) continue;
 
-      // Si édition limitée, vérifier le stock
-      if (photo.categories?.includes('limited')) {
-        const format = item.format || 'A2';
-        const isGrandFormat = ['A1', 'A0', '2A0'].includes(format);
-        const stock = isGrandFormat ? photo.limitedEditionGrand : photo.limitedEditionPetit;
+      // Verifier le stock par format
+      if (photo.editions) {
+        const format = item.format || '24x36';
+        const edition = (photo.editions as Record<string, any>)[format];
 
-        if (!stock || stock.available <= 0 || stock.closed) {
-          console.error(`[Stripe] Édition épuisée: ${photo.filename} (${format})`);
+        if (edition && (edition.available <= 0)) {
+          console.error(`[Stripe] Edition epuisee: ${photo.filename} (${format})`);
           return NextResponse.json(
-            { error: `Cette édition est épuisée (${photo.title || photo.filename})` },
+            { error: `Cette edition est epuisee (${photo.title || photo.filename})` },
             { status: 400 }
           );
         }
       }
     }
 
-    // Table de prix canonique serveur (source de vérité)
-    const CANONICAL_PRICES: Record<string, number> = {
-      'A4': DEFAULT_PRICING.prixBaseUnlimited * DEFAULT_PRICING.multipliersUnlimited.a4,   // 250
-      'A3': DEFAULT_PRICING.prixBaseUnlimited * DEFAULT_PRICING.multipliersUnlimited.a3,   // 500
-      'A2': DEFAULT_PRICING.prixBaseUnlimited * DEFAULT_PRICING.multipliersUnlimited.a2,   // 800
-      'A1': DEFAULT_PRICING.prixBaseLimited * DEFAULT_PRICING.multipliersLimited.a1,       // 1200
-    };
+    // Prix canoniques importes depuis pricing-calculator (source de verite)
 
     // Validation et logs détaillés
     const validatedItems = items.map((item: any, index: number) => {

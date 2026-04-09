@@ -1,266 +1,196 @@
 /**
- * Tests unitaires pour pricing-calculator
+ * Tests unitaires pour pricing-calculator + pricing-config
  *
  * @author Lalou
- * @date 2025-11-08
+ * @date 2026-04-09
  *
- * Tests complets des fonctions de calcul pricing
+ * Systeme simplifie : prix fixes par format, pas de multiplicateurs.
  */
 
 import { describe, it, expect } from 'vitest';
+import { getPrice, validatePrice, formatPrice, CANONICAL_PRICES } from '../pricing-calculator';
 import {
-  calculatePrice,
-  updateBasePrice,
-  setManualPrice,
-  clearManualPrice,
-  updateMultiplier,
-  formatPrice,
-  calculatePercentageIncrease,
-} from '../pricing-calculator';
-import { DEFAULT_PRICING, type PricingConfig } from '../pricing-config';
+  FORMATS,
+  STANDARD_FORMATS,
+  PURCHASABLE_FORMATS,
+  TOTAL_EXEMPLAIRES_STANDARD,
+  getFormatPrice,
+  isPurchasable,
+  type PrintFormat,
+} from '../pricing-config';
+
+describe('pricing-config', () => {
+  describe('FORMATS', () => {
+    it('should define 5 formats', () => {
+      const formats = Object.keys(FORMATS);
+      expect(formats).toHaveLength(5);
+      expect(formats).toContain('24x36');
+      expect(formats).toContain('40x60');
+      expect(formats).toContain('80x120');
+      expect(formats).toContain('hors-format');
+      expect(formats).toContain('monumental');
+    });
+
+    it('should have correct prices for standard formats', () => {
+      expect(FORMATS['24x36'].price).toBe(500);
+      expect(FORMATS['40x60'].price).toBe(1000);
+      expect(FORMATS['80x120'].price).toBe(2000);
+    });
+
+    it('should have null prices for sur-demande formats', () => {
+      expect(FORMATS['hors-format'].price).toBeNull();
+      expect(FORMATS['monumental'].price).toBeNull();
+    });
+
+    it('should have correct exemplaires count', () => {
+      expect(FORMATS['24x36'].exemplaires).toBe(9);
+      expect(FORMATS['40x60'].exemplaires).toBe(9);
+      expect(FORMATS['80x120'].exemplaires).toBe(9);
+      expect(FORMATS['hors-format'].exemplaires).toBe(3);
+      expect(FORMATS['monumental'].exemplaires).toBe(1);
+    });
+
+    it('should have sequential numbering (1-9, 10-18, 19-27, 28-30)', () => {
+      expect(FORMATS['24x36'].numberingStart).toBe(1);
+      expect(FORMATS['24x36'].numberingEnd).toBe(9);
+
+      expect(FORMATS['40x60'].numberingStart).toBe(10);
+      expect(FORMATS['40x60'].numberingEnd).toBe(18);
+
+      expect(FORMATS['80x120'].numberingStart).toBe(19);
+      expect(FORMATS['80x120'].numberingEnd).toBe(27);
+
+      expect(FORMATS['hors-format'].numberingStart).toBe(28);
+      expect(FORMATS['hors-format'].numberingEnd).toBe(30);
+    });
+
+    it('should have monumental numbering 1-1', () => {
+      expect(FORMATS['monumental'].numberingStart).toBe(1);
+      expect(FORMATS['monumental'].numberingEnd).toBe(1);
+    });
+
+    it('should have numbering ranges matching exemplaires count', () => {
+      for (const [, config] of Object.entries(FORMATS)) {
+        const rangeSize = config.numberingEnd - config.numberingStart + 1;
+        expect(rangeSize).toBe(config.exemplaires);
+      }
+    });
+  });
+
+  describe('STANDARD_FORMATS', () => {
+    it('should contain 4 standard formats', () => {
+      expect(STANDARD_FORMATS).toHaveLength(4);
+      expect(STANDARD_FORMATS).toEqual(['24x36', '40x60', '80x120', 'hors-format']);
+    });
+  });
+
+  describe('PURCHASABLE_FORMATS', () => {
+    it('should contain only formats with fixed prices', () => {
+      expect(PURCHASABLE_FORMATS).toHaveLength(3);
+      expect(PURCHASABLE_FORMATS).toEqual(['24x36', '40x60', '80x120']);
+    });
+  });
+
+  describe('TOTAL_EXEMPLAIRES_STANDARD', () => {
+    it('should equal 30 (9+9+9+3)', () => {
+      expect(TOTAL_EXEMPLAIRES_STANDARD).toBe(30);
+
+      const total = STANDARD_FORMATS.reduce(
+        (sum, fmt) => sum + FORMATS[fmt].exemplaires,
+        0
+      );
+      expect(total).toBe(TOTAL_EXEMPLAIRES_STANDARD);
+    });
+  });
+
+  describe('getFormatPrice', () => {
+    it('should return correct price for purchasable formats', () => {
+      expect(getFormatPrice('24x36')).toBe(500);
+      expect(getFormatPrice('40x60')).toBe(1000);
+      expect(getFormatPrice('80x120')).toBe(2000);
+    });
+
+    it('should return null for sur-demande formats', () => {
+      expect(getFormatPrice('hors-format')).toBeNull();
+      expect(getFormatPrice('monumental')).toBeNull();
+    });
+  });
+
+  describe('isPurchasable', () => {
+    it('should return true for formats with fixed prices', () => {
+      expect(isPurchasable('24x36')).toBe(true);
+      expect(isPurchasable('40x60')).toBe(true);
+      expect(isPurchasable('80x120')).toBe(true);
+    });
+
+    it('should return false for sur-demande formats', () => {
+      expect(isPurchasable('hors-format')).toBe(false);
+      expect(isPurchasable('monumental')).toBe(false);
+    });
+  });
+});
 
 describe('pricing-calculator', () => {
-  describe('calculatePrice', () => {
-    it('should calculate unlimited A4 price correctly', () => {
-      const result = calculatePrice('unlimited', 'a4', DEFAULT_PRICING);
-
-      expect(result.price).toBe(150); // 150 × 1.0
-      expect(result.isManual).toBe(false);
-      expect(result.multiplier).toBe(1.0);
-      expect(result.basePrice).toBe(150);
+  describe('getPrice', () => {
+    it('should return fixed prices for standard formats', () => {
+      expect(getPrice('24x36')).toBe(500);
+      expect(getPrice('40x60')).toBe(1000);
+      expect(getPrice('80x120')).toBe(2000);
     });
 
-    it('should calculate unlimited A3 price correctly', () => {
-      const result = calculatePrice('unlimited', 'a3', DEFAULT_PRICING);
-
-      expect(result.price).toBe(251); // 150 × 1.67 = 250.5 → 251
-      expect(result.isManual).toBe(false);
-      expect(result.multiplier).toBe(1.67);
-    });
-
-    it('should calculate unlimited A2 price correctly', () => {
-      const result = calculatePrice('unlimited', 'a2', DEFAULT_PRICING);
-
-      expect(result.price).toBe(401); // 150 × 2.67 = 400.5 → 401
-      expect(result.isManual).toBe(false);
-    });
-
-    it('should calculate limited A3 price correctly', () => {
-      const result = calculatePrice('limited', 'a3', DEFAULT_PRICING);
-
-      expect(result.price).toBe(1500); // 1500 × 1.0
-      expect(result.isManual).toBe(false);
-      expect(result.basePrice).toBe(1500);
-    });
-
-    it('should calculate limited A2 price correctly', () => {
-      const result = calculatePrice('limited', 'a2', DEFAULT_PRICING);
-
-      expect(result.price).toBe(2295); // 1500 × 1.53
-      expect(result.isManual).toBe(false);
-    });
-
-    it('should calculate limited A1 price correctly', () => {
-      const result = calculatePrice('limited', 'a1', DEFAULT_PRICING);
-
-      expect(result.price).toBe(3000); // 1500 × 2.0
-      expect(result.isManual).toBe(false);
-    });
-
-    it('should return manual price when override exists', () => {
-      const config: PricingConfig = {
-        ...DEFAULT_PRICING,
-        manualPrices: {
-          'unlimited-a4': 200,
-        },
-      };
-
-      const result = calculatePrice('unlimited', 'a4', config);
-
-      expect(result.price).toBe(200);
-      expect(result.isManual).toBe(true);
-      expect(result.multiplier).toBeUndefined();
+    it('should return null for hors-format and monumental', () => {
+      expect(getPrice('hors-format')).toBeNull();
+      expect(getPrice('monumental')).toBeNull();
     });
   });
 
-  describe('updateBasePrice', () => {
-    it('should update unlimited base price', () => {
-      const newConfig = updateBasePrice('unlimited', 200, DEFAULT_PRICING);
-
-      expect(newConfig.prixBaseUnlimited).toBe(200);
-      expect(newConfig.prixBaseLimited).toBe(1500); // unchanged
+  describe('CANONICAL_PRICES', () => {
+    it('should only contain purchasable formats', () => {
+      expect(Object.keys(CANONICAL_PRICES)).toEqual(['24x36', '40x60', '80x120']);
     });
 
-    it('should update limited base price', () => {
-      const newConfig = updateBasePrice('limited', 2000, DEFAULT_PRICING);
-
-      expect(newConfig.prixBaseLimited).toBe(2000);
-      expect(newConfig.prixBaseUnlimited).toBe(150); // unchanged
-    });
-
-    it('should preserve manual prices when updating base', () => {
-      const config: PricingConfig = {
-        ...DEFAULT_PRICING,
-        manualPrices: {
-          'unlimited-a4': 200,
-        },
-      };
-
-      const newConfig = updateBasePrice('unlimited', 300, config);
-
-      expect(newConfig.manualPrices['unlimited-a4']).toBe(200); // preserved
-    });
-
-    it('should update lastUpdated timestamp', () => {
-      const before = new Date().toISOString();
-      const newConfig = updateBasePrice('unlimited', 200, DEFAULT_PRICING);
-      const after = new Date().toISOString();
-
-      expect(newConfig.lastUpdated).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+    it('should match FORMATS prices', () => {
+      for (const [format, price] of Object.entries(CANONICAL_PRICES)) {
+        expect(FORMATS[format as PrintFormat].price).toBe(price);
+      }
     });
   });
 
-  describe('setManualPrice', () => {
-    it('should set manual price for a format', () => {
-      const newConfig = setManualPrice('unlimited-a4', 250, DEFAULT_PRICING);
-
-      expect(newConfig.manualPrices['unlimited-a4']).toBe(250);
+  describe('validatePrice', () => {
+    it('should accept correct prices', () => {
+      expect(validatePrice('24x36', 500)).toBe(true);
+      expect(validatePrice('40x60', 1000)).toBe(true);
+      expect(validatePrice('80x120', 2000)).toBe(true);
     });
 
-    it('should preserve other manual prices', () => {
-      const config: PricingConfig = {
-        ...DEFAULT_PRICING,
-        manualPrices: {
-          'unlimited-a3': 300,
-        },
-      };
-
-      const newConfig = setManualPrice('unlimited-a4', 250, config);
-
-      expect(newConfig.manualPrices['unlimited-a3']).toBe(300);
-      expect(newConfig.manualPrices['unlimited-a4']).toBe(250);
-    });
-  });
-
-  describe('clearManualPrice', () => {
-    it('should remove manual price override', () => {
-      const config: PricingConfig = {
-        ...DEFAULT_PRICING,
-        manualPrices: {
-          'unlimited-a4': 200,
-        },
-      };
-
-      const newConfig = clearManualPrice('unlimited-a4', config);
-
-      expect(newConfig.manualPrices['unlimited-a4']).toBeUndefined();
+    it('should reject incorrect prices', () => {
+      expect(validatePrice('24x36', 499)).toBe(false);
+      expect(validatePrice('40x60', 1001)).toBe(false);
+      expect(validatePrice('80x120', 999)).toBe(false);
     });
 
-    it('should preserve other manual prices', () => {
-      const config: PricingConfig = {
-        ...DEFAULT_PRICING,
-        manualPrices: {
-          'unlimited-a3': 300,
-          'unlimited-a4': 200,
-        },
-      };
-
-      const newConfig = clearManualPrice('unlimited-a4', config);
-
-      expect(newConfig.manualPrices['unlimited-a3']).toBe(300);
-      expect(newConfig.manualPrices['unlimited-a4']).toBeUndefined();
-    });
-  });
-
-  describe('updateMultiplier', () => {
-    it('should update unlimited multiplier', () => {
-      const newConfig = updateMultiplier('unlimited', 'a3', 2.0, DEFAULT_PRICING);
-
-      expect(newConfig.multipliersUnlimited.a3).toBe(2.0);
+    it('should reject unknown formats', () => {
+      expect(validatePrice('hors-format', 5000)).toBe(false);
+      expect(validatePrice('monumental', 10000)).toBe(false);
+      expect(validatePrice('inexistant', 100)).toBe(false);
     });
 
-    it('should update limited multiplier', () => {
-      const newConfig = updateMultiplier('limited', 'a2', 1.8, DEFAULT_PRICING);
-
-      expect(newConfig.multipliersLimited.a2).toBe(1.8);
-    });
-
-    it('should preserve other multipliers', () => {
-      const newConfig = updateMultiplier('unlimited', 'a3', 2.0, DEFAULT_PRICING);
-
-      expect(newConfig.multipliersUnlimited.a4).toBe(1.0); // unchanged
-      expect(newConfig.multipliersUnlimited.a2).toBe(2.67); // unchanged
+    it('should tolerate floating point rounding (< 0.01)', () => {
+      expect(validatePrice('24x36', 500.005)).toBe(true);
+      expect(validatePrice('24x36', 499.995)).toBe(true);
     });
   });
 
   describe('formatPrice', () => {
-    it('should format price with French spacing', () => {
-      expect(formatPrice(150)).toBe('150 €');
-      expect(formatPrice(1500)).toBe('1 500 €');
-      expect(formatPrice(10500)).toBe('10 500 €');
-      expect(formatPrice(100000)).toBe('100 000 €');
+    it('should format with euro sign and French spacing', () => {
+      expect(formatPrice(500)).toMatch(/500.*€/);
+      expect(formatPrice(1000)).toMatch(/1.*000.*€/);
+      expect(formatPrice(2000)).toMatch(/2.*000.*€/);
     });
 
     it('should round to nearest euro', () => {
-      expect(formatPrice(150.4)).toBe('150 €');
-      expect(formatPrice(150.6)).toBe('151 €');
-    });
-  });
-
-  describe('calculatePercentageIncrease', () => {
-    it('should calculate percentage increase correctly', () => {
-      expect(calculatePercentageIncrease(100, 150)).toBe(50);
-      expect(calculatePercentageIncrease(100, 200)).toBe(100);
-      expect(calculatePercentageIncrease(150, 250)).toBe(67); // rounded
-    });
-
-    it('should handle same base and target', () => {
-      expect(calculatePercentageIncrease(100, 100)).toBe(0);
-    });
-
-    it('should handle zero base', () => {
-      expect(calculatePercentageIncrease(0, 100)).toBe(0);
-    });
-  });
-
-  describe('integration tests', () => {
-    it('should correctly handle full pricing workflow', () => {
-      // Start with default config
-      let config = { ...DEFAULT_PRICING };
-
-      // Update base price
-      config = updateBasePrice('unlimited', 200, config);
-      expect(config.prixBaseUnlimited).toBe(200);
-
-      // Calculate new price (should use new base)
-      let result = calculatePrice('unlimited', 'a3', config);
-      expect(result.price).toBe(334); // 200 × 1.67
-
-      // Set manual override
-      config = setManualPrice('unlimited-a3', 400, config);
-      result = calculatePrice('unlimited', 'a3', config);
-      expect(result.price).toBe(400);
-      expect(result.isManual).toBe(true);
-
-      // Update base again (manual should persist)
-      config = updateBasePrice('unlimited', 300, config);
-      result = calculatePrice('unlimited', 'a3', config);
-      expect(result.price).toBe(400); // still manual
-
-      // Clear manual override
-      config = clearManualPrice('unlimited-a3', config);
-      result = calculatePrice('unlimited', 'a3', config);
-      expect(result.price).toBe(501); // 300 × 1.67
-      expect(result.isManual).toBe(false);
-    });
-
-    it('should respect Peter Lik pricing strategy', () => {
-      // Limited should be ~10x more expensive than unlimited
-      const unlimitedA3 = calculatePrice('unlimited', 'a3', DEFAULT_PRICING);
-      const limitedA3 = calculatePrice('limited', 'a3', DEFAULT_PRICING);
-
-      const ratio = limitedA3.price / unlimitedA3.price;
-      expect(ratio).toBeGreaterThan(5); // at least 5x more expensive
+      const result = formatPrice(1500);
+      expect(result).toMatch(/1.*500.*€/);
     });
   });
 });

@@ -28,9 +28,8 @@ export interface PageImages {
     gallery: string[];
   };
   galerieSalles: {
-    empreintes: string;
-    atelier: string;
-    projections: string;
+    toiles: string;
+    photos: string;
   };
 }
 
@@ -97,40 +96,39 @@ function getDefaultPageImages(): PageImages {
   return {
     hero: {
       slides: [
-        "/images/works/atelier/atelier-063.jpg",
-        "/images/works/atelier/atelier-004.jpg",
-        "/images/works/atelier/atelier-020.jpg"
+        "/images/toiles/1.jpg",
+        "/images/toiles/8.jpg",
+        "/images/toiles/12.jpg"
       ]
     },
     home: {
-      artistPhoto: "/images/origins/atelier-deux-voitures-grises.jpg"
+      artistPhoto: "/images/toiles/9.jpg"
     },
     dino: {
-      heroBackground: "/images/origins/atelier-deux-voitures-grises.jpg",
-      originPhoto: "/images/origins/atelier-deux-voitures.jpg",
-      creativePhoto: "/images/works/atelier/atelier-030.jpg",
+      heroBackground: "/images/toiles/3.jpg",
+      originPhoto: "/images/toiles/6.jpg",
+      creativePhoto: "/images/toiles/10.jpg",
       gallery: [
-        "/images/works/empreintes/empreintes-001.jpg",
-        "/images/works/atelier/atelier-010.jpg",
-        "/images/works/projection/projection-001.jpg"
+        "/images/toiles/1.jpg",
+        "/images/toiles/5.jpg",
+        "/images/toiles/14.jpg"
       ]
     },
     origine: {
-      heroBackground: "/images/origins/childhood-noir-blanc-1.jpg",
-      childhoodPhoto: "/images/origins/childhood-noir-blanc-1.jpg",
+      heroBackground: "/images/toiles/7.jpg",
+      childhoodPhoto: "/images/toiles/7.jpg",
       gallery: [
-        "/images/works/atelier/atelier-004.jpg",
-        "/images/works/atelier/atelier-020.jpg",
-        "/images/works/empreintes/empreintes-007.jpg",
-        "/images/works/atelier/atelier-063.jpg",
-        "/images/origins/atelier-deux-voitures-grises.jpg",
-        "/images/works/projection/projection-001.jpg"
+        "/images/toiles/1.jpg",
+        "/images/toiles/4.jpg",
+        "/images/toiles/8.jpg",
+        "/images/toiles/12.jpg",
+        "/images/toiles/15.jpg",
+        "/images/toiles/18.jpg"
       ]
     },
     galerieSalles: {
-      empreintes: "/images/works/empreintes/empreintes-007.jpg",
-      atelier: "/images/works/atelier/atelier-004.jpg",
-      projections: "/images/works/projection/projection-001.jpg"
+      toiles: "/images/toiles/9.jpg",
+      photos: "/images/works/photos/1.jpg"
     }
   };
 }

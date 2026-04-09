@@ -23,7 +23,7 @@ export default function GalerieContent({ translations: t }: GalerieContentProps)
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url("/images/works/empreintes/empreintes-007.jpg")',
+          backgroundImage: 'url("/images/toiles/1.jpg")',
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

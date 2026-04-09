@@ -21,8 +21,8 @@ export interface Work {
   images: string[];
   description?: string;
 
-  // Categorie photo (empreinte, projection, atelier)
-  photoCategory?: 'empreinte' | 'projection' | 'atelier';
+  // Categorie photo
+  photoCategory?: string;
 
   // Collection (nom libre)
   collection?: string;
@@ -71,10 +71,7 @@ export async function getWorksFromMetadata(accessLevel: AccessLevel = 'normal'):
       .filter((photo: any) => {
         if (!photo.visible) return false;
         if (photo.status === 'trash' || photo.status === 'to-sort') return false;
-        // Atelier = jamais en vente (force)
-        if (photo.photoCategory === 'atelier') {
-          // Visible en galerie mais pas a vendre
-        } else if (photo.forSale === false) {
+        if (photo.forSale === false) {
           return false;
         }
         // Filtre date publication (toiles) : sur site normal, invisible avant la date
@@ -109,7 +106,7 @@ export async function getWorksFromMetadata(accessLevel: AccessLevel = 'normal'):
           priceSigned: photo.priceSigned,
           priceUnsigned: photo.priceUnsigned,
           canvasDetails: photo.canvasDetails,
-          forSale: photo.photoCategory === 'atelier' ? false : photo.forSale,
+          forSale: photo.forSale,
         };
       });
 
@@ -132,12 +129,7 @@ function filterWorksByAccess(works: Work[], accessLevel: AccessLevel): Work[] {
 
 // Default works if metadata file doesn't exist yet
 function getDefaultWorks(): Work[] {
-  const defaultPhotos = [
-    ...generateSeriesWorks('empreintes', 'Empreintes', 17),
-    ...generateSeriesWorks('atelier', 'Atelier', 10),
-    ...generateSeriesWorks('projection', 'Projection', 14),
-  ];
-  return defaultPhotos;
+  return generateSeriesWorks('photos', 'Photographie', 16);
 }
 
 function generateSeriesWorks(series: string, title: string, count: number, type: WorkType = 'photo'): Work[] {

@@ -83,27 +83,9 @@ export default function middleware(request: NextRequest) {
   const vipCookie = request.cookies.get(VIP_COOKIE);
   const hasVipAccess = !!vipCookie;
 
-  // --- Protection /toiles : seul le niveau 'secret' y accede ---
-  if (pathname.match(/\/(fr|en|it)\/toiles/)) {
-    if (!hasVipAccess) {
-      return NextResponse.redirect(new URL(`/${locale}/vip`, request.url));
-    }
-    const level = getVipLevel(vipCookie!.value);
-    if (level !== 'secret') {
-      // Niveau hidden → rediriger vers galerie (pas acces aux toiles/prix)
-      return NextResponse.redirect(new URL(`/${locale}/galerie`, request.url));
-    }
-    return intlMiddleware(request);
-  }
-
-  // --- VIP : acces restreint a /toiles uniquement ---
-  if (hasVipAccess) {
-    if (pathname.match(/\/(fr|en|it)\/toiles/)) {
-      return intlMiddleware(request);
-    }
-    // Toute autre page → rediriger vers toiles
-    return NextResponse.redirect(new URL(`/${locale}/toiles`, request.url));
-  }
+  // --- Protection /toiles desactivee pour dev ---
+  // TODO: reactiver la protection VIP pour production
+  // if (pathname.match(/\/(fr|en|it)\/toiles/)) { ... }
 
   // --- Mode pre-launch : tout le site est cache ---
   if (SITE_MODE === 'pre-launch' && !isAuthenticated) {

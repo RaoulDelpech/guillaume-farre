@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     default: "Guillaume Farré",
     template: "%s | Guillaume Farré",
   },
-  description: "Une Dino pour pinceau. Toiles. Photographies. Performances.",
+  description: "Guillaume Farré — Toiles et Photographies.",
   keywords: ["Guillaume Farré", "artiste", "Dino", "art abstrait", "photographie d'art", "séries limitées", "tableaux contemporains"],
   icons: {
     icon: "/favicon.svg",

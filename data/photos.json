@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "Tête d'affiche",
+    "image": "/images/works/photos/1.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 2,
+    "name": "Photographie 2",
+    "image": "/images/works/photos/2.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000
+  },
+  {
+    "id": 3,
+    "name": "Photographie 3",
+    "image": "/images/works/photos/3.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000
+  },
+  {
+    "id": 4,
+    "name": "Photographie 4",
+    "image": "/images/works/photos/4.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 5,
+    "name": "Photographie 5",
+    "image": "/images/works/photos/5.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000
+  },
+  {
+    "id": 6,
+    "name": "Photographie 6",
+    "image": "/images/works/photos/6.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 7,
+    "name": "Photographie 7",
+    "image": "/images/works/photos/7.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000
+  },
+  {
+    "id": 8,
+    "name": "Photographie 8",
+    "image": "/images/works/photos/8.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000
+  },
+  {
+    "id": 9,
+    "name": "Photographie 9",
+    "image": "/images/works/photos/9.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000
+  },
+  {
+    "id": 10,
+    "name": "Photographie 10",
+    "image": "/images/works/photos/10.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 11,
+    "name": "Photographie 11",
+    "image": "/images/works/photos/11.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 12,
+    "name": "Photographie 12",
+    "image": "/images/works/photos/12.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 13,
+    "name": "Photographie 13",
+    "image": "/images/works/photos/13.jpg",
+    "imageWidth": 1334,
+    "imageHeight": 2000
+  },
+  {
+    "id": 14,
+    "name": "Photographie 14",
+    "image": "/images/works/photos/14.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1334
+  },
+  {
+    "id": 15,
+    "name": "Photographie 15",
+    "image": "/images/works/photos/15.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  },
+  {
+    "id": 16,
+    "name": "Photographie 16",
+    "image": "/images/works/photos/16.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333
+  }
+]

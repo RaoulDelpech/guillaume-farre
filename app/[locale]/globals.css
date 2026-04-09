@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Light mode - Palette Artistique */
-    --background: 40 35% 96%; /* #F9F6F1 - Ivoire chaud */
+    --background: 43 40% 97%; /* #FDFBF6 - Ivoire lumineux */
     --foreground: 30 8% 12%;
     --card: 40 15% 99%; /* Blanc légèrement chaud */
     --card-foreground: 30 8% 12%;
@@ -57,8 +57,11 @@
     @apply bg-background text-foreground;
     /* Typographie unifiée - Style Shangti : une seule famille */
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    /* Éclat soyeux subtil — radial gradient ivoire */
-    background-image: radial-gradient(ellipse at 50% 25%, rgba(255, 253, 245, 0.35) 0%, transparent 65%);
+    /* Ivoire brillant texturé — éclat nacré avec grain subtil */
+    background-image:
+      radial-gradient(ellipse at 50% 20%, rgba(255, 254, 250, 0.6) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 60%, rgba(255, 252, 240, 0.2) 0%, transparent 40%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
   }
   h1,h2,h3,h4,h5,h6 {
     /* Même famille que le body, différenciée par poids et taille */
@@ -235,7 +238,55 @@ img { display: block; max-width: 100%; height: auto; box-shadow: none !important
   pointer-events: auto;
 }
 
-/* Accessibilité - Respect des préférences utilisateur pour les animations */
+/* === Portes d'atelier — charnieres, poignees, effet 3D === */
+.atelier-hinge {
+  width: 12px;
+  height: 28px;
+  border-radius: 2px;
+  border: 1px solid rgba(160, 130, 80, 0.35);
+  background: linear-gradient(
+    180deg,
+    rgba(215, 195, 155, 0.7) 0%,
+    rgba(185, 160, 115, 0.55) 40%,
+    rgba(165, 140, 100, 0.45) 100%
+  );
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+.atelier-hinge::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(140, 110, 65, 0.45);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Panneau porte — ombre portee au hover */
+.atelier-door-panel {
+  transition: box-shadow 700ms ease-out;
+}
+.atelier-door-link:hover .atelier-door-panel {
+  box-shadow:
+    0 14px 55px rgba(140, 115, 70, 0.14),
+    0 5px 22px rgba(140, 115, 70, 0.09);
+}
+
+/* Effet d'ouverture 3D au hover — porte gauche s'ouvre a gauche, droite a droite */
+.atelier-door-link:nth-child(1):hover .atelier-door-pivot {
+  transform: rotateY(-4deg);
+}
+.atelier-door-link:nth-child(2):hover .atelier-door-pivot {
+  transform: rotateY(4deg);
+}
+
+/* Accessibilite - Respect des preferences utilisateur pour les animations */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -246,4 +297,6 @@ img { display: block; max-width: 100%; height: auto; box-shadow: none !important
   .ripple-effect { animation: none !important; }
   .btn-underline-expand::after { transition: none !important; }
   .hover-glow:hover { filter: none !important; box-shadow: none !important; }
+  .atelier-door-link:hover .atelier-door-pivot { transform: none !important; }
+  .atelier-door-panel { box-shadow: none !important; }
 }

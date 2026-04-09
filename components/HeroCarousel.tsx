@@ -19,9 +19,9 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
 
   // Utilise les images passées en props ou les valeurs par défaut
   const slides = (slideImages || [
-    "/images/works/atelier/atelier-063.jpg",
-    "/images/works/atelier/atelier-004.jpg",
-    "/images/works/atelier/atelier-020.jpg",
+    "/images/toiles/1.jpg",
+    "/images/toiles/8.jpg",
+    "/images/toiles/12.jpg",
   ]).map(image => ({ image }));
 
   // Autoplay - 12 secondes par slide (cinématographique)
@@ -87,36 +87,15 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
         </div>
       ))}
 
-      {/* Content - Fixe, ne change pas avec les slides */}
-      <div className="relative h-full container flex flex-col justify-center items-center text-center text-white px-4 sm:px-6 lg:px-8 z-10">
+      {/* Content - Nom de l'artiste, sobre */}
+      <div className="relative h-full container flex flex-col justify-end items-center text-center text-white px-4 sm:px-6 lg:px-8 pb-16 md:pb-20 z-10">
         <div className="max-w-4xl">
-          {/* Titre signature - Décision audit - Éditable en mode admin */}
-          <EditableText
-            textKey="hero.title"
-            as="h1"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wider mb-4 md:mb-6 animate-fade-in"
-          >
-            Une Dino pour pinceau
-          </EditableText>
-
-          {/* Sous-titre - Les 3 médiums - Éditable en mode admin */}
-          <EditableText
-            textKey="hero.subtitle"
-            as="p"
-            className="text-lg sm:text-xl md:text-2xl font-light mb-10 md:mb-14 text-white/90 tracking-wide animate-fade-in-delay-1"
-          >
-            Toiles. Photographies. Performances.
-          </EditableText>
-
-          {/* CTA - Décision audit - Éditable en mode admin */}
-          <Link
-            href="/galerie"
-            className="inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 min-h-[48px] border border-white/70 hover:border-white text-white text-base md:text-lg font-light tracking-wide transition-all animate-fade-in-delay-2 hover:bg-white/10 duration-300"
-          >
-            <EditableText textKey="hero.cta" as="span">
-              Voir les créations
-            </EditableText>
-          </Link>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extralight tracking-[0.2em] uppercase animate-fade-in">
+            Guillaume Farré
+          </h1>
+          <p className="mt-3 text-sm sm:text-base font-light tracking-[0.15em] text-white/70 animate-fade-in-delay-1">
+            Toiles et Photographies
+          </p>
         </div>
       </div>
 

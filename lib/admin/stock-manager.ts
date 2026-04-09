@@ -8,8 +8,8 @@ import path from 'path';
  * // Lalou
  */
 
-const METADATA_DIR = path.join(process.cwd(), 'public/images/works');
-const METADATA_FILE = 'photos-metadata.json';
+const METADATA_DIR = path.join(process.cwd(), 'data');
+const METADATA_FILE = 'photo-metadata.json';
 
 interface PhotoMetadata {
   filename: string;

@@ -129,6 +129,7 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
                         imageHeight={ih}
                         frameColor="black"
                         className="w-full"
+                        priority={index === 0}
                       />
                     )}
                   </div>

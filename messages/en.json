@@ -59,6 +59,16 @@
       "name": "Guillaume Farré",
       "bio": "Sculptor and visual artist, Guillaume transforms the Ferrari into a creative tool. Each work captures the moment when 500 horses meet the canvas. A unique approach where automotive movement becomes artistic gesture.",
       "cta": "Discover the story"
+    },
+    "photos": {
+      "title": "Photographs",
+      "subtitle": "Numbered and signed prints — Limited editions",
+      "cta": "View the gallery"
+    },
+    "toiles": {
+      "title": "Paintings",
+      "subtitle": "Unique pieces created by the direct passage of a Ferrari on raw canvas",
+      "cta": "Contact us"
     }
   },
   "footer": {

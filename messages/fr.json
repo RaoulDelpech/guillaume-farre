@@ -59,6 +59,16 @@
       "name": "Guillaume Farré",
       "bio": "À Noël 1972, j'ai renversé un pot de peinture rouge avec ma monoplace à pédales. Les traces sur le plancher, je trouvais ça beau. Cinquante ans plus tard, c'est une Dino 246 GT qui laisse ses empreintes — sur des toiles.",
       "cta": "Découvrir mon histoire"
+    },
+    "photos": {
+      "title": "Photographies",
+      "subtitle": "Tirages numérotés et signés — Éditions limitées",
+      "cta": "Voir la galerie"
+    },
+    "toiles": {
+      "title": "Toiles",
+      "subtitle": "Pièces uniques créées par le passage direct d'une Ferrari sur toile vierge",
+      "cta": "Nous contacter"
     }
   },
   "footer": {

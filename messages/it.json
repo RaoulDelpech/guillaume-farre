@@ -59,6 +59,16 @@
       "name": "Guillaume Farré",
       "bio": "Scultore e artista plastico, Guillaume trasforma la Ferrari in strumento creativo. Ogni opera cattura l'istante in cui 500 cavalli incontrano la tela. Un approccio unico dove il movimento automobilistico diventa gesto artistico.",
       "cta": "Scoprire la storia"
+    },
+    "photos": {
+      "title": "Fotografie",
+      "subtitle": "Tirature numerate e firmate — Edizioni limitate",
+      "cta": "Vedere la galleria"
+    },
+    "toiles": {
+      "title": "Tele",
+      "subtitle": "Pezzi unici creati dal passaggio diretto di una Ferrari su tela grezza",
+      "cta": "Contattarci"
     }
   },
   "footer": {

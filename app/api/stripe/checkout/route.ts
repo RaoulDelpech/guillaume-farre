@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from '@/lib/early-access';
 import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 import { CANONICAL_PRICES } from '@/lib/pricing-calculator';
+import { calculateShippingFee, getShippingLabel, taxBreakdown, TVA_RATE } from '@/lib/shipping-config';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -166,6 +167,15 @@ export async function POST(request: Request) {
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
 
+    // Calcul frais de livraison (basé sur le plus grand format du panier)
+    const itemFormats = validatedItems.map((item: any) => item.format);
+    const shippingFeeCents = calculateShippingFee(itemFormats);
+    const shippingOnRequest = shippingFeeCents === null;
+    const shippingLabel = getShippingLabel(shippingFeeCents);
+
+    // Calcul TVA pour metadata comptable (prix TTC → HT + TVA 5,5%)
+    const tax = taxBreakdown(totalAmount);
+
     // Créer une session de paiement Stripe
     const session = await stripe.checkout.sessions.create({
       ...(customer ? { customer } : {}),
@@ -193,11 +203,32 @@ export async function POST(request: Request) {
                 ...(earlyCollectorMode && { original_price: item.price.toString() }),
               },
             },
-            unit_amount: Math.round(finalPrice * 100), // Prix avec réduction si applicable
+            unit_amount: Math.round(finalPrice * 100), // Prix TTC avec réduction si applicable
           },
           quantity: 1,
         };
       }),
+      // Frais de livraison : fixe pour petits formats, 0 EUR + message pour grands formats (sur devis)
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount' as const,
+            fixed_amount: {
+              amount: shippingOnRequest ? 0 : shippingFeeCents,
+              currency: 'eur',
+            },
+            display_name: shippingLabel,
+            ...(shippingOnRequest
+              ? {}
+              : {
+                  delivery_estimate: {
+                    minimum: { unit: 'business_day' as const, value: 5 },
+                    maximum: { unit: 'business_day' as const, value: 10 },
+                  },
+                }),
+          },
+        },
+      ],
       mode: 'payment',
       success_url: `${baseUrl}/${locale}/panier?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/${locale}/panier?canceled=true`,
@@ -211,6 +242,12 @@ export async function POST(request: Request) {
         items_orientations: validatedItems.map((item: any) => item.orientation).join(','),
         items_frames: validatedItems.map((item: any) => item.frame).join(','),
         payment_type: isHighValue ? 'high_value' : 'standard',
+        // Fiscalite (TVA 5,5% oeuvres d'art)
+        tva_rate: `${TVA_RATE * 100}%`,
+        total_ht: tax.totalHt.toString(),
+        total_tva: tax.tvaAmount.toString(),
+        total_ttc: tax.totalTtc.toString(),
+        shipping_fee_ttc: shippingOnRequest ? 'sur_devis' : (shippingFeeCents / 100).toString(),
         ...(earlyCollectorMode && {
           early_collector: 'true',
           early_collector_discount: '25%',

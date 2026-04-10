@@ -6,7 +6,7 @@ export default function PanierEmpty() {
       <div className="text-5xl sm:text-6xl mb-6 sm:mb-8">🛒</div>
       <h2 className="text-3xl sm:text-4xl font-light mb-4 sm:mb-6">Votre panier est vide</h2>
       <p className="text-lg sm:text-xl text-muted-foreground mb-8 sm:mb-12">
-        Decouvrez nos oeuvres disponibles
+        Découvrez nos œuvres disponibles
       </p>
       <Link
         href="/boutique"

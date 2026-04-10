@@ -106,8 +106,8 @@
     "year": 2025,
     "price": 13000,
     "image": "/images/toiles/10.jpg",
-    "imageWidth": 1212,
-    "imageHeight": 1484
+    "imageWidth": 1241,
+    "imageHeight": 1505
   },
   {
     "id": 11,
@@ -213,8 +213,8 @@
     "year": 2025,
     "price": 15000,
     "image": "/images/toiles/18.jpg",
-    "imageWidth": 1612,
-    "imageHeight": 1492
+    "imageWidth": 1635,
+    "imageHeight": 1518
   },
   {
     "id": 19,

@@ -1284,8 +1284,8 @@
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 4",
-    "imageWidth": 2000,
-    "imageHeight": 1333,
+    "imageWidth": 1333,
+    "imageHeight": 2000,
     "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
       "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
@@ -1305,8 +1305,8 @@
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 5",
-    "imageWidth": 1333,
-    "imageHeight": 2000,
+    "imageWidth": 2000,
+    "imageHeight": 1333,
     "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
       "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
@@ -1347,8 +1347,8 @@
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 7",
-    "imageWidth": 1333,
-    "imageHeight": 2000,
+    "imageWidth": 2000,
+    "imageHeight": 1333,
     "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
       "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
@@ -1410,8 +1410,8 @@
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 10",
-    "imageWidth": 2000,
-    "imageHeight": 1333,
+    "imageWidth": 1333,
+    "imageHeight": 2000,
     "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
       "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
@@ -1473,8 +1473,8 @@
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 13",
-    "imageWidth": 1334,
-    "imageHeight": 2000,
+    "imageWidth": 2000,
+    "imageHeight": 1333,
     "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
       "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
@@ -1494,8 +1494,8 @@
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 14",
-    "imageWidth": 2000,
-    "imageHeight": 1334,
+    "imageWidth": 1334,
+    "imageHeight": 2000,
     "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
       "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
@@ -1509,17 +1509,20 @@
     "path": "/images/works/photos/15.jpg",
     "category": "photos",
     "photoCategory": "photos",
-    "categories": ["monumental"],
+    "categories": ["limited"],
     "status": "active",
     "visible": true,
     "forSale": true,
     "isNumberedSeries": true,
     "title": "Photographie 15",
     "imageWidth": 2000,
-    "imageHeight": 1333,
-    "prices": { "monumental": null },
+    "imageHeight": 1334,
+    "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
     "editions": {
-      "monumental": { "total": 1, "sold": 0, "available": 1, "numberingStart": 1, "numberingEnd": 1 }
+      "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
+      "40x60": { "total": 9, "sold": 0, "available": 9, "numberingStart": 10, "numberingEnd": 18 },
+      "80x120": { "total": 9, "sold": 0, "available": 9, "numberingStart": 19, "numberingEnd": 27 },
+      "hors-format": { "total": 3, "sold": 0, "available": 3, "numberingStart": 28, "numberingEnd": 30 }
     }
   },
   {
@@ -1527,7 +1530,7 @@
     "path": "/images/works/photos/16.jpg",
     "category": "photos",
     "photoCategory": "photos",
-    "categories": ["limited"],
+    "categories": ["monumental"],
     "status": "active",
     "visible": true,
     "forSale": true,
@@ -1535,12 +1538,9 @@
     "title": "Photographie 16",
     "imageWidth": 2000,
     "imageHeight": 1333,
-    "prices": { "24x36": 500, "40x60": 1000, "80x120": 2000, "hors-format": null },
+    "prices": { "monumental": null },
     "editions": {
-      "24x36": { "total": 9, "sold": 0, "available": 9, "numberingStart": 1, "numberingEnd": 9 },
-      "40x60": { "total": 9, "sold": 0, "available": 9, "numberingStart": 10, "numberingEnd": 18 },
-      "80x120": { "total": 9, "sold": 0, "available": 9, "numberingStart": 19, "numberingEnd": 27 },
-      "hors-format": { "total": 3, "sold": 0, "available": 3, "numberingStart": 28, "numberingEnd": 30 }
+      "monumental": { "total": 1, "sold": 0, "available": 1, "numberingStart": 1, "numberingEnd": 1 }
     }
   }
 ]

@@ -24,15 +24,15 @@
     "id": 4,
     "name": "Photographie 4",
     "image": "/images/works/photos/4.jpg",
-    "imageWidth": 2000,
-    "imageHeight": 1333
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 5,
     "name": "Photographie 5",
     "image": "/images/works/photos/5.jpg",
-    "imageWidth": 1333,
-    "imageHeight": 2000
+    "imageWidth": 2000,
+    "imageHeight": 1333
   },
   {
     "id": 6,
@@ -45,8 +45,8 @@
     "id": 7,
     "name": "Photographie 7",
     "image": "/images/works/photos/7.jpg",
-    "imageWidth": 1333,
-    "imageHeight": 2000
+    "imageWidth": 2000,
+    "imageHeight": 1333
   },
   {
     "id": 8,
@@ -66,8 +66,8 @@
     "id": 10,
     "name": "Photographie 10",
     "image": "/images/works/photos/10.jpg",
-    "imageWidth": 2000,
-    "imageHeight": 1333
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 11,
@@ -87,22 +87,22 @@
     "id": 13,
     "name": "Photographie 13",
     "image": "/images/works/photos/13.jpg",
-    "imageWidth": 1334,
-    "imageHeight": 2000
+    "imageWidth": 2000,
+    "imageHeight": 1333
   },
   {
     "id": 14,
     "name": "Photographie 14",
     "image": "/images/works/photos/14.jpg",
-    "imageWidth": 2000,
-    "imageHeight": 1334
+    "imageWidth": 1334,
+    "imageHeight": 2000
   },
   {
     "id": 15,
     "name": "Photographie 15",
     "image": "/images/works/photos/15.jpg",
     "imageWidth": 2000,
-    "imageHeight": 1333
+    "imageHeight": 1334
   },
   {
     "id": 16,

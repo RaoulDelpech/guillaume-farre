@@ -108,7 +108,8 @@
     "lightboxNext": "Next photo",
     "numbering": "no.{start}-{end}",
     "onRequest": "On request",
-    "editionCount": "copies"
+    "editionCount": "copies",
+    "lightboxSwipe": "Swipe"
   },
   "contact": {
     "title": "Contact",
@@ -241,11 +242,13 @@
     "title": "The canvases",
     "subtitle": "Unique pieces — direct pass of the Dino 246 GT on canvas",
     "reserve": "Reserve this canvas",
+    "interest": "Enquire about this work",
     "reserved": "Reserved",
     "dimensions": "Dimensions",
     "technique": "Technique",
     "price": "Price",
     "disclaimer": "Canvases are not sold online. The reservation guarantees you direct contact with Guillaume.",
+    "disclaimerPublic": "Each canvas is a unique piece. For any information, please feel free to contact the artist.",
     "reserveForm": {
       "name": "Your name",
       "email": "Your email",
@@ -254,6 +257,22 @@
       "submit": "Confirm reservation",
       "cancel": "Cancel",
       "success": "Reservation confirmed — Guillaume will contact you within 48 hours."
+    },
+    "interestForm": {
+      "heading": "Interested in this work?",
+      "name": "Your name",
+      "email": "Your email address",
+      "phone": "Phone (optional)",
+      "messagePlaceholder": "Your message to the artist...",
+      "send": "Send",
+      "cancel": "Cancel",
+      "close": "Close",
+      "success": "Your message has been sent to Guillaume Farré. He will get back to you shortly.",
+      "mailSubject": "Enquiry",
+      "fromLabel": "From:",
+      "phoneLabel": "Phone:",
+      "messageLabel": "Message:",
+      "aboutWork": "Regarding the work:"
     }
   },
   "adminVip": {

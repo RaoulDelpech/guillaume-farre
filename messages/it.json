@@ -108,7 +108,8 @@
     "lightboxNext": "Foto successiva",
     "numbering": "n°{start}-{end}",
     "onRequest": "Su richiesta",
-    "editionCount": "esemplari"
+    "editionCount": "esemplari",
+    "lightboxSwipe": "Scorri"
   },
   "contact": {
     "title": "Contatto",
@@ -241,11 +242,13 @@
     "title": "Le tele",
     "subtitle": "Pezzi unici — passaggio diretto della Dino 246 GT sulla tela",
     "reserve": "Prenota questa tela",
+    "interest": "Richiedere informazioni",
     "reserved": "Prenotata",
     "dimensions": "Dimensioni",
     "technique": "Tecnica",
     "price": "Prezzo",
     "disclaimer": "Le tele non sono in vendita online. La prenotazione ti garantisce un contatto diretto con Guillaume.",
+    "disclaimerPublic": "Ogni tela è un pezzo unico. Per qualsiasi informazione, non esitate a contattare l'artista.",
     "reserveForm": {
       "name": "Il tuo nome",
       "email": "La tua email",
@@ -254,6 +257,22 @@
       "submit": "Conferma la prenotazione",
       "cancel": "Annulla",
       "success": "Prenotazione registrata — Guillaume ti contatterà entro 48 ore."
+    },
+    "interestForm": {
+      "heading": "Interessato a quest'opera?",
+      "name": "Il tuo nome",
+      "email": "Il tuo indirizzo email",
+      "phone": "Telefono (opzionale)",
+      "messagePlaceholder": "Il tuo messaggio all'artista...",
+      "send": "Invia",
+      "cancel": "Annulla",
+      "close": "Chiudi",
+      "success": "Il tuo messaggio è stato inviato a Guillaume Farré. Ti risponderà al più presto.",
+      "mailSubject": "Richiesta di informazioni",
+      "fromLabel": "Da:",
+      "phoneLabel": "Telefono:",
+      "messageLabel": "Messaggio:",
+      "aboutWork": "Riguardo l'opera:"
     }
   },
   "adminVip": {

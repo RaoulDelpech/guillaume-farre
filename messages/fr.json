@@ -108,7 +108,8 @@
     "lightboxNext": "Photo suivante",
     "numbering": "n°{start}-{end}",
     "onRequest": "Sur demande",
-    "editionCount": "exemplaires"
+    "editionCount": "exemplaires",
+    "lightboxSwipe": "Glisser"
   },
   "contact": {
     "title": "Contact",
@@ -241,11 +242,13 @@
     "title": "Les toiles",
     "subtitle": "Pièces uniques — passage direct de la Dino 246 GT sur la toile",
     "reserve": "Réserver cette toile",
+    "interest": "Demander des informations",
     "reserved": "Réservée",
     "dimensions": "Dimensions",
     "technique": "Technique",
     "price": "Prix",
     "disclaimer": "Les toiles ne sont pas en vente en ligne. La réservation vous garantit un contact direct avec Guillaume.",
+    "disclaimerPublic": "Chaque toile est une pièce unique. Pour toute information, n'hésitez pas à contacter l'artiste.",
     "reserveForm": {
       "name": "Votre nom",
       "email": "Votre email",
@@ -254,6 +257,22 @@
       "submit": "Confirmer la réservation",
       "cancel": "Annuler",
       "success": "Réservation enregistrée — Guillaume vous contactera sous 48h."
+    },
+    "interestForm": {
+      "heading": "Cette œuvre vous intéresse ?",
+      "name": "Votre nom",
+      "email": "Votre adresse email",
+      "phone": "Téléphone (optionnel)",
+      "messagePlaceholder": "Votre message à l'artiste...",
+      "send": "Envoyer",
+      "cancel": "Annuler",
+      "close": "Fermer",
+      "success": "Votre message a bien été transmis à Guillaume Farré. Il vous répondra dans les meilleurs délais.",
+      "mailSubject": "Demande d'information",
+      "fromLabel": "De :",
+      "phoneLabel": "Téléphone :",
+      "messageLabel": "Message :",
+      "aboutWork": "Concerne l'œuvre :"
     }
   },
   "adminVip": {

@@ -47,7 +47,22 @@ export default function Footer() {
             <ul className="space-y-3 sm:space-y-3 text-sm">
               <li>
                 <Link href="/galerie" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
-                  Créations
+                  Galerie
+                </Link>
+              </li>
+              <li>
+                <Link href="/boutique" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
+                  Boutique
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
+                  FAQ
                 </Link>
               </li>
             </ul>
@@ -69,8 +84,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/cgv" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
+                  CGV
+                </Link>
+              </li>
+              <li>
                 <Link href="/politique-de-confidentialite" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
                   {t("privacy")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/retours-echanges" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
+                  Retours & Échanges
                 </Link>
               </li>
             </ul>

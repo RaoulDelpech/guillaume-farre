@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import type { PhotoMetadata } from '@/lib/admin/photo-manager';
-import AIAnalysisPanel from '@/components/admin/AIAnalysisPanel';
-import InstagramSuggestionPanel from '@/components/admin/InstagramSuggestionPanel';
+// PHASE 1: Instagram et analyse commerciale désactivés temporairement
+// import AIAnalysisPanel from '@/components/admin/AIAnalysisPanel';
+// import InstagramSuggestionPanel from '@/components/admin/InstagramSuggestionPanel';
 import PhotoDescriptionAI from '@/components/admin/PhotoDescriptionAI';
 import AdminPhotoProductType from './AdminPhotoProductType';
 
@@ -255,7 +256,8 @@ export default function AdminPhotoCard({
               <span className="text-sm group-hover:text-primary transition-colors">A vendre</span>
             </label>
 
-            <AIAnalysisPanel
+            {/* PHASE 1: Analyse commerciale désactivée temporairement */}
+            {/* <AIAnalysisPanel
               photoFilename={photo.filename}
               category={photo.photoCategory || photo.category || 'autres'}
               currentPrice={photo.price}
@@ -269,7 +271,7 @@ export default function AdminPhotoCard({
                   },
                 });
               }}
-            />
+            /> */}
           </>
         )}
 
@@ -286,13 +288,13 @@ export default function AdminPhotoCard({
           }}
         />
 
-        {/* Instagram */}
-        <InstagramSuggestionPanel
+        {/* PHASE 1: Instagram désactivé temporairement */}
+        {/* <InstagramSuggestionPanel
           photoPath={photo.path}
           photoTitle={photo.filename}
           category={photo.category || 'autres'}
           seriesName={photo.seriesName}
-        />
+        /> */}
       </div>
     </div>
   );

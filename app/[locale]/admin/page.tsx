@@ -3,8 +3,9 @@
 import AdminLogin from "@/components/admin/AdminLogin";
 import DuplicateDetector from "@/components/admin/DuplicateDetector";
 import SimilarImagesPanel from "@/components/admin/SimilarImagesPanel";
-import InstagramConfig from "@/components/admin/InstagramConfig";
-import CommercialDashboard from "@/components/admin/CommercialDashboard";
+// PHASE 1: Instagram et analyse commerciale désactivés temporairement
+// import InstagramConfig from "@/components/admin/InstagramConfig";
+// import CommercialDashboard from "@/components/admin/CommercialDashboard";
 import PricingManager from "@/components/admin/PricingManager";
 import PhotoFilters from "@/components/admin/PhotoFilters";
 import PhotoFiltersPills from "@/components/admin/PhotoFiltersPills";
@@ -81,8 +82,9 @@ export default function AdminPage() {
           />
         </div>
 
-        <div className="mb-12"><InstagramConfig /></div>
-        <div className="mb-12"><CommercialDashboard photos={admin.photos} /></div>
+        {/* PHASE 1: Instagram et analyse commerciale désactivés temporairement */}
+        {/* <div className="mb-12"><InstagramConfig /></div> */}
+        {/* <div className="mb-12"><CommercialDashboard photos={admin.photos} /></div> */}
         <div className="mb-12"><PricingManager /></div>
 
         {/* Layout: sidebar filters + main content */}

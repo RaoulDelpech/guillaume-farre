@@ -1,12 +1,11 @@
 {
   "nav": {
     "accueil": "Accueil",
-    "galerie": "Galerie",
-    "boutique": "Commandes",
+    "photographies": "Photographies",
+    "toiles": "Toiles",
     "histoire": "Histoire",
     "atelier": "Atelier",
-    "contact": "Contact",
-    "panier": "Panier"
+    "contact": "Contact"
   },
   "hero": {
     "origine": {
@@ -45,8 +44,7 @@
       "description": "À huit ans, devant Amicalement Vôtre, je savais déjà ce que je voulais : être Danny Wilde. L'esthétique de la Dino est entrée dans mon cœur d'enfant, et elle n'en est jamais sortie. J'ai squatté la concession de Toulouse, collectionné les catalogues, traqué une 250 GTO en Chapy. La passion ne m'a jamais lâché.",
       "cta": "Lire l'histoire complète"
     },
-    "galerie": "Galerie",
-    "boutique": "Commandes"
+    "galerie": "Galerie"
   },
   "home": {
     "nextEvent": "Prochain évènement :",
@@ -98,27 +96,6 @@
     "filterEmpreintes": "Empreintes",
     "filterAtelier": "Atelier",
     "filterProjections": "Projections"
-  },
-  "shop": {
-    "heroTag": "COMMANDES",
-    "heroTitle": "Œuvres disponibles",
-    "heroDescription": "Tirages numérotés et signés, imprimés en Fine Art Giclée 12 couleurs sur papier archival. Certificat d'authenticité inclus.",
-    "title": "Œuvres disponibles",
-    "subtitle": "Photographies d'art — Éditions limitées",
-    "intro": "Ces photographies documentent l'instant où la Dino travaille sur la toile. Chaque tirage est numéroté, signé, et imprimé en qualité musée.",
-    "quality": {
-      "title": "Qualité professionnelle",
-      "certificate": "Certificat d'authenticité signé",
-      "delivery": "Livraison assurée et sécurisée",
-      "printing": "Impression Fine Art Giclée 12 couleurs",
-      "framing": "Encadrement professionnel noir ou aluminium"
-    },
-    "addToCart": "Ajouter au panier",
-    "price": "Prix",
-    "available": "Disponible",
-    "soldOut": "Épuisé",
-    "limitedEdition": "Édition limitée",
-    "numbered": "Numéroté et signé"
   },
   "contact": {
     "title": "Contact",

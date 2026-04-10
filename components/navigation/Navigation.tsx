@@ -19,9 +19,9 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { href: "/galerie", label: "Galerie" },
-    { href: "/boutique", label: "Boutique" },
-    { href: "/contact", label: "Contact" },
+    { href: "/galerie", label: t("photographies") },
+    { href: "/toiles", label: t("toiles") },
+    { href: "/contact", label: t("contact") },
   ];
 
   return (

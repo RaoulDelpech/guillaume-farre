@@ -47,12 +47,12 @@ export default function Footer() {
             <ul className="space-y-3 sm:space-y-3 text-sm">
               <li>
                 <Link href="/galerie" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
-                  Galerie
+                  Photographies
                 </Link>
               </li>
               <li>
-                <Link href="/boutique" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
-                  Boutique
+                <Link href="/toiles" className="text-muted-foreground hover:text-primary transition-colors font-light inline-block py-1 sm:py-0">
+                  Toiles
                 </Link>
               </li>
               <li>

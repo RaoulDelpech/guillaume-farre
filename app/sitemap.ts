@@ -15,16 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Pages statiques principales
   const staticPages = [
     '',              // Homepage
-    '/galerie',      // Galerie
-    '/boutique',     // Boutique
-    '/histoire',     // Histoire artiste
-    '/atelier',      // Atelier
+    '/galerie',      // Photographies
+    '/toiles',       // Toiles
     '/contact',      // Contact
-    '/panier',       // Panier
-    '/favoris',      // Favoris
-    // MASQUE - Pages désactivées
-    // '/dino',         // Page Dino
-    // '/origine',      // Page Origine
   ];
 
   // Générer URLs pour toutes les langues

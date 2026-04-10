@@ -1,12 +1,11 @@
 {
   "nav": {
     "accueil": "Home",
-    "galerie": "Gallery",
-    "boutique": "Orders",
+    "photographies": "Photographs",
+    "toiles": "Paintings",
     "histoire": "Story",
     "atelier": "Workshop",
-    "contact": "Contact",
-    "panier": "Cart"
+    "contact": "Contact"
   },
   "hero": {
     "origine": {
@@ -45,8 +44,7 @@
       "description": "A child fascinated by a racing Ferrari. Years of sketches, models, dreams. Then one day, the decision: no longer look at Ferraris. Use them to create. This is the story of a quest that transforms admiration into action.",
       "cta": "Read the full story"
     },
-    "galerie": "Gallery",
-    "boutique": "Orders"
+    "galerie": "Gallery"
   },
   "home": {
     "nextEvent": "Next event:",
@@ -98,27 +96,6 @@
     "filterEmpreintes": "Imprints",
     "filterAtelier": "Workshop",
     "filterProjections": "Projections"
-  },
-  "shop": {
-    "heroTag": "OFFICIAL SHOP",
-    "heroTitle": "Available Works",
-    "heroDescription": "Discover contemporary automotive art. Each work is certified, numbered, and delivered with its certificate of authenticity.",
-    "title": "Available Works",
-    "subtitle": "Art Photographs — Limited Editions",
-    "intro": "These photographs capture the moment when the Ferrari created the canvas. Fine Art Giclée printing, museum quality.",
-    "quality": {
-      "title": "Professional quality",
-      "certificate": "Signed certificate of authenticity",
-      "delivery": "Insured and secure delivery",
-      "printing": "Fine Art Giclée printing 12 colors",
-      "framing": "Professional black or aluminum framing"
-    },
-    "addToCart": "Add to cart",
-    "price": "Price",
-    "available": "Available",
-    "soldOut": "Sold out",
-    "limitedEdition": "Limited edition",
-    "numbered": "Numbered and signed"
   },
   "contact": {
     "title": "Contact",

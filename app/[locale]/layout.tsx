@@ -6,7 +6,6 @@ import { Suspense } from 'react';
 import { cookies } from 'next/headers';
 import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
-import { CartProvider } from '@/contexts/CartContext';
 import StructuredData from '@/components/StructuredData';
 import AdminWrapper from '@/components/admin/AdminWrapper';
 import VideoIntro from '@/components/VideoIntro';
@@ -127,7 +126,6 @@ export default async function RootLayout({
       </head>
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
-          <CartProvider>
             {/* Overlay Early Collector - pas pour VIP */}
             {!isVipVisitor && <EarlyAccessOverlay />}
             <AdminWrapper>
@@ -150,7 +148,6 @@ export default async function RootLayout({
               <GoogleAnalytics />
               <ImageProtection />
             </AdminWrapper>
-          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

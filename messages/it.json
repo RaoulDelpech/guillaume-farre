@@ -1,12 +1,11 @@
 {
   "nav": {
     "accueil": "Home",
-    "galerie": "Galleria",
-    "boutique": "Ordini",
+    "photographies": "Fotografie",
+    "toiles": "Tele",
     "histoire": "Storia",
     "atelier": "Laboratorio",
-    "contact": "Contatto",
-    "panier": "Carrello"
+    "contact": "Contatto"
   },
   "hero": {
     "origine": {
@@ -45,8 +44,7 @@
       "description": "Da bambino, ero affascinato dalle Ferrari da corsa. Ho passato anni a disegnarle, a costruire modellini, a sognare davanti a loro. Un giorno, ho preso una decisione: smettere di guardarle. Usarle per creare. È la storia di un'ossessione trasformata in metodo.",
       "cta": "Leggere la storia completa"
     },
-    "galerie": "Galleria",
-    "boutique": "Ordini"
+    "galerie": "Galleria"
   },
   "home": {
     "nextEvent": "Prossimo evento:",
@@ -98,27 +96,6 @@
     "filterEmpreintes": "Impronte",
     "filterAtelier": "Atelier",
     "filterProjections": "Proiezioni"
-  },
-  "shop": {
-    "heroTag": "NEGOZIO UFFICIALE",
-    "heroTitle": "Opere disponibili",
-    "heroDescription": "Scopri l'arte automobilistica contemporanea. Ogni opera è certificata, numerata e consegnata con il suo certificato di autenticità.",
-    "title": "Opere disponibili",
-    "subtitle": "Fotografie d'arte — Edizioni limitate",
-    "intro": "Queste fotografie catturano il momento in cui la Ferrari ha creato la tela. Stampa Fine Art Giclée, qualità museale.",
-    "quality": {
-      "title": "Qualità professionale",
-      "certificate": "Certificato di autenticità firmato",
-      "delivery": "Consegna assicurata e sicura",
-      "printing": "Stampa Fine Art Giclée 12 colori",
-      "framing": "Incorniciatura professionale nera o alluminio"
-    },
-    "addToCart": "Aggiungi al carrello",
-    "price": "Prezzo",
-    "available": "Disponibile",
-    "soldOut": "Esaurito",
-    "limitedEdition": "Edizione limitata",
-    "numbered": "Numerato e firmato"
   },
   "contact": {
     "title": "Contatto",

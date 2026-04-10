@@ -3,7 +3,6 @@ import Image from "next/image";
 import Navigation from "@/components/navigation/Navigation";
 import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
-import AddToCartSection from "@/components/AddToCartSection";
 import GalerieItemClient from "./GalerieItemClient";
 import { safeJsonLd } from "@/lib/safe-json-ld";
 import type { Metadata } from "next";
@@ -245,28 +244,15 @@ export default async function GalerieItemPage({
                 )}
               </div>
 
-              {/* Section achat (pas pour atelier) */}
-              {work.photoCategory !== 'atelier' && (
-                <div className="pt-8">
-                  <AddToCartSection
-                    productId={work.slug}
-                    productTitle={work.title}
-                    productImage={work.images[0]}
-                    productCategory={work.type === 'toile' ? 'Toile' : 'Photographie'}
-                    photoPath={work.images[0]}
-                  />
-                </div>
-              )}
-              {work.photoCategory === 'atelier' && (
-                <div className="pt-8">
-                  <a
-                    href={`mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(`A propos de : ${work.title}`)}`}
-                    className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all hover:bg-foreground/5"
-                  >
-                    Me contacter pour cette oeuvre
-                  </a>
-                </div>
-              )}
+              {/* Contact pour cette oeuvre */}
+              <div className="pt-8">
+                <a
+                  href={`mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(`A propos de : ${work.title}`)}`}
+                  className="inline-block px-8 py-4 border border-foreground/30 hover:border-foreground text-foreground font-light tracking-wide transition-all hover:bg-foreground/5"
+                >
+                  Me contacter pour cette oeuvre
+                </a>
+              </div>
             </div>
           </div>
         </div>

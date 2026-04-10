@@ -21,12 +21,21 @@ export function paintingMaxWidth(w: number, h: number, targetVH: number): string
   return `min(100%, calc((${targetVH}vh - ${FRAME_TOTAL_PX}px) * ${ar} + ${FRAME_TOTAL_PX}px))`;
 }
 
-/** Linen-like background used on both main page and lightbox. */
+/** Linen-like background (used by lightbox). */
 export const LINEN_BG = {
   backgroundColor: "#FAF7F2",
   backgroundImage: [
     "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 3px)",
     "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.006) 3px, rgba(0,0,0,0.006) 4px)",
     "radial-gradient(ellipse at 50% 30%, rgba(255,255,245,0.5) 0%, transparent 70%)",
+  ].join(", "),
+} as const;
+
+/** Dark gallery background for VIP toiles page. */
+export const DARK_BG = {
+  backgroundColor: "#0A0A0A",
+  backgroundImage: [
+    "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px)",
+    "repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(255,255,255,0.005) 4px, rgba(255,255,255,0.005) 5px)",
   ].join(", "),
 } as const;

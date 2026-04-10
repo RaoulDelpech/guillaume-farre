@@ -83,9 +83,16 @@ export default function middleware(request: NextRequest) {
   const vipCookie = request.cookies.get(VIP_COOKIE);
   const hasVipAccess = !!vipCookie;
 
-  // --- Protection /toiles desactivee pour dev ---
-  // TODO: reactiver la protection VIP pour production
-  // if (pathname.match(/\/(fr|en|it)\/toiles/)) { ... }
+  // Protection /toiles — acces VIP secret uniquement
+  if (pathname.match(/\/(fr|en|it)\/toiles/)) {
+    if (!hasVipAccess) {
+      return NextResponse.redirect(new URL(`/${locale}/vip`, request.url));
+    }
+    const vipLevel = getVipLevel(vipCookie!.value);
+    if (vipLevel !== 'secret') {
+      return NextResponse.redirect(new URL(`/${locale}/vip`, request.url));
+    }
+  }
 
   // --- Mode pre-launch : tout le site est cache ---
   if (SITE_MODE === 'pre-launch' && !isAuthenticated) {

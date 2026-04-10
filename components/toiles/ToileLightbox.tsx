@@ -1,7 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import type { Toile } from "./types";
-import { formatPrice, LINEN_BG } from "./toiles-utils";
+import { formatPrice } from "./toiles-utils";
+
+const LIGHTBOX_BG = {
+  backgroundColor: "#050505",
+} as const;
 
 interface ToileLightboxProps {
   toiles: Toile[];
@@ -27,7 +31,7 @@ export default function ToileLightbox({
       <motion.div
         key="toile-lightbox"
         className="fixed inset-0 z-50"
-        style={LINEN_BG}
+        style={LIGHTBOX_BG}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -35,7 +39,7 @@ export default function ToileLightbox({
       >
         {/* Close */}
         <button
-          className="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center text-neutral-400 hover:text-neutral-800 transition-colors"
+          className="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center text-neutral-500 hover:text-neutral-200 transition-colors"
           onClick={onClose}
           aria-label="Fermer"
         >
@@ -47,7 +51,7 @@ export default function ToileLightbox({
         {/* Prev */}
         {lightboxIdx > 0 && (
           <button
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-neutral-300 hover:text-neutral-700 transition-colors"
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-neutral-600 hover:text-neutral-300 transition-colors"
             onClick={(e) => { e.stopPropagation(); onPrev(); }}
             aria-label="Precedent"
           >
@@ -60,7 +64,7 @@ export default function ToileLightbox({
         {/* Next */}
         {lightboxIdx < toiles.length - 1 && (
           <button
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-neutral-300 hover:text-neutral-700 transition-colors"
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center text-neutral-600 hover:text-neutral-300 transition-colors"
             onClick={(e) => { e.stopPropagation(); onNext(); }}
             aria-label="Suivant"
           >
@@ -117,14 +121,14 @@ export default function ToileLightbox({
         <div className="absolute bottom-0 left-0 right-0 px-8 py-5 pointer-events-none">
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-end justify-between gap-2">
             <div>
-              <h2 className="text-lg md:text-xl text-neutral-800 font-light tracking-wide">
+              <h2 className="text-lg md:text-xl text-neutral-200 font-light tracking-wide">
                 {toile.name}
               </h2>
-              <p className="text-neutral-400 text-sm font-light mt-1">
+              <p className="text-neutral-500 text-sm font-light mt-1">
                 {toile.dimensions} — {toile.technique} — {toile.year}
               </p>
             </div>
-            <p className="text-xl text-[#7A6030] font-light tracking-wide">
+            <p className="text-xl text-[#B8956A] font-light tracking-wide">
               {formatPrice(toile.price)}
             </p>
           </div>

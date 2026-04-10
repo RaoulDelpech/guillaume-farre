@@ -9,7 +9,7 @@ interface TimelineNavProps {
 
 /**
  * Timeline nav — courbe subtile (parabole douce).
- * L'actif est tout a gauche, les voisins s'eloignent legerement.
+ * Adapte pour fond sombre.
  */
 export default function TimelineNav({ toiles, activeIdx, onSelect }: TimelineNavProps) {
   return (
@@ -44,7 +44,7 @@ export default function TimelineNav({ toiles, activeIdx, onSelect }: TimelineNav
                   height: isActive ? 44 : distance <= 2 ? 22 : 10,
                   borderRadius: distance > 3 ? '50%' : 2,
                   transition: 'width 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), border-radius 0.5s ease',
-                  boxShadow: isActive ? '0 1px 6px rgba(0,0,0,0.25)' : 'none',
+                  boxShadow: isActive ? '0 1px 6px rgba(0,0,0,0.5)' : 'none',
                 }}
               >
                 <Image
@@ -61,7 +61,7 @@ export default function TimelineNav({ toiles, activeIdx, onSelect }: TimelineNav
                 style={{
                   width: isActive ? 8 : 5,
                   height: isActive ? 8 : 5,
-                  background: isActive ? '#7A6030' : 'rgba(160,160,160,0.35)',
+                  background: isActive ? '#B8956A' : 'rgba(255,255,255,0.2)',
                   transition: 'all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
                 }}
               />
@@ -72,7 +72,7 @@ export default function TimelineNav({ toiles, activeIdx, onSelect }: TimelineNav
                 className="block whitespace-nowrap overflow-hidden text-ellipsis"
                 style={{
                   fontSize: 11,
-                  color: '#7A6030',
+                  color: '#B8956A',
                   fontWeight: 300,
                   letterSpacing: '0.05em',
                   maxWidth: 110,

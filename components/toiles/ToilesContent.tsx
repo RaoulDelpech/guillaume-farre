@@ -12,7 +12,7 @@ import TimelineNav from "./TimelineNav";
 import ToileLightbox from "./ToileLightbox";
 import ReservationForm from "./ReservationForm";
 import { useToilesNavigation } from "@/hooks/useToilesNavigation";
-import { BROWSE_VH, LINEN_BG, formatPrice, paintingMaxWidth } from "./toiles-utils";
+import { BROWSE_VH, DARK_BG, formatPrice, paintingMaxWidth } from "./toiles-utils";
 import type { Toile, ReservationForm as ReservationFormType } from "./types";
 
 // Re-export types for backwards compatibility
@@ -20,15 +20,14 @@ export type { Toile, PanelDimension } from "./types";
 
 /**
  * Contenu page Toiles — VIP uniquement
- * Navigation laterale timeline arc (incurve a gauche),
- * tableaux a ~40% de la taille max, lightbox 100% au clic.
+ * Fond sombre, cadres americains noirs, design haut de gamme.
  *
  * @author Lalou
  */
 export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
   const t = useTranslations("canvas");
   const [selectedCanvas, setSelectedCanvas] = useState<number | null>(null);
-  const [form, setForm] = useState<ReservationFormType>({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState<ReservationFormType>({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState<number | null>(null);
 
@@ -46,12 +45,13 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
           name: form.name,
           email: form.email,
           phone: form.phone,
+          message: form.message || undefined,
         }),
       });
       if (res.ok) {
         setSubmitted(toile.id);
         setSelectedCanvas(null);
-        setForm({ name: "", email: "", phone: "" });
+        setForm({ name: "", email: "", phone: "", message: "" });
       }
     } catch {
       // silent
@@ -61,17 +61,23 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
   };
 
   return (
-    <div className="min-h-screen text-[#1a1a1a]" style={LINEN_BG}>
+    <div className="min-h-screen text-neutral-100" style={DARK_BG}>
       {/* Header */}
       <div className="pt-32 pb-16 px-8 md:px-16 text-center">
         <TextReveal
           tag="h1"
-          className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-[0.08em] uppercase mb-10"
+          className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-[0.08em] uppercase mb-4 text-neutral-100"
         >
           {t("title")}
         </TextReveal>
+        <TextReveal
+          tag="p"
+          className="text-sm md:text-base font-light tracking-[0.15em] uppercase text-neutral-500 mb-10"
+        >
+          {t("subtitle")}
+        </TextReveal>
         <div className="flex justify-center">
-          <LineReveal color="rgba(140,110,50,0.4)" width="80px" delay={0.6} />
+          <LineReveal color="rgba(184,149,106,0.4)" width="80px" delay={0.6} />
         </div>
       </div>
 
@@ -131,7 +137,7 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
                 {/* Info bar */}
                 <div className="mt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4 mx-auto max-w-2xl">
                   <ScrollReveal delay={index * 0.08 + 0.2}>
-                    <h3 className="text-xl md:text-2xl font-extralight tracking-wide">{toile.name}</h3>
+                    <h3 className="text-xl md:text-2xl font-extralight tracking-wide text-neutral-100">{toile.name}</h3>
                     <p className="text-neutral-500 text-xs font-light tracking-wider mt-1">
                       {toile.dimensions} — {toile.technique} — {toile.year}
                     </p>
@@ -139,12 +145,12 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
 
                   <ScrollReveal delay={index * 0.08 + 0.3}>
                     <div className="flex items-end gap-6">
-                      <p className="text-xl md:text-2xl font-extralight tracking-wide text-[#7A6030]">
+                      <p className="text-xl md:text-2xl font-extralight tracking-wide text-[#B8956A]">
                         {formatPrice(toile.price)}
                       </p>
 
                       {submitted === toile.id ? (
-                        <p className="text-[#8B7340] text-xs tracking-[0.2em] uppercase pb-1">
+                        <p className="text-[#B8956A] text-xs tracking-[0.2em] uppercase pb-1">
                           {t("reserveForm.success")}
                         </p>
                       ) : selectedCanvas === toile.id ? (
@@ -159,7 +165,7 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
                         <MagneticButton strength={0.25}>
                           <button
                             onClick={() => setSelectedCanvas(toile.id)}
-                            className="py-2.5 px-6 text-neutral-500 text-[10px] tracking-[0.3em] uppercase hover:text-[#7A6030] transition-all duration-500 border border-neutral-300 hover:border-[#B8956A]"
+                            className="py-2.5 px-6 text-neutral-400 text-[10px] tracking-[0.3em] uppercase hover:text-[#B8956A] transition-all duration-500 border border-neutral-600 hover:border-[#B8956A]"
                           >
                             {t("reserve")}
                           </button>
@@ -171,13 +177,20 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
 
                 {index < toiles.length - 1 && (
                   <div className="mt-16 md:mt-20 flex justify-center">
-                    <LineReveal color="rgba(0,0,0,0.08)" width="100%" delay={index * 0.08 + 0.4} />
+                    <LineReveal color="rgba(255,255,255,0.06)" width="100%" delay={index * 0.08 + 0.4} />
                   </div>
                 )}
               </div>
             );
           })}
         </div>
+      </div>
+
+      {/* Disclaimer */}
+      <div className="pb-20 px-8 text-center">
+        <p className="text-neutral-600 text-xs tracking-[0.15em] uppercase font-light max-w-lg mx-auto">
+          {t("disclaimer")}
+        </p>
       </div>
 
       <ToileLightbox

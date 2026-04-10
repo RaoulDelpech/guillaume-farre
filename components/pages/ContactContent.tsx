@@ -117,7 +117,7 @@ export default function ContactContent() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-4 bg-background border border-border rounded font-light focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-4 bg-background border border-border rounded font-light text-base focus:outline-none focus:border-primary transition-colors"
                     placeholder="votre@email.com"
                   />
                 </div>
@@ -131,7 +131,7 @@ export default function ContactContent() {
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-4 py-4 bg-background border border-border rounded font-light focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
+                    className="w-full px-4 py-4 bg-background border border-border rounded font-light text-base focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
                   >
                     {subjectOptions.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -151,7 +151,7 @@ export default function ContactContent() {
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-4 bg-background border border-border rounded font-light focus:outline-none focus:border-primary transition-colors resize-none"
+                    className="w-full px-4 py-4 bg-background border border-border rounded font-light text-base focus:outline-none focus:border-primary transition-colors resize-none"
                     placeholder="Votre message..."
                   />
                 </div>

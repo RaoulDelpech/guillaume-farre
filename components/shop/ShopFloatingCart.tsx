@@ -14,7 +14,8 @@ export default function ShopFloatingCart({ items, onCheckout, onClear }: ShopFlo
       <h3 className="font-light tracking-wide text-base sm:text-lg mb-2 sm:mb-3">
         Panier ({items.length})
       </h3>
-      <p className="text-sm sm:text-base font-light mb-3 sm:mb-4">Total: {total}&euro;</p>
+      <p className="text-sm sm:text-base font-light mb-1 sm:mb-2">Sous-total: {total}&euro;</p>
+      <p className="text-xs text-muted-foreground mb-3 sm:mb-4">Livraison et assurance calcul&eacute;es au paiement</p>
       <button
         onClick={onCheckout}
         className="w-full bg-black hover:bg-gray-900 text-white py-3 px-4 rounded-lg font-light tracking-wide transition-colors min-h-[44px]"

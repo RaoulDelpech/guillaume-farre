@@ -102,7 +102,7 @@ export default function ContactContent() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-4 bg-background border border-border rounded font-light focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-4 bg-background border border-border rounded font-light text-base focus:outline-none focus:border-primary transition-colors"
                     placeholder="Votre nom"
                   />
                 </div>

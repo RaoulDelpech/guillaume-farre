@@ -3,6 +3,7 @@ import Navigation from "@/components/navigation/Navigation";
 import AmericanFrame from "@/components/AmericanFrame";
 import { Link } from "@/i18n/routing";
 import photos from "@/data/photos.json";
+import blurMap from "@/data/blur-placeholders.json";
 
 export const metadata: Metadata = {
   title: "Photographies — Guillaume Farré",
@@ -21,15 +22,42 @@ const ROWS: number[][] = [
   [16],
 ];
 
+const BLUR: Record<string, string> = blurMap;
+
 function getFrameColor(id: number): "black" | "oak" | "walnut" {
   if (id % 3 === 0) return "walnut";
   if (id % 3 === 1) return "black";
   return "oak";
 }
 
+/** Legende sous chaque photo */
+function PhotoCaption({ name }: { name: string }) {
+  return (
+    <div className="mt-3 px-1">
+      <p className="text-sm font-light text-[#1a1a1a] tracking-wide">
+        {name}
+      </p>
+      <p className="text-xs font-light text-neutral-400 tracking-wide mt-0.5">
+        Tirage numéroté et signé — Édition limitée
+      </p>
+      <Link
+        href="/boutique"
+        className="inline-block mt-2 text-xs font-light tracking-widest uppercase text-[#8c6e32] hover:text-[#6b5327] transition-colors duration-200"
+      >
+        Acquérir ce tirage
+        <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1">
+          &rarr;
+        </span>
+      </Link>
+    </div>
+  );
+}
+
 /**
  * Page Galerie — photographies
- * Layout en rangees avec hauteurs egalisees par flex proportionnel
+ * Layout en rangees avec hauteurs egalisees par flex proportionnel.
+ * Toutes les images utilisent next/image via AmericanFrame,
+ * avec blur placeholder et priority sur le hero.
  *
  * @author Lalou
  */
@@ -87,24 +115,10 @@ export default function GaleriePage() {
                       imageHeight={photo.imageHeight}
                       frameColor={getFrameColor(photo.id)}
                       className="w-full"
+                      blurDataURL={BLUR[photo.image]}
+                      priority={isHero}
                     />
-                    <div className="mt-3 px-1">
-                      <p className="text-sm font-light text-[#1a1a1a] tracking-wide">
-                        {photo.name}
-                      </p>
-                      <p className="text-xs font-light text-neutral-400 tracking-wide mt-0.5">
-                        Tirage numéroté et signé — Édition limitée
-                      </p>
-                      <Link
-                        href="/boutique"
-                        className="inline-block mt-2 text-xs font-light tracking-widest uppercase text-[#8c6e32] hover:text-[#6b5327] transition-colors duration-200"
-                      >
-                        Acquérir ce tirage
-                        <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1">
-                          &rarr;
-                        </span>
-                      </Link>
-                    </div>
+                    <PhotoCaption name={photo.name} />
                   </div>
                 </div>
               );
@@ -127,24 +141,9 @@ export default function GaleriePage() {
                         imageHeight={photo.imageHeight}
                         frameColor={getFrameColor(photo.id)}
                         className="w-full"
+                        blurDataURL={BLUR[photo.image]}
                       />
-                      <div className="mt-3 px-1">
-                        <p className="text-sm font-light text-[#1a1a1a] tracking-wide">
-                          {photo.name}
-                        </p>
-                        <p className="text-xs font-light text-neutral-400 tracking-wide mt-0.5">
-                          Tirage numéroté et signé — Édition limitée
-                        </p>
-                        <Link
-                          href="/boutique"
-                          className="inline-block mt-2 text-xs font-light tracking-widest uppercase text-[#8c6e32] hover:text-[#6b5327] transition-colors duration-200"
-                        >
-                          Acquérir ce tirage
-                          <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1">
-                            &rarr;
-                          </span>
-                        </Link>
-                      </div>
+                      <PhotoCaption name={photo.name} />
                     </div>
                   );
                 })}

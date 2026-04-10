@@ -162,7 +162,7 @@ function TimelineNav({
 /* ================================================================
    MAIN COMPONENT
    ================================================================ */
-export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
+export default function ToilesContent({ toiles, blurMap = {} }: { toiles: Toile[]; blurMap?: Record<string, string> }) {
   const t = useTranslations("canvas");
   const [selectedCanvas, setSelectedCanvas] = useState<number | null>(null);
   const [form, setForm] = useState<ReservationForm>({ name: "", email: "", phone: "" });
@@ -313,6 +313,7 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
                                 imageHeight={pd?.imageHeight}
                                 frameColor="black"
                                 className="w-full"
+                                blurDataURL={blurMap[img]}
                               />
                             </div>
                           );
@@ -326,6 +327,8 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
                         imageHeight={ih}
                         frameColor="black"
                         className="w-full"
+                        blurDataURL={blurMap[toile.image || ""]}
+                        priority={index === 0}
                       />
                     )}
                   </div>

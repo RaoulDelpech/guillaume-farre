@@ -11,6 +11,8 @@ interface AmericanFrameProps {
   imageHeight?: number
   frameColor?: FrameColor
   className?: string
+  blurDataURL?: string
+  priority?: boolean
 }
 
 // --- Visual tuning constants ---
@@ -185,6 +187,8 @@ export default function AmericanFrame({
   imageHeight = 900,
   frameColor = 'black',
   className = '',
+  blurDataURL,
+  priority = false,
 }: AmericanFrameProps) {
   const theme = themes[frameColor]
   const frameFaceBg = buildFrameFace(theme)
@@ -273,6 +277,8 @@ export default function AmericanFrame({
                     quality={90}
                     className="w-full h-auto"
                     style={{ display: 'block' }}
+                    {...(blurDataURL ? { placeholder: 'blur' as const, blurDataURL } : {})}
+                    priority={priority}
                   />
                   {/* Canvas woven texture */}
                   <div

@@ -2,7 +2,9 @@
 
 /**
  * ToilesContent — Grille responsive des toiles avec AmericanFrame
- * Layout identique a GalerieContent : grille 1/2/3 colonnes, fond ivoire, lightbox.
+ * Double mode :
+ * - Public (showPrices=false) : pas de prix, CTA = formulaire d'interet
+ * - VIP (showPrices=true) : prix affiches, CTA = reservation par mailto
  *
  * @author Lalou
  */
@@ -11,6 +13,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
+import ContactArtistForm from './ContactArtistForm';
 import { LINEN_BG, formatPrice } from './toiles-utils';
 import type { Toile } from './types';
 
@@ -22,9 +25,15 @@ function getFrameColor(index: number): 'black' | 'oak' | 'walnut' {
   return FRAME_COLORS[index % 3];
 }
 
-export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
+interface ToilesContentProps {
+  toiles: Toile[];
+  showPrices?: boolean;
+}
+
+export default function ToilesContent({ toiles, showPrices = false }: ToilesContentProps) {
   const t = useTranslations('canvas');
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [openFormId, setOpenFormId] = useState<number | null>(null);
 
   useEffect(() => {
     if (lightboxIdx === null) return;
@@ -59,6 +68,9 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
           <h1 className="text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-[#1a1a1a] mb-6">
             {t('title')}
           </h1>
+          <p className="text-neutral-500 text-sm font-light tracking-wider max-w-xl mx-auto mb-6">
+            {t('subtitle')}
+          </p>
           <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto" />
         </div>
 
@@ -67,6 +79,7 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
           {toiles.map((toile, index) => {
             const frameColor = getFrameColor(index);
             const isTriptych = toile.triptych && toile.images;
+            const formOpen = openFormId === toile.id;
 
             return (
               <div
@@ -118,15 +131,38 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
                   <p className="text-neutral-500 text-xs font-light tracking-wider mt-1">
                     {toile.dimensions} — {toile.technique} — {toile.year}
                   </p>
-                  <p className="text-lg font-extralight tracking-wide text-[#8c6e32] mt-2">
-                    {formatPrice(toile.price)}
-                  </p>
-                  <a
-                    href={generateMailto(toile.name)}
-                    className="inline-block mt-3 px-6 py-2.5 text-neutral-600 text-[10px] tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32]"
-                  >
-                    {t('reserve')}
-                  </a>
+
+                  {showPrices ? (
+                    <>
+                      {/* VIP : prix + reservation */}
+                      <p className="text-lg font-extralight tracking-wide text-[#8c6e32] mt-2">
+                        {formatPrice(toile.price)}
+                      </p>
+                      <a
+                        href={generateMailto(toile.name)}
+                        className="inline-flex items-center justify-center mt-3 px-6 py-3 text-neutral-600 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
+                      >
+                        {t('reserve')}
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      {/* Public : pas de prix, formulaire d'interet */}
+                      {!formOpen ? (
+                        <button
+                          onClick={() => setOpenFormId(toile.id)}
+                          className="inline-flex items-center justify-center mt-4 px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-200 hover:border-[#8c6e32] min-h-[44px]"
+                        >
+                          {t('interest')}
+                        </button>
+                      ) : (
+                        <ContactArtistForm
+                          toileName={toile.name}
+                          onClose={() => setOpenFormId(null)}
+                        />
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             );
@@ -137,13 +173,14 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
       {/* Disclaimer */}
       <div className="pb-20 px-8 text-center">
         <p className="text-neutral-500 text-xs tracking-[0.15em] uppercase font-light max-w-lg mx-auto">
-          {t('disclaimer')}
+          {showPrices ? t('disclaimer') : t('disclaimerPublic')}
         </p>
       </div>
 
       <ToileLightbox
         toiles={toiles}
         lightboxIdx={lightboxIdx}
+        showPrices={showPrices}
         onClose={() => setLightboxIdx(null)}
         onPrev={() => setLightboxIdx((i) => (i !== null && i > 0 ? i - 1 : i))}
         onNext={() => setLightboxIdx((i) => (i !== null && i < toiles.length - 1 ? i + 1 : i))}

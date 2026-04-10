@@ -90,20 +90,20 @@ function TimelineNav({
         const isActive = i === activeIdx;
         const distance = Math.abs(i - activeIdx);
 
-        // Parabole douce : juste une legere courbure
-        const arcX = distance * distance * 0.8;
-        const opacity = Math.max(0.15, 1 - distance * 0.13);
+        // Courbe quasi invisible : ligne droite avec micro-souffle
+        const arcX = Math.sqrt(distance) * 0.5;
+        const opacity = Math.max(0.25, 1 - distance * 0.08);
 
         return (
           <button
             key={toile.id}
             onClick={() => onSelect(i)}
-            className="flex items-center gap-2 cursor-pointer"
+            className="flex items-center gap-2.5 cursor-pointer"
             style={{
-              height: 20,
+              height: 24,
               transform: `translateX(${Math.round(arcX)}px)`,
               opacity,
-              transition: 'transform 0.5s cubic-bezier(0.33, 0, 0.2, 1), opacity 0.5s ease',
+              transition: 'transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease',
             }}
             aria-label={toile.name}
           >
@@ -111,18 +111,18 @@ function TimelineNav({
               <div
                 className="rounded-sm overflow-hidden flex-shrink-0"
                 style={{
-                  width: isActive ? 38 : distance <= 2 ? 17 : 7,
-                  height: isActive ? 38 : distance <= 2 ? 17 : 7,
-                  borderRadius: distance > 2 ? '50%' : 2,
-                  transition: 'width 0.4s ease, height 0.4s ease, border-radius 0.4s ease',
-                  boxShadow: isActive ? '0 1px 5px rgba(0,0,0,0.3)' : 'none',
+                  width: isActive ? 44 : distance <= 2 ? 22 : 10,
+                  height: isActive ? 44 : distance <= 2 ? 22 : 10,
+                  borderRadius: distance > 3 ? '50%' : 2,
+                  transition: 'width 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), border-radius 0.5s ease',
+                  boxShadow: isActive ? '0 1px 6px rgba(0,0,0,0.25)' : 'none',
                 }}
               >
                 <Image
                   src={toile.image}
                   alt={toile.name}
-                  width={38}
-                  height={38}
+                  width={44}
+                  height={44}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -130,10 +130,10 @@ function TimelineNav({
               <span
                 className="rounded-full flex-shrink-0"
                 style={{
-                  width: isActive ? 6 : 4,
-                  height: isActive ? 6 : 4,
-                  background: isActive ? '#7A6030' : 'rgba(160,160,160,0.3)',
-                  transition: 'all 0.4s ease',
+                  width: isActive ? 8 : 5,
+                  height: isActive ? 8 : 5,
+                  background: isActive ? '#7A6030' : 'rgba(160,160,160,0.35)',
+                  transition: 'all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
                 }}
               />
             )}
@@ -171,11 +171,13 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const isScrolling = useRef(false);
 
-  // Track which painting is in view
+  // Track which painting is in view (skip during programmatic scroll)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isScrolling.current) return;
         for (const entry of entries) {
           if (entry.isIntersecting) {
             const i = refs.current.indexOf(entry.target as HTMLDivElement);
@@ -207,8 +209,12 @@ export default function ToilesContent({ toiles }: { toiles: Toile[] }) {
     };
   }, [lightboxIdx, toiles.length]);
 
-  const scrollTo = (i: number) =>
+  const scrollTo = (i: number) => {
+    setActiveIdx(i);
+    isScrolling.current = true;
     refs.current[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setTimeout(() => { isScrolling.current = false; }, 900);
+  };
 
   const handleReserve = async (toile: Toile) => {
     setSubmitting(true);

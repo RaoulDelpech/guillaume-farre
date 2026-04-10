@@ -6,7 +6,7 @@
  *
  * Tous les tirages sont signes et numerotes.
  * 30 exemplaires max par photo standard (9+9+9+3).
- * Exception photo 15 : monumental, 1 exemplaire, sur demande.
+ * Exception photo 16 : monumental, 1 exemplaire, sur demande.
  */
 
 /** Formats de tirage disponibles */
@@ -75,7 +75,7 @@ export const FORMATS: Record<PrintFormat, FormatConfig> = {
   },
 };
 
-/** Formats disponibles pour les photos standard (toutes sauf photo 15) */
+/** Formats disponibles pour les photos standard (toutes sauf photo 16) */
 export const STANDARD_FORMATS: PrintFormat[] = ['24x36', '40x60', '80x120', 'hors-format'];
 
 /** Formats avec un prix fixe (achat direct possible) */

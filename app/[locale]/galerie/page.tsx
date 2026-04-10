@@ -10,9 +10,26 @@ export const metadata: Metadata = {
     "Photographies de Guillaume Farré. Concept Car Art — quand la Ferrari peint la toile.",
 };
 
+/** Disposition des photos en rangees */
+const ROWS: number[][] = [
+  [1],
+  [2, 3, 4],
+  [5, 6, 7],
+  [8, 9, 10],
+  [11, 12, 13],
+  [14, 15],
+  [16],
+];
+
+function getFrameColor(id: number): "black" | "oak" | "walnut" {
+  if (id % 3 === 0) return "walnut";
+  if (id % 3 === 1) return "black";
+  return "oak";
+}
+
 /**
  * Page Galerie — photographies
- * Grille masonry avec caisses americaines + liens achat
+ * Layout en rangees avec hauteurs egalisees par flex proportionnel
  *
  * @author Lalou
  */
@@ -39,43 +56,101 @@ export default function GaleriePage() {
           </h1>
           <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mb-6" />
           <p className="text-lg font-light text-neutral-500 tracking-wide max-w-xl mx-auto">
-            Concept Car Art — l'instant ou la Ferrari peint la toile
+            Concept Car Art — l&apos;instant où la Ferrari peint la toile
           </p>
         </div>
 
-        {/* Grille masonry */}
-        <div className="max-w-6xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-          {photos.map((photo) => (
-            <div key={photo.id} className="break-inside-avoid group">
-              <AmericanFrame
-                src={photo.image}
-                alt={photo.name}
-                imageWidth={photo.imageWidth}
-                imageHeight={photo.imageHeight}
-                frameColor={photo.id % 3 === 0 ? "walnut" : photo.id % 3 === 1 ? "black" : "oak"}
-                className="w-full"
-              />
+        {/* Grille en rangees */}
+        <div className="max-w-6xl mx-auto space-y-10">
+          {ROWS.map((rowIds, rowIndex) => {
+            const rowPhotos = rowIds.map(
+              (id) => photos.find((p) => p.id === id)!
+            );
+            const isSolo = rowPhotos.length === 1;
+            const isHero = rowIndex === 0;
 
-              {/* Legende + lien achat */}
-              <div className="mt-3 px-1">
-                <p className="text-sm font-light text-[#1a1a1a] tracking-wide">
-                  {photo.name}
-                </p>
-                <p className="text-xs font-light text-neutral-400 tracking-wide mt-0.5">
-                  Tirage numéroté et signé — Édition limitée
-                </p>
-                <Link
-                  href="/boutique"
-                  className="inline-block mt-2 text-xs font-light tracking-widest uppercase text-[#8c6e32] hover:text-[#6b5327] transition-colors duration-200"
-                >
-                  Acquérir ce tirage
-                  <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1">
-                    &rarr;
-                  </span>
-                </Link>
+            if (isSolo) {
+              const photo = rowPhotos[0];
+              return (
+                <div key={rowIndex} className="flex justify-center">
+                  <div
+                    className={`group w-full ${
+                      isHero
+                        ? "sm:w-3/4 lg:w-[70%] max-w-[1000px]"
+                        : "sm:w-2/3 lg:w-[55%] max-w-[800px]"
+                    }`}
+                  >
+                    <AmericanFrame
+                      src={photo.image}
+                      alt={photo.name}
+                      imageWidth={photo.imageWidth}
+                      imageHeight={photo.imageHeight}
+                      frameColor={getFrameColor(photo.id)}
+                      className="w-full"
+                    />
+                    <div className="mt-3 px-1">
+                      <p className="text-sm font-light text-[#1a1a1a] tracking-wide">
+                        {photo.name}
+                      </p>
+                      <p className="text-xs font-light text-neutral-400 tracking-wide mt-0.5">
+                        Tirage numéroté et signé — Édition limitée
+                      </p>
+                      <Link
+                        href="/boutique"
+                        className="inline-block mt-2 text-xs font-light tracking-widest uppercase text-[#8c6e32] hover:text-[#6b5327] transition-colors duration-200"
+                      >
+                        Acquérir ce tirage
+                        <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1">
+                          &rarr;
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div key={rowIndex} className="flex flex-wrap gap-4 sm:gap-6">
+                {rowPhotos.map((photo) => {
+                  const aspectRatio = photo.imageWidth / photo.imageHeight;
+                  return (
+                    <div
+                      key={photo.id}
+                      className="group basis-full sm:basis-0"
+                      style={{ flexGrow: aspectRatio }}
+                    >
+                      <AmericanFrame
+                        src={photo.image}
+                        alt={photo.name}
+                        imageWidth={photo.imageWidth}
+                        imageHeight={photo.imageHeight}
+                        frameColor={getFrameColor(photo.id)}
+                        className="w-full"
+                      />
+                      <div className="mt-3 px-1">
+                        <p className="text-sm font-light text-[#1a1a1a] tracking-wide">
+                          {photo.name}
+                        </p>
+                        <p className="text-xs font-light text-neutral-400 tracking-wide mt-0.5">
+                          Tirage numéroté et signé — Édition limitée
+                        </p>
+                        <Link
+                          href="/boutique"
+                          className="inline-block mt-2 text-xs font-light tracking-widest uppercase text-[#8c6e32] hover:text-[#6b5327] transition-colors duration-200"
+                        >
+                          Acquérir ce tirage
+                          <span className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1">
+                            &rarr;
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </main>

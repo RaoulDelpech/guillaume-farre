@@ -19,7 +19,7 @@ export default function ReservationForm({
   const t = useTranslations("canvas");
 
   const inputClass =
-    "w-full px-0 py-3 bg-transparent border-0 border-b border-neutral-600 text-neutral-100 text-sm placeholder-neutral-500 font-light focus:outline-none focus:border-[#B8956A] transition-colors";
+    "w-full px-0 py-3 bg-transparent border-0 border-b border-neutral-300 text-[#1a1a1a] text-sm placeholder-neutral-400 font-light focus:outline-none focus:border-[#8c6e32] transition-colors";
 
   return (
     <div className="flex flex-col gap-4 w-full max-w-sm">
@@ -55,13 +55,13 @@ export default function ReservationForm({
         <button
           onClick={onSubmit}
           disabled={submitting || !form.name || !form.email || !form.phone}
-          className="flex-1 py-4 sm:py-3 text-neutral-400 text-xs tracking-[0.25em] uppercase hover:text-[#B8956A] transition-colors border border-neutral-600 hover:border-[#B8956A] disabled:opacity-20 min-h-[44px]"
+          className="flex-1 py-4 sm:py-3 text-neutral-600 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-colors border border-neutral-300 hover:border-[#8c6e32] disabled:opacity-20 min-h-[44px]"
         >
           {submitting ? "···" : t("reserveForm.submit")}
         </button>
         <button
           onClick={onCancel}
-          className="py-4 sm:py-3 px-6 text-neutral-500 text-xs tracking-[0.2em] uppercase hover:text-neutral-300 transition-colors min-h-[44px]"
+          className="py-4 sm:py-3 px-6 text-neutral-400 text-xs tracking-[0.2em] uppercase hover:text-neutral-700 transition-colors min-h-[44px]"
         >
           ✕
         </button>

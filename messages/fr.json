@@ -95,7 +95,20 @@
     "filterAll": "Tout voir",
     "filterEmpreintes": "Empreintes",
     "filterAtelier": "Atelier",
-    "filterProjections": "Projections"
+    "filterProjections": "Projections",
+    "photosTitle": "Photographies",
+    "photosSubtitle": "Concept Car Art — l'instant où la Ferrari peint la toile",
+    "certificate": "Tirage numéroté et signé. Certificat d'authenticité inclus.",
+    "acquire": "Acquérir ce tirage",
+    "mailSubject": "Demande d'acquisition : {name}",
+    "mailBody": "Bonjour,\n\nJe souhaite acquérir un tirage de la photographie \"{name}\".\n\nMerci de me contacter pour discuter des détails.\n\nCordialement",
+    "lightboxOpen": "Voir en grand format",
+    "lightboxClose": "Fermer",
+    "lightboxPrev": "Photo précédente",
+    "lightboxNext": "Photo suivante",
+    "numbering": "n°{start}-{end}",
+    "onRequest": "Sur demande",
+    "editionCount": "exemplaires"
   },
   "contact": {
     "title": "Contact",

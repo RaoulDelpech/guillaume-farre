@@ -95,7 +95,20 @@
     "filterAll": "Vedere tutto",
     "filterEmpreintes": "Impronte",
     "filterAtelier": "Atelier",
-    "filterProjections": "Proiezioni"
+    "filterProjections": "Proiezioni",
+    "photosTitle": "Fotografie",
+    "photosSubtitle": "Concept Car Art — l'istante in cui la Ferrari dipinge la tela",
+    "certificate": "Tiratura numerata e firmata. Certificato di autenticità incluso.",
+    "acquire": "Acquistare questa stampa",
+    "mailSubject": "Richiesta di acquisizione: {name}",
+    "mailBody": "Buongiorno,\n\nDesidero acquistare una stampa della fotografia \"{name}\".\n\nLa prego di contattarmi per discutere i dettagli.\n\nCordiali saluti",
+    "lightboxOpen": "Visualizza a grandezza naturale",
+    "lightboxClose": "Chiudere",
+    "lightboxPrev": "Foto precedente",
+    "lightboxNext": "Foto successiva",
+    "numbering": "n°{start}-{end}",
+    "onRequest": "Su richiesta",
+    "editionCount": "esemplari"
   },
   "contact": {
     "title": "Contatto",

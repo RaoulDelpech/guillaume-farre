@@ -95,7 +95,20 @@
     "filterAll": "View all",
     "filterEmpreintes": "Imprints",
     "filterAtelier": "Workshop",
-    "filterProjections": "Projections"
+    "filterProjections": "Projections",
+    "photosTitle": "Photographs",
+    "photosSubtitle": "Concept Car Art — the moment the Ferrari paints the canvas",
+    "certificate": "Numbered and signed print. Certificate of authenticity included.",
+    "acquire": "Acquire this print",
+    "mailSubject": "Acquisition enquiry: {name}",
+    "mailBody": "Hello,\n\nI would like to acquire a print of the photograph \"{name}\".\n\nPlease contact me to discuss the details.\n\nBest regards",
+    "lightboxOpen": "View full size",
+    "lightboxClose": "Close",
+    "lightboxPrev": "Previous photo",
+    "lightboxNext": "Next photo",
+    "numbering": "no.{start}-{end}",
+    "onRequest": "On request",
+    "editionCount": "copies"
   },
   "contact": {
     "title": "Contact",

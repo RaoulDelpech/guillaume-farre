@@ -18,9 +18,10 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const doors = [
-    { href: "/toiles", label: "Toiles", subtitle: "Peintures sur toile" },
-    { href: "/galerie", label: "Photographies", subtitle: "Concept Car Art" },
+  const navLinks = [
+    { href: "/galerie", label: "Galerie" },
+    { href: "/boutique", label: "Boutique" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -44,18 +45,18 @@ export default function Navigation() {
               Guillaume Farré
             </Link>
             <div className="hidden md:flex items-center gap-8 lg:gap-10">
-              {doors.map((door) => (
+              {navLinks.map((link) => (
                 <Link
-                  key={door.href}
-                  href={door.href}
+                  key={link.href}
+                  href={link.href}
                   className={`text-sm font-light tracking-[0.15em] uppercase hover:text-primary transition-colors duration-300 relative group ${
-                    pathname === door.href ? "text-primary" : ""
+                    pathname === link.href ? "text-primary" : ""
                   }`}
                 >
-                  {door.label}
+                  {link.label}
                   <span
                     className={`absolute -bottom-1 left-0 h-px bg-[rgba(196,165,112,0.5)] transition-all duration-500 ease-out ${
-                      pathname === door.href ? "w-full" : "w-0 group-hover:w-full"
+                      pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   />
                 </Link>

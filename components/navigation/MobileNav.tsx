@@ -35,8 +35,9 @@ export default function MobileNav() {
   };
 
   const links = [
-    { href: "/toiles", label: "Toiles" },
-    { href: "/galerie", label: "Photographies" },
+    { href: "/galerie", label: "Galerie" },
+    { href: "/boutique", label: "Boutique" },
+    { href: "/contact", label: "Contact" },
   ];
 
   // MASQUE - Pages désactivées (code gardé pour réactivation future) :

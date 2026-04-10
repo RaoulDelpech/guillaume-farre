@@ -59,9 +59,11 @@ export default async function HomePage() {
               {t("toiles.title")}
             </h2>
             <div className="w-10 h-px bg-white/30 mb-4" />
-            <p className="text-sm md:text-base font-light tracking-wide text-white/60 max-w-sm">
-              {t("toiles.subtitle")}
-            </p>
+            {t("toiles.subtitle") && (
+              <p className="text-sm md:text-base font-light tracking-wide text-white/60 max-w-sm">
+                {t("toiles.subtitle")}
+              </p>
+            )}
             <span className="mt-8 inline-block px-8 py-3.5 text-xs tracking-[0.2em] uppercase font-light text-white/70 border border-white/20 group-hover:border-white/40 group-hover:text-white transition-all duration-300 min-h-[44px] flex items-center">
               {t("toiles.cta")}
             </span>

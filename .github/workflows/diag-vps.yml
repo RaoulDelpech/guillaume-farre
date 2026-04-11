@@ -1,0 +1,47 @@
+name: Diag VPS OVH
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH diag
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: false
+          script: |
+            echo "=== WHOAMI ==="
+            whoami
+            echo "=== UNAME ==="
+            uname -a
+            echo "=== OS ==="
+            cat /etc/os-release | head -5
+            echo "=== PWD / HOME ==="
+            pwd
+            echo "HOME=$HOME"
+            echo "=== DISK ==="
+            df -h / 2>/dev/null | head -3
+            echo "=== RAM ==="
+            free -h 2>/dev/null || echo "no free cmd"
+            echo "=== BINARIES ==="
+            for cmd in git node npm bun pm2 nginx certbot python3 docker; do
+              which $cmd 2>/dev/null && $cmd --version 2>/dev/null | head -1 || echo "MISSING: $cmd"
+            done
+            echo "=== /var/www ==="
+            ls -la /var/www 2>/dev/null || echo "NO /var/www"
+            echo "=== /var/www/guillaumefarre ==="
+            ls -la /var/www/guillaumefarre 2>/dev/null || echo "NO /var/www/guillaumefarre"
+            echo "=== PM2 LIST ==="
+            pm2 list 2>/dev/null || echo "no pm2 running"
+            echo "=== NGINX STATUS ==="
+            systemctl is-active nginx 2>/dev/null || echo "no nginx systemctl"
+            echo "=== PORT 3000 ==="
+            ss -tlnp 2>/dev/null | grep 3000 || echo "nothing on 3000"
+            echo "=== PORT 80/443 ==="
+            ss -tlnp 2>/dev/null | grep -E ':(80|443) ' || echo "nothing on 80/443"
+            echo "=== DONE ==="

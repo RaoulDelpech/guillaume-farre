@@ -10,11 +10,10 @@ interface SimilarImageGroup {
 }
 
 interface SimilarImagesPanelProps {
-  token: string;
   onStatusChange?: (filename: string, status: 'trash' | 'to-sort' | null) => void;
 }
 
-export default function SimilarImagesPanel({ token, onStatusChange }: SimilarImagesPanelProps) {
+export default function SimilarImagesPanel({ onStatusChange }: SimilarImagesPanelProps) {
   const [loading, setLoading] = useState(false);
   const [groups, setGroups] = useState<SimilarImageGroup[]>([]);
   const [threshold, setThreshold] = useState(85);
@@ -31,7 +30,6 @@ export default function SimilarImagesPanel({ token, onStatusChange }: SimilarIma
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ threshold }),
       });

@@ -72,7 +72,6 @@ export default function AdminPage() {
 
         <div className="mb-12">
           <SimilarImagesPanel
-            token={admin.adminToken}
             onStatusChange={(filename, status) => {
               const photoIndex = admin.photos.findIndex(p => p.filename === filename);
               if (photoIndex !== -1) {

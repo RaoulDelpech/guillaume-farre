@@ -27,7 +27,6 @@ export type { AdminFilters, AdminStats };
 
 export function useAdminPhotos() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [adminToken, setAdminToken] = useState('');
   const [photos, setPhotos] = useState<PhotoMetadata[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<AdminFilters>({
@@ -46,15 +45,27 @@ export function useAdminPhotos() {
   const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]);
 
   useEffect(() => {
-    const token = sessionStorage.getItem('admin_token');
-    if (token) {
-      setIsAuthenticated(true);
-      setAdminToken(token);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadPhotos();
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/admin/check', { cache: 'no-store' });
+        if (cancelled) return;
+        if (res.ok) {
+          const data = await res.json();
+          if (data.authenticated) {
+            setIsAuthenticated(true);
+            await loadPhotos();
+            return;
+          }
+        }
+        setLoading(false);
+      } catch {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -273,7 +284,7 @@ export function useAdminPhotos() {
 
   return {
     // Auth
-    isAuthenticated, setIsAuthenticated, adminToken,
+    isAuthenticated, setIsAuthenticated,
     // Data
     photos, loading, filteredPhotos, stats, collections,
     // Filters

@@ -24,15 +24,15 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
 
       const data = await res.json();
 
-      if (data.success) {
-        // Stocker le token dans sessionStorage
-        sessionStorage.setItem("admin_token", data.token);
+      if (res.ok && data.success) {
+        // Le cookie gf_admin (HttpOnly) est pose par le serveur,
+        // rien a stocker cote client.
         onLogin();
       } else {
-        setError("Mot de passe incorrect");
+        setError(data.error || "Mot de passe incorrect");
         setPassword("");
       }
-    } catch (err) {
+    } catch {
       setError("Erreur de connexion");
     } finally {
       setLoading(false);

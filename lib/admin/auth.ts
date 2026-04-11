@@ -1,18 +1,27 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-const COOKIE_NAME = 'gf_auth';
-const COOKIE_VALUE = 'authenticated';
+/**
+ * Cookie d'authentification admin.
+ *
+ * IMPORTANT : ce cookie est DISTINCT de `gf_auth` (cookie site public).
+ * Le cookie `gf_auth` ne donne AUCUN acces aux routes admin.
+ * Seul `gf_admin` (pose par /api/admin/login apres validation ADMIN_PASSWORD)
+ * permet d'acceder aux routes `/api/admin/*`.
+ */
+const ADMIN_COOKIE_NAME = 'gf_admin';
+const ADMIN_COOKIE_VALUE = 'authenticated';
 
 /**
- * Vérifie si l'utilisateur est authentifié comme admin
- * @returns true si authentifié, false sinon
+ * Vérifie si l'utilisateur est authentifié comme admin.
+ *
+ * @returns true si le cookie `gf_admin` est présent et valide
  */
 export async function isAdminAuthenticated(): Promise<boolean> {
   try {
     const cookieStore = await cookies();
-    const authCookie = cookieStore.get(COOKIE_NAME);
-    return authCookie?.value === COOKIE_VALUE;
+    const authCookie = cookieStore.get(ADMIN_COOKIE_NAME);
+    return authCookie?.value === ADMIN_COOKIE_VALUE;
   } catch {
     return false;
   }

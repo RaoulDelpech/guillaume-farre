@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow bun",
+    "preinstall": "node -e \"const ua=process.env.npm_config_user_agent||'';if(!ua.startsWith('bun')){console.error('\\n[preinstall] This project requires bun. Refusing npm/yarn/pnpm install. Run: curl -fsSL https://bun.sh/install | bash && bun install\\n');process.exit(1);}\"",
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "build": "next build",
     "start": "next start",

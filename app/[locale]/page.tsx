@@ -1,14 +1,20 @@
 import Navigation from "@/components/navigation/Navigation";
+import HeroCarousel from "@/components/HeroCarousel";
+import { getPageImages } from "@/lib/page-images";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 
 export default async function HomePage() {
   const t = await getTranslations("home");
+  const pageImages = await getPageImages();
 
   return (
     <main className="min-h-screen bg-zinc-950">
       <Navigation />
+
+      {/* Hero Carousel */}
+      <HeroCarousel slides={pageImages.hero.slides} />
 
       {/* 2 blocs egaux : Photographies | Toiles */}
       <section className="flex flex-col md:flex-row min-h-[calc(100vh-5rem)]">

@@ -66,3 +66,6 @@ test-mobile.sh
 
 # Reservations data (contains client information)
 /data/reservations.json
+
+# Sources HR toiles (backups en local sur ~/Desktop/Toiles Guillaumes)
+public/images/works/toiles/

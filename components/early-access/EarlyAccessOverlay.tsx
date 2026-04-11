@@ -81,25 +81,22 @@ export default function EarlyAccessOverlay() {
             {/* Texte principal */}
             <div className="space-y-3 sm:space-y-4 leading-relaxed text-zinc-800 font-light tracking-wide text-sm sm:text-base">
               <p>
-                Bienvenue et merci. D'être présent sur ce site à travers lequel j'essaie de transmettre et de faire découvrir ce qui me passionne. J'espère que vous y trouverez de la joie et de l'inspiration.
+                Bienvenu et merci. D'être présent dans ces premiers instants d'ouverture de l'atelier et de cette aventure. J'essaie sur ce site de faire découvrir ce qui me passionne ; j'espère que vous y trouverez de la joie et de l'inspiration.
               </p>
               <p>
-                Vous faites partie des tous premiers visiteurs, et ce, avant l'ouverture officielle qui aura lieu le <span className="font-normal">15 mai 2026</span>.
+                Je vous demande de ne pas prendre de copies d'écran, de ne pas diffuser ce que vous trouverez sur ce site.
               </p>
               <p>
-                Certaines pièces ne sont visibles et accessibles que pour vous, puis proposées au public dans quelques mois ou quelques années, en fonction des aléas inhérents à différents cycles de création. D'autres avantages vous seront exposés au fil de votre visite.
+                Si vous réservez une toile, j'aimerais pouvoir vous la demander pendant quinze jours pour ma toute première exposition. Je prendrai en charge le transport aller-retour et l'assurance, et vous serez naturellement invité en tant qu'hôte d'honneur.
               </p>
               <p>
-                Je vous demande simplement de ne rien publier avant l'ouverture — pas de réseaux sociaux, pas de presse. Et si vous réservez une œuvre, j'aimerais pouvoir vous la demander pendant quinze jours pour ma toute première exposition. Je prendrai en charge le transport aller-retour et l'assurance, et vous serez naturellement invité en tant qu'hôte d'honneur.
-              </p>
-              <p>
-                Merci d'être présent dans ces premiers instants d'ouverture de l'atelier. N'hésitez pas à{' '}
+                N'hésitez pas à{' '}
                 <a
                   href="mailto:guillaume@guillaumefarre.com"
                   className="underline hover:text-zinc-600 transition-colors"
                 >
                   m'écrire
-                </a>, je serais heureux de vous connaître et de vous inviter pour une visite personnalisée.
+                </a>, je serais heureux de vous connaître et de vous inviter à visiter l'atelier.
               </p>
             </div>
 

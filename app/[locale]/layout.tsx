@@ -8,7 +8,7 @@ import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
 import StructuredData from '@/components/StructuredData';
 import AdminWrapper from '@/components/admin/AdminWrapper';
-import VideoIntro from '@/components/VideoIntro';
+
 import WelcomeAnimation from '@/components/WelcomeAnimation';
 import DarkEntry from '@/components/DarkEntry';
 import PageProgressBar from '@/components/PageProgressBar';
@@ -136,7 +136,7 @@ export default async function RootLayout({
                 </Suspense>
               )}
               {!isVipVisitor && <WelcomeAnimation />}
-              {!isVipVisitor && <VideoIntro />}
+
               <SmoothScroll>
                 <div className="flex-1">
                   {children}

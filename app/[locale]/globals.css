@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Light mode - Palette Artistique */
-    --background: 43 40% 97%; /* #FDFBF6 - Ivoire lumineux */
+    --background: 37 33% 96%; /* #FAF7F2 - Ivoire texturé */
     --foreground: 30 8% 12%;
     --card: 40 15% 99%; /* Blanc légèrement chaud */
     --card-foreground: 30 8% 12%;
@@ -54,14 +54,15 @@
 @layer base {
   * { @apply border-border; }
   body {
-    @apply bg-background text-foreground;
-    /* Typographie unifiée - Style Shangti : une seule famille */
+    @apply text-foreground;
+    /* Typographie unifiée */
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    /* Ivoire brillant texturé — éclat nacré avec grain subtil */
+    /* Ivoire brillant texturé lin — #FAF7F2 PARTOUT */
+    background-color: #FAF7F2;
     background-image:
-      radial-gradient(ellipse at 50% 20%, rgba(255, 254, 250, 0.6) 0%, transparent 55%),
-      radial-gradient(ellipse at 80% 60%, rgba(255, 252, 240, 0.2) 0%, transparent 40%),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 3px),
+      repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.006) 3px, rgba(0,0,0,0.006) 4px),
+      radial-gradient(ellipse at 50% 30%, rgba(255,255,245,0.5) 0%, transparent 70%);
   }
   h1,h2,h3,h4,h5,h6 {
     /* Même famille que le body, différenciée par poids et taille */

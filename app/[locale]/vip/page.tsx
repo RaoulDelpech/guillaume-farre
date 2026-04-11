@@ -116,7 +116,7 @@ export default function VipPage() {
   return (
     <div
       className="fixed inset-0 overflow-hidden flex items-center justify-center"
-      style={{ background: "#FAF7F2" }}
+      style={{ background: "#FEFEFA" }}
     >
       {/* Lumiere chaude derriere les portes */}
       <motion.div

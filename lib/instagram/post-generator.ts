@@ -25,9 +25,9 @@ export function generateOptimizedInstagramPost(
 
   const hooks = {
     processWork: [
-      '🏎️ Une Ferrari de 500 000€ comme pinceau géant... Regardez ce qui se passe.',
-      '🎨 J\'utilise une Ferrari pour peindre. Oui, une vraie. Voici le résultat.',
-      '⚡ Le son d\'un V12 Ferrari qui crée de l\'art. Jamais vu ça.',
+      '🏎️ L\'art en mouvement... Regardez ce qui se passe.',
+      '🎨 Quand l\'automobile devient art. Voici le résultat.',
+      '⚡ Le son d\'un V12 qui crée de l\'art. Jamais vu ça.',
     ],
     traceWork: [
       '🔥 Ces traces noires ? C\'est une Ferrari qui a peint. Unique au monde.',

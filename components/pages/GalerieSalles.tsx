@@ -31,7 +31,7 @@ export default function GalerieSalles() {
       href: "/galerie",
       image: "/images/works/photos/1.jpg",
       serie: "Photographies",
-      description: "Concept Car Art — l'instant capturé.",
+      description: "",
     },
   ];
 

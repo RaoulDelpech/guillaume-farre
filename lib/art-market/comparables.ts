@@ -25,7 +25,7 @@ export function getComparables(isProcessArt: boolean, isTraceWork: boolean): Com
         saleDetails: 'Christie\'s Paris 2020',
         price: 1800000,
         format: '156 × 282 cm - Pigment sur papier',
-        relevance: 'Art performatif capturé en image. Klein utilisait des "pinceaux vivants", ici c\'est une Ferrari. Son record est 1.8M$ - un positionnement similaire est envisageable.',
+        relevance: 'Art performatif capturé en image. Klein utilisait des "pinceaux vivants". Son record est 1.8M$ - un positionnement similaire est envisageable.',
       },
       {
         artist: 'Jackson Pollock',
@@ -86,7 +86,7 @@ export function getArtisticReferences(isProcessArt: boolean): ExpertAnalysis['ar
       Guillaume Farré = Yves Klein + Ferrari
 
       - Klein utilisait des "pinceaux vivants" (corps féminins)
-      - Farré utilise une Ferrari comme "pinceau mécanique"
+      - Farré utilise l'automobile comme médium artistique
       - Différence : Klein a atteint 1.8M€ en 2020
       - Potentiel Farré : 500K-1M€ si positionnement musée
 

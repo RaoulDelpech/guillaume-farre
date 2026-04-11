@@ -15,7 +15,7 @@ const doors = [
   {
     href: "/galerie" as const,
     label: "Photographies",
-    subtitle: "Concept Car Art",
+    subtitle: "",
     previewImage: "/images/works/photos/1.jpg",
     previewWidth: 2000,
     previewHeight: 1333,

@@ -69,7 +69,7 @@ export default async function GalerieItemPage({
     "@type": "Product",
     "name": work.title,
     "image": work.images.map((img) => `https://guillaumefarre.com${img}`),
-    "description": work.description || `${work.title} - Photographie d'art fine art par Guillaume Farré, créée avec une Ferrari Dino comme pinceau sur toile.`,
+    "description": work.description || `${work.title} - Photographie d'art par Guillaume Farré, tirage numéroté et signé.`,
     "brand": {
       "@type": "Person",
       "name": "Guillaume Farré"

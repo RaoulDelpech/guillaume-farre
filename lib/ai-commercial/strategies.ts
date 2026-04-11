@@ -16,12 +16,12 @@ export function createSocialMediaStrategy(
   const strategies = {
     projection: {
       contentType: 'Reel' as const,
-      caption: 'La lumière devient sculpture. Découvrez le processus créatif unique de Guillaume Farré #ConceptCarArt',
-      hashtags: ['#ConceptCarArt', '#AutomotiveArt', '#LightArt', '#ModernArt', '#CarArtist', '#AbstractArt', '#FrenchArtist']
+      caption: 'La lumière devient sculpture. Découvrez le processus créatif unique de Guillaume Farré',
+      hashtags: ['#AutomotiveArt', '#LightArt', '#ModernArt', '#CarArtist', '#AbstractArt', '#FrenchArtist']
     },
     atelier: {
       contentType: 'Carousel' as const,
-      caption: 'Dans l\'atelier : quand la Ferrari devient pinceau. Le processus créatif révélé',
+      caption: 'Dans l\'atelier : le processus créatif révélé',
       hashtags: ['#ArtStudio', '#CreativeProcess', '#AutomotiveArt', '#BehindTheScenes', '#ArtistAtWork', '#ContemporaryArt']
     },
     empreintes: {

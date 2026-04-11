@@ -17,7 +17,7 @@ export function getExceptionalFormats(isProcessArt: boolean): ExpertAnalysis['fo
       estimatedValue: 150000,
       targetVenue: 'Art Basel Miami Beach - Booth galerie internationale',
       reasoning: `
-        Cette œuvre capture le processus créatif unique : une Ferrari comme pinceau géant.
+        Cette œuvre capture un processus créatif unique.
 
         **Comparables directes** :
         - Anish Kapoor "Shooting into the Corner" : 1.2M$ (performance capturée)

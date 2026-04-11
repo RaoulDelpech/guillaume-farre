@@ -13,7 +13,7 @@ const getPrompt = (category: string, seriesName?: string): string => {
   const isLimited = category === 'limited' || seriesName;
 
   if (isLimited) {
-    return `Décris cette photographie d'art capturant l'instant où une Ferrari peint une toile.
+    return `Décris cette photographie d'art de Guillaume Farré.
 
 Consignes:
 - Texte poétique mais précis, technique sans jargon

@@ -7,27 +7,12 @@ jobs:
   diag:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH diag
+      - name: SSH minimal test
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: false
-          script: |
-            {
-              echo "=== $(date -Iseconds) ==="
-              id
-              sudo -n true 2>/dev/null && echo "SUDO OK" || echo "NO SUDO"
-              command -v bun > /dev/null && echo "HAS bun" || echo "NO bun"
-              command -v pm2 > /dev/null && echo "HAS pm2" || echo "NO pm2"
-              command -v nginx > /dev/null && echo "HAS nginx" || echo "NO nginx"
-              command -v certbot > /dev/null && echo "HAS certbot" || echo "NO certbot"
-              ls -d /var/www/guillaumefarre 2>/dev/null && echo "HAS clone" || echo "NO clone"
-              ls /var/www 2>/dev/null || echo "NO /var/www"
-              pm2 list 2>/dev/null || echo "no pm2 list"
-              systemctl is-active nginx 2>/dev/null || echo "nginx inactive"
-              ss -tlnp 2>/dev/null | grep -E ':(80|443|3000) ' || echo "no 80/443/3000"
-              echo "=== DONE ==="
-            } > /tmp/diag-vps.log 2>&1
-            cat /tmp/diag-vps.log
+          command_timeout: 2m
+          script: echo "HELLO FROM VPS $(hostname) $(date)"

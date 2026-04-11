@@ -42,7 +42,7 @@ export default function Navigation() {
                 scrolled ? "tracking-[0.05em]" : "tracking-[0.08em]"
               }`}
             >
-              Guillaume Farré
+              GUILLAUME FARRÉ
             </Link>
             <div className="hidden md:flex items-center gap-8 lg:gap-10">
               {navLinks.map((link) => (

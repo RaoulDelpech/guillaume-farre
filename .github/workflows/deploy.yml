@@ -1,4 +1,4 @@
-name: Deploy to VPS IONOS
+name: Deploy to VPS OVH
 
 on:
   push:

@@ -10,7 +10,7 @@ export default async function HomePage() {
   const pageImages = await getPageImages();
 
   return (
-    <main className="min-h-screen bg-zinc-950">
+    <main className="min-h-screen">
       <Navigation />
 
       {/* Hero Carousel */}

@@ -8,6 +8,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # NOTE (2026-04-11): le build est execute SUR le VPS via SSH (appleboy/ssh-action),
+    # pas sur le runner GitHub. Par consequent :
+    # - setup-bun@v2 ici serait inutile (le runner n'execute aucun bun run).
+    # - bun DOIT etre preinstalle sur le VPS 57.131.23.96 lors du bootstrap.
+    # Commande bootstrap VPS (a executer manuellement 1 fois par Raoul) :
+    #   curl -fsSL https://bun.sh/install | bash
+    #   echo 'export BUN_INSTALL="$HOME/.bun"' >> ~/.bashrc
+    #   echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> ~/.bashrc
+    # Node >= 20 egalement requis pour next 15.5 :
+    #   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+    #   sudo apt-get install -y nodejs
     steps:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.0

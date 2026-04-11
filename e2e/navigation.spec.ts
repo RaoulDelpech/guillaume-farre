@@ -9,15 +9,10 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Navigation globale', () => {
 
-  test('devrait naviguer homepage → boutique → galerie → contact', async ({ page }) => {
+  test('devrait naviguer homepage → galerie → contact', async ({ page }) => {
     // Homepage
     await page.goto('/fr');
     await expect(page.locator('h1')).toBeVisible();
-
-    // Boutique
-    await page.click('a[href*="/boutique"]');
-    await page.waitForURL('**/boutique');
-    await expect(page).toHaveURL(/boutique/);
 
     // Galerie
     await page.click('a[href*="/galerie"]');

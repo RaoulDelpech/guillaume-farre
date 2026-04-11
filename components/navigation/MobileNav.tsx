@@ -44,9 +44,7 @@ export default function MobileNav() {
   // { href: "/dino", label: "Dino" },
   // { href: "/origine", label: "Origines" },
   // { href: "/", label: t("accueil") },
-  // { href: "/boutique", label: "Commandes" },
   // { href: "/histoire", label: t("histoire") },
-  // { href: "/panier", label: t("panier") },
 
   return (
     <>

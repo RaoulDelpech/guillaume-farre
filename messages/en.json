@@ -35,7 +35,7 @@
     "acquerir": {
       "title": "Own a Trace, Not a Reproduction",
       "subtitle": "Numbered Limited Editions — Museum Quality",
-      "description": "These works are not printed: they document a unique instant when a Ferrari painted under my impulses. A2, A3, A4 formats. Professional black or aluminum framing. Fine Art printing by Toulouse laboratory.",
+      "description": "These works are not printed: they document a unique instant when a Ferrari painted under my impulses. A2, A3, A4 formats. Professional black or aluminum framing.",
       "cta": "View available works"
     },
     "histoire": {
@@ -51,7 +51,6 @@
     "conceptCarArt": "Ferrari Live Performance",
     "livePerformance": "Ferraris create live at the workshop",
     "selectionTitle": "Gallery — Selection",
-    "shopTitle": "Shop — New arrivals",
     "artist": {
       "label": "The Artist",
       "name": "Guillaume Farré",
@@ -71,7 +70,6 @@
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. All rights reserved.",
-    "account": "My account",
     "legal": "Legal notice",
     "privacy": "Privacy policy"
   },
@@ -179,50 +177,6 @@
     "accept": "Accept",
     "refuse": "Decline",
     "learnMore": "Learn more"
-  },
-  "account": {
-    "login": {
-      "title": "Access your account",
-      "subtitle": "Receive a login link by email",
-      "emailLabel": "Email address",
-      "emailPlaceholder": "your@email.com",
-      "submit": "Get login link",
-      "sending": "Sending...",
-      "helpText": "You will receive an email with a login link valid for 1 hour",
-      "emailSentTitle": "Email sent",
-      "emailSentMessage": "A login link has been sent to your email address.",
-      "emailSentCheck": "Check your inbox (and spam folder if needed)."
-    },
-    "dashboard": {
-      "greeting": "Hello {name}",
-      "logout": "Log out",
-      "ordersTitle": "My orders",
-      "loading": "Loading...",
-      "noOrders": "No orders yet",
-      "browseShop": "Browse shop",
-      "orderNumber": "Order",
-      "orderDate": "Placed on {date}",
-      "total": "Total",
-      "trackOrder": "Track",
-      "certificate": "Certificate"
-    },
-    "status": {
-      "pending": "Pending",
-      "paid": "Paid",
-      "processing": "Printing",
-      "shipped": "Shipped",
-      "delivered": "Delivered",
-      "problem": "Issue"
-    },
-    "errors": {
-      "invalidEmail": "Invalid email address",
-      "sendFailed": "Failed to send. Please try again in a few moments.",
-      "network": "Network error. Check your connection.",
-      "loadFailed": "Error loading orders",
-      "invalidToken": "Invalid link. Request a new link.",
-      "expiredToken": "Link expired. Request a new link.",
-      "server": "Server error. Try again later."
-    }
   },
   "vip": {
     "tag": "Private invitation",

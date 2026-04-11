@@ -6,6 +6,19 @@ const AUTH_COOKIE = "gf_auth";
 const VIP_COOKIE = "gf_vip";
 const VALID_LOCALES = ['fr', 'en', 'it'];
 
+// Pages Phase 2 masquees : accessibles uniquement en Phase 2 (site secret).
+// En Phase 1, elles sont redirigees vers l'accueil du locale.
+const PHASE2_HIDDEN_PAGES = [
+  'histoire',
+  'atelier',
+  'origine',
+  'dino',
+  'dino-histoire',
+  'presse',
+  'actualites',
+  'collectionneurs',
+];
+
 // Origines autorisées pour les requêtes admin mutantes (CSRF)
 const ALLOWED_ORIGINS = [
   'https://guillaumefarre.com',
@@ -78,6 +91,14 @@ export default function middleware(request: NextRequest) {
   }
 
   const locale = getLocale(pathname);
+
+  // B3 — Pages Phase 2 masquees : redirection vers l'accueil du locale.
+  // Le premier segment apres le locale est compare a la liste noire.
+  const segments = pathname.split('/').filter(Boolean);
+  const firstSegmentAfterLocale = VALID_LOCALES.includes(segments[0]) ? segments[1] : segments[0];
+  if (firstSegmentAfterLocale && PHASE2_HIDDEN_PAGES.includes(firstSegmentAfterLocale)) {
+    return NextResponse.redirect(new URL(`/${locale}`, request.url));
+  }
   const authCookie = request.cookies.get(AUTH_COOKIE);
   const isAuthenticated = authCookie?.value === 'authenticated';
   const vipCookie = request.cookies.get(VIP_COOKIE);

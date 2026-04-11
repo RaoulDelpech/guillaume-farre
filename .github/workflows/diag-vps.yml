@@ -7,7 +7,7 @@ jobs:
   diag:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH minimal test
+      - name: SSH step1 - identity
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -15,4 +15,50 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: false
           command_timeout: 2m
-          script: echo "HELLO FROM VPS $(hostname) $(date)"
+          script: |
+            echo "---STEP1---"
+            whoami
+            id
+            pwd
+            echo "---END1---"
+
+      - name: SSH step2 - binaries
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: false
+          command_timeout: 2m
+          script: |
+            echo "---STEP2---"
+            which git node npm bun pm2 nginx certbot 2>&1 || true
+            echo "---END2---"
+
+      - name: SSH step3 - filesystem
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: false
+          command_timeout: 2m
+          script: |
+            echo "---STEP3---"
+            ls -la /var/www 2>&1 || echo "no /var/www"
+            ls -la ~ 2>&1 || echo "no home"
+            echo "---END3---"
+
+      - name: SSH step4 - network
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: false
+          command_timeout: 2m
+          script: |
+            echo "---STEP4---"
+            sudo -n true 2>&1 && echo "SUDO OK" || echo "NO SUDO"
+            ss -tln 2>&1 || netstat -tln 2>&1 || echo "no ss/netstat"
+            echo "---END4---"

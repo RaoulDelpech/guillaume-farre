@@ -1,7 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Link } from "@/i18n/routing";
-import EditableText from "@/components/admin/EditableText";
 
 interface HeroCarouselProps {
   /** Images des slides passées depuis le serveur (data/page-images.json) */
@@ -10,21 +8,20 @@ interface HeroCarouselProps {
 
 /**
  * Hero Carousel - Images configurables via data/page-images.json
+ * Pas de texte overlay — juste les images, rien d'autre.
  * @author Lalou
- * @date 2025-01-20
  */
 export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Utilise les images passées en props ou les valeurs par défaut
   const slides = (slideImages || [
     "/images/toiles/1.jpg",
-    "/images/toiles/8.jpg",
-    "/images/toiles/12.jpg",
+    "/images/toiles/20.jpg",
+    "/images/works/photos/16.jpg",
   ]).map(image => ({ image }));
 
-  // Autoplay - 12 secondes par slide (cinématographique)
+  // Autoplay - 12 secondes par slide
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
@@ -65,7 +62,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
   };
 
   return (
-    <section className="relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] overflow-hidden bg-black">
+    <section className="relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] overflow-hidden bg-[#FAF7F2]">
       {/* Background Slides */}
       {slides.map((slide, index) => (
         <div
@@ -82,24 +79,10 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
               transform: index === current ? "scale(1.1)" : "scale(1)"
             }}
           />
-          {/* Overlay pour lisibilité */}
-          <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
 
-      {/* Content - Nom de l'artiste, sobre */}
-      <div className="relative h-full container flex flex-col justify-end items-center text-center text-white px-4 sm:px-6 lg:px-8 pb-16 md:pb-20 z-10">
-        <div className="max-w-4xl">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extralight tracking-[0.2em] uppercase animate-fade-in">
-            Guillaume Farré
-          </h1>
-          <p className="mt-3 text-sm sm:text-base font-light tracking-[0.15em] text-white/70 animate-fade-in-delay-1">
-            Toiles et Photographies
-          </p>
-        </div>
-      </div>
-
-      {/* Navigation Arrows - 44px minimum pour mobile (accessibilité) */}
+      {/* Navigation Arrows */}
       <button
         onClick={goToPrevious}
         className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all flex items-center justify-center text-white/70 hover:text-white z-20 active:scale-95"
@@ -119,7 +102,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
         </svg>
       </button>
 
-      {/* Dots Navigation - Discrets en bas */}
+      {/* Dots Navigation */}
       <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {slides.map((_, index) => (
           <button
@@ -134,7 +117,6 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
           />
         ))}
       </div>
-
     </section>
   );
 }

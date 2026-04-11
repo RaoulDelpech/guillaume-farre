@@ -21,7 +21,7 @@ export function paintingMaxWidth(w: number, h: number, targetVH: number): string
   return `min(100%, calc((${targetVH}vh - ${FRAME_TOTAL_PX}px) * ${ar} + ${FRAME_TOTAL_PX}px))`;
 }
 
-/** Linen-like background (used by lightbox). */
+/** Fond ivoire texturé lin — identique au body global */
 export const LINEN_BG = {
   backgroundColor: "#FAF7F2",
   backgroundImage: [

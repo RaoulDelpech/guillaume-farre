@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 /**
- * Animation post-login "Rideau de lumière dorée"
+ * Animation post-login lumière dorée
  * Sensation d'exclusivité et d'accès privilégié
  * Direction artistique: palette bronze/doré (primary)
  *
@@ -121,7 +121,7 @@ export default function WelcomeAnimation() {
         </h1>
       </div>
 
-      {/* Voiles qui s'écartent (effet rideau) */}
+      {/* Voiles qui s'écartent */}
       <div
         className={`absolute top-0 bottom-0 left-0 bg-black transition-transform duration-1000 ease-in-out ${
           phase === "reveal" ? "-translate-x-full" : "translate-x-0"

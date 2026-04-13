@@ -24,6 +24,11 @@ export default function EarlyAccessOverlay() {
   useEffect(() => {
     setIsClient(true);
 
+    // Jamais sur la page login (landing Coming Soon)
+    if (window.location.pathname.includes('/login')) {
+      return;
+    }
+
     // Ne s'affiche que si :
     // 1. On est en periode early access
     // 2. Le cookie n'existe pas (premiere visite)

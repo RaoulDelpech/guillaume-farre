@@ -2,218 +2,311 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import Image from "next/image";
 
 /**
- * Page de login avec portes d'atelier industrielles
- * Ambiance confidentielle / club privé
+ * Landing Coming Soon — Guillaume Farré
  *
- * Séquence :
- * 1. Portes fermées + champ mot de passe
- * 2. Mot de passe correct → portes s'ouvrent lentement
- * 3. Message de bienvenue apparaît derrière les portes
- * 4. Redirect vers site
+ * Countdown vers 15 avril 2026, carousel photos, formulaire newsletter
+ * Lien discret "Accès privé" qui révèle le formulaire mot de passe
  *
  * @author Lalou
  */
 export default function LoginPage() {
-  const [phase, setPhase] = useState<"password" | "opening" | "welcome">("password");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const t = useTranslations("comingSoon");
+  const locale = useLocale();
   const router = useRouter();
-  const inputRef = useRef<HTMLInputElement>(null);
 
+  // États countdown
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // États carousel
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const carouselImages = ["/images/toiles/1.jpg", "/images/toiles/20.jpg", "/images/toiles/5.jpg"];
+
+  // États formulaire newsletter
+  const [email, setEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("");
+
+  // États formulaire mot de passe
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordLoading, setPasswordLoading] = useState(false);
+
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+
+  // Countdown
   useEffect(() => {
-    if (phase === "password" && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 300);
-    }
-  }, [phase]);
+    const targetDate = new Date("2026-04-15T00:00:00+02:00"); // CET
 
-  // Redirect après le message de bienvenue
+    const updateCountdown = () => {
+      const now = new Date();
+      const diff = targetDate.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      setTimeRemaining({ days, hours, minutes, seconds });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Carousel autoplay
   useEffect(() => {
-    if (phase === "welcome") {
-      const timer = setTimeout(() => {
-        router.push("/fr");
-        router.refresh();
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [phase, router]);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 8000);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
+  // Focus input password quand formulaire apparaît
+  useEffect(() => {
+    if (showPasswordForm && passwordInputRef.current) {
+      setTimeout(() => passwordInputRef.current?.focus(), 200);
+    }
+  }, [showPasswordForm]);
+
+  // Submit newsletter
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(false);
+    setNewsletterStatus("loading");
+    setNewsletterMessage("");
 
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setNewsletterStatus("error");
+      setNewsletterMessage(t("invalidEmail"));
+      return;
+    }
 
-    if (res.ok) {
-      document.cookie = "gf_dark_entry_seen=true;path=/;max-age=604800";
-      setPhase("opening");
-      // Attendre que les portes soient ouvertes avant d'afficher le message
-      setTimeout(() => setPhase("welcome"), 5500);
-    } else {
-      setError(true);
-      setLoading(false);
+    try {
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, locale }),
+      });
+
+      if (res.ok) {
+        setNewsletterStatus("success");
+        setNewsletterMessage(t("success"));
+        setEmail("");
+      } else {
+        const data = await res.json();
+        setNewsletterStatus("error");
+        setNewsletterMessage(data.error || t("error"));
+      }
+    } catch (error) {
+      setNewsletterStatus("error");
+      setNewsletterMessage(t("error"));
     }
   };
 
-  const doorsOpen = phase === "opening" || phase === "welcome";
+  // Submit mot de passe
+  const handlePasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasswordLoading(true);
+    setPasswordError(false);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+
+      if (res.ok) {
+        router.push(`/${locale}`);
+        router.refresh();
+      } else {
+        setPasswordError(true);
+        setPasswordLoading(false);
+      }
+    } catch (error) {
+      setPasswordError(true);
+      setPasswordLoading(false);
+    }
+  };
 
   return (
-    <div className="fixed inset-0 bg-black overflow-hidden">
-      {/* Porte gauche */}
-      <div
-        className={`absolute top-0 left-0 w-1/2 h-full transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
-          doorsOpen ? "-translate-x-full" : "translate-x-0"
-        }`}
-        style={{
-          background: "linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
-          boxShadow: "inset -20px 0 60px rgba(0,0,0,0.8)",
-        }}
-      >
-        {/* Texture métal */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 2px,
-              rgba(255,255,255,0.03) 2px,
-              rgba(255,255,255,0.03) 4px
-            )`,
-          }}
-        />
-        {/* Rivets - cachés sur mobile */}
-        <div className="hidden md:block absolute top-8 right-8 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        <div className="hidden md:block absolute top-8 right-20 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        <div className="hidden md:block absolute bottom-8 right-8 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        <div className="hidden md:block absolute bottom-8 right-20 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        {/* Poignée - plus petite sur mobile */}
-        <div className="absolute top-1/2 right-4 md:right-6 -translate-y-1/2 w-1.5 md:w-2 h-16 md:h-24 bg-zinc-500 rounded-full shadow-lg" />
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
+      {/* 1. Titre */}
+      <div className="pt-20 md:pt-24 pb-8 md:pb-12 text-center">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-wide">
+          Guillaume Farré
+        </h1>
       </div>
 
-      {/* Porte droite */}
-      <div
-        className={`absolute top-0 right-0 w-1/2 h-full transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
-          doorsOpen ? "translate-x-full" : "translate-x-0"
-        }`}
-        style={{
-          background: "linear-gradient(225deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)",
-          boxShadow: "inset 20px 0 60px rgba(0,0,0,0.8)",
-        }}
-      >
-        {/* Texture métal */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 2px,
-              rgba(255,255,255,0.03) 2px,
-              rgba(255,255,255,0.03) 4px
-            )`,
-          }}
-        />
-        {/* Rivets - cachés sur mobile */}
-        <div className="hidden md:block absolute top-8 left-8 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        <div className="hidden md:block absolute top-8 left-20 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        <div className="hidden md:block absolute bottom-8 left-8 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        <div className="hidden md:block absolute bottom-8 left-20 w-3 h-3 rounded-full bg-zinc-600 shadow-inner" />
-        {/* Poignée - plus petite sur mobile */}
-        <div className="absolute top-1/2 left-4 md:left-6 -translate-y-1/2 w-1.5 md:w-2 h-16 md:h-24 bg-zinc-500 rounded-full shadow-lg" />
+      {/* 2. Carousel */}
+      <div className="relative w-full h-[50vh] overflow-hidden">
+        {carouselImages.map((src, index) => (
+          <div
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <Image
+              src={src}
+              alt=""
+              fill
+              className="object-cover"
+              priority={index === 0}
+            />
+          </div>
+        ))}
       </div>
 
-      {/* Ligne centrale (jonction des portes) */}
-      <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-black/50 transition-opacity duration-[5000ms] ${
-          doorsOpen ? "opacity-0" : "opacity-100"
-        }`}
-      />
+      {/* 3. Grille photos */}
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {[1, 3, 5, 8, 11, 14].map((num) => (
+            <div key={num} className="relative aspect-[4/3]">
+              <Image
+                src={`/images/works/photos/${num}.jpg`}
+                alt=""
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
-      {/* Formulaire mot de passe (portes fermées) */}
-      {phase === "password" && (
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="w-full max-w-sm px-8 animate-[fadeIn_1s_ease-out_0.3s_both]">
-            <div className="text-center mb-12">
-              <p className="text-white/40 text-xs tracking-[0.3em] uppercase font-light">
-                Espace privé
+      {/* 4. Countdown */}
+      <div className="container mx-auto px-4 py-16 md:py-24 text-center">
+        <div className="flex justify-center gap-8 md:gap-16">
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+              {String(timeRemaining.days).padStart(2, "0")}
+            </div>
+            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+              {t("days")}
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+              {String(timeRemaining.hours).padStart(2, "0")}
+            </div>
+            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+              {t("hours")}
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+              {String(timeRemaining.minutes).padStart(2, "0")}
+            </div>
+            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+              {t("minutes")}
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+              {String(timeRemaining.seconds).padStart(2, "0")}
+            </div>
+            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+              {t("seconds")}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 5. Formulaire newsletter */}
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-xl">
+        <p className="text-center text-white/60 text-sm md:text-base font-light tracking-wide mb-8">
+          {t("emailLabel")}
+        </p>
+        <form onSubmit={handleNewsletterSubmit} className="space-y-6">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={t("emailPlaceholder")}
+            disabled={newsletterStatus === "loading" || newsletterStatus === "success"}
+            className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors disabled:opacity-50"
+          />
+          {newsletterStatus === "success" || newsletterStatus === "error" ? (
+            <div className="text-center">
+              <p
+                className={`text-sm font-light tracking-wide ${
+                  newsletterStatus === "success" ? "text-white/60" : "text-white/40"
+                }`}
+              >
+                {newsletterMessage}
               </p>
             </div>
+          ) : (
+            <button
+              type="submit"
+              disabled={newsletterStatus === "loading" || !email}
+              className="w-full py-3 text-white/40 text-xs md:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              {newsletterStatus === "loading" ? "···" : t("submit")}
+            </button>
+          )}
+        </form>
+      </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+      {/* 6. Lien "Accès privé" */}
+      <div className="container mx-auto px-4 py-16 md:py-24 text-center">
+        {!showPasswordForm ? (
+          <button
+            onClick={() => setShowPasswordForm(true)}
+            className="text-white/20 text-xs tracking-widest uppercase hover:text-white/40 transition-colors"
+          >
+            {t("privateAccess")}
+          </button>
+        ) : (
+          <div className="max-w-sm mx-auto animate-[fadeIn_0.5s_ease-out]">
+            <form onSubmit={handlePasswordSubmit} className="space-y-6">
               <div>
                 <input
-                  ref={inputRef}
+                  ref={passwordInputRef}
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Mot de passe"
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors min-h-[44px]"
+                  placeholder={t("password")}
+                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors"
                 />
               </div>
 
-              {error && (
-                <div className="text-center space-y-4">
-                  <p className="text-white/50 text-xs font-light tracking-wide">
-                    Accès refusé
-                  </p>
-                  <a
-                    href="/"
-                    className="inline-block text-white/20 text-xs font-light tracking-widest uppercase hover:text-white/40 transition-colors"
-                  >
-                    Retour
-                  </a>
-                </div>
+              {passwordError && (
+                <p className="text-center text-white/40 text-xs font-light tracking-wide">
+                  {t("accessDenied")}
+                </p>
               )}
 
               <button
                 type="submit"
-                disabled={loading || !password}
-                className="w-full py-3 text-white/40 text-xs sm:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed min-h-[48px] flex items-center justify-center"
+                disabled={passwordLoading || !password}
+                className="w-full py-3 text-white/40 text-xs md:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
-                {loading ? "···" : "Entrer"}
+                {passwordLoading ? "···" : t("enter")}
               </button>
             </form>
           </div>
-        </div>
-      )}
-
-      {/* Message de bienvenue (révélé après ouverture des portes) */}
-      {(phase === "opening" || phase === "welcome") && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-0">
-          <div className={`flex flex-col items-center transition-opacity duration-[2000ms] ${
-            phase === "welcome" ? "opacity-100" : "opacity-0"
-          }`}>
-            {/* Ligne fine horizontale */}
-            <div className="h-px w-32 md:w-48 bg-white/20 mb-12" />
-
-            {/* Nom de l'artiste */}
-            <p className="text-white/50 text-xs md:text-sm tracking-[0.5em] uppercase font-light mb-6">
-              Guillaume Farré
-            </p>
-
-            {/* Phrase signature */}
-            <h1 className="text-white text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-center px-8">
-              Une Dino pour pinceau
-            </h1>
-
-            {/* Sous-titre */}
-            <p className="text-white/40 text-sm md:text-base font-light tracking-widest mt-6">
-              Toiles · Photographies · Performances
-            </p>
-
-            {/* Ligne fine horizontale */}
-            <div className="h-px w-32 md:w-48 bg-white/20 mt-12" />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

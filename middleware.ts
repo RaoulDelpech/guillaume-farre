@@ -80,7 +80,7 @@ export default function middleware(request: NextRequest) {
   const locale = getLocale(pathname);
 
   const authCookie = request.cookies.get(AUTH_COOKIE);
-  const isAuthenticated = authCookie?.value === 'authenticated';
+  const isAuthenticated = authCookie?.value === '681cb964982c5f2ccc2accaded688f3b';
   const vipCookie = request.cookies.get(VIP_COOKIE);
   const hasVipAccess = !!vipCookie;
 

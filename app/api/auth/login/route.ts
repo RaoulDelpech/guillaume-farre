@@ -6,6 +6,9 @@ const SITE_PASSWORD = requireEnv('SITE_PASSWORD');
 const COOKIE_NAME = "gf_auth";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 jours
 
+// Token unique — changer ici invalide TOUS les anciens cookies
+const AUTH_TOKEN = "681cb964982c5f2ccc2accaded688f3b";
+
 /**
  * API login - vérifie mot de passe et set cookie
  * @author Lalou
@@ -24,7 +27,7 @@ export async function POST(request: NextRequest) {
     if (isValid) {
       const response = NextResponse.json({ success: true });
 
-      response.cookies.set(COOKIE_NAME, "authenticated", {
+      response.cookies.set(COOKIE_NAME, AUTH_TOKEN, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",

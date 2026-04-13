@@ -2,6 +2,7 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import EditableText from "@/components/admin/EditableText";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -102,8 +103,15 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Newsletter */}
+        <div className="mt-12 pt-8 border-t border-border flex justify-center">
+          <div className="max-w-md w-full text-center">
+            <NewsletterSubscribe variant="footer" />
+          </div>
+        </div>
+
         {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground font-light">
+        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground font-light">
           <p>{t("rights", { year: currentYear })}</p>
         </div>
       </div>

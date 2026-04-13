@@ -151,7 +151,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#FEFEFA] text-[#1a1a1a]">
       {/* 1. Titre */}
-      <div className="pt-20 md:pt-24 pb-8 md:pb-12 text-center">
+      <div className="pt-20 md:pt-24 pb-2 md:pb-4 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-wide">
           Guillaume Farré
         </h1>
@@ -171,6 +171,7 @@ export default function LoginPage() {
               alt=""
               fill
               sizes="100vw"
+              quality={95}
               className="object-cover"
               priority={index === 0}
             />
@@ -179,7 +180,7 @@ export default function LoginPage() {
       </div>
 
       {/* 3. Countdown */}
-      <div className="container mx-auto px-4 py-16 md:py-24 text-center">
+      <div className="container mx-auto px-4 pt-8 md:pt-12 pb-16 md:pb-24 text-center">
         <div className="flex justify-center gap-4 md:gap-16">
           <div className="flex flex-col items-center">
             <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">

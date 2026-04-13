@@ -158,7 +158,7 @@ export default function LoginPage() {
       </div>
 
       {/* 2. Carousel */}
-      <div className="relative w-full h-[50vh] overflow-hidden">
+      <div className="relative w-full h-[50vh] overflow-hidden bg-white">
         {carouselImages.map((src, index) => (
           <div
             key={src}
@@ -180,7 +180,7 @@ export default function LoginPage() {
       </div>
 
       {/* 3. Countdown */}
-      <div className="container mx-auto px-4 pt-8 md:pt-12 pb-16 md:pb-24 text-center">
+      <div className="container mx-auto px-4 py-12 md:py-16 text-center">
         <div className="flex justify-center gap-4 md:gap-16">
           <div className="flex flex-col items-center">
             <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
@@ -218,7 +218,7 @@ export default function LoginPage() {
       </div>
 
       {/* 4. Grille photos */}
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 pt-4 md:pt-8 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {[1, 3, 5, 8, 11, 14].map((num, index) => (
             <div key={num} className="relative aspect-[4/3]">

@@ -11,6 +11,7 @@ import PhotoFilters from "@/components/admin/PhotoFilters";
 import PhotoFiltersPills from "@/components/admin/PhotoFiltersPills";
 import BulkActions from "@/components/admin/BulkActions";
 import AdminQuickActions from "@/components/admin/AdminQuickActions";
+import NewsletterNotify from "@/components/admin/NewsletterNotify";
 import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
 
 import { useAdminPhotos } from "@/hooks/useAdminPhotos";
@@ -85,6 +86,7 @@ export default function AdminPage() {
         {/* <div className="mb-12"><InstagramConfig /></div> */}
         {/* <div className="mb-12"><CommercialDashboard photos={admin.photos} /></div> */}
         <div className="mb-12"><PricingManager /></div>
+        <div className="mb-12"><NewsletterNotify /></div>
 
         {/* Layout: sidebar filters + main content */}
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 mb-12">

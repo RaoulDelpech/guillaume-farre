@@ -29,7 +29,7 @@ export default function LoginPage() {
 
   // États carousel
   const [currentSlide, setCurrentSlide] = useState(0);
-  const carouselImages = ["/images/toiles/1.jpg", "/images/toiles/20.jpg", "/images/toiles/5.jpg"];
+  const carouselImages = ["/images/toiles/1.jpg", "/images/toiles/20.jpg", "/images/toiles/4.jpg"];
 
   // États formulaire newsletter
   const [email, setEmail] = useState("");
@@ -149,7 +149,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-[#FEFEFA] text-[#1a1a1a]">
       {/* 1. Titre */}
       <div className="pt-20 md:pt-24 pb-8 md:pb-12 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-wide">
@@ -181,7 +181,7 @@ export default function LoginPage() {
       {/* 3. Grille photos */}
       <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {[1, 3, 5, 8, 11, 14].map((num) => (
+          {[1, 3, 5, 8, 11, 14].map((num, index) => (
             <div key={num} className="relative aspect-[4/3]">
               <Image
                 src={`/images/works/photos/${num}.jpg`}
@@ -189,6 +189,7 @@ export default function LoginPage() {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"
+                priority={index === 0}
               />
             </div>
           ))}
@@ -197,36 +198,36 @@ export default function LoginPage() {
 
       {/* 4. Countdown */}
       <div className="container mx-auto px-4 py-16 md:py-24 text-center">
-        <div className="flex justify-center gap-8 md:gap-16">
+        <div className="flex justify-center gap-4 md:gap-16">
           <div className="flex flex-col items-center">
-            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
               {String(timeRemaining.days).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
               {t("days")}
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
               {String(timeRemaining.hours).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
               {t("hours")}
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
               {String(timeRemaining.minutes).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
               {t("minutes")}
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-5xl md:text-7xl font-light tracking-wider mb-2">
+            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
               {String(timeRemaining.seconds).padStart(2, "0")}
             </div>
-            <div className="text-xs md:text-sm text-white/40 tracking-widest uppercase">
+            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
               {t("seconds")}
             </div>
           </div>
@@ -235,7 +236,7 @@ export default function LoginPage() {
 
       {/* 5. Formulaire newsletter */}
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-xl">
-        <p className="text-center text-white/60 text-sm md:text-base font-light tracking-wide mb-8">
+        <p className="text-center text-[#1a1a1a]/60 text-sm md:text-base font-light tracking-wide mb-8">
           {t("emailLabel")}
         </p>
         <form onSubmit={handleNewsletterSubmit} className="space-y-6">
@@ -245,13 +246,13 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t("emailPlaceholder")}
             disabled={newsletterStatus === "loading" || newsletterStatus === "success"}
-            className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors disabled:opacity-50"
+            className="w-full px-0 py-4 bg-transparent border-0 border-b border-[#1a1a1a]/20 text-[#1a1a1a] text-center placeholder-[#1a1a1a]/30 font-light tracking-widest focus:outline-none focus:border-[#1a1a1a]/50 transition-colors disabled:opacity-50"
           />
           {newsletterStatus === "success" || newsletterStatus === "error" ? (
             <div className="text-center">
               <p
                 className={`text-sm font-light tracking-wide ${
-                  newsletterStatus === "success" ? "text-white/60" : "text-white/40"
+                  newsletterStatus === "success" ? "text-[#1a1a1a]/60" : "text-[#1a1a1a]/40"
                 }`}
               >
                 {newsletterMessage}
@@ -261,7 +262,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={newsletterStatus === "loading" || !email}
-              className="w-full py-3 text-white/40 text-xs md:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-full min-h-[44px] py-3 text-[#1a1a1a]/60 text-xs md:text-sm tracking-[0.3em] uppercase hover:text-[#1a1a1a]/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
               {newsletterStatus === "loading" ? "···" : t("submit")}
             </button>
@@ -274,7 +275,7 @@ export default function LoginPage() {
         {!showPasswordForm ? (
           <button
             onClick={() => setShowPasswordForm(true)}
-            className="text-white/20 text-xs tracking-widest uppercase hover:text-white/40 transition-colors"
+            className="text-[#1a1a1a]/30 text-xs tracking-widest uppercase hover:text-[#1a1a1a]/50 transition-colors min-h-[44px] px-4 py-3"
           >
             {t("privateAccess")}
           </button>
@@ -288,12 +289,12 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={t("password")}
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-white/20 text-white text-center placeholder-white/30 font-light tracking-widest focus:outline-none focus:border-white/50 transition-colors"
+                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-[#1a1a1a]/20 text-[#1a1a1a] text-center placeholder-[#1a1a1a]/30 font-light tracking-widest focus:outline-none focus:border-[#1a1a1a]/50 transition-colors"
                 />
               </div>
 
               {passwordError && (
-                <p className="text-center text-white/40 text-xs font-light tracking-wide">
+                <p className="text-center text-[#1a1a1a]/40 text-xs font-light tracking-wide">
                   {t("accessDenied")}
                 </p>
               )}
@@ -301,7 +302,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={passwordLoading || !password}
-                className="w-full py-3 text-white/40 text-xs md:text-sm tracking-[0.3em] uppercase hover:text-white/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-full min-h-[44px] py-3 text-[#1a1a1a]/60 text-xs md:text-sm tracking-[0.3em] uppercase hover:text-[#1a1a1a]/80 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 {passwordLoading ? "···" : t("enter")}
               </button>

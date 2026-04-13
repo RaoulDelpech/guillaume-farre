@@ -117,6 +117,7 @@ export default async function RootLayout({
   // VIP visitors get a stripped-down layout (no footer, no overlays)
   const cookieStore = await cookies();
   const isVipVisitor = !!cookieStore.get('gf_vip') && !cookieStore.get('gf_auth')?.value;
+  const isPreLaunch = process.env.SITE_MODE === 'pre-launch';
 
   return (
     <html lang={locale}>
@@ -126,8 +127,8 @@ export default async function RootLayout({
       </head>
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
-            {/* Overlay Early Collector - pas pour VIP */}
-            {!isVipVisitor && <EarlyAccessOverlay />}
+            {/* Overlay Early Collector - pas pour VIP, pas en pre-launch */}
+            {!isVipVisitor && !isPreLaunch && <EarlyAccessOverlay />}
             <AdminWrapper>
               <ScrollToTopOnNav />
               {!isVipVisitor && (
@@ -135,14 +136,14 @@ export default async function RootLayout({
                   <PageProgressBar />
                 </Suspense>
               )}
-              {!isVipVisitor && <WelcomeAnimation />}
+              {!isVipVisitor && !isPreLaunch && <WelcomeAnimation />}
 
               <SmoothScroll>
                 <div className="flex-1">
                   {children}
                 </div>
               </SmoothScroll>
-              {!isVipVisitor && <Footer />}
+              {!isVipVisitor && !isPreLaunch && <Footer />}
               {!isVipVisitor && <BackToTop />}
               <CookieConsent />
               <GoogleAnalytics />

@@ -253,6 +253,15 @@
       "expired": "Expired"
     }
   },
+  "newsletter": {
+    "title": "Stay informed",
+    "description": "Receive an email when new works are added to the site",
+    "placeholder": "Your email address",
+    "submit": "Subscribe",
+    "success": "Thank you! You will be notified of new works.",
+    "error": "An error occurred. Please try again.",
+    "invalidEmail": "Invalid email address"
+  },
   "comingSoon": {
     "emailLabel": "Leave your email to be notified when the site opens",
     "emailPlaceholder": "Your email address",

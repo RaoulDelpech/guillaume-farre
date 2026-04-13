@@ -253,6 +253,15 @@
       "expired": "Expiré"
     }
   },
+  "newsletter": {
+    "title": "Restez informé",
+    "description": "Recevez un email à chaque nouvelle œuvre ajoutée sur le site",
+    "placeholder": "Votre adresse email",
+    "submit": "S'inscrire",
+    "success": "Merci ! Vous serez informé des nouveautés.",
+    "error": "Une erreur est survenue. Veuillez réessayer.",
+    "invalidEmail": "Adresse email invalide"
+  },
   "comingSoon": {
     "emailLabel": "Laissez votre email pour être informé de l'ouverture du site",
     "emailPlaceholder": "Votre adresse email",

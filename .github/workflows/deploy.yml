@@ -1,4 +1,4 @@
-name: Deploy to VPS IONOS
+name: Deploy to VPS OVH
 
 on:
   push:
@@ -8,6 +8,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # NOTE (2026-04-11): le build est execute SUR le VPS via SSH (appleboy/ssh-action),
+    # pas sur le runner GitHub. Par consequent :
+    # - setup-bun@v2 ici serait inutile (le runner n'execute aucun bun run).
+    # - bun DOIT etre preinstalle sur le VPS 57.131.23.96 lors du bootstrap.
+    # Commande bootstrap VPS (a executer manuellement 1 fois par Raoul) :
+    #   curl -fsSL https://bun.sh/install | bash
+    #   echo 'export BUN_INSTALL="$HOME/.bun"' >> ~/.bashrc
+    #   echo 'export PATH="$BUN_INSTALL/bin:$PATH"' >> ~/.bashrc
+    # Node >= 20 egalement requis pour next 15.5 :
+    #   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+    #   sudo apt-get install -y nodejs
     steps:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
@@ -23,7 +34,13 @@ jobs:
             git clean -fd
             rm -rf app/api/account
             echo "Installing dependencies..."
-            npm install --production=false 2>&1 || echo "npm install warning (continuing)"
+            # Option A (supply chain mitigation): use bun instead of npm.
+            # bun.lock pins eslint-import-resolver-typescript@3.8.3 (pre unrs-resolver),
+            # bypassing the suspicious napi-postinstall -> unrs-resolver chain which
+            # is the most likely vector for the persistent VPS malware (audit 2026-04-11).
+            # --frozen-lockfile aborts on any drift: no silent lock rewrite in prod.
+            # No `|| echo` camouflage: a failing install MUST fail the deploy loudly.
+            bun install --frozen-lockfile
             echo "Writing env..."
             echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" > .env.local
             echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.local
@@ -37,7 +54,7 @@ jobs:
             echo "Cleaning build cache..."
             rm -rf .next
             echo "Building with increased memory..."
-            NODE_OPTIONS="--max-old-space-size=4096" npm run build
+            NODE_OPTIONS="--max-old-space-size=4096" bun run build
             echo "Restarting PM2..."
             pm2 restart guillaumefarre || pm2 start npm --name guillaumefarre -- start
             sleep 10

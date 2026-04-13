@@ -40,6 +40,13 @@ next-env.d.ts
 # bun
 bun.lockb
 
+# npm (we use bun exclusively as of 2026-04-11 supply chain mitigation:
+# package-lock.json pulls the suspicious eslint-import-resolver-typescript@3.10.1
+# -> unrs-resolver@1.11.1 postinstall chain on Linux x64 deploy targets.
+# bun.lock pins the safe 3.8.3 and bun does not run untrusted postinstall scripts.
+# Do NOT commit package-lock.json.)
+package-lock.json
+
 # uploads (keep folder but ignore uploaded files)
 /public/uploads/*
 !/public/uploads/.gitkeep

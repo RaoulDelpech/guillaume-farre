@@ -252,5 +252,21 @@
       "used": "Used",
       "expired": "Expired"
     }
+  },
+  "comingSoon": {
+    "emailLabel": "Leave your email to be notified when the site opens",
+    "emailPlaceholder": "Your email address",
+    "submit": "Submit",
+    "success": "Thank you! You will be notified when the site opens.",
+    "error": "An error occurred. Please try again.",
+    "invalidEmail": "Invalid email address",
+    "privateAccess": "Private access",
+    "password": "Password",
+    "enter": "Enter",
+    "accessDenied": "Access denied",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
   }
 }

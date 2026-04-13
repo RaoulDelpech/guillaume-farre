@@ -252,5 +252,21 @@
       "used": "Utilizzato",
       "expired": "Scaduto"
     }
+  },
+  "comingSoon": {
+    "emailLabel": "Lascia la tua email per essere informato dell'apertura del sito",
+    "emailPlaceholder": "Il tuo indirizzo email",
+    "submit": "Invia",
+    "success": "Grazie! Sarai informato dell'apertura.",
+    "error": "Si è verificato un errore. Riprova.",
+    "invalidEmail": "Indirizzo email non valido",
+    "privateAccess": "Accesso privato",
+    "password": "Password",
+    "enter": "Entra",
+    "accessDenied": "Accesso negato",
+    "days": "giorni",
+    "hours": "ore",
+    "minutes": "minuti",
+    "seconds": "secondi"
   }
 }

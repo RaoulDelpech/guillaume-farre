@@ -170,6 +170,7 @@ export default function LoginPage() {
               src={src}
               alt=""
               fill
+              sizes="100vw"
               className="object-cover"
               priority={index === 0}
             />
@@ -186,6 +187,7 @@ export default function LoginPage() {
                 src={`/images/works/photos/${num}.jpg`}
                 alt=""
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"
               />
             </div>

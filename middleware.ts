@@ -3,8 +3,10 @@ import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 
 const AUTH_COOKIE = "gf_auth";
-const VIP_COOKIE = "gf_vip";
 const VALID_LOCALES = ['fr', 'en', 'it'];
+
+// Token unique — DOIT correspondre a celui dans app/api/auth/login/route.ts
+const AUTH_TOKEN = "681cb964982c5f2ccc2accaded688f3b";
 
 // Origines autorisées pour les requêtes admin mutantes (CSRF)
 const ALLOWED_ORIGINS = [
@@ -15,6 +17,9 @@ const ALLOWED_ORIGINS = [
 
 // "pre-launch" = site cache (mot de passe), "public" = site ouvert
 const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
+
+// APIs accessibles sans auth en mode pre-launch
+const PUBLIC_API_ROUTES = ['/api/auth/login', '/api/newsletter/subscribe'];
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -37,10 +42,11 @@ function getVipLevel(cookieValue: string): 'hidden' | 'secret' {
 }
 
 /**
- * Middleware 3 niveaux d'acces :
- * 1. Normal (mot de passe site) — oeuvres publiques, pas de prix
- * 2. Hidden (lien VIP 24h) — toutes les oeuvres, pas de prix
- * 3. Secret (lien VIP 24h) — tout + prix + /toiles
+ * Middleware securise — mode pre-launch strict
+ *
+ * En pre-launch : SEUL le cookie avec le bon token donne acces.
+ * Les cookies VIP, les anciens cookies "authenticated" sont ignores.
+ * Whitelist stricte : /login, /api/auth/login, /api/newsletter/subscribe, assets.
  *
  * @author Lalou
  */
@@ -58,12 +64,7 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  // API routes — pas de middleware i18n ni auth
-  if (pathname.startsWith('/api/')) {
-    return NextResponse.next();
-  }
-
-  // Assets et fichiers statiques — juste i18n
+  // Assets et fichiers statiques — toujours accessibles
   if (
     pathname.startsWith('/_next/') ||
     pathname.startsWith('/images/') ||
@@ -72,26 +73,51 @@ export default function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // Pages toujours accessibles (auth + demos temporaires)
-  if (pathname.endsWith('/login') || pathname.endsWith('/vip') || pathname.includes('/nav-demo') || pathname.includes('/frame-demo')) {
+  // --- Mode pre-launch : verrouillage strict ---
+  if (SITE_MODE === 'pre-launch') {
+    // APIs publiques whitelistees
+    if (pathname.startsWith('/api/')) {
+      if (PUBLIC_API_ROUTES.some(route => pathname.startsWith(route))) {
+        return NextResponse.next();
+      }
+      // Toute autre API bloquee sans auth
+      const authCookie = request.cookies.get(AUTH_COOKIE);
+      if (authCookie?.value !== AUTH_TOKEN) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      return NextResponse.next();
+    }
+
+    // Page login toujours accessible
+    if (pathname.endsWith('/login')) {
+      return intlMiddleware(request);
+    }
+
+    // Verifier auth — UNIQUEMENT le nouveau token, PAS "authenticated", PAS VIP
+    const authCookie = request.cookies.get(AUTH_COOKIE);
+    const isAuthenticated = authCookie?.value === AUTH_TOKEN;
+
+    if (!isAuthenticated) {
+      const locale = getLocale(pathname);
+      return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+    }
+
     return intlMiddleware(request);
   }
 
-  const locale = getLocale(pathname);
+  // --- Mode public : comportement normal ---
 
-  const authCookie = request.cookies.get(AUTH_COOKIE);
-  const isAuthenticated = authCookie?.value === '681cb964982c5f2ccc2accaded688f3b';
-  const vipCookie = request.cookies.get(VIP_COOKIE);
-  const hasVipAccess = !!vipCookie;
-
-  // /toiles — accessible a tous (public = sans prix, VIP secret = avec prix)
-
-  // --- Mode pre-launch : tout le site est cache ---
-  if (SITE_MODE === 'pre-launch' && !isAuthenticated) {
-    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+  // API routes — pas de middleware i18n
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
   }
 
-  // Tout OK, continuer avec i18n
+  // Pages toujours accessibles
+  if (pathname.endsWith('/login') || pathname.endsWith('/vip')) {
+    return intlMiddleware(request);
+  }
+
+  // Tout OK en mode public, continuer avec i18n
   return intlMiddleware(request);
 }
 

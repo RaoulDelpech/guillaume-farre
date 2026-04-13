@@ -178,25 +178,7 @@ export default function LoginPage() {
         ))}
       </div>
 
-      {/* 3. Grille photos */}
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {[1, 3, 5, 8, 11, 14].map((num, index) => (
-            <div key={num} className="relative aspect-[4/3]">
-              <Image
-                src={`/images/works/photos/${num}.jpg`}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover"
-                priority={index === 0}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* 4. Countdown */}
+      {/* 3. Countdown */}
       <div className="container mx-auto px-4 py-16 md:py-24 text-center">
         <div className="flex justify-center gap-4 md:gap-16">
           <div className="flex flex-col items-center">
@@ -231,6 +213,24 @@ export default function LoginPage() {
               {t("seconds")}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* 4. Grille photos */}
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {[1, 3, 5, 8, 11, 14].map((num, index) => (
+            <div key={num} className="relative aspect-[4/3]">
+              <Image
+                src={`/images/works/photos/${num}.jpg`}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
         </div>
       </div>
 

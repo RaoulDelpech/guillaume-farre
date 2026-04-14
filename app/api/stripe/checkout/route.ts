@@ -11,9 +11,6 @@ const stripe = process.env.STRIPE_SECRET_KEY
     })
   : null;
 
-// Seuil à partir duquel on propose le virement SEPA (en euros)
-const BANK_TRANSFER_THRESHOLD = 1000;
-
 // Seuil KYC (obligation LCB-FT pour vente d'art)
 const KYC_THRESHOLD = 10_000;
 
@@ -129,38 +126,14 @@ export async function POST(request: Request) {
     });
 
     const totalAmount = validatedItems.reduce((sum: number, item: any) => sum + item.price, 0);
-    const isHighValue = totalAmount >= BANK_TRANSFER_THRESHOLD;
 
     // Vérification KYC serveur : si > 10K EUR et pas de vérification d'identité
     // Pour l'instant on accepte sans vérification stricte côté serveur
     // La vérification KYC sera faite via Stripe Identity avant le paiement
 
-    // Pour les gros montants, créer un Customer Stripe (requis pour bank transfers)
-    let customer: string | undefined;
-    if (isHighValue) {
-      const stripeCustomer = await stripe.customers.create({
-        metadata: { source: 'guillaumefarre.com' },
-      });
-      customer = stripeCustomer.id;
-    }
-
-    // Payment methods selon le montant
-    const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = isHighValue
-      ? ['card', 'customer_balance']
-      : ['card'];
-
-    // Config bank transfer SEPA pour gros montants
-    const paymentMethodOptions: Stripe.Checkout.SessionCreateParams.PaymentMethodOptions | undefined = isHighValue
-      ? {
-          customer_balance: {
-            bank_transfer: {
-              type: 'eu_bank_transfer',
-              eu_bank_transfer: { country: 'FR' },
-            },
-            funding_type: 'bank_transfer',
-          },
-        }
-      : undefined;
+    // Paiement par carte uniquement
+    // Note : customer_balance (virement SEPA) désactivé — pas configuré dans le Stripe dashboard
+    const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = ['card'];
 
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
 
@@ -175,9 +148,7 @@ export async function POST(request: Request) {
 
     // Créer une session de paiement Stripe
     const session = await stripe.checkout.sessions.create({
-      ...(customer ? { customer } : {}),
       payment_method_types: paymentMethodTypes,
-      ...(paymentMethodOptions ? { payment_method_options: paymentMethodOptions } : {}),
       line_items: validatedItems.map((item: any) => {
         return {
           price_data: {
@@ -232,7 +203,7 @@ export async function POST(request: Request) {
         items_materials: validatedItems.map((item: any) => item.material).join(','),
         items_orientations: validatedItems.map((item: any) => item.orientation).join(','),
         items_frames: validatedItems.map((item: any) => item.frame).join(','),
-        payment_type: isHighValue ? 'high_value' : 'standard',
+        payment_type: 'standard',
         // Fiscalite (TVA 5,5% oeuvres d'art)
         tva_rate: `${TVA_RATE * 100}%`,
         total_ht: tax.totalHt.toString(),

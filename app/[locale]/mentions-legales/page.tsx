@@ -31,9 +31,9 @@ export default async function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Hébergement</h2>
             <p>
               Le site est hébergé par :<br />
-              IONOS SE<br />
-              Elgendorfer Str. 57, 56410 Montabaur<br />
-              Allemagne
+              OVH SAS<br />
+              2 rue Kellermann, 59100 Roubaix<br />
+              France
             </p>
           </section>
 

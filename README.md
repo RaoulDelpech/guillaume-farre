@@ -149,7 +149,7 @@ const t = useTranslations('section');
 
 ### Déploiement Automatique (VPS)
 
-Le projet utilise GitHub Actions pour le déploiement automatique sur le VPS IONOS.
+Le projet utilise GitHub Actions pour le déploiement automatique sur le VPS OVH.
 
 Push sur `main` déclenche automatiquement:
 1. Build de l'application

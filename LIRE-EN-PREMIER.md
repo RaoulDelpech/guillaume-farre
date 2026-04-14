@@ -21,7 +21,7 @@ J'ai préparé un **site portfolio complet** pour Guillaume Farré :
 
 ### 🚀 Déploiement Automatique
 - Workflow GitHub Actions configuré
-- Déploiement sur VPS IONOS
+- Déploiement sur VPS OVH
 - Build de production validé (0 erreur)
 
 ### 📦 Git Ready
@@ -144,7 +144,7 @@ Site Next.js 15.3.2
 ├── Multilingue (next-intl)
 ├── Styling (Tailwind CSS)
 ├── Runtime (Bun)
-├── Déploiement (GitHub Actions → VPS IONOS)
+├── Déploiement (GitHub Actions → VPS OVH)
 └── Process Manager (PM2)
 ```
 

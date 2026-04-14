@@ -625,7 +625,7 @@ Exception : Migrations de schema (avec backup automatique avant).
 
 ## DÉPLOIEMENT
 
-**Hébergement** : VPS IONOS
+**Hébergement** : VPS OVH
 **Domaine** : guillaumefarre.com
 **Déploiement** : GitHub Actions automatique
 

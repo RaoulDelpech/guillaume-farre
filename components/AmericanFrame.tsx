@@ -13,6 +13,8 @@ interface AmericanFrameProps {
   className?: string
   blurDataURL?: string
   priority?: boolean
+  /** Skip the mat gap (passe-partout). True for canvases that sit flush against the frame. */
+  noMat?: boolean
 }
 
 // --- Visual tuning constants ---
@@ -189,6 +191,7 @@ export default function AmericanFrame({
   className = '',
   blurDataURL,
   priority = false,
+  noMat = false,
 }: AmericanFrameProps) {
   const theme = themes[frameColor]
   const frameFaceBg = buildFrameFace(theme)
@@ -246,7 +249,7 @@ export default function AmericanFrame({
               {/* Fond du caisson — matte back panel */}
               <div
                 style={{
-                  padding: GAP_PX,
+                  padding: noMat ? 0 : GAP_PX,
                   background: theme.fond,
                   boxShadow: [
                     `inset 0 2px 5px ${theme.fondShadow}`,

@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * ToilesContent — Grille responsive des toiles avec AmericanFrame
+ * ToilesContent — Layout vertical une toile par rangée (galerie VIP style)
  * Double mode :
  * - Public (showPrices=false) : pas de prix, CTA = formulaire d'interet
  * - VIP (showPrices=true) : prix affiches, CTA = reservation par mailto
@@ -14,16 +14,13 @@ import { useTranslations } from 'next-intl';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
-import { LINEN_BG, formatPrice } from './toiles-utils';
+import { LINEN_BG, paintingMaxWidth, BROWSE_VH, formatPrice } from './toiles-utils';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
 
 const BLUR = blurPlaceholders as Record<string, string>;
 
 export type { Toile, PanelDimension } from './types';
-
-// Cadres uniformes noirs : 340px max-width − 76px frame padding = 264px image area
-// Ratio 3:4 → hauteur forcee 352px via [&_img]:!h-[352px] + object-cover
 
 interface ToilesContentProps {
   toiles: Toile[];
@@ -62,7 +59,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
 
   return (
     <div className="min-h-screen" style={LINEN_BG}>
-      <div className="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-5xl">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-[#1a1a1a] mb-6">
@@ -99,7 +96,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
         </div>
 
         {/* Citation */}
-        <blockquote className="text-center mb-16">
+        <blockquote className="text-center mb-20">
           <p className="text-lg md:text-xl italic font-light tracking-wide text-neutral-600">
             &laquo;&nbsp;{t('citation')}&nbsp;&raquo;
           </p>
@@ -108,21 +105,18 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
           </footer>
         </blockquote>
 
-        {/* Grid */}
-        <div className="flex flex-wrap justify-center gap-8">
+        {/* Toiles — une par rangée */}
+        <div className="space-y-20 md:space-y-28">
           {toiles.map((toile, index) => {
             const isTriptych = toile.triptych && toile.images;
             const formOpen = openFormId === toile.id;
 
             return (
-              <div
-                key={toile.id}
-                className={`flex flex-col group ${isTriptych ? 'w-full' : 'w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.4rem)]'}`}
-              >
+              <div key={toile.id}>
                 {/* Toile avec cadre americain */}
                 <button
                   onClick={() => setLightboxIdx(index)}
-                  className="block mb-6 cursor-pointer transition-transform hover:scale-[1.01] duration-300 ease-out"
+                  className="block mx-auto cursor-pointer transition-transform hover:scale-[1.005] duration-300 ease-out"
                   aria-label={`Agrandir ${toile.name}`}
                 >
                   {isTriptych ? (
@@ -147,8 +141,14 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                     </div>
                   ) : (
                     <div
-                      className="mx-auto [&_img]:!object-cover [&_img]:!h-[352px]"
-                      style={{ maxWidth: 340 }}
+                      className="mx-auto"
+                      style={{
+                        maxWidth: paintingMaxWidth(
+                          toile.imageWidth || 1200,
+                          toile.imageHeight || 900,
+                          BROWSE_VH
+                        ),
+                      }}
                     >
                       <AmericanFrame
                         src={toile.image || ''}
@@ -158,54 +158,61 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         frameColor="black"
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
-                        priority={index < 3}
+                        priority={index < 2}
                         noMat
                       />
                     </div>
                   )}
                 </button>
 
-                {/* Infos */}
-                <div className="text-center">
-                  <h2 className="text-lg font-light tracking-wide text-[#1a1a1a]">
-                    {toile.name}
-                  </h2>
-                  <p className="text-neutral-500 text-xs font-light tracking-wider mt-1">
-                    {toile.dimensions} — {toile.technique} — {toile.year}
-                  </p>
+                {/* Infos — nom a gauche, CTA a droite */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-8 max-w-4xl mx-auto gap-4">
+                  <div>
+                    <h3 className="text-xl font-extralight tracking-wide text-[#1a1a1a]">
+                      {toile.name}
+                    </h3>
+                    <p className="text-neutral-500 text-xs font-light tracking-wider mt-1">
+                      {toile.dimensions} — {toile.technique} — {toile.year}
+                    </p>
+                  </div>
 
-                  {showPrices ? (
-                    <>
-                      {/* VIP : prix + reservation */}
-                      <p className="text-lg font-extralight tracking-wide text-[#8c6e32] mt-2">
-                        {formatPrice(toile.price)}
-                      </p>
-                      <a
-                        href={generateMailto(toile.name)}
-                        className="inline-flex items-center justify-center mt-3 px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
-                      >
-                        {t('reserve')}
-                      </a>
-                    </>
-                  ) : (
-                    <>
-                      {/* Public : pas de prix, formulaire d'interet */}
-                      {!formOpen ? (
-                        <button
-                          onClick={() => setOpenFormId(toile.id)}
-                          className="inline-flex items-center justify-center mt-4 px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
+                  <div className="flex-shrink-0">
+                    {showPrices ? (
+                      <div className="flex items-center gap-6">
+                        <span className="text-lg font-extralight tracking-wide text-[#8c6e32]">
+                          {formatPrice(toile.price)}
+                        </span>
+                        <a
+                          href={generateMailto(toile.name)}
+                          className="inline-flex items-center justify-center px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
                         >
-                          {t('interest')}
-                        </button>
-                      ) : (
-                        <ContactArtistForm
-                          toileName={toile.name}
-                          onClose={() => setOpenFormId(null)}
-                        />
-                      )}
-                    </>
-                  )}
+                          {t('reserve')}
+                        </a>
+                      </div>
+                    ) : (
+                      <>
+                        {!formOpen ? (
+                          <button
+                            onClick={() => setOpenFormId(toile.id)}
+                            className="inline-flex items-center justify-center px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
+                          >
+                            {t('interest')}
+                          </button>
+                        ) : (
+                          <ContactArtistForm
+                            toileName={toile.name}
+                            onClose={() => setOpenFormId(null)}
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
+
+                {/* Separateur entre toiles */}
+                {index < toiles.length - 1 && (
+                  <div className="h-px bg-[rgba(0,0,0,0.06)] max-w-4xl mx-auto mt-16 md:mt-20" />
+                )}
               </div>
             );
           })}

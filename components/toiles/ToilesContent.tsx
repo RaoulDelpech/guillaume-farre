@@ -111,7 +111,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       })}
                     </div>
                   ) : (
-                    <div className="mx-auto" style={{ maxWidth: 420 }}>
+                    <div className="mx-auto" style={{ maxWidth: 340 }}>
                       <AmericanFrame
                         src={toile.image || ''}
                         alt={toile.name}

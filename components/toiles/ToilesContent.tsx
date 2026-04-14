@@ -14,7 +14,7 @@ import { useTranslations } from 'next-intl';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
-import { DARK_BG, formatPrice } from './toiles-utils';
+import { LINEN_BG, formatPrice } from './toiles-utils';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
 
@@ -61,18 +61,52 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
   }
 
   return (
-    <div className="min-h-screen" style={DARK_BG}>
+    <div className="min-h-screen" style={LINEN_BG}>
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-[#1a1a1a] mb-6">
             {t('title')}
           </h1>
-          <p className="text-neutral-400 text-sm font-light tracking-wider max-w-xl mx-auto mb-6">
+          <p className="text-neutral-500 text-sm font-light tracking-wider max-w-xl mx-auto mb-6">
             {t('subtitle')}
           </p>
           <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto" />
         </div>
+
+        {/* Texte de bienvenue Guillaume */}
+        <div className="max-w-[700px] mx-auto py-12 px-4">
+          <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mb-10" />
+          <div className="space-y-6 text-neutral-600 font-light tracking-wide leading-relaxed text-sm md:text-base">
+            <p>{t('welcomeText1')}</p>
+            <p>{t('welcomeText2')}</p>
+            <p>{t('welcomeText3')}</p>
+            <p>
+              {t.rich('welcomeText4', {
+                link: (chunks) => (
+                  <a
+                    href="mailto:guillaume@guillaumefarre.com"
+                    className="text-[#8c6e32] hover:text-[#b08d3e] transition-colors duration-200 underline underline-offset-2"
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </p>
+          </div>
+          <p className="mt-8 text-neutral-500 italic tracking-wide">{t('welcomeSignature')}</p>
+          <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mt-10" />
+        </div>
+
+        {/* Citation */}
+        <blockquote className="text-center mb-16">
+          <p className="text-lg md:text-xl italic font-light tracking-wide text-neutral-600">
+            &laquo;&nbsp;{t('citation')}&nbsp;&raquo;
+          </p>
+          <footer className="mt-3 text-sm tracking-[0.15em] uppercase text-neutral-500">
+            {t('citationAuthor')}
+          </footer>
+        </blockquote>
 
         {/* Grid */}
         <div className="flex flex-wrap justify-center gap-8">
@@ -105,6 +139,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                               frameColor="black"
                               blurDataURL={BLUR[img]}
                               className="w-full"
+                              noMat
                             />
                           </div>
                         );
@@ -124,6 +159,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
                         priority={index < 3}
+                        noMat
                       />
                     </div>
                   )}
@@ -131,10 +167,10 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
 
                 {/* Infos */}
                 <div className="text-center">
-                  <h2 className="text-lg font-light tracking-wide text-neutral-200">
+                  <h2 className="text-lg font-light tracking-wide text-[#1a1a1a]">
                     {toile.name}
                   </h2>
-                  <p className="text-neutral-400 text-xs font-light tracking-wider mt-1">
+                  <p className="text-neutral-500 text-xs font-light tracking-wider mt-1">
                     {toile.dimensions} — {toile.technique} — {toile.year}
                   </p>
 
@@ -146,7 +182,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       </p>
                       <a
                         href={generateMailto(toile.name)}
-                        className="inline-flex items-center justify-center mt-3 px-6 py-3 text-neutral-400 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-600 hover:border-[#8c6e32] min-h-[44px]"
+                        className="inline-flex items-center justify-center mt-3 px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
                       >
                         {t('reserve')}
                       </a>
@@ -157,7 +193,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       {!formOpen ? (
                         <button
                           onClick={() => setOpenFormId(toile.id)}
-                          className="inline-flex items-center justify-center mt-4 px-6 py-3 text-neutral-400 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-600 hover:border-[#8c6e32] min-h-[44px]"
+                          className="inline-flex items-center justify-center mt-4 px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
                         >
                           {t('interest')}
                         </button>
@@ -178,7 +214,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
 
       {/* Disclaimer */}
       <div className="pb-20 px-8 text-center">
-        <p className="text-neutral-400 text-xs tracking-[0.15em] uppercase font-light max-w-lg mx-auto">
+        <p className="text-neutral-500 text-xs tracking-[0.15em] uppercase font-light max-w-lg mx-auto">
           {showPrices ? t('disclaimer') : t('disclaimerPublic')}
         </p>
       </div>

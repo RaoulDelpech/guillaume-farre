@@ -14,7 +14,6 @@ import DarkEntry from '@/components/DarkEntry';
 import PageProgressBar from '@/components/PageProgressBar';
 import BackToTop from '@/components/BackToTop';
 import ScrollToTopOnNav from '@/components/ScrollToTopOnNav';
-import EarlyAccessOverlay from '@/components/early-access/EarlyAccessOverlay';
 import CookieConsent from '@/components/CookieConsent';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import ImageProtection from '@/components/ImageProtection';
@@ -127,8 +126,6 @@ export default async function RootLayout({
       </head>
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
-            {/* Overlay Early Collector - pas pour VIP, pas en pre-launch */}
-            {!isVipVisitor && !isPreLaunch && <EarlyAccessOverlay />}
             <AdminWrapper>
               <ScrollToTopOnNav />
               {!isVipVisitor && (

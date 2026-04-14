@@ -1,7 +1,6 @@
 import Stripe from 'stripe';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
 import { sendOrderConfirmationEmail, sendPaymentPendingEmail } from '@/lib/resend-client';
-import { isEarlyAccess } from '@/lib/early-access';
 import { createOrder, updateOrder } from '@/lib/orders';
 import { sendToGelato } from './gelato-handler';
 import { syncToPennylane } from './pennylane-handler';
@@ -32,7 +31,6 @@ export async function processOrder(stripe: Stripe, session: Stripe.Checkout.Sess
       totalAmount: (fullSession.amount_total || 0) / 100,
       status: 'paid',
       paidAt: new Date().toISOString(),
-      isEarlyCollector: isEarlyAccess(),
     });
 
     const certificateId = `CERT-${order.orderNumber}-${Date.now()}`;
@@ -86,7 +84,6 @@ export async function processOrder(stripe: Stripe, session: Stripe.Checkout.Sess
             postalCode: shippingDetails?.address?.postal_code || '',
             country: shippingDetails?.address?.country || 'FR',
           },
-          isEarlyCollector: isEarlyAccess(),
         });
       } catch (error) {
         console.error('Failed to send confirmation email:', error);

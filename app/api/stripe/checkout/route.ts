@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { isEarlyAccess, EARLY_ACCESS_DISCOUNT } from '@/lib/early-access';
 import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 import { CANONICAL_PRICES } from '@/lib/pricing-calculator';
 import { calculateShippingFee, getShippingLabel, taxBreakdown, TVA_RATE } from '@/lib/shipping-config';
@@ -125,13 +124,7 @@ export async function POST(request: Request) {
       };
     });
 
-    // Vérifier si en mode early access pour appliquer la réduction
-    const earlyCollectorMode = isEarlyAccess();
-    const originalTotal = validatedItems.reduce((sum: number, item: any) => sum + item.price, 0);
-
-    // Appliquer la réduction Early Collector si applicable
-    const discountAmount = earlyCollectorMode ? originalTotal * EARLY_ACCESS_DISCOUNT : 0;
-    const totalAmount = originalTotal - discountAmount;
+    const totalAmount = validatedItems.reduce((sum: number, item: any) => sum + item.price, 0);
     const isHighValue = totalAmount >= BANK_TRANSFER_THRESHOLD;
 
     // Vérification KYC serveur : si > 10K EUR et pas de vérification d'identité
@@ -182,28 +175,22 @@ export async function POST(request: Request) {
       payment_method_types: paymentMethodTypes,
       ...(paymentMethodOptions ? { payment_method_options: paymentMethodOptions } : {}),
       line_items: validatedItems.map((item: any) => {
-        // Appliquer la réduction Early Collector sur chaque item si applicable
-        const finalPrice = earlyCollectorMode
-          ? item.price * (1 - EARLY_ACCESS_DISCOUNT)
-          : item.price;
-
         return {
           price_data: {
             currency: 'eur',
             product_data: {
               name: item.title,
               description: item.category,
-              images: item.images.slice(0, 8), // Stripe limite à 8 images max
+              images: item.images.slice(0, 8),
               metadata: {
                 format: item.format,
                 material: item.material,
                 orientation: item.orientation,
                 frame: item.frame,
                 photoPath: item.photoPath,
-                ...(earlyCollectorMode && { original_price: item.price.toString() }),
               },
             },
-            unit_amount: Math.round(finalPrice * 100), // Prix TTC avec réduction si applicable
+            unit_amount: Math.round(item.price * 100),
           },
           quantity: 1,
         };
@@ -248,11 +235,6 @@ export async function POST(request: Request) {
         total_tva: tax.tvaAmount.toString(),
         total_ttc: tax.totalTtc.toString(),
         shipping_fee_ttc: shippingOnRequest ? 'sur_devis' : (shippingFeeCents / 100).toString(),
-        ...(earlyCollectorMode && {
-          early_collector: 'true',
-          early_collector_discount: '25%',
-          original_total: originalTotal.toString(),
-        }),
       },
     });
 

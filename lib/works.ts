@@ -51,7 +51,6 @@ export interface Work {
     closed: boolean;
   };
   forSale?: boolean;
-  earlyAccess?: boolean;
 
   // Niveau d'acces requis pour voir cette oeuvre
   accessRequired?: 'hidden' | 'secret';

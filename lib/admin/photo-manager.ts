@@ -33,7 +33,6 @@ export interface PhotoMetadata {
   // Visibilité et vente
   visible: boolean;
   forSale: boolean;
-  earlyAccess?: boolean;
 
   // Niveau d'acces requis pour voir cette oeuvre
   accessLevel?: 'public' | 'early' | 'vip';

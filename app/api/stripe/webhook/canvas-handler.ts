@@ -115,5 +115,5 @@ export async function processCanvasInvoicePaid(invoice: Stripe.Invoice) {
     console.error('Cannot send notification to Guillaume:', error);
   }
 
-  console.log(`Canvas invoice paid: ${reservation.canvasTitle} by ${reservation.name}`);
+  // Canvas invoice paid — no-op in production
 }

@@ -68,7 +68,7 @@ export function AutoSaveProvider({
 
       setLastSaved(new Date());
       setIsDirty(false);
-      console.log("✅ Sauvegarde automatique réussie");
+      // Auto-save completed
     } catch (error) {
       console.error("❌ Erreur lors de la sauvegarde:", error);
     } finally {

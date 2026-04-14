@@ -50,6 +50,7 @@ export function GalerieContent() {
   // Touch swipe state
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
 
   const typedPhotos = photos as Photo[];
 
@@ -89,6 +90,15 @@ export function GalerieContent() {
   useEffect(() => {
     setSelectedFormat('24x36');
     setPurchasing(false);
+  }, [lightboxIndex]);
+
+  // Scroll la miniature active dans le strip vertical
+  useEffect(() => {
+    if (lightboxIndex === null || !thumbnailsRef.current) return;
+    const activeThumb = thumbnailsRef.current.children[lightboxIndex] as HTMLElement;
+    if (activeThumb) {
+      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }, [lightboxIndex]);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
@@ -332,11 +342,40 @@ export function GalerieContent() {
               </svg>
             </motion.button>
 
-            {/* Contenu principal : image + infos */}
+            {/* Contenu principal : miniatures + image + infos */}
             <div
-              className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6 lg:gap-10 max-w-7xl w-full h-full px-4 sm:px-12 lg:px-16 py-14 sm:py-16 mx-auto overflow-y-auto"
+              className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6 lg:gap-8 max-w-[1500px] w-full h-full px-4 sm:px-12 lg:px-16 py-14 sm:py-16 mx-auto overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Miniatures laterales — desktop */}
+              <div
+                ref={thumbnailsRef}
+                className="hidden lg:flex flex-col gap-2 flex-shrink-0 self-stretch overflow-y-auto py-2"
+                style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.15) transparent' }}
+              >
+                {typedPhotos.map((photo, idx) => (
+                  <button
+                    key={photo.id}
+                    onClick={() => setLightboxIndex(idx)}
+                    className={`relative flex-shrink-0 w-16 h-16 overflow-hidden transition-all duration-200 ${
+                      idx === lightboxIndex
+                        ? 'ring-2 ring-[#B8956A] opacity-100'
+                        : 'opacity-40 hover:opacity-75'
+                    }`}
+                    aria-label={photo.name}
+                  >
+                    <Image
+                      src={photo.image}
+                      alt={photo.name}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </button>
+                ))}
+              </div>
+
               {/* Image */}
               <AnimatePresence mode="wait">
                 <motion.div

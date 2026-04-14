@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import type { Toile } from "./types";
@@ -17,6 +17,7 @@ interface ToileLightboxProps {
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
+  onGoTo: (index: number) => void;
 }
 
 export default function ToileLightbox({
@@ -26,9 +27,20 @@ export default function ToileLightbox({
   onClose,
   onPrev,
   onNext,
+  onGoTo,
 }: ToileLightboxProps) {
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
+
+  // Scroll la miniature active dans le strip vertical
+  useEffect(() => {
+    if (lightboxIdx === null || !thumbnailsRef.current) return;
+    const activeThumb = thumbnailsRef.current.children[lightboxIdx] as HTMLElement;
+    if (activeThumb) {
+      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [lightboxIdx]);
 
   if (lightboxIdx === null) return null;
 
@@ -79,7 +91,7 @@ export default function ToileLightbox({
         {/* Prev — masque sur mobile (swipe a la place) */}
         {lightboxIdx > 0 && (
           <button
-            className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 z-10 w-12 h-12 hidden sm:flex items-center justify-center text-neutral-600 hover:text-neutral-300 transition-colors"
+            className="absolute left-2 sm:left-8 md:left-24 top-1/2 -translate-y-1/2 z-10 w-12 h-12 hidden sm:flex items-center justify-center text-neutral-600 hover:text-neutral-300 transition-colors"
             onClick={(e) => { e.stopPropagation(); onPrev(); }}
             aria-label="Precedent"
           >
@@ -102,9 +114,41 @@ export default function ToileLightbox({
           </button>
         )}
 
+        {/* Miniatures laterales — desktop */}
+        <div
+          ref={thumbnailsRef}
+          className="absolute left-3 sm:left-6 top-16 bottom-20 z-10 hidden md:flex flex-col gap-2 overflow-y-auto py-2"
+          style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.15) transparent' }}
+        >
+          {toiles.map((t, idx) => {
+            const thumbSrc = t.image || (t.images && t.images[0]) || '';
+            return (
+              <button
+                key={t.id}
+                onClick={(e) => { e.stopPropagation(); onGoTo(idx); }}
+                className={`relative flex-shrink-0 w-16 h-16 overflow-hidden transition-all duration-200 ${
+                  idx === lightboxIdx
+                    ? 'ring-2 ring-[#B8956A] opacity-100'
+                    : 'opacity-40 hover:opacity-75'
+                }`}
+                aria-label={t.name}
+              >
+                <Image
+                  src={thumbSrc}
+                  alt={t.name}
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                  unoptimized
+                />
+              </button>
+            );
+          })}
+        </div>
+
         {/* Image area */}
         <div
-          className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-16 pb-20 sm:pb-24"
+          className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 md:p-16 md:pl-28 pb-20 sm:pb-24"
           onClick={onClose}
         >
           <AnimatePresence mode="wait">

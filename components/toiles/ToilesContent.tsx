@@ -24,9 +24,8 @@ export type { Toile, PanelDimension } from './types';
 
 const FRAME_COLORS = ['black', 'oak', 'walnut'] as const;
 
-// Ratio uniforme 3:4 pour tous les cadres solo — object-cover gere le crop
-const UNIFORM_IMG_W = 900;
-const UNIFORM_IMG_H = 1200;
+// Cadres uniformes : 340px max-width − 76px frame padding = 264px image area
+// Ratio 3:4 → hauteur forcee 352px via [&_img]:!h-[352px] + object-cover
 
 function getFrameColor(index: number): 'black' | 'oak' | 'walnut' {
   return FRAME_COLORS[index % 3];
@@ -119,12 +118,15 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       })}
                     </div>
                   ) : (
-                    <div className="mx-auto [&_img]:!object-cover" style={{ maxWidth: 340 }}>
+                    <div
+                      className="mx-auto [&_img]:!object-cover [&_img]:!h-[352px]"
+                      style={{ maxWidth: 340 }}
+                    >
                       <AmericanFrame
                         src={toile.image || ''}
                         alt={toile.name}
-                        imageWidth={UNIFORM_IMG_W}
-                        imageHeight={UNIFORM_IMG_H}
+                        imageWidth={toile.imageWidth}
+                        imageHeight={toile.imageHeight}
                         frameColor={frameColor}
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
@@ -195,6 +197,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
         onClose={() => setLightboxIdx(null)}
         onPrev={() => setLightboxIdx((i) => (i !== null && i > 0 ? i - 1 : i))}
         onNext={() => setLightboxIdx((i) => (i !== null && i < toiles.length - 1 ? i + 1 : i))}
+        onGoTo={(i) => setLightboxIdx(i)}
       />
     </div>
   );

@@ -149,8 +149,8 @@ export async function POST(request: Request) {
 
     // Payment methods selon le montant
     const paymentMethodTypes: Stripe.Checkout.SessionCreateParams.PaymentMethodType[] = isHighValue
-      ? ['card', 'alma', 'customer_balance']
-      : ['card', 'alma'];
+      ? ['card', 'customer_balance']
+      : ['card'];
 
     // Config bank transfer SEPA pour gros montants
     const paymentMethodOptions: Stripe.Checkout.SessionCreateParams.PaymentMethodOptions | undefined = isHighValue

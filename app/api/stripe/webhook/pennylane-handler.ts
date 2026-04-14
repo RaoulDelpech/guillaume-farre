@@ -38,9 +38,7 @@ export async function syncToPennylane(
     paid: true,
     payment_method: session.payment_method_types?.includes('customer_balance')
       ? 'Virement SEPA'
-      : session.payment_method_types?.[0] === 'alma'
-        ? 'Alma (paiement fractionné)'
-        : 'Carte bancaire',
+      : 'Carte bancaire',
     external_id: session.id,
   });
 }

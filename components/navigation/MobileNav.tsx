@@ -37,7 +37,6 @@ export default function MobileNav() {
   const links = [
     { href: "/galerie", label: t("photographies") },
     { href: "/toiles", label: t("toiles") },
-    { href: "/boutique", label: t("boutique") },
     { href: "/contact", label: t("contact") },
   ];
 

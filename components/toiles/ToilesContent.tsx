@@ -14,7 +14,7 @@ import { useTranslations } from 'next-intl';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
-import { LINEN_BG, formatPrice } from './toiles-utils';
+import { DARK_BG, formatPrice } from './toiles-utils';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
 
@@ -22,14 +22,8 @@ const BLUR = blurPlaceholders as Record<string, string>;
 
 export type { Toile, PanelDimension } from './types';
 
-const FRAME_COLORS = ['black', 'oak', 'walnut'] as const;
-
-// Cadres uniformes : 340px max-width − 76px frame padding = 264px image area
+// Cadres uniformes noirs : 340px max-width − 76px frame padding = 264px image area
 // Ratio 3:4 → hauteur forcee 352px via [&_img]:!h-[352px] + object-cover
-
-function getFrameColor(index: number): 'black' | 'oak' | 'walnut' {
-  return FRAME_COLORS[index % 3];
-}
 
 interface ToilesContentProps {
   toiles: Toile[];
@@ -67,14 +61,14 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
   }
 
   return (
-    <div className="min-h-screen" style={LINEN_BG}>
+    <div className="min-h-screen" style={DARK_BG}>
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-[#1a1a1a] mb-6">
+          <h1 className="text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-white mb-6">
             {t('title')}
           </h1>
-          <p className="text-neutral-500 text-sm font-light tracking-wider max-w-xl mx-auto mb-6">
+          <p className="text-neutral-400 text-sm font-light tracking-wider max-w-xl mx-auto mb-6">
             {t('subtitle')}
           </p>
           <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto" />
@@ -83,7 +77,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
         {/* Grid */}
         <div className="flex flex-wrap justify-center gap-8">
           {toiles.map((toile, index) => {
-            const frameColor = getFrameColor(index);
             const isTriptych = toile.triptych && toile.images;
             const formOpen = openFormId === toile.id;
 
@@ -109,7 +102,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                               alt={`${toile.name} — ${i + 1}/3`}
                               imageWidth={pd?.imageWidth}
                               imageHeight={pd?.imageHeight}
-                              frameColor={frameColor}
+                              frameColor="black"
                               blurDataURL={BLUR[img]}
                               className="w-full"
                             />
@@ -127,7 +120,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         alt={toile.name}
                         imageWidth={toile.imageWidth}
                         imageHeight={toile.imageHeight}
-                        frameColor={frameColor}
+                        frameColor="black"
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
                         priority={index < 3}
@@ -138,10 +131,10 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
 
                 {/* Infos */}
                 <div className="text-center">
-                  <h2 className="text-lg font-light tracking-wide text-[#1a1a1a]">
+                  <h2 className="text-lg font-light tracking-wide text-neutral-200">
                     {toile.name}
                   </h2>
-                  <p className="text-neutral-500 text-xs font-light tracking-wider mt-1">
+                  <p className="text-neutral-400 text-xs font-light tracking-wider mt-1">
                     {toile.dimensions} — {toile.technique} — {toile.year}
                   </p>
 
@@ -153,7 +146,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       </p>
                       <a
                         href={generateMailto(toile.name)}
-                        className="inline-flex items-center justify-center mt-3 px-6 py-3 text-neutral-600 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
+                        className="inline-flex items-center justify-center mt-3 px-6 py-3 text-neutral-400 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-600 hover:border-[#8c6e32] min-h-[44px]"
                       >
                         {t('reserve')}
                       </a>
@@ -164,7 +157,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       {!formOpen ? (
                         <button
                           onClick={() => setOpenFormId(toile.id)}
-                          className="inline-flex items-center justify-center mt-4 px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-200 hover:border-[#8c6e32] min-h-[44px]"
+                          className="inline-flex items-center justify-center mt-4 px-6 py-3 text-neutral-400 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-600 hover:border-[#8c6e32] min-h-[44px]"
                         >
                           {t('interest')}
                         </button>
@@ -185,7 +178,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
 
       {/* Disclaimer */}
       <div className="pb-20 px-8 text-center">
-        <p className="text-neutral-500 text-xs tracking-[0.15em] uppercase font-light max-w-lg mx-auto">
+        <p className="text-neutral-400 text-xs tracking-[0.15em] uppercase font-light max-w-lg mx-auto">
           {showPrices ? t('disclaimer') : t('disclaimerPublic')}
         </p>
       </div>

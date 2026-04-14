@@ -90,9 +90,13 @@ export async function POST(request: Request) {
       }
 
       // Validation prix serveur : recalculer à partir du format
-      const format = (item.format || 'A2').toUpperCase();
+      const format = item.format || 'A2';
       const expectedPrice = CANONICAL_PRICES[format];
-      if (expectedPrice && Math.abs(item.price - expectedPrice) > 0.01) {
+      if (!expectedPrice) {
+        console.error(`[Stripe] Format inconnu: ${format}`);
+        throw new Error(`Format non reconnu: ${format}`);
+      }
+      if (Math.abs(item.price - expectedPrice) > 0.01) {
         console.error(`[Stripe] Prix manipulé détecté: ${item.price}€ vs ${expectedPrice}€ (${format})`);
         throw new Error(`Prix incorrect pour format ${format}`);
       }

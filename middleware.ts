@@ -19,7 +19,7 @@ const ALLOWED_ORIGINS = [
 const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
 
 // APIs accessibles sans auth en mode pre-launch
-const PUBLIC_API_ROUTES = ['/api/auth/login', '/api/newsletter/subscribe'];
+const PUBLIC_API_ROUTES = ['/api/auth/login', '/api/newsletter/subscribe', '/api/stripe/'];
 
 const intlMiddleware = createMiddleware(routing);
 

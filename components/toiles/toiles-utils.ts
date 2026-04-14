@@ -23,7 +23,7 @@ export function paintingMaxWidth(w: number, h: number, targetVH: number): string
 
 /** Fond ivoire texturé lin — identique au body global */
 export const LINEN_BG = {
-  backgroundColor: "#FAF7F2",
+  backgroundColor: "#FEFEFA",
   backgroundImage: [
     "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 3px)",
     "repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.006) 3px, rgba(0,0,0,0.006) 4px)",

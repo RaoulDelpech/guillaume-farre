@@ -95,16 +95,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
           <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mt-10" />
         </div>
 
-        {/* Citation */}
-        <blockquote className="text-center mb-20">
-          <p className="text-lg md:text-xl italic font-light tracking-wide text-neutral-600">
-            &laquo;&nbsp;{t('citation')}&nbsp;&raquo;
-          </p>
-          <footer className="mt-3 text-sm tracking-[0.15em] uppercase text-neutral-500">
-            {t('citationAuthor')}
-          </footer>
-        </blockquote>
-
         {/* Toiles — une par rangée */}
         <div className="space-y-20 md:space-y-28">
           {toiles.map((toile, index) => {

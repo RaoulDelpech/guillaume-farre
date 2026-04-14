@@ -1,6 +1,6 @@
 import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
-import AmericanFrame from "@/components/AmericanFrame";
+import PhotoFrame from "@/components/PhotoFrame";
 import { getPageImages } from "@/lib/page-images";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
@@ -28,12 +28,11 @@ export default async function HomePage() {
             className="group flex flex-col items-center text-center"
           >
             <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[420px]">
-              <AmericanFrame
+              <PhotoFrame
                 src="/images/works/photos/2.jpg"
                 alt="Photographies de Guillaume Farre"
                 imageWidth={1333}
                 imageHeight={2000}
-                frameColor="walnut"
                 priority
                 className="w-full"
               />
@@ -68,12 +67,11 @@ export default async function HomePage() {
             className="group flex flex-col items-center text-center"
           >
             <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[420px]">
-              <AmericanFrame
+              <PhotoFrame
                 src="/images/toiles/6.jpg"
                 alt="Toiles de Guillaume Farre"
                 imageWidth={1800}
                 imageHeight={2700}
-                frameColor="black"
                 priority
                 className="w-full"
               />

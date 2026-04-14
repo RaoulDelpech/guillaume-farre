@@ -27,7 +27,7 @@ export default async function HomePage() {
             href="/galerie"
             className="group flex flex-col items-center text-center"
           >
-            <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[340px]">
+            <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[420px]">
               <AmericanFrame
                 src="/images/works/photos/2.jpg"
                 alt="Photographies de Guillaume Farre"
@@ -67,7 +67,7 @@ export default async function HomePage() {
             href="/toiles"
             className="group flex flex-col items-center text-center"
           >
-            <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[340px]">
+            <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[420px]">
               <AmericanFrame
                 src="/images/toiles/6.jpg"
                 alt="Toiles de Guillaume Farre"

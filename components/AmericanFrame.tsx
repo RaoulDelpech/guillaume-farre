@@ -16,10 +16,10 @@ interface AmericanFrameProps {
 }
 
 // --- Visual tuning constants ---
-// Bordure proportionnelle : face(10) + bevel(1) + lip(3) + gap(6) = 20px/cote
-const FRAME_FACE_PX = 10
-const FRAME_LIP_PX = 3
-const GAP_PX = 6
+// Bordure proportionnelle : face(18) + bevel(1) + lip(5) + gap(14) = 38px/cote
+const FRAME_FACE_PX = 18
+const FRAME_LIP_PX = 5
+const GAP_PX = 14
 const RECESS_SHADOW =
   '0 0 2px rgba(0,0,0,0.6), 1px 2px 5px rgba(0,0,0,0.4)'
 

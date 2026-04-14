@@ -66,7 +66,12 @@
       "title": "Tele",
       "subtitle": "",
       "cta": "Contattarci"
-    }
+    },
+    "welcomeText1": "Benvenuto e grazie. Per essere presente in questi primi momenti di apertura dell'atelier e di questa avventura. Su questo sito cerco di far scoprire ciò che mi appassiona; spero che vi troverete gioia e ispirazione.",
+    "welcomeText2": "Vi chiedo di non fare screenshot, di non diffondere ciò che troverete su questo sito.",
+    "welcomeText3": "Se prenotate una tela, mi piacerebbe poterla avere per quindici giorni per la mia prima esposizione. Mi farò carico del trasporto andata e ritorno e dell'assicurazione, e sarete naturalmente invitato come ospite d'onore.",
+    "welcomeText4": "Non esitate a <link>scrivermi</link>, sarei felice di conoscervi e di invitarvi a visitare l'atelier.",
+    "welcomeSignature": "Guillaume"
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. Tutti i diritti riservati.",
@@ -202,11 +207,6 @@
     "technique": "Tecnica",
     "price": "Prezzo",
     "disclaimer": "Le tele non sono in vendita online. La prenotazione ti garantisce un contatto diretto con Guillaume.",
-    "welcomeText1": "Benvenuto e grazie. Per essere presente in questi primi momenti di apertura dell'atelier e di questa avventura. Su questo sito cerco di far scoprire ciò che mi appassiona; spero che vi troverete gioia e ispirazione.",
-    "welcomeText2": "Vi chiedo di non fare screenshot, di non diffondere ciò che troverete su questo sito.",
-    "welcomeText3": "Se prenotate una tela, mi piacerebbe poterla avere per quindici giorni per la mia prima esposizione. Mi farò carico del trasporto andata e ritorno e dell'assicurazione, e sarete naturalmente invitato come ospite d'onore.",
-    "welcomeText4": "Non esitate a <link>scrivermi</link>, sarei felice di conoscervi e di invitarvi a visitare l'atelier.",
-    "welcomeSignature": "Guillaume",
     "disclaimerPublic": "Ogni tela è un pezzo unico. Per qualsiasi informazione: contact@guillaumefarre.com",
     "reserveForm": {
       "name": "Il tuo nome",

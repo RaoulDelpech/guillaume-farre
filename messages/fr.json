@@ -66,7 +66,12 @@
       "title": "Toiles",
       "subtitle": "",
       "cta": "Nous contacter"
-    }
+    },
+    "welcomeText1": "Bienvenu et merci. D'être présent dans ces premiers instants d'ouverture de l'atelier et de cette aventure. J'essaie sur ce site de faire découvrir ce qui me passionne ; j'espère que vous y trouverez de la joie et de l'inspiration.",
+    "welcomeText2": "Je vous demande de ne pas prendre de copies d'écran, de ne pas diffuser ce que vous trouverez sur ce site.",
+    "welcomeText3": "Si vous réservez une toile, j'aimerais pouvoir vous la demander pendant quinze jours pour ma toute première exposition. Je prendrai en charge le transport aller-retour et l'assurance, et vous serez naturellement invité en tant qu'hôte d'honneur.",
+    "welcomeText4": "N'hésitez pas à <link>m'écrire</link>, je serais heureux de vous connaître et de vous inviter à visiter l'atelier.",
+    "welcomeSignature": "Guillaume"
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. Tous droits réservés.",
@@ -202,11 +207,6 @@
     "technique": "Technique",
     "price": "Prix",
     "disclaimer": "Les toiles ne sont pas en vente en ligne. La réservation vous garantit un contact direct avec Guillaume.",
-    "welcomeText1": "Bienvenu et merci. D'être présent dans ces premiers instants d'ouverture de l'atelier et de cette aventure. J'essaie sur ce site de faire découvrir ce qui me passionne ; j'espère que vous y trouverez de la joie et de l'inspiration.",
-    "welcomeText2": "Je vous demande de ne pas prendre de copies d'écran, de ne pas diffuser ce que vous trouverez sur ce site.",
-    "welcomeText3": "Si vous réservez une toile, j'aimerais pouvoir vous la demander pendant quinze jours pour ma toute première exposition. Je prendrai en charge le transport aller-retour et l'assurance, et vous serez naturellement invité en tant qu'hôte d'honneur.",
-    "welcomeText4": "N'hésitez pas à <link>m'écrire</link>, je serais heureux de vous connaître et de vous inviter à visiter l'atelier.",
-    "welcomeSignature": "Guillaume",
     "disclaimerPublic": "Chaque toile est une pièce unique. Pour toute information : contact@guillaumefarre.com",
     "reserveForm": {
       "name": "Votre nom",

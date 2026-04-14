@@ -71,30 +71,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
           <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto" />
         </div>
 
-        {/* Texte de bienvenue Guillaume */}
-        <div className="max-w-[700px] mx-auto py-12 px-4">
-          <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mb-10" />
-          <div className="space-y-6 text-neutral-600 font-light tracking-wide leading-relaxed text-sm md:text-base">
-            <p>{t('welcomeText1')}</p>
-            <p>{t('welcomeText2')}</p>
-            <p>{t('welcomeText3')}</p>
-            <p>
-              {t.rich('welcomeText4', {
-                link: (chunks) => (
-                  <a
-                    href="mailto:guillaume@guillaumefarre.com"
-                    className="text-[#8c6e32] hover:text-[#b08d3e] transition-colors duration-200 underline underline-offset-2"
-                  >
-                    {chunks}
-                  </a>
-                ),
-              })}
-            </p>
-          </div>
-          <p className="mt-8 text-neutral-500 italic tracking-wide">{t('welcomeSignature')}</p>
-          <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mt-10" />
-        </div>
-
         {/* Toiles — une par rangée */}
         <div className="space-y-20 md:space-y-28">
           {toiles.map((toile, index) => {

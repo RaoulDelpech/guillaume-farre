@@ -3,9 +3,14 @@ import Navigation from '@/components/navigation/Navigation';
 import { GalerieContent } from '@/components/galerie/GalerieContent';
 
 export const metadata: Metadata = {
-  title: 'Photographies — Guillaume Farré',
+  title: 'Photographies',
   description:
-    'Photographies de Guillaume Farré — tirages numérotés et signés.',
+    'Photographies de Guillaume Farré — tirages numérotés et signés, éditions limitées.',
+  openGraph: {
+    title: 'Photographies | Guillaume Farré',
+    description: 'Photographies de Guillaume Farré — tirages numérotés et signés.',
+    images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'Photographies de Guillaume Farré' }],
+  },
 };
 
 /**

@@ -10,7 +10,6 @@ import StructuredData from '@/components/StructuredData';
 import AdminWrapper from '@/components/admin/AdminWrapper';
 
 import WelcomeAnimation from '@/components/WelcomeAnimation';
-import DarkEntry from '@/components/DarkEntry';
 import PageProgressBar from '@/components/PageProgressBar';
 import BackToTop from '@/components/BackToTop';
 import ScrollToTopOnNav from '@/components/ScrollToTopOnNav';
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Guillaume Farré - Artiste Sculpteur",
+        alt: "Guillaume Farré — Toiles et Photographies",
       },
     ],
   },

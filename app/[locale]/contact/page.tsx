@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact | Guillaume Farré",
     description: "Prenez contact avec Guillaume Farré pour une acquisition ou une visite d'atelier.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Contacter Guillaume Farré" }],
   },
 };
 

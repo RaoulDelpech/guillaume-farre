@@ -23,7 +23,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
     "/images/toiles/1.jpg",
     "/images/toiles/20.jpg",
     "/images/works/photos/16.jpg",
-  ]).map(image => ({ image }));
+  ]).map((image, i) => ({ image, alt: `Guillaume Farré — œuvre ${i + 1}` }));
 
   // Autoplay - 12 secondes par slide
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
           >
             <Image
               src={slide.image}
-              alt=""
+              alt={slide.alt}
               fill
               className="object-cover object-center"
               sizes="100vw"

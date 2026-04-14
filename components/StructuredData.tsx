@@ -30,22 +30,21 @@ export default function StructuredData({ type = 'organization', data }: Structur
     '@type': 'Organization',
     name: 'Guillaume Farré',
     url: baseUrl,
-    logo: `${baseUrl}/images/logo.png`,
-    description: 'Artiste sculpteur et collectionneur Ferrari. Créateur de tableaux abstraits uniques réalisés par le passage direct de Ferrari sur toile.',
+    logo: `${baseUrl}/favicon.svg`,
+    description: 'Guillaume Farré — artiste créateur de toiles abstraites réalisées par le passage direct de la Dino sur toile vierge. Photographies d\'art en éditions limitées.',
     founder: {
       '@type': 'Person',
       name: 'Guillaume Farré',
-      jobTitle: 'Artiste Sculpteur',
+      jobTitle: 'Artiste',
     },
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Service',
+      email: 'contact@guillaumefarre.com',
       availableLanguage: ['French', 'English', 'Italian'],
     },
     sameAs: [
-      // À ajouter si présent sur réseaux sociaux
       'https://www.instagram.com/el_infernale_guigui',
-      // 'https://www.facebook.com/guillaumefarre',
     ],
   };
 
@@ -55,16 +54,8 @@ export default function StructuredData({ type = 'organization', data }: Structur
     '@type': 'WebSite',
     name: 'Guillaume Farré',
     url: baseUrl,
-    description: 'Site officiel de Guillaume Farré, artiste sculpteur et collectionneur Ferrari',
+    description: 'Site officiel de Guillaume Farré — toiles abstraites et photographies d\'art en éditions limitées',
     inLanguage: ['fr', 'en', 'it'],
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${baseUrl}/fr/galerie?search={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 
   // Schema.org Product (pour photos)
@@ -72,7 +63,7 @@ export default function StructuredData({ type = 'organization', data }: Structur
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: data.title || 'Photographie d\'art',
-    description: data.description || 'Photographie d\'art en édition limitée ou tirage illimité',
+    description: data.description || 'Photographie d\'art — tirage numéroté et signé',
     image: `${baseUrl}${data.image}`,
     brand: {
       '@type': 'Brand',
@@ -84,13 +75,12 @@ export default function StructuredData({ type = 'organization', data }: Structur
       priceCurrency: 'EUR',
       price: data.price || 0,
       availability: data.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 1 an
+      priceValidUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
       itemCondition: 'https://schema.org/NewCondition',
     },
     category: 'Art Photography',
   } : null;
 
-  // Sélectionner le bon schema selon le type
   const schema = type === 'website' ? websiteSchema :
                  type === 'product' && productSchema ? productSchema :
                  organizationSchema;

@@ -1,23 +1,30 @@
 # robots.txt - Guillaume Farré
 
-# Autoriser tous les robots
 User-agent: *
 Allow: /
 
-# Bloquer pages admin
+# Admin et API
 Disallow: /*/admin
 Disallow: /admin
 Disallow: /api/
 
-# Bloquer pages temporaires
+# Pages non publiques
+Disallow: /*/login
 Disallow: /*/panier
-Disallow: /*/favoris
-Disallow: /*/comparer
+Disallow: /*/commande
+
+# Pages masquées (pas encore publiées)
+Disallow: /*/histoire
+Disallow: /*/atelier
+Disallow: /*/origine
+Disallow: /*/dino
+Disallow: /*/dino-histoire
+Disallow: /*/presse
+Disallow: /*/actualites
+Disallow: /*/collectionneurs
+Disallow: /*/vip
 
 # Sitemap
 Sitemap: https://guillaumefarre.com/sitemap.xml
-
-# Crawl delay (optionnel, pour éviter surcharge)
-Crawl-delay: 1
 
 # Lalou

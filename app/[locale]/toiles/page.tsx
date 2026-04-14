@@ -1,7 +1,18 @@
+import { Metadata } from "next";
 import Navigation from "@/components/navigation/Navigation";
 import ToilesContent from "@/components/toiles/ToilesContent";
 import toiles from "@/data/toiles.json";
 import { getAccessLevel } from "@/lib/access";
+
+export const metadata: Metadata = {
+  title: "Toiles",
+  description: "Les toiles de Guillaume Farré — peintures abstraites créées par le passage direct de la Dino sur toile vierge. Pièces uniques, irréplicables.",
+  openGraph: {
+    title: "Toiles | Guillaume Farré",
+    description: "Peintures abstraites créées par le passage direct de la Dino sur toile vierge.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Toiles de Guillaume Farré" }],
+  },
+};
 
 /**
  * Page Toiles

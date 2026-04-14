@@ -178,7 +178,7 @@ export default function FAQPage() {
         </h1>
 
         <p className="text-base sm:text-xl text-muted-foreground mb-8 sm:mb-12 leading-relaxed">
-          Toutes les reponses a vos questions sur nos oeuvres, la commande, la livraison et le SAV.
+          Toutes les réponses à vos questions sur nos œuvres, la commande, la livraison et le SAV.
         </p>
 
         {/* Recherche */}
@@ -245,9 +245,9 @@ export default function FAQPage() {
 
         {/* Contact si question non repondue */}
         <div className="mt-12 sm:mt-16 bg-card border border-border rounded-xl p-5 sm:p-8 text-center">
-          <h3 className="text-xl sm:text-2xl font-light mb-3 sm:mb-4">Vous ne trouvez pas votre reponse ?</h3>
+          <h3 className="text-xl sm:text-2xl font-light mb-3 sm:mb-4">Vous ne trouvez pas votre réponse ?</h3>
           <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-            Notre equipe est a votre disposition pour repondre a toutes vos questions
+            Notre équipe est à votre disposition pour répondre à toutes vos questions
           </p>
           <a
             href="mailto:contact@guillaumefarre.com"

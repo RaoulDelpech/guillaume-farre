@@ -168,7 +168,7 @@ export default function LoginPage() {
           >
             <Image
               src={src}
-              alt=""
+              alt={`Guillaume Farré — toile ${index + 1}`}
               fill
               sizes="100vw"
               quality={95}
@@ -224,7 +224,7 @@ export default function LoginPage() {
             <div key={num} className="relative aspect-[4/3]">
               <Image
                 src={`/images/works/photos/${num}.jpg`}
-                alt=""
+                alt={`Photographie de Guillaume Farré — n°${num}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover"

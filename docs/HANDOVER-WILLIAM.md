@@ -63,8 +63,8 @@ Derniere mise a jour : 14 avril 2026.
 
 ### Prerequis machine locale
 - **Bun** : requis (le `preinstall` script bloque npm/yarn/pnpm)
-- **Node 24** : requis pour le build local. Chemin mac homebrew : `/opt/homebrew/Cellar/node/24.10.0_1/bin/node`
-- Sur le VPS : Node 20+ suffit (installe via nodesource)
+- **Node 18.18+** : minimum requis par Next.js 15. Le VPS utilise Node 20 (via nodesource)
+- Si ton Node est trop vieux, installer via nvm/fnm/nodesource
 
 ---
 
@@ -170,6 +170,7 @@ guillaume-farre-from-github/
 **Toiles** (peintures sur toile) :
 - Fichiers : `/public/images/toiles/1.jpg` a `20.jpg` + triptyque `17-gauche.jpg`, `17-milieu.jpg`, `17-droite.jpg`
 - Donnees : `data/toiles.json` — 20 entrees avec id, nom, dimensions, technique, annee, prix, image, imageWidth/Height
+- **Toile 17 = triptyque** : a `triptych: true` et un champ `images: [...]` (tableau) au lieu du champ `image` (string) des autres toiles. Les 3 fichiers sont `17-gauche.jpg`, `17-milieu.jpg`, `17-droite.jpg`
 - Affichees sur `/toiles` dans une timeline avec lightbox
 
 **Photos** (photographies d'art) :
@@ -209,23 +210,32 @@ L'objectif est de mettre en ligne publiquement :
 - Composant `GarageShutter.tsx` prevu pour l'animation d'entree
 - Ne pas toucher aux routes VIP existantes
 
-### Pages actives
-| Route | Description |
-|-------|-------------|
-| `/` | Homepage avec carousel, sections photos et toiles |
-| `/galerie` | Grille masonry 16 photos avec AmericanFrame |
-| `/toiles` | 20 toiles en timeline avec lightbox |
-| `/boutique` | Boutique Stripe |
-| `/panier` | Panier d'achats |
-| `/commande` | Confirmation commande |
-| `/contact` | Formulaire contact |
-| `/faq` | Questions frequentes |
-| `/login` | Login admin (mot de passe) |
-| `/admin` | Interface admin |
-| `/cgv` | Conditions generales de vente |
-| `/mentions-legales` | Mentions legales |
+### Navigation principale (4 liens seulement)
+La nav du site (`components/navigation/Navigation.tsx`) n'affiche que :
+- `/` (logo, accueil)
+- `/galerie` (Photographies)
+- `/toiles` (Toiles)
+- `/contact` (Contact)
 
-### Pages masquees (existent mais pas dans la nav)
+### Toutes les routes existantes
+| Route | Dans la nav ? | Description |
+|-------|:---:|-------------|
+| `/` | oui | Homepage avec carousel, sections photos et toiles |
+| `/galerie` | oui | Grille masonry 16 photos avec AmericanFrame |
+| `/toiles` | oui | 20 toiles en timeline avec lightbox |
+| `/contact` | oui | Formulaire contact |
+| `/boutique` | non | Boutique Stripe (achat photos) |
+| `/commande` | non | Confirmation commande (apres paiement) |
+| `/faq` | non | Questions frequentes |
+| `/login` | non | Login admin (mot de passe) |
+| `/admin` | non | Interface admin |
+| `/galerie-item` | non | Detail d'un item galerie |
+| `/cgv` | non | Conditions generales de vente |
+| `/mentions-legales` | non | Mentions legales |
+| `/politique-de-confidentialite` | non | Politique de confidentialite |
+| `/retours-echanges` | non | Politique retours et echanges |
+
+### Pages masquees (existent mais pas utilisees en Phase 1)
 `/histoire`, `/atelier`, `/origine`, `/dino`, `/dino-histoire`, `/presse`, `/actualites`, `/collectionneurs`
 
 ### A ne PAS toucher
@@ -249,7 +259,9 @@ Le deploy se fait **entierement sur le VPS via SSH** (pas de build sur le runner
    - Backup des fichiers runtime (newsletter, photo-metadata) dans `/tmp/`
    - `bun install --frozen-lockfile`
    - Ecriture du `.env.local` depuis les secrets GitHub
+   - Hack tsconfig : supprime `jsxImportSource` du tsconfig.json via un script python (artefact de build)
    - `NODE_OPTIONS="--max-old-space-size=4096" bun run build`
+   - Supprime `app/api/account` (route retiree)
    - `pm2 restart guillaumefarre`
    - Verification port 3000
 
@@ -375,9 +387,6 @@ bun run dev
 
 # Build production
 bun run build
-
-# Si probleme Node version pour le build local :
-/opt/homebrew/Cellar/node/24.10.0_1/bin/node ./node_modules/.bin/next build
 
 # Lancer en mode production
 bun run start

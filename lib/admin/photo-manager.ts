@@ -199,6 +199,7 @@ export async function scanAllPhotos(): Promise<PhotosByCategory> {
         }
       }
     } catch (error) {
+      console.error(`[photo-manager] Erreur scan repertoire ${dir.path}:`, error);
     }
   }
 
@@ -213,7 +214,7 @@ export async function loadPhotoMetadata(): Promise<PhotoMetadata[]> {
     const data = await fs.readFile(metadataPath, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    // Si le fichier n'existe pas, retourner un tableau vide
+    console.error('[photo-manager] Erreur lecture photo-metadata.json:', error);
     return [];
   }
 }

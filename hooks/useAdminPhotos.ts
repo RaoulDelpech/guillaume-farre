@@ -73,9 +73,15 @@ export function useAdminPhotos() {
     try {
       const res = await fetch('/api/admin/photos');
       const data = await res.json();
+      if (!res.ok || !Array.isArray(data)) {
+        console.error('Reponse API admin/photos invalide:', res.status, data);
+        setPhotos([]);
+        return;
+      }
       setPhotos(data);
     } catch (error) {
       console.error('Erreur chargement photos:', error);
+      setPhotos([]);
     } finally {
       setLoading(false);
     }

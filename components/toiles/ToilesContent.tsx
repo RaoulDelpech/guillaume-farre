@@ -15,7 +15,10 @@ import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
 import { LINEN_BG, formatPrice } from './toiles-utils';
+import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
+
+const BLUR = blurPlaceholders as Record<string, string>;
 
 export type { Toile, PanelDimension } from './types';
 
@@ -104,6 +107,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                               imageWidth={pd?.imageWidth}
                               imageHeight={pd?.imageHeight}
                               frameColor={frameColor}
+                              blurDataURL={BLUR[img]}
                               className="w-full"
                             />
                           </div>
@@ -118,6 +122,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         imageWidth={toile.imageWidth}
                         imageHeight={toile.imageHeight}
                         frameColor={frameColor}
+                        blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
                         priority={index < 3}
                       />

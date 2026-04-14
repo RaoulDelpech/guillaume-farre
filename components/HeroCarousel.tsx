@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import blurPlaceholders from "@/data/blur-placeholders.json";
+
+const BLUR = blurPlaceholders as Record<string, string>;
 
 interface HeroCarouselProps {
   /** Images des slides passées depuis le serveur (data/page-images.json) */
@@ -87,6 +90,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
               sizes="100vw"
               quality={90}
               priority={index === 0}
+              {...(BLUR[slide.image] ? { placeholder: 'blur' as const, blurDataURL: BLUR[slide.image] } : {})}
             />
           </div>
         </div>

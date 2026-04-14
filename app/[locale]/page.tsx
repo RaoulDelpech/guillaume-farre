@@ -4,6 +4,9 @@ import PhotoFrame from "@/components/PhotoFrame";
 import { getPageImages } from "@/lib/page-images";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
+import blurPlaceholders from "@/data/blur-placeholders.json";
+
+const BLUR = blurPlaceholders as Record<string, string>;
 
 export default async function HomePage() {
   const t = await getTranslations("home");
@@ -33,6 +36,7 @@ export default async function HomePage() {
                 alt="Photographies de Guillaume Farre"
                 imageWidth={1333}
                 imageHeight={2000}
+                blurDataURL={BLUR["/images/works/photos/2.jpg"]}
                 priority
                 className="w-full"
               />
@@ -72,6 +76,7 @@ export default async function HomePage() {
                 alt="Toiles de Guillaume Farre"
                 imageWidth={1800}
                 imageHeight={2700}
+                blurDataURL={BLUR["/images/toiles/6.jpg"]}
                 priority
                 className="w-full"
               />

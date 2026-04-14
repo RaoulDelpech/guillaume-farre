@@ -44,6 +44,8 @@ export function GalerieContent() {
   const t = useTranslations('gallery');
   const locale = useLocale();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [selectedFormat, setSelectedFormat] = useState<PrintFormat>('24x36');
+  const [purchasing, setPurchasing] = useState(false);
 
   // Touch swipe state
   const touchStartX = useRef(0);
@@ -83,6 +85,12 @@ export function GalerieContent() {
     };
   }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
 
+  // Reset format quand on change de photo
+  useEffect(() => {
+    setSelectedFormat('24x36');
+    setPurchasing(false);
+  }, [lightboxIndex]);
+
   const openLightbox = (index: number) => setLightboxIndex(index);
 
   // Touch handlers pour le swipe
@@ -103,10 +111,51 @@ export function GalerieContent() {
     }
   };
 
-  function generateMailto(name: string): string {
-    const subject = t('mailSubject', { name });
-    const body = t('mailBody', { name });
-    return `mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  async function handlePurchase() {
+    if (lightboxIndex === null) return;
+    const photo = typedPhotos[lightboxIndex];
+
+    setPurchasing(true);
+    try {
+      const config = FORMATS[selectedFormat];
+      if (!config.price) return;
+
+      const orientation =
+        photo.imageWidth > photo.imageHeight ? 'landscape' : 'vertical';
+
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [
+            {
+              title: photo.name,
+              price: config.price,
+              format: selectedFormat,
+              images: [photo.image],
+              photoPath: photo.image,
+              material: 'semi-glossy',
+              orientation,
+              frame: 'none',
+              category: 'Photographie',
+            },
+          ],
+          locale,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error || 'Erreur de paiement');
+        setPurchasing(false);
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      alert('Erreur de paiement');
+      setPurchasing(false);
+    }
   }
 
   /** Retrouve l'index global d'une photo par son id (pour ouvrir la lightbox) */
@@ -324,44 +373,128 @@ export function GalerieContent() {
                   {lightboxIndex + 1} / {typedPhotos.length}
                 </p>
 
-                {/* Tableau de prix */}
-                <div className="w-full space-y-2 mb-4 sm:mb-5">
-                  {STANDARD_FORMATS.map((formatKey: PrintFormat) => {
-                    const config = FORMATS[formatKey];
-                    const price = config.price;
-                    const numbering = config.numberingStart && config.numberingEnd
-                      ? t('numbering', { start: config.numberingStart, end: config.numberingEnd })
-                      : '';
+                {typedPhotos[lightboxIndex].id === 16 ? (
+                  /* Photo 16 (Bettejuice) : piece unique, sur demande */
+                  <>
+                    <p className="text-sm text-white/50 font-light mb-6 leading-relaxed">
+                      Format monumental — Pièce unique — Sur demande
+                    </p>
+                    <a
+                      href={`/${locale}/contact`}
+                      className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px]"
+                    >
+                      Nous contacter
+                    </a>
+                  </>
+                ) : (
+                  /* Photos 1-15 : selection format + checkout Stripe */
+                  <>
+                    {/* Selection format avec radio custom */}
+                    <div className="w-full space-y-1.5 mb-4 sm:mb-5">
+                      {STANDARD_FORMATS.map((formatKey: PrintFormat) => {
+                        const config = FORMATS[formatKey];
+                        const purchasable = config.price !== null;
+                        const isSelected = selectedFormat === formatKey;
+                        const numbering =
+                          config.numberingStart && config.numberingEnd
+                            ? t('numbering', {
+                                start: config.numberingStart,
+                                end: config.numberingEnd,
+                              })
+                            : '';
 
-                    return (
-                      <div
-                        key={formatKey}
-                        className="flex justify-between items-center text-sm border-b border-white/10 pb-2"
-                      >
-                        <span className="font-light text-white/80">{config.label}</span>
-                        <span className="font-light text-white/40 text-xs mx-2">
-                          {numbering}
-                        </span>
-                        <span className="font-light text-white tabular-nums">
-                          {price === null ? t('onRequest') : formatPrice(price)}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
+                        if (purchasable) {
+                          return (
+                            <button
+                              key={formatKey}
+                              type="button"
+                              onClick={() => setSelectedFormat(formatKey)}
+                              className={`flex items-center justify-between w-full text-sm border-b pb-2 text-left transition-colors ${
+                                isSelected
+                                  ? 'border-white/30'
+                                  : 'border-white/10'
+                              }`}
+                              aria-pressed={isSelected}
+                            >
+                              <span className="flex items-center gap-2.5">
+                                <span
+                                  className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 flex items-center justify-center transition-colors ${
+                                    isSelected
+                                      ? 'border-white'
+                                      : 'border-white/40'
+                                  }`}
+                                >
+                                  {isSelected && (
+                                    <span className="w-2 h-2 rounded-full bg-white" />
+                                  )}
+                                </span>
+                                <span
+                                  className={`font-light transition-colors ${
+                                    isSelected
+                                      ? 'text-white'
+                                      : 'text-white/70'
+                                  }`}
+                                >
+                                  {config.label}
+                                </span>
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <span className="font-light text-white/40 text-xs">
+                                  {numbering}
+                                </span>
+                                <span
+                                  className={`font-light tabular-nums transition-colors ${
+                                    isSelected
+                                      ? 'text-white'
+                                      : 'text-white/60'
+                                  }`}
+                                >
+                                  {formatPrice(config.price!)}
+                                </span>
+                              </span>
+                            </button>
+                          );
+                        }
 
-                {/* Certificat */}
-                <p className="text-xs font-light text-white/50 mb-4 sm:mb-6 leading-relaxed">
-                  {t('certificate')}
-                </p>
+                        return (
+                          <div
+                            key={formatKey}
+                            className="flex items-center justify-between text-sm border-b border-white/10 pb-2 pl-6"
+                          >
+                            <span className="font-light text-white/40">
+                              {config.label}
+                            </span>
+                            <span className="flex items-center gap-2">
+                              <span className="font-light text-white/30 text-xs">
+                                {numbering}
+                              </span>
+                              <span className="font-light text-white/40 tabular-nums">
+                                {t('onRequest')}
+                              </span>
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
 
-                {/* CTA mailto */}
-                <a
-                  href={generateMailto(typedPhotos[lightboxIndex].name)}
-                  className="inline-block px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px] flex items-center justify-center"
-                >
-                  {t('acquire')}
-                </a>
+                    {/* Certificat */}
+                    <p className="text-xs font-light text-white/50 mb-4 sm:mb-6 leading-relaxed">
+                      {t('certificate')}
+                    </p>
+
+                    {/* Bouton achat Stripe */}
+                    <button
+                      type="button"
+                      onClick={handlePurchase}
+                      disabled={purchasing}
+                      className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px] disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      {purchasing
+                        ? 'Chargement...'
+                        : `${t('acquire')} — ${formatPrice(FORMATS[selectedFormat].price!)}`}
+                    </button>
+                  </>
+                )}
               </motion.div>
             </div>
 

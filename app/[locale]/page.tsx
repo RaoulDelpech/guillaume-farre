@@ -52,7 +52,7 @@ export default async function HomePage() {
         className="py-20 md:py-28 lg:py-32 px-6 md:px-10"
         style={{ backgroundColor: "#FEFEFA" }}
       >
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 lg:gap-24">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 lg:gap-24 items-start">
           {/* Bloc Photographies */}
           <Link
             href="/galerie"

@@ -1,6 +1,6 @@
-// Frame padding constants (must match AmericanFrame.tsx)
-// face(10) + bevel(1) + lip(3) + gap(6) = 20px per side, x2 = 40px
-export const FRAME_TOTAL_PX = (10 + 1 + 3 + 6) * 2; // 40px
+// Frame padding constants (must match AmericanFrame.tsx desktop max values)
+// face(95) + bevel(1) + lip(8) + gap(19) = 123px per side, x2 = 246px
+export const FRAME_TOTAL_PX = (95 + 1 + 8 + 19) * 2; // 246px
 
 // Browsing: paintings occupy ~75% of viewport height (frame included)
 export const BROWSE_VH = 75;

@@ -9,8 +9,9 @@
  * @author Lalou
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
@@ -31,6 +32,29 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
   const t = useTranslations('canvas');
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [openFormId, setOpenFormId] = useState<number | null>(null);
+  const [activeToileIdx, setActiveToileIdx] = useState<number>(0);
+  const toileRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // IntersectionObserver pour detecter la toile active
+  useEffect(() => {
+    const observers = toileRefs.current.map((ref, idx) => {
+      if (!ref) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveToileIdx(idx);
+          }
+        },
+        { threshold: 0.5 }
+      );
+      observer.observe(ref);
+      return observer;
+    });
+
+    return () => {
+      observers.forEach((observer) => observer?.disconnect());
+    };
+  }, [toiles.length]);
 
   useEffect(() => {
     if (lightboxIdx === null) return;
@@ -57,8 +81,41 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
     return `mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
+  function scrollToToile(index: number) {
+    toileRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   return (
-    <div className="min-h-screen" style={LINEN_BG}>
+    <div className="min-h-screen relative" style={LINEN_BG}>
+      {/* Sidebar miniatures - caché sur mobile, visible sur desktop */}
+      <div className="hidden md:flex fixed left-4 top-1/2 -translate-y-1/2 z-40 flex-col gap-2 py-4 max-h-[80vh] overflow-y-auto"
+           style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(140,110,50,0.3) transparent' }}>
+        {toiles.map((toile, idx) => {
+          const thumbSrc = toile.image || (toile.images && toile.images[0]) || '';
+          return (
+            <button
+              key={toile.id}
+              onClick={() => scrollToToile(idx)}
+              className={`relative flex-shrink-0 w-16 h-16 overflow-hidden transition-all duration-200 rounded-sm ${
+                idx === activeToileIdx
+                  ? 'ring-2 ring-[#8c6e32] opacity-100 scale-105'
+                  : 'opacity-40 hover:opacity-75 hover:scale-105'
+              }`}
+              aria-label={`Voir ${toile.name}`}
+            >
+              <Image
+                src={thumbSrc}
+                alt={toile.name}
+                fill
+                sizes="64px"
+                className="object-cover"
+                unoptimized
+              />
+            </button>
+          );
+        })}
+      </div>
+
       <div className="container mx-auto px-4 py-16 md:py-24 max-w-5xl">
         {/* Header */}
         <div className="text-center mb-16">
@@ -78,7 +135,10 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
             const formOpen = openFormId === toile.id;
 
             return (
-              <div key={toile.id}>
+              <div
+                key={toile.id}
+                ref={(el) => { toileRefs.current[index] = el; }}
+              >
                 {/* Toile avec cadre americain */}
                 <button
                   onClick={() => setLightboxIdx(index)}
@@ -99,7 +159,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                               frameColor="black"
                               blurDataURL={BLUR[img]}
                               className="w-full"
-                              noMat
                             />
                           </div>
                         );

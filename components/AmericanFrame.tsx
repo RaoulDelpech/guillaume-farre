@@ -18,10 +18,19 @@ interface AmericanFrameProps {
 }
 
 // --- Visual tuning constants ---
-// Bordure proportionnelle : face(18) + bevel(1) + lip(5) + gap(14) = 38px/cote
-const FRAME_FACE_PX = 18
-const FRAME_LIP_PX = 5
-const GAP_PX = 14
+// Dimensions réelles caisse américaine :
+// Face (marge visible) : 2.5cm = ~95px desktop
+// Fond du caisson (gap entre cadre et toile) : 0.5cm = ~19px desktop
+// Responsive via clamp() : petit mobile → desktop
+const FRAME_FACE_CLAMP = 'clamp(16px, 5.5vw, 95px)'
+const FRAME_LIP_CLAMP = 'clamp(3px, 0.5vw, 8px)'
+const GAP_CLAMP = 'clamp(5px, 1.1vw, 19px)'
+
+// Constantes numériques pour exports (calculs externes, valeurs desktop)
+export const FRAME_FACE_PX = 95
+export const FRAME_LIP_PX = 8
+export const GAP_PX = 19
+
 const RECESS_SHADOW =
   '0 0 2px rgba(0,0,0,0.6), 1px 2px 5px rgba(0,0,0,0.4)'
 
@@ -62,7 +71,7 @@ const themes: Record<FrameColor, FrameTheme> = {
       bottom: '#1e1e1e',
     },
     lip: '#050505',
-    fond: '#080808',
+    fond: '#000000',
     // Grain tres discret (texture bois sans eclaircir)
     grain: `repeating-linear-gradient(87deg, transparent 0px, transparent 3px, rgba(255,255,255,0.02) 3px, rgba(255,255,255,0.02) 3.8px, transparent 3.8px, transparent 7.5px)`,
     grainWide: `repeating-linear-gradient(88deg, transparent 0px, transparent 20px, rgba(255,255,255,0.025) 20px, rgba(255,255,255,0.025) 23px, transparent 23px, transparent 48px)`,
@@ -220,7 +229,7 @@ export default function AmericanFrame({
       {/* Frame face — visible front wood surface with inset relief */}
       <div
         style={{
-          padding: FRAME_FACE_PX,
+          padding: FRAME_FACE_CLAMP,
           background: frameFaceBg,
           boxShadow: [theme.faceHighlight, theme.faceShadow].join(', '),
         }}
@@ -238,7 +247,7 @@ export default function AmericanFrame({
             {/* Frame lip — the visible depth edge of the L-profile */}
             <div
               style={{
-                padding: FRAME_LIP_PX,
+                padding: FRAME_LIP_CLAMP,
                 background: theme.lip,
                 boxShadow: [
                   'inset 1px 2px 4px rgba(0,0,0,0.6)',
@@ -249,7 +258,7 @@ export default function AmericanFrame({
               {/* Fond du caisson — matte back panel */}
               <div
                 style={{
-                  padding: noMat ? 0 : GAP_PX,
+                  padding: noMat ? 0 : GAP_CLAMP,
                   background: theme.fond,
                   boxShadow: [
                     `inset 0 2px 5px ${theme.fondShadow}`,
@@ -263,6 +272,9 @@ export default function AmericanFrame({
                     position: 'relative',
                     overflow: 'hidden',
                     lineHeight: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     boxShadow: [
                       RECESS_SHADOW,
                       // Subtle edge catch-light (canvas edge reflecting overhead light)
@@ -279,7 +291,7 @@ export default function AmericanFrame({
                     sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
                     quality={90}
                     className="w-full h-auto"
-                    style={{ display: 'block' }}
+                    style={{ display: 'block', objectFit: 'contain', objectPosition: 'center' }}
                     {...(blurDataURL ? { placeholder: 'blur' as const, blurDataURL } : {})}
                     priority={priority}
                   />

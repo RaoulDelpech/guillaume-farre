@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
 import PhotoFrame from "@/components/PhotoFrame";
+import AmericanFrame from "@/components/AmericanFrame";
 import { getPageImages } from "@/lib/page-images";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
@@ -71,11 +72,12 @@ export default async function HomePage() {
             className="group flex flex-col items-center text-center"
           >
             <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[420px]">
-              <PhotoFrame
+              <AmericanFrame
                 src="/images/toiles/6.jpg"
                 alt="Toiles de Guillaume Farre"
                 imageWidth={1800}
                 imageHeight={2700}
+                frameColor="black"
                 blurDataURL={BLUR["/images/toiles/6.jpg"]}
                 priority
                 className="w-full"

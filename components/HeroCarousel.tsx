@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface HeroCarouselProps {
   /** Images des slides passées depuis le serveur (data/page-images.json) */
@@ -72,13 +73,22 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
           }`}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0"
             style={{
-              backgroundImage: `url(${slide.image})`,
               transition: "transform 12s linear",
               transform: index === current ? "scale(1.1)" : "scale(1)"
             }}
-          />
+          >
+            <Image
+              src={slide.image}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              quality={90}
+              priority={index === 0}
+            />
+          </div>
         </div>
       ))}
 

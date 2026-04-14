@@ -31,10 +31,16 @@ jobs:
             export BUN_INSTALL="$HOME/.bun"
             export PATH="$BUN_INSTALL/bin:$PATH"
             cd /var/www/guillaumefarre
+            echo "Backing up runtime data..."
+            cp data/newsletter-subscribers.json /tmp/newsletter-subscribers.json 2>/dev/null || true
+            cp data/photo-metadata.json /tmp/photo-metadata.json 2>/dev/null || true
             echo "Fetching latest code..."
             git fetch origin main
             git reset --hard origin/main
             git clean -fd
+            echo "Restoring runtime data..."
+            cp /tmp/newsletter-subscribers.json data/newsletter-subscribers.json 2>/dev/null || true
+            cp /tmp/photo-metadata.json data/photo-metadata.json 2>/dev/null || true
             rm -rf app/api/account
             echo "Installing dependencies..."
             # Option A (supply chain mitigation): use bun instead of npm.

@@ -10,7 +10,7 @@
  * Les prix sont fixes (pas de multiplicateurs).
  */
 
-import { FORMATS, STANDARD_FORMATS, formatPrice, type PrintFormat } from '@/lib/pricing-config';
+import { FORMATS, STANDARD_FORMATS, formatPrice } from '@/lib/pricing-config';
 
 export default function PricingManager() {
   return (

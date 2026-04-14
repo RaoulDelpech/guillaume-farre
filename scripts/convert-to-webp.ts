@@ -7,7 +7,7 @@
  * @author Lalou
  */
 import sharp from 'sharp';
-import { readdir, stat, mkdir } from 'fs/promises';
+import { readdir, stat } from 'fs/promises';
 import { join, parse } from 'path';
 
 const WORKS_DIR = 'public/images/works';

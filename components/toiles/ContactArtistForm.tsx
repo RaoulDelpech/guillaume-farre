@@ -17,7 +17,6 @@ interface ContactArtistFormProps {
 }
 
 const GOLD = '#8c6e32';
-const GOLD_LIGHT = 'rgba(140,110,50,0.15)';
 
 export default function ContactArtistForm({ toileName, onClose }: ContactArtistFormProps) {
   const t = useTranslations('canvas.interestForm');

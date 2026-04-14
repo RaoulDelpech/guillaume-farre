@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import { PhotoMetadata } from "@/lib/admin/photo-manager";
 
 const MAX_RECENT_ITEMS = 10;
 const STORAGE_KEY = "recently_viewed";

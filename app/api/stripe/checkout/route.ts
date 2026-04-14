@@ -11,9 +11,6 @@ const stripe = process.env.STRIPE_SECRET_KEY
     })
   : null;
 
-// Seuil KYC (obligation LCB-FT pour vente d'art)
-const KYC_THRESHOLD = 10_000;
-
 export async function POST(request: Request) {
   // Si Stripe pas configuré, renvoyer erreur
   if (!stripe) {

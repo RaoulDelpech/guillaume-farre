@@ -43,8 +43,6 @@ export default function StockBadge({ available, total, size = 'md', className = 
   // Texte selon disponibilité
   const getText = () => {
     // Label du type de format
-    const formatLabel = formatType === 'grand' ? 'Grand format' : formatType === 'petit' ? 'Petit format' : '';
-
     if (available === 0) {
       return '❌ ÉPUISÉ';
     }

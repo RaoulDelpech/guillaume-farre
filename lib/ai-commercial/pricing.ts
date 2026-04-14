@@ -5,7 +5,7 @@
  */
 
 import type { PhotoAnalysis } from './types';
-import { analyzeByCategory, analyzeUniqueness } from './scoring';
+import { analyzeByCategory } from './scoring';
 
 export function calculatePriceRecommendation(
   commercialPotential: number,
@@ -60,7 +60,7 @@ function getMarketComparables(category: string, price: number): string {
     premium: { min: 6000, max: Infinity, market: 'œuvres majeures, formats monumentaux, collectors' }
   };
 
-  for (const [key, range] of Object.entries(ranges)) {
+  for (const [, range] of Object.entries(ranges)) {
     if (price >= range.min && price < range.max) {
       return `Comparable au marché : ${range.market}. Prix cohérent avec la concurrence.`;
     }

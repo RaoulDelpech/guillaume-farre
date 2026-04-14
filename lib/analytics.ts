@@ -7,14 +7,6 @@
 
 import { hasConsent } from "./cookie-consent";
 
-interface GAItem {
-  item_id: string;
-  item_name: string;
-  price: number;
-  quantity?: number;
-  item_category?: string;
-}
-
 /**
  * Vérifie que gtag est disponible et que le consentement est accordé
  */

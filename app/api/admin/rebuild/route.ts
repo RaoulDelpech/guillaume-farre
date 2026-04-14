@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { exec } from "child_process";
-import { promisify } from "util";
 import { requireAdminAuth } from '@/lib/admin/auth';
-
-const execAsync = promisify(exec);
 
 /**
  * API pour reconstruire le site après modifications de contenu

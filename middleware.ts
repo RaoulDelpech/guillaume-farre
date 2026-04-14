@@ -29,19 +29,6 @@ function getLocale(pathname: string): string {
 }
 
 /**
- * Extraire le niveau d'acces depuis le cookie VIP
- * Format : "CODE:level" ou "CODE" (legacy = secret)
- */
-function getVipLevel(cookieValue: string): 'hidden' | 'secret' {
-  const colonIndex = cookieValue.indexOf(':');
-  if (colonIndex > 0) {
-    const level = cookieValue.substring(colonIndex + 1);
-    if (level === 'hidden' || level === 'secret') return level;
-  }
-  return 'secret'; // legacy
-}
-
-/**
  * Middleware securise — mode pre-launch strict
  *
  * En pre-launch : SEUL le cookie avec le bon token donne acces.

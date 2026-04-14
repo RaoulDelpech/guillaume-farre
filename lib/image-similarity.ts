@@ -1,6 +1,5 @@
 import sharp from 'sharp';
 import imghash from 'imghash';
-import fs from 'fs';
 import path from 'path';
 
 /**

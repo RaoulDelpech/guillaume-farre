@@ -6,12 +6,6 @@ import Navigation from '@/components/navigation/Navigation';
 import { Check } from 'lucide-react';
 import Link from 'next/link';
 
-interface SessionStatus {
-  payment_status?: string;
-  status?: string;
-  error?: string;
-}
-
 /**
  * Page de confirmation après paiement Stripe
  * Récupère le statut de la session via l'API /api/stripe/session-status
@@ -27,7 +21,6 @@ export default function OrderSuccessPage({
   const sessionId = searchParams.get('session_id');
 
   const [loading, setLoading] = useState(true);
-  const [session, setSession] = useState<SessionStatus | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -49,8 +42,7 @@ export default function OrderSuccessPage({
           return;
         }
 
-        const data: SessionStatus = await response.json();
-        setSession(data);
+        await response.json();
       } catch (err) {
         setError('Erreur lors de la vérification du statut');
         console.error('Fetch error:', err);

@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { hasConsent, getConsentStatus } from "@/lib/cookie-consent";
+import { hasConsent } from "@/lib/cookie-consent";
 
 /**
  * Google Analytics 4 with RGPD-compliant cookie consent

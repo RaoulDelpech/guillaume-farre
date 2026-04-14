@@ -101,11 +101,16 @@ guillaume-farre-from-github/
 │       ├── retours-echanges/    # Politique retours
 │       └── galerie-item/        # Detail item galerie
 │   └── api/                     # API Routes
-│       ├── auth/login/          # API login
-│       ├── stripe/              # Webhooks Stripe
 │       ├── admin/               # APIs admin (CSRF protege)
+│       ├── auth/login/          # API login
+│       ├── contact/             # Formulaire contact (envoi email)
+│       ├── gelato/              # Webhooks Gelato (impression)
+│       ├── instagram/           # Feed Instagram (desactive Phase 1)
 │       ├── newsletter/          # Inscription newsletter
-│       └── vip/validate/        # (ne pas toucher)
+│       ├── reservations/        # Reservations toiles
+│       ├── stripe/              # Webhooks + checkout Stripe
+│       ├── upload/              # Upload images admin
+│       └── vip/validate/        # Validation codes VIP (ne pas toucher)
 ├── components/
 │   ├── AmericanFrame.tsx        # COMPOSANT SACRE - caisse americaine CSS
 │   ├── PhotoFrame.tsx           # Cadre photo standard
@@ -288,6 +293,10 @@ pm2 status                  # Etat du process
 - Quand on ouvre une photo en lightbox et qu'on clique sur le bouton d'achat, ca ouvre un mailto au lieu du checkout Stripe
 - Le flux devrait etre : lightbox → bouton acheter → redirection vers Stripe checkout
 
+### Photo 7 placeholder
+- La photo 7 s'appelle "A remplacer" dans `data/photos.json`
+- Image placeholder a remplacer par une vraie photo de Guillaume
+
 ### Instagram
 - Le handle est a verifier : `guillaumefarre.art` vs `guillaumefarre`
 - Les composants Instagram sont desactives en Phase 1 (lib/instagram, instagram-optimizer)
@@ -321,20 +330,33 @@ Guillaume Farre est un artiste-sculpteur qui **peint avec des Ferrari**. Il fait
 - Certificat d'authenticite fourni
 - 16 photos actuellement
 
-### Formats et prix photos
-| Format | Dimensions | Prix | Exemplaires |
-|--------|-----------|------|-------------|
-| 24x36 cm | Petit format | 500 EUR | 99 (numerotes 1/99 a 99/99) |
-| 40x60 cm | Moyen format | 1 000 EUR | 99 (numerotes 1/99 a 99/99) |
-| 80x120 cm | Grand format | 2 000 EUR | 9 (numerotes 1/9 a 9/9) |
+### Formats et prix photos (source : `lib/pricing-config.ts`)
 
-### Photo 16 (Beetlejuice)
-- Piece unique, sur demande (pas de prix affiche)
-- Traitement special dans la boutique
+Chaque photo standard (1-15) dispose de 30 exemplaires numerotes au total :
+
+| Format | Dimensions | Prix | Exemplaires | Numerotation |
+|--------|-----------|------|-------------|--------------|
+| 24x36 | 24 x 36 cm | 500 EUR | 9 | 1/30 a 9/30 |
+| 40x60 | 40 x 60 cm | 1 000 EUR | 9 | 10/30 a 18/30 |
+| 80x120 | 80 x 120 cm | 2 000 EUR | 9 | 19/30 a 27/30 |
+| Hors-format | Sur mesure | Sur demande | 3 | 28/30 a 30/30 |
+
+**Total : 30 exemplaires par photo** (9 + 9 + 9 + 3).
+Tous les tirages sont signes et numerotes. Certificat d'authenticite fourni.
+
+### Photo 16 (Bettejuice) — exception
+- Format **monumental**, 1 seul exemplaire
+- Prix sur demande (pas d'achat direct en ligne)
+- Traitement special dans la boutique et le checkout
+
+### Photo 7 — placeholder
+- Nom actuel dans les donnees : "A remplacer"
+- Image placeholder, a remplacer par une vraie photo
 
 ### Regles editions
 - Une fois tous les exemplaires vendus, la serie est close definitivement
 - Afficher le compteur de restants dans la boutique
+- La numerotation est continue sur les 30 exemplaires (pas par format)
 
 ---
 

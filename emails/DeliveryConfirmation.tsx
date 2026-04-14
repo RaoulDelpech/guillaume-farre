@@ -58,7 +58,7 @@ export default function DeliveryConfirmationEmail({
       ratingButton: '⭐ Très satisfait',
       problemButton: '📧 Signaler un problème',
       shareTitle: 'Partagez votre nouvelle œuvre',
-      shareText: 'Taguez-nous sur Instagram @guillaumefarre.artist pour être reposté sur notre galerie !',
+      shareText: 'Taguez-nous sur Instagram @el_infernale_guigui pour être reposté sur notre galerie !',
       ctaTitle: 'Découvrez nos autres créations',
       ctaText: 'Explorez notre collection complète de photographies d\'art et trouvez votre prochaine pièce favorite.',
       ctaButton: 'Voir la boutique',
@@ -84,7 +84,7 @@ export default function DeliveryConfirmationEmail({
       ratingButton: '⭐ Very satisfied',
       problemButton: '📧 Report an issue',
       shareTitle: 'Share your new artwork',
-      shareText: 'Tag us on Instagram @guillaumefarre.artist to be reposted in our gallery!',
+      shareText: 'Tag us on Instagram @el_infernale_guigui to be reposted in our gallery!',
       ctaTitle: 'Discover our other creations',
       ctaText: 'Explore our complete collection of fine art photography and find your next favorite piece.',
       ctaButton: 'View the shop',
@@ -110,7 +110,7 @@ export default function DeliveryConfirmationEmail({
       ratingButton: '⭐ Molto soddisfatto',
       problemButton: '📧 Segnala un problema',
       shareTitle: 'Condividi la tua nuova opera',
-      shareText: 'Taggaci su Instagram @guillaumefarre.artist per essere ripubblicato nella nostra galleria!',
+      shareText: 'Taggaci su Instagram @el_infernale_guigui per essere ripubblicato nella nostra galleria!',
       ctaTitle: 'Scopri le nostre altre creazioni',
       ctaText: 'Esplora la nostra collezione completa di fotografia d\'arte e trova il tuo prossimo pezzo preferito.',
       ctaButton: 'Visualizza il negozio',
@@ -213,10 +213,10 @@ export default function DeliveryConfirmationEmail({
                 {t.shareText.includes('@') ? (
                   <>
                     {t.shareText.split('@')[0]}
-                    <a href="https://instagram.com/guillaumefarre.artist" style={styles.link}>
-                      @guillaumefarre.artist
+                    <a href="https://instagram.com/el_infernale_guigui" style={styles.link}>
+                      @el_infernale_guigui
                     </a>
-                    {t.shareText.split('@guillaumefarre.artist')[1]}
+                    {t.shareText.split('@el_infernale_guigui')[1]}
                   </>
                 ) : (
                   t.shareText

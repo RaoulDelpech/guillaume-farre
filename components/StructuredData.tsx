@@ -44,7 +44,7 @@ export default function StructuredData({ type = 'organization', data }: Structur
     },
     sameAs: [
       // À ajouter si présent sur réseaux sociaux
-      // 'https://www.instagram.com/guillaumefarre',
+      'https://www.instagram.com/el_infernale_guigui',
       // 'https://www.facebook.com/guillaumefarre',
     ],
   };

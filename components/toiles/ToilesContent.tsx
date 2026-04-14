@@ -24,6 +24,10 @@ export type { Toile, PanelDimension } from './types';
 
 const FRAME_COLORS = ['black', 'oak', 'walnut'] as const;
 
+// Ratio uniforme 3:4 pour tous les cadres solo — object-cover gere le crop
+const UNIFORM_IMG_W = 900;
+const UNIFORM_IMG_H = 1200;
+
 function getFrameColor(index: number): 'black' | 'oak' | 'walnut' {
   return FRAME_COLORS[index % 3];
 }
@@ -115,12 +119,12 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                       })}
                     </div>
                   ) : (
-                    <div className="mx-auto" style={{ maxWidth: 340 }}>
+                    <div className="mx-auto [&_img]:!object-cover" style={{ maxWidth: 340 }}>
                       <AmericanFrame
                         src={toile.image || ''}
                         alt={toile.name}
-                        imageWidth={toile.imageWidth}
-                        imageHeight={toile.imageHeight}
+                        imageWidth={UNIFORM_IMG_W}
+                        imageHeight={UNIFORM_IMG_H}
                         frameColor={frameColor}
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"

@@ -190,7 +190,7 @@ export async function POST(request: Request) {
       ],
       mode: 'payment',
       success_url: `${baseUrl}/${locale}/commande/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${baseUrl}/${locale}/boutique?canceled=true`,
+      cancel_url: `${baseUrl}/${locale}/galerie?canceled=true`,
       locale: locale as Stripe.Checkout.SessionCreateParams.Locale,
       shipping_address_collection: {
         allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC', 'IT', 'ES', 'DE', 'GB', 'US'],

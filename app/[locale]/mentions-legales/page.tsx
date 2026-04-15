@@ -81,7 +81,7 @@ export default async function MentionsLegalesPage() {
               Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression des données vous concernant.
             </p>
             <p>
-              Pour exercer ce droit, vous pouvez nous contacter à l&apos;adresse : contact@guillaumefarre.com
+              Pour exercer ce droit, vous pouvez me contacter à l&apos;adresse : contact@guillaumefarre.com
             </p>
             <p>
               Pour plus d&apos;informations, consultez notre <Link href="/politique-de-confidentialite" className="text-blue-600 hover:underline">politique de confidentialité</Link>.

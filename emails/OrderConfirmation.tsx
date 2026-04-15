@@ -86,7 +86,7 @@ export default function OrderConfirmationEmail({
       qualityItem2: 'Papier Fine Art Giclee 300g/m² - Garantie 100 ans',
       qualityItem3: 'Certificat d\'authenticité inclus',
       qualityItem4: 'Livraison sécurisée avec tracking',
-      question: 'Une question ? Contactez-nous à',
+      question: 'Une question ? Contactez-moi à',
       footer: '© 2025 Guillaume Farré - Artiste Sculpteur',
     },
     en: {
@@ -120,7 +120,7 @@ export default function OrderConfirmationEmail({
       qualityItem2: 'Fine Art Giclee paper 300g/m² - 100 year guarantee',
       qualityItem3: 'Certificate of authenticity included',
       qualityItem4: 'Secure delivery with tracking',
-      question: 'Any questions? Contact us at',
+      question: 'Any questions? Contact me at',
       footer: '© 2025 Guillaume Farré - Sculptor Artist',
     },
     it: {
@@ -154,7 +154,7 @@ export default function OrderConfirmationEmail({
       qualityItem2: 'Carta Fine Art Giclee 300g/m² - Garanzia 100 anni',
       qualityItem3: 'Certificato di autenticità incluso',
       qualityItem4: 'Consegna sicura con tracciamento',
-      question: 'Hai domande? Contattaci a',
+      question: 'Hai domande? Contattami a',
       footer: '© 2025 Guillaume Farré - Artista Scultore',
     },
   }[locale];

@@ -49,7 +49,7 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         q: 'Quels formats proposez-vous ?',
-        a: 'Formats standard disponibles : 24×36 cm — 500 €, 40×60 cm — 1 000 €, 80×120 cm — 2 000 €. Formats spéciaux sur demande : Hors Format (sur mesure) et Format Monumental (dimensions exceptionnelles) — sur devis. Contactez-nous pour tout projet sur mesure.',
+        a: 'Formats standard disponibles : 24×36 cm — 500 €, 40×60 cm — 1 000 €, 80×120 cm — 2 000 €. Formats spéciaux sur demande : Hors Format (sur mesure) et Format Monumental (dimensions exceptionnelles) — sur devis. Contactez-moi pour tout projet sur mesure.',
       },
       {
         q: 'Sur quel papier sont imprimées les photos ?',
@@ -87,7 +87,7 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         q: 'Que faire si mon colis est endommagé ?',
-        a: 'Refusez le colis lors de la livraison si l\'emballage est visiblement endommagé, ou photographiez les dommages avant d\'ouvrir. Contactez-nous sous 48h à contact@guillaumefarre.com avec photos. Nous enverrons un remplacement gratuit immédiatement, sans attendre le retour du colis endommagé.',
+        a: 'Refusez le colis lors de la livraison si l\'emballage est visiblement endommagé, ou photographiez les dommages avant d\'ouvrir. Contactez-moi sous 48h à contact@guillaumefarre.com avec photos. Nous enverrons un remplacement gratuit immédiatement, sans attendre le retour du colis endommagé.',
       },
     ],
   },
@@ -245,7 +245,7 @@ export default function FAQPage() {
             href="mailto:contact@guillaumefarre.com"
             className="inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
           >
-            Nous contacter
+            Me contacter
           </a>
         </div>
       </div>

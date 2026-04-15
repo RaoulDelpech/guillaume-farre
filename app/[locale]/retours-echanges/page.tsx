@@ -54,7 +54,7 @@ export default function RetoursPage() {
                     <span className="text-2xl">1</span>
                   </div>
                   <div>
-                    <h3 className="text-xl font-medium mb-2">Contactez-nous</h3>
+                    <h3 className="text-xl font-medium mb-2">Contactez-moi</h3>
                     <p className="text-muted-foreground">
                       Envoyez un email à{' '}
                       <a href="mailto:contact@guillaumefarre.com" className="text-primary hover:underline">
@@ -139,7 +139,7 @@ export default function RetoursPage() {
                 href="mailto:contact@guillaumefarre.com"
                 className="inline-block px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-base sm:text-lg transition-all min-h-[48px]"
               >
-                📧 Nous contacter
+                📧 Me contacter
               </a>
               <Link
                 href="/faq"

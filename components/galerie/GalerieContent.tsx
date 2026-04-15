@@ -122,7 +122,7 @@ function PhotoPurchasePanel({
           href={`/${locale}/contact`}
           className="text-[11px] font-light tracking-[0.2em] uppercase text-[#1a1a1a]/70 hover:text-[#8c6e32] transition-colors duration-300 border-b border-[#8c6e32]/30 pb-0.5"
         >
-          Nous contacter
+          Me contacter
         </a>
       </div>
     );
@@ -610,7 +610,7 @@ export function GalerieContent() {
                       href={`/${locale}/contact`}
                       className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px]"
                     >
-                      Nous contacter
+                      Me contacter
                     </a>
                   </>
                 ) : (

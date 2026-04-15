@@ -110,7 +110,7 @@ export default async function CGVPage() {
               <li>Le remboursement intégral intervient sous 14 jours après réception du retour</li>
             </ul>
             <p>
-              Pour exercer votre droit de rétractation, vous pouvez utiliser le formulaire type ci-dessous ou nous contacter par email à l&apos;adresse : contact@guillaumefarre.com
+              Pour exercer votre droit de rétractation, vous pouvez utiliser le formulaire type ci-dessous ou me contacter par email à l&apos;adresse : contact@guillaumefarre.com
             </p>
             <p>
               <strong>Exceptions :</strong> Le droit de rétractation ne s&apos;applique pas si l&apos;œuvre a été créée sur mesure selon les spécifications du client (article L221-28, 3° du Code de la consommation), ni pour les achats effectués par un professionnel dans le cadre de son activité.

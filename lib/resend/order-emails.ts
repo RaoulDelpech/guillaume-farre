@@ -144,7 +144,7 @@ export async function sendOrderProblemEmail(params: {
         <p><strong>Statut actuel :</strong> En attente de résolution</p>
         <p><strong>Détails :</strong> ${params.problemDescription}</p>
         <p>Notre équipe travaille activement pour résoudre ce problème. Nous vous recontacterons dans les plus brefs délais.</p>
-        <p>Si vous avez des questions, n'hésitez pas à nous contacter à contact@guillaumefarre.com</p>
+        <p>Si vous avez des questions, n'hésitez pas à me contacter à contact@guillaumefarre.com</p>
         <p>Cordialement,<br>Guillaume Farré</p>
       `,
     });

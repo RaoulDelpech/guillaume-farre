@@ -151,7 +151,7 @@ function PhotoCard({ photo, locale }: { photo: Photo; locale: string }) {
             onClick={handlePurchase}
             className="w-full px-6 py-3 bg-zinc-900 text-white font-light tracking-wide hover:bg-zinc-800 transition-colors"
           >
-            Nous contacter
+            Me contacter
           </button>
         </div>
       ) : (

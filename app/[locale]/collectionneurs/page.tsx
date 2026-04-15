@@ -33,7 +33,7 @@ export default function CollectionneursPage() {
               href="/contact"
               className="min-h-[48px] flex items-center justify-center px-12 py-6 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded-lg text-xl transition-all"
             >
-              Nous contacter
+              Me contacter
             </Link>
             <Link
               href="/boutique"
@@ -211,7 +211,7 @@ export default function CollectionneursPage() {
                 href="/contact"
                 className="min-h-[48px] flex items-center justify-center px-12 py-6 border border-border hover:border-primary text-foreground hover:text-primary font-light tracking-wide rounded-lg text-xl transition-all"
               >
-                Nous contacter
+                Me contacter
               </Link>
             </div>
 

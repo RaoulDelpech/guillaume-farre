@@ -8,8 +8,8 @@ const doors = [
     label: "Toiles",
     subtitle: "Peintures sur toile",
     previewImage: "/images/toiles/9.jpg",
-    previewWidth: 1281,
-    previewHeight: 1281,
+    previewWidth: 1268,
+    previewHeight: 1263,
     frameColor: "black" as const,
   },
   {

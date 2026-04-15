@@ -158,6 +158,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                               frameColor="black"
                               blurDataURL={BLUR[img]}
                               className="w-full"
+                              noMat
                             />
                           </div>
                         );

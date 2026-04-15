@@ -85,7 +85,7 @@ export default async function HomePage() {
             href="/toiles"
             className="group flex flex-col items-center text-center"
           >
-            <div className="transition-transform duration-500 group-hover:-translate-y-1 w-full max-w-[420px]">
+            <div className="transition-transform duration-500 group-hover:-translate-y-1 mx-auto" style={{ maxWidth: 420 }}>
               <AmericanFrame
                 src="/images/toiles/6.jpg"
                 alt="Toiles de Guillaume Farre"

@@ -52,6 +52,18 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Citation */}
+      <section className="py-10 md:py-14 px-6">
+        <blockquote className="max-w-[600px] mx-auto text-center">
+          <p
+            className="text-lg md:text-xl font-light italic tracking-wide"
+            style={{ color: '#1a1a1a' }}
+          >
+            &laquo;&nbsp;Un adulte est un enfant qui a mal tourn&eacute;.&nbsp;&raquo;
+          </p>
+        </blockquote>
+      </section>
+
       {/* 2 panneaux elegants : Photographies | Toiles */}
       <section className="py-20 md:py-28 lg:py-32 px-6 md:px-10">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 lg:gap-24 items-start">

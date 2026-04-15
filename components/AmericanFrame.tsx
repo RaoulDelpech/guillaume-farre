@@ -270,7 +270,7 @@ export default function AmericanFrame({
                   style={{
                     position: 'relative',
                     overflow: 'hidden',
-                    lineHeight: 0,
+                    display: 'flex',
                     background: theme.fond,
                     boxShadow: [
                       RECESS_SHADOW,

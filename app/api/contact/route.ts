@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
-import nodemailer from 'nodemailer';
 import { isRateLimited, getClientIP } from "@/lib/rate-limit";
+import { getResendClient, FROM_EMAIL } from "@/lib/resend/client";
 
 const CONTACTS_FILE = path.join(process.cwd(), "data", "contacts.json");
 
@@ -113,29 +113,21 @@ export async function POST(request: NextRequest) {
 
     // Envoyer l'email (ne bloque pas si echec)
     try {
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST || 'ssl0.ovh.net',
-        port: parseInt(process.env.SMTP_PORT || '465'),
-        secure: true,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
-        },
-      });
-
-      await transporter.sendMail({
-        from: process.env.SMTP_USER || 'contact@guillaumefarre.com',
-        to: 'contact@guillaumefarre.com',
-        replyTo: email.trim().toLowerCase(),
-        subject: `[Site] Contact: ${sanitizedSubject}`,
-        text: `Nouveau message de ${sanitizedName} (${email.trim().toLowerCase()}):\n\n${sanitizedMessage}`,
-        html: `<h3>Nouveau message depuis guillaumefarre.com</h3>
-    <p><strong>De:</strong> ${sanitizedName}</p>
-    <p><strong>Email:</strong> ${email.trim().toLowerCase()}</p>
-    <p><strong>Sujet:</strong> ${sanitizedSubject}</p>
-    <hr/>
-    <p>${sanitizedMessage.replace(/\n/g, '<br/>')}</p>`,
-      });
+      const resend = getResendClient();
+      if (resend) {
+        await resend.emails.send({
+          from: FROM_EMAIL,
+          to: 'contact@guillaumefarre.com',
+          replyTo: email.trim().toLowerCase(),
+          subject: `[Site] Contact: ${sanitizedSubject}`,
+          html: `<h3>Nouveau message depuis guillaumefarre.com</h3>
+            <p><strong>De:</strong> ${sanitizedName}</p>
+            <p><strong>Email:</strong> ${email.trim().toLowerCase()}</p>
+            <p><strong>Sujet:</strong> ${sanitizedSubject}</p>
+            <hr/>
+            <p>${sanitizedMessage.replace(/\n/g, '<br/>')}</p>`
+        });
+      }
     } catch (emailError) {
       // Email non envoyé mais message sauvegardé quand même
       console.error('Erreur envoi email (message sauvegardé):', emailError);

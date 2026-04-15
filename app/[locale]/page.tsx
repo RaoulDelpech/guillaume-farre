@@ -109,7 +109,6 @@ export default async function HomePage() {
                 blurDataURL={BLUR["/images/toiles/6.jpg"]}
                 priority
                 className="w-full"
-                noMat
               />
             </div>
             <h2

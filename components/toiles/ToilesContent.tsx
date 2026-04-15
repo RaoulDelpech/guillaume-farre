@@ -159,7 +159,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                               frameColor="black"
                               blurDataURL={BLUR[img]}
                               className="w-full"
-                              noMat
                             />
                           </div>
                         );
@@ -185,7 +184,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
                         priority={index < 2}
-                        noMat
                       />
                     </div>
                   )}

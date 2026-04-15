@@ -216,6 +216,7 @@ export default function AmericanFrame({
       style={{
         display: 'inline-block',
         maxWidth: '100%',
+        backgroundColor: theme.fond,
         // Wall shadow
         boxShadow: [
           '4px 6px 20px -3px rgba(0,0,0,0.5)',

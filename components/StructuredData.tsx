@@ -44,7 +44,7 @@ export default function StructuredData({ type = 'organization', data }: Structur
       availableLanguage: ['French', 'English', 'Italian'],
     },
     sameAs: [
-      'https://www.instagram.com/el_infernale_guigui',
+      'https://www.instagram.com/guillaume_farre',
     ],
   };
 

@@ -183,12 +183,12 @@ export default function ContactContent() {
               </a>
               <span className="hidden md:inline text-border">|</span>
               <a
-                href="https://instagram.com/el_infernale_guigui"
+                href="https://instagram.com/guillaume_farre"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground font-light transition-colors"
               >
-                @el_infernale_guigui
+                @guillaume_farre
               </a>
               <span className="hidden md:inline text-border">|</span>
               <span className="text-muted-foreground font-light">

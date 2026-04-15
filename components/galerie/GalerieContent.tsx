@@ -176,7 +176,7 @@ export function GalerieContent() {
   return (
     <>
       {/* Header */}
-      <div className="mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-16 md:py-24 max-w-[1800px]">
+      <div className="mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-16 md:py-24 max-w-[1400px]">
         <div className="text-center mb-10 sm:mb-16">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extralight tracking-[0.08em] uppercase text-[#1a1a1a] mb-6">
             {t('photosTitle')}
@@ -185,7 +185,7 @@ export function GalerieContent() {
         </div>
 
         {/* Grille en rangees */}
-        <div className="space-y-6 sm:space-y-10">
+        <div className="space-y-8 sm:space-y-14">
           {ROWS.map((rowIds, rowIndex) => {
             const rowPhotos = rowIds.map(
               (id) => typedPhotos.find((p) => p.id === id)!
@@ -214,7 +214,7 @@ export function GalerieContent() {
                       priority={rowIndex === 0}
                     />
                   </button>
-                  <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg font-light text-[#1a1a1a] tracking-wide text-center">
+                  <p className="mt-4 sm:mt-5 text-base sm:text-lg font-extralight text-[#2a2a2a] tracking-wider uppercase text-center">
                     {photo.name}
                   </p>
                 </div>
@@ -271,7 +271,7 @@ export function GalerieContent() {
                           priority={rowIndex < 2}
                         />
                       </button>
-                      <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg font-light text-[#1a1a1a] tracking-wide text-center">
+                      <p className="mt-4 sm:mt-5 text-base sm:text-lg font-extralight text-[#2a2a2a] tracking-wider uppercase text-center">
                         {photo.name}
                       </p>
                     </div>

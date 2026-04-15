@@ -12,6 +12,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PhotoFrame from '@/components/PhotoFrame';
+import LandingSection from '@/components/landing/LandingSection';
 import { STANDARD_FORMATS, PURCHASABLE_FORMATS, FORMATS, formatPrice, type PrintFormat } from '@/lib/pricing-config';
 import photos from '@/data/photos.json';
 import blurPlaceholders from '@/data/blur-placeholders.json';
@@ -470,6 +471,9 @@ export function GalerieContent() {
           </p>
         </div>
       </div>
+
+      {/* Section landing — grille photos + newsletter */}
+      <LandingSection />
 
       {/* Lightbox avec prix, certificat et mailto */}
       <AnimatePresence>

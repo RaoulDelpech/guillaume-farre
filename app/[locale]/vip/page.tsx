@@ -116,7 +116,7 @@ export default function VipPage() {
   return (
     <div
       className="fixed inset-0 overflow-hidden flex items-center justify-center"
-      style={{ background: "#FEFEFA" }}
+      style={{ background: "inherit" }}
     >
       {/* Lumiere chaude derriere les portes */}
       <motion.div

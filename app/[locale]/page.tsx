@@ -15,7 +15,7 @@ export default async function HomePage() {
   const pageImages = await getPageImages();
 
   return (
-    <main className="min-h-screen" style={{ backgroundColor: "#FEFEFA" }}>
+    <main className="min-h-screen">
       <Navigation />
 
       {/* Hero Carousel */}
@@ -25,7 +25,7 @@ export default async function HomePage() {
       <EarlyAccessCountdown />
 
       {/* Texte de bienvenue Guillaume */}
-      <section className="py-16 md:py-24 px-6" style={{ backgroundColor: "#FEFEFA" }}>
+      <section className="py-16 md:py-24 px-6">
         <div className="max-w-[700px] mx-auto">
           <div className="w-16 h-px mx-auto mb-10" style={{ backgroundColor: "#8c6e32" }} />
           <div className="space-y-6 font-light leading-relaxed tracking-wide text-sm md:text-base" style={{ color: "#4a4a4a" }}>
@@ -52,10 +52,7 @@ export default async function HomePage() {
       </section>
 
       {/* 2 panneaux elegants : Photographies | Toiles */}
-      <section
-        className="py-20 md:py-28 lg:py-32 px-6 md:px-10"
-        style={{ backgroundColor: "#FEFEFA" }}
-      >
+      <section className="py-20 md:py-28 lg:py-32 px-6 md:px-10">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 lg:gap-24 items-start">
           {/* Bloc Photographies */}
           <Link

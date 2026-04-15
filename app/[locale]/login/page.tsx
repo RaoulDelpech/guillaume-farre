@@ -149,7 +149,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FEFEFA] text-[#1a1a1a]">
+    <div className="min-h-screen text-[#1a1a1a]">
       {/* 1. Titre */}
       <div className="pt-20 md:pt-24 pb-2 md:pb-4 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-wide">

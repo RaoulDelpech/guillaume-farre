@@ -109,7 +109,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                 fill
                 sizes="64px"
                 className="object-cover"
-                unoptimized
               />
             </button>
           );

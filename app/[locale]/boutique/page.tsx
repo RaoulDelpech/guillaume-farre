@@ -4,6 +4,9 @@ import { use, useState } from 'react';
 import Image from 'next/image';
 import Navigation from '@/components/navigation/Navigation';
 import photos from '@/data/photos.json';
+import blurPlaceholders from '@/data/blur-placeholders.json';
+
+const BLUR = blurPlaceholders as Record<string, string>;
 
 type Photo = {
   id: number;
@@ -16,7 +19,7 @@ type Photo = {
 type FormatOption = '24x36' | '40x60' | '80x120';
 
 const FORMAT_PRICES: Record<FormatOption, number> = {
-  '24x36': 500,
+  '24x36': 20,    // TEMPORAIRE: test Stripe (etait 500)
   '40x60': 1000,
   '80x120': 2000,
 };
@@ -126,6 +129,8 @@ function PhotoCard({ photo, locale }: { photo: Photo; locale: string }) {
           height={photo.imageHeight}
           className="object-cover w-full h-full"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          placeholder={BLUR[photo.image] ? 'blur' : undefined}
+          blurDataURL={BLUR[photo.image]}
         />
       </div>
 

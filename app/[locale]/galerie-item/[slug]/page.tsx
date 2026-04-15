@@ -5,7 +5,10 @@ import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
 import GalerieItemClient from "./GalerieItemClient";
 import { safeJsonLd } from "@/lib/safe-json-ld";
+import blurPlaceholders from "@/data/blur-placeholders.json";
 import type { Metadata } from "next";
+
+const BLUR = blurPlaceholders as Record<string, string>;
 
 export async function generateStaticParams() {
   const works = await getWorksFromMetadata();
@@ -149,6 +152,8 @@ export default async function GalerieItemPage({
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority={idx === 0}
                     loading={idx === 0 ? undefined : "lazy"}
+                    placeholder={BLUR[image] ? 'blur' : undefined}
+                    blurDataURL={BLUR[image]}
                   />
                 </div>
               ))}

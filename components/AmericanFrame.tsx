@@ -18,18 +18,17 @@ interface AmericanFrameProps {
 }
 
 // --- Visual tuning constants ---
-// Dimensions réelles caisse américaine :
-// Face (marge visible) : 2.5cm = ~95px desktop
-// Fond du caisson (gap entre cadre et toile) : 0.5cm = ~19px desktop
-// Responsive via clamp() : petit mobile → desktop
-const FRAME_FACE_CLAMP = 'clamp(16px, 5.5vw, 95px)'
-const FRAME_LIP_CLAMP = 'clamp(3px, 0.5vw, 8px)'
-const GAP_CLAMP = 'clamp(5px, 1.1vw, 19px)'
+// Proportions visuelles caisse américaine (calibrées sur photo réf.)
+// Face : cadre fin et élégant, proportionnel à la taille affichée
+// Fond : liseré noir de profondeur à peine visible
+const FRAME_FACE_CLAMP = 'clamp(6px, 1.5vw, 22px)'
+const FRAME_LIP_CLAMP = 'clamp(1px, 0.2vw, 3px)'
+const GAP_CLAMP = 'clamp(1px, 0.3vw, 5px)'
 
 // Constantes numériques pour exports (calculs externes, valeurs desktop)
-export const FRAME_FACE_PX = 95
-export const FRAME_LIP_PX = 8
-export const GAP_PX = 19
+export const FRAME_FACE_PX = 22
+export const FRAME_LIP_PX = 3
+export const GAP_PX = 5
 
 const RECESS_SHADOW =
   '0 0 2px rgba(0,0,0,0.6), 1px 2px 5px rgba(0,0,0,0.4)'

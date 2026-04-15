@@ -12,7 +12,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PhotoFrame from '@/components/PhotoFrame';
-import { STANDARD_FORMATS, FORMATS, formatPrice, type PrintFormat } from '@/lib/pricing-config';
+import { STANDARD_FORMATS, PURCHASABLE_FORMATS, FORMATS, formatPrice, type PrintFormat } from '@/lib/pricing-config';
 import photos from '@/data/photos.json';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 
@@ -40,12 +40,127 @@ interface Photo {
 /** Seuil en px pour considerer un mouvement comme un swipe */
 const SWIPE_THRESHOLD = 50;
 
+/** Prix special photo 7 (Magma) pour test Stripe */
+const PHOTO_7_TEST_PRICE_24x36 = 20;
+
+/** Panneau achat inline sous chaque photo */
+function PhotoPurchasePanel({
+  photo,
+  isOpen,
+  onToggle,
+  locale,
+}: {
+  photo: Photo;
+  isOpen: boolean;
+  onToggle: () => void;
+  locale: string;
+}) {
+  const [purchasing, setPurchasing] = useState(false);
+  const isMonumental = photo.id === 16;
+
+  function getPrice(format: PrintFormat): number {
+    if (photo.id === 7 && format === '24x36') return PHOTO_7_TEST_PRICE_24x36;
+    return FORMATS[format].price!;
+  }
+
+  async function checkout(format: PrintFormat) {
+    setPurchasing(true);
+    try {
+      const price = getPrice(format);
+      const orientation =
+        photo.imageWidth > photo.imageHeight ? 'landscape' : 'vertical';
+
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: [
+            {
+              title: photo.name,
+              price,
+              format,
+              images: [photo.image],
+              photoPath: photo.image,
+              material: 'semi-glossy',
+              orientation,
+              frame: 'none',
+              category: 'Photographie',
+            },
+          ],
+          locale,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error || 'Erreur de paiement');
+        setPurchasing(false);
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      alert('Erreur de paiement');
+      setPurchasing(false);
+    }
+  }
+
+  if (isMonumental) {
+    return (
+      <div className="mt-3 text-center">
+        <a
+          href={`/${locale}/contact`}
+          className="text-xs font-light tracking-[0.18em] uppercase text-[#8c6e32]/80 hover:text-[#8c6e32] transition-colors duration-300"
+        >
+          Nous contacter
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3 text-center">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="text-xs font-light tracking-[0.18em] uppercase text-[#8c6e32]/80 hover:text-[#8c6e32] transition-colors duration-300"
+      >
+        {isOpen ? 'Fermer' : 'Acquérir ce tirage'}
+      </button>
+
+      {isOpen && (
+        <div className="mt-3 space-y-1">
+          {PURCHASABLE_FORMATS.map((format) => {
+            const price = getPrice(format);
+            return (
+              <button
+                key={format}
+                type="button"
+                onClick={() => checkout(format)}
+                disabled={purchasing}
+                className="block w-full text-xs font-light tracking-wider text-[#5a5a5a] hover:text-[#1a1a1a] transition-colors duration-200 py-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {FORMATS[format].label} — {formatPrice(price)}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function GalerieContent() {
   const t = useTranslations('gallery');
   const locale = useLocale();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [selectedFormat, setSelectedFormat] = useState<PrintFormat>('24x36');
   const [purchasing, setPurchasing] = useState(false);
+  const [openPurchaseId, setOpenPurchaseId] = useState<number | null>(null);
+
+  const togglePurchase = (photoId: number) => {
+    setOpenPurchaseId((prev) => (prev === photoId ? null : photoId));
+  };
 
   // Touch swipe state
   const touchStartX = useRef(0);
@@ -217,6 +332,12 @@ export function GalerieContent() {
                   <p className="mt-4 sm:mt-5 text-base sm:text-lg font-extralight text-[#2a2a2a] tracking-wider uppercase text-center">
                     {photo.name}
                   </p>
+                  <PhotoPurchasePanel
+                    photo={photo}
+                    isOpen={openPurchaseId === photo.id}
+                    onToggle={() => togglePurchase(photo.id)}
+                    locale={locale}
+                  />
                 </div>
               );
             }
@@ -274,12 +395,28 @@ export function GalerieContent() {
                       <p className="mt-4 sm:mt-5 text-base sm:text-lg font-extralight text-[#2a2a2a] tracking-wider uppercase text-center">
                         {photo.name}
                       </p>
+                      <PhotoPurchasePanel
+                        photo={photo}
+                        isOpen={openPurchaseId === photo.id}
+                        onToggle={() => togglePurchase(photo.id)}
+                        locale={locale}
+                      />
                     </div>
                   );
                 })}
               </div>
             );
           })}
+        </div>
+
+        {/* Mentions legales */}
+        <div className="text-center mt-16 sm:mt-24 space-y-2">
+          <p className="text-xs font-light tracking-[0.15em] uppercase text-[#8c8c8c]">
+            Tirage numéroté et signé — Édition limitée
+          </p>
+          <p className="text-xs font-light text-[#a0a0a0]">
+            TVA non applicable, article 293 B du Code général des impôts
+          </p>
         </div>
       </div>
 

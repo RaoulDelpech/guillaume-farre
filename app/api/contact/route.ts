@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import nodemailer from 'nodemailer';
 import { isRateLimited, getClientIP } from "@/lib/rate-limit";
 import { getResendClient, FROM_EMAIL } from "@/lib/resend/client";
 
@@ -113,6 +114,13 @@ export async function POST(request: NextRequest) {
 
     // Envoyer l'email (ne bloque pas si echec)
     try {
+      const emailHtml = `<h3>Nouveau message depuis guillaumefarre.com</h3>
+        <p><strong>De:</strong> ${sanitizedName}</p>
+        <p><strong>Email:</strong> ${email.trim().toLowerCase()}</p>
+        <p><strong>Sujet:</strong> ${sanitizedSubject}</p>
+        <hr/>
+        <p>${sanitizedMessage.replace(/\n/g, '<br/>')}</p>`;
+
       const resend = getResendClient();
       if (resend) {
         await resend.emails.send({
@@ -120,12 +128,22 @@ export async function POST(request: NextRequest) {
           to: 'contact@guillaumefarre.com',
           replyTo: email.trim().toLowerCase(),
           subject: `[Site] Contact: ${sanitizedSubject}`,
-          html: `<h3>Nouveau message depuis guillaumefarre.com</h3>
-            <p><strong>De:</strong> ${sanitizedName}</p>
-            <p><strong>Email:</strong> ${email.trim().toLowerCase()}</p>
-            <p><strong>Sujet:</strong> ${sanitizedSubject}</p>
-            <hr/>
-            <p>${sanitizedMessage.replace(/\n/g, '<br/>')}</p>`
+          html: emailHtml,
+        });
+      } else {
+        // Fallback: postfix local (pas d'auth)
+        const transporter = nodemailer.createTransport({
+          host: '127.0.0.1',
+          port: 25,
+          secure: false,
+          tls: { rejectUnauthorized: false },
+        });
+        await transporter.sendMail({
+          from: 'noreply@guillaumefarre.com',
+          to: 'contact@guillaumefarre.com',
+          replyTo: email.trim().toLowerCase(),
+          subject: `[Site] Contact: ${sanitizedSubject}`,
+          html: emailHtml,
         });
       }
     } catch (emailError) {

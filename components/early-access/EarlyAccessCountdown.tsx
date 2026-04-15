@@ -28,10 +28,10 @@ export default function EarlyAccessCountdown() {
     // Obtenir le texte du compteur
     setText(getCountdownText());
 
-    // Rafraichir toutes les heures pour mettre a jour le compteur
+    // Rafraichir toutes les minutes (le compteur affiche les heures/minutes)
     const interval = setInterval(() => {
       setText(getCountdownText());
-    }, 60 * 60 * 1000); // 1 heure
+    }, 60 * 1000); // 1 minute
 
     return () => clearInterval(interval);
   }, []);

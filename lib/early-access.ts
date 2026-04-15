@@ -74,14 +74,61 @@ export function isTransitionPeriod(): boolean {
 }
 
 /**
+ * Calcule les heures restantes avant l'ouverture
+ *
+ * @returns nombre d'heures restantes (0 si ouverture passee)
+ */
+export function hoursUntilOpening(): number {
+  const now = new Date();
+  const endDate = new Date(EARLY_ACCESS_END_DATE);
+  const diff = endDate.getTime() - now.getTime();
+
+  if (diff <= 0) return 0;
+
+  return Math.ceil(diff / (1000 * 60 * 60));
+}
+
+/**
+ * Calcule les minutes restantes avant l'ouverture
+ *
+ * @returns nombre de minutes restantes (0 si ouverture passee)
+ */
+export function minutesUntilOpening(): number {
+  const now = new Date();
+  const endDate = new Date(EARLY_ACCESS_END_DATE);
+  const diff = endDate.getTime() - now.getTime();
+
+  if (diff <= 0) return 0;
+
+  return Math.ceil(diff / (1000 * 60));
+}
+
+/**
  * Retourne le texte du compteur selon la periode
+ *
+ * Affiche en jours si >= 24h, en heures si >= 1h, en minutes sinon.
  *
  * @returns texte formaté pour affichage
  */
 export function getCountdownText(): string {
   if (isEarlyAccess()) {
-    const days = daysUntilOpening();
-    return `Ouverture au public dans ${days} jour${days > 1 ? 's' : ''}`;
+    const hours = hoursUntilOpening();
+    const minutes = minutesUntilOpening();
+
+    if (hours >= 24) {
+      const days = daysUntilOpening();
+      return `Ouverture au public dans ${days} jour${days > 1 ? 's' : ''}`;
+    }
+
+    if (hours >= 1) {
+      return `Ouverture au public dans ${hours} heure${hours > 1 ? 's' : ''}`;
+    }
+
+    if (minutes > 0) {
+      return `Ouverture au public dans ${minutes} minute${minutes > 1 ? 's' : ''}`;
+    }
+
+    return 'Ouverture imminente';
   }
 
   if (isTransitionPeriod()) {

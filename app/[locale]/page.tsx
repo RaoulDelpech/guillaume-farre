@@ -1,5 +1,6 @@
 import Navigation from "@/components/navigation/Navigation";
 import HeroCarousel from "@/components/HeroCarousel";
+import EarlyAccessCountdown from "@/components/early-access/EarlyAccessCountdown";
 import PhotoFrame from "@/components/PhotoFrame";
 import AmericanFrame from "@/components/AmericanFrame";
 import { getPageImages } from "@/lib/page-images";
@@ -19,6 +20,9 @@ export default async function HomePage() {
 
       {/* Hero Carousel */}
       <HeroCarousel slides={pageImages.hero.slides} />
+
+      {/* Compteur ouverture au public */}
+      <EarlyAccessCountdown />
 
       {/* Texte de bienvenue Guillaume */}
       <section className="py-16 md:py-24 px-6" style={{ backgroundColor: "#FEFEFA" }}>
@@ -102,12 +106,13 @@ export default async function HomePage() {
               <AmericanFrame
                 src="/images/toiles/6.jpg"
                 alt="Toiles de Guillaume Farre"
-                imageWidth={1800}
-                imageHeight={2700}
+                imageWidth={1483}
+                imageHeight={1966}
                 frameColor="black"
                 blurDataURL={BLUR["/images/toiles/6.jpg"]}
                 priority
                 className="w-full"
+                noMat
               />
             </div>
             <h2

@@ -286,7 +286,7 @@ export default function LoginPage() {
               <div>
                 <input
                   ref={passwordInputRef}
-                  type="password"
+                  type="text"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder={t("password")}

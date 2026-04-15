@@ -107,10 +107,10 @@ function PhotoPurchasePanel({
 
   if (isMonumental) {
     return (
-      <div className="mt-3 text-center">
+      <div className="mt-4 text-center">
         <a
           href={`/${locale}/contact`}
-          className="text-xs font-light tracking-[0.18em] uppercase text-[#8c6e32]/80 hover:text-[#8c6e32] transition-colors duration-300"
+          className="text-[11px] font-light tracking-[0.2em] uppercase text-[#1a1a1a]/70 hover:text-[#8c6e32] transition-colors duration-300 border-b border-[#8c6e32]/30 pb-0.5"
         >
           Nous contacter
         </a>
@@ -119,17 +119,17 @@ function PhotoPurchasePanel({
   }
 
   return (
-    <div className="mt-3 text-center">
+    <div className="mt-4 text-center">
       <button
         type="button"
         onClick={onToggle}
-        className="text-xs font-light tracking-[0.18em] uppercase text-[#8c6e32]/80 hover:text-[#8c6e32] transition-colors duration-300"
+        className="text-[11px] font-light tracking-[0.2em] uppercase text-[#1a1a1a]/70 hover:text-[#8c6e32] transition-colors duration-300 border-b border-[#8c6e32]/30 pb-0.5"
       >
         {isOpen ? 'Fermer' : 'Acquérir ce tirage'}
       </button>
 
       {isOpen && (
-        <div className="mt-3 space-y-1">
+        <div className="mt-4 mx-auto max-w-[280px] bg-white/80 backdrop-blur-sm border border-[#e8e0d0] rounded-sm p-4 space-y-2.5">
           {PURCHASABLE_FORMATS.map((format) => {
             const price = getPrice(format);
             return (
@@ -138,9 +138,10 @@ function PhotoPurchasePanel({
                 type="button"
                 onClick={() => checkout(format)}
                 disabled={purchasing}
-                className="block w-full text-xs font-light tracking-wider text-[#5a5a5a] hover:text-[#1a1a1a] transition-colors duration-200 py-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
+                className="flex items-center justify-between w-full text-[11px] tracking-[0.1em] text-[#2a2a2a] hover:text-[#8c6e32] transition-colors duration-200 py-1.5 border-b border-[#e8e0d0]/60 last:border-b-0 disabled:opacity-40 disabled:cursor-not-allowed"
               >
-                {FORMATS[format].label} — {formatPrice(price)}
+                <span className="font-light uppercase">{FORMATS[format].label}</span>
+                <span className="font-normal tabular-nums">{formatPrice(price)}</span>
               </button>
             );
           })}
@@ -587,8 +588,8 @@ export function GalerieContent() {
                               onClick={() => setSelectedFormat(formatKey)}
                               className={`flex items-center justify-between w-full text-sm border-b pb-2 text-left transition-colors ${
                                 isSelected
-                                  ? 'border-white/30'
-                                  : 'border-white/10'
+                                  ? 'border-white/40'
+                                  : 'border-white/15'
                               }`}
                               aria-pressed={isSelected}
                             >
@@ -597,7 +598,7 @@ export function GalerieContent() {
                                   className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 flex items-center justify-center transition-colors ${
                                     isSelected
                                       ? 'border-white'
-                                      : 'border-white/40'
+                                      : 'border-white/50'
                                   }`}
                                 >
                                   {isSelected && (
@@ -608,21 +609,21 @@ export function GalerieContent() {
                                   className={`font-light transition-colors ${
                                     isSelected
                                       ? 'text-white'
-                                      : 'text-white/70'
+                                      : 'text-white/80'
                                   }`}
                                 >
                                   {config.label}
                                 </span>
                               </span>
                               <span className="flex items-center gap-2">
-                                <span className="font-light text-white/40 text-xs">
+                                <span className="font-light text-white/50 text-xs">
                                   {numbering}
                                 </span>
                                 <span
                                   className={`font-light tabular-nums transition-colors ${
                                     isSelected
                                       ? 'text-white'
-                                      : 'text-white/60'
+                                      : 'text-white/70'
                                   }`}
                                 >
                                   {formatPrice(config.price!)}
@@ -635,16 +636,16 @@ export function GalerieContent() {
                         return (
                           <div
                             key={formatKey}
-                            className="flex items-center justify-between text-sm border-b border-white/10 pb-2 pl-6"
+                            className="flex items-center justify-between text-sm border-b border-white/15 pb-2 pl-6"
                           >
-                            <span className="font-light text-white/40">
+                            <span className="font-light text-white/50">
                               {config.label}
                             </span>
                             <span className="flex items-center gap-2">
-                              <span className="font-light text-white/30 text-xs">
+                              <span className="font-light text-white/40 text-xs">
                                 {numbering}
                               </span>
-                              <span className="font-light text-white/40 tabular-nums">
+                              <span className="font-light text-white/50 tabular-nums">
                                 {t('onRequest')}
                               </span>
                             </span>

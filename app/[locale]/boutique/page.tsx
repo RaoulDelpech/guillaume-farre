@@ -19,7 +19,7 @@ type Photo = {
 type FormatOption = '24x36' | '40x60' | '80x120';
 
 const FORMAT_PRICES: Record<FormatOption, number> = {
-  '24x36': 20,    // TEMPORAIRE: test Stripe (etait 500)
+  '24x36': 500,
   '40x60': 1000,
   '80x120': 2000,
 };
@@ -51,6 +51,10 @@ export default function BoutiquePage({
             Tirages fine art numérotés et signés
           </p>
         </div>
+
+        <p className="text-center text-sm text-zinc-500 mb-12">
+          TVA non applicable, article 293 B du Code général des impôts
+        </p>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

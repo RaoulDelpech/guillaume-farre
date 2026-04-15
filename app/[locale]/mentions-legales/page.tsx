@@ -1,4 +1,5 @@
 import Navigation from "@/components/navigation/Navigation";
+import { Link } from "@/i18n/routing";
 
 export default async function MentionsLegalesPage() {
   return (
@@ -13,10 +14,11 @@ export default async function MentionsLegalesPage() {
             <p>
               <strong>Guillaume Farré</strong><br />
               Artiste - Auto-entrepreneur<br />
-              SIRET : À compléter<br />
-              Adresse : Toulouse, France<br />
+              SIRET : En cours d&apos;immatriculation<br />
+              Adresse : 31000 Toulouse, France<br />
               Email : contact@guillaumefarre.com<br />
-              Site web : guillaumefarre.com
+              Site web : guillaumefarre.com<br />
+              TVA : Non applicable, article 293 B du CGI (en attente d&apos;immatriculation)
             </p>
           </section>
 
@@ -81,7 +83,7 @@ export default async function MentionsLegalesPage() {
               Pour exercer ce droit, vous pouvez nous contacter à l&apos;adresse : contact@guillaumefarre.com
             </p>
             <p>
-              Pour plus d&apos;informations, consultez notre <a href="/politique-de-confidentialite" className="text-blue-600 hover:underline">politique de confidentialité</a>.
+              Pour plus d&apos;informations, consultez notre <Link href="/politique-de-confidentialite" className="text-blue-600 hover:underline">politique de confidentialité</Link>.
             </p>
           </section>
 
@@ -91,8 +93,11 @@ export default async function MentionsLegalesPage() {
               Conformément aux articles L611-1 et R612-1 du Code de la consommation, il est prévu que pour tout litige n&apos;ayant pu être résolu à l&apos;amiable entre le professionnel et le consommateur, ce dernier a la possibilité de saisir gratuitement le médiateur de la consommation dont relève le professionnel.
             </p>
             <p>
-              Le médiateur de la consommation est : <strong>[NOM DU MÉDIATEUR - À COMPLÉTER]</strong><br />
-              Site internet : <strong>[URL - À COMPLÉTER]</strong>
+              Le professionnel a désigné <strong>MEDICYS</strong> comme médiateur de la consommation.<br />
+              MEDICYS<br />
+              73 Boulevard de Clichy<br />
+              75009 Paris<br />
+              Site internet : <a href="https://www.medicys.fr" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">www.medicys.fr</a>
             </p>
             <p>
               En cas de litige, le consommateur peut également saisir la plateforme européenne de règlement en ligne des litiges à l&apos;adresse suivante : <a href="https://ec.europa.eu/consumers/odr" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>
@@ -101,7 +106,7 @@ export default async function MentionsLegalesPage() {
 
           <section className="border-t pt-6 mt-8">
             <p className="text-sm text-gray-600">
-              <strong>Dernière mise à jour :</strong> 5 avril 2026
+              <strong>Dernière mise à jour :</strong> 15 avril 2026
             </p>
           </section>
         </div>

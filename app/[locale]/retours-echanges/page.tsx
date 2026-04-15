@@ -103,13 +103,13 @@ export default function RetoursPage() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl">❌</span>
                 <p className="text-muted-foreground">
-                  Œuvres <strong className="text-foreground">personnalisées ou sur-mesure</strong> (formats XXL/monumentaux sur commande)
+                  Œuvres <strong className="text-foreground">réalisées sur mesure</strong> selon les spécifications du client (formats XXL et monumentaux sur commande)
                 </p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-2xl">❌</span>
                 <p className="text-muted-foreground">
-                  Certificats d'authenticité signés pour <strong className="text-foreground">éditions limitées</strong> (sauf défaut qualité avéré)
+                  Œuvres <strong className="text-foreground">endommagées ou retournées sans leur certificat d&apos;authenticité</strong> et emballage d&apos;origine
                 </p>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function RetoursPage() {
           <section className="bg-card border border-border rounded-xl p-4 sm:p-8 text-center">
             <h3 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6">Une question sur votre commande ?</h3>
             <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-              Notre équipe est à votre disposition pour vous accompagner
+              Guillaume Farré est à votre disposition pour vous accompagner
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

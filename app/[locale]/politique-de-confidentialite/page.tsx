@@ -22,6 +22,7 @@ export default async function PolitiqueConfidentialitePage() {
             <p>
               <strong>Guillaume Farré</strong><br />
               Artiste - Action painting automobile<br />
+              Adresse : 31000 Toulouse, France<br />
               Email : contact@guillaumefarre.com
             </p>
           </section>
@@ -51,7 +52,6 @@ export default async function PolitiqueConfidentialitePage() {
               <li>Vous envoyer des informations sur vos commandes</li>
               <li>Améliorer nos services et notre site web</li>
               <li>Respecter nos obligations légales</li>
-              <li>Vous envoyer notre newsletter (avec votre consentement)</li>
             </ul>
           </section>
 
@@ -62,7 +62,6 @@ export default async function PolitiqueConfidentialitePage() {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>L'exécution d'un contrat :</strong> pour traiter vos commandes</li>
-              <li><strong>Votre consentement :</strong> pour l'envoi de la newsletter</li>
               <li><strong>Notre intérêt légitime :</strong> pour améliorer nos services</li>
               <li><strong>Nos obligations légales :</strong> comptabilité, facturation</li>
             </ul>
@@ -75,11 +74,13 @@ export default async function PolitiqueConfidentialitePage() {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Stripe :</strong> pour le traitement sécurisé des paiements</li>
-              <li><strong>Gelato :</strong> pour l'impression et la livraison des œuvres</li>
               <li><strong>Transporteurs :</strong> pour la livraison de vos commandes</li>
             </ul>
             <p>
               Nous ne vendons jamais vos données à des tiers.
+            </p>
+            <p>
+              <strong>Transferts hors UE :</strong> Stripe Inc. est basé aux États-Unis. Les transferts de données sont encadrés par les clauses contractuelles types de la Commission européenne (article 46 du RGPD).
             </p>
           </section>
 
@@ -91,7 +92,6 @@ export default async function PolitiqueConfidentialitePage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Données de commande :</strong> 10 ans (obligations comptables)</li>
               <li><strong>Données de compte client :</strong> 3 ans après la dernière activité</li>
-              <li><strong>Données de newsletter :</strong> jusqu'à votre désinscription</li>
             </ul>
           </section>
 
@@ -139,9 +139,8 @@ export default async function PolitiqueConfidentialitePage() {
               Types de cookies utilisés :
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Cookies nécessaires :</strong> essentiels au fonctionnement du site</li>
-              <li><strong>Cookies analytiques :</strong> pour comprendre comment vous utilisez le site</li>
-              <li><strong>Cookies de préférence :</strong> pour mémoriser vos choix</li>
+              <li><strong>Cookies nécessaires :</strong> Cookie d&apos;authentification administration (<code>gf_auth</code>, durée 30 jours)</li>
+              <li><strong>Cookies de paiement :</strong> Cookies Stripe déposés lors du checkout pour sécuriser le processus de paiement</li>
             </ul>
           </section>
 
@@ -175,7 +174,7 @@ export default async function PolitiqueConfidentialitePage() {
 
           <section className="border-t border-border pt-6 mt-8">
             <p className="text-sm text-muted-foreground">
-              <strong>Dernière mise à jour :</strong> {new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+              <strong>Dernière mise à jour :</strong> 15 avril 2026
             </p>
           </section>
         </div>

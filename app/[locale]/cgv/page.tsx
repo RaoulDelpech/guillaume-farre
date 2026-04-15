@@ -1,4 +1,5 @@
 import Navigation from "@/components/navigation/Navigation";
+import { Link } from "@/i18n/routing";
 
 export default async function CGVPage() {
   return (
@@ -13,8 +14,8 @@ export default async function CGVPage() {
             <p>
               <strong>Guillaume Farré</strong><br />
               Artiste - Auto-entrepreneur<br />
-              SIRET : À compléter<br />
-              Adresse : Toulouse, France<br />
+              SIRET : En cours d&apos;immatriculation<br />
+              Adresse : 31000 Toulouse, France<br />
               Email : contact@guillaumefarre.com
             </p>
           </section>
@@ -28,7 +29,7 @@ export default async function CGVPage() {
               <strong>Photographies</strong> : tirages Fine Art Giclee numérotés et signés, disponibles en éditions limitées de 9 exemplaires (grands formats A1 à 2A0) ou 99 exemplaires (petits formats A4 à A2). Formats disponibles : A4 (250 €), A3 (500 €), A2 (800 €), A1 (1 200 €), A0 et 2A0 (sur devis). Chaque tirage est accompagné d&apos;un certificat d&apos;authenticité précisant le numéro d&apos;édition (ex: 3/9).
             </p>
             <p>
-              <strong>Toiles</strong> : pièces uniques créées par friction automobile sur toile vierge, prix de 2 500 € à 20 000 €. Les toiles sont accessibles uniquement sur invitation VIP et nécessitent une réservation préalable. Elles ne sont pas vendues en ligne.
+              <strong>Toiles</strong> : pièces uniques créées par friction automobile sur toile vierge, prix de 2 500 € à 20 000 €. Les toiles sont accessibles sur rendez-vous uniquement. Pour toute demande, contactez l&apos;artiste directement. Elles ne sont pas vendues en ligne.
             </p>
           </section>
 
@@ -51,7 +52,7 @@ export default async function CGVPage() {
               <strong>Photographies</strong> : tirages Fine Art Giclee 12 couleurs sur papier archival 200 gsm, numérotés et signés par l&apos;artiste. Éditions limitées strictes : une fois tous les exemplaires vendus, la série est close définitivement. Formats : A4 (21 x 29,7 cm), A3 (29,7 x 42 cm), A2 (42 x 59,4 cm), A1 (59,4 x 84,1 cm), A0 (84,1 x 118,9 cm), 2A0 (118,9 x 168,2 cm).
             </p>
             <p>
-              <strong>Toiles</strong> : pièces uniques, totalement irréplicables, créées par peinture industrielle déposée par friction, chaleur et pression lors du passage direct d&apos;une Ferrari sur toile vierge. Formats variables. Prix : de 2 500 € à 20 000 € selon format et technique. Accessibles uniquement sur invitation VIP, sur réservation uniquement.
+              <strong>Toiles</strong> : pièces uniques, totalement irréplicables, créées par peinture industrielle déposée par friction, chaleur et pression lors du passage direct d&apos;une Ferrari sur toile vierge. Formats variables. Prix : de 2 500 € à 20 000 € selon format et technique. Accessibles sur rendez-vous uniquement, contactez l&apos;artiste.
             </p>
           </section>
 
@@ -61,16 +62,14 @@ export default async function CGVPage() {
               <strong>Photographies</strong> : commande en ligne via le panier sur le site. Paiement sécurisé via Stripe.
             </p>
             <p>
-              <strong>Toiles</strong> : réservation via le formulaire de demande VIP. Une facture Stripe personnalisée est envoyée par l&apos;artiste après validation.
+              <strong>Toiles</strong> : réservation sur rendez-vous uniquement. Une facture Stripe personnalisée est envoyée par l&apos;artiste après validation.
             </p>
             <p>
               <strong>Moyens de paiement acceptés :</strong>
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Carte bancaire (Visa, Mastercard, American Express)</li>
-              <li>Apple Pay et Google Pay</li>
-              <li>Virement bancaire SEPA (recommandé pour les commandes supérieures à 1 000 €)</li>
-              <li>Acompte de 30 % possible pour les toiles (le solde est à régler par virement sous 7 jours)</li>
+              <li>Apple Pay et Google Pay (via Stripe Checkout)</li>
             </ul>
             <p>
               Les données bancaires ne sont jamais stockées sur nos serveurs. Elles sont traitées directement par Stripe, plateforme de paiement sécurisée certifiée PCI-DSS.
@@ -151,7 +150,7 @@ export default async function CGVPage() {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Certificat d&apos;authenticité</h2>
             <p>
-              Chaque œuvre (photographie et toile) est accompagnée d&apos;un certificat d&apos;authenticité signé par l&apos;artiste, comportant un numéro unique. Pour les éditions limitées, le numéro d&apos;édition est précisé (exemple : 3/9 pour le 3e exemplaire d&apos;une série de 9).
+              Chaque œuvre (photographie et toile) est accompagnée d&apos;un certificat d&apos;authenticité signé par l&apos;artiste, comportant un numéro unique. Pour les éditions limitées, le numéro d&apos;édition est précisé (exemple : 3/9 pour les grands formats ou 15/99 pour les petits formats).
             </p>
           </section>
 
@@ -164,7 +163,7 @@ export default async function CGVPage() {
               Vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous à : contact@guillaumefarre.com
             </p>
             <p>
-              Consultez notre <a href="/politique-de-confidentialite" className="text-blue-600 hover:underline">politique de confidentialité</a> pour plus d&apos;informations.
+              Consultez notre <Link href="/politique-de-confidentialite" className="text-blue-600 hover:underline">politique de confidentialité</Link> pour plus d&apos;informations.
             </p>
           </section>
 
@@ -174,8 +173,11 @@ export default async function CGVPage() {
               Conformément aux articles L611-1 et R612-1 du Code de la consommation, il est prévu que pour tout litige n&apos;ayant pu être résolu à l&apos;amiable entre le professionnel et le consommateur, ce dernier a la possibilité de saisir gratuitement le médiateur de la consommation dont relève le professionnel.
             </p>
             <p>
-              Le médiateur de la consommation est : <strong>[NOM DU MÉDIATEUR - À COMPLÉTER]</strong><br />
-              Site internet : <strong>[URL - À COMPLÉTER]</strong>
+              Le professionnel a désigné <strong>MEDICYS</strong> comme médiateur de la consommation.<br />
+              MEDICYS<br />
+              73 Boulevard de Clichy<br />
+              75009 Paris<br />
+              Site internet : <a href="https://www.medicys.fr" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">www.medicys.fr</a>
             </p>
             <p>
               En cas de litige, le consommateur peut également saisir la plateforme européenne de règlement en ligne des litiges à l&apos;adresse suivante : <a href="https://ec.europa.eu/consumers/odr" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>
@@ -191,7 +193,7 @@ export default async function CGVPage() {
 
           <section className="border-t pt-6 mt-8">
             <p className="text-sm text-gray-600">
-              <strong>Dernière mise à jour :</strong> 5 avril 2026
+              <strong>Dernière mise à jour :</strong> 15 avril 2026
             </p>
           </section>
         </div>

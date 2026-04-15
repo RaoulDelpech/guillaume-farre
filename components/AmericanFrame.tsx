@@ -272,10 +272,6 @@ export default function AmericanFrame({
                     position: 'relative',
                     overflow: 'hidden',
                     lineHeight: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: theme.fond,
                     boxShadow: [
                       RECESS_SHADOW,
                       // Subtle edge catch-light (canvas edge reflecting overhead light)
@@ -292,7 +288,7 @@ export default function AmericanFrame({
                     sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
                     quality={90}
                     className="w-full h-auto"
-                    style={{ display: 'block', objectFit: 'contain', objectPosition: 'center' }}
+                    style={{ display: 'block' }}
                     {...(blurDataURL ? { placeholder: 'blur' as const, blurDataURL } : {})}
                     priority={priority}
                   />

@@ -13,10 +13,12 @@ export default async function CGVPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Informations légales</h2>
             <p>
               <strong>Guillaume Farré</strong><br />
-              Artiste - Auto-entrepreneur<br />
-              SIRET : En cours d&apos;immatriculation<br />
-              Adresse : 31000 Toulouse, France<br />
-              Email : contact@guillaumefarre.com
+              Entrepreneur individuel<br />
+              Activité : Création artistique relevant des arts plastiques (NAF 90.03A)<br />
+              SIRET : 449 392 943 00055<br />
+              Adresse : 14 rue Peyras, 31000 Toulouse, France<br />
+              Email : contact@guillaumefarre.com<br />
+              TVA non applicable, article 293 B du Code général des impôts
             </p>
           </section>
 
@@ -39,7 +41,7 @@ export default async function CGVPage() {
               Les prix sont indiqués en euros, toutes taxes comprises (TTC). Les frais de port sont en sus et calculés selon la destination.
             </p>
             <p>
-              <strong>TVA applicable :</strong> Si le chiffre d&apos;affaires annuel est inférieur à 37 500 €, franchise en base de TVA (article 293B du Code général des impôts). Si le chiffre d&apos;affaires dépasse ce seuil, TVA au taux réduit de 5,5 % applicable aux œuvres d&apos;art originales (article 278-0 bis du CGI).
+              TVA non applicable, article 293 B du Code général des impôts.
             </p>
             <p>
               Les prix peuvent être modifiés à tout moment, mais les œuvres seront facturées sur la base des tarifs en vigueur au moment de la validation de la commande.

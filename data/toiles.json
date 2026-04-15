@@ -7,8 +7,8 @@
     "year": 2026,
     "price": 20000,
     "image": "/images/toiles/1.jpg",
-    "imageWidth": 1343,
-    "imageHeight": 1738
+    "imageWidth": 1500,
+    "imageHeight": 2000
   },
   {
     "id": 2,
@@ -18,8 +18,8 @@
     "year": 2024,
     "price": 2500,
     "image": "/images/toiles/2.jpg",
-    "imageWidth": 1273,
-    "imageHeight": 1541
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 3,
@@ -29,8 +29,8 @@
     "year": 2024,
     "price": 7500,
     "image": "/images/toiles/3.jpg",
-    "imageWidth": 975,
-    "imageHeight": 1959
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 4,
@@ -40,8 +40,8 @@
     "year": 2022,
     "price": 2500,
     "image": "/images/toiles/4.jpg",
-    "imageWidth": 1669,
-    "imageHeight": 2029
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 5,
@@ -51,8 +51,8 @@
     "year": 2022,
     "price": 2500,
     "image": "/images/toiles/5.jpg",
-    "imageWidth": 881,
-    "imageHeight": 1081
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 6,
@@ -62,8 +62,8 @@
     "year": 2019,
     "price": 6000,
     "image": "/images/toiles/6.jpg",
-    "imageWidth": 1483,
-    "imageHeight": 1966
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 7,
@@ -73,8 +73,8 @@
     "year": 2019,
     "price": 6500,
     "image": "/images/toiles/7.jpg",
-    "imageWidth": 1247,
-    "imageHeight": 1654
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 8,
@@ -84,8 +84,8 @@
     "year": 2025,
     "price": 15000,
     "image": "/images/toiles/8.jpg",
-    "imageWidth": 1380,
-    "imageHeight": 1382
+    "imageWidth": 2000,
+    "imageHeight": 1333
   },
   {
     "id": 9,
@@ -95,8 +95,8 @@
     "year": 2024,
     "price": 10000,
     "image": "/images/toiles/9.jpg",
-    "imageWidth": 1268,
-    "imageHeight": 1263
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 10,
@@ -106,8 +106,8 @@
     "year": 2025,
     "price": 13000,
     "image": "/images/toiles/10.jpg",
-    "imageWidth": 1088,
-    "imageHeight": 1367
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 11,
@@ -117,8 +117,8 @@
     "year": 2024,
     "price": 7500,
     "image": "/images/toiles/11.jpg",
-    "imageWidth": 1132,
-    "imageHeight": 2268
+    "imageWidth": 1031,
+    "imageHeight": 2000
   },
   {
     "id": 12,
@@ -128,8 +128,8 @@
     "year": 2025,
     "price": 13000,
     "image": "/images/toiles/12.jpg",
-    "imageWidth": 1211,
-    "imageHeight": 1532
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 13,
@@ -139,8 +139,8 @@
     "year": 2024,
     "price": 12500,
     "image": "/images/toiles/13.jpg",
-    "imageWidth": 767,
-    "imageHeight": 2335
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 14,
@@ -150,8 +150,8 @@
     "year": 2024,
     "price": 10000,
     "image": "/images/toiles/14.jpg",
-    "imageWidth": 1574,
-    "imageHeight": 1571
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 15,
@@ -161,8 +161,8 @@
     "year": 2024,
     "price": 10000,
     "image": "/images/toiles/15.jpg",
-    "imageWidth": 1466,
-    "imageHeight": 1471
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 16,
@@ -172,8 +172,8 @@
     "year": 2025,
     "price": 2500,
     "image": "/images/toiles/16.jpg",
-    "imageWidth": 1144,
-    "imageHeight": 1361
+    "imageWidth": 1333,
+    "imageHeight": 2000
   },
   {
     "id": 17,
@@ -190,20 +190,20 @@
     ],
     "panelDimensions": [
       {
-        "imageWidth": 1002,
-        "imageHeight": 2799
+        "imageWidth": 1334,
+        "imageHeight": 2000
       },
       {
-        "imageWidth": 1001,
-        "imageHeight": 2750
+        "imageWidth": 1334,
+        "imageHeight": 2000
       },
       {
-        "imageWidth": 1039,
-        "imageHeight": 2917
+        "imageWidth": 1334,
+        "imageHeight": 2000
       }
     ],
-    "imageWidth": 1002,
-    "imageHeight": 2799
+    "imageWidth": 1334,
+    "imageHeight": 2000
   },
   {
     "id": 18,
@@ -213,8 +213,8 @@
     "year": 2025,
     "price": 15000,
     "image": "/images/toiles/18.jpg",
-    "imageWidth": 1566,
-    "imageHeight": 1450
+    "imageWidth": 2000,
+    "imageHeight": 1334
   },
   {
     "id": 19,
@@ -224,8 +224,8 @@
     "year": 2024,
     "price": 7500,
     "image": "/images/toiles/19.jpg",
-    "imageWidth": 663,
-    "imageHeight": 1334
+    "imageWidth": 1016,
+    "imageHeight": 2000
   },
   {
     "id": 20,
@@ -235,7 +235,7 @@
     "year": 2026,
     "price": 20000,
     "image": "/images/toiles/20.jpg",
-    "imageWidth": 1020,
-    "imageHeight": 1368
+    "imageWidth": 1500,
+    "imageHeight": 2000
   }
 ]

@@ -15,7 +15,6 @@ import Image from 'next/image';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
-import LandingSection from '@/components/landing/LandingSection';
 import { LINEN_BG, paintingMaxWidth, BROWSE_VH, formatPrice } from './toiles-utils';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
@@ -260,8 +259,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
         onGoTo={(i) => setLightboxIdx(i)}
       />
 
-      {/* Section landing — grille photos + newsletter */}
-      <LandingSection />
     </div>
   );
 }

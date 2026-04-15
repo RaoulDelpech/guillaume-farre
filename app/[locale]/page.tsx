@@ -3,6 +3,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import EarlyAccessCountdown from "@/components/early-access/EarlyAccessCountdown";
 import PhotoFrame from "@/components/PhotoFrame";
 import AmericanFrame from "@/components/AmericanFrame";
+import LandingSection from "@/components/landing/LandingSection";
 import { getPageImages } from "@/lib/page-images";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
@@ -138,6 +139,9 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Grille photos + toiles cliquables */}
+      <LandingSection />
     </main>
   );
 }

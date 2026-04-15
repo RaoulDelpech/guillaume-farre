@@ -89,8 +89,8 @@ export default async function HomePage() {
               <AmericanFrame
                 src="/images/toiles/6.jpg"
                 alt="Toiles de Guillaume Farre"
-                imageWidth={1483}
-                imageHeight={1966}
+                imageWidth={1333}
+                imageHeight={2000}
                 frameColor="black"
                 blurDataURL={BLUR["/images/toiles/6.jpg"]}
                 priority

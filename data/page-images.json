@@ -1,10 +1,8 @@
 {
   "hero": {
     "slides": [
-      "/images/toiles/1.jpg",
       "/images/toiles/6.jpg",
-      "/images/toiles/20.jpg",
-      "/images/works/photos/16.jpg"
+      "/images/toiles/20.jpg"
     ]
   },
   "home": {

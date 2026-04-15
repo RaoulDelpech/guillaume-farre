@@ -25,33 +25,6 @@ export default async function HomePage() {
       {/* Compteur ouverture au public */}
       <EarlyAccessCountdown />
 
-      {/* Texte de bienvenue Guillaume */}
-      <section className="py-16 md:py-24 px-6">
-        <div className="max-w-[700px] mx-auto">
-          <div className="w-16 h-px mx-auto mb-10" style={{ backgroundColor: "#8c6e32" }} />
-          <div className="space-y-6 font-light leading-relaxed tracking-wide text-sm md:text-base" style={{ color: "#4a4a4a" }}>
-            <p>{t("welcomeText1")}</p>
-            <p>{t("welcomeText2")}</p>
-            <p>{t("welcomeText3")}</p>
-            <p>
-              {t.rich("welcomeText4", {
-                link: (chunks) => (
-                  <a
-                    href="mailto:guillaume@guillaumefarre.com"
-                    className="underline underline-offset-2 transition-colors duration-200 hover:text-[#8c6e32]"
-                  >
-                    {chunks}
-                  </a>
-                ),
-              })}
-            </p>
-          </div>
-          <p className="mt-6 italic font-light tracking-wider" style={{ color: "#1a1a1a" }}>
-            {t("welcomeSignature")}
-          </p>
-        </div>
-      </section>
-
       {/* Citation */}
       <section className="py-10 md:py-14 px-6">
         <blockquote className="max-w-[600px] mx-auto text-center">

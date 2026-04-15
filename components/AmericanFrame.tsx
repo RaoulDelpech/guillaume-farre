@@ -247,7 +247,7 @@ export default function AmericanFrame({
             <div
               style={{
                 padding: FRAME_LIP,
-                background: theme.lip,
+                backgroundColor: theme.lip,
                 boxShadow: [
                   'inset 1px 2px 4px rgba(0,0,0,0.6)',
                   'inset -1px -1px 3px rgba(0,0,0,0.25)',
@@ -258,7 +258,7 @@ export default function AmericanFrame({
               <div
                 style={{
                   padding: noMat ? 0 : FRAME_GAP,
-                  background: theme.fond,
+                  backgroundColor: theme.fond,
                   boxShadow: [
                     `inset 0 2px 5px ${theme.fondShadow}`,
                     `inset 2px 0 4px ${theme.fondShadow}`,
@@ -271,7 +271,9 @@ export default function AmericanFrame({
                     position: 'relative',
                     overflow: 'hidden',
                     display: 'flex',
-                    background: theme.fond,
+                    backgroundColor: theme.fond,
+                    lineHeight: 0,
+                    fontSize: 0,
                     boxShadow: [
                       RECESS_SHADOW,
                       // Subtle edge catch-light (canvas edge reflecting overhead light)

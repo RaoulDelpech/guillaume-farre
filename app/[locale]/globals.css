@@ -71,7 +71,7 @@
 }
 
 /* Images plein cadre sans bordures */
-img { display: block; max-width: 100%; height: auto; box-shadow: none !important; border: none !important; }
+img { display: block; max-width: 100%; height: auto; }
 
 /* Masonry helper classes (CSS columns) */
 .masonry { column-gap: 1rem; }

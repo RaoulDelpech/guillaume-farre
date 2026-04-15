@@ -23,7 +23,7 @@ const FAQ_DATA: FAQCategory[] = [
     questions: [
       {
         q: 'Comment passer commande ?',
-        a: 'Sélectionnez l\'œuvre qui vous plaît dans la boutique, choisissez le format et l\'encadrement souhaités, puis cliquez sur "Ajouter au panier". Validez ensuite votre commande en cliquant sur l\'icône panier en haut à droite de la page, puis sur "Procéder au paiement".',
+        a: 'Rendez-vous dans la galerie, choisissez la photographie qui vous plaît, sélectionnez votre format (24×36 cm, 40×60 cm ou 80×120 cm), puis cliquez sur "Acquérir ce tirage". Vous serez redirigé vers notre page de paiement sécurisé Stripe.',
       },
       {
         q: 'Quels moyens de paiement acceptez-vous ?',
@@ -45,11 +45,11 @@ const FAQ_DATA: FAQCategory[] = [
     questions: [
       {
         q: 'Comment fonctionnent les éditions limitées ?',
-        a: 'Chaque photographie est tirée en édition strictement limitée et numérotée. Les grands formats (A1, A0, 2A0) sont limités à 9 exemplaires numérotés de 1/9 à 9/9. Les formats A4, A3 et A2 sont limités à 99 exemplaires numérotés de 1/99 à 99/99. Chaque tirage est signé par Guillaume Farré et accompagné d\'un certificat d\'authenticité. Une fois tous les exemplaires vendus, la série est close définitivement.',
+        a: 'Chaque photographie est tirée en édition strictement limitée à 30 exemplaires numérotés maximum. Les formats 24×36 cm, 40×60 cm et 80×120 cm sont chacun limités à 9 exemplaires (numérotés 1/9 à 9/9, 10/18 à 18/18, et 19/27 à 27/27), plus 3 exemplaires "Hors Format" sur mesure (28/30 à 30/30). Chaque tirage est signé par Guillaume Farré et accompagné d\'un certificat d\'authenticité. Une fois tous les exemplaires vendus, la série est close définitivement.',
       },
       {
         q: 'Quels formats proposez-vous ?',
-        a: 'Formats disponibles : A4 (21×29,7 cm) — 250 €, A3 (29,7×42 cm) — 500 €, A2 (42×59,4 cm) — 800 €, A1 (59,4×84,1 cm) — 1 200 €, A0 (84,1×118,9 cm) et 2A0 (118,9×168,2 cm) — sur devis. Formats XXL (80×120 cm) et monumentaux (120+ cm) disponibles sur demande.',
+        a: 'Formats standard disponibles : 24×36 cm — 500 €, 40×60 cm — 1 000 €, 80×120 cm — 2 000 €. Formats spéciaux sur demande : Hors Format (sur mesure) et Format Monumental (dimensions exceptionnelles) — sur devis. Contactez-nous pour tout projet sur mesure.',
       },
       {
         q: 'Sur quel papier sont imprimées les photos ?',
@@ -61,7 +61,7 @@ const FAQ_DATA: FAQCategory[] = [
       },
       {
         q: 'Qu\'est-ce qu\'un certificat d\'authenticité ?',
-        a: 'Pour chaque tirage, vous recevez un certificat officiel signé par Guillaume Farré, mentionnant : le titre de l\'œuvre, le numéro d\'édition (ex : 3/9 pour les grands formats, 15/99 pour les petits formats), l\'année de création, le format, et un tampon de certification. Ce document augmente la valeur de collection de votre tirage.',
+        a: 'Pour chaque tirage, vous recevez un certificat officiel signé par Guillaume Farré, mentionnant : le titre de l\'œuvre, le numéro d\'édition sur 30 exemplaires maximum (ex : 5/9, 12/18, ou 28/30), l\'année de création, le format, et un tampon de certification. Ce document augmente la valeur de collection de votre tirage.',
       },
       {
         q: 'Les photos sont-elles signées par l\'artiste ?',

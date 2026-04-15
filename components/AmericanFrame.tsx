@@ -18,15 +18,14 @@ interface AmericanFrameProps {
 }
 
 // --- Visual tuning constants ---
-// Proportions visuelles caisse américaine (calibrées sur photo réf.)
-// Face : cadre fin et élégant, proportionnel à la taille affichée
-// Fond : liseré noir de profondeur à peine visible
-const FRAME_FACE_CLAMP = 'clamp(6px, 1.5vw, 22px)'
-const FRAME_LIP_CLAMP = 'clamp(1px, 0.2vw, 3px)'
-const GAP_CLAMP = 'clamp(1px, 0.3vw, 5px)'
+// Pourcentages relatifs au CONTENEUR (s'adapte a la taille de chaque toile)
+// Marge 2.5cm uniforme sur les 4 cotes, 0.5cm de profondeur fond noir
+const FRAME_FACE = '4%'
+const FRAME_LIP = '0.4%'
+const FRAME_GAP = '0.8%'
 
-// Constantes numériques pour exports (calculs externes, valeurs desktop)
-export const FRAME_FACE_PX = 22
+// Constantes numériques pour exports (valeurs approx. pour calculs de layout)
+export const FRAME_FACE_PX = 24
 export const FRAME_LIP_PX = 3
 export const GAP_PX = 5
 
@@ -228,7 +227,7 @@ export default function AmericanFrame({
       {/* Frame face — visible front wood surface with inset relief */}
       <div
         style={{
-          padding: FRAME_FACE_CLAMP,
+          padding: FRAME_FACE,
           background: frameFaceBg,
           boxShadow: [theme.faceHighlight, theme.faceShadow].join(', '),
         }}
@@ -246,7 +245,7 @@ export default function AmericanFrame({
             {/* Frame lip — the visible depth edge of the L-profile */}
             <div
               style={{
-                padding: FRAME_LIP_CLAMP,
+                padding: FRAME_LIP,
                 background: theme.lip,
                 boxShadow: [
                   'inset 1px 2px 4px rgba(0,0,0,0.6)',
@@ -257,7 +256,7 @@ export default function AmericanFrame({
               {/* Fond du caisson — matte back panel */}
               <div
                 style={{
-                  padding: noMat ? 0 : GAP_CLAMP,
+                  padding: noMat ? 0 : FRAME_GAP,
                   background: theme.fond,
                   boxShadow: [
                     `inset 0 2px 5px ${theme.fondShadow}`,
@@ -271,6 +270,7 @@ export default function AmericanFrame({
                     position: 'relative',
                     overflow: 'hidden',
                     lineHeight: 0,
+                    background: theme.fond,
                     boxShadow: [
                       RECESS_SHADOW,
                       // Subtle edge catch-light (canvas edge reflecting overhead light)

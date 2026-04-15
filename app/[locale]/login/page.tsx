@@ -181,40 +181,49 @@ export default function LoginPage() {
 
       {/* 3. Countdown */}
       <div className="container mx-auto px-4 py-12 md:py-16 text-center">
-        <div className="flex justify-center gap-4 md:gap-16">
-          <div className="flex flex-col items-center">
-            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
-              {String(timeRemaining.days).padStart(2, "0")}
+        {timeRemaining.days === 0 &&
+         timeRemaining.hours === 0 &&
+         timeRemaining.minutes === 0 &&
+         timeRemaining.seconds === 0 ? (
+          <div className="text-2xl md:text-4xl font-light tracking-wide text-[#1a1a1a]/70">
+            Le site est maintenant en ligne
+          </div>
+        ) : (
+          <div className="flex justify-center gap-4 md:gap-16">
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
+                {String(timeRemaining.days).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
+                {t("days")}
+              </div>
             </div>
-            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
-              {t("days")}
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
+                {String(timeRemaining.hours).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
+                {t("hours")}
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
+                {String(timeRemaining.minutes).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
+                {t("minutes")}
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
+                {String(timeRemaining.seconds).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
+                {t("seconds")}
+              </div>
             </div>
           </div>
-          <div className="flex flex-col items-center">
-            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
-              {String(timeRemaining.hours).padStart(2, "0")}
-            </div>
-            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
-              {t("hours")}
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
-              {String(timeRemaining.minutes).padStart(2, "0")}
-            </div>
-            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
-              {t("minutes")}
-            </div>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="text-4xl md:text-7xl font-light tracking-wider mb-2">
-              {String(timeRemaining.seconds).padStart(2, "0")}
-            </div>
-            <div className="text-[10px] md:text-sm text-[#1a1a1a]/40 tracking-wide md:tracking-widest uppercase">
-              {t("seconds")}
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* 4. Grille photos */}

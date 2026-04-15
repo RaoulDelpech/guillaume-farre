@@ -5,7 +5,7 @@
  *
  * Affiche un message personnel de Guillaume aux premiers visiteurs du site.
  * S'affiche une seule fois par navigateur (cookie gf_early_seen).
- * Disparait completement apres le 15 mai 2026.
+ * Disparait completement apres le 15 avril 2026 a midi.
  *
  * @author Lalou
  */

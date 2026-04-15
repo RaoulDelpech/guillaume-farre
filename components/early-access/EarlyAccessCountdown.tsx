@@ -4,7 +4,7 @@
  * Compteur Early Access homepage
  *
  * Affiche le nombre de jours avant l'ouverture officielle.
- * Apres le 15 mai : affiche un message de transition pendant 7 jours.
+ * Apres le 15 avril midi : affiche un message de transition pendant 7 jours.
  * Disparait completement apres la periode de transition.
  *
  * @author Lalou

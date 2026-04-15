@@ -1,7 +1,7 @@
 /**
  * Systeme Early Collector - Guillaume Farre
  *
- * Gere la periode d'acces anticipe avant l'ouverture officielle (15 mai 2026).
+ * Gere la periode d'acces anticipe avant l'ouverture officielle (15 avril 2026 a midi).
  * Les visiteurs en early access beneficient d'avantages exclusifs :
  * - Reduction -25% sur toutes les oeuvres
  * - Acces aux oeuvres avant-premiere
@@ -11,14 +11,14 @@
  */
 
 // Date d'ouverture officielle (fuseau Paris)
-const EARLY_ACCESS_END_DATE = '2026-05-15T00:00:00+02:00';
+const EARLY_ACCESS_END_DATE = '2026-04-15T12:00:00+02:00';
 
 // Periode de transition (7 jours apres ouverture)
 const TRANSITION_PERIOD_DAYS = 7;
 
 // Constantes publiques
 export const EARLY_ACCESS_DISCOUNT = 0.25; // 25%
-export const EARLY_ACCESS_END_DATE_STR = '15 mai 2026';
+export const EARLY_ACCESS_END_DATE_STR = '15 avril 2026 à midi';
 
 /**
  * Verifie si nous sommes en periode d'acces anticipe
@@ -60,7 +60,7 @@ export function daysUntilOpening(): number {
 /**
  * Verifie si nous sommes en periode de transition
  *
- * Periode de transition : entre le 15 mai et le 22 mai (7 jours)
+ * Periode de transition : entre le 15 avril midi et le 22 avril (7 jours)
  * Permet d'afficher un message special "Merci d'avoir ete la avant les autres"
  *
  * @returns true si en periode de transition

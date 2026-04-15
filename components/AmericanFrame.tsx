@@ -275,6 +275,7 @@ export default function AmericanFrame({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    backgroundColor: theme.fond,
                     boxShadow: [
                       RECESS_SHADOW,
                       // Subtle edge catch-light (canvas edge reflecting overhead light)

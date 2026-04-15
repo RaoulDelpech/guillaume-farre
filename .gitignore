@@ -76,3 +76,6 @@ test-mobile.sh
 
 # Sources HR toiles (backups en local sur ~/Desktop/Toiles Guillaumes)
 public/images/works/toiles/
+
+# Backup originaux toiles (avant crop)
+public/images/toiles/_backup_originals/

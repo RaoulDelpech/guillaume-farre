@@ -75,24 +75,16 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
             index === current ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div
-            className="absolute inset-0"
-            style={{
-              transition: "transform 12s linear",
-              transform: index === current ? "scale(1.1)" : "scale(1)"
-            }}
-          >
-            <Image
-              src={slide.image}
-              alt={slide.alt}
-              fill
-              className="object-cover object-center"
-              sizes="100vw"
-              quality={90}
-              priority={index === 0}
-              {...(BLUR[slide.image] ? { placeholder: 'blur' as const, blurDataURL: BLUR[slide.image] } : {})}
-            />
-          </div>
+          <Image
+            src={slide.image}
+            alt={slide.alt}
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            quality={90}
+            priority={index === 0}
+            {...(BLUR[slide.image] ? { placeholder: 'blur' as const, blurDataURL: BLUR[slide.image] } : {})}
+          />
         </div>
       ))}
 

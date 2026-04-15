@@ -601,7 +601,7 @@ export function GalerieContent() {
                 </p>
 
                 {typedPhotos[lightboxIndex].id === 16 ? (
-                  /* Photo 16 (Bettejuice) : piece unique, sur demande */
+                  /* Photo 16 (Bettlejuice) : piece unique, sur demande */
                   <>
                     <p className="text-sm text-white/50 font-light mb-6 leading-relaxed">
                       Format monumental — Pièce unique — Sur demande

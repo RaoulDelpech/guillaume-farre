@@ -3,7 +3,7 @@
  *
  * Chaque photo a 30 tirages max (9+9+9+3) repartis sur 4 formats.
  * Numerotation : 24x36=n1-9, 40x60=n10-18, 80x120=n19-27, hors-format=n28-30.
- * Photo 16 (Bettejuice) = piece unique monumentale (1 exemplaire).
+ * Photo 16 (Bettlejuice) = piece unique monumentale (1 exemplaire).
  *
  * @author Lalou
  */

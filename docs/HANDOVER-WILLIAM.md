@@ -356,7 +356,7 @@ Chaque photo standard (1-15) dispose de 30 exemplaires numerotes au total :
 **Total : 30 exemplaires par photo** (9 + 9 + 9 + 3).
 Tous les tirages sont signes et numerotes. Certificat d'authenticite fourni.
 
-### Photo 16 (Bettejuice) — exception
+### Photo 16 (Bettlejuice) — exception
 - Format **monumental**, 1 seul exemplaire
 - Prix sur demande (pas d'achat direct en ligne)
 - Traitement special dans la boutique et le checkout

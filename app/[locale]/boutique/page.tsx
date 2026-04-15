@@ -27,7 +27,7 @@ const FORMAT_PRICES: Record<FormatOption, number> = {
 /**
  * Page Boutique — tirages fine art numérotés et signés
  * Photos 1-15 : 3 formats avec prix + Stripe checkout
- * Photo 16 (Bettejuice) : pièce unique, sur demande
+ * Photo 16 (Bettlejuice) : pièce unique, sur demande
  * @author Lalou
  */
 export default function BoutiquePage({

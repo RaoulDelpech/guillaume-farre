@@ -13,12 +13,13 @@ export default async function MentionsLegalesPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Éditeur du site</h2>
             <p>
               <strong>Guillaume Farré</strong><br />
-              Artiste - Auto-entrepreneur<br />
-              SIRET : En cours d&apos;immatriculation<br />
-              Adresse : 31000 Toulouse, France<br />
+              Entrepreneur individuel<br />
+              Activité : Création artistique relevant des arts plastiques (NAF 90.03A)<br />
+              SIRET : 449 392 943 00055<br />
+              Adresse : 14 rue Peyras, 31000 Toulouse, France<br />
               Email : contact@guillaumefarre.com<br />
               Site web : guillaumefarre.com<br />
-              TVA : Non applicable, article 293 B du CGI (en attente d&apos;immatriculation)
+              TVA non applicable, article 293 B du Code général des impôts
             </p>
           </section>
 

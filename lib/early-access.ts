@@ -132,7 +132,7 @@ export function getCountdownText(): string {
   }
 
   if (isTransitionPeriod()) {
-    return "Le site est désormais ouvert à tous. Merci d'avoir été là avant les autres.";
+    return "Site ouvert depuis le 15 avril 2026";
   }
 
   return '';

@@ -1,0 +1,95 @@
+{
+  "photo_1": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_2": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_3": {
+    "24x36":      { "total": 9, "sold": 2, "nextNumber": 3 },
+    "40x60":      { "total": 9, "sold": 1, "nextNumber": 11 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_4": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_5": {
+    "24x36":      { "total": 9, "sold": 1, "nextNumber": 2 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 1, "nextNumber": 20 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_6": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_7": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_8": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_9": {
+    "24x36":      { "total": 9, "sold": 2, "nextNumber": 3 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_10": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_11": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_12": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_13": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_14": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 1, "nextNumber": 11 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_15": {
+    "24x36":      { "total": 9, "sold": 0, "nextNumber": 1 },
+    "40x60":      { "total": 9, "sold": 0, "nextNumber": 10 },
+    "80x120":     { "total": 9, "sold": 0, "nextNumber": 19 },
+    "hors-format": { "total": 3, "sold": 0, "nextNumber": 28 }
+  },
+  "photo_16": {
+    "monumental": { "total": 1, "sold": 0, "nextNumber": 1 }
+  }
+}

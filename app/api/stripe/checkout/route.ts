@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 import { CANONICAL_PRICES } from '@/lib/pricing-calculator';
 import { calculateShippingFee, getShippingLabel, taxBreakdown, TVA_RATE } from '@/lib/shipping-config';
+import { reserveNextEdition, getAvailable } from '@/lib/editions';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -85,14 +86,27 @@ export async function POST(request: Request) {
 
       // Validation prix serveur : recalculer à partir du format
       const format = item.format || 'A2';
-      const expectedPrice = CANONICAL_PRICES[format];
-      if (!expectedPrice) {
+      const photoId = item.photoId ? Number(item.photoId) : null;
+
+      // Prix special photo 7 Magma (24x36 = 20 EUR pour test Stripe)
+      const isPhoto7Special = photoId === 7 && format === '24x36';
+      const expectedPrice = isPhoto7Special ? 20 : CANONICAL_PRICES[format];
+
+      if (!expectedPrice && expectedPrice !== 0) {
         console.error(`[Stripe] Format inconnu: ${format}`);
         throw new Error(`Format non reconnu: ${format}`);
       }
       if (Math.abs(item.price - expectedPrice) > 0.01) {
-        console.error(`[Stripe] Prix manipulé détecté: ${item.price}€ vs ${expectedPrice}€ (${format})`);
+        console.error(`[Stripe] Prix manipulé détecté: ${item.price}€ vs ${expectedPrice}€ (${format}, photo ${photoId})`);
         throw new Error(`Prix incorrect pour format ${format}`);
+      }
+
+      // Verifier disponibilite edition
+      if (photoId) {
+        const available = getAvailable(photoId, format);
+        if (available <= 0) {
+          throw new Error(`Édition épuisée : photo ${photoId}, format ${format}`);
+        }
       }
 
       // Convertir images relatives en absolues HTTPS (requis par Stripe)
@@ -119,7 +133,14 @@ export async function POST(request: Request) {
         orientation: item.orientation || 'vertical',
         frame: item.frame || 'none',
         photoPath: item.photoPath || item.path || '',
+        photoId: item.photoId ? Number(item.photoId) : null,
       };
+    });
+
+    // Reserver les numeros d'edition pour chaque item
+    const editionNumbers: (number | null)[] = validatedItems.map((item: any) => {
+      if (!item.photoId) return null;
+      return reserveNextEdition(item.photoId, item.format);
     });
 
     const totalAmount = validatedItems.reduce((sum: number, item: any) => sum + item.price, 0);
@@ -146,12 +167,15 @@ export async function POST(request: Request) {
     // Créer une session de paiement Stripe
     const session = await stripe.checkout.sessions.create({
       payment_method_types: paymentMethodTypes,
-      line_items: validatedItems.map((item: any) => {
+      line_items: validatedItems.map((item: any, idx: number) => {
+        const editionNum = editionNumbers[idx];
         return {
           price_data: {
             currency: 'eur',
             product_data: {
-              name: item.title,
+              name: editionNum
+                ? `${item.title} — n°${editionNum}/30`
+                : item.title,
               description: item.category,
               images: item.images.slice(0, 8),
               metadata: {
@@ -160,6 +184,8 @@ export async function POST(request: Request) {
                 orientation: item.orientation,
                 frame: item.frame,
                 photoPath: item.photoPath,
+                photoId: item.photoId?.toString() || '',
+                editionNumber: editionNum?.toString() || '',
               },
             },
             unit_amount: Math.round(item.price * 100),
@@ -200,6 +226,8 @@ export async function POST(request: Request) {
         items_materials: validatedItems.map((item: any) => item.material).join(','),
         items_orientations: validatedItems.map((item: any) => item.orientation).join(','),
         items_frames: validatedItems.map((item: any) => item.frame).join(','),
+        items_photo_ids: validatedItems.map((item: any) => item.photoId || '').join(','),
+        items_edition_numbers: editionNumbers.map((n) => n?.toString() || '').join(','),
         payment_type: 'standard',
         // Fiscalite (TVA 5,5% oeuvres d'art)
         tva_rate: `${TVA_RATE * 100}%`,

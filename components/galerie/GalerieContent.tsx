@@ -43,17 +43,22 @@ const SWIPE_THRESHOLD = 50;
 /** Prix special photo 7 (Magma) pour test Stripe */
 const PHOTO_7_TEST_PRICE_24x36 = 20;
 
+/** Donnees d'edition par photo et format (nombre de tirages disponibles) */
+type EditionsMap = Record<string, Record<string, number>>;
+
 /** Panneau achat inline sous chaque photo */
 function PhotoPurchasePanel({
   photo,
   isOpen,
   onToggle,
   locale,
+  editions,
 }: {
   photo: Photo;
   isOpen: boolean;
   onToggle: () => void;
   locale: string;
+  editions: EditionsMap;
 }) {
   const [purchasing, setPurchasing] = useState(false);
   const isMonumental = photo.id === 16;
@@ -61,6 +66,10 @@ function PhotoPurchasePanel({
   function getPrice(format: PrintFormat): number {
     if (photo.id === 7 && format === '24x36') return PHOTO_7_TEST_PRICE_24x36;
     return FORMATS[format].price!;
+  }
+
+  function getAvailable(format: string): number | null {
+    return editions[`photo_${photo.id}`]?.[format] ?? null;
   }
 
   async function checkout(format: PrintFormat) {
@@ -85,6 +94,7 @@ function PhotoPurchasePanel({
               orientation,
               frame: 'none',
               category: 'Photographie',
+              photoId: photo.id,
             },
           ],
           locale,
@@ -132,17 +142,28 @@ function PhotoPurchasePanel({
         <div className="mt-4 mx-auto max-w-[280px] bg-white/80 backdrop-blur-sm border border-[#e8e0d0] rounded-sm p-4 space-y-2.5">
           {PURCHASABLE_FORMATS.map((format) => {
             const price = getPrice(format);
+            const available = getAvailable(format);
+            const soldOut = available !== null && available <= 0;
+
             return (
-              <button
-                key={format}
-                type="button"
-                onClick={() => checkout(format)}
-                disabled={purchasing}
-                className="flex items-center justify-between w-full text-[11px] tracking-[0.1em] text-[#2a2a2a] hover:text-[#8c6e32] transition-colors duration-200 py-1.5 border-b border-[#e8e0d0]/60 last:border-b-0 disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                <span className="font-light uppercase">{FORMATS[format].label}</span>
-                <span className="font-normal tabular-nums">{formatPrice(price)}</span>
-              </button>
+              <div key={format}>
+                <button
+                  type="button"
+                  onClick={() => checkout(format)}
+                  disabled={purchasing || soldOut}
+                  className="flex items-center justify-between w-full text-[11px] tracking-[0.1em] text-[#2a2a2a] hover:text-[#8c6e32] transition-colors duration-200 py-1.5 border-b border-[#e8e0d0]/60 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  <span className="font-light uppercase">{FORMATS[format].label}</span>
+                  <span className="font-normal tabular-nums">
+                    {soldOut ? 'Épuisé' : formatPrice(price)}
+                  </span>
+                </button>
+                {available !== null && !soldOut && (
+                  <p className="text-[9px] font-light tracking-[0.15em] uppercase text-[#9a9a9a] mt-0.5">
+                    {available} tirage{available > 1 ? 's' : ''} disponible{available > 1 ? 's' : ''}
+                  </p>
+                )}
+              </div>
             );
           })}
         </div>
@@ -158,6 +179,15 @@ export function GalerieContent() {
   const [selectedFormat, setSelectedFormat] = useState<PrintFormat>('24x36');
   const [purchasing, setPurchasing] = useState(false);
   const [openPurchaseId, setOpenPurchaseId] = useState<number | null>(null);
+  const [editions, setEditions] = useState<EditionsMap>({});
+
+  // Charger les donnees d'editions au montage
+  useEffect(() => {
+    fetch('/api/editions')
+      .then((r) => r.json())
+      .then((data) => setEditions(data))
+      .catch(() => {});
+  }, []);
 
   const togglePurchase = (photoId: number) => {
     setOpenPurchaseId((prev) => (prev === photoId ? null : photoId));
@@ -237,15 +267,32 @@ export function GalerieContent() {
     }
   };
 
+  /** Prix effectif pour la photo courante dans le format selectionne */
+  function getLightboxPrice(): number | null {
+    const config = FORMATS[selectedFormat];
+    if (!config.price) return null;
+    if (lightboxIndex !== null) {
+      const photo = typedPhotos[lightboxIndex];
+      if (photo.id === 7 && selectedFormat === '24x36') return PHOTO_7_TEST_PRICE_24x36;
+    }
+    return config.price;
+  }
+
+  /** Tirages disponibles pour la photo courante dans un format donne */
+  function getLightboxAvailable(format: string): number | null {
+    if (lightboxIndex === null) return null;
+    const photo = typedPhotos[lightboxIndex];
+    return editions[`photo_${photo.id}`]?.[format] ?? null;
+  }
+
   async function handlePurchase() {
     if (lightboxIndex === null) return;
     const photo = typedPhotos[lightboxIndex];
+    const price = getLightboxPrice();
+    if (!price) return;
 
     setPurchasing(true);
     try {
-      const config = FORMATS[selectedFormat];
-      if (!config.price) return;
-
       const orientation =
         photo.imageWidth > photo.imageHeight ? 'landscape' : 'vertical';
 
@@ -256,7 +303,7 @@ export function GalerieContent() {
           items: [
             {
               title: photo.name,
-              price: config.price,
+              price,
               format: selectedFormat,
               images: [photo.image],
               photoPath: photo.image,
@@ -264,6 +311,7 @@ export function GalerieContent() {
               orientation,
               frame: 'none',
               category: 'Photographie',
+              photoId: photo.id,
             },
           ],
           locale,
@@ -338,6 +386,7 @@ export function GalerieContent() {
                     isOpen={openPurchaseId === photo.id}
                     onToggle={() => togglePurchase(photo.id)}
                     locale={locale}
+                    editions={editions}
                   />
                 </div>
               );
@@ -401,6 +450,7 @@ export function GalerieContent() {
                         isOpen={openPurchaseId === photo.id}
                         onToggle={() => togglePurchase(photo.id)}
                         locale={locale}
+                        editions={editions}
                       />
                     </div>
                   );
@@ -572,83 +622,88 @@ export function GalerieContent() {
                         const config = FORMATS[formatKey];
                         const purchasable = config.price !== null;
                         const isSelected = selectedFormat === formatKey;
-                        const numbering =
-                          config.numberingStart && config.numberingEnd
-                            ? t('numbering', {
-                                start: config.numberingStart,
-                                end: config.numberingEnd,
-                              })
-                            : '';
+                        const available = getLightboxAvailable(formatKey);
+                        const soldOut = available !== null && available <= 0;
+                        const displayPrice = purchasable
+                          ? (lightboxIndex !== null && typedPhotos[lightboxIndex].id === 7 && formatKey === '24x36'
+                              ? PHOTO_7_TEST_PRICE_24x36
+                              : config.price!)
+                          : null;
 
                         if (purchasable) {
                           return (
-                            <button
-                              key={formatKey}
-                              type="button"
-                              onClick={() => setSelectedFormat(formatKey)}
-                              className={`flex items-center justify-between w-full text-sm border-b pb-2 text-left transition-colors ${
-                                isSelected
-                                  ? 'border-white/40'
-                                  : 'border-white/15'
-                              }`}
-                              aria-pressed={isSelected}
-                            >
-                              <span className="flex items-center gap-2.5">
-                                <span
-                                  className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 flex items-center justify-center transition-colors ${
-                                    isSelected
-                                      ? 'border-white'
-                                      : 'border-white/50'
-                                  }`}
-                                >
-                                  {isSelected && (
-                                    <span className="w-2 h-2 rounded-full bg-white" />
-                                  )}
+                            <div key={formatKey}>
+                              <button
+                                type="button"
+                                onClick={() => setSelectedFormat(formatKey)}
+                                disabled={soldOut}
+                                className={`flex items-center justify-between w-full text-sm border-b pb-2 text-left transition-colors ${
+                                  soldOut
+                                    ? 'border-white/10 opacity-40 cursor-not-allowed'
+                                    : isSelected
+                                      ? 'border-white/40'
+                                      : 'border-white/15'
+                                }`}
+                                aria-pressed={isSelected}
+                              >
+                                <span className="flex items-center gap-2.5">
+                                  <span
+                                    className={`w-3.5 h-3.5 rounded-full border flex-shrink-0 flex items-center justify-center transition-colors ${
+                                      isSelected && !soldOut
+                                        ? 'border-white'
+                                        : 'border-white/50'
+                                    }`}
+                                  >
+                                    {isSelected && !soldOut && (
+                                      <span className="w-2 h-2 rounded-full bg-white" />
+                                    )}
+                                  </span>
+                                  <span
+                                    className={`font-light transition-colors ${
+                                      isSelected && !soldOut
+                                        ? 'text-white'
+                                        : 'text-white/80'
+                                    }`}
+                                  >
+                                    {config.label}
+                                  </span>
                                 </span>
-                                <span
-                                  className={`font-light transition-colors ${
-                                    isSelected
-                                      ? 'text-white'
-                                      : 'text-white/80'
-                                  }`}
-                                >
-                                  {config.label}
+                                <span className="flex items-center gap-2">
+                                  <span
+                                    className={`font-light tabular-nums transition-colors ${
+                                      isSelected && !soldOut
+                                        ? 'text-white'
+                                        : 'text-white/70'
+                                    }`}
+                                  >
+                                    {soldOut ? 'Épuisé' : formatPrice(displayPrice!)}
+                                  </span>
                                 </span>
-                              </span>
-                              <span className="flex items-center gap-2">
-                                <span className="font-light text-white/50 text-xs">
-                                  {numbering}
-                                </span>
-                                <span
-                                  className={`font-light tabular-nums transition-colors ${
-                                    isSelected
-                                      ? 'text-white'
-                                      : 'text-white/70'
-                                  }`}
-                                >
-                                  {formatPrice(config.price!)}
-                                </span>
-                              </span>
-                            </button>
+                              </button>
+                              {available !== null && !soldOut && (
+                                <p className="text-[9px] font-light tracking-[0.15em] uppercase text-white/35 mt-0.5 pl-6">
+                                  {available} tirage{available > 1 ? 's' : ''} disponible{available > 1 ? 's' : ''}
+                                </p>
+                              )}
+                            </div>
                           );
                         }
 
                         return (
-                          <div
-                            key={formatKey}
-                            className="flex items-center justify-between text-sm border-b border-white/15 pb-2 pl-6"
-                          >
-                            <span className="font-light text-white/50">
-                              {config.label}
-                            </span>
-                            <span className="flex items-center gap-2">
-                              <span className="font-light text-white/40 text-xs">
-                                {numbering}
+                          <div key={formatKey}>
+                            <div className="flex items-center justify-between text-sm border-b border-white/15 pb-2 pl-6">
+                              <span className="font-light text-white/50">
+                                {config.label}
                               </span>
                               <span className="font-light text-white/50 tabular-nums">
                                 {t('onRequest')}
                               </span>
-                            </span>
+                            </div>
+                            {available !== null && !soldOut && (
+                              <p className="text-[9px] font-light tracking-[0.15em] uppercase text-white/35 mt-0.5 pl-6">
+                                {available} tirage{available > 1 ? 's' : ''} disponible{available > 1 ? 's' : ''}
+                              </p>
+                            )}
                           </div>
                         );
                       })}
@@ -660,16 +715,27 @@ export function GalerieContent() {
                     </p>
 
                     {/* Bouton achat Stripe */}
-                    <button
-                      type="button"
-                      onClick={handlePurchase}
-                      disabled={purchasing}
-                      className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px] disabled:opacity-40 disabled:cursor-not-allowed"
-                    >
-                      {purchasing
-                        ? 'Chargement...'
-                        : `${t('acquire')} — ${formatPrice(FORMATS[selectedFormat].price!)}`}
-                    </button>
+                    {(() => {
+                      const currentPrice = getLightboxPrice();
+                      const currentAvail = getLightboxAvailable(selectedFormat);
+                      const currentSoldOut = currentAvail !== null && currentAvail <= 0;
+                      return (
+                        <button
+                          type="button"
+                          onClick={handlePurchase}
+                          disabled={purchasing || currentSoldOut || !currentPrice}
+                          className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px] disabled:opacity-40 disabled:cursor-not-allowed"
+                        >
+                          {purchasing
+                            ? 'Chargement...'
+                            : currentSoldOut
+                              ? 'Épuisé'
+                              : currentPrice
+                                ? `${t('acquire')} — ${formatPrice(currentPrice)}`
+                                : t('onRequest')}
+                        </button>
+                      );
+                    })()}
                   </>
                 )}
               </motion.div>

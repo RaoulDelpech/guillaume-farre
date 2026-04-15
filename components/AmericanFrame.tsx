@@ -18,16 +18,16 @@ interface AmericanFrameProps {
 }
 
 // --- Visual tuning constants ---
-// Pourcentages relatifs au CONTENEUR (s'adapte a la taille de chaque toile)
-// Marge 2.5cm uniforme sur les 4 cotes, 0.5cm de profondeur fond noir
-const FRAME_FACE = '4%'
-const FRAME_LIP = '0.4%'
-const FRAME_GAP = '0.8%'
+// FIXE en pixels — meme cadre quelle que soit la taille du tableau
+// Principe caisse americaine : 2.5cm de face + 0.5cm de profondeur fond noir
+const FRAME_FACE = '18px'
+const FRAME_LIP = '2px'
+const FRAME_GAP = '4px'
 
-// Constantes numériques pour exports (valeurs approx. pour calculs de layout)
-export const FRAME_FACE_PX = 24
-export const FRAME_LIP_PX = 3
-export const GAP_PX = 5
+// Constantes numeriques pour exports (calculs de layout)
+export const FRAME_FACE_PX = 18
+export const FRAME_LIP_PX = 2
+export const GAP_PX = 4
 
 const RECESS_SHADOW =
   '0 0 2px rgba(0,0,0,0.6), 1px 2px 5px rgba(0,0,0,0.4)'

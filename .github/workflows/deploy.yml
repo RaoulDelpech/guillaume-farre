@@ -62,7 +62,9 @@ jobs:
             echo "RESEND_FROM_EMAIL=Guillaume Farré <noreply@guillaumefarre.com>" >> .env.local
             echo "Fixing tsconfig (remove same-runtime artifact)..."
             python3 -c "import json; f=open('tsconfig.json'); d=json.load(f); f.close(); d.get('compilerOptions',{}).pop('jsxImportSource',None); f=open('tsconfig.json','w'); json.dump(d,f,indent=2); f.close()"
-            echo "Building (incremental, cache preserved)..."
+            echo "Clearing Next.js image cache (stale after image changes)..."
+            rm -rf .next/cache/images
+            echo "Building..."
             NODE_OPTIONS="--max-old-space-size=4096" bun run build
             echo "Restarting PM2..."
             pm2 restart guillaumefarre || pm2 start npm --name guillaumefarre -- start

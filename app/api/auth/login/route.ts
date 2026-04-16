@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 
-const SITE_PASSWORD = process.env.SITE_PASSWORD || 'LHOOQladino246';
+const SITE_PASSWORD = process.env.SITE_PASSWORD;
+const AUTH_SECRET = process.env.AUTH_SECRET;
 const COOKIE_NAME = "gf_auth";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 jours
-
-// Token unique — changer ici invalide TOUS les anciens cookies
-const AUTH_TOKEN = "681cb964982c5f2ccc2accaded688f3b";
 
 /**
  * API login - vérifie mot de passe et set cookie
@@ -15,6 +13,10 @@ const AUTH_TOKEN = "681cb964982c5f2ccc2accaded688f3b";
  */
 export async function POST(request: NextRequest) {
   try {
+    if (!SITE_PASSWORD || !AUTH_SECRET) {
+      return NextResponse.json({ error: 'Service not configured' }, { status: 503 });
+    }
+
     const { password } = await request.json();
 
     const passwordBuf = Buffer.from(String(password));
@@ -26,7 +28,7 @@ export async function POST(request: NextRequest) {
     if (isValid) {
       const response = NextResponse.json({ success: true });
 
-      response.cookies.set(COOKIE_NAME, AUTH_TOKEN, {
+      response.cookies.set(COOKIE_NAME, AUTH_SECRET, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "lax",

@@ -5,8 +5,8 @@ import { routing } from './i18n/routing';
 const AUTH_COOKIE = "gf_auth";
 const VALID_LOCALES = ['fr', 'en', 'it'];
 
-// Token unique — DOIT correspondre a celui dans app/api/auth/login/route.ts
-const AUTH_TOKEN = "681cb964982c5f2ccc2accaded688f3b";
+// Token d'auth lu depuis env var (doit correspondre au token genere par login/route.ts)
+const AUTH_TOKEN = process.env.AUTH_SECRET || null;
 
 // Origines autorisées pour les requêtes admin mutantes (CSRF)
 const ALLOWED_ORIGINS = [
@@ -75,7 +75,7 @@ export default function middleware(request: NextRequest) {
       }
       // Toute autre API bloquee sans auth
       const authCookie = request.cookies.get(AUTH_COOKIE);
-      if (authCookie?.value !== AUTH_TOKEN) {
+      if (!AUTH_TOKEN || authCookie?.value !== AUTH_TOKEN) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.next();
@@ -88,7 +88,7 @@ export default function middleware(request: NextRequest) {
 
     // Verifier auth — UNIQUEMENT le nouveau token, PAS "authenticated", PAS VIP
     const authCookie = request.cookies.get(AUTH_COOKIE);
-    const isAuthenticated = authCookie?.value === AUTH_TOKEN;
+    const isAuthenticated = AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
 
     if (!isAuthenticated) {
       const locale = getLocale(pathname);

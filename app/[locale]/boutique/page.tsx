@@ -39,7 +39,7 @@ export default function BoutiquePage({
   const { locale } = use(params);
 
   useEffect(() => {
-    trackFunnelStep('checkout');
+    trackFunnelStep('boutique');
     fetch('/api/analytics/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

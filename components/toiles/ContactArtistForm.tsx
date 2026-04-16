@@ -25,10 +25,15 @@ export default function ContactArtistForm({ toileName, onClose }: ContactArtistF
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !email.trim()) return;
+
+    setSending(true);
+    setError(null);
 
     const subject = `${t('mailSubject')} — ${toileName}`;
     const lines = [
@@ -42,9 +47,31 @@ export default function ContactArtistForm({ toileName, onClose }: ContactArtistF
       `${t('aboutWork')} ${toileName}`,
     ].filter(Boolean).join('\n');
 
-    const mailto = `mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines)}`;
-    window.open(mailto, '_blank');
-    setSent(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          subject,
+          message: lines,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Erreur lors de l\'envoi');
+      }
+
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Erreur lors de l\'envoi');
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) {
@@ -58,6 +85,22 @@ export default function ContactArtistForm({ toileName, onClose }: ContactArtistF
           className="block mx-auto mt-3 text-xs text-neutral-400 hover:text-neutral-600 transition-colors tracking-wider uppercase"
         >
           {t('close')}
+        </button>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mt-4 px-6 py-5 rounded-sm border border-red-200 bg-red-50">
+        <p className="text-sm text-red-600 font-light text-center mb-3">
+          {error}
+        </p>
+        <button
+          onClick={() => setError(null)}
+          className="block mx-auto text-xs text-neutral-400 hover:text-neutral-600 transition-colors tracking-wider uppercase"
+        >
+          Réessayer
         </button>
       </div>
     );
@@ -123,17 +166,19 @@ export default function ContactArtistForm({ toileName, onClose }: ContactArtistF
       <div className="flex items-center gap-3 mt-4">
         <button
           type="submit"
-          className="flex-1 py-3 text-xs tracking-[0.25em] uppercase font-light text-white transition-all duration-300 rounded-sm min-h-[44px]"
+          disabled={sending}
+          className="flex-1 py-3 text-xs tracking-[0.25em] uppercase font-light text-white transition-all duration-300 rounded-sm min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ backgroundColor: GOLD }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#7a5f2a')}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = GOLD)}
+          onMouseEnter={(e) => !sending && (e.currentTarget.style.backgroundColor = '#7a5f2a')}
+          onMouseLeave={(e) => !sending && (e.currentTarget.style.backgroundColor = GOLD)}
         >
-          {t('send')}
+          {sending ? 'Envoi en cours...' : t('send')}
         </button>
         <button
           type="button"
           onClick={onClose}
-          className="px-4 py-3 text-xs tracking-[0.25em] uppercase font-light text-neutral-400 hover:text-neutral-600 transition-colors min-h-[44px]"
+          disabled={sending}
+          className="px-4 py-3 text-xs tracking-[0.25em] uppercase font-light text-neutral-400 hover:text-neutral-600 transition-colors min-h-[44px] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {t('cancel')}
         </button>

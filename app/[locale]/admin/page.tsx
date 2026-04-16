@@ -12,6 +12,7 @@ import PhotoFiltersPills from "@/components/admin/PhotoFiltersPills";
 import BulkActions from "@/components/admin/BulkActions";
 import AdminQuickActions from "@/components/admin/AdminQuickActions";
 import NewsletterNotify from "@/components/admin/NewsletterNotify";
+import AnalyticsDashboard from "@/components/admin/AnalyticsDashboard";
 import SeriesSuggestionModal from "@/components/admin/SeriesSuggestionModal";
 
 import { useAdminPhotos } from "@/hooks/useAdminPhotos";
@@ -85,6 +86,7 @@ export default function AdminPage() {
         {/* PHASE 1: Instagram et analyse commerciale désactivés temporairement */}
         {/* <div className="mb-12"><InstagramConfig /></div> */}
         {/* <div className="mb-12"><CommercialDashboard photos={admin.photos} /></div> */}
+        <div className="mb-12"><AnalyticsDashboard /></div>
         <div className="mb-12"><PricingManager /></div>
         <div className="mb-12"><NewsletterNotify /></div>
 

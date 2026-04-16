@@ -263,7 +263,7 @@ export default function OrderConfirmationEmail({
                 {t.trackButton}
               </Button>
               <Text style={styles.ctaSecondary}>
-                <a href={`https://guillaumefarre.com/${locale}/boutique`} style={styles.linkSecondary}>
+                <a href={`https://guillaumefarre.com/${locale}/galerie`} style={styles.linkSecondary}>
                   {t.shopLink}
                 </a>
               </Text>

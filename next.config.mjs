@@ -29,6 +29,14 @@ const nextConfig = {
   },
   // Ensure server-side only modules are not bundled for client
   serverExternalPackages: ['sharp', 'imghash'],
+  // Pages masquees — redirect vers accueil
+  async redirects() {
+    return [
+      { source: '/:locale/histoire', destination: '/:locale', permanent: false },
+      { source: '/:locale/panier', destination: '/:locale/boutique', permanent: false },
+      { source: '/:locale/faq', destination: '/:locale/galerie', permanent: false },
+    ];
+  },
   // Security + performance headers
   async headers() {
     return [

@@ -145,16 +145,23 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                   aria-label={`Agrandir ${toile.name}`}
                 >
                   {isTriptych ? (
-                    <div className="flex gap-3 md:gap-4 max-w-4xl mx-auto">
+                    <div className="flex items-end gap-3 md:gap-4 max-w-4xl mx-auto">
                       {toile.images!.map((img, i) => {
                         const pd = toile.panelDimensions?.[i];
+                        // Normaliser les ratios : tous les panneaux du triptyque font 40x100cm
+                        // → on force le meme ratio (le plus grand) pour un alignement parfait
+                        const maxRatio = toile.panelDimensions
+                          ? Math.max(...toile.panelDimensions.map(p => p.imageHeight / p.imageWidth))
+                          : (pd?.imageHeight || 1800) / (pd?.imageWidth || 670);
+                        const normW = pd?.imageWidth || 670;
+                        const normH = Math.round(normW * maxRatio);
                         return (
                           <div key={i} className="flex-1">
                             <AmericanFrame
                               src={img}
                               alt={`${toile.name} — ${i + 1}/3`}
-                              imageWidth={pd?.imageWidth}
-                              imageHeight={pd?.imageHeight}
+                              imageWidth={normW}
+                              imageHeight={normH}
                               frameColor="black"
                               blurDataURL={BLUR[img]}
                               className="w-full"

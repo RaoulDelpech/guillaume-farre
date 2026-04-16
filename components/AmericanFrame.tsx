@@ -22,12 +22,12 @@ interface AmericanFrameProps {
 // Principe caisse americaine : 2.5cm de face + 0.5cm de profondeur fond noir
 const FRAME_FACE = '18px'
 const FRAME_LIP = '2px'
-const FRAME_GAP = '4px'
+const FRAME_GAP = '2px'
 
 // Constantes numeriques pour exports (calculs de layout)
 export const FRAME_FACE_PX = 18
 export const FRAME_LIP_PX = 2
-export const GAP_PX = 4
+export const GAP_PX = 2
 
 const RECESS_SHADOW =
   '0 0 2px rgba(0,0,0,0.6), 1px 2px 5px rgba(0,0,0,0.4)'

@@ -87,12 +87,12 @@ export default async function HomePage() {
           >
             <div className="transition-transform duration-500 group-hover:-translate-y-1 mx-auto" style={{ maxWidth: 420 }}>
               <AmericanFrame
-                src="/images/toiles/6.jpg"
+                src="/images/toiles/20.jpg"
                 alt="Toiles de Guillaume Farre"
-                imageWidth={1333}
-                imageHeight={2000}
+                imageWidth={1280}
+                imageHeight={1717}
                 frameColor="black"
-                blurDataURL={BLUR["/images/toiles/6.jpg"]}
+                blurDataURL={BLUR["/images/toiles/20.jpg"]}
                 priority
                 className="w-full"
               />

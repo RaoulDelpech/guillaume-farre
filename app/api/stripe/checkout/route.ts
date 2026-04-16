@@ -88,9 +88,7 @@ export async function POST(request: Request) {
       const format = item.format || 'A2';
       const photoId = item.photoId ? Number(item.photoId) : null;
 
-      // Prix special photo 7 Magma (24x36 = 20 EUR pour test Stripe)
-      const isPhoto7Special = photoId === 7 && format === '24x36';
-      const expectedPrice = isPhoto7Special ? 20 : CANONICAL_PRICES[format];
+      const expectedPrice = CANONICAL_PRICES[format];
 
       if (!expectedPrice && expectedPrice !== 0) {
         console.error(`[Stripe] Format inconnu: ${format}`);

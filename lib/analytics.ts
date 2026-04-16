@@ -1,6 +1,6 @@
 /**
- * Google Analytics 4 E-commerce Event Tracking
- * Helpers conformes RGPD : vérification du consentement avant chaque envoi
+ * Google Analytics 4 E-commerce & Custom Event Tracking
+ * Helpers conformes RGPD : verification du consentement avant chaque envoi
  *
  * Lalou
  */
@@ -8,7 +8,7 @@
 import { hasConsent } from "./cookie-consent";
 
 /**
- * Vérifie que gtag est disponible et que le consentement est accordé
+ * Verifie que gtag est disponible et que le consentement est accorde
  */
 function canTrack(): boolean {
   if (typeof window === "undefined") return false;
@@ -17,9 +17,8 @@ function canTrack(): boolean {
   return true;
 }
 
-/**
- * Track view_item event (product page)
- */
+// ─── E-commerce Events ───
+
 export function trackViewItem(item: {
   id: string;
   name: string;
@@ -43,9 +42,6 @@ export function trackViewItem(item: {
   });
 }
 
-/**
- * Track add_to_cart event
- */
 export function trackAddToCart(item: {
   id: string;
   name: string;
@@ -70,9 +66,6 @@ export function trackAddToCart(item: {
   });
 }
 
-/**
- * Track remove_from_cart event
- */
 export function trackRemoveFromCart(item: {
   id: string;
   name: string;
@@ -97,9 +90,6 @@ export function trackRemoveFromCart(item: {
   });
 }
 
-/**
- * Track begin_checkout event
- */
 export function trackBeginCheckout(
   items: Array<{
     id: string;
@@ -125,9 +115,6 @@ export function trackBeginCheckout(
   });
 }
 
-/**
- * Track purchase event (after successful payment)
- */
 export function trackPurchase(
   orderId: string,
   items: Array<{
@@ -152,5 +139,68 @@ export function trackPurchase(
       quantity: item.quantity,
       item_category: item.category || "Photographie",
     })),
+  });
+}
+
+// ─── Custom Engagement Events ───
+
+export function trackScrollDepth(percent: number) {
+  if (!canTrack()) return;
+
+  window.gtag("event", "scroll_depth", {
+    percent_scrolled: percent,
+    page_path: window.location.pathname,
+  });
+}
+
+export function trackTimeOnPage(seconds: number) {
+  if (!canTrack()) return;
+
+  window.gtag("event", "time_on_page", {
+    seconds_on_page: seconds,
+    page_path: window.location.pathname,
+  });
+}
+
+export function trackLightboxOpen(itemId: string, itemName: string) {
+  if (!canTrack()) return;
+
+  window.gtag("event", "lightbox_open", {
+    item_id: itemId,
+    item_name: itemName,
+  });
+}
+
+export function trackLightboxClose(itemId: string, durationMs: number) {
+  if (!canTrack()) return;
+
+  window.gtag("event", "lightbox_close", {
+    item_id: itemId,
+    duration_seconds: Math.round(durationMs / 1000),
+  });
+}
+
+export function trackClickArtwork(
+  itemId: string,
+  itemName: string,
+  source: "galerie" | "homepage" | "boutique"
+) {
+  if (!canTrack()) return;
+
+  window.gtag("event", "click_artwork", {
+    item_id: itemId,
+    item_name: itemName,
+    source,
+  });
+}
+
+export function trackFunnelStep(
+  step: "home" | "galerie" | "lightbox" | "checkout" | "purchase"
+) {
+  if (!canTrack()) return;
+
+  window.gtag("event", "funnel_step", {
+    step_name: step,
+    page_path: window.location.pathname,
   });
 }

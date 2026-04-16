@@ -14,24 +14,18 @@ export default function GoogleAnalytics() {
   const [consentGiven, setConsentGiven] = useState(false);
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
-  // Ne rien rendre si pas de Measurement ID configuré
-  if (!measurementId) {
-    return null;
-  }
-
   useEffect(() => {
-    // Vérifier le consentement initial
+    if (!measurementId) return;
+
     const initialConsent = hasConsent();
     setConsentGiven(initialConsent);
 
-    // Configurer gtag avec le consentement par défaut (denied)
     if (typeof window !== "undefined") {
       window.gtag = window.gtag || function () {
         (window.dataLayer = window.dataLayer || []).push(arguments);
       };
       window.dataLayer = window.dataLayer || [];
 
-      // Mode par défaut : analytics refusé
       window.gtag("consent", "default", {
         analytics_storage: initialConsent ? "granted" : "denied",
       });
@@ -42,7 +36,6 @@ export default function GoogleAnalytics() {
       });
     }
 
-    // Écouter les changements de consentement
     const handleConsentChange = (event: Event) => {
       const customEvent = event as CustomEvent;
       const accepted = customEvent.detail?.accepted || false;
@@ -50,12 +43,10 @@ export default function GoogleAnalytics() {
       setConsentGiven(accepted);
 
       if (typeof window !== "undefined" && window.gtag) {
-        // Mettre à jour le consentement GA4
         window.gtag("consent", "update", {
           analytics_storage: accepted ? "granted" : "denied",
         });
 
-        // Si consentement accordé, forcer un page_view
         if (accepted) {
           window.gtag("event", "page_view", {
             page_path: window.location.pathname,
@@ -71,22 +62,18 @@ export default function GoogleAnalytics() {
     };
   }, [measurementId]);
 
-  // Ne charger les scripts que si consentement accordé
-  if (!consentGiven) {
+  if (!measurementId || !consentGiven) {
     return null;
   }
 
   return (
-    <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-      />
-    </>
+    <Script
+      strategy="afterInteractive"
+      src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+    />
   );
 }
 
-// Déclaration TypeScript pour gtag
 declare global {
   interface Window {
     gtag: (...args: any[]) => void;

@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
+import photos from '@/data/photos.json';
 
 /**
- * Génère le sitemap.xml pour Google Search Console
- * Inclut uniquement les pages publiques en FR/EN/IT
+ * Sitemap.xml pour Google Search Console
+ * Pages publiques en FR/EN/IT + boutique + pages produit avec images
  *
  * @author Lalou
  */
@@ -11,11 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const locales = ['fr', 'en', 'it'];
 
-  // Pages publiques uniquement — pas de pages masquées, admin, login, panier
   const pages: { path: string; changeFrequency: 'daily' | 'weekly' | 'monthly'; priority: number }[] = [
     { path: '', changeFrequency: 'daily', priority: 1.0 },
     { path: '/galerie', changeFrequency: 'weekly', priority: 0.9 },
     { path: '/toiles', changeFrequency: 'weekly', priority: 0.9 },
+    { path: '/boutique', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/contact', changeFrequency: 'monthly', priority: 0.7 },
     { path: '/faq', changeFrequency: 'monthly', priority: 0.6 },
     { path: '/cgv', changeFrequency: 'monthly', priority: 0.3 },
@@ -26,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const urls: MetadataRoute.Sitemap = [];
 
+  // Static pages
   for (const page of pages) {
     for (const locale of locales) {
       urls.push({
@@ -40,6 +42,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
             it: `${baseUrl}/it${page.path}`,
           },
         },
+      });
+    }
+  }
+
+  // Photo product pages (galerie-item/{slug})
+  for (const photo of photos) {
+    const slug = photo.name.toLowerCase().replace(/\s+/g, '-');
+
+    for (const locale of locales) {
+      urls.push({
+        url: `${baseUrl}/${locale}/galerie-item/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+        alternates: {
+          languages: {
+            fr: `${baseUrl}/fr/galerie-item/${slug}`,
+            en: `${baseUrl}/en/galerie-item/${slug}`,
+            it: `${baseUrl}/it/galerie-item/${slug}`,
+          },
+        },
+        images: [`${baseUrl}${photo.image}`],
       });
     }
   }

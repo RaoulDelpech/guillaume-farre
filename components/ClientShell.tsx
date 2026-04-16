@@ -19,6 +19,7 @@ const GoogleAnalytics = dynamic(() => import('@/components/GoogleAnalytics'), { 
 const ClarityAnalytics = dynamic(() => import('@/components/ClarityAnalytics'), { ssr: false })
 const ScrollDepthTracker = dynamic(() => import('@/components/ScrollDepthTracker'), { ssr: false })
 const TimeOnPageTracker = dynamic(() => import('@/components/TimeOnPageTracker'), { ssr: false })
+const WebVitalsReporter = dynamic(() => import('@/components/WebVitalsReporter'), { ssr: false })
 const ImageProtection = dynamic(() => import('@/components/ImageProtection'), { ssr: false })
 
 interface ClientShellProps {
@@ -45,6 +46,7 @@ export default function ClientShell({ isVipVisitor, isPreLaunch, children }: Cli
       <ClarityAnalytics />
       <ScrollDepthTracker />
       <TimeOnPageTracker />
+      <WebVitalsReporter />
       <ImageProtection />
     </>
   )

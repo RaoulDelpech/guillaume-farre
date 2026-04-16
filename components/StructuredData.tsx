@@ -1,6 +1,6 @@
 /**
  * Structured Data (JSON-LD) pour SEO
- * Schema.org markup pour Organisation, WebSite, et Products
+ * Schema.org markup : Organisation, WebSite, Product, ArtGallery, BreadcrumbList
  *
  * @author Lalou
  */
@@ -16,15 +16,20 @@ interface ProductData {
   inStock?: boolean;
 }
 
-interface StructuredDataProps {
-  type?: 'organization' | 'website' | 'product';
-  data?: ProductData;
+interface BreadcrumbItem {
+  name: string;
+  url: string;
 }
 
-export default function StructuredData({ type = 'organization', data }: StructuredDataProps) {
+interface StructuredDataProps {
+  type?: 'organization' | 'website' | 'product' | 'gallery' | 'breadcrumb';
+  data?: ProductData;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+export default function StructuredData({ type = 'organization', data, breadcrumbs }: StructuredDataProps) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
 
-  // Schema.org Organization
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -48,7 +53,6 @@ export default function StructuredData({ type = 'organization', data }: Structur
     ],
   };
 
-  // Schema.org WebSite
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -58,7 +62,6 @@ export default function StructuredData({ type = 'organization', data }: Structur
     inLanguage: ['fr', 'en', 'it'],
   };
 
-  // Schema.org Product (pour photos)
   const productSchema = data ? {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -81,9 +84,54 @@ export default function StructuredData({ type = 'organization', data }: Structur
     category: 'Art Photography',
   } : null;
 
-  const schema = type === 'website' ? websiteSchema :
-                 type === 'product' && productSchema ? productSchema :
-                 organizationSchema;
+  const gallerySchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ArtGallery',
+    name: 'Guillaume Farré — Galerie',
+    url: `${baseUrl}/fr/galerie`,
+    description: 'Galerie de photographies d\'art et toiles abstraites par Guillaume Farré. Ferrari Dino comme outil de création.',
+    founder: {
+      '@type': 'Person',
+      name: 'Guillaume Farré',
+    },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '00:00',
+      closes: '23:59',
+      description: 'Galerie en ligne, accessible 24h/24',
+    },
+  };
+
+  const breadcrumbSchema = breadcrumbs?.length ? {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith('http') ? item.url : `${baseUrl}${item.url}`,
+    })),
+  } : null;
+
+  let schema: unknown;
+
+  switch (type) {
+    case 'website':
+      schema = websiteSchema;
+      break;
+    case 'product':
+      schema = productSchema || organizationSchema;
+      break;
+    case 'gallery':
+      schema = gallerySchema;
+      break;
+    case 'breadcrumb':
+      schema = breadcrumbSchema || organizationSchema;
+      break;
+    default:
+      schema = organizationSchema;
+  }
 
   return (
     <script

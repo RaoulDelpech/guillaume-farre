@@ -214,7 +214,7 @@ export default function AmericanFrame({
     <div
       className={className}
       style={{
-        display: 'inline-block',
+        display: 'block',
         maxWidth: '100%',
         backgroundColor: theme.fond,
         // Wall shadow
@@ -270,7 +270,6 @@ export default function AmericanFrame({
                   style={{
                     position: 'relative',
                     overflow: 'hidden',
-                    display: 'flex',
                     backgroundColor: theme.fond,
                     lineHeight: 0,
                     fontSize: 0,

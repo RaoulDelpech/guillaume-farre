@@ -80,7 +80,7 @@ export default function HeroCarousel({ slides: slideImages }: HeroCarouselProps)
             alt={slide.alt}
             fill
             className="object-cover object-center"
-            sizes="100vw"
+            sizes="(max-width: 1920px) 100vw, 1920px"
             quality={75}
             priority={index === 0}
             {...(BLUR[slide.image] ? { placeholder: 'blur' as const, blurDataURL: BLUR[slide.image] } : {})}

@@ -15,7 +15,7 @@ const nextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   // Fix sharp WASM files not being bundled correctly
@@ -34,7 +34,8 @@ const nextConfig = {
     return [
       { source: '/:locale/histoire', destination: '/:locale', permanent: false },
       { source: '/:locale/atelier', destination: '/:locale', permanent: false },
-      { source: '/:locale/panier', destination: '/:locale/boutique', permanent: false },
+      { source: '/:locale/boutique', destination: '/:locale/galerie', permanent: false },
+      { source: '/:locale/panier', destination: '/:locale/galerie', permanent: false },
       { source: '/:locale/faq', destination: '/:locale/galerie', permanent: false },
     ];
   },

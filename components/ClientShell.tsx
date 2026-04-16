@@ -10,7 +10,7 @@ import ScrollToTopOnNav from '@/components/ScrollToTopOnNav'
  * @author Lalou
  */
 
-const SmoothScroll = dynamic(() => import('@/components/SmoothScroll'), { ssr: false })
+import SmoothScroll from '@/components/SmoothScroll'
 const WelcomeAnimation = dynamic(() => import('@/components/WelcomeAnimation'), { ssr: false })
 const PageProgressBar = dynamic(() => import('@/components/PageProgressBar'), { ssr: false })
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
@@ -35,11 +35,10 @@ export default function ClientShell({ isVipVisitor, isPreLaunch, children }: Cli
       {!isVipVisitor && <PageProgressBar />}
       {!isVipVisitor && !isPreLaunch && <WelcomeAnimation />}
 
-      <SmoothScroll>
-        <div className="flex-1">
-          {children}
-        </div>
-      </SmoothScroll>
+      <SmoothScroll />
+      <div className="flex-1">
+        {children}
+      </div>
       {!isVipVisitor && <BackToTop />}
       <CookieConsent />
       <GoogleAnalytics />

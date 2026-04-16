@@ -154,3 +154,75 @@ export function trackPurchase(
     })),
   });
 }
+
+/**
+ * Track lightbox open (custom engagement event)
+ */
+export function trackLightboxOpen(itemId: string, itemName: string) {
+  if (!canTrack()) return;
+  window.gtag("event", "lightbox_open", {
+    item_id: itemId,
+    item_name: itemName,
+  });
+}
+
+/**
+ * Track lightbox close with duration
+ */
+export function trackLightboxClose(itemId: string, durationMs: number) {
+  if (!canTrack()) return;
+  window.gtag("event", "lightbox_close", {
+    item_id: itemId,
+    duration_ms: durationMs,
+  });
+}
+
+/**
+ * Track click on artwork (from galerie grid or boutique)
+ */
+export function trackClickArtwork(
+  itemId: string,
+  itemName: string,
+  source: string
+) {
+  if (!canTrack()) return;
+  window.gtag("event", "click_artwork", {
+    item_id: itemId,
+    item_name: itemName,
+    source,
+  });
+}
+
+/**
+ * Track scroll depth (25%, 50%, 75%, 100%)
+ */
+export function trackScrollDepth(depth: number) {
+  if (!canTrack()) return;
+  window.gtag("event", "scroll_depth", {
+    depth_percentage: depth,
+    non_interaction: true,
+  });
+}
+
+/**
+ * Track time spent on page
+ */
+export function trackTimeOnPage(seconds: number) {
+  if (!canTrack()) return;
+  window.gtag("event", "time_on_page", {
+    duration_seconds: seconds,
+    non_interaction: true,
+  });
+}
+
+/**
+ * Track funnel step (home → galerie → boutique → checkout → purchase)
+ */
+export function trackFunnelStep(
+  step: "home" | "galerie" | "boutique" | "checkout" | "purchase"
+) {
+  if (!canTrack()) return;
+  window.gtag("event", "funnel_step", {
+    step_name: step,
+  });
+}

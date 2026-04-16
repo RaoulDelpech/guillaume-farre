@@ -16,6 +16,10 @@ const PageProgressBar = dynamic(() => import('@/components/PageProgressBar'), { 
 const BackToTop = dynamic(() => import('@/components/BackToTop'), { ssr: false })
 const CookieConsent = dynamic(() => import('@/components/CookieConsent'), { ssr: false })
 const GoogleAnalytics = dynamic(() => import('@/components/GoogleAnalytics'), { ssr: false })
+const ClarityAnalytics = dynamic(() => import('@/components/ClarityAnalytics'), { ssr: false })
+const ScrollDepthTracker = dynamic(() => import('@/components/ScrollDepthTracker'), { ssr: false })
+const TimeOnPageTracker = dynamic(() => import('@/components/TimeOnPageTracker'), { ssr: false })
+const WebVitalsReporter = dynamic(() => import('@/components/WebVitalsReporter'), { ssr: false })
 const ImageProtection = dynamic(() => import('@/components/ImageProtection'), { ssr: false })
 
 interface ClientShellProps {
@@ -39,6 +43,10 @@ export default function ClientShell({ isVipVisitor, isPreLaunch, children }: Cli
       {!isVipVisitor && <BackToTop />}
       <CookieConsent />
       <GoogleAnalytics />
+      <ClarityAnalytics />
+      <ScrollDepthTracker />
+      <TimeOnPageTracker />
+      <WebVitalsReporter />
       <ImageProtection />
     </>
   )

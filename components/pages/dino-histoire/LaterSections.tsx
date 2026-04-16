@@ -202,7 +202,7 @@ export function CtaSection() {
               className="px-8 sm:px-12 py-4 sm:py-5 bg-black hover:bg-gray-900 text-white font-light tracking-wide rounded transition-all min-h-[48px] flex items-center justify-center">
               Voir la galerie
             </Link>
-            <Link href="/boutique"
+            <Link href="/galerie"
               className="px-8 sm:px-12 py-4 sm:py-5 border border-border hover:border-foreground text-foreground font-light tracking-wide rounded transition-all min-h-[48px] flex items-center justify-center">
               Commander une œuvre
             </Link>

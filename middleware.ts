@@ -51,6 +51,12 @@ export default function middleware(request: NextRequest) {
     }
   }
 
+  // Redirect /boutique → /galerie (page supprimee)
+  if (pathname.endsWith('/boutique')) {
+    const locale = getLocale(pathname);
+    return NextResponse.redirect(new URL(`/${locale}/galerie`, request.url), 301);
+  }
+
   // Assets et fichiers statiques — toujours accessibles
   if (
     pathname.startsWith('/_next/') ||

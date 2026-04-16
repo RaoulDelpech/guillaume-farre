@@ -3,7 +3,7 @@ import photos from '@/data/photos.json';
 
 /**
  * Sitemap.xml pour Google Search Console
- * Pages publiques en FR/EN/IT + boutique + pages produit avec images
+ * Pages publiques en FR/EN/IT + pages produit avec images
  *
  * @author Lalou
  */
@@ -16,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '', changeFrequency: 'daily', priority: 1.0 },
     { path: '/galerie', changeFrequency: 'weekly', priority: 0.9 },
     { path: '/toiles', changeFrequency: 'weekly', priority: 0.9 },
-    { path: '/boutique', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/contact', changeFrequency: 'monthly', priority: 0.7 },
     { path: '/faq', changeFrequency: 'monthly', priority: 0.6 },
     { path: '/cgv', changeFrequency: 'monthly', priority: 0.3 },

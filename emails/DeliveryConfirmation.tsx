@@ -231,7 +231,7 @@ export default function DeliveryConfirmationEmail({
                 {t.ctaText}
               </Text>
               <Button
-                href={`https://guillaumefarre.com/${locale}/boutique`}
+                href={`https://guillaumefarre.com/${locale}/galerie`}
                 style={styles.ctaButton}
               >
                 {t.ctaButton}

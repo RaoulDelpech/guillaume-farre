@@ -282,5 +282,17 @@
     "hours": "hours",
     "minutes": "minutes",
     "seconds": "seconds"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "browseGallery": "Browse gallery",
+    "info": "Prints are added directly from the gallery"
+  },
+  "login": {
+    "title": "Admin access",
+    "password": "Password",
+    "enter": "Enter",
+    "error": "Incorrect password"
   }
 }

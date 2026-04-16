@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Navigation from '@/components/navigation/Navigation';
 import { Check } from 'lucide-react';
 import Link from 'next/link';
+import { trackPurchase, trackFunnelStep } from '@/lib/analytics';
 
 /**
  * Page de confirmation après paiement Stripe
@@ -42,7 +43,25 @@ export default function OrderSuccessPage({
           return;
         }
 
-        await response.json();
+        const sessionData = await response.json();
+
+        // Track purchase events (GA4 + server-side)
+        const amount = sessionData.amount_total
+          ? sessionData.amount_total / 100
+          : 0;
+
+        trackPurchase(
+          sessionId,
+          [{ id: 'stripe-item', name: 'Photographie', price: amount, quantity: 1 }],
+          amount,
+        );
+        trackFunnelStep('purchase');
+
+        fetch('/api/analytics/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'purchase', revenue: amount }),
+        }).catch(() => {});
       } catch (err) {
         setError('Erreur lors de la vérification du statut');
         console.error('Fetch error:', err);

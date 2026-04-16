@@ -33,8 +33,6 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/:locale/histoire', destination: '/:locale', permanent: false },
-      { source: '/:locale/panier', destination: '/:locale/boutique', permanent: false },
-      { source: '/:locale/faq', destination: '/:locale/galerie', permanent: false },
     ];
   },
   // Security + performance headers

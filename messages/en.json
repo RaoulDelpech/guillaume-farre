@@ -2,46 +2,46 @@
   "nav": {
     "accueil": "Home",
     "photographies": "Photographs",
-    "toiles": "Paintings",
+    "toiles": "Canvases",
     "histoire": "Story",
-    "atelier": "Workshop",
+    "atelier": "Studio",
     "contact": "Contact"
   },
   "hero": {
     "origine": {
-      "title": "The Pink Ferrari n°20",
-      "subtitle": "I was 4 years old. It marked me forever.",
-      "description": "I remember that racing Ferrari, immense and pink. At 4 years old, facing it, I didn't dream of owning one someday. I dreamed of merging with its power. Forty years later, I have four in my workshop. They're not here to be admired. They create.",
+      "title": "Christmas 1972",
+      "subtitle": "A pot of red paint, a pedal car, and a whole house to cross.",
+      "description": "I was seven. I drove too fast, knocked over the pot, and kept going. On the floorboards, the tyres left their marks, tracing the lines. My mother told me off. I thought it was beautiful. Fifty years on, I have simply found better wheels.",
       "cta": "Discover the story"
     },
     "atelier": {
-      "title": "The Workshop",
-      "subtitle": "Four Ferraris. 1,200-kilo instruments.",
-      "description": "In my workshop, these cars are tools. 1,200 kilos of metal that leave imprints on canvas. Every acceleration, every braking, every controlled drift produces something I cannot reproduce by hand. That's the irreplicable gesture I'm seeking.",
-      "cta": "Discover the workshop"
+      "title": "The studio",
+      "subtitle": "A garage, a Dino, and twenty years of sleepless nights.",
+      "description": "For twenty years, I got up in the middle of the night to go and paint, alone with my cars and a question that never left me: how do you represent movement through imprints on a canvas? The technique refined itself gradually — wheel speed, forward or reverse, density of the products, freshly primed canvases, rain sometimes. It is no longer a happy accident.",
+      "cta": "Discover the studio"
     },
     "creations": {
-      "title": "Two Forms, One Process",
-      "subtitle": "Unique Canvases & Documentary Photographs",
-      "description": "The canvases are born from the Ferrari's direct passage on the surface. Industrial paint, friction, heat. The result is final. The photographs capture this moment of creation. The instant when movement becomes matter.",
-      "cta": "Understand the process"
+      "title": "Canvases & Photographs",
+      "subtitle": "The work of art that produces a work",
+      "description": "My canvases accumulate layers of paint like a road coating itself in grease, or the floor of a workshop after decades of oil changes. I can paint according to the speed of the wheel rotation — I roughly know what will happen. My photographs capture the instant when the Dino works on the canvas.",
+      "cta": "Discover the studio"
     },
     "photographies": {
-      "title": "Three Photographic Series",
-      "subtitle": "Imprints • Workshop • Projections",
-      "description": "The imprints show the marks left by the wheels and body. The workshop reveals the cars at rest, between sessions. The projections freeze the controlled violence of the process. Each series documents a different facet of creation.",
+      "title": "Three photographic series",
+      "subtitle": "Imprints • Studio • Projections",
+      "description": "The imprints show what the wheels and bodywork deposited on the canvas. The studio is the other side — the cars smeared in paint, the canvases stacked up, the floor covered. The projections capture the movement the instant it happens.",
       "cta": "View the gallery"
     },
     "acquerir": {
-      "title": "Own a Trace, Not a Reproduction",
-      "subtitle": "Numbered Limited Editions — Museum Quality",
-      "description": "These works are not printed: they document a unique instant when a Ferrari painted under my impulses. A2, A3, A4 formats. Professional black or aluminum framing.",
+      "title": "Acquire a work",
+      "subtitle": "Numbered and signed prints",
+      "description": "Each photograph documents a moment of creation that will never recur. Numbered and signed prints, from A4 up to large format 2A0. Certificate of authenticity included.",
       "cta": "View available works"
     },
     "histoire": {
-      "title": "From the Pink Ferrari n°20 to Four Grey Ferraris",
-      "subtitle": "1985 - 2025: 40 Years of Obsession",
-      "description": "A child fascinated by a racing Ferrari. Years of sketches, models, dreams. Then one day, the decision: no longer look at Ferraris. Use them to create. This is the story of a quest that transforms admiration into action.",
+      "title": "On the trail of the Dino",
+      "subtitle": "From the pedal car to the Meyerbeer garage",
+      "description": "At eight, watching The Persuaders!, I already knew what I wanted: to be Danny Wilde. The Dino's aesthetic entered my child's heart, and it never left. I haunted the Toulouse dealership, collected the catalogues, tracked down a 250 GTO made of Chapy. The passion never let go.",
       "cta": "Read the full story"
     },
     "galerie": "Gallery"
@@ -49,13 +49,13 @@
   "home": {
     "nextEvent": "Next event:",
     "conceptCarArt": "",
-    "livePerformance": "Ferraris create live at the workshop",
+    "livePerformance": "Live performance at the studio",
     "selectionTitle": "Gallery — Selection",
     "artist": {
       "label": "The Artist",
       "name": "Guillaume Farré",
-      "bio": "Sculptor and visual artist, Guillaume transforms the Ferrari into a creative tool. Each work captures the moment when 500 horses meet the canvas. A unique approach where automotive movement becomes artistic gesture.",
-      "cta": "Discover the story"
+      "bio": "At Christmas 1972, I knocked over a pot of red paint with my pedal car. The marks on the floorboards — I thought they were beautiful. Fifty years later, it is a Dino 246 GT that leaves its imprints — on canvases.",
+      "cta": "Discover my story"
     },
     "photos": {
       "title": "Photographs",
@@ -63,41 +63,47 @@
       "cta": "View the gallery"
     },
     "toiles": {
-      "title": "Paintings",
+      "title": "Canvases",
       "subtitle": "",
       "cta": "Contact me"
     },
-    "welcomeText1": "Welcome and thank you. For being here in these first moments of the studio opening and this adventure. On this site, I try to share what I am passionate about; I hope you will find joy and inspiration.",
-    "welcomeText2": "I ask you not to take screenshots, and not to share what you find on this site.",
-    "welcomeText3": "If you reserve a painting, I would like to borrow it for a fortnight for my very first exhibition. I will cover the return transport and insurance, and you will naturally be invited as a guest of honour.",
-    "welcomeText4": "Do not hesitate to <link>write to me</link>, I would be delighted to get to know you and to invite you to visit the studio.",
+    "welcomeText1": "Welcome, and thank you. For being here in these first moments of the studio opening and of this adventure. On this site I try to share what I am passionate about; I hope you will find joy and inspiration.",
+    "welcomeText2": "I ask you not to take screenshots, not to share what you find on this site.",
+    "welcomeText3": "If you reserve a canvas, I would like to borrow it for a fortnight for my very first exhibition. I will cover the return transport and insurance, and you will naturally be invited as a guest of honour.",
+    "welcomeText4": "Do not hesitate to <link>write to me</link> — I would be delighted to meet you and invite you to visit the studio.",
     "welcomeSignature": "Guillaume"
   },
   "footer": {
     "rights": "© {year} Guillaume Farré. All rights reserved.",
     "legal": "Legal notice",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "photographs": "Photographs",
+    "canvases": "Canvases",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "terms": "Terms & Conditions",
+    "returns": "Returns & Exchanges"
   },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "Three photographic series",
-    "intro": "These images document the creation process. There is never a \"second take\".",
+    "subtitle": "Canvases, photographs, traces on the canvas.",
+    "intro": "What the Dino deposits on the canvas cannot be reproduced. Here, it is documented.",
     "empreintes": {
       "title": "Imprints",
-      "description": "The marks left by the wheels, body, chassis. Industrial paint under pressure. Each contact produces a different result."
+      "description": "The wheels, the bodywork, the chassis — everything that touches the canvas leaves its mark. Industrial paint; the result changes with every pass."
     },
     "atelier": {
-      "title": "Workshop",
-      "description": "The Ferraris at rest, between work sessions. Four cars waiting for their next passage on canvas."
+      "title": "Studio",
+      "description": "The Dino between sessions, the canvases stacked against the walls, the floor covered in layers accumulated over the years. The other side."
     },
     "projections": {
       "title": "Projections",
-      "description": "Frozen movement. Paint splatters on walls, floor, canvases. The controlled violence of the gesture."
+      "description": "Paint in motion, the moment it leaves the wheels and reaches the canvas, the walls, the floor. The gesture captured the instant it happens."
     },
     "allWorks": "All works",
     "filterAll": "View all",
     "filterEmpreintes": "Imprints",
-    "filterAtelier": "Workshop",
+    "filterAtelier": "Studio",
     "filterProjections": "Projections",
     "photosTitle": "Photographs",
     "photosSubtitle": "",
@@ -112,7 +118,15 @@
     "numbering": "no.{start}-{end}",
     "onRequest": "On request",
     "editionCount": "copies",
-    "lightboxSwipe": "Swipe"
+    "lightboxSwipe": "Swipe",
+    "contactMe": "Contact me",
+    "soldOut": "Sold out",
+    "loading": "Loading...",
+    "monumentalDesc": "Monumental format — Unique piece — On request",
+    "legalNotice": "Numbered and signed print — Limited edition",
+    "taxNotice": "VAT not applicable, article 293 B of the French General Tax Code",
+    "printsAvailable": "{count, plural, one {# print available} other {# prints available}}",
+    "paymentError": "Payment error"
   },
   "contact": {
     "title": "Contact",
@@ -122,45 +136,45 @@
     "send": "Send"
   },
   "dino": {
-    "tag": "The Dino in Motion",
-    "title": "The Ferrari Dino",
-    "subtitle": "The red instrument that paints. The story of an obsession turned into reality.",
+    "tag": "The Dino in motion",
+    "title": "The Dino",
+    "subtitle": "Chassis #04844, fresh from the 1972 Paris Motor Show on the Pozzi stand. She is as beautiful as Sophia Loren.",
     "origin": {
       "label": "The Origin",
-      "title": "From Pink to Red",
-      "text1": "Forty years after encountering the pink Ferrari of his childhood, Guillaume decided to transform his obsession into a creative method. The red Dino isn't just a vehicle. It's an instrument of creation, an extension of his artistic will.",
-      "text2": "Curves, accelerations, braking: everything is controlled. The Dino dances on the canvas, leaving definitive traces. Guillaume captures this dialogue between man and machine."
+      "title": "From Danny Wilde to the Meyerbeer garage",
+      "text1": "At eight, watching The Persuaders!, I knew I wanted to be Danny Wilde. The Dino 246 GT entered my child's imagination that evening, and it never left. I haunted the Ferrari dealership in Toulouse, collected the catalogues, tracked down a 250 GTO made of Chapy, then one day, at thirty-three, I found her at the Meyerbeer garage in Nice.",
+      "text2": "When I was little, I wanted to be a racing driver or a thief. I became neither — but the Dino became my instrument, and the studio my circuit."
     },
     "specs": {
       "label": "Specifications",
-      "title": "Technical Sheet",
+      "title": "Technical sheet",
       "model": "Model",
-      "modelValue": "Ferrari 206 GT Dino",
+      "modelValue": "Dino 246 GT",
       "year": "Year",
-      "yearValue": "1974",
-      "color": "Color",
-      "colorValue": "Rosso Corsa (Ferrari Red)",
+      "yearValue": "1972",
+      "color": "Finish",
+      "colorValue": "Grigio Metallizzato",
       "engine": "Engine",
-      "engineValue": "V6 2.0L twin-turbo, rear longitudinal configuration",
+      "engineValue": "V6 2.4L naturally aspirated, transverse mid-engine",
       "power": "Power",
-      "powerValue": "190 hp at 7600 rpm",
+      "powerValue": "195 bhp at 7,600 rpm",
       "weight": "Weight",
-      "weightValue": "1020 kg"
+      "weightValue": "1,080 kg"
     },
     "creative": {
       "label": "Its Role",
-      "title": "An Instrument of Creation",
-      "text1": "The Dino isn't preserved in a museum. It lives, it creates, it paints. Its tires leave marks. Its weight produces traces. Its speed generates splashes.",
-      "text2": "Each passage is different. Each creation is final. This impossibility to redo makes the value of the work."
+      "title": "My instrument of creation",
+      "text1": "The Dino is not kept under a cover. She works. The tyres print the canvas, the weight crushes the pigments, the wheel speed determines the pattern. I control forward, reverse, the density of the products. Sometimes I wait for the rain. It is no longer the happy accident of the pedal car — it is a technique I spent twenty years building.",
+      "text2": "As Guy Depré said: 'It is the work of art that produces a work.' The Dino does not decorate the studio. She transforms it."
     },
     "gallery": {
       "label": "Gallery",
-      "title": "The Dino in Images"
+      "title": "The Dino in images"
     },
     "cta": {
-      "title": "See the Dino in Action",
-      "text": "Discover how this mythical machine paints on canvas. Automotive, art and obsession united.",
-      "button1": "Discover the workshop",
+      "title": "See the Dino in action",
+      "text": "The Dino 246 GT #04844, from the Paris Motor Show to the Biarritz studio.",
+      "button1": "Discover the studio",
       "button2": "View the works"
     }
   },
@@ -170,7 +184,7 @@
     "privilegeTitle": "Early Collector Privilege",
     "privilegeDescription": "As a visitor before the official opening, you benefit from an exclusive discount.",
     "discount": "-25%",
-    "originalPrice": "Catalog price",
+    "originalPrice": "Catalogue price",
     "yourPrice": "Your price",
     "checkout": "Reserve the work",
     "preview": "Preview",
@@ -178,7 +192,7 @@
     "vipInvitation": "Your VIP invitation"
   },
   "cookies": {
-    "message": "This site uses cookies to improve your experience and analyze traffic.",
+    "message": "This site uses cookies to improve your experience and analyse traffic.",
     "accept": "Accept",
     "refuse": "Decline",
     "learnMore": "Learn more"
@@ -211,7 +225,7 @@
     "reserveForm": {
       "name": "Your name",
       "email": "Your email",
-      "phone": "Your phone",
+      "phone": "Your phone number",
       "message": "Message (optional)",
       "submit": "Confirm reservation",
       "cancel": "Cancel",
@@ -260,7 +274,7 @@
   },
   "newsletter": {
     "title": "Stay informed",
-    "description": "Receive an email when new works are added to the site",
+    "description": "Receive an email whenever a new work is added to the site",
     "placeholder": "Your email address",
     "submit": "Subscribe",
     "success": "Thank you! You will be notified of new works.",
@@ -286,7 +300,7 @@
   "cart": {
     "title": "Cart",
     "empty": "Your cart is empty",
-    "browseGallery": "Browse gallery",
+    "browseGallery": "Browse the gallery",
     "info": "Prints are added directly from the gallery"
   },
   "login": {

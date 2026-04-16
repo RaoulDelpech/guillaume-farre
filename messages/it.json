@@ -4,44 +4,44 @@
     "photographies": "Fotografie",
     "toiles": "Tele",
     "histoire": "Storia",
-    "atelier": "Laboratorio",
+    "atelier": "Atelier",
     "contact": "Contatto"
   },
   "hero": {
     "origine": {
-      "title": "La Ferrari rosa n°20",
-      "subtitle": "Avevo 4 anni. Mi ha segnato per sempre.",
-      "description": "Ricordo quella Ferrari da corsa, immensa e rosa. A 4 anni, davanti a lei, non ho sognato di possederne una un giorno. Ho sognato di fondermi con la sua potenza. Quarant'anni dopo, ne ho quattro nel mio atelier. Non sono qui per essere ammirate. Creano.",
+      "title": "Natale 1972",
+      "subtitle": "Un barattolo di vernice rossa, un'automobilina a pedali e tutta una casa da attraversare.",
+      "description": "Avevo sette anni. Andavo troppo forte, ho rovesciato il barattolo e ho continuato. Sul pavimento, i pneumatici lasciavano le loro impronte, disegnavano le traiettorie. Mia madre mi ha sgridato. Io lo trovavo bello. Cinquant'anni dopo, ho semplicemente trovato ruote migliori.",
       "cta": "Scoprire la storia"
     },
     "atelier": {
       "title": "L'atelier",
-      "subtitle": "Quattro Ferrari. Strumenti da 1.200 kg.",
-      "description": "Nel mio atelier, queste auto sono strumenti. 1.200 kg di metallo che lasciano impronte sulla tela. Ogni accelerazione, ogni frenata, ogni derapata controllata produce qualcosa che non posso riprodurre a mano. È questo gesto irreplicabile che cerco.",
+      "subtitle": "Un garage, una Dino e vent'anni di notti in bianco.",
+      "description": "Per vent'anni mi sono alzato di notte per andare a dipingere, solo con le mie auto e una domanda che non mi lasciava mai: come rappresentare il movimento attraverso impronte su una tela? La tecnica si è affinata progressivamente — velocità di rotazione, marcia avanti o indietro, densità dei prodotti, tele appena preparate, a volte la pioggia. Non è più l'incidente magico.",
       "cta": "Scoprire l'atelier"
     },
     "creations": {
-      "title": "Due forme, un processo",
-      "subtitle": "Tele uniche & Fotografie documentarie",
-      "description": "Le tele nascono dal passaggio diretto della Ferrari sulla superficie. Vernice industriale, attrito, calore. Il risultato è definitivo. Le fotografie catturano questo momento di creazione. L'istante in cui il movimento diventa materia.",
-      "cta": "Capire il processo"
+      "title": "Tele e Fotografie",
+      "subtitle": "L'opera d'arte che produce un'opera",
+      "description": "Le mie tele accumulano strati di vernice come una strada che si ricopre di grasso, o il pavimento di un'officina dopo decenni di cambi d'olio. Sono in grado di dipingere in funzione della velocità di rotazione delle ruote — so più o meno cosa succederà. Le mie fotografie catturano quell'istante in cui la Dino lavora sulla tela.",
+      "cta": "Scoprire l'atelier"
     },
     "photographies": {
       "title": "Tre serie fotografiche",
       "subtitle": "Impronte • Atelier • Proiezioni",
-      "description": "Le impronte mostrano i segni lasciati dalle ruote e dalla carrozzeria. L'atelier rivela le auto a riposo, tra le sessioni. Le proiezioni congelano la violenza controllata del processo. Ogni serie documenta una diversa sfaccettatura della creazione.",
+      "description": "Le impronte mostrano ciò che le ruote e la carrozzeria hanno depositato sulla tela. L'atelier è il dietro le quinte — le auto macchiate di vernice, le tele impilate, il pavimento ricoperto. Le proiezioni catturano il movimento nell'istante in cui si produce.",
       "cta": "Vedere la galleria"
     },
     "acquerir": {
       "title": "Acquisire un'opera",
-      "subtitle": "Edizioni limitate numerate — Qualità museale",
-      "description": "Queste fotografie documentano il momento in cui la Ferrari ha creato la tela. Formati A2, A3, A4. Incorniciatura professionale nera o alluminio.",
+      "subtitle": "Tirature numerate e firmate",
+      "description": "Ogni fotografia documenta un momento di creazione che non si ripeterà. Tirature numerate e firmate, dal formato A4 al grande formato 2A0. Certificato di autenticità incluso.",
       "cta": "Vedere le opere disponibili"
     },
     "histoire": {
-      "title": "Dalla Ferrari rosa alle quattro Ferrari",
-      "subtitle": "1985 - 2025: quarant'anni",
-      "description": "Da bambino, ero affascinato dalle Ferrari da corsa. Ho passato anni a disegnarle, a costruire modellini, a sognare davanti a loro. Un giorno, ho preso una decisione: smettere di guardarle. Usarle per creare. È la storia di un'ossessione trasformata in metodo.",
+      "title": "Sulle tracce della Dino",
+      "subtitle": "Dall'automobilina a pedali al garage Meyerbeer",
+      "description": "A otto anni, guardando Attenti a quei due, sapevo già cosa volevo: essere Danny Wilde. L'estetica della Dino è entrata nel mio cuore di bambino, e non ne è mai uscita. Ho fatto la posta alla concessionaria di Tolosa, collezionato i cataloghi, dato la caccia a una 250 GTO in Chapy. La passione non mi ha mai lasciato.",
       "cta": "Leggere la storia completa"
     },
     "galerie": "Galleria"
@@ -49,13 +49,13 @@
   "home": {
     "nextEvent": "Prossimo evento:",
     "conceptCarArt": "",
-    "livePerformance": "Le Ferrari creano dal vivo al laboratorio",
+    "livePerformance": "Performance dal vivo in atelier",
     "selectionTitle": "Galleria — Selezione",
     "artist": {
       "label": "L'Artista",
       "name": "Guillaume Farré",
-      "bio": "Scultore e artista plastico, Guillaume trasforma la Ferrari in strumento creativo. Ogni opera cattura l'istante in cui 500 cavalli incontrano la tela. Un approccio unico dove il movimento automobilistico diventa gesto artistico.",
-      "cta": "Scoprire la storia"
+      "bio": "A Natale del 1972, ho rovesciato un barattolo di vernice rossa con la mia automobilina a pedali. Le tracce sul pavimento — le trovavo belle. Cinquant'anni dopo, è una Dino 246 GT che lascia le sue impronte — sulle tele.",
+      "cta": "Scoprire la mia storia"
     },
     "photos": {
       "title": "Fotografie",
@@ -76,23 +76,29 @@
   "footer": {
     "rights": "© {year} Guillaume Farré. Tutti i diritti riservati.",
     "legal": "Note legali",
-    "privacy": "Informativa sulla privacy"
+    "privacy": "Informativa sulla privacy",
+    "photographs": "Fotografie",
+    "canvases": "Tele",
+    "contact": "Contatto",
+    "faq": "FAQ",
+    "terms": "CGV",
+    "returns": "Resi e cambi"
   },
   "gallery": {
     "title": "Galleria",
-    "subtitle": "Tre serie fotografiche",
-    "intro": "Queste immagini documentano il processo di creazione. Non c'è mai una \"seconda ripresa\".",
+    "subtitle": "Tele, fotografie, tracce sulla tela.",
+    "intro": "Ciò che la Dino deposita sulla tela non si riproduce. Qui è documentato.",
     "empreintes": {
       "title": "Impronte",
-      "description": "I segni lasciati dalle ruote, dalla carrozzeria, dal telaio. Vernice industriale sotto pressione. Ogni contatto produce un risultato diverso."
+      "description": "Le ruote, la carrozzeria, il telaio — tutto ciò che entra in contatto con la tela vi lascia il suo segno. Vernice industriale; il risultato cambia ad ogni passaggio."
     },
     "atelier": {
       "title": "Atelier",
-      "description": "Le Ferrari a riposo, tra le sessioni di lavoro. Quattro auto che aspettano il loro prossimo passaggio sulla tela."
+      "description": "La Dino tra le sessioni, le tele impilate contro le pareti, il pavimento ricoperto di strati accumulati nel corso degli anni. Il dietro le quinte."
     },
     "projections": {
       "title": "Proiezioni",
-      "description": "Il movimento congelato. Schizzi di vernice sui muri, sul pavimento, sulle tele. La violenza controllata del gesto."
+      "description": "La vernice in movimento, nell'istante in cui lascia le ruote e raggiunge la tela, le pareti, il pavimento. Il gesto colto nell'istante in cui si produce."
     },
     "allWorks": "Tutte le opere",
     "filterAll": "Vedere tutto",
@@ -105,14 +111,22 @@
     "acquire": "Acquistare questa stampa",
     "mailSubject": "Richiesta di acquisizione: {name}",
     "mailBody": "Buongiorno,\n\nDesidero acquistare una stampa della fotografia \"{name}\".\n\nLa prego di contattarmi per discutere i dettagli.\n\nCordiali saluti",
-    "lightboxOpen": "Visualizza a grandezza naturale",
+    "lightboxOpen": "Visualizzare a grandezza naturale",
     "lightboxClose": "Chiudere",
     "lightboxPrev": "Foto precedente",
     "lightboxNext": "Foto successiva",
     "numbering": "n°{start}-{end}",
     "onRequest": "Su richiesta",
     "editionCount": "esemplari",
-    "lightboxSwipe": "Scorri"
+    "lightboxSwipe": "Scorri",
+    "contactMe": "Contattami",
+    "soldOut": "Esaurito",
+    "loading": "Caricamento...",
+    "monumentalDesc": "Formato monumentale — Pezzo unico — Su richiesta",
+    "legalNotice": "Tiratura numerata e firmata — Edizione limitata",
+    "taxNotice": "IVA non applicabile, articolo 293 B del Codice generale delle imposte francese",
+    "printsAvailable": "{count, plural, one {# stampa disponibile} other {# stampe disponibili}}",
+    "paymentError": "Errore di pagamento"
   },
   "contact": {
     "title": "Contatto",
@@ -122,44 +136,44 @@
     "send": "Invia"
   },
   "dino": {
-    "tag": "La Dino in Movimento",
-    "title": "La Ferrari Dino",
-    "subtitle": "Lo strumento rosso che dipinge. La storia di un'ossessione diventata realtà.",
+    "tag": "La Dino in movimento",
+    "title": "La Dino",
+    "subtitle": "Telaio #04844, uscita dal Salone di Parigi 1972 sullo stand Pozzi. È bella come Sophia Loren.",
     "origin": {
       "label": "L'Origine",
-      "title": "Dal Rosa al Rosso",
-      "text1": "Quarant'anni dopo aver incontrato la Ferrari rosa della sua infanzia, Guillaume ha deciso di trasformare la sua ossessione in metodo creativo. La Dino rossa non è solo un veicolo. È uno strumento di creazione, un'estensione della sua volontà artistica.",
-      "text2": "Curve, accelerazioni, frenate: tutto è controllato. La Dino danza sulla tela, lasciando tracce definitive. Guillaume cattura questo dialogo tra uomo e macchina."
+      "title": "Da Danny Wilde al garage Meyerbeer",
+      "text1": "A otto anni, guardando Attenti a quei due, sapevo che volevo essere Danny Wilde. La Dino 246 GT è entrata nell'immaginario del bambino quella sera, e non ne è mai uscita. Ho fatto la posta alla concessionaria Ferrari di Tolosa, collezionato i cataloghi, dato la caccia a una 250 GTO in Chapy, poi un giorno, a trentatré anni, l'ho trovata al garage Meyerbeer a Nizza.",
+      "text2": "Da piccolo, avrei voluto fare il pilota o il ladro. Non sono stato né l'uno né l'altro — ma la Dino è diventata il mio strumento, e l'atelier il mio circuito."
     },
     "specs": {
       "label": "Caratteristiche",
-      "title": "Scheda Tecnica",
+      "title": "Scheda tecnica",
       "model": "Modello",
-      "modelValue": "Ferrari 206 GT Dino",
+      "modelValue": "Dino 246 GT",
       "year": "Anno",
-      "yearValue": "1974",
-      "color": "Colore",
-      "colorValue": "Rosso Corsa (Rosso Ferrari)",
+      "yearValue": "1972",
+      "color": "Finitura",
+      "colorValue": "Grigio Metallizzato",
       "engine": "Motore",
-      "engineValue": "V6 2.0L biturbo, configurazione longitudinale posteriore",
+      "engineValue": "V6 2.4L aspirato, centrale trasversale posteriore",
       "power": "Potenza",
-      "powerValue": "190 CV a 7600 giri/min",
+      "powerValue": "195 CV a 7.600 giri/min",
       "weight": "Peso",
-      "weightValue": "1020 kg"
+      "weightValue": "1.080 kg"
     },
     "creative": {
-      "label": "Il Suo Ruolo",
-      "title": "Uno Strumento di Creazione",
-      "text1": "La Dino non è conservata in un museo. Vive, crea, dipinge. I suoi pneumatici lasciano segni. Il suo peso produce tracce. La sua velocità genera schizzi.",
-      "text2": "Ogni passaggio è diverso. Ogni creazione è definitiva. Questa impossibilità di rifare costituisce il valore dell'opera."
+      "label": "Il suo ruolo",
+      "title": "Il mio strumento di creazione",
+      "text1": "La Dino non è conservata sotto un telo. Lavora. I pneumatici stampano la tela, il peso schiaccia i pigmenti, la velocità di rotazione determina il motivo. Controllo la marcia avanti, la marcia indietro, la densità dei prodotti. A volte aspetto la pioggia. Non è più l'incidente magico dell'automobilina a pedali — è una tecnica che ho impiegato vent'anni a costruire.",
+      "text2": "Come diceva Guy Depré: «È l'opera d'arte che produce un'opera». La Dino non decora l'atelier. Lo trasforma."
     },
     "gallery": {
       "label": "Galleria",
-      "title": "La Dino in Immagini"
+      "title": "La Dino in immagini"
     },
     "cta": {
-      "title": "Vedere la Dino in Azione",
-      "text": "Scopri come questa macchina mitica dipinge sulla tela. Automobile, arte e ossessione riunite.",
+      "title": "Vedere la Dino in azione",
+      "text": "La Dino 246 GT #04844, dal Salone di Parigi all'atelier di Biarritz.",
       "button1": "Scoprire l'atelier",
       "button2": "Vedere le opere"
     }
@@ -168,65 +182,65 @@
     "reserve": "Prenotare",
     "reserveThis": "Prenotare quest'opera",
     "privilegeTitle": "Privilegio Early Collector",
-    "privilegeDescription": "In quanto visitatore prima dell'apertura ufficiale, benefici di uno sconto esclusivo.",
+    "privilegeDescription": "In quanto visitatore prima dell'apertura ufficiale, beneficiate di uno sconto esclusivo.",
     "discount": "-25%",
-    "originalPrice": "Prezzo catalogo",
-    "yourPrice": "Il tuo prezzo",
+    "originalPrice": "Prezzo di catalogo",
+    "yourPrice": "Il vostro prezzo",
     "checkout": "Prenotare l'opera",
     "preview": "Anteprima",
-    "comingSoon": "Disponibile presto",
+    "comingSoon": "Prossimamente",
     "vipInvitation": "Il vostro invito VIP"
   },
   "cookies": {
-    "message": "Questo sito utilizza cookie per migliorare la tua esperienza e analizzare il traffico.",
-    "accept": "Accetta",
-    "refuse": "Rifiuta",
-    "learnMore": "Scopri di più"
+    "message": "Questo sito utilizza cookie per migliorare la vostra esperienza e analizzare il traffico.",
+    "accept": "Accettare",
+    "refuse": "Rifiutare",
+    "learnMore": "Per saperne di più"
   },
   "vip": {
     "tag": "Invito privato",
     "title": "Invito privato",
-    "subtitle": "Guillaume Farré ti invita a scoprire le sue tele",
+    "subtitle": "Guillaume Farré vi invita a scoprire le sue tele",
     "codeLabel": "Codice d'accesso",
     "codePlaceholder": "XXXXXXXX",
-    "enter": "Accedi",
+    "enter": "Accedere",
     "invalid": "Codice non valido",
     "expired": "Questo codice è scaduto",
     "alreadyUsed": "Questo codice è già stato utilizzato",
     "welcome": "Benvenuto nell'atelier",
-    "welcomeSubtitle": "Le tele ti aspettano"
+    "welcomeSubtitle": "Le tele vi aspettano"
   },
   "canvas": {
     "tag": "Collezione privata",
     "title": "Le tele",
     "subtitle": "Pezzi unici",
-    "reserve": "Prenota questa tela",
+    "reserve": "Prenotare questa tela",
     "interest": "Richiedere informazioni",
     "reserved": "Prenotata",
     "dimensions": "Dimensioni",
     "technique": "Tecnica",
     "price": "Prezzo",
-    "disclaimer": "Le tele non sono in vendita online. La prenotazione ti garantisce un contatto diretto con Guillaume.",
+    "disclaimer": "Le tele non sono in vendita online. La prenotazione vi garantisce un contatto diretto con Guillaume.",
     "disclaimerPublic": "Ogni tela è un pezzo unico. Per qualsiasi informazione: contact@guillaumefarre.com",
     "reserveForm": {
-      "name": "Il tuo nome",
-      "email": "La tua email",
-      "phone": "Il tuo telefono",
-      "message": "Messaggio (opzionale)",
-      "submit": "Conferma la prenotazione",
-      "cancel": "Annulla",
-      "success": "Prenotazione registrata — Guillaume ti contatterà entro 48 ore."
+      "name": "Il vostro nome",
+      "email": "La vostra email",
+      "phone": "Il vostro telefono",
+      "message": "Messaggio (facoltativo)",
+      "submit": "Confermare la prenotazione",
+      "cancel": "Annullare",
+      "success": "Prenotazione registrata — Guillaume vi contatterà entro 48 ore."
     },
     "interestForm": {
       "heading": "Interessato a quest'opera?",
-      "name": "Il tuo nome",
-      "email": "Il tuo indirizzo email",
-      "phone": "Telefono (opzionale)",
-      "messagePlaceholder": "Il tuo messaggio all'artista...",
-      "send": "Invia",
-      "cancel": "Annulla",
-      "close": "Chiudi",
-      "success": "Il tuo messaggio è stato inviato a Guillaume Farré. Ti risponderà al più presto.",
+      "name": "Il vostro nome",
+      "email": "Il vostro indirizzo email",
+      "phone": "Telefono (facoltativo)",
+      "messagePlaceholder": "Il vostro messaggio all'artista...",
+      "send": "Inviare",
+      "cancel": "Annullare",
+      "close": "Chiudere",
+      "success": "Il vostro messaggio è stato inviato a Guillaume Farré. Vi risponderà al più presto.",
       "mailSubject": "Richiesta di informazioni",
       "fromLabel": "Da:",
       "phoneLabel": "Telefono:",
@@ -237,11 +251,11 @@
   "adminVip": {
     "title": "Codici VIP",
     "tag": "Amministrazione",
-    "generate": "Genera un link",
+    "generate": "Generare un link",
     "generating": "Generazione...",
     "generated": "Codice generato",
-    "share": "Condividi",
-    "copy": "Copia",
+    "share": "Condividere",
+    "copy": "Copiare",
     "copied": "Copiato!",
     "activeCodes": "Codici attivi",
     "noActiveCodes": "Nessun codice attivo",
@@ -259,24 +273,24 @@
     }
   },
   "newsletter": {
-    "title": "Resta informato",
-    "description": "Ricevi un'email quando nuove opere vengono aggiunte al sito",
-    "placeholder": "Il tuo indirizzo email",
-    "submit": "Iscriviti",
-    "success": "Grazie! Sarai informato delle novità.",
-    "error": "Si è verificato un errore. Riprova.",
+    "title": "Restare informati",
+    "description": "Ricevete un'email ad ogni nuova opera aggiunta al sito",
+    "placeholder": "Il vostro indirizzo email",
+    "submit": "Iscriversi",
+    "success": "Grazie! Sarete informati delle novità.",
+    "error": "Si è verificato un errore. Riprovare.",
     "invalidEmail": "Indirizzo email non valido"
   },
   "comingSoon": {
-    "emailLabel": "Lascia la tua email per essere informato dell'apertura del sito",
-    "emailPlaceholder": "Il tuo indirizzo email",
-    "submit": "Invia",
-    "success": "Grazie! Sarai informato dell'apertura.",
-    "error": "Si è verificato un errore. Riprova.",
+    "emailLabel": "Lasciate la vostra email per essere informati dell'apertura del sito",
+    "emailPlaceholder": "Il vostro indirizzo email",
+    "submit": "Inviare",
+    "success": "Grazie! Sarete informati dell'apertura.",
+    "error": "Si è verificato un errore. Riprovare.",
     "invalidEmail": "Indirizzo email non valido",
     "privateAccess": "Accesso privato",
     "password": "Password",
-    "enter": "Entra",
+    "enter": "Entrare",
     "accessDenied": "Accesso negato",
     "days": "giorni",
     "hours": "ore",
@@ -286,13 +300,13 @@
   "cart": {
     "title": "Carrello",
     "empty": "Il carrello è vuoto",
-    "browseGallery": "Sfoglia la galleria",
+    "browseGallery": "Sfogliare la galleria",
     "info": "Le stampe vengono aggiunte direttamente dalla galleria"
   },
   "login": {
     "title": "Accesso amministrazione",
     "password": "Password",
-    "enter": "Entra",
+    "enter": "Entrare",
     "error": "Password errata"
   }
 }

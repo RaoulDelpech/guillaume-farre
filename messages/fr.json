@@ -76,7 +76,13 @@
   "footer": {
     "rights": "© {year} Guillaume Farré. Tous droits réservés.",
     "legal": "Mentions légales",
-    "privacy": "Politique de confidentialité"
+    "privacy": "Politique de confidentialité",
+    "photographs": "Photographies",
+    "canvases": "Toiles",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "terms": "CGV",
+    "returns": "Retours & Échanges"
   },
   "gallery": {
     "title": "Galerie",
@@ -112,7 +118,15 @@
     "numbering": "n°{start}-{end}",
     "onRequest": "Sur demande",
     "editionCount": "exemplaires",
-    "lightboxSwipe": "Glisser"
+    "lightboxSwipe": "Glisser",
+    "contactMe": "Me contacter",
+    "soldOut": "Épuisé",
+    "loading": "Chargement...",
+    "monumentalDesc": "Format monumental — Pièce unique — Sur demande",
+    "legalNotice": "Tirage numéroté et signé — Édition limitée",
+    "taxNotice": "TVA non applicable, article 293 B du Code général des impôts",
+    "printsAvailable": "{count, plural, one {# tirage disponible} other {# tirages disponibles}}",
+    "paymentError": "Erreur de paiement"
   },
   "contact": {
     "title": "Contact",

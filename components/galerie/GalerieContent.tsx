@@ -58,6 +58,7 @@ function PhotoPurchasePanel({
   locale: string;
   editions: EditionsMap;
 }) {
+  const t = useTranslations('gallery');
   const [purchasing, setPurchasing] = useState(false);
   const isMonumental = photo.id === 16;
 
@@ -108,12 +109,12 @@ function PhotoPurchasePanel({
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert(data.error || 'Erreur de paiement');
+        alert(data.error || t('paymentError'));
         setPurchasing(false);
       }
     } catch (err) {
       console.error('Checkout error:', err);
-      alert('Erreur de paiement');
+      alert(t('paymentError'));
       setPurchasing(false);
     }
   }
@@ -125,7 +126,7 @@ function PhotoPurchasePanel({
           href={`/${locale}/contact`}
           className="text-[11px] font-light tracking-[0.2em] uppercase text-[#1a1a1a]/70 hover:text-[#8c6e32] transition-colors duration-300 border-b border-[#8c6e32]/30 pb-0.5"
         >
-          Me contacter
+          {t('contactMe')}
         </a>
       </div>
     );
@@ -138,7 +139,7 @@ function PhotoPurchasePanel({
         onClick={onToggle}
         className="text-[11px] font-light tracking-[0.2em] uppercase text-[#1a1a1a]/70 hover:text-[#8c6e32] transition-colors duration-300 border-b border-[#8c6e32]/30 pb-0.5"
       >
-        {isOpen ? 'Fermer' : 'Acquérir ce tirage'}
+        {isOpen ? t('lightboxClose') : t('acquire')}
       </button>
 
       {isOpen && (
@@ -158,12 +159,12 @@ function PhotoPurchasePanel({
                 >
                   <span className="font-light uppercase">{FORMATS[format].label}</span>
                   <span className="font-normal tabular-nums">
-                    {soldOut ? 'Épuisé' : formatPrice(price)}
+                    {soldOut ? t('soldOut') : formatPrice(price)}
                   </span>
                 </button>
                 {available !== null && !soldOut && (
                   <p className="text-[9px] font-light tracking-[0.15em] uppercase text-[#9a9a9a] mt-0.5">
-                    {available} tirage{available > 1 ? 's' : ''} disponible{available > 1 ? 's' : ''}
+                    {t('printsAvailable', { count: available })}
                   </p>
                 )}
               </div>
@@ -343,12 +344,12 @@ export function GalerieContent() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        alert(data.error || 'Erreur de paiement');
+        alert(data.error || t('paymentError'));
         setPurchasing(false);
       }
     } catch (err) {
       console.error('Checkout error:', err);
-      alert('Erreur de paiement');
+      alert(t('paymentError'));
       setPurchasing(false);
     }
   }
@@ -484,10 +485,10 @@ export function GalerieContent() {
         {/* Mentions legales */}
         <div className="text-center mt-16 sm:mt-24 space-y-2">
           <p className="text-xs font-light tracking-[0.15em] uppercase text-[#8c8c8c]">
-            Tirage numéroté et signé — Édition limitée
+            {t('legalNotice')}
           </p>
           <p className="text-xs font-light text-[#a0a0a0]">
-            TVA non applicable, article 293 B du Code général des impôts
+            {t('taxNotice')}
           </p>
         </div>
       </div>
@@ -625,13 +626,13 @@ export function GalerieContent() {
                   /* Photo 16 (Bettlejuice) : piece unique, sur demande */
                   <>
                     <p className="text-sm text-white/50 font-light mb-6 leading-relaxed">
-                      Format monumental — Pièce unique — Sur demande
+                      {t('monumentalDesc')}
                     </p>
                     <a
                       href={`/${locale}/contact`}
                       className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px]"
                     >
-                      Me contacter
+                      {t('contactMe')}
                     </a>
                   </>
                 ) : (
@@ -693,13 +694,13 @@ export function GalerieContent() {
                                         : 'text-white/70'
                                     }`}
                                   >
-                                    {soldOut ? 'Épuisé' : formatPrice(displayPrice!)}
+                                    {soldOut ? t('soldOut') : formatPrice(displayPrice!)}
                                   </span>
                                 </span>
                               </button>
                               {available !== null && !soldOut && (
                                 <p className="text-[9px] font-light tracking-[0.15em] uppercase text-white/35 mt-0.5 pl-6">
-                                  {available} tirage{available > 1 ? 's' : ''} disponible{available > 1 ? 's' : ''}
+                                  {t('printsAvailable', { count: available })}
                                 </p>
                               )}
                             </div>
@@ -718,7 +719,7 @@ export function GalerieContent() {
                             </div>
                             {available !== null && !soldOut && (
                               <p className="text-[9px] font-light tracking-[0.15em] uppercase text-white/35 mt-0.5 pl-6">
-                                {available} tirage{available > 1 ? 's' : ''} disponible{available > 1 ? 's' : ''}
+                                {t('printsAvailable', { count: available })}
                               </p>
                             )}
                           </div>
@@ -744,9 +745,9 @@ export function GalerieContent() {
                           className="inline-flex items-center justify-center px-8 py-3.5 border border-white/40 hover:border-white text-white font-light tracking-wide text-sm uppercase transition-all duration-300 hover:bg-white/10 min-h-[44px] disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           {purchasing
-                            ? 'Chargement...'
+                            ? t('loading')
                             : currentSoldOut
-                              ? 'Épuisé'
+                              ? t('soldOut')
                               : currentPrice
                                 ? `${t('acquire')} — ${formatPrice(currentPrice)}`
                                 : t('onRequest')}

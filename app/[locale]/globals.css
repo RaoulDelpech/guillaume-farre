@@ -4,6 +4,12 @@
 
 @layer base {
   :root {
+    /* PhotoFrame responsive dimensions (mobile-first) */
+    --pf-frame: 12px;
+    --pf-mat: 16px;
+    --pf-bevel: 1px;
+    --pf-paper: 6px;
+
     /* Light mode - Palette Artistique */
     --background: 60 60% 99%; /* #FEFEFA - Ivoire texture lin */
     --foreground: 30 8% 12%;
@@ -67,6 +73,16 @@
   h1,h2,h3,h4,h5,h6 {
     /* Même famille que le body, différenciée par poids et taille */
     font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* PhotoFrame desktop overrides */
+@media (min-width: 640px) {
+  :root {
+    --pf-frame: 24px;
+    --pf-mat: 40px;
+    --pf-bevel: 2px;
+    --pf-paper: 12px;
   }
 }
 

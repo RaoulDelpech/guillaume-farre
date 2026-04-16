@@ -2,21 +2,12 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
 import { cookies } from 'next/headers';
 import { routing } from '@/i18n/routing';
 import Footer from '@/components/Footer';
 import StructuredData from '@/components/StructuredData';
 import AdminWrapper from '@/components/admin/AdminWrapper';
-
-import WelcomeAnimation from '@/components/WelcomeAnimation';
-import PageProgressBar from '@/components/PageProgressBar';
-import BackToTop from '@/components/BackToTop';
-import ScrollToTopOnNav from '@/components/ScrollToTopOnNav';
-import CookieConsent from '@/components/CookieConsent';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
-import ImageProtection from '@/components/ImageProtection';
-import SmoothScroll from '@/components/SmoothScroll';
+import ClientShell from '@/components/ClientShell';
 import "./globals.css";
 
 // SEO - Décisions audit 2025-01-20
@@ -126,24 +117,10 @@ export default async function RootLayout({
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider messages={messages}>
             <AdminWrapper>
-              <ScrollToTopOnNav />
-              {!isVipVisitor && (
-                <Suspense fallback={null}>
-                  <PageProgressBar />
-                </Suspense>
-              )}
-              {!isVipVisitor && !isPreLaunch && <WelcomeAnimation />}
-
-              <SmoothScroll>
-                <div className="flex-1">
-                  {children}
-                </div>
-              </SmoothScroll>
+              <ClientShell isVipVisitor={isVipVisitor} isPreLaunch={isPreLaunch}>
+                {children}
+              </ClientShell>
               {!isVipVisitor && !isPreLaunch && <Footer />}
-              {!isVipVisitor && <BackToTop />}
-              <CookieConsent />
-              <GoogleAnalytics />
-              <ImageProtection />
             </AdminWrapper>
         </NextIntlClientProvider>
       </body>

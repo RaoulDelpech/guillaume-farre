@@ -40,9 +40,6 @@ interface Photo {
 /** Seuil en px pour considerer un mouvement comme un swipe */
 const SWIPE_THRESHOLD = 50;
 
-/** Prix special photo 7 (Magma) pour test Stripe */
-const PHOTO_7_TEST_PRICE_24x36 = 20;
-
 /** Donnees d'edition par photo et format (nombre de tirages disponibles) */
 type EditionsMap = Record<string, Record<string, number>>;
 
@@ -64,7 +61,6 @@ function PhotoPurchasePanel({
   const isMonumental = photo.id === 16;
 
   function getPrice(format: PrintFormat): number {
-    if (photo.id === 7 && format === '24x36') return PHOTO_7_TEST_PRICE_24x36;
     return FORMATS[format].price!;
   }
 
@@ -271,10 +267,6 @@ export function GalerieContent() {
   function getLightboxPrice(): number | null {
     const config = FORMATS[selectedFormat];
     if (!config.price) return null;
-    if (lightboxIndex !== null) {
-      const photo = typedPhotos[lightboxIndex];
-      if (photo.id === 7 && selectedFormat === '24x36') return PHOTO_7_TEST_PRICE_24x36;
-    }
     return config.price;
   }
 
@@ -558,7 +550,6 @@ export function GalerieContent() {
                       fill
                       sizes="64px"
                       className="object-cover"
-                      unoptimized
                     />
                   </button>
                 ))}
@@ -579,9 +570,10 @@ export function GalerieContent() {
                     alt={typedPhotos[lightboxIndex].name}
                     width={typedPhotos[lightboxIndex].imageWidth}
                     height={typedPhotos[lightboxIndex].imageHeight}
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 90vw, 60vw"
                     className="max-w-[92vw] sm:max-w-[90vw] lg:max-w-[60vw] max-h-[45vh] sm:max-h-[50vh] lg:max-h-[75vh] w-auto h-auto object-contain"
+                    quality={80}
                     priority
-                    unoptimized
                   />
                 </motion.div>
               </AnimatePresence>
@@ -624,11 +616,7 @@ export function GalerieContent() {
                         const isSelected = selectedFormat === formatKey;
                         const available = getLightboxAvailable(formatKey);
                         const soldOut = available !== null && available <= 0;
-                        const displayPrice = purchasable
-                          ? (lightboxIndex !== null && typedPhotos[lightboxIndex].id === 7 && formatKey === '24x36'
-                              ? PHOTO_7_TEST_PRICE_24x36
-                              : config.price!)
-                          : null;
+                        const displayPrice = purchasable ? config.price! : null;
 
                         if (purchasable) {
                           return (

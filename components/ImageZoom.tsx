@@ -62,7 +62,7 @@ export default function ImageZoom({ src, alt, className = "" }: ImageZoomProps) 
           fill
           sizes="100vw"
           className="object-cover"
-          quality={90}
+          quality={80}
           priority
         />
 

@@ -29,7 +29,7 @@ const nextConfig = {
   },
   // Ensure server-side only modules are not bundled for client
   serverExternalPackages: ['sharp', 'imghash'],
-  // Security headers
+  // Security + performance headers
   async headers() {
     return [
       {
@@ -45,6 +45,27 @@ const nextConfig = {
         source: '/data/:path*',
         headers: [
           { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
+      },
+      // Cache immutable pour les bundles JS/CSS (noms hashes)
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      // Cache long pour les images statiques
+      {
+        source: '/images/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' },
+        ],
+      },
+      // Cache pour favicon et assets racine
+      {
+        source: '/favicon.svg',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000' },
         ],
       },
     ];

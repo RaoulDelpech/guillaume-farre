@@ -147,8 +147,8 @@ export default function Lightbox({ open, work, works = [], onClose, onNavigate, 
                       fill
                       sizes="100vw"
                       className="object-contain"
+                      quality={80}
                       priority
-                      unoptimized
                     />
                   </motion.div>
                 )}

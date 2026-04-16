@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import blurPlaceholders from "@/data/blur-placeholders.json";
 
 /**
  * Grille 6 images (mix photos + toiles) — bas de la homepage
@@ -7,6 +8,8 @@ import { Link } from "@/i18n/routing";
  *
  * @author Lalou
  */
+
+const BLUR = blurPlaceholders as Record<string, string>;
 
 const ITEMS: { src: string; alt: string; href: "/galerie" | "/toiles" }[] = [
   { src: "/images/works/photos/1.jpg", alt: "Photographie n°1", href: "/galerie" },
@@ -33,7 +36,10 @@ export default function LandingSection() {
                 alt={item.alt}
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"
+                quality={75}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                placeholder="blur"
+                blurDataURL={BLUR[item.src]}
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </Link>

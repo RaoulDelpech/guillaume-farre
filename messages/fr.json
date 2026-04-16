@@ -282,5 +282,17 @@
     "hours": "heures",
     "minutes": "minutes",
     "seconds": "secondes"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide",
+    "browseGallery": "Parcourir la galerie",
+    "info": "Les tirages sont ajoutés directement depuis la galerie"
+  },
+  "login": {
+    "title": "Accès administration",
+    "password": "Mot de passe",
+    "enter": "Entrer",
+    "error": "Mot de passe incorrect"
   }
 }

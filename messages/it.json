@@ -282,5 +282,17 @@
     "hours": "ore",
     "minutes": "minuti",
     "seconds": "secondi"
+  },
+  "cart": {
+    "title": "Carrello",
+    "empty": "Il carrello è vuoto",
+    "browseGallery": "Sfoglia la galleria",
+    "info": "Le stampe vengono aggiunte direttamente dalla galleria"
+  },
+  "login": {
+    "title": "Accesso amministrazione",
+    "password": "Password",
+    "enter": "Entra",
+    "error": "Password errata"
   }
 }

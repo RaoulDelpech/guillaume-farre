@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PhotoFrame from '@/components/PhotoFrame';
 import { STANDARD_FORMATS, PURCHASABLE_FORMATS, FORMATS, formatPrice, type PrintFormat } from '@/lib/pricing-config';
+import { trackViewItem, trackAddToCart, trackBeginCheckout, trackLightboxOpen, trackLightboxClose, trackClickArtwork } from '@/lib/analytics';
 import photos from '@/data/photos.json';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 
@@ -69,9 +70,15 @@ function PhotoPurchasePanel({
   }
 
   async function checkout(format: PrintFormat) {
+    const price = getPrice(format);
+    trackAddToCart({ id: `photo_${photo.id}`, name: photo.name, price, quantity: 1 });
+    trackBeginCheckout(
+      [{ id: `photo_${photo.id}`, name: photo.name, price, quantity: 1 }],
+      price
+    );
+
     setPurchasing(true);
     try {
-      const price = getPrice(format);
       const orientation =
         photo.imageWidth > photo.imageHeight ? 'landscape' : 'vertical';
 
@@ -189,6 +196,9 @@ export function GalerieContent() {
     setOpenPurchaseId((prev) => (prev === photoId ? null : photoId));
   };
 
+  // Lightbox timing for close duration tracking
+  const lightboxOpenTime = useRef<number>(0);
+
   // Touch swipe state
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -208,7 +218,14 @@ export function GalerieContent() {
     );
   }, [typedPhotos.length]);
 
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const closeLightbox = useCallback(() => {
+    if (lightboxIndex !== null) {
+      const photo = typedPhotos[lightboxIndex];
+      const duration = Date.now() - lightboxOpenTime.current;
+      trackLightboxClose(`photo_${photo.id}`, duration);
+    }
+    setLightboxIndex(null);
+  }, [lightboxIndex, typedPhotos]);
 
   // Navigation clavier dans la lightbox
   useEffect(() => {
@@ -243,7 +260,14 @@ export function GalerieContent() {
     }
   }, [lightboxIndex]);
 
-  const openLightbox = (index: number) => setLightboxIndex(index);
+  const openLightbox = (index: number) => {
+    const photo = typedPhotos[index];
+    trackClickArtwork(`photo_${photo.id}`, photo.name, 'galerie');
+    trackLightboxOpen(`photo_${photo.id}`, photo.name);
+    trackViewItem({ id: `photo_${photo.id}`, name: photo.name, price: 500, category: 'Photographie' });
+    lightboxOpenTime.current = Date.now();
+    setLightboxIndex(index);
+  };
 
   // Touch handlers pour le swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -282,6 +306,11 @@ export function GalerieContent() {
     const photo = typedPhotos[lightboxIndex];
     const price = getLightboxPrice();
     if (!price) return;
+
+    trackBeginCheckout(
+      [{ id: `photo_${photo.id}`, name: photo.name, price, quantity: 1 }],
+      price
+    );
 
     setPurchasing(true);
     try {

@@ -1,8 +1,9 @@
 'use client';
 
-import { use, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navigation from '@/components/navigation/Navigation';
+import { trackAddToCart, trackBeginCheckout, trackFunnelStep } from '@/lib/analytics';
 import photos from '@/data/photos.json';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 
@@ -36,6 +37,15 @@ export default function BoutiquePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = use(params);
+
+  useEffect(() => {
+    trackFunnelStep('checkout');
+    fetch('/api/analytics/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'funnel', step: 'boutique' }),
+    }).catch(() => {});
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#FAF7F2]">
@@ -83,6 +93,20 @@ function PhotoCard({ photo, locale }: { photo: Photo; locale: string }) {
 
     try {
       const selectedPrice = FORMAT_PRICES[selectedFormat];
+
+      // Track e-commerce events
+      trackAddToCart({
+        id: String(photo.id),
+        name: photo.name,
+        price: selectedPrice,
+        quantity: 1,
+        category: 'Photographie',
+      });
+      trackBeginCheckout(
+        [{ id: String(photo.id), name: photo.name, price: selectedPrice, quantity: 1, category: 'Photographie' }],
+        selectedPrice,
+      );
+
       const orientation =
         photo.imageWidth > photo.imageHeight ? 'landscape' : 'vertical';
 

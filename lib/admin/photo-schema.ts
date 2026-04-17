@@ -41,19 +41,23 @@ const CanvasDetailsSchema = z.object({
   weight: z.string().optional(),
 });
 
+// Les prix unlimited/limited sont des literals dans le type TS PhotoMetadata
+// (cf. lib/admin/photo-manager.ts). On reflete cette contrainte au runtime via
+// z.literal pour empecher un admin de persister des prix arbitraires
+// (ex: a4: 999). xxl et monumental restent number (sur devis).
 const PricesSchema = z.object({
   unlimited: z
     .object({
-      a4: z.number(),
-      a3: z.number(),
-      a2: z.number(),
+      a4: z.literal(150),
+      a3: z.literal(250),
+      a2: z.literal(400),
     })
     .optional(),
   limited: z
     .object({
-      a3: z.number(),
-      a2: z.number(),
-      a1: z.number(),
+      a3: z.literal(500),
+      a2: z.literal(800),
+      a1: z.literal(1200),
     })
     .optional(),
   xxl: z.number().optional(),

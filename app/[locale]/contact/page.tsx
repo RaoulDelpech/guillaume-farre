@@ -1,16 +1,25 @@
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import ContactContent from "@/components/pages/ContactContent";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contactez Guillaume Farré : acquisition d'œuvres, visite d'atelier, demandes presse ou collaborations. Atelier situé à Toulouse.",
-  openGraph: {
-    title: "Contact | Guillaume Farré",
-    description: "Prenez contact avec Guillaume Farré pour une acquisition ou une visite d'atelier.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Contacter Guillaume Farré" }],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.contact" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: t("ogAlt") }],
+    },
+  };
+}
 
 /**
  * Page Contact avec textes éditables en mode admin

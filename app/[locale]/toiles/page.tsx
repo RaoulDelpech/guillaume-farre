@@ -1,18 +1,27 @@
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import ToilesContent from "@/components/toiles/ToilesContent";
 import toiles from "@/data/toiles.json";
 import { getAccessLevel } from "@/lib/access";
 
-export const metadata: Metadata = {
-  title: "Toiles",
-  description: "Les toiles de Guillaume Farré — peintures abstraites créées par le passage direct de la Dino sur toile vierge. Pièces uniques, irréplicables.",
-  openGraph: {
-    title: "Toiles | Guillaume Farré",
-    description: "Peintures abstraites créées par le passage direct de la Dino sur toile vierge.",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: "Toiles de Guillaume Farré" }],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.toiles" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: t("ogAlt") }],
+    },
+  };
+}
 
 /**
  * Page Toiles

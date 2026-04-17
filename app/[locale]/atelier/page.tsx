@@ -1,15 +1,24 @@
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import AtelierContent from "@/components/pages/AtelierContent";
 
-export const metadata: Metadata = {
-  title: "Atelier",
-  description: "L'atelier de Guillaume Farré : la Dino, 1020 kilos d'instrument de création. Découvrez l'espace où naissent les œuvres, entre mécanique et peinture.",
-  openGraph: {
-    title: "Atelier | Guillaume Farré",
-    description: "Visitez l'atelier où Guillaume Farré crée ses œuvres avec ses Ferrari Dino.",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.atelier" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+    },
+  };
+}
 
 export default function AtelierPage() {
   return (

@@ -310,5 +310,54 @@
     "password": "Password",
     "enter": "Entrare",
     "error": "Password errata"
+  },
+  "meta": {
+    "siteName": "Guillaume Farré",
+    "rootDescription": "Guillaume Farré — Tele e Fotografie.",
+    "histoire": {
+      "title": "Storia",
+      "description": "La storia di Guillaume Farré: dalla piccola Ferrari n° 20 della sua infanzia alla Dino del suo atelier. Quarant'anni di passione automobilistica trasformati in arte.",
+      "ogTitle": "Storia | Guillaume Farré",
+      "ogDescription": "Scoprite il percorso artistico di Guillaume Farré, dall'infanzia ad oggi."
+    },
+    "atelier": {
+      "title": "Atelier",
+      "description": "L'atelier di Guillaume Farré: la Dino, 1020 chili di strumento creativo. Scoprite lo spazio in cui nascono le opere, tra meccanica e pittura.",
+      "ogTitle": "Atelier | Guillaume Farré",
+      "ogDescription": "Visitate l'atelier dove Guillaume Farré crea le sue opere con le sue Ferrari Dino."
+    },
+    "contact": {
+      "title": "Contatto",
+      "description": "Contattate Guillaume Farré: acquisizione di opere, visite all'atelier, richieste stampa o collaborazioni. Atelier a Tolosa.",
+      "ogTitle": "Contatto | Guillaume Farré",
+      "ogDescription": "Mettetevi in contatto con Guillaume Farré per un'acquisizione o una visita all'atelier.",
+      "ogAlt": "Contattare Guillaume Farré"
+    },
+    "galerie": {
+      "title": "Fotografie",
+      "description": "Fotografie di Guillaume Farré — stampe numerate e firmate, edizioni limitate.",
+      "ogTitle": "Fotografie | Guillaume Farré",
+      "ogDescription": "Fotografie di Guillaume Farré — stampe numerate e firmate.",
+      "ogAlt": "Fotografie di Guillaume Farré"
+    },
+    "toiles": {
+      "title": "Tele",
+      "description": "Le tele di Guillaume Farré — pitture astratte create dal passaggio diretto della Dino sulla tela vergine. Pezzi unici, irriproducibili.",
+      "ogTitle": "Tele | Guillaume Farré",
+      "ogDescription": "Pitture astratte create dal passaggio diretto della Dino sulla tela vergine.",
+      "ogAlt": "Tele di Guillaume Farré"
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Domande frequenti sulle opere di Guillaume Farré: ordine, pagamento, spedizione, resi, cornici e certificato di autenticità.",
+      "ogTitle": "FAQ | Guillaume Farré",
+      "ogDescription": "Tutte le risposte alle vostre domande sulle opere di Guillaume Farré.",
+      "ogAlt": "FAQ Guillaume Farré"
+    },
+    "login": {
+      "title": "Guillaume Farré — Accesso",
+      "description": "Accesso amministrazione del sito Guillaume Farré."
+    },
+    "galerieItemFallbackDescription": "{title} — Fotografia d'arte di Guillaume Farré"
   }
 }

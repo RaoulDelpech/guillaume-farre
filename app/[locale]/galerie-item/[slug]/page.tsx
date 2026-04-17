@@ -3,6 +3,7 @@ import Image from "next/image";
 import Navigation from "@/components/navigation/Navigation";
 import { getWorksFromMetadata } from "@/lib/works";
 import { Link } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import GalerieItemClient from "./GalerieItemClient";
 import { safeJsonLd } from "@/lib/safe-json-ld";
 import blurPlaceholders from "@/data/blur-placeholders.json";
@@ -23,7 +24,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const works = await getWorksFromMetadata();
   const work = works.find((w) => w.slug === slug);
 
@@ -31,12 +32,16 @@ export async function generateMetadata({
     return {};
   }
 
+  const t = await getTranslations({ locale, namespace: "meta" });
+  const fallback = t("galerieItemFallbackDescription", { title: work.title });
+  const description = work.description || fallback;
+
   return {
     title: work.title,
-    description: work.description || `${work.title} - Photographie d'art par Guillaume Farré`,
+    description,
     openGraph: {
       title: work.title,
-      description: work.description || `${work.title} - Photographie d'art par Guillaume Farré`,
+      description,
       images: [
         {
           url: work.images[0],

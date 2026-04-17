@@ -310,5 +310,54 @@
     "password": "Password",
     "enter": "Enter",
     "error": "Incorrect password"
+  },
+  "meta": {
+    "siteName": "Guillaume Farré",
+    "rootDescription": "Guillaume Farré — Canvases and Photographs.",
+    "histoire": {
+      "title": "Story",
+      "description": "The story of Guillaume Farré: from the little Ferrari no. 20 of his childhood to the Dino in his studio. Forty years of automotive passion turned into art.",
+      "ogTitle": "Story | Guillaume Farré",
+      "ogDescription": "Discover Guillaume Farré's artistic journey, from childhood to today."
+    },
+    "atelier": {
+      "title": "Studio",
+      "description": "Guillaume Farré's studio: the Dino, 1020 kilos of creative instrument. Discover the space where the works are born, between mechanics and paint.",
+      "ogTitle": "Studio | Guillaume Farré",
+      "ogDescription": "Visit the studio where Guillaume Farré creates his works with his Ferrari Dino."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact Guillaume Farré: artwork acquisition, studio visits, press enquiries or collaborations. Studio based in Toulouse.",
+      "ogTitle": "Contact | Guillaume Farré",
+      "ogDescription": "Get in touch with Guillaume Farré for an acquisition or a studio visit.",
+      "ogAlt": "Contact Guillaume Farré"
+    },
+    "galerie": {
+      "title": "Photographs",
+      "description": "Photographs by Guillaume Farré — numbered and signed prints, limited editions.",
+      "ogTitle": "Photographs | Guillaume Farré",
+      "ogDescription": "Photographs by Guillaume Farré — numbered and signed prints.",
+      "ogAlt": "Photographs by Guillaume Farré"
+    },
+    "toiles": {
+      "title": "Canvases",
+      "description": "Canvases by Guillaume Farré — abstract paintings created by the direct passage of the Dino over a blank canvas. Unique, irreproducible pieces.",
+      "ogTitle": "Canvases | Guillaume Farré",
+      "ogDescription": "Abstract paintings created by the direct passage of the Dino over a blank canvas.",
+      "ogAlt": "Canvases by Guillaume Farré"
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Frequently asked questions about Guillaume Farré's works: ordering, payment, shipping, returns, framing and certificate of authenticity.",
+      "ogTitle": "FAQ | Guillaume Farré",
+      "ogDescription": "All the answers to your questions about Guillaume Farré's works.",
+      "ogAlt": "Guillaume Farré FAQ"
+    },
+    "login": {
+      "title": "Guillaume Farré — Login",
+      "description": "Admin access to the Guillaume Farré website."
+    },
+    "galerieItemFallbackDescription": "{title} — Fine art photograph by Guillaume Farré"
   }
 }

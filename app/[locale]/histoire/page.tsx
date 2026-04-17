@@ -1,15 +1,24 @@
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import HistoireContent from "@/components/pages/HistoireContent";
 
-export const metadata: Metadata = {
-  title: "Histoire",
-  description: "L'histoire de Guillaume Farré : de la petite Ferrari n°20 de son enfance à la Dino de son atelier. Quarante ans de passion automobile transformée en art.",
-  openGraph: {
-    title: "Histoire | Guillaume Farré",
-    description: "Découvrez le parcours artistique de Guillaume Farré, de l'enfance à aujourd'hui.",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.histoire" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+    },
+  };
+}
 
 /**
  * Page Histoire avec textes éditables en mode admin

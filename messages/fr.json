@@ -310,5 +310,54 @@
     "password": "Mot de passe",
     "enter": "Entrer",
     "error": "Mot de passe incorrect"
+  },
+  "meta": {
+    "siteName": "Guillaume Farré",
+    "rootDescription": "Guillaume Farré — Toiles et Photographies.",
+    "histoire": {
+      "title": "Histoire",
+      "description": "L'histoire de Guillaume Farré : de la petite Ferrari n°20 de son enfance à la Dino de son atelier. Quarante ans de passion automobile transformée en art.",
+      "ogTitle": "Histoire | Guillaume Farré",
+      "ogDescription": "Découvrez le parcours artistique de Guillaume Farré, de l'enfance à aujourd'hui."
+    },
+    "atelier": {
+      "title": "Atelier",
+      "description": "L'atelier de Guillaume Farré : la Dino, 1020 kilos d'instrument de création. Découvrez l'espace où naissent les œuvres, entre mécanique et peinture.",
+      "ogTitle": "Atelier | Guillaume Farré",
+      "ogDescription": "Visitez l'atelier où Guillaume Farré crée ses œuvres avec ses Ferrari Dino."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contactez Guillaume Farré : acquisition d'œuvres, visite d'atelier, demandes presse ou collaborations. Atelier situé à Toulouse.",
+      "ogTitle": "Contact | Guillaume Farré",
+      "ogDescription": "Prenez contact avec Guillaume Farré pour une acquisition ou une visite d'atelier.",
+      "ogAlt": "Contacter Guillaume Farré"
+    },
+    "galerie": {
+      "title": "Photographies",
+      "description": "Photographies de Guillaume Farré — tirages numérotés et signés, éditions limitées.",
+      "ogTitle": "Photographies | Guillaume Farré",
+      "ogDescription": "Photographies de Guillaume Farré — tirages numérotés et signés.",
+      "ogAlt": "Photographies de Guillaume Farré"
+    },
+    "toiles": {
+      "title": "Toiles",
+      "description": "Les toiles de Guillaume Farré — peintures abstraites créées par le passage direct de la Dino sur toile vierge. Pièces uniques, irréplicables.",
+      "ogTitle": "Toiles | Guillaume Farré",
+      "ogDescription": "Peintures abstraites créées par le passage direct de la Dino sur toile vierge.",
+      "ogAlt": "Toiles de Guillaume Farré"
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Questions fréquentes sur les œuvres de Guillaume Farré : commande, paiement, livraison, retours, encadrement et certificat d'authenticité.",
+      "ogTitle": "FAQ | Guillaume Farré",
+      "ogDescription": "Toutes les réponses à vos questions sur les œuvres de Guillaume Farré.",
+      "ogAlt": "FAQ Guillaume Farré"
+    },
+    "login": {
+      "title": "Guillaume Farré — Connexion",
+      "description": "Accès administration du site Guillaume Farré."
+    },
+    "galerieItemFallbackDescription": "{title} — Photographie d'art par Guillaume Farré"
   }
 }

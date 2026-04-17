@@ -344,6 +344,73 @@ describe('POST /api/admin/photos', () => {
       expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
     });
 
+    it('returns 400 when prices.unlimited.a4 is not the expected literal (200 != 150)', async () => {
+      mockAuthenticatedCookie();
+
+      // Le schema impose z.literal(150) pour prices.unlimited.a4.
+      // Un admin ne doit pas pouvoir persister un prix arbitraire.
+      const invalid = {
+        ...validPhoto,
+        prices: {
+          unlimited: {
+            a4: 200, // Devrait etre 150 (literal)
+            a3: 250,
+            a2: 400,
+          },
+        },
+      };
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [invalid] }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error).toContain('Invalid photo data');
+    });
+
+    it('returns 400 when prices.limited.a1 is not the expected literal (999 != 1200)', async () => {
+      mockAuthenticatedCookie();
+
+      const invalid = {
+        ...validPhoto,
+        prices: {
+          limited: {
+            a3: 500,
+            a2: 800,
+            a1: 999, // Devrait etre 1200 (literal)
+          },
+        },
+      };
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [invalid] }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+    });
+
+    it('accepts prices.unlimited/limited with exact literal values', async () => {
+      mockAuthenticatedCookie();
+      mockSavePhotoMetadata.mockResolvedValue(undefined);
+
+      const valid = {
+        ...validPhoto,
+        prices: {
+          unlimited: { a4: 150, a3: 250, a2: 400 },
+          limited: { a3: 500, a2: 800, a1: 1200 },
+          xxl: 2500,
+          monumental: 8000,
+        },
+      };
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [valid] }));
+
+      expect(res.status).toBe(200);
+      expect(mockSavePhotoMetadata).toHaveBeenCalledWith([valid]);
+    });
+
     it('strips unknown fields including __proto__ attempts (prototype pollution)', async () => {
       mockAuthenticatedCookie();
       mockSavePhotoMetadata.mockResolvedValue(undefined);
@@ -367,7 +434,9 @@ describe('POST /api/admin/photos', () => {
       // Les champs inconnus doivent avoir ete stripes par zod
       const persistedArg = mockSavePhotoMetadata.mock.calls[0][0];
       expect(persistedArg[0].evilField).toBeUndefined();
-      expect(persistedArg[0].constructor).not.toEqual({ name: 'attack' });
+      // La valeur 'attack' ne doit pas figurer dans l'objet persiste :
+      // prouve que le clef inconnue `constructor` a bien ete stripee.
+      expect(JSON.stringify(persistedArg[0])).not.toContain('attack');
     });
   });
 

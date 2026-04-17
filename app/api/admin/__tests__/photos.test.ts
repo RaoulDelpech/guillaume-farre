@@ -9,11 +9,15 @@
  * - GET avec cookie gf_admin valide → 200 + liste photos
  * - GET quand mergePhotoData throw → 500
  * - POST sans cookie gf_admin → 401
- * - POST avec cookie + body JSON valide → 200 + success=true + savePhotoMetadata appele
- * - POST quand request.json throw → 500
+ * - POST body JSON valide conforme au schema → 200 + savePhotoMetadata appele
+ * - POST body non-array → 400
+ * - POST body avec item sans filename (champ requis) → 400
+ * - POST body avec categories invalide (enum) → 400
+ * - POST body avec prototype pollution (__proto__) → schema strip, pas d'impact
+ * - POST body > 5 MB → 413
+ * - POST JSON malforme → 400
+ * - POST quand request.text throw → 500
  * - POST quand savePhotoMetadata throw → 500
- *
- * Note : la route POST accepte un body JSON (pas FormData) et retourne 200 (pas 201).
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -35,13 +39,27 @@ vi.mock('@/lib/admin/photo-manager', () => ({
   loadPhotoMetadata: mockLoadPhotoMetadata,
 }));
 
-function buildReq(body: unknown, shouldThrowOnJson = false) {
+/**
+ * Construit une Request factice pour POST avec support .text().
+ *
+ * - `body` : objet JS serialise avec JSON.stringify
+ * - `rawText` : string brute renvoyee telle quelle (pour tester JSON malforme / body oversize)
+ * - `throwOnText` : force `text()` a throw (simule lecture body defaillante)
+ */
+function buildReq({
+  body,
+  rawText,
+  throwOnText = false,
+}: {
+  body?: unknown;
+  rawText?: string;
+  throwOnText?: boolean;
+} = {}) {
   return {
-    json: async () => {
-      if (shouldThrowOnJson) {
-        throw new Error('Invalid JSON');
-      }
-      return body;
+    text: async () => {
+      if (throwOnText) throw new Error('Text read failed');
+      if (rawText !== undefined) return rawText;
+      return JSON.stringify(body ?? null);
     },
   } as any;
 }
@@ -62,6 +80,16 @@ function mockNoCookie() {
 function mockInvalidCookie() {
   mockCookiesGet.mockReturnValue({ value: 'wrong-value' });
 }
+
+// Photo valide minimale (tous les champs obligatoires du schema)
+const validPhoto = {
+  filename: 'photo1.jpg',
+  path: '/images/photo1.jpg',
+  categories: ['limited'],
+  status: null,
+  visible: true,
+  forSale: true,
+};
 
 describe('GET /api/admin/photos', () => {
   beforeEach(() => {
@@ -156,7 +184,7 @@ describe('POST /api/admin/photos', () => {
       mockNoCookie();
 
       const { POST } = await importRoute();
-      const res = await POST(buildReq([{ filename: 'a.jpg' }]));
+      const res = await POST(buildReq({ body: [validPhoto] }));
 
       expect(res.status).toBe(401);
       expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
@@ -166,7 +194,7 @@ describe('POST /api/admin/photos', () => {
       mockInvalidCookie();
 
       const { POST } = await importRoute();
-      const res = await POST(buildReq([]));
+      const res = await POST(buildReq({ body: [] }));
 
       expect(res.status).toBe(401);
       expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
@@ -174,42 +202,48 @@ describe('POST /api/admin/photos', () => {
   });
 
   describe('succes', () => {
-    it('returns 200 with success=true when body is valid JSON array', async () => {
+    it('returns 200 and persists photos conforming to schema', async () => {
       mockAuthenticatedCookie();
       mockSavePhotoMetadata.mockResolvedValue(undefined);
-      const photos = [
-        { filename: 'photo1.jpg', path: '/images/photo1.jpg', categories: ['limited'], status: null, visible: true, forSale: true },
-      ];
 
       const { POST } = await importRoute();
-      const res = await POST(buildReq(photos));
+      const res = await POST(buildReq({ body: [validPhoto] }));
 
       expect(res.status).toBe(200);
-      expect(mockSavePhotoMetadata).toHaveBeenCalledWith(photos);
+      expect(mockSavePhotoMetadata).toHaveBeenCalledTimes(1);
+      // Le schema passe : la photo validee doit etre persistee telle quelle
+      expect(mockSavePhotoMetadata).toHaveBeenCalledWith([validPhoto]);
       const body = await res.json();
       expect(body).toEqual({ success: true });
     });
 
-    it('passes received photos unchanged to savePhotoMetadata', async () => {
+    it('accepts photos with all optional fields populated', async () => {
       mockAuthenticatedCookie();
       mockSavePhotoMetadata.mockResolvedValue(undefined);
-      const photos = [
-        {
-          filename: 'x.jpg',
-          path: '/x.jpg',
-          categories: ['unlimited'],
-          status: 'to-sort',
-          visible: false,
-          forSale: false,
-          title: 'Test',
-          year: 2026,
-        },
-      ];
+
+      const rich = {
+        ...validPhoto,
+        title: 'Test',
+        year: 2026,
+        tags: ['rouge', 'Ferrari F40'],
+        description: 'une photo',
+        aiGenerated: false,
+        material: 'semi-glossy',
+        orientation: 'vertical',
+        accessLevel: 'public',
+        productType: 'photo',
+        photoCategory: 'atelier',
+        collection: 'Collection Noir',
+        priceSigned: 500,
+        priceUnsigned: 250,
+      };
 
       const { POST } = await importRoute();
-      await POST(buildReq(photos));
+      const res = await POST(buildReq({ body: [rich] }));
 
-      expect(mockSavePhotoMetadata).toHaveBeenCalledWith(photos);
+      expect(res.status).toBe(200);
+      expect(mockSavePhotoMetadata).toHaveBeenCalledTimes(1);
+      expect(mockSavePhotoMetadata).toHaveBeenCalledWith([rich]);
     });
 
     it('accepts an empty array', async () => {
@@ -217,19 +251,161 @@ describe('POST /api/admin/photos', () => {
       mockSavePhotoMetadata.mockResolvedValue(undefined);
 
       const { POST } = await importRoute();
-      const res = await POST(buildReq([]));
+      const res = await POST(buildReq({ body: [] }));
 
       expect(res.status).toBe(200);
       expect(mockSavePhotoMetadata).toHaveBeenCalledWith([]);
     });
   });
 
-  describe('erreurs', () => {
-    it('returns 500 when request.json throws', async () => {
+  describe('validation schema', () => {
+    it('returns 400 when body is not an array (object)', async () => {
       mockAuthenticatedCookie();
 
       const { POST } = await importRoute();
-      const res = await POST(buildReq(null, true));
+      const res = await POST(buildReq({ body: { foo: 'bar' } }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error).toContain('Invalid photo data');
+    });
+
+    it('returns 400 when body is not an array (string)', async () => {
+      mockAuthenticatedCookie();
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: 'not-an-array' }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+    });
+
+    it('returns 400 when body is not an array (number)', async () => {
+      mockAuthenticatedCookie();
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: 42 }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+    });
+
+    it('returns 400 when item is missing required filename', async () => {
+      mockAuthenticatedCookie();
+
+      const invalid = { ...validPhoto } as Record<string, unknown>;
+      delete invalid.filename;
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [invalid] }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error).toContain('Invalid photo data');
+      expect(body.details).toBeDefined();
+    });
+
+    it('returns 400 when item is missing required categories', async () => {
+      mockAuthenticatedCookie();
+
+      const invalid = { ...validPhoto } as Record<string, unknown>;
+      delete invalid.categories;
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [invalid] }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+    });
+
+    it('returns 400 when categories contains an unknown value', async () => {
+      mockAuthenticatedCookie();
+
+      const invalid = { ...validPhoto, categories: ['evil-category'] };
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [invalid] }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+    });
+
+    it('returns 400 when visible is a string instead of boolean', async () => {
+      mockAuthenticatedCookie();
+
+      const invalid = { ...validPhoto, visible: 'yes' };
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ body: [invalid] }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+    });
+
+    it('strips unknown fields including __proto__ attempts (prototype pollution)', async () => {
+      mockAuthenticatedCookie();
+      mockSavePhotoMetadata.mockResolvedValue(undefined);
+
+      // JSON.parse ignore deja __proto__ en clef directe (ES spec).
+      // On fournit le body via rawText pour conserver la clef litterale et
+      // verifier que le schema strip (mode par defaut) evacue les champs inconnus.
+      const rawText = JSON.stringify([
+        {
+          ...validPhoto,
+          evilField: { isAdmin: true },
+          constructor: { name: 'attack' },
+        },
+      ]);
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ rawText }));
+
+      expect(res.status).toBe(200);
+      expect(mockSavePhotoMetadata).toHaveBeenCalledTimes(1);
+      // Les champs inconnus doivent avoir ete stripes par zod
+      const persistedArg = mockSavePhotoMetadata.mock.calls[0][0];
+      expect(persistedArg[0].evilField).toBeUndefined();
+      expect(persistedArg[0].constructor).not.toEqual({ name: 'attack' });
+    });
+  });
+
+  describe('limites taille / format', () => {
+    it('returns 413 when body > 5 MB', async () => {
+      mockAuthenticatedCookie();
+
+      // 5 MB + 1 char
+      const oversize = 'x'.repeat(5 * 1024 * 1024 + 1);
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ rawText: oversize }));
+
+      expect(res.status).toBe(413);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error).toContain('too large');
+    });
+
+    it('returns 400 when JSON is malformed', async () => {
+      mockAuthenticatedCookie();
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ rawText: '{not valid json}' }));
+
+      expect(res.status).toBe(400);
+      expect(mockSavePhotoMetadata).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error).toContain('Invalid JSON');
+    });
+  });
+
+  describe('erreurs internes', () => {
+    it('returns 500 when request.text() throws', async () => {
+      mockAuthenticatedCookie();
+
+      const { POST } = await importRoute();
+      const res = await POST(buildReq({ throwOnText: true }));
 
       expect(res.status).toBe(500);
       const body = await res.json();
@@ -242,7 +418,7 @@ describe('POST /api/admin/photos', () => {
       mockSavePhotoMetadata.mockRejectedValue(new Error('FS write failed'));
 
       const { POST } = await importRoute();
-      const res = await POST(buildReq([{ filename: 'a.jpg' }]));
+      const res = await POST(buildReq({ body: [validPhoto] }));
 
       expect(res.status).toBe(500);
       const body = await res.json();

@@ -11,11 +11,17 @@
  * - Body invalide → 500
  * - SITE_PASSWORD ou AUTH_SECRET manquant → 503
  * - Proprietes du cookie (httpOnly, sameSite, maxAge, path)
+ * - Rate limit (10 tentatives / 15 min par IP) → 429
+ * - Isolation rate-limit inter-IP (A saturee, B autorisee)
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-function buildReq(body: unknown, shouldThrowOnJson = false) {
+function buildReq(
+  body: unknown,
+  shouldThrowOnJson = false,
+  headers: Record<string, string> = {}
+) {
   return {
     json: async () => {
       if (shouldThrowOnJson) {
@@ -23,6 +29,7 @@ function buildReq(body: unknown, shouldThrowOnJson = false) {
       }
       return body;
     },
+    headers: new Headers(headers),
   } as any;
 }
 
@@ -155,6 +162,80 @@ describe('POST /api/auth/login - site public', () => {
       const res = await mod.POST(buildReq({ password: 'test_site_password' }));
 
       expect(res.status).toBe(503);
+    });
+  });
+
+  describe('rate limiting', () => {
+    it('returns 429 after 10 attempts from same IP in 15min window', async () => {
+      const POST = await importRoute();
+      const ip = '10.0.0.100';
+
+      // Les 10 premieres tentatives (mauvais password) doivent retourner 401
+      for (let i = 0; i < 10; i++) {
+        const res = await POST(
+          buildReq({ password: 'wrong_password_xxx' }, false, { 'x-forwarded-for': ip })
+        );
+        expect(res.status).toBe(401);
+      }
+
+      // La 11e tentative doit etre bloquee - meme avec le bon password
+      const res = await POST(
+        buildReq({ password: 'test_site_password' }, false, { 'x-forwarded-for': ip })
+      );
+      expect(res.status).toBe(429);
+      const body = await res.json();
+      expect(body.error).toContain('Too many attempts');
+    });
+
+    it('isolates rate-limit per IP (A saturated, B still allowed)', async () => {
+      const POST = await importRoute();
+      const ipA = '10.0.0.201';
+      const ipB = '10.0.0.202';
+
+      // Saturer IP A avec 10 tentatives echouees
+      for (let i = 0; i < 10; i++) {
+        const resA = await POST(
+          buildReq({ password: 'wrong_password_xxx' }, false, { 'x-forwarded-for': ipA })
+        );
+        expect(resA.status).toBe(401);
+      }
+
+      // IP A doit etre rate-limited (meme avec bon password)
+      const resA11 = await POST(
+        buildReq({ password: 'test_site_password' }, false, { 'x-forwarded-for': ipA })
+      );
+      expect(resA11.status).toBe(429);
+
+      // IP B n'a jamais tente : doit pouvoir se connecter normalement
+      const resB = await POST(
+        buildReq({ password: 'test_site_password' }, false, { 'x-forwarded-for': ipB })
+      );
+      expect(resB.status).toBe(200);
+    });
+
+    it('counts failed attempts even when service returns 401', async () => {
+      const POST = await importRoute();
+      const ip = '10.0.0.150';
+
+      // 9 tentatives ratees : toutes passent
+      for (let i = 0; i < 9; i++) {
+        const res = await POST(
+          buildReq({ password: 'wrong_xxxxxxxxxxxxxxx' }, false, { 'x-forwarded-for': ip })
+        );
+        expect(res.status).toBe(401);
+      }
+
+      // 10e tentative : encore 401, pas encore bloquee
+      const res10 = await POST(
+        buildReq({ password: 'wrong_xxxxxxxxxxxxxxx' }, false, { 'x-forwarded-for': ip })
+      );
+      expect(res10.status).toBe(401);
+
+      // 11e tentative : bloquee
+      const res11 = await POST(
+        buildReq({ password: 'wrong_xxxxxxxxxxxxxxx' }, false, { 'x-forwarded-for': ip })
+      );
+      expect(res11.status).toBe(429);
     });
   });
 });

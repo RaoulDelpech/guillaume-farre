@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
+import { isRateLimited, getClientIP } from "@/lib/rate-limit";
 
 const SITE_PASSWORD = process.env.SITE_PASSWORD;
 const AUTH_SECRET = process.env.AUTH_SECRET;
 const COOKIE_NAME = "gf_auth";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 jours
+
+// Rate limit : 10 tentatives par IP par 15 minutes
+const RATE_LIMIT_MAX = 10;
+const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 
 /**
  * API login - vérifie mot de passe et set cookie
@@ -15,6 +20,15 @@ export async function POST(request: NextRequest) {
   try {
     if (!SITE_PASSWORD || !AUTH_SECRET) {
       return NextResponse.json({ error: 'Service not configured' }, { status: 503 });
+    }
+
+    const clientIP = getClientIP(request);
+    const rateLimitKey = `auth-login:${clientIP}`;
+    if (isRateLimited(rateLimitKey, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS)) {
+      return NextResponse.json(
+        { error: "Too many attempts, please try again later" },
+        { status: 429 }
+      );
     }
 
     const { password } = await request.json();

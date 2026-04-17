@@ -602,7 +602,7 @@ export function GalerieContent() {
                     height={typedPhotos[lightboxIndex].imageHeight}
                     sizes="(max-width: 640px) 92vw, (max-width: 1024px) 90vw, 60vw"
                     className="max-w-[92vw] sm:max-w-[90vw] lg:max-w-[60vw] max-h-[45vh] sm:max-h-[50vh] lg:max-h-[75vh] w-auto h-auto object-contain"
-                    quality={80}
+                    quality={85}
                     priority
                   />
                 </motion.div>

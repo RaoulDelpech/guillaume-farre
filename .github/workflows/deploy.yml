@@ -57,6 +57,7 @@ jobs:
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "SITE_PASSWORD=${{ secrets.SITE_PASSWORD }}" >> .env.local
+            echo "AUTH_SECRET=${{ secrets.AUTH_SECRET }}" >> .env.local
             echo "SITE_MODE=public" >> .env.local
             echo "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}" >> .env.local
             echo "RESEND_FROM_EMAIL=Guillaume Farré <noreply@guillaumefarre.com>" >> .env.local

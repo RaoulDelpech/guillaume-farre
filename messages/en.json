@@ -123,6 +123,8 @@
     "soldOut": "Sold out",
     "loading": "Loading...",
     "monumentalDesc": "Monumental format — Unique piece — On request",
+    "formatHorsFormat": "Oversize",
+    "formatMonumental": "Monumental Format",
     "legalNotice": "Numbered and signed print — Limited edition",
     "taxNotice": "VAT not applicable, article 293 B of the French General Tax Code",
     "printsAvailable": "{count, plural, one {# print available} other {# prints available}}",

@@ -123,6 +123,8 @@
     "soldOut": "Esaurito",
     "loading": "Caricamento...",
     "monumentalDesc": "Formato monumentale — Pezzo unico — Su richiesta",
+    "formatHorsFormat": "Fuori Formato",
+    "formatMonumental": "Formato Monumentale",
     "legalNotice": "Tiratura numerata e firmata — Edizione limitata",
     "taxNotice": "IVA non applicabile, articolo 293 B del Codice generale delle imposte francese",
     "printsAvailable": "{count, plural, one {# stampa disponibile} other {# stampe disponibili}}",

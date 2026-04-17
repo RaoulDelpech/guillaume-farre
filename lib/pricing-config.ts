@@ -107,3 +107,25 @@ export function formatPrice(price: number): string {
 export function isPurchasable(format: PrintFormat): boolean {
   return FORMATS[format]?.price !== null;
 }
+
+/**
+ * Cles i18n pour les labels qui doivent etre traduits (format non numerique).
+ * Les formats numeriques (24x36, etc.) gardent leur label neutre ("24 × 36 cm").
+ */
+export const FORMAT_LABEL_I18N_KEYS: Partial<Record<PrintFormat, string>> = {
+  'hors-format': 'formatHorsFormat',
+  'monumental': 'formatMonumental',
+};
+
+/**
+ * Retourne le label traduit d'un format via la cle i18n, sinon le label par defaut.
+ * @param format Format du tirage
+ * @param t Fonction de traduction (next-intl useTranslations('gallery'))
+ */
+export function getLocalizedFormatLabel(
+  format: PrintFormat,
+  t: (key: string) => string,
+): string {
+  const i18nKey = FORMAT_LABEL_I18N_KEYS[format];
+  return i18nKey ? t(i18nKey) : FORMATS[format].label;
+}

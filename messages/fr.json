@@ -123,6 +123,8 @@
     "soldOut": "Épuisé",
     "loading": "Chargement...",
     "monumentalDesc": "Format monumental — Pièce unique — Sur demande",
+    "formatHorsFormat": "Hors Format",
+    "formatMonumental": "Format Monumental",
     "legalNotice": "Tirage numéroté et signé — Édition limitée",
     "taxNotice": "TVA non applicable, article 293 B du Code général des impôts",
     "printsAvailable": "{count, plural, one {# tirage disponible} other {# tirages disponibles}}",

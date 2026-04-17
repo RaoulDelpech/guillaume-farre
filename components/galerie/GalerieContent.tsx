@@ -12,7 +12,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import PhotoFrame from '@/components/PhotoFrame';
-import { STANDARD_FORMATS, PURCHASABLE_FORMATS, FORMATS, formatPrice, type PrintFormat } from '@/lib/pricing-config';
+import { STANDARD_FORMATS, PURCHASABLE_FORMATS, FORMATS, formatPrice, getLocalizedFormatLabel, type PrintFormat } from '@/lib/pricing-config';
 import { trackViewItem, trackAddToCart, trackBeginCheckout, trackLightboxOpen, trackLightboxClose, trackClickArtwork } from '@/lib/analytics';
 import photos from '@/data/photos.json';
 import blurPlaceholders from '@/data/blur-placeholders.json';
@@ -711,7 +711,7 @@ export function GalerieContent() {
                           <div key={formatKey}>
                             <div className="flex items-center justify-between text-sm border-b border-white/15 pb-2 pl-6">
                               <span className="font-light text-white/50">
-                                {config.label}
+                                {getLocalizedFormatLabel(formatKey, t)}
                               </span>
                               <span className="font-light text-white/50 tabular-nums">
                                 {t('onRequest')}

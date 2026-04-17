@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   // Cacher l'icône de debug Next.js en bas à gauche
   devIndicators: false,
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
@@ -42,6 +43,12 @@ const nextConfig = {
   // Security + performance headers
   async headers() {
     return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+        ],
+      },
       {
         source: '/:path*',
         headers: [

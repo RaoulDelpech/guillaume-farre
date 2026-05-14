@@ -34,6 +34,17 @@ jobs:
             echo "Backing up runtime data..."
             cp data/newsletter-subscribers.json /tmp/newsletter-subscribers.json 2>/dev/null || true
             cp data/photo-metadata.json /tmp/photo-metadata.json 2>/dev/null || true
+            echo "Snapshotting data files (rotated backup)..."
+            # Snapshot des donnees critiques (toiles, reservations, vip-codes) dans
+            # data/backups/{ISO}/ avec rotation BACKUP_RETENTION_COUNT (defaut 30).
+            # Si la branche en cours ne contient pas encore scripts/backup-data.ts
+            # (cas du tout premier deploy post-merge), on n'echoue pas le deploy.
+            if [ -f scripts/backup-data.ts ]; then
+              export BACKUP_RETENTION_COUNT="${BACKUP_RETENTION_COUNT:-30}"
+              bun run scripts/backup-data.ts || echo "Backup snapshot failed (non-blocking)"
+            else
+              echo "scripts/backup-data.ts missing — skipping snapshot"
+            fi
             echo "Fetching latest code..."
             git fetch origin main
             git reset --hard origin/main

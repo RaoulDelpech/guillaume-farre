@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
+import { verifyVipCookie, VIP_COOKIE_NAME } from './lib/vip-cookie';
 
-const AUTH_COOKIE = "gf_auth";
+const AUTH_COOKIE = 'gf_auth';
 const VALID_LOCALES = ['fr', 'en', 'it'];
 
 // Token d'auth lu depuis env var (doit correspondre au token genere par login/route.ts)
@@ -15,11 +16,14 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3000',
 ];
 
-// "pre-launch" = site cache (mot de passe), "public" = site ouvert
+// "pre-launch" = site cache (mot de passe + VIP), "public" = site ouvert
 const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
 
 // APIs accessibles sans auth en mode pre-launch
 const PUBLIC_API_ROUTES = ['/api/auth/login', '/api/newsletter/subscribe', '/api/stripe/'];
+
+// APIs accessibles aux VIP authentifies en mode pre-launch (en plus des publiques)
+const VIP_API_ROUTES = ['/api/vip/validate', '/api/vip/list', '/api/toiles', '/api/reservations'];
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -29,15 +33,22 @@ function getLocale(pathname: string): string {
 }
 
 /**
- * Middleware securise — mode pre-launch strict
+ * Middleware — mode pre-launch + zone VIP.
  *
- * En pre-launch : SEUL le cookie avec le bon token donne acces.
- * Les cookies VIP, les anciens cookies "authenticated" sont ignores.
- * Whitelist stricte : /login, /api/auth/login, /api/newsletter/subscribe, assets.
+ * En pre-launch : acces autorise si l'une des conditions est remplie :
+ *   - cookie `gf_auth` egal a AUTH_SECRET (acces global pre-launch)
+ *   - cookie `gf_vip` valide (HMAC signe par lib/vip-cookie.ts, non expire)
+ *
+ * Le cookie VIP est verifie via la Web Crypto API (compatible Edge runtime).
+ * On evite ainsi de basculer le middleware en runtime Node.js, ce qui aurait
+ * pose des risques de regression avec next-intl. Aucune lecture disque.
+ *
+ * En public : comportement actuel inchange, le cookie VIP debloque le
+ * contenu enrichi via lib/access.ts (server components).
  *
  * @author Lalou
  */
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // API admin mutantes — vérification CSRF Origin
@@ -66,16 +77,27 @@ export default function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // --- Mode pre-launch : verrouillage strict ---
+  // --- Mode pre-launch : auth gf_auth OU cookie VIP signe ---
   if (SITE_MODE === 'pre-launch') {
     // APIs publiques whitelistees
     if (pathname.startsWith('/api/')) {
       if (PUBLIC_API_ROUTES.some(route => pathname.startsWith(route))) {
         return NextResponse.next();
       }
-      // Toute autre API bloquee sans auth
+
       const authCookie = request.cookies.get(AUTH_COOKIE);
-      if (!AUTH_TOKEN || authCookie?.value !== AUTH_TOKEN) {
+      const hasFullAuth = !!AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
+
+      // API VIP autorisees aux porteurs d'un cookie VIP valide (ou gf_auth)
+      if (VIP_API_ROUTES.some(route => pathname.startsWith(route))) {
+        if (hasFullAuth) return NextResponse.next();
+        const vipPayload = await verifyVipCookie(request.cookies.get(VIP_COOKIE_NAME)?.value);
+        if (vipPayload) return NextResponse.next();
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+
+      // Toute autre API : auth pre-launch obligatoire
+      if (!hasFullAuth) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.next();
@@ -86,16 +108,21 @@ export default function middleware(request: NextRequest) {
       return intlMiddleware(request);
     }
 
-    // Verifier auth — UNIQUEMENT le nouveau token, PAS "authenticated", PAS VIP
+    // Acces pages : gf_auth OU cookie VIP signe
     const authCookie = request.cookies.get(AUTH_COOKIE);
-    const isAuthenticated = AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
+    const isFullyAuthenticated = !!AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
 
-    if (!isAuthenticated) {
-      const locale = getLocale(pathname);
-      return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+    if (isFullyAuthenticated) {
+      return intlMiddleware(request);
     }
 
-    return intlMiddleware(request);
+    const vipPayload = await verifyVipCookie(request.cookies.get(VIP_COOKIE_NAME)?.value);
+    if (vipPayload) {
+      return intlMiddleware(request);
+    }
+
+    const locale = getLocale(pathname);
+    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 
   // --- Mode public : comportement normal ---

@@ -7,6 +7,12 @@ const nextConfig = {
   // Cacher l'icône de debug Next.js en bas à gauche
   devIndicators: false,
   poweredByHeader: false,
+  // Active le runtime Node.js dans middleware.ts (Next 15.5+ flag experimental).
+  // Necessaire pour lire data/vip-codes.json au passage et faire respecter la
+  // revocation des codes VIP cote serveur — voir middleware.ts + lib/vip-revocation.ts.
+  experimental: {
+    nodeMiddleware: true,
+  },
   images: {
     remotePatterns: [
       {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 import { verifyVipCookie, VIP_COOKIE_NAME } from './lib/vip-cookie';
+import { isCodeRevoked } from './lib/vip-revocation';
 
 const AUTH_COOKIE = 'gf_auth';
 const VALID_LOCALES = ['fr', 'en', 'it'];
@@ -48,18 +49,37 @@ function getLocale(pathname: string): string {
 }
 
 /**
+ * Helper : verifie qu'un cookie VIP est valide (HMAC signe, non expire)
+ * ET que son code n'a pas ete revoque cote serveur. Retourne true si tout
+ * est OK, false sinon (cookie absent / malforme / expire / signature
+ * invalide / code revoque par l'admin).
+ *
+ * La verification de revocation lit `data/vip-codes.json` via un cache
+ * module-level (TTL 5s) — voir lib/vip-revocation.ts. Necessite que le
+ * middleware tourne en runtime Node.js (`experimental.nodeMiddleware`).
+ */
+async function isVipCookieAccepted(cookieValue: string | undefined): Promise<boolean> {
+  const payload = await verifyVipCookie(cookieValue);
+  if (!payload) return false;
+  if (await isCodeRevoked(payload.code)) return false;
+  return true;
+}
+
+/**
  * Middleware — mode pre-launch + zone VIP.
+ *
+ * Runtime : Node.js (`experimental.nodeMiddleware` active dans next.config.mjs).
+ * Choix volontaire pour pouvoir lire `data/vip-codes.json` au passage et
+ * faire respecter la revocation des codes — un cookie HMAC signe mais
+ * dont le code a ete revoque par Guillaume DOIT etre rejete immediatement.
  *
  * En pre-launch : acces autorise si l'une des conditions est remplie :
  *   - cookie `gf_auth` egal a AUTH_SECRET (acces global pre-launch)
- *   - cookie `gf_vip` valide (HMAC signe par lib/vip-cookie.ts, non expire)
+ *   - cookie `gf_vip` valide (HMAC signe + code non revoque + non expire)
  *
- * Le cookie VIP est verifie via la Web Crypto API (compatible Edge runtime).
- * On evite ainsi de basculer le middleware en runtime Node.js, ce qui aurait
- * pose des risques de regression avec next-intl. Aucune lecture disque.
- *
- * En public : comportement actuel inchange, le cookie VIP debloque le
- * contenu enrichi via lib/access.ts (server components).
+ * En public : comportement normal, le cookie VIP debloque le contenu
+ * enrichi via lib/access.ts (server components). La page /vip et la
+ * route /api/vip/validate restent accessibles sans cookie (porte d'entree).
  *
  * @author Lalou
  */
@@ -106,8 +126,9 @@ export default async function middleware(request: NextRequest) {
       // API VIP autorisees aux porteurs d'un cookie VIP valide (ou gf_auth)
       if (VIP_API_ROUTES.some(route => pathname.startsWith(route))) {
         if (hasFullAuth) return NextResponse.next();
-        const vipPayload = await verifyVipCookie(request.cookies.get(VIP_COOKIE_NAME)?.value);
-        if (vipPayload) return NextResponse.next();
+        if (await isVipCookieAccepted(request.cookies.get(VIP_COOKIE_NAME)?.value)) {
+          return NextResponse.next();
+        }
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
 
@@ -139,8 +160,7 @@ export default async function middleware(request: NextRequest) {
       return intlMiddleware(request);
     }
 
-    const vipPayload = await verifyVipCookie(request.cookies.get(VIP_COOKIE_NAME)?.value);
-    if (vipPayload) {
+    if (await isVipCookieAccepted(request.cookies.get(VIP_COOKIE_NAME)?.value)) {
       return intlMiddleware(request);
     }
 
@@ -165,5 +185,6 @@ export default async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!_next|_vercel|.*\\..*).*)'],
+  runtime: 'nodejs',
 };

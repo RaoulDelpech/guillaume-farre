@@ -14,6 +14,8 @@ export interface VipCode {
   used: boolean;
   usedAt?: string;         // ISO
   accessLevel: 'hidden' | 'secret'; // hidden = toutes oeuvres sans prix, secret = tout + prix
+  revoked?: boolean;       // Code force-revoque par Guillaume (cookie HMAC valide rejete par middleware)
+  revokedAt?: string;      // ISO de la revocation
 }
 
 const VIP_CODES_PATH = path.join(process.cwd(), 'data', 'vip-codes.json');
@@ -102,4 +104,20 @@ export async function listActiveCodes(): Promise<VipCode[]> {
   const codes = await readCodes();
   const now = new Date();
   return codes.filter(c => new Date(c.expiresAt) > now);
+}
+
+// Revoque un code : marque revoked: true + revokedAt.
+// Effet : le middleware Node.js rejettera tout cookie HMAC associe a ce code
+// au prochain rafraichissement du cache de revocation (max 5s).
+// Retourne true si le code existait, false sinon.
+export async function revokeCode(code: string): Promise<boolean> {
+  const codes = await readCodes();
+  const target = code.toUpperCase();
+  const found = codes.find(c => c.code === target);
+  if (!found) return false;
+  if (found.revoked) return true; // deja revoque, idempotent
+  found.revoked = true;
+  found.revokedAt = new Date().toISOString();
+  await writeCodes(codes);
+  return true;
 }

@@ -225,4 +225,67 @@ Apres chaque sprint, la pilote :
 
 ---
 
+## 9. Decision technique — Runtime middleware & revocation
+
+**Decision (Sprint 0 fix, 2026-05-14)** : le middleware Next.js tourne en
+runtime Node.js (`experimental.nodeMiddleware: true` dans next.config.mjs +
+`export const config = { runtime: 'nodejs' }` dans middleware.ts).
+
+### Motivation
+
+L'option initiale Edge runtime + cookie HMAC auto-portant (commit bcbbda0)
+ne permettait PAS de revoquer un code en cours d'utilisation : un cookie
+HMAC valide restait accepte jusqu'a son expiresAt naturel (24h), meme si
+Guillaume avait marque le code comme compromis dans `data/vip-codes.json`.
+Le middleware Edge ne pouvant pas lire le disque, il ignorait simplement
+le drapeau `revoked`.
+
+### Trade-offs assumes
+
+| Aspect | Edge runtime (initial) | Node.js runtime (retenu) |
+|---|---|---|
+| Lecture disque par req | impossible | possible — mitigee par cache 5s (TTL court) |
+| Revocation effective | NON (cookie reste valide 24h) | OUI (effet sous 5s + invalidation explicite) |
+| Latence middleware | ~2ms | ~5-10ms sur VPS PM2 (negligeable) |
+| Statut Next.js | stable | `experimental.nodeMiddleware` flag actif |
+| Memoire partagee API/middleware | impossible | OUI (single process PM2) |
+
+### Mecanisme de revocation effectif (Sprint 0)
+
+1. `data/vip-codes.json` accueille deux nouveaux champs optionnels par code :
+   `revoked: boolean`, `revokedAt: string` (ISO).
+2. `lib/vip-codes.ts` : nouvelle fonction `revokeCode(code)` qui met a jour
+   ces champs et persiste le fichier (idempotente).
+3. `lib/vip-revocation.ts` : helper `isCodeRevoked(code)` lu par le
+   middleware Node.js. Cache module-level avec TTL 5s pour eviter une lecture
+   disque par requete. `invalidateRevocationCache()` force le rafraichissement.
+4. `app/api/admin/vip/revoke/route.ts` : route POST protegee par cookie
+   `gf_admin`, appelle `revokeCode` + `invalidateRevocationCache`. Le cookie
+   compromis est rejete immediatement par le middleware au prochain hit.
+5. Le middleware appelle `isVipCookieAccepted(cookieValue)` qui combine
+   verification HMAC (`verifyVipCookie`) + check revocation (`isCodeRevoked`).
+
+### Limites assumees
+
+- Delai maximum de propagation : 5s en l'absence d'appel a
+  `invalidateRevocationCache()`. Acceptable pour le cas d'usage (revocation
+  manuelle de Guillaume, pas anti-DoS).
+- Dependance au flag `experimental.nodeMiddleware` (Next 15.5+). Si Next
+  change l'API avant stabilisation, migration necessaire (Vercel KV ou Redis
+  comme alternative cible). Pas de changement attendu avant Next 16.
+- Pas de propagation cross-process : on suppose PM2 mono-process sur le VPS.
+  En cas de cluster (pm2 cluster mode), chaque worker aurait son propre cache
+  jusqu'a 5s de divergence — egalement acceptable.
+
+### Alternatives ecartees
+
+- **Edge + rotation MAGIC_LINK_SECRET pour revoquer** : invalide TOUS les
+  cookies VIP a chaque revocation. Trop fort.
+- **Edge + version bumped dans HMAC** : meme probleme, granularite globale.
+- **Edge + Vercel KV / Upstash Redis** : ajoute une dependance externe et
+  un point de defaillance pour une feature dont le trafic reste tres faible.
+  Garde en reserve si on migre du VPS vers une infra serverless.
+
+---
+
 Signature : Lalou

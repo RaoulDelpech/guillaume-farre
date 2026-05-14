@@ -37,13 +37,21 @@ jobs:
             echo "Snapshotting data files (rotated backup)..."
             # Snapshot des donnees critiques (toiles, reservations, vip-codes) dans
             # data/backups/{ISO}/ avec rotation BACKUP_RETENTION_COUNT (defaut 30).
-            # Si la branche en cours ne contient pas encore scripts/backup-data.ts
-            # (cas du tout premier deploy post-merge), on n'echoue pas le deploy.
+            # Politique : si la branche en cours ne contient pas encore
+            # scripts/backup-data.ts (cas du tout premier deploy post-merge),
+            # OU si le script echoue, on n'echoue PAS le deploy — mais l'incident
+            # DOIT etre visible dans le log GitHub Actions via ::warning::
+            # (rendu en jaune dans le summary du run, traceable).
             if [ -f scripts/backup-data.ts ]; then
               export BACKUP_RETENTION_COUNT="${BACKUP_RETENTION_COUNT:-30}"
-              bun run scripts/backup-data.ts || echo "Backup snapshot failed (non-blocking)"
+              if bun run scripts/backup-data.ts; then
+                echo "Backup snapshot OK"
+              else
+                BACKUP_EXIT_CODE=$?
+                echo "::warning title=Backup failed::BACKUP FAILED — DEPLOY CONTINUED. scripts/backup-data.ts exited with code $BACKUP_EXIT_CODE. Check the VPS data/backups/ directory and the script output above for details. Without a fresh snapshot, a rollback of toiles/reservations/vip-codes will rely on the previous backup only."
+              fi
             else
-              echo "scripts/backup-data.ts missing — skipping snapshot"
+              echo "::warning title=Backup script missing::scripts/backup-data.ts not present on this checkout — no snapshot taken. This is expected only for the very first deploy after merging the backup pipeline; subsequent deploys without the script must be investigated."
             fi
             echo "Fetching latest code..."
             git fetch origin main

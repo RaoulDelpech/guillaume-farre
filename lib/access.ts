@@ -1,38 +1,52 @@
 import { cookies } from 'next/headers';
+import { verifyVipCookie, VIP_COOKIE_NAME } from './vip-cookie';
 
 export type AccessLevel = 'normal' | 'hidden' | 'secret';
 
-const VIP_COOKIE = 'gf_vip';
-
 /**
- * Determine le niveau d'acces depuis les cookies
- * - normal : visiteur standard (mot de passe site)
- * - hidden : voit toutes les oeuvres (y compris cachees), pas de prix
- * - secret : tout + prix des toiles (lien 24h)
+ * Determine le niveau d'acces depuis les cookies.
+ * - `normal` : visiteur standard
+ * - `hidden` : voit toutes les oeuvres (y compris cachees), pas de prix
+ * - `secret` : tout + prix des toiles
  *
- * Format cookie gf_vip : "CODE:level" ou "CODE" (legacy = secret)
+ * Format cookie `gf_vip` :
+ *   - Nouveau (Sprint 0+) : `CODE:level:expiresAt:hmac` (signe HMAC, voir lib/vip-cookie.ts)
+ *   - Legacy : `CODE:level` ou `CODE` — tolere ici pour ne pas casser les sessions
+ *     en cours en mode public. Le middleware en pre-launch n'accepte QUE le nouveau format.
  *
  * @author Lalou
  */
 export async function getAccessLevel(): Promise<AccessLevel> {
   const cookieStore = await cookies();
-  const vipCookie = cookieStore.get(VIP_COOKIE);
-
+  const vipCookie = cookieStore.get(VIP_COOKIE_NAME);
   if (!vipCookie?.value) return 'normal';
 
-  // Format : "CODE:level"
-  const colonIndex = vipCookie.value.indexOf(':');
-  if (colonIndex > 0) {
-    const level = vipCookie.value.substring(colonIndex + 1);
-    if (level === 'hidden' || level === 'secret') return level;
-  }
+  // Cas nominal : cookie HMAC signe et valide
+  const payload = await verifyVipCookie(vipCookie.value);
+  if (payload) return payload.level;
 
-  // Legacy codes sans niveau = secret
-  return 'secret';
+  // Fallback legacy (mode public uniquement — le middleware filtre deja en pre-launch)
+  return parseLegacyAccessLevel(vipCookie.value);
 }
 
 /**
- * Extrait le code VIP du cookie (sans le suffixe niveau)
+ * Parse les anciens formats de cookie (avant Sprint 0).
+ * Conserve uniquement pour ne pas deconnecter les VIP qui auraient
+ * un cookie de l'ancienne version au moment du deploiement.
+ */
+function parseLegacyAccessLevel(cookieValue: string): AccessLevel {
+  const parts = cookieValue.split(':');
+  if (parts.length === 2) {
+    const level = parts[1];
+    if (level === 'hidden' || level === 'secret') return level;
+  }
+  if (parts.length === 1) return 'secret';
+  return 'normal';
+}
+
+/**
+ * Extrait le code VIP du cookie (sans le suffixe niveau / signature).
+ * Compatible nouveau format HMAC et legacy.
  */
 export function parseVipCookieCode(cookieValue: string): string {
   const colonIndex = cookieValue.indexOf(':');

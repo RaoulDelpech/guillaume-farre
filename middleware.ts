@@ -20,10 +20,25 @@ const ALLOWED_ORIGINS = [
 const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
 
 // APIs accessibles sans auth en mode pre-launch
-const PUBLIC_API_ROUTES = ['/api/auth/login', '/api/newsletter/subscribe', '/api/stripe/'];
+// `/api/vip/validate` est PUBLIC : c'est la route qui delivre le cookie HMAC
+// apres saisie d'un code VIP valide — l'invite n'a pas encore de cookie quand
+// il atterrit dessus (chicken-and-egg). La protection contre l'abus repose sur
+// (1) la rarete des codes generes, (2) leur duree de vie 24h, (3) la
+// revocation cote middleware (cf. PUBLIC_API_ROUTES dans middleware nodejs).
+const PUBLIC_API_ROUTES = [
+  '/api/auth/login',
+  '/api/newsletter/subscribe',
+  '/api/stripe/',
+  '/api/vip/validate',
+];
 
 // APIs accessibles aux VIP authentifies en mode pre-launch (en plus des publiques)
-const VIP_API_ROUTES = ['/api/vip/validate', '/api/vip/list', '/api/toiles', '/api/reservations'];
+const VIP_API_ROUTES = ['/api/vip/list', '/api/toiles', '/api/reservations'];
+
+// Pages localisees (`/fr/vip`, `/en/vip`, `/it/vip`) qui doivent rester
+// accessibles SANS aucun cookie en pre-launch — c'est la porte d'entree VIP.
+// On exclut volontairement `/admin/vip` (admin requiert cookie admin).
+const VIP_LANDING_PAGE_RE = /^\/(fr|en|it)\/vip$/;
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -105,6 +120,14 @@ export default async function middleware(request: NextRequest) {
 
     // Page login toujours accessible
     if (pathname.endsWith('/login')) {
+      return intlMiddleware(request);
+    }
+
+    // Page d'entree VIP `/fr/vip` (et locales) — accessible SANS cookie.
+    // C'est la porte d'entree : l'invite saisit son code, recoit son cookie
+    // HMAC, puis acceder au reste du contenu prive. La page elle-meme reste
+    // affichee si l'invite revient avec un cookie HMAC valide (re-entree).
+    if (VIP_LANDING_PAGE_RE.test(pathname)) {
       return intlMiddleware(request);
     }
 

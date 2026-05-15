@@ -209,6 +209,7 @@
     "invalid": "Codice non valido",
     "expired": "Questo codice è scaduto",
     "alreadyUsed": "Questo codice è già stato utilizzato",
+    "revoked": "Accesso revocato. Si prega di contattare Guillaume Farré.",
     "welcome": "Benvenuto nell'atelier",
     "welcomeSubtitle": "Le tele vi aspettano"
   },

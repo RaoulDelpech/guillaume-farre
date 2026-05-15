@@ -87,6 +87,8 @@ export default function VipPage() {
         const data = await res.json();
         if (data.error === "expired") {
           setError(t("expired"));
+        } else if (data.error === "revoked") {
+          setError(t("revoked"));
         } else if (data.error === "already_used") {
           // defense en profondeur — fonction markCodeUsed supprimee, ce code
           // ne devrait plus jamais se declencher en Sprint 0+ (poly-use 24h Q3)

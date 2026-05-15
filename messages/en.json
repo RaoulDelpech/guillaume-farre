@@ -209,6 +209,7 @@
     "invalid": "Invalid code",
     "expired": "This code has expired",
     "alreadyUsed": "This code has already been used",
+    "revoked": "Access revoked. Please contact Guillaume Farré.",
     "welcome": "Welcome to the studio",
     "welcomeSubtitle": "The canvases await you"
   },

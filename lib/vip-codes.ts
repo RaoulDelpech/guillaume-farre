@@ -11,9 +11,13 @@ export interface VipCode {
   code: string;
   createdAt: string;       // ISO
   expiresAt: string;       // ISO (createdAt + 24h)
+  /** @deprecated conserve pour compat backward, plus utilise depuis Sprint 0 — poly-use 24h Q3 */
   used: boolean;
+  /** @deprecated conserve pour compat backward, plus utilise depuis Sprint 0 — poly-use 24h Q3 */
   usedAt?: string;         // ISO
   accessLevel: 'hidden' | 'secret'; // hidden = toutes oeuvres sans prix, secret = tout + prix
+  revoked?: boolean;       // Code force-revoque par Guillaume (cookie HMAC valide rejete par middleware)
+  revokedAt?: string;      // ISO de la revocation
 }
 
 const VIP_CODES_PATH = path.join(process.cwd(), 'data', 'vip-codes.json');
@@ -65,7 +69,9 @@ export async function createVipCode(accessLevel: 'hidden' | 'secret' = 'secret')
   return newCode;
 }
 
-// Valide un code : verifie existence, expiration, usage
+// Valide un code : verifie existence et expiration. Poly-use 24h (Q3) :
+// le code reste valide tant qu'il n'est pas expire et pas revoque, peu
+// importe le nombre de fois qu'il a deja servi a poser un cookie HMAC.
 export async function validateVipCode(code: string): Promise<{ valid: boolean; error?: string; accessLevel?: 'hidden' | 'secret' }> {
   const codes = await readCodes();
   const found = codes.find(c => c.code === code.toUpperCase());
@@ -74,27 +80,20 @@ export async function validateVipCode(code: string): Promise<{ valid: boolean; e
     return { valid: false, error: 'invalid' };
   }
 
-  if (found.used) {
-    return { valid: false, error: 'already_used' };
-  }
-
   if (new Date(found.expiresAt) < new Date()) {
     return { valid: false, error: 'expired' };
   }
 
-  return { valid: true, accessLevel: found.accessLevel || 'secret' };
-}
-
-// Marque un code comme utilise
-export async function markCodeUsed(code: string): Promise<void> {
-  const codes = await readCodes();
-  const found = codes.find(c => c.code === code.toUpperCase());
-
-  if (found) {
-    found.used = true;
-    found.usedAt = new Date().toISOString();
-    await writeCodes(codes);
+  // Defense en profondeur : on bloque ici aussi la delivrance d'un nouveau
+  // cookie HMAC pour un code revoque. Le middleware rejette deja les cookies
+  // existants associes a un code revoque (cf. lib/vip-revocation.ts), mais
+  // sans ce garde-fou un attaquant pourrait obtenir un cookie frais en POST
+  // sur /api/vip/validate apres revocation.
+  if (found.revoked) {
+    return { valid: false, error: 'revoked' };
   }
+
+  return { valid: true, accessLevel: found.accessLevel || 'secret' };
 }
 
 // Liste les codes actifs (non-expires)
@@ -102,4 +101,20 @@ export async function listActiveCodes(): Promise<VipCode[]> {
   const codes = await readCodes();
   const now = new Date();
   return codes.filter(c => new Date(c.expiresAt) > now);
+}
+
+// Revoque un code : marque revoked: true + revokedAt.
+// Effet : le middleware Node.js rejettera tout cookie HMAC associe a ce code
+// au prochain rafraichissement du cache de revocation (max 5s).
+// Retourne true si le code existait, false sinon.
+export async function revokeCode(code: string): Promise<boolean> {
+  const codes = await readCodes();
+  const target = code.toUpperCase();
+  const found = codes.find(c => c.code === target);
+  if (!found) return false;
+  if (found.revoked) return true; // deja revoque, idempotent
+  found.revoked = true;
+  found.revokedAt = new Date().toISOString();
+  await writeCodes(codes);
+  return true;
 }

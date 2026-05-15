@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
+import { verifyVipCookie, VIP_COOKIE_NAME } from './lib/vip-cookie';
+import { isCodeRevoked } from './lib/vip-revocation';
 
-const AUTH_COOKIE = "gf_auth";
+const AUTH_COOKIE = 'gf_auth';
 const VALID_LOCALES = ['fr', 'en', 'it'];
 
 // Token d'auth lu depuis env var (doit correspondre au token genere par login/route.ts)
@@ -15,11 +17,31 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3000',
 ];
 
-// "pre-launch" = site cache (mot de passe), "public" = site ouvert
+// "pre-launch" = site cache (mot de passe + VIP), "public" = site ouvert
 const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
 
 // APIs accessibles sans auth en mode pre-launch
-const PUBLIC_API_ROUTES = ['/api/auth/login', '/api/newsletter/subscribe', '/api/stripe/'];
+// `/api/vip/validate` est PUBLIC : c'est la route qui delivre le cookie HMAC
+// apres saisie d'un code VIP valide — l'invite n'a pas encore de cookie quand
+// il atterrit dessus (chicken-and-egg). La protection contre l'abus repose sur
+// (1) la rarete des codes generes (8 chars sans ambiguite),
+// (2) leur duree de vie 24h (poly-use pendant cette fenetre, decision Q3),
+// (3) la revocation cote serveur (cf. isCodeRevoked dans lib/vip-revocation.ts,
+//     applique par isVipCookieAccepted plus bas dans ce meme middleware).
+const PUBLIC_API_ROUTES = [
+  '/api/auth/login',
+  '/api/newsletter/subscribe',
+  '/api/stripe/',
+  '/api/vip/validate',
+];
+
+// APIs accessibles aux VIP authentifies en mode pre-launch (en plus des publiques)
+const VIP_API_ROUTES = ['/api/vip/list', '/api/toiles', '/api/reservations'];
+
+// Pages localisees (`/fr/vip`, `/en/vip`, `/it/vip`) qui doivent rester
+// accessibles SANS aucun cookie en pre-launch — c'est la porte d'entree VIP.
+// On exclut volontairement `/admin/vip` (admin requiert cookie admin).
+const VIP_LANDING_PAGE_RE = /^\/(fr|en|it)\/vip$/;
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -29,15 +51,41 @@ function getLocale(pathname: string): string {
 }
 
 /**
- * Middleware securise — mode pre-launch strict
+ * Helper : verifie qu'un cookie VIP est valide (HMAC signe, non expire)
+ * ET que son code n'a pas ete revoque cote serveur. Retourne true si tout
+ * est OK, false sinon (cookie absent / malforme / expire / signature
+ * invalide / code revoque par l'admin).
  *
- * En pre-launch : SEUL le cookie avec le bon token donne acces.
- * Les cookies VIP, les anciens cookies "authenticated" sont ignores.
- * Whitelist stricte : /login, /api/auth/login, /api/newsletter/subscribe, assets.
+ * La verification de revocation lit `data/vip-codes.json` via un cache
+ * module-level (TTL 5s) — voir lib/vip-revocation.ts. Necessite que le
+ * middleware tourne en runtime Node.js (`experimental.nodeMiddleware`).
+ */
+async function isVipCookieAccepted(cookieValue: string | undefined): Promise<boolean> {
+  const payload = await verifyVipCookie(cookieValue);
+  if (!payload) return false;
+  if (await isCodeRevoked(payload.code)) return false;
+  return true;
+}
+
+/**
+ * Middleware — mode pre-launch + zone VIP.
+ *
+ * Runtime : Node.js (`experimental.nodeMiddleware` active dans next.config.mjs).
+ * Choix volontaire pour pouvoir lire `data/vip-codes.json` au passage et
+ * faire respecter la revocation des codes — un cookie HMAC signe mais
+ * dont le code a ete revoque par Guillaume DOIT etre rejete immediatement.
+ *
+ * En pre-launch : acces autorise si l'une des conditions est remplie :
+ *   - cookie `gf_auth` egal a AUTH_SECRET (acces global pre-launch)
+ *   - cookie `gf_vip` valide (HMAC signe + code non revoque + non expire)
+ *
+ * En public : comportement normal, le cookie VIP debloque le contenu
+ * enrichi via lib/access.ts (server components). La page /vip et la
+ * route /api/vip/validate restent accessibles sans cookie (porte d'entree).
  *
  * @author Lalou
  */
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // API admin mutantes — vérification CSRF Origin
@@ -66,16 +114,28 @@ export default function middleware(request: NextRequest) {
     return intlMiddleware(request);
   }
 
-  // --- Mode pre-launch : verrouillage strict ---
+  // --- Mode pre-launch : auth gf_auth OU cookie VIP signe ---
   if (SITE_MODE === 'pre-launch') {
     // APIs publiques whitelistees
     if (pathname.startsWith('/api/')) {
       if (PUBLIC_API_ROUTES.some(route => pathname.startsWith(route))) {
         return NextResponse.next();
       }
-      // Toute autre API bloquee sans auth
+
       const authCookie = request.cookies.get(AUTH_COOKIE);
-      if (!AUTH_TOKEN || authCookie?.value !== AUTH_TOKEN) {
+      const hasFullAuth = !!AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
+
+      // API VIP autorisees aux porteurs d'un cookie VIP valide (ou gf_auth)
+      if (VIP_API_ROUTES.some(route => pathname.startsWith(route))) {
+        if (hasFullAuth) return NextResponse.next();
+        if (await isVipCookieAccepted(request.cookies.get(VIP_COOKIE_NAME)?.value)) {
+          return NextResponse.next();
+        }
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+
+      // Toute autre API : auth pre-launch obligatoire
+      if (!hasFullAuth) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
       return NextResponse.next();
@@ -86,16 +146,28 @@ export default function middleware(request: NextRequest) {
       return intlMiddleware(request);
     }
 
-    // Verifier auth — UNIQUEMENT le nouveau token, PAS "authenticated", PAS VIP
-    const authCookie = request.cookies.get(AUTH_COOKIE);
-    const isAuthenticated = AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
-
-    if (!isAuthenticated) {
-      const locale = getLocale(pathname);
-      return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+    // Page d'entree VIP `/fr/vip` (et locales) — accessible SANS cookie.
+    // C'est la porte d'entree : l'invite saisit son code, recoit son cookie
+    // HMAC, puis acceder au reste du contenu prive. La page elle-meme reste
+    // affichee si l'invite revient avec un cookie HMAC valide (re-entree).
+    if (VIP_LANDING_PAGE_RE.test(pathname)) {
+      return intlMiddleware(request);
     }
 
-    return intlMiddleware(request);
+    // Acces pages : gf_auth OU cookie VIP signe
+    const authCookie = request.cookies.get(AUTH_COOKIE);
+    const isFullyAuthenticated = !!AUTH_TOKEN && authCookie?.value === AUTH_TOKEN;
+
+    if (isFullyAuthenticated) {
+      return intlMiddleware(request);
+    }
+
+    if (await isVipCookieAccepted(request.cookies.get(VIP_COOKIE_NAME)?.value)) {
+      return intlMiddleware(request);
+    }
+
+    const locale = getLocale(pathname);
+    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 
   // --- Mode public : comportement normal ---
@@ -115,5 +187,6 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|_vercel|.*\\..*).*)']
+  matcher: ['/((?!_next|_vercel|.*\\..*).*)'],
+  runtime: 'nodejs',
 };

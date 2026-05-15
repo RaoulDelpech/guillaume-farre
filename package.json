@@ -10,6 +10,7 @@
     "lint": "bunx tsc --noEmit && next lint",
     "format": "bunx biome format --write",
     "migrate-metadata": "bun scripts/migrate-metadata.ts",
+    "backup:data": "bun run scripts/backup-data.ts",
     "translate": "npx tsx scripts/translate.ts",
     "translate:deepl": "bun scripts/translate-deepl.ts",
     "test": "vitest",

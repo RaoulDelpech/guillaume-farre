@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { validateVipCode, markCodeUsed } from '@/lib/vip-codes';
-
-const VIP_COOKIE = 'gf_vip';
-const VIP_COOKIE_MAX_AGE = 24 * 60 * 60; // 24h en secondes
+import { validateVipCode } from '@/lib/vip-codes';
+import { signVipCookie, VIP_COOKIE_NAME } from '@/lib/vip-cookie';
 
 /**
- * Valide un code VIP et set cookie d'acces avec niveau
- * Cookie format : "CODE:level" (hidden ou secret)
+ * Valide un code VIP et set un cookie d'acces signe (HMAC-SHA256) avec niveau.
+ *
+ * Format cookie : `CODE:level:expiresAt:hmac` (voir lib/vip-cookie.ts).
+ * La signature HMAC permet au middleware (runtime Node.js) de verifier le
+ * cookie sans relire les codes a chaque requete, tout en respectant la
+ * revocation cote serveur (cf. lib/vip-revocation.ts).
+ *
+ * Code reutilisable pendant 24h : le cookie est pose a chaque validation
+ * reussie tant que le code n'est ni expire ni revoque (decision Q3,
+ * .claude/FLOW_VIP_2026-05.md section 2).
+ *
  * @author Lalou
  */
 export async function POST(request: NextRequest) {
@@ -23,18 +30,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ valid: false, error: result.error }, { status: 401 });
     }
 
-    // Marquer le code comme utilise
-    await markCodeUsed(code);
-
     const accessLevel = result.accessLevel || 'secret';
 
-    // Set le cookie VIP avec le niveau d'acces encode
+    const signed = await signVipCookie(code, accessLevel);
+    if (!signed) {
+      // MAGIC_LINK_SECRET absent : on refuse plutot que de poser un cookie non signe
+      return NextResponse.json(
+        { valid: false, error: 'server_misconfigured' },
+        { status: 500 },
+      );
+    }
+
     const response = NextResponse.json({ valid: true, accessLevel });
-    response.cookies.set(VIP_COOKIE, `${code.toUpperCase()}:${accessLevel}`, {
+    response.cookies.set(VIP_COOKIE_NAME, signed.value, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: VIP_COOKIE_MAX_AGE,
+      maxAge: signed.maxAgeSeconds,
       path: '/',
     });
 

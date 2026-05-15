@@ -211,7 +211,8 @@
     "alreadyUsed": "This code has already been used",
     "revoked": "Access revoked. Please contact Guillaume Farré.",
     "welcome": "Welcome to the studio",
-    "welcomeSubtitle": "The canvases await you"
+    "welcomeSubtitle": "The canvases await you",
+    "exit": "Exit"
   },
   "canvas": {
     "tag": "Private collection",

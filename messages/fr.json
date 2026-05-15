@@ -211,7 +211,8 @@
     "alreadyUsed": "Ce code a déjà été utilisé",
     "revoked": "Accès révoqué. Merci de contacter Guillaume Farré.",
     "welcome": "Bienvenue dans l'atelier",
-    "welcomeSubtitle": "Les toiles vous attendent"
+    "welcomeSubtitle": "Les toiles vous attendent",
+    "exit": "Sortir"
   },
   "canvas": {
     "tag": "Collection privée",

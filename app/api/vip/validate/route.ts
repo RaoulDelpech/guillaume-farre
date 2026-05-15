@@ -51,7 +51,12 @@ export async function POST(request: NextRequest) {
     });
 
     return response;
-  } catch {
+  } catch (error) {
+    // Silent catch interdit (regle anti-pattern). On loggue cote serveur
+    // pour le debug operationnel, mais on garde une reponse cliente
+    // generique pour ne pas leaker la cause exacte (json malforme,
+    // crash de signVipCookie, etc.).
+    console.error('[vip/validate] internal error', error);
     return NextResponse.json({ error: 'Erreur validation' }, { status: 500 });
   }
 }

@@ -1,24 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 /**
  * Bouton "Sortir" pose dans le header VIP. POST `/api/vip/logout` pour
  * effacer le cookie `gf_vip` (HttpOnly — impossible de le faire cote JS
- * seul), puis `router.refresh()` pour que le Server Component parent
- * re-evalue et bascule sur `VipDoorEntry`.
+ * seul), puis `window.location.reload()` pour que le Server Component
+ * parent `/[locale]/vip` re-evalue `getAccessLevel()` et bascule sur
+ * `VipDoorEntry`.
  *
- * Le bouton reste cliquable meme si la requete echoue : tant qu'on a
- * appele router.refresh(), la vue server-side rechecke `getAccessLevel()`
- * et redirige correctement si le cookie est bien parti.
+ * On evite `router.refresh()` ici parce qu'il garde le composant client
+ * `VipPrivateView` monte meme quand le server change la decision —
+ * meme symptome observe Sprint 1 sur le flux entree -> vue privee.
+ * `window.location.reload()` est un peu plus heavy (un round-trip HTML)
+ * mais garantit que le swap Client Component A -> B est commite.
  *
  * @author Lalou
  */
 export default function VipExitButton() {
   const t = useTranslations("vip");
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
@@ -29,8 +30,11 @@ export default function VipExitButton() {
     } catch (err) {
       console.error("[vip] logout request failed", err);
     } finally {
-      router.refresh();
-      setLoading(false);
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      } else {
+        setLoading(false);
+      }
     }
   }
 

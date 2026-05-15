@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import VipDoorFrame from "./VipDoorFrame";
@@ -54,7 +54,6 @@ function messageForError(
 
 export default function VipDoorEntry() {
   const t = useTranslations("vip");
-  const router = useRouter();
   const searchParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -120,13 +119,21 @@ export default function VipDoorEntry() {
     }
   }, [phase]);
 
-  // Apres welcome, on demande au server component parent de re-rendre.
-  // Avec le cookie HMAC desormais pose, il retournera VipPrivateView.
+  // Apres welcome, on force un reload complet pour que le Server Component
+  // parent re-evalue `getAccessLevel()`. router.refresh() seul ne suffit
+  // pas ici : Next 15 garde le client component de VipDoorEntry monte si
+  // l'URL est identique, et la bascule vers VipPrivateView n'est pas
+  // commitee meme si la reponse RSC contient deja le nouveau tree.
+  // Le reload est court (page deja en cache, cookie pose) — moins elegant
+  // que router.refresh() mais garantit la bascule cote utilisateur.
   useEffect(() => {
     if (phase !== "welcome") return;
-    const id = setTimeout(() => router.refresh(), ANIMATION_WELCOME_MS);
+    if (typeof window === "undefined") return;
+    const id = setTimeout(() => {
+      window.location.reload();
+    }, ANIMATION_WELCOME_MS);
     return () => clearTimeout(id);
-  }, [phase, router]);
+  }, [phase]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,14 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { validateVipCode, markCodeUsed } from '@/lib/vip-codes';
+import { validateVipCode } from '@/lib/vip-codes';
 import { signVipCookie, VIP_COOKIE_NAME } from '@/lib/vip-cookie';
 
 /**
- * Valide un code VIP et set un cookie d'acces signe (HMAC-SHA256).
+ * Valide un code VIP et set un cookie d'acces signe (HMAC-SHA256) avec niveau.
  *
  * Format cookie : `CODE:level:expiresAt:hmac` (voir lib/vip-cookie.ts).
- * La signature HMAC permet au middleware Edge de verifier le cookie sans
- * lire le disque, ce qui est requis pour autoriser les VIP en mode
- * pre-launch sans relacher la securite globale du middleware.
+ * La signature HMAC permet au middleware (runtime Node.js) de verifier le
+ * cookie sans relire les codes a chaque requete, tout en respectant la
+ * revocation cote serveur (cf. lib/vip-revocation.ts).
+ *
+ * Code reutilisable pendant 24h : le cookie est pose a chaque validation
+ * reussie tant que le code n'est ni expire ni revoque (decision Q3,
+ * .claude/FLOW_VIP_2026-05.md section 2).
  *
  * @author Lalou
  */
@@ -25,9 +29,6 @@ export async function POST(request: NextRequest) {
     if (!result.valid) {
       return NextResponse.json({ valid: false, error: result.error }, { status: 401 });
     }
-
-    // Marquer le code comme utilise
-    await markCodeUsed(code);
 
     const accessLevel = result.accessLevel || 'secret';
 

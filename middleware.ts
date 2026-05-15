@@ -24,8 +24,10 @@ const SITE_MODE = process.env.SITE_MODE || 'pre-launch';
 // `/api/vip/validate` est PUBLIC : c'est la route qui delivre le cookie HMAC
 // apres saisie d'un code VIP valide — l'invite n'a pas encore de cookie quand
 // il atterrit dessus (chicken-and-egg). La protection contre l'abus repose sur
-// (1) la rarete des codes generes, (2) leur duree de vie 24h, (3) la
-// revocation cote middleware (cf. PUBLIC_API_ROUTES dans middleware nodejs).
+// (1) la rarete des codes generes (8 chars sans ambiguite),
+// (2) leur duree de vie 24h (poly-use pendant cette fenetre, decision Q3),
+// (3) la revocation cote serveur (cf. isCodeRevoked dans lib/vip-revocation.ts,
+//     applique par isVipCookieAccepted plus bas dans ce meme middleware).
 const PUBLIC_API_ROUTES = [
   '/api/auth/login',
   '/api/newsletter/subscribe',

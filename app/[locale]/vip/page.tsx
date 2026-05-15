@@ -88,6 +88,8 @@ export default function VipPage() {
         if (data.error === "expired") {
           setError(t("expired"));
         } else if (data.error === "already_used") {
+          // defense en profondeur — fonction markCodeUsed supprimee, ce code
+          // ne devrait plus jamais se declencher en Sprint 0+ (poly-use 24h Q3)
           setError(t("alreadyUsed"));
         } else {
           setError(t("invalid"));

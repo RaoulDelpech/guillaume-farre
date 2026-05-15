@@ -11,7 +11,9 @@ export interface VipCode {
   code: string;
   createdAt: string;       // ISO
   expiresAt: string;       // ISO (createdAt + 24h)
+  /** @deprecated conserve pour compat backward, plus utilise depuis Sprint 0 — poly-use 24h Q3 */
   used: boolean;
+  /** @deprecated conserve pour compat backward, plus utilise depuis Sprint 0 — poly-use 24h Q3 */
   usedAt?: string;         // ISO
   accessLevel: 'hidden' | 'secret'; // hidden = toutes oeuvres sans prix, secret = tout + prix
   revoked?: boolean;       // Code force-revoque par Guillaume (cookie HMAC valide rejete par middleware)
@@ -67,7 +69,9 @@ export async function createVipCode(accessLevel: 'hidden' | 'secret' = 'secret')
   return newCode;
 }
 
-// Valide un code : verifie existence, expiration, usage
+// Valide un code : verifie existence et expiration. Poly-use 24h (Q3) :
+// le code reste valide tant qu'il n'est pas expire et pas revoque, peu
+// importe le nombre de fois qu'il a deja servi a poser un cookie HMAC.
 export async function validateVipCode(code: string): Promise<{ valid: boolean; error?: string; accessLevel?: 'hidden' | 'secret' }> {
   const codes = await readCodes();
   const found = codes.find(c => c.code === code.toUpperCase());
@@ -76,27 +80,11 @@ export async function validateVipCode(code: string): Promise<{ valid: boolean; e
     return { valid: false, error: 'invalid' };
   }
 
-  if (found.used) {
-    return { valid: false, error: 'already_used' };
-  }
-
   if (new Date(found.expiresAt) < new Date()) {
     return { valid: false, error: 'expired' };
   }
 
   return { valid: true, accessLevel: found.accessLevel || 'secret' };
-}
-
-// Marque un code comme utilise
-export async function markCodeUsed(code: string): Promise<void> {
-  const codes = await readCodes();
-  const found = codes.find(c => c.code === code.toUpperCase());
-
-  if (found) {
-    found.used = true;
-    found.usedAt = new Date().toISOString();
-    await writeCodes(codes);
-  }
 }
 
 // Liste les codes actifs (non-expires)

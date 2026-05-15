@@ -84,6 +84,15 @@ export async function validateVipCode(code: string): Promise<{ valid: boolean; e
     return { valid: false, error: 'expired' };
   }
 
+  // Defense en profondeur : on bloque ici aussi la delivrance d'un nouveau
+  // cookie HMAC pour un code revoque. Le middleware rejette deja les cookies
+  // existants associes a un code revoque (cf. lib/vip-revocation.ts), mais
+  // sans ce garde-fou un attaquant pourrait obtenir un cookie frais en POST
+  // sur /api/vip/validate apres revocation.
+  if (found.revoked) {
+    return { valid: false, error: 'revoked' };
+  }
+
   return { valid: true, accessLevel: found.accessLevel || 'secret' };
 }
 

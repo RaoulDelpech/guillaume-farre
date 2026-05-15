@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { verifyVipCookie, VIP_COOKIE_NAME } from './vip-cookie';
+import { isCodeRevoked } from './vip-revocation';
 
 export type AccessLevel = 'normal' | 'hidden' | 'secret';
 
@@ -15,6 +16,11 @@ export type AccessLevel = 'normal' | 'hidden' | 'secret';
  * public. Cela ferme le bypass ou un cookie `gf_vip=XXXXXXXX` pose
  * manuellement (DevTools) suffisait a obtenir le niveau secret.
  *
+ * Revocation : meme si le HMAC est valide, on rejette tout cookie dont le
+ * code a ete revoque cote serveur (cf. lib/vip-revocation.ts, cache 5s,
+ * fail-open sur erreur IO). Sans ce check, un cookie deja emis continuait
+ * a debloquer les prix pendant 24h en mode public, meme apres revocation.
+ *
  * @author Lalou
  */
 export async function getAccessLevel(): Promise<AccessLevel> {
@@ -23,7 +29,9 @@ export async function getAccessLevel(): Promise<AccessLevel> {
   if (!vipCookie?.value) return 'normal';
 
   const payload = await verifyVipCookie(vipCookie.value);
-  if (payload) return payload.level;
+  if (!payload) return 'normal';
 
-  return 'normal';
+  if (await isCodeRevoked(payload.code)) return 'normal';
+
+  return payload.level;
 }

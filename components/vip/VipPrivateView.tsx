@@ -1,5 +1,5 @@
 import ToilesContent from "@/components/toiles/ToilesContent";
-import toiles from "@/data/toiles.json";
+import { TOILES } from "@/lib/toiles-data";
 import VipExitButton from "./VipExitButton";
 
 /**
@@ -40,7 +40,7 @@ export default function VipPrivateView({
           </div>
         </div>
       </header>
-      <ToilesContent toiles={toiles} showPrices={showPrices} />
+      <ToilesContent toiles={TOILES} showPrices={showPrices} />
     </main>
   );
 }

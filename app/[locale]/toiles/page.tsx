@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Navigation from "@/components/navigation/Navigation";
 import ToilesContent from "@/components/toiles/ToilesContent";
-import toiles from "@/data/toiles.json";
+import { TOILES } from "@/lib/toiles-data";
 import { getAccessLevel } from "@/lib/access";
 
 export async function generateMetadata({
@@ -38,7 +38,7 @@ export default async function ToilesPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <ToilesContent toiles={toiles} showPrices={isVip} />
+      <ToilesContent toiles={TOILES} showPrices={isVip} />
     </main>
   );
 }

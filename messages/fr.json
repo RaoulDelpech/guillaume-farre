@@ -336,7 +336,9 @@
       "try_again": "Service momentanément occupé. Réessayez dans quelques secondes.",
       "network": "Connexion impossible. Vérifiez votre réseau puis réessayez.",
       "pdf_failed": "Échec de génération du PDF. Contactez l'artiste."
-    }
+    },
+    "proceed_to_payment": "Procéder au paiement par carte",
+    "pay_later": "Régler plus tard"
   },
   "adminVip": {
     "title": "Codes VIP",
@@ -447,5 +449,38 @@
       "description": "Accès administration du site Guillaume Farré."
     },
     "galerieItemFallbackDescription": "{title} — Photographie d'art par Guillaume Farré"
+  },
+  "vipCheckout": {
+    "meta_title": "Paiement — Réservation VIP",
+    "meta_description": "Page de paiement sécurisée Stripe pour une toile réservée.",
+    "title": "Paiement par carte",
+    "subtitle": "Réglez votre toile en toute sécurité via Stripe.",
+    "canvas_label": "Œuvre",
+    "buyer_label": "Acquéreur",
+    "amount_label": "Montant total",
+    "payment_note": "Vous allez être redirigé vers la page sécurisée de Stripe pour finaliser le paiement par carte bancaire. Aucun débit n'a lieu sur ce site.",
+    "button_pay": "Procéder au paiement",
+    "button_loading": "Redirection en cours…",
+    "errors": {
+      "unauthorized": "Session expirée. Reconnectez-vous via votre code VIP.",
+      "reservation_not_found": "Réservation introuvable.",
+      "invalid_state": "Cette réservation ne peut pas être réglée pour le moment.",
+      "stripe_failed": "La connexion à Stripe a échoué. Réessayez dans quelques instants.",
+      "network": "Erreur réseau. Vérifiez votre connexion et réessayez."
+    }
+  },
+  "vipConfirmation": {
+    "meta_title": "Confirmation — Réservation VIP",
+    "meta_description": "Confirmation de paiement d'une toile Guillaume Farré.",
+    "title_paid": "Paiement confirmé",
+    "subtitle_paid": "Merci pour votre acquisition. Guillaume vous contactera très prochainement pour organiser la remise de l'œuvre.",
+    "title_pending": "Paiement en cours de validation",
+    "subtitle_pending": "Nous attendons la confirmation finale de Stripe. Vous recevrez un email dès que tout est validé.",
+    "order_label": "Numéro de commande",
+    "canvas_label": "Œuvre",
+    "amount_label": "Montant réglé",
+    "next_steps_paid": "Un email de confirmation vous a été envoyé. Guillaume Farré vous contactera personnellement pour convenir du retrait de la toile à l'atelier.",
+    "next_steps_pending": "Cette page se mettra à jour automatiquement. Vous pouvez aussi revenir plus tard depuis votre espace VIP.",
+    "continue_vip": "Continuer la visite VIP"
   }
 }

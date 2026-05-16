@@ -20,12 +20,12 @@ interface AmericanFrameProps {
 // --- Visual tuning constants ---
 // FIXE en pixels — meme cadre quelle que soit la taille du tableau
 // Principe caisse americaine : 2.5cm de face + 0.5cm de profondeur fond noir
-const FRAME_FACE = '18px'
+const FRAME_FACE = '14px'
 const FRAME_LIP = '2px'
 const FRAME_GAP = '2px'
 
 // Constantes numeriques pour exports (calculs de layout)
-export const FRAME_FACE_PX = 18
+export const FRAME_FACE_PX = 14
 export const FRAME_LIP_PX = 2
 export const GAP_PX = 2
 
@@ -206,8 +206,8 @@ export default function AmericanFrame({
 
   // Canvas texture
   const canvasGrain = [
-    'repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
-    'repeating-linear-gradient(90deg, transparent 0px, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
+    'repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(0,0,0,0.015) 1px, rgba(0,0,0,0.015) 2px)',
+    'repeating-linear-gradient(90deg, transparent 0px, transparent 1px, rgba(0,0,0,0.015) 1px, rgba(0,0,0,0.015) 2px)',
   ].join(', ')
 
   return (
@@ -289,7 +289,7 @@ export default function AmericanFrame({
                     sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
                     quality={90}
                     className="w-full h-auto"
-                    style={{ display: 'block' }}
+                    style={{ display: 'block', filter: 'saturate(1.08) contrast(1.03)' }}
                     {...(blurDataURL ? { placeholder: 'blur' as const, blurDataURL } : {})}
                     priority={priority}
                   />
@@ -300,7 +300,7 @@ export default function AmericanFrame({
                       position: 'absolute',
                       inset: 0,
                       background: canvasGrain,
-                      mixBlendMode: 'multiply',
+                      mixBlendMode: 'overlay',
                       pointerEvents: 'none',
                     }}
                   />
@@ -311,10 +311,10 @@ export default function AmericanFrame({
                       position: 'absolute',
                       inset: 0,
                       boxShadow: [
-                        'inset 0 2px 8px rgba(0,0,0,0.1)',
-                        'inset 0 -1px 6px rgba(0,0,0,0.06)',
-                        'inset 2px 0 6px rgba(0,0,0,0.05)',
-                        'inset -2px 0 6px rgba(0,0,0,0.05)',
+                        'inset 0 2px 8px rgba(0,0,0,0.05)',
+                        'inset 0 -1px 6px rgba(0,0,0,0.03)',
+                        'inset 2px 0 6px rgba(0,0,0,0.025)',
+                        'inset -2px 0 6px rgba(0,0,0,0.025)',
                       ].join(', '),
                       pointerEvents: 'none',
                     }}

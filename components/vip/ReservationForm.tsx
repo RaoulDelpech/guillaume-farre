@@ -98,6 +98,15 @@ export default function ReservationForm({
     onClose();
   }
 
+  function handleGoToCheckout() {
+    if (!reservationId) return;
+    const localePrefix =
+      typeof window !== 'undefined' ? window.location.pathname.split('/')[1] || 'fr' : 'fr';
+    const allowed = new Set(['fr', 'en', 'it']);
+    const safeLocale = allowed.has(localePrefix) ? localePrefix : 'fr';
+    window.location.href = `/${safeLocale}/vip/reservation/${reservationId}/checkout`;
+  }
+
   const isSigning = mode === 'signature';
   const headerTitle =
     mode === 'signature'
@@ -136,13 +145,22 @@ export default function ReservationForm({
             <p className="text-sm font-light text-neutral-700 leading-relaxed">
               {ts('done_message')}
             </p>
-            <button
-              type="button"
-              onClick={handleSuccessClose}
-              className="px-6 py-3 text-xs tracking-[0.25em] uppercase border border-neutral-400 text-neutral-700 hover:border-[#8c6e32] hover:text-[#8c6e32] transition-colors"
-            >
-              {t('close')}
-            </button>
+            <div className="flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={handleGoToCheckout}
+                className="px-6 py-3 text-xs tracking-[0.25em] uppercase border border-[#8c6e32] bg-[#8c6e32] text-white hover:bg-[#705624] transition-colors"
+              >
+                {ts('proceed_to_payment')}
+              </button>
+              <button
+                type="button"
+                onClick={handleSuccessClose}
+                className="px-6 py-3 text-xs tracking-[0.25em] uppercase border border-neutral-400 text-neutral-700 hover:border-[#8c6e32] hover:text-[#8c6e32] transition-colors"
+              >
+                {ts('pay_later')}
+              </button>
+            </div>
           </div>
         ) : mode === 'signature' && reservationId && canvas ? (
           <ReservationSignatureStep

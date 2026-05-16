@@ -336,7 +336,9 @@
       "try_again": "Service briefly busy. Please retry in a few seconds.",
       "network": "Connection failed. Check your network and retry.",
       "pdf_failed": "PDF generation failed. Contact the artist."
-    }
+    },
+    "proceed_to_payment": "Proceed to card payment",
+    "pay_later": "Pay later"
   },
   "adminVip": {
     "title": "VIP Codes",
@@ -447,5 +449,38 @@
       "description": "Admin access to the Guillaume Farré website."
     },
     "galerieItemFallbackDescription": "{title} — Fine art photograph by Guillaume Farré"
+  },
+  "vipCheckout": {
+    "meta_title": "Payment — VIP Reservation",
+    "meta_description": "Secure Stripe payment page for a reserved canvas.",
+    "title": "Card payment",
+    "subtitle": "Pay for your canvas securely via Stripe.",
+    "canvas_label": "Artwork",
+    "buyer_label": "Buyer",
+    "amount_label": "Total amount",
+    "payment_note": "You will be redirected to the secure Stripe page to complete your card payment. No charge happens on this site.",
+    "button_pay": "Proceed to payment",
+    "button_loading": "Redirecting…",
+    "errors": {
+      "unauthorized": "Session expired. Please sign in again with your VIP code.",
+      "reservation_not_found": "Reservation not found.",
+      "invalid_state": "This reservation cannot be paid right now.",
+      "stripe_failed": "Connection to Stripe failed. Please try again.",
+      "network": "Network error. Check your connection and try again."
+    }
+  },
+  "vipConfirmation": {
+    "meta_title": "Confirmation — VIP Reservation",
+    "meta_description": "Payment confirmation for a Guillaume Farré canvas.",
+    "title_paid": "Payment confirmed",
+    "subtitle_paid": "Thank you for your acquisition. Guillaume will contact you very soon to organise the handover of the artwork.",
+    "title_pending": "Payment being validated",
+    "subtitle_pending": "We are waiting for Stripe to confirm. You will receive an email as soon as everything is validated.",
+    "order_label": "Order number",
+    "canvas_label": "Artwork",
+    "amount_label": "Amount paid",
+    "next_steps_paid": "A confirmation email has been sent. Guillaume Farré will contact you personally to arrange picking up the canvas at the studio.",
+    "next_steps_pending": "This page will update automatically. You can also come back later from your VIP space.",
+    "continue_vip": "Continue the VIP visit"
   }
 }

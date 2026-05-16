@@ -314,6 +314,30 @@
       }
     }
   },
+  "signature": {
+    "step_title": "Étape 2 — Signez votre contrat",
+    "step_intro": "Relisez le contrat, puis signez dans le cadre pour valider votre réservation. La signature est conservée comme preuve électronique (Règlement eIDAS).",
+    "header_title": "Signature — « {title} »",
+    "canvas_label": "Signez avec votre souris ou votre doigt",
+    "clear": "Effacer",
+    "stroke_ok": "Signature capturée",
+    "stroke_empty": "Cadre vide",
+    "fullName": "Votre nom complet",
+    "fullName_placeholder": "Prénom Nom",
+    "accept_terms": "J'ai lu et j'accepte les termes du contrat, notamment la qualification des sommes versées en arrhes et l'indemnité forfaitaire de 300 € en cas de rétractation au-delà des 14 jours légaux.",
+    "sign_contract": "Signer le contrat",
+    "submitting": "Signature en cours…",
+    "done_message": "Contrat signé. Vous recevrez par email une copie PDF du contrat. Guillaume vous contactera pour finaliser le paiement.",
+    "errors": {
+      "unauthorized": "Votre session VIP a expiré. Reconnectez-vous via votre lien d'invitation.",
+      "not_found": "Réservation introuvable.",
+      "already_signed": "Cette réservation est déjà signée ou n'est plus active.",
+      "validation": "Signature ou nom invalide. Vérifiez les champs.",
+      "try_again": "Service momentanément occupé. Réessayez dans quelques secondes.",
+      "network": "Connexion impossible. Vérifiez votre réseau puis réessayez.",
+      "pdf_failed": "Échec de génération du PDF. Contactez l'artiste."
+    }
+  },
   "adminVip": {
     "title": "Codes VIP",
     "tag": "Administration",

@@ -3,6 +3,14 @@ export interface PanelDimension {
   imageHeight: number;
 }
 
+export type ToileStatus =
+  | 'available'
+  | 'reserved_pending'
+  | 'reserved_signed'
+  | 'partial_paid'
+  | 'paid'
+  | 'unavailable';
+
 export interface Toile {
   id: number;
   name: string;
@@ -16,6 +24,9 @@ export interface Toile {
   triptych?: boolean;
   images?: string[];
   panelDimensions?: PanelDimension[];
+  status?: ToileStatus;
+  reservationId?: string | null;
+  reservedUntil?: string | null;
 }
 
 export interface ReservationForm {

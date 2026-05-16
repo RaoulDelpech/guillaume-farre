@@ -8,7 +8,10 @@
     "price": 20000,
     "image": "/images/toiles/1.jpg",
     "imageWidth": 1441,
-    "imageHeight": 1867
+    "imageHeight": 1867,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 2,
@@ -19,7 +22,10 @@
     "price": 2500,
     "image": "/images/toiles/2.jpg",
     "imageWidth": 1215,
-    "imageHeight": 1472
+    "imageHeight": 1472,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 3,
@@ -30,7 +36,10 @@
     "price": 7500,
     "image": "/images/toiles/3.jpg",
     "imageWidth": 932,
-    "imageHeight": 1868
+    "imageHeight": 1868,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 4,
@@ -41,7 +50,10 @@
     "price": 2500,
     "image": "/images/toiles/4.jpg",
     "imageWidth": 1112,
-    "imageHeight": 1352
+    "imageHeight": 1352,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 5,
@@ -52,7 +64,10 @@
     "price": 2500,
     "image": "/images/toiles/5.jpg",
     "imageWidth": 1149,
-    "imageHeight": 1450
+    "imageHeight": 1450,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 6,
@@ -63,7 +78,10 @@
     "price": 6000,
     "image": "/images/toiles/6.jpg",
     "imageWidth": 1457,
-    "imageHeight": 1102
+    "imageHeight": 1102,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 7,
@@ -74,7 +92,10 @@
     "price": 6500,
     "image": "/images/toiles/7.jpg",
     "imageWidth": 1191,
-    "imageHeight": 1577
+    "imageHeight": 1577,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 8,
@@ -85,7 +106,10 @@
     "price": 15000,
     "image": "/images/toiles/8.jpg",
     "imageWidth": 1153,
-    "imageHeight": 1154
+    "imageHeight": 1154,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 9,
@@ -96,7 +120,10 @@
     "price": 10000,
     "image": "/images/toiles/9.jpg",
     "imageWidth": 1211,
-    "imageHeight": 1204
+    "imageHeight": 1204,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 10,
@@ -107,7 +134,10 @@
     "price": 13000,
     "image": "/images/toiles/10.jpg",
     "imageWidth": 1116,
-    "imageHeight": 1401
+    "imageHeight": 1401,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 11,
@@ -118,7 +148,10 @@
     "price": 7500,
     "image": "/images/toiles/11.jpg",
     "imageWidth": 978,
-    "imageHeight": 1952
+    "imageHeight": 1952,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 12,
@@ -129,7 +162,10 @@
     "price": 13000,
     "image": "/images/toiles/12.jpg",
     "imageWidth": 1159,
-    "imageHeight": 1461
+    "imageHeight": 1461,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 13,
@@ -140,7 +176,10 @@
     "price": 12500,
     "image": "/images/toiles/13.jpg",
     "imageWidth": 568,
-    "imageHeight": 1732
+    "imageHeight": 1732,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 14,
@@ -151,7 +190,10 @@
     "price": 10000,
     "image": "/images/toiles/14.jpg",
     "imageWidth": 1169,
-    "imageHeight": 1163
+    "imageHeight": 1163,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 15,
@@ -162,7 +204,10 @@
     "price": 10000,
     "image": "/images/toiles/15.jpg",
     "imageWidth": 1223,
-    "imageHeight": 1228
+    "imageHeight": 1228,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 16,
@@ -173,7 +218,10 @@
     "price": 2500,
     "image": "/images/toiles/16.jpg",
     "imageWidth": 1094,
-    "imageHeight": 1301
+    "imageHeight": 1301,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 17,
@@ -203,7 +251,10 @@
       }
     ],
     "imageWidth": 675,
-    "imageHeight": 1841
+    "imageHeight": 1841,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 18,
@@ -214,7 +265,10 @@
     "price": 15000,
     "image": "/images/toiles/18.jpg",
     "imageWidth": 1339,
-    "imageHeight": 1238
+    "imageHeight": 1238,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 19,
@@ -225,7 +279,10 @@
     "price": 7500,
     "image": "/images/toiles/19.jpg",
     "imageWidth": 971,
-    "imageHeight": 1950
+    "imageHeight": 1950,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   },
   {
     "id": 20,
@@ -236,6 +293,9 @@
     "price": 20000,
     "image": "/images/toiles/20.jpg",
     "imageWidth": 1280,
-    "imageHeight": 1717
+    "imageHeight": 1717,
+    "status": "available",
+    "reservationId": null,
+    "reservedUntil": null
   }
 ]

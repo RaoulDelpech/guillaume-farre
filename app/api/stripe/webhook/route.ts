@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { processOrder, reserveOrder, cancelReservation } from './order-handler';
 import { processCanvasInvoicePaid } from './canvas-handler';
+import { processCanvasCheckoutSession } from './canvas-checkout-handler';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -37,8 +38,13 @@ export async function POST(req: NextRequest) {
     case 'checkout.session.completed': {
       const session = event.data.object as Stripe.Checkout.Session;
       if (session.payment_status === 'paid') {
-        try { await processOrder(stripe, session); }
-        catch (error) { console.error('Failed to process order:', error); }
+        if (session.metadata?.type === 'vip-canvas-payment') {
+          try { await processCanvasCheckoutSession(session); }
+          catch (error) { console.error('Failed to process VIP canvas payment:', error); }
+        } else {
+          try { await processOrder(stripe, session); }
+          catch (error) { console.error('Failed to process order:', error); }
+        }
       } else if (session.payment_status === 'unpaid') {
         try { await reserveOrder(stripe, session); }
         catch (error) { console.error('Failed to reserve order:', error); }

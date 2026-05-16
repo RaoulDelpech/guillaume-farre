@@ -18,6 +18,7 @@ const mockProcessOrder = vi.fn();
 const mockReserveOrder = vi.fn();
 const mockCancelReservation = vi.fn();
 const mockProcessCanvasInvoicePaid = vi.fn();
+const mockProcessCanvasCheckoutSession = vi.fn();
 const mockHeadersGet = vi.fn();
 
 vi.mock('stripe', () => {
@@ -40,6 +41,10 @@ vi.mock('../order-handler', () => ({
 
 vi.mock('../canvas-handler', () => ({
   processCanvasInvoicePaid: mockProcessCanvasInvoicePaid,
+}));
+
+vi.mock('../canvas-checkout-handler', () => ({
+  processCanvasCheckoutSession: mockProcessCanvasCheckoutSession,
 }));
 
 function buildReq(body: string) {

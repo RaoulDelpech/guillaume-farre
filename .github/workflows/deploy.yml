@@ -77,6 +77,13 @@ jobs:
             echo "Writing env..."
             echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" > .env.local
             echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.local
+            # STRIPE_WEBHOOK_SECRET : signing secret du webhook endpoint Stripe LIVE
+            # (https://guillaumefarre.com/api/stripe/webhook). Sans cette variable,
+            # app/api/stripe/webhook/route.ts:25 rejette TOUTE requete webhook en 500
+            # — donc paid -> reservation/order jamais marquees, emails jamais envoyes.
+            # Source : Stripe Dashboard > Webhooks > endpoint > Signing secret. Ajoute
+            # au GitHub repo secret par Raoul 16/05 apres incident Sprint 4 partial.
+            echo "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}" >> .env.local
             echo "NEXT_PUBLIC_SITE_URL=https://guillaumefarre.com" >> .env.local
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local

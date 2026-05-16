@@ -16,7 +16,12 @@ import { formatDateFrench, esc } from './types';
 
 const SIGNATURE_IMAGE_NAME = 'SigImg';
 const SIG_X = 330;
-const SIG_Y = 110;
+// Image signature placee SOUS la zone "L'Acquereur / nom / Bon pour accord"
+// (qui commence a y=275). Avec SIG_H=80, l'image occupe y=125..205, en-dessous
+// du baseline du texte "(Bon pour accord)" (~y=240) et au-dessus de la ligne
+// separation du footer eIDAS (y=110). Avant fix, SIG_Y=110 superposait l'image
+// au texte acquereur (qui etait alors a y=170..144), masquant le nom dactylo.
+const SIG_Y = 125;
 const SIG_W = 200;
 const SIG_H = 80;
 
@@ -114,19 +119,21 @@ export function generatePage2Content(data: SaleContractData): string {
 
   p.push('ET');
 
-  // Ligne separation signatures
-  p.push('q 0.5 w 80 220 m 515 220 l S Q');
+  // Ligne separation signatures (decalee de y=220 a y=320 pour liberer la
+  // moitie basse de la page : noms acquereur/vendeur en haut, image signature
+  // en bas, footer eIDAS en pied).
+  p.push('q 0.5 w 80 320 m 515 320 l S Q');
 
   p.push('BT');
   p.push('/F1 11 Tf');
-  p.push('80 200 Td');
+  p.push('80 300 Td');
   p.push(`(Fait a Toulouse, le ${formatDateFrench(data.date)}) Tj`);
   p.push('ET');
 
-  // Colonne signature vendeur
+  // Colonne signature vendeur (titre y=275, nom y=261, mention y=249)
   p.push('BT');
   p.push('/F1 11 Tf');
-  p.push('80 170 Td');
+  p.push('80 275 Td');
   p.push('(Le Vendeur) Tj');
   p.push('/F2 9 Tf');
   p.push('0 -14 Td');
@@ -135,10 +142,13 @@ export function generatePage2Content(data: SaleContractData): string {
   p.push('(\\(Lu et approuve\\)) Tj');
   p.push('ET');
 
-  // Colonne signature acheteur
+  // Colonne signature acheteur (memes baselines que vendeur, x=330).
+  // Le baseline le plus bas (y=249 pour "(Bon pour accord)") reste au-dessus
+  // du top de l'image signature (y=205), garantissant l'absence de
+  // chevauchement avec la zone graphique signature.
   p.push('BT');
   p.push('/F1 11 Tf');
-  p.push('330 170 Td');
+  p.push('330 275 Td');
   p.push(`(L'Acquereur) Tj`);
   p.push('/F2 9 Tf');
   p.push('0 -14 Td');
@@ -159,16 +169,17 @@ export function generatePage2Content(data: SaleContractData): string {
     p.push('Q');
   }
 
-  // Footer eIDAS technique
+  // Footer eIDAS technique (decale de y=90 a y=110 pour respecter le bas de
+  // l'image signature a y=125 — 15pt de marge entre image et ligne sepa).
   if (hasSignature && data.signature) {
     const sig = data.signature;
     const ua = sig.userAgent.slice(0, 80);
 
-    p.push('q 0.3 w 80 90 m 515 90 l S Q');
+    p.push('q 0.3 w 80 110 m 515 110 l S Q');
 
     p.push('BT');
     p.push('/F1 8 Tf');
-    p.push('80 80 Td');
+    p.push('80 100 Td');
     p.push('(SIGNATURE ELECTRONIQUE - METADONNEES TECHNIQUES) Tj');
     p.push('/F2 7 Tf');
     p.push('0 -10 Td');

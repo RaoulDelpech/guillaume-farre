@@ -314,6 +314,30 @@
       }
     }
   },
+  "signature": {
+    "step_title": "Step 2 — Sign your contract",
+    "step_intro": "Review the contract, then sign in the box to confirm your reservation. The signature is kept as electronic proof (eIDAS Regulation).",
+    "header_title": "Signature — \"{title}\"",
+    "canvas_label": "Sign with your mouse or finger",
+    "clear": "Clear",
+    "stroke_ok": "Signature captured",
+    "stroke_empty": "Empty box",
+    "fullName": "Your full name",
+    "fullName_placeholder": "First Last",
+    "accept_terms": "I have read and accept the terms of the contract, in particular the qualification of any sums paid as earnest money (arrhes) and the fixed €300 fee in case of withdrawal beyond the legal 14-day period.",
+    "sign_contract": "Sign the contract",
+    "submitting": "Signing…",
+    "done_message": "Contract signed. You will receive a PDF copy of the contract by email. Guillaume will contact you to finalise the payment.",
+    "errors": {
+      "unauthorized": "Your VIP session has expired. Please use your invitation link again.",
+      "not_found": "Reservation not found.",
+      "already_signed": "This reservation is already signed or no longer active.",
+      "validation": "Signature or name invalid. Please check the fields.",
+      "try_again": "Service briefly busy. Please retry in a few seconds.",
+      "network": "Connection failed. Check your network and retry.",
+      "pdf_failed": "PDF generation failed. Contact the artist."
+    }
+  },
   "adminVip": {
     "title": "VIP Codes",
     "tag": "Administration",

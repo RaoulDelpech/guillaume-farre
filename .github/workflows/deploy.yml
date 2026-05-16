@@ -28,6 +28,11 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            # Fail-fast : ANY failure aborts the deploy (avant : pm2 restart continuait
+            # meme apres un bun run build casse, masquant un crashloop en "success").
+            # Incident reference : Sprint 3 merge 0ae7cd1 (16/05) crashloop 104x.
+            set -e
+            set -o pipefail
             export BUN_INSTALL="$HOME/.bun"
             export PATH="$BUN_INSTALL/bin:$PATH"
             cd /var/www/guillaumefarre
@@ -77,6 +82,10 @@ jobs:
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "SITE_PASSWORD=${{ secrets.SITE_PASSWORD }}" >> .env.local
             echo "AUTH_SECRET=${{ secrets.AUTH_SECRET }}" >> .env.local
+            # MAGIC_LINK_SECRET : HMAC secret pour signature contrats VIP (Sprint 3) ET
+            # cookie VIP (lib/vip-cookie.ts). Absence -> crash build sur lib/contract-signing.ts
+            # et lib/magic-link.ts. Source : GitHub repo secret (ajoute par Raoul 16/05).
+            echo "MAGIC_LINK_SECRET=${{ secrets.MAGIC_LINK_SECRET }}" >> .env.local
             echo "SITE_MODE=public" >> .env.local
             echo "RESEND_API_KEY=${{ secrets.RESEND_API_KEY }}" >> .env.local
             echo "RESEND_FROM_EMAIL=Guillaume Farré <noreply@guillaumefarre.com>" >> .env.local
@@ -86,6 +95,13 @@ jobs:
             rm -rf .next
             echo "Building (clean)..."
             NODE_OPTIONS="--max-old-space-size=4096" bun run build
+            # Fast-fail explicite : si .next/BUILD_ID est absent, le build n'a rien produit
+            # d'utilisable et PM2 va crashlooper. On stoppe AVANT pm2 restart.
+            # Necessaire en complement de set -e car bun pourrait theoriquement exit 0
+            # sur un build partiel (cf. incident Sprint 3).
+            echo "Verifying build output..."
+            test -f .next/BUILD_ID || { echo "::error title=Build artifact missing::Build did not produce .next/BUILD_ID — aborting deploy to preserve current running version"; exit 1; }
+            echo "Build verified: BUILD_ID=$(cat .next/BUILD_ID)"
             echo "Restarting PM2..."
             pm2 restart guillaumefarre || pm2 start npm --name guillaumefarre -- start
             sleep 10

@@ -80,6 +80,9 @@ test-mobile.sh
 # Concurrent locks (created by lib/locks.ts at runtime)
 /data/locks/
 
+# Local verification artifacts (screenshots, traces)
+/.tmp/
+
 # Sources HR toiles (backups en local sur ~/Desktop/Toiles Guillaumes)
 public/images/works/toiles/
 

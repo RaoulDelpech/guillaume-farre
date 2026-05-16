@@ -10,12 +10,15 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import AmericanFrame from '@/components/AmericanFrame';
 import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
-import { LINEN_BG, paintingMaxWidth, BROWSE_VH, formatPrice } from './toiles-utils';
+import CanvasReserveCTA from './CanvasReserveCTA';
+import ReservationForm from '@/components/vip/ReservationForm';
+import { LINEN_BG, paintingMaxWidth, BROWSE_VH } from './toiles-utils';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
 
@@ -30,8 +33,10 @@ interface ToilesContentProps {
 
 export default function ToilesContent({ toiles, showPrices = false }: ToilesContentProps) {
   const t = useTranslations('canvas');
+  const router = useRouter();
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [openFormId, setOpenFormId] = useState<number | null>(null);
+  const [reservationToile, setReservationToile] = useState<Toile | null>(null);
   const [activeToileIdx, setActiveToileIdx] = useState<number>(0);
   const toileRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -74,12 +79,6 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
       document.removeEventListener('keydown', onKey);
     };
   }, [lightboxIdx, toiles.length]);
-
-  function generateMailto(name: string): string {
-    const subject = `Réservation — ${name}`;
-    const body = `Bonjour,\n\nJe souhaite réserver la toile « ${name} ».\n\nMerci de me recontacter.\n\nCordialement`;
-    return `mailto:contact@guillaumefarre.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }
 
   function scrollToToile(index: number) {
     toileRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -208,17 +207,10 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
 
                   <div className="flex-shrink-0">
                     {showPrices ? (
-                      <div className="flex items-center gap-6">
-                        <span className="text-lg font-extralight tracking-wide text-[#8c6e32]">
-                          {formatPrice(toile.price)}
-                        </span>
-                        <a
-                          href={generateMailto(toile.name)}
-                          className="inline-flex items-center justify-center px-6 py-3 text-neutral-500 text-xs tracking-[0.25em] uppercase hover:text-[#8c6e32] transition-all duration-300 border border-neutral-300 hover:border-[#8c6e32] min-h-[44px]"
-                        >
-                          {t('reserve')}
-                        </a>
-                      </div>
+                      <CanvasReserveCTA
+                        toile={toile}
+                        onReserveClick={() => setReservationToile(toile)}
+                      />
                     ) : (
                       <>
                         {!formOpen ? (
@@ -265,6 +257,15 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
         onNext={() => setLightboxIdx((i) => (i !== null && i < toiles.length - 1 ? i + 1 : i))}
         onGoTo={(i) => setLightboxIdx(i)}
       />
+
+      {reservationToile ? (
+        <ReservationForm
+          canvasId={reservationToile.id}
+          canvasTitle={reservationToile.name}
+          onClose={() => setReservationToile(null)}
+          onSuccess={() => router.refresh()}
+        />
+      ) : null}
 
     </div>
   );

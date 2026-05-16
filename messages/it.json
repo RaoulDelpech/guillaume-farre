@@ -211,7 +211,8 @@
     "alreadyUsed": "Questo codice è già stato utilizzato",
     "revoked": "Accesso revocato. Si prega di contattare Guillaume Farré.",
     "welcome": "Benvenuto nell'atelier",
-    "welcomeSubtitle": "Le tele vi aspettano"
+    "welcomeSubtitle": "Le tele vi aspettano",
+    "exit": "Uscire"
   },
   "canvas": {
     "tag": "Collezione privata",

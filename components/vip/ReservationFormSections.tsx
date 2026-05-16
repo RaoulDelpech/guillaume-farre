@@ -7,7 +7,7 @@
  * @author Lalou
  */
 
-import { useTranslations } from 'next-intl';
+import { useMessages, useTranslations } from 'next-intl';
 import { MESSAGE_MAX_LENGTH } from '@/lib/schemas/reservation';
 import { Field, TextInput, TextArea, BuyerTypeRadio } from './reservation-form-fields';
 import type { ReservationFormState, BuyerType, ReservationFieldErrors } from './use-reservation-form';
@@ -18,14 +18,21 @@ interface SectionsProps {
   setField: <K extends keyof ReservationFormState>(key: K, value: ReservationFormState[K]) => void;
 }
 
+interface ReservationMessages {
+  reservation?: { errors?: { fields?: Record<string, string> } };
+}
+
 function useErrorResolver(errors: ReservationFieldErrors) {
-  const t = useTranslations('reservation');
+  // next-intl interprete les points dans les cles comme des separateurs
+  // hierarchiques, ce qui est incompatible avec les codes Zod du type
+  // "firstName.tooShort". On contourne en lisant directement la map
+  // de messages plats.
+  const messages = useMessages() as ReservationMessages;
+  const fields = messages.reservation?.errors?.fields ?? {};
   return (path: string): string | undefined => {
     const code = errors[path];
     if (!code) return undefined;
-    const i18nKey = `errors.fields.${code}`;
-    const translated = t(i18nKey);
-    return translated === i18nKey ? code : translated;
+    return fields[code] ?? code;
   };
 }
 

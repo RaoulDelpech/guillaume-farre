@@ -262,6 +262,12 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
         <ReservationForm
           canvasId={reservationToile.id}
           canvasTitle={reservationToile.name}
+          canvas={{
+            dimensions: reservationToile.dimensions,
+            technique: reservationToile.technique,
+            year: reservationToile.year,
+            price: reservationToile.price,
+          }}
           onClose={() => setReservationToile(null)}
           onSuccess={() => router.refresh()}
         />

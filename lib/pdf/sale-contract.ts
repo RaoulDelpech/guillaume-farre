@@ -88,9 +88,20 @@ export function generateSaleContractPDF(data: SaleContractData): Buffer {
     pushText('\nendstream\nendobj\n');
   });
 
-  // Fonts
-  objects.push(() => pushText('7 0 obj\n<<\n  /Type /Font\n  /Subtype /Type1\n  /BaseFont /Helvetica-Bold\n>>\nendobj\n'));
-  objects.push(() => pushText('8 0 obj\n<<\n  /Type /Font\n  /Subtype /Type1\n  /BaseFont /Helvetica\n>>\nendobj\n'));
+  // Fonts — encoding WinAnsi explicite (CP1252) pour rendre € (0x80), ° (0xB0),
+  // et tous les accents latin-1 utilises dans les noms acquereurs etrangers.
+  // Sans cet attribut les fonts Type1 retombent sur StandardEncoding qui ignore
+  // 0x80-0xFF, provoquant des glyphes parasites ou silencieusement absents.
+  objects.push(() =>
+    pushText(
+      '7 0 obj\n<<\n  /Type /Font\n  /Subtype /Type1\n  /BaseFont /Helvetica-Bold\n  /Encoding /WinAnsiEncoding\n>>\nendobj\n',
+    ),
+  );
+  objects.push(() =>
+    pushText(
+      '8 0 obj\n<<\n  /Type /Font\n  /Subtype /Type1\n  /BaseFont /Helvetica\n  /Encoding /WinAnsiEncoding\n>>\nendobj\n',
+    ),
+  );
 
   // Signature XObject (object 9)
   if (hasSignature && data.signature) {

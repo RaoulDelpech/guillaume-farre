@@ -4,6 +4,8 @@
  * @author Lalou
  */
 
+import { toWinAnsi } from './text-encoding';
+
 export interface CertificateData {
   orderNumber: string;
   customerName: string;
@@ -80,10 +82,18 @@ export function formatDateFrench(isoDate: string): string {
 }
 
 /**
- * Escape les parentheses pour syntaxe PDF
+ * Convertit le texte en WinAnsi puis echappe les caracteres reserves PDF
+ * (`\`, `(`, `)`).
+ *
+ * L'ordre est crucial : la conversion WinAnsi doit precede l'echappement,
+ * sinon les backslashes generes par les escapes octals seraient eux-memes
+ * re-echappes.
  */
 export function esc(text: string): string {
-  return text.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+  return toWinAnsi(text)
+    .replace(/\\/g, '\\\\')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)');
 }
 
 /**

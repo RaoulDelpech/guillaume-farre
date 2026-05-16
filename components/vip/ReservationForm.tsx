@@ -3,13 +3,10 @@
 /**
  * Modal de reservation d'une toile pour les invites VIP.
  *
- * Flow 3 etapes :
- *   1. `form` — formulaire reservation (-> POST /api/reservations -> pending)
- *   2. `signature` — apercu contrat + canvas signature (-> POST /sign -> signed)
- *   3. `done` — confirmation finale
- *
- * Sprint 2 : etape 1 seulement.
- * Sprint 3 : ajout etapes 2 et 3 (signature electronique).
+ * Le hook `useReservationForm` gere etat + soumission + mapping des
+ * erreurs HTTP. Les sections JSX sont dans `ReservationFormSections`.
+ * Ce composant orchestre uniquement : modal shell, footer, succes,
+ * erreur globale.
  *
  * @author Lalou
  */
@@ -23,20 +20,10 @@ import {
   BuyerTypeSection,
   MessageSection,
 } from './ReservationFormSections';
-import ReservationSignatureStep from './ReservationSignatureStep';
-import type { SignSuccessPayload } from './use-signature-submit';
-
-type Mode = 'form' | 'signature' | 'done';
 
 interface ReservationFormProps {
   canvasId: number | string;
   canvasTitle: string;
-  canvas?: {
-    dimensions: string;
-    technique: string;
-    year: number;
-    price: number;
-  };
   onClose: () => void;
   onSuccess: () => void;
 }
@@ -44,65 +31,48 @@ interface ReservationFormProps {
 export default function ReservationForm({
   canvasId,
   canvasTitle,
-  canvas,
   onClose,
   onSuccess,
 }: ReservationFormProps) {
   const t = useTranslations('reservation');
-  const ts = useTranslations('signature');
   const fid = useId();
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const { state, setField, fieldErrors, submitting, submit } = useReservationForm(canvasId);
-  const [mode, setMode] = useState<Mode>('form');
-  const [reservationId, setReservationId] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
   const [globalError, setGlobalError] = useState<string | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !submitting && mode !== 'signature') onClose();
+      if (e.key === 'Escape' && !submitting) onClose();
     };
     document.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = '';
       document.removeEventListener('keydown', onKey);
     };
-  }, [onClose, submitting, mode]);
+  }, [onClose, submitting]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setGlobalError(null);
+
     const outcome = await submit();
     if (outcome.kind === 'success') {
-      setReservationId(outcome.reservationId);
-      if (canvas) {
-        setMode('signature');
-      } else {
-        // fallback : pas de canvas data -> on saute la signature
-        setMode('done');
-      }
+      setSuccess(true);
       return;
     }
     if (outcome.kind === 'error') {
       setGlobalError(t(`errors.${outcome.errorKey}`));
     }
-  }
-
-  function handleSigned(_payload: SignSuccessPayload) {
-    setMode('done');
+    // validation: les erreurs sont deja dans fieldErrors via le hook
   }
 
   function handleSuccessClose() {
     onSuccess();
     onClose();
   }
-
-  const isSigning = mode === 'signature';
-  const headerTitle =
-    mode === 'signature'
-      ? ts('header_title', { title: canvasTitle })
-      : t('form_title', { title: canvasTitle });
 
   return (
     <div
@@ -117,24 +87,24 @@ export default function ReservationForm({
             id={`${fid}-title`}
             className="text-base font-extralight tracking-[0.1em] uppercase text-[#1a1a1a]"
           >
-            {headerTitle}
+            {t('form_title', { title: canvasTitle })}
           </h2>
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label={t('close')}
-            disabled={submitting || isSigning}
+            disabled={submitting}
             className="text-neutral-500 hover:text-[#8c6e32] disabled:opacity-40 text-2xl leading-none px-2"
           >
             ×
           </button>
         </header>
 
-        {mode === 'done' ? (
+        {success ? (
           <div className="p-8 text-center space-y-6">
             <p className="text-sm font-light text-neutral-700 leading-relaxed">
-              {ts('done_message')}
+              {t('success')}
             </p>
             <button
               type="button"
@@ -144,13 +114,6 @@ export default function ReservationForm({
               {t('close')}
             </button>
           </div>
-        ) : mode === 'signature' && reservationId && canvas ? (
-          <ReservationSignatureStep
-            reservationId={reservationId}
-            buyerState={state}
-            canvas={{ title: canvasTitle, ...canvas }}
-            onSigned={handleSigned}
-          />
         ) : (
           <form onSubmit={handleSubmit} className="p-6 space-y-6" noValidate>
             <ContactSection state={state} errors={fieldErrors} setField={setField} />

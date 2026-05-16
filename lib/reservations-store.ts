@@ -57,14 +57,6 @@ export interface Reservation {
   createdAt: string;
   expiresAt: string;
   status: ReservationStatus;
-  signedAt?: string;
-  signatureIp?: string;
-  signatureUserAgent?: string;
-  signatureFullName?: string;
-  contractHash?: string;
-  contractHmac?: string;
-  contractPath?: string;
-  paymentMode?: 'integral' | 'deposit_balance' | 'invoice_email';
   stripeInvoiceId?: string;
   stripeInvoiceUrl?: string;
   stripeCustomerId?: string;

@@ -314,30 +314,6 @@
       }
     }
   },
-  "signature": {
-    "step_title": "Passo 2 — Firma il contratto",
-    "step_intro": "Rileggi il contratto, poi firma nel riquadro per confermare la prenotazione. La firma è conservata come prova elettronica (Regolamento eIDAS).",
-    "header_title": "Firma — «{title}»",
-    "canvas_label": "Firma con il mouse o il dito",
-    "clear": "Cancella",
-    "stroke_ok": "Firma acquisita",
-    "stroke_empty": "Riquadro vuoto",
-    "fullName": "Il tuo nome completo",
-    "fullName_placeholder": "Nome Cognome",
-    "accept_terms": "Ho letto e accetto le condizioni del contratto, in particolare la qualificazione delle somme versate come caparra (arrhes) e l'indennità forfettaria di 300 € in caso di recesso oltre il termine legale di 14 giorni.",
-    "sign_contract": "Firma il contratto",
-    "submitting": "Firma in corso…",
-    "done_message": "Contratto firmato. Riceverai via email una copia PDF del contratto. Guillaume ti contatterà per finalizzare il pagamento.",
-    "errors": {
-      "unauthorized": "La tua sessione VIP è scaduta. Riconnettiti tramite il tuo link d'invito.",
-      "not_found": "Prenotazione non trovata.",
-      "already_signed": "Questa prenotazione è già firmata o non è più attiva.",
-      "validation": "Firma o nome non validi. Controlla i campi.",
-      "try_again": "Servizio momentaneamente occupato. Riprova tra qualche secondo.",
-      "network": "Connessione impossibile. Verifica la tua rete e riprova.",
-      "pdf_failed": "Generazione PDF fallita. Contatta l'artista."
-    }
-  },
   "adminVip": {
     "title": "Codici VIP",
     "tag": "Amministrazione",

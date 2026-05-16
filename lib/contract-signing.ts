@@ -15,7 +15,17 @@ import crypto from 'crypto';
 import sharp from 'sharp';
 import { requireEnv } from './require-env';
 
-const MAGIC_LINK_SECRET = requireEnv('MAGIC_LINK_SECRET');
+// Lazy + memoize : ne resout MAGIC_LINK_SECRET qu'a la premiere demande, pas a
+// l'import du module. Eager top-level cassait `next build → Collecting page data`
+// quand l'env var manquait au build (cf. incident Sprint 3 merge 16/05 -> 104
+// crashloops PM2). En runtime normal, l'env var est setee donc memoize une fois.
+let cachedMagicLinkSecret: string | undefined;
+function getMagicLinkSecret(): string {
+  if (cachedMagicLinkSecret === undefined) {
+    cachedMagicLinkSecret = requireEnv('MAGIC_LINK_SECRET');
+  }
+  return cachedMagicLinkSecret;
+}
 
 const PNG_DATA_URL_RE = /^data:image\/png;base64,([A-Za-z0-9+/=\s]+)$/;
 const MAX_SIGNATURE_BYTES = 1_500_000; // 1.5 MB max avant conversion JPEG
@@ -122,7 +132,7 @@ export function computeContractIntegrity(content: ContractLegalContent): Contrac
   const canonical = canonicalJson(content);
   const contractHash = crypto.createHash('sha256').update(canonical).digest('hex');
   const contractHmac = crypto
-    .createHmac('sha256', MAGIC_LINK_SECRET)
+    .createHmac('sha256', getMagicLinkSecret())
     .update(contractHash)
     .digest('hex');
   return { contractHash, contractHmac };
@@ -149,7 +159,7 @@ function canonicalJson(value: unknown): string {
 export function verifyContractHmac(contractHash: string, contractHmac: string): boolean {
   if (!/^[a-f0-9]{64}$/.test(contractHash)) return false;
   const expected = crypto
-    .createHmac('sha256', MAGIC_LINK_SECRET)
+    .createHmac('sha256', getMagicLinkSecret())
     .update(contractHash)
     .digest('hex');
   try {

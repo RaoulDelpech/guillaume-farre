@@ -169,7 +169,7 @@ export default function ToileLightbox({
                       width={toile.panelDimensions?.[i]?.imageWidth || 800}
                       height={toile.panelDimensions?.[i]?.imageHeight || 1200}
                       className="max-h-[28vh] sm:max-h-[85vh] w-auto object-contain"
-                      quality={80}
+                      quality={90}
                       sizes="33vw"
                     />
                   ))}
@@ -182,7 +182,7 @@ export default function ToileLightbox({
                   height={toile.imageHeight || 900}
                   sizes="(max-width: 640px) 92vw, 80vw"
                   className="max-h-[65vh] sm:max-h-[88vh] max-w-[92vw] w-auto h-auto object-contain"
-                  quality={80}
+                  quality={90}
                   priority
                 />
               )}

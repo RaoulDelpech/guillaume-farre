@@ -10,8 +10,8 @@ import VipExitButton from "./VipExitButton";
  * des prix par defaut (le cookie HMAC valide entitle l'invite a les voir).
  *
  * Le bouton Sortir POST `/api/vip/logout`, ce qui ecrase le cookie HMAC
- * et fait basculer la prochaine evaluation cote serveur vers la porte
- * d'entree `VipDoorEntry`.
+ * et fait basculer la prochaine evaluation cote serveur vers le formulaire
+ * d'entree `VipCodeForm`.
  *
  * `showPrices` peut etre passe a `false` par la page parente si le cookie
  * porte un niveau `hidden` (toutes oeuvres mais pas de prix) — actuellement

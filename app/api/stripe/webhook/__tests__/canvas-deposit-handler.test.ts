@@ -176,6 +176,30 @@ describe('processCanvasDepositCheckoutSession', () => {
     expect(emailArgs.balanceAmount).toBe(14000);
     expect(emailArgs.totalAmount).toBe(20000);
     expect(emailArgs.balanceCheckoutUrl).toContain(`/vip/reservation/${SAMPLE_RESERVATION.id}/balance`);
+
+    // Sprint 6 : le lien email DOIT contenir un token HMAC signe (?bt=...)
+    // pour permettre le paiement depuis l'email meme sans cookie VIP.
+    expect(emailArgs.balanceCheckoutUrl).toMatch(/\?bt=[A-Za-z0-9_%.-]+/);
+  });
+
+  it('Sprint 6 : token HMAC du lien email est valide et matche le reservationId', async () => {
+    mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+    mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
+
+    const handler = await importHandler();
+    await handler(buildSession());
+
+    const emailArgs = mockSendDepositConfirmed.mock.calls[0][0];
+    const url = new URL(emailArgs.balanceCheckoutUrl, 'http://x.test');
+    const token = url.searchParams.get('bt');
+    expect(token).toBeTruthy();
+
+    const { verifyBalanceToken } = await import('@/lib/balance-token');
+    const result = verifyBalanceToken(token);
+    expect(result.valid).toBe(true);
+    if (result.valid) {
+      expect(result.reservationId).toBe(SAMPLE_RESERVATION.id);
+    }
   });
 
   it('utilise depositAmount de session si reservation.depositAmount absent', async () => {

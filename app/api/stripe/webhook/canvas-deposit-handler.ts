@@ -30,6 +30,7 @@ import {
   computeBalanceDueAt,
 } from '@/lib/canvas-payment-helpers';
 import { sendDepositConfirmedEmail } from '@/lib/resend/deposit-confirmed';
+import { signBalanceToken } from '@/lib/balance-token';
 
 const NOTIFICATION_EMAIL = 'contact@guillaumefarre.com';
 
@@ -123,7 +124,21 @@ export async function processCanvasDepositCheckoutSession(
   }
 
   const siteUrl = inferSiteUrl();
-  const balanceCheckoutUrl = `${siteUrl}/fr/vip/reservation/${reservation.id}/balance`;
+
+  // Sprint 6 : token HMAC inclus dans le lien email pour permettre le
+  // paiement du solde meme si l'acheteur a perdu son cookie VIP (autre
+  // device, vidage cookies). exp = balanceDueAt (date limite paiement).
+  let balanceTokenQuery = '';
+  try {
+    const token = signBalanceToken({
+      reservationId: reservation.id,
+      exp: balanceDueAt,
+    });
+    balanceTokenQuery = `?bt=${encodeURIComponent(token)}`;
+  } catch (error) {
+    console.error('[canvas-deposit] cannot sign balance token:', error);
+  }
+  const balanceCheckoutUrl = `${siteUrl}/fr/vip/reservation/${reservation.id}/balance${balanceTokenQuery}`;
 
   try {
     await sendDepositConfirmedEmail({

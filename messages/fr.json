@@ -327,7 +327,7 @@
     "accept_terms": "J'ai lu et j'accepte les termes du contrat, notamment la qualification des sommes versées en arrhes et l'indemnité forfaitaire de 300 € en cas de rétractation au-delà des 14 jours légaux.",
     "sign_contract": "Signer le contrat",
     "submitting": "Signature en cours…",
-    "done_message": "Contrat signé. Vous recevrez par email une copie PDF du contrat. Guillaume vous contactera pour finaliser le paiement.",
+    "done_message": "Contrat signé. Vous recevrez par email une copie PDF du contrat ainsi qu'un lien direct vers le paiement par carte. Vous pouvez aussi régler immédiatement via le bouton ci-dessous.",
     "errors": {
       "unauthorized": "Votre session VIP a expiré. Reconnectez-vous via votre lien d'invitation.",
       "not_found": "Réservation introuvable.",
@@ -481,6 +481,7 @@
     "amount_label": "Montant réglé",
     "next_steps_paid": "Un email de confirmation vous a été envoyé. Guillaume Farré vous contactera personnellement pour convenir du retrait de la toile à l'atelier.",
     "next_steps_pending": "Cette page se mettra à jour automatiquement. Vous pouvez aussi revenir plus tard depuis votre espace VIP.",
+    "download_contract": "Télécharger le contrat signé",
     "continue_vip": "Continuer la visite VIP"
   }
 }

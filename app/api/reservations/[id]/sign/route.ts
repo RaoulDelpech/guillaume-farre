@@ -46,6 +46,7 @@ import {
   sendSignedContractEmail,
   sendNewSignedReservationEmail,
 } from '@/lib/resend/contract-emails';
+import { sendPostSignatureCheckoutLink } from '@/lib/resend/post-signature-checkout-link';
 
 const LOCK_TIMEOUT_MS = 5000;
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -53,6 +54,22 @@ const CONTRACTS_DIR = path.join(DATA_DIR, 'contracts');
 
 interface RouteParams {
   params: Promise<{ id: string }>;
+}
+
+function inferLocaleFromRequest(request: NextRequest): 'fr' | 'en' | 'it' {
+  const accept = request.headers.get('accept-language') ?? '';
+  const first = accept.split(',')[0]?.trim().slice(0, 2).toLowerCase();
+  if (first === 'en' || first === 'it') return first;
+  return 'fr';
+}
+
+function inferSiteUrlFromRequest(request: NextRequest): string {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '');
+  if (envUrl) return envUrl;
+  const proto = request.headers.get('x-forwarded-proto') ?? 'https';
+  const host = request.headers.get('host');
+  if (host) return `${proto}://${host}`;
+  return 'https://guillaumefarre.com';
 }
 
 function extractClientIp(request: NextRequest): string {
@@ -272,6 +289,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     };
     await writeToiles(toiles);
 
+    const siteUrl = inferSiteUrlFromRequest(request);
+    const locale = inferLocaleFromRequest(request);
+    const checkoutUrl = `${siteUrl}/${locale}/vip/reservation/${reservationId}/checkout`;
+
     // Best-effort emails
     void Promise.allSettled([
       sendSignedContractEmail({
@@ -289,6 +310,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         pricedEUR: toile.price,
         signedAt,
         contractPdfBuffer: pdfBuffer,
+      }),
+      sendPostSignatureCheckoutLink({
+        to: reservation.email,
+        buyerName: reservation.name,
+        canvasTitle: toile.name,
+        reservationId,
+        checkoutUrl,
       }),
     ]).then((results) => {
       for (const r of results) {

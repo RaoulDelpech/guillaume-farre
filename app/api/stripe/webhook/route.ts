@@ -4,6 +4,8 @@ import Stripe from 'stripe';
 import { processOrder, reserveOrder, cancelReservation } from './order-handler';
 import { processCanvasInvoicePaid } from './canvas-handler';
 import { processCanvasCheckoutSession } from './canvas-checkout-handler';
+import { processCanvasDepositCheckoutSession } from './canvas-deposit-handler';
+import { processCanvasBalanceCheckoutSession } from './canvas-balance-handler';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2025-10-29.clover' })
@@ -41,6 +43,12 @@ export async function POST(req: NextRequest) {
         if (session.metadata?.type === 'vip-canvas-payment') {
           try { await processCanvasCheckoutSession(session); }
           catch (error) { console.error('Failed to process VIP canvas payment:', error); }
+        } else if (session.metadata?.type === 'vip-canvas-deposit') {
+          try { await processCanvasDepositCheckoutSession(session); }
+          catch (error) { console.error('Failed to process VIP canvas deposit:', error); }
+        } else if (session.metadata?.type === 'vip-canvas-balance') {
+          try { await processCanvasBalanceCheckoutSession(session); }
+          catch (error) { console.error('Failed to process VIP canvas balance:', error); }
         } else {
           try { await processOrder(stripe, session); }
           catch (error) { console.error('Failed to process order:', error); }

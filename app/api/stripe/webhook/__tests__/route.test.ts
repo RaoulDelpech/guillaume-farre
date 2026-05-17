@@ -19,6 +19,8 @@ const mockReserveOrder = vi.fn();
 const mockCancelReservation = vi.fn();
 const mockProcessCanvasInvoicePaid = vi.fn();
 const mockProcessCanvasCheckoutSession = vi.fn();
+const mockProcessCanvasDepositCheckoutSession = vi.fn();
+const mockProcessCanvasBalanceCheckoutSession = vi.fn();
 const mockHeadersGet = vi.fn();
 
 vi.mock('stripe', () => {
@@ -45,6 +47,14 @@ vi.mock('../canvas-handler', () => ({
 
 vi.mock('../canvas-checkout-handler', () => ({
   processCanvasCheckoutSession: mockProcessCanvasCheckoutSession,
+}));
+
+vi.mock('../canvas-deposit-handler', () => ({
+  processCanvasDepositCheckoutSession: mockProcessCanvasDepositCheckoutSession,
+}));
+
+vi.mock('../canvas-balance-handler', () => ({
+  processCanvasBalanceCheckoutSession: mockProcessCanvasBalanceCheckoutSession,
 }));
 
 function buildReq(body: string) {
@@ -181,6 +191,68 @@ describe('Stripe webhook POST', () => {
         data: { object: { id: 'cs_1', payment_status: 'unpaid' } },
       });
       mockReserveOrder.mockRejectedValue(new Error('Email failed'));
+
+      const POST = await importRoute();
+      const res = await POST(buildReq('{}'));
+
+      expect(res.status).toBe(200);
+    });
+
+    it('dispatches vip-canvas-deposit metadata to deposit handler', async () => {
+      mockConstructEvent.mockReturnValue({
+        type: 'checkout.session.completed',
+        data: {
+          object: {
+            id: 'cs_dep',
+            payment_status: 'paid',
+            metadata: { type: 'vip-canvas-deposit', reservationId: 'r1' },
+          },
+        },
+      });
+      mockProcessCanvasDepositCheckoutSession.mockResolvedValue(undefined);
+
+      const POST = await importRoute();
+      const res = await POST(buildReq('{}'));
+
+      expect(res.status).toBe(200);
+      expect(mockProcessCanvasDepositCheckoutSession).toHaveBeenCalledTimes(1);
+      expect(mockProcessOrder).not.toHaveBeenCalled();
+      expect(mockProcessCanvasCheckoutSession).not.toHaveBeenCalled();
+    });
+
+    it('dispatches vip-canvas-balance metadata to balance handler', async () => {
+      mockConstructEvent.mockReturnValue({
+        type: 'checkout.session.completed',
+        data: {
+          object: {
+            id: 'cs_bal',
+            payment_status: 'paid',
+            metadata: { type: 'vip-canvas-balance', reservationId: 'r1' },
+          },
+        },
+      });
+      mockProcessCanvasBalanceCheckoutSession.mockResolvedValue(undefined);
+
+      const POST = await importRoute();
+      const res = await POST(buildReq('{}'));
+
+      expect(res.status).toBe(200);
+      expect(mockProcessCanvasBalanceCheckoutSession).toHaveBeenCalledTimes(1);
+      expect(mockProcessOrder).not.toHaveBeenCalled();
+    });
+
+    it('returns 200 even if deposit handler throws', async () => {
+      mockConstructEvent.mockReturnValue({
+        type: 'checkout.session.completed',
+        data: {
+          object: {
+            id: 'cs_dep',
+            payment_status: 'paid',
+            metadata: { type: 'vip-canvas-deposit', reservationId: 'r1' },
+          },
+        },
+      });
+      mockProcessCanvasDepositCheckoutSession.mockRejectedValue(new Error('write fail'));
 
       const POST = await importRoute();
       const res = await POST(buildReq('{}'));

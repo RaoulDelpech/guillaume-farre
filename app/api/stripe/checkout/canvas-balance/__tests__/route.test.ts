@@ -170,4 +170,91 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
     const res = await POST(buildReq({ reservationId: SAMPLE_RESERVATION.id }));
     expect(res.status).toBe(502);
   });
+
+  describe('Sprint 6 : auth par balanceToken HMAC (fallback sans cookie)', () => {
+    it('200 si balanceToken valide pour la reservation (cookie absent)', async () => {
+      mockGetAccessLevel.mockResolvedValue('normal'); // pas secret
+      mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+      mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
+      mockSessionsCreate.mockResolvedValue({
+        id: 'cs_bal_token_ok',
+        url: 'https://checkout.stripe.com/c/pay/cs_bal_token_ok',
+      });
+
+      const { signBalanceToken } = await import('@/lib/balance-token');
+      const token = signBalanceToken({
+        reservationId: SAMPLE_RESERVATION.id,
+        exp: FUTURE_ISO,
+      });
+
+      const POST = await importRoute();
+      const res = await POST(
+        buildReq({ reservationId: SAMPLE_RESERVATION.id, balanceToken: token }),
+      );
+      expect(res.status).toBe(200);
+      const body = await res.json();
+      expect(body.ok).toBe(true);
+    });
+
+    it('401 si balanceToken valide mais reservationId different', async () => {
+      mockGetAccessLevel.mockResolvedValue('normal');
+      const { signBalanceToken } = await import('@/lib/balance-token');
+      const tokenForOther = signBalanceToken({
+        reservationId: 'res-AUTRE-XYZ',
+        exp: FUTURE_ISO,
+      });
+
+      const POST = await importRoute();
+      const res = await POST(
+        buildReq({
+          reservationId: SAMPLE_RESERVATION.id,
+          balanceToken: tokenForOther,
+        }),
+      );
+      expect(res.status).toBe(401);
+    });
+
+    it('401 si balanceToken expire', async () => {
+      mockGetAccessLevel.mockResolvedValue('normal');
+      const { signBalanceToken } = await import('@/lib/balance-token');
+      const expiredToken = signBalanceToken({
+        reservationId: SAMPLE_RESERVATION.id,
+        exp: PAST_ISO,
+      });
+
+      const POST = await importRoute();
+      const res = await POST(
+        buildReq({
+          reservationId: SAMPLE_RESERVATION.id,
+          balanceToken: expiredToken,
+        }),
+      );
+      expect(res.status).toBe(401);
+    });
+
+    it('401 si balanceToken garbage', async () => {
+      mockGetAccessLevel.mockResolvedValue('normal');
+      const POST = await importRoute();
+      const res = await POST(
+        buildReq({
+          reservationId: SAMPLE_RESERVATION.id,
+          balanceToken: 'completely.invalid',
+        }),
+      );
+      expect(res.status).toBe(401);
+    });
+
+    it('cookie VIP secret prevaut meme si balanceToken absent', async () => {
+      mockGetAccessLevel.mockResolvedValue('secret');
+      mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+      mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
+      mockSessionsCreate.mockResolvedValue({
+        id: 'cs_bal_cookie',
+        url: 'https://checkout.stripe.com/c/pay/cs_bal_cookie',
+      });
+      const POST = await importRoute();
+      const res = await POST(buildReq({ reservationId: SAMPLE_RESERVATION.id }));
+      expect(res.status).toBe(200);
+    });
+  });
 });

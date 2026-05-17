@@ -16,6 +16,12 @@ interface BalanceCheckoutButtonProps {
   reservationId: string;
   locale: string;
   balanceAmount: number;
+  /**
+   * Sprint 6 : token HMAC permettant de creer la session Stripe Checkout
+   * meme sans cookie VIP `secret` (acheteur depuis email sur autre device).
+   * Inutilise si l'acheteur a son cookie — la route accepte les 2 chemins.
+   */
+  balanceToken?: string;
 }
 
 type CheckoutError =
@@ -30,6 +36,7 @@ export default function BalanceCheckoutButton({
   reservationId,
   locale,
   balanceAmount,
+  balanceToken,
 }: BalanceCheckoutButtonProps) {
   const t = useTranslations('vipBalance');
   const [loading, setLoading] = useState(false);
@@ -42,7 +49,11 @@ export default function BalanceCheckoutButton({
       const res = await fetch('/api/stripe/checkout/canvas-balance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reservationId, locale }),
+        body: JSON.stringify({
+          reservationId,
+          locale,
+          ...(balanceToken ? { balanceToken } : {}),
+        }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean;
@@ -67,7 +78,7 @@ export default function BalanceCheckoutButton({
     } finally {
       setLoading(false);
     }
-  }, [reservationId, locale]);
+  }, [reservationId, locale, balanceToken]);
 
   return (
     <div className="space-y-3">

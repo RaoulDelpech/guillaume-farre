@@ -23,6 +23,7 @@ import {
   computeBalanceAmount,
   isBalanceExpired,
 } from '@/lib/canvas-payment-helpers';
+import { verifyBalanceToken } from '@/lib/balance-token';
 
 const STRIPE_API_VERSION = '2025-10-29.clover';
 const SUPPORTED_LOCALES = new Set(['fr', 'en', 'it']);
@@ -34,6 +35,8 @@ const stripe = process.env.STRIPE_SECRET_KEY
 const bodySchema = z.object({
   reservationId: z.string().min(1).max(128),
   locale: z.enum(['fr', 'en', 'it']).optional(),
+  // Sprint 6 : fallback HMAC pour acheteur sans cookie VIP (lien email).
+  balanceToken: z.string().min(1).max(2048).optional(),
 });
 
 function inferSiteUrl(req: NextRequest): string {
@@ -58,11 +61,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'stripe_unavailable' }, { status: 503 });
   }
 
-  const level = await getAccessLevel();
-  if (level !== 'secret') {
-    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
-  }
-
+  // Lire le body AVANT le check d'auth pour pouvoir consulter `balanceToken`
+  // en fallback du cookie VIP.
   let body: z.infer<typeof bodySchema>;
   try {
     const raw = await req.json();
@@ -72,6 +72,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return NextResponse.json({ error: 'validation', details: err.flatten() }, { status: 400 });
     }
     return NextResponse.json({ error: 'invalid_body' }, { status: 400 });
+  }
+
+  // Auth : cookie VIP `secret` OU Sprint 6 token HMAC valide pour cette
+  // reservation precise. La 2e voie permet de payer le solde depuis le lien
+  // email meme si le cookie a ete perdu.
+  const level = await getAccessLevel();
+  if (level !== 'secret') {
+    const verification = verifyBalanceToken(body.balanceToken);
+    if (!verification.valid || verification.reservationId !== body.reservationId) {
+      return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+    }
   }
 
   const reservations = await readReservations();

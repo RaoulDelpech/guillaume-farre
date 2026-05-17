@@ -33,6 +33,13 @@ export default function AdminQuickActions() {
       color: "green",
     },
     {
+      title: "Réservations VIP",
+      description: "Toutes les réservations toiles : statuts, actions",
+      href: "/fr/admin/vip/reservations",
+      icon: "🎨",
+      color: "amber",
+    },
+    {
       title: "Réinitialiser l'onboarding",
       description: "Revoir le tutoriel du mode édition",
       icon: "🎓",

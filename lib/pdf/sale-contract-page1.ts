@@ -11,6 +11,9 @@ import { formatDateFrench, esc, numberToWordsFr } from './types';
 
 const SELLER_NAME = 'Guillaume Farre';
 const SELLER_TITLE = 'Artiste plasticien';
+// TODO Raoul: si tu veux mettre l'adresse complete atelier (rue + CP), remplace
+// ci-dessous ou injecte via env var SELLER_ADDRESS_FULL. Le SIRET seul identifie
+// legalement le vendeur, mais une adresse complete renforce le contrat.
 const SELLER_ADDRESS = 'Atelier : Toulouse, France';
 const SELLER_SIRET = 'SIRET : 985 296 412 00012';
 const SELLER_EMAIL = 'Email : contact@guillaumefarre.com';
@@ -122,6 +125,10 @@ export function generatePage1Content(data: SaleContractData, priceFormatted: str
   p.push(`(Lieu de signature : Toulouse) Tj`);
   p.push('0 -14 Td');
   p.push(`(Date de signature : ${formatDateFrench(data.date)}) Tj`);
+  // Mention TVA franchise en base art. 293 B CGI (micro-entreprise / artiste).
+  // TODO Raoul: ajuster si regime fiscal change (sortie franchise, option TVA).
+  p.push('0 -14 Td');
+  p.push(`(TVA non applicable, art. 293 B du CGI.) Tj`);
 
   // Article 4 - Propriete intellectuelle
   p.push('/F1 13 Tf');

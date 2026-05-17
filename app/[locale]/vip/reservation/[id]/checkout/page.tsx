@@ -15,7 +15,11 @@ import { getTranslations } from 'next-intl/server';
 import { redirect } from '@/i18n/routing';
 import { getAccessLevel } from '@/lib/access';
 import { readReservations, readToiles } from '@/lib/reservations-store';
-import CheckoutButton from '@/components/vip/CheckoutButton';
+import PaymentMethodsSelector from '@/components/vip/PaymentMethodsSelector';
+import {
+  computeBalanceAmount,
+  computeDepositAmount,
+} from '@/lib/canvas-payment-helpers';
 
 export async function generateMetadata({
   params,
@@ -58,6 +62,14 @@ export default async function CheckoutPage({ params }: PageProps) {
     return null;
   }
 
+  if (reservation.status === 'partial_paid') {
+    redirect({
+      href: `/vip/reservation/${id}/balance`,
+      locale,
+    });
+    return null;
+  }
+
   if (reservation.status !== 'signed') {
     redirect({ href: '/vip', locale });
     return null;
@@ -71,6 +83,8 @@ export default async function CheckoutPage({ params }: PageProps) {
   }
 
   const t = await getTranslations({ locale, namespace: 'vipCheckout' });
+  const depositAmount = computeDepositAmount(toile.price);
+  const balanceAmount = computeBalanceAmount(toile.price, depositAmount);
 
   return (
     <main className="min-h-screen bg-[#f7f3eb] py-12 px-4">
@@ -114,7 +128,13 @@ export default async function CheckoutPage({ params }: PageProps) {
             {t('payment_note')}
           </div>
 
-          <CheckoutButton reservationId={reservation.id} locale={locale} />
+          <PaymentMethodsSelector
+            reservationId={reservation.id}
+            locale={locale}
+            totalPrice={toile.price}
+            depositAmount={depositAmount}
+            balanceAmount={balanceAmount}
+          />
         </section>
       </div>
     </main>

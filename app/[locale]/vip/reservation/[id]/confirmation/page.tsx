@@ -20,6 +20,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/routing';
 import { getAccessLevel } from '@/lib/access';
 import { readReservations, readToiles } from '@/lib/reservations-store';
+import { computeBalanceAmount } from '@/lib/canvas-payment-helpers';
 
 export async function generateMetadata({
   params,
@@ -39,7 +40,22 @@ const STRIPE_API_VERSION = '2025-10-29.clover';
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
-  searchParams: Promise<{ session_id?: string }>;
+  searchParams: Promise<{ session_id?: string; step?: string }>;
+}
+
+function formatDateLocale(iso: string | undefined, locale: string): string {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString(locale === 'fr' ? 'fr-FR' : locale === 'it' ? 'it-IT' : 'en-GB', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+  } catch {
+    return iso;
+  }
 }
 
 async function verifyStripeSession(
@@ -69,7 +85,8 @@ async function verifyStripeSession(
 
 export default async function ConfirmationPage({ params, searchParams }: PageProps) {
   const { locale, id } = await params;
-  const { session_id: sessionId } = await searchParams;
+  const { session_id: sessionId, step } = await searchParams;
+  const isDepositStep = step === 'deposit';
 
   const level = await getAccessLevel();
   if (level !== 'secret') {
@@ -97,21 +114,41 @@ export default async function ConfirmationPage({ params, searchParams }: PagePro
   }
 
   const reservationPaid = reservation.status === 'paid';
-  const displayAmount =
-    amountFromStripe !== null ? amountFromStripe / 100 : toile?.price ?? null;
+  const reservationPartialPaid = reservation.status === 'partial_paid';
+  const isDepositConfirmation = isDepositStep || reservationPartialPaid;
+  const displayAmount = isDepositConfirmation
+    ? reservation.depositAmount ?? (amountFromStripe !== null ? amountFromStripe / 100 : null)
+    : amountFromStripe !== null
+      ? amountFromStripe / 100
+      : toile?.price ?? null;
 
-  const isSettled = stripePaid || reservationPaid;
+  const balanceAmount =
+    toile && reservation.depositAmount
+      ? computeBalanceAmount(toile.price, reservation.depositAmount)
+      : null;
+
+  const isSettled = !isDepositConfirmation && (stripePaid || reservationPaid);
+  const dueDateLabel = formatDateLocale(reservation.balanceDueAt, locale);
+
+  const title = isDepositConfirmation
+    ? t('title_deposit')
+    : isSettled
+      ? t('title_paid')
+      : t('title_pending');
+  const subtitle = isDepositConfirmation
+    ? t('subtitle_deposit')
+    : isSettled
+      ? t('subtitle_paid')
+      : t('subtitle_pending');
 
   return (
     <main className="min-h-screen bg-[#f7f3eb] py-12 px-4">
       <div className="max-w-2xl mx-auto">
         <header className="mb-8 space-y-3 text-center">
           <h1 className="text-2xl font-extralight tracking-[0.15em] uppercase text-[#1a1a1a]">
-            {isSettled ? t('title_paid') : t('title_pending')}
+            {title}
           </h1>
-          <p className="text-sm font-light text-neutral-600">
-            {isSettled ? t('subtitle_paid') : t('subtitle_pending')}
-          </p>
+          <p className="text-sm font-light text-neutral-600">{subtitle}</p>
         </header>
 
         <section className="bg-white border border-neutral-300 p-6 sm:p-8 space-y-6 shadow-sm">
@@ -136,7 +173,36 @@ export default async function ConfirmationPage({ params, searchParams }: PagePro
             ) : null}
           </div>
 
-          {displayAmount !== null ? (
+          {isDepositConfirmation && balanceAmount !== null && toile ? (
+            <div className="border-t border-neutral-200 pt-4 space-y-3">
+              <div className="flex items-baseline justify-between text-sm">
+                <span className="text-neutral-500">{t('amount_total_label')}</span>
+                <span className="font-light text-neutral-700">
+                  {toile.price.toLocaleString('fr-FR')} €
+                </span>
+              </div>
+              <div className="flex items-baseline justify-between text-sm">
+                <span className="text-neutral-500">{t('amount_deposit_label')}</span>
+                <span className="font-light text-neutral-700">
+                  {(displayAmount ?? 0).toLocaleString('fr-FR')} €
+                </span>
+              </div>
+              <div className="flex items-baseline justify-between border-t border-neutral-200 pt-3">
+                <span className="text-xs uppercase tracking-wider text-neutral-500">
+                  {t('amount_balance_label')}
+                </span>
+                <span className="text-2xl font-light text-[#1a1a1a]">
+                  {balanceAmount.toLocaleString('fr-FR')} €
+                </span>
+              </div>
+              {dueDateLabel ? (
+                <div className="flex items-baseline justify-between text-sm">
+                  <span className="text-neutral-500">{t('due_date_label')}</span>
+                  <span className="font-light text-neutral-700">{dueDateLabel}</span>
+                </div>
+              ) : null}
+            </div>
+          ) : displayAmount !== null ? (
             <div className="border-t border-neutral-200 pt-4 flex items-baseline justify-between">
               <span className="text-xs uppercase tracking-wider text-neutral-500">
                 {t('amount_label')}
@@ -148,8 +214,22 @@ export default async function ConfirmationPage({ params, searchParams }: PagePro
           ) : null}
 
           <div className="border-t border-neutral-200 pt-4 text-sm font-light text-neutral-600 leading-relaxed">
-            {isSettled ? t('next_steps_paid') : t('next_steps_pending')}
+            {isDepositConfirmation
+              ? t('next_steps_deposit')
+              : isSettled
+                ? t('next_steps_paid')
+                : t('next_steps_pending')}
           </div>
+
+          {isDepositConfirmation ? (
+            <Link
+              href={`/vip/reservation/${id}/balance`}
+              locale={locale}
+              className="block text-center w-full px-6 py-4 text-xs tracking-[0.25em] uppercase border border-[#8c6e32] bg-[#8c6e32] text-white hover:bg-[#705624] transition-colors"
+            >
+              {t('cta_pay_balance')}
+            </Link>
+          ) : null}
 
           <a
             href={`/api/reservations/${id}/contract`}

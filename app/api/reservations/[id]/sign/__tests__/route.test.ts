@@ -31,6 +31,14 @@ const mockWriteReservations = vi.fn<(reservations: unknown[]) => Promise<void>>(
 const mockWriteToiles = vi.fn<(toiles: unknown[]) => Promise<void>>(async () => {});
 const mockSendSignedContract = vi.fn(async () => ({ success: false, error: 'no-op' }));
 const mockSendNewSigned = vi.fn(async () => ({ success: false, error: 'no-op' }));
+interface PostSigArg {
+  to: string;
+  buyerName: string;
+  canvasTitle: string;
+  reservationId: string;
+  checkoutUrl: string;
+}
+const mockSendPostSignatureCheckoutLink = vi.fn<(p: PostSigArg) => Promise<{ success: boolean; error?: string }>>(async () => ({ success: false, error: 'no-op' }));
 
 vi.mock('@/lib/access', () => ({
   getAccessLevel: mockGetAccessLevel,
@@ -54,6 +62,10 @@ vi.mock('@/lib/reservations-store', async (orig) => {
 vi.mock('@/lib/resend/contract-emails', () => ({
   sendSignedContractEmail: mockSendSignedContract,
   sendNewSignedReservationEmail: mockSendNewSigned,
+}));
+
+vi.mock('@/lib/resend/post-signature-checkout-link', () => ({
+  sendPostSignatureCheckoutLink: mockSendPostSignatureCheckoutLink,
 }));
 
 vi.mock('fs', async () => {
@@ -140,6 +152,7 @@ beforeEach(() => {
   mockWriteToiles.mockClear();
   mockSendSignedContract.mockClear();
   mockSendNewSigned.mockClear();
+  mockSendPostSignatureCheckoutLink.mockClear();
   mockAcquireLock.mockResolvedValue({ release: mockRelease });
 });
 
@@ -254,5 +267,61 @@ describe('POST /api/reservations/[id]/sign', () => {
     expect(writtenToiles[0].status).toBe('reserved_signed');
     // Lock must be released
     expect(mockRelease).toHaveBeenCalled();
+  });
+
+  it('Sprint 4 fix - envoie email post-signature avec lien checkout (locale fr par defaut)', async () => {
+    mockGetAccessLevel.mockResolvedValue('secret');
+    mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+    mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
+    const previousSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    process.env.NEXT_PUBLIC_SITE_URL = 'http://localhost:3340';
+    try {
+      const POST = await importRoute();
+      const res = await POST(
+        buildReq({ signatureImage: VALID_PNG_DATA_URL, fullName: 'Jean Dupont' }),
+        buildParams(SAMPLE_RESERVATION.id),
+      );
+      expect(res.status).toBe(200);
+      // Allow the void Promise.allSettled to settle
+      await new Promise((r) => setImmediate(r));
+      expect(mockSendPostSignatureCheckoutLink).toHaveBeenCalledOnce();
+      const arg = mockSendPostSignatureCheckoutLink.mock.calls[0][0];
+      expect(arg.to).toBe(SAMPLE_RESERVATION.email);
+      expect(arg.buyerName).toBe(SAMPLE_RESERVATION.name);
+      expect(arg.canvasTitle).toBe(SAMPLE_TOILE.name);
+      expect(arg.reservationId).toBe(SAMPLE_RESERVATION.id);
+      expect(arg.checkoutUrl).toBe(
+        `http://localhost:3340/fr/vip/reservation/${SAMPLE_RESERVATION.id}/checkout`,
+      );
+    } finally {
+      if (previousSiteUrl === undefined) delete process.env.NEXT_PUBLIC_SITE_URL;
+      else process.env.NEXT_PUBLIC_SITE_URL = previousSiteUrl;
+    }
+  });
+
+  it('Sprint 4 fix - email post-signature utilise la locale de accept-language (en)', async () => {
+    mockGetAccessLevel.mockResolvedValue('secret');
+    mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+    mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
+    const previousSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    process.env.NEXT_PUBLIC_SITE_URL = 'https://guillaumefarre.com';
+    try {
+      const POST = await importRoute();
+      await POST(
+        buildReq(
+          { signatureImage: VALID_PNG_DATA_URL, fullName: 'Jean Dupont' },
+          { 'accept-language': 'en-US,en;q=0.9' },
+        ),
+        buildParams(SAMPLE_RESERVATION.id),
+      );
+      await new Promise((r) => setImmediate(r));
+      const arg = mockSendPostSignatureCheckoutLink.mock.calls[0][0];
+      expect(arg.checkoutUrl).toBe(
+        `https://guillaumefarre.com/en/vip/reservation/${SAMPLE_RESERVATION.id}/checkout`,
+      );
+    } finally {
+      if (previousSiteUrl === undefined) delete process.env.NEXT_PUBLIC_SITE_URL;
+      else process.env.NEXT_PUBLIC_SITE_URL = previousSiteUrl;
+    }
   });
 });

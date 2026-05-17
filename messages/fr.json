@@ -327,7 +327,7 @@
     "accept_terms": "J'ai lu et j'accepte les termes du contrat, notamment la qualification des sommes versées en arrhes et l'indemnité forfaitaire de 300 € en cas de rétractation au-delà des 14 jours légaux.",
     "sign_contract": "Signer le contrat",
     "submitting": "Signature en cours…",
-    "done_message": "Contrat signé. Vous recevrez par email une copie PDF du contrat. Guillaume vous contactera pour finaliser le paiement.",
+    "done_message": "Contrat signé. Vous recevrez par email une copie PDF du contrat ainsi qu'un lien direct vers le paiement par carte. Vous pouvez aussi régler immédiatement via le bouton ci-dessous.",
     "errors": {
       "unauthorized": "Votre session VIP a expiré. Reconnectez-vous via votre lien d'invitation.",
       "not_found": "Réservation introuvable.",

@@ -327,7 +327,7 @@
     "accept_terms": "Ho letto e accetto le condizioni del contratto, in particolare la qualificazione delle somme versate come caparra (arrhes) e l'indennità forfettaria di 300 € in caso di recesso oltre il termine legale di 14 giorni.",
     "sign_contract": "Firma il contratto",
     "submitting": "Firma in corso…",
-    "done_message": "Contratto firmato. Riceverai via email una copia PDF del contratto. Guillaume ti contatterà per finalizzare il pagamento.",
+    "done_message": "Contratto firmato. Riceverai un'email con una copia PDF del contratto e un link diretto alla pagina di pagamento con carta. Puoi anche pagare subito tramite il pulsante qui sotto.",
     "errors": {
       "unauthorized": "La tua sessione VIP è scaduta. Riconnettiti tramite il tuo link d'invito.",
       "not_found": "Prenotazione non trovata.",

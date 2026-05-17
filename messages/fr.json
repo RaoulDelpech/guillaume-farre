@@ -481,6 +481,7 @@
     "amount_label": "Montant réglé",
     "next_steps_paid": "Un email de confirmation vous a été envoyé. Guillaume Farré vous contactera personnellement pour convenir du retrait de la toile à l'atelier.",
     "next_steps_pending": "Cette page se mettra à jour automatiquement. Vous pouvez aussi revenir plus tard depuis votre espace VIP.",
+    "download_contract": "Télécharger le contrat signé",
     "continue_vip": "Continuer la visite VIP"
   }
 }

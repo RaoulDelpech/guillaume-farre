@@ -481,6 +481,7 @@
     "amount_label": "Importo pagato",
     "next_steps_paid": "Ti è stata inviata un'email di conferma. Guillaume Farré ti contatterà personalmente per concordare il ritiro della tela in atelier.",
     "next_steps_pending": "Questa pagina si aggiornerà automaticamente. Puoi anche tornare più tardi dal tuo spazio VIP.",
+    "download_contract": "Scarica il contratto firmato",
     "continue_vip": "Continua la visita VIP"
   }
 }

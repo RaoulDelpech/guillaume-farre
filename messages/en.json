@@ -481,6 +481,7 @@
     "amount_label": "Amount paid",
     "next_steps_paid": "A confirmation email has been sent. Guillaume Farré will contact you personally to arrange picking up the canvas at the studio.",
     "next_steps_pending": "This page will update automatically. You can also come back later from your VIP space.",
+    "download_contract": "Download the signed contract",
     "continue_vip": "Continue the VIP visit"
   }
 }

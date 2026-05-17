@@ -151,6 +151,14 @@ export default async function ConfirmationPage({ params, searchParams }: PagePro
             {isSettled ? t('next_steps_paid') : t('next_steps_pending')}
           </div>
 
+          <a
+            href={`/api/reservations/${id}/contract`}
+            download
+            className="block text-center w-full px-6 py-3 text-xs tracking-[0.25em] uppercase border border-neutral-700 text-neutral-700 hover:bg-neutral-700 hover:text-white transition-colors"
+          >
+            {t('download_contract')}
+          </a>
+
           <Link
             href="/vip"
             locale={locale}

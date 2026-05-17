@@ -70,7 +70,7 @@ export default function ContractPreview({
   reservationId,
   buyer,
   artwork,
-  paymentMethod = 'À définir (CB intégral / acompte + solde / facture par email)',
+  paymentMethod = "À convenir avec l'artiste",
 }: ContractPreviewProps) {
   const today = useMemo(() => formatToday(), []);
   const contractNumber = `GF-${reservationId.slice(0, 8).toUpperCase()}`;
@@ -156,6 +156,8 @@ export default function ContractPreview({
             Mode de paiement convenu : {paymentMethod}
             <br />
             Lieu de signature : Toulouse — Date : {today}
+            <br />
+            TVA non applicable, art. 293 B du CGI.
           </p>
         </section>
 

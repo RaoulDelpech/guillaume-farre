@@ -3,34 +3,31 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
-import VipDoorFrame from "./VipDoorFrame";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import VipCodeForm, { VIP_CODE_LENGTH } from "./VipCodeForm";
 import VipWelcomeOverlay from "./VipWelcomeOverlay";
 
 /**
- * Porte d'entree VIP : saisie d'un code 8 caracteres, animation des
- * portes d'atelier en bois, puis bascule vers la vue privee.
+ * Entree VIP — refonte Sprint 4.5 : approche sobre noir/blanc en accord
+ * avec l'identite minimaliste du site Guillaume Farre (galerie, lightbox,
+ * navigation). Les anciennes portes en faux bois (VipDoorFrame + DoorPanel
+ * + DoorHardware avec gradients CSS marron/dore et rotateY 85deg sur 2.8s)
+ * etaient jugees kitsch, lentes et discordantes avec la charte graphique.
  *
  * Flow :
- * 1. Phase `code` : champ de saisie devant les portes fermees.
- * 2. Phase `validating` : POST `/api/vip/validate` (cookie HMAC pose si OK).
- * 3. Phase `opening` : portes pivotent vers l'exterieur (rotateY 85deg).
- * 4. Phase `welcome` : overlay de bienvenue + `router.refresh()` qui
- *    re-evalue le Server Component parent `/[locale]/vip` — comme le cookie
- *    est maintenant pose, il rendra `VipPrivateView` automatiquement.
+ *   1. `code` : champ de saisie sobre sur fond noir.
+ *   2. `validating` : POST `/api/vip/validate` (cookie HMAC pose si OK).
+ *   3. `opening` : fade-out du form + fade-in du slogan (~700ms).
+ *   4. `welcome` : maintien du slogan, puis reload (~1200ms total).
  *
- * Si `?code=XXXXXXXX` est passe en URL, la validation est declenchee
- * automatiquement (pratique pour les QR codes). Branches d'erreur :
- * `invalid`, `expired`, `revoked`, `already_used` (defense en profondeur
- * Sprint 0 — codes poly-use 24h, ce dernier ne devrait plus se declencher
- * mais reste gere proprement).
+ * Total animation < 2s. Respecte prefers-reduced-motion (skip animations,
+ * fade instant 200ms).
  *
  * @author Lalou
  */
 
-const ANIMATION_OPENING_MS = 3000;
-const ANIMATION_WELCOME_MS = 3500;
+const ANIMATION_OPENING_MS = 700;
+const ANIMATION_WELCOME_MS = 1200;
 const SHAKE_RESET_MS = 600;
 const FOCUS_DELAY_MS = 300;
 
@@ -56,6 +53,7 @@ export default function VipDoorEntry() {
   const t = useTranslations("vip");
   const searchParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
+  const reduceMotion = useReducedMotion();
 
   const [phase, setPhase] = useState<Phase>("code");
   const [code, setCode] = useState("");
@@ -78,7 +76,8 @@ export default function VipDoorEntry() {
 
         if (res.ok) {
           setPhase("opening");
-          setTimeout(() => setPhase("welcome"), ANIMATION_OPENING_MS);
+          const openingDelay = reduceMotion ? 200 : ANIMATION_OPENING_MS;
+          setTimeout(() => setPhase("welcome"), openingDelay);
           return;
         }
 
@@ -97,10 +96,9 @@ export default function VipDoorEntry() {
         setLoading(false);
       }
     },
-    [code, t]
+    [code, t, reduceMotion]
   );
 
-  // Auto-validation depuis ?code= (QR code)
   useEffect(() => {
     const urlCode = searchParams.get("code");
     if (urlCode && urlCode.length === VIP_CODE_LENGTH) {
@@ -111,7 +109,6 @@ export default function VipDoorEntry() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  // Focus input quand le formulaire est visible
   useEffect(() => {
     if (phase === "code" && inputRef.current) {
       const id = setTimeout(() => inputRef.current?.focus(), FOCUS_DELAY_MS);
@@ -120,59 +117,62 @@ export default function VipDoorEntry() {
   }, [phase]);
 
   // Apres welcome, on force un reload complet pour que le Server Component
-  // parent re-evalue `getAccessLevel()`. router.refresh() seul ne suffit
-  // pas ici : Next 15 garde le client component de VipDoorEntry monte si
-  // l'URL est identique, et la bascule vers VipPrivateView n'est pas
-  // commitee meme si la reponse RSC contient deja le nouveau tree.
-  // Le reload est court (page deja en cache, cookie pose) — moins elegant
-  // que router.refresh() mais garantit la bascule cote utilisateur.
+  // parent re-evalue `getAccessLevel()` — router.refresh() seul ne suffit
+  // pas (cf. note Sprint 0). Reload court car page deja en cache + cookie.
   useEffect(() => {
     if (phase !== "welcome") return;
     if (typeof window === "undefined") return;
+    const welcomeDelay = reduceMotion ? 200 : ANIMATION_WELCOME_MS;
     const id = setTimeout(() => {
       window.location.reload();
-    }, ANIMATION_WELCOME_MS);
+    }, welcomeDelay);
     return () => clearTimeout(id);
-  }, [phase]);
+  }, [phase, reduceMotion]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     void handleValidate();
   };
 
-  const doorsOpen = phase === "opening" || phase === "welcome";
   const formVisible = phase === "code" || phase === "validating";
+  const overlayVisible = phase === "opening" || phase === "welcome";
+  const fadeDuration = reduceMotion ? 0.2 : 0.6;
 
   return (
-    <div
-      className="fixed inset-0 overflow-hidden flex items-center justify-center"
-      style={{ background: "inherit" }}
-    >
-      <motion.div
-        className="absolute inset-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: doorsOpen ? 1 : 0 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(255,220,150,0.5) 0%, rgba(255,200,120,0.2) 40%, transparent 70%)",
-        }}
-      />
-      <VipDoorFrame doorsOpen={doorsOpen} shake={shake} />
-      <AnimatePresence>
+    <div className="fixed inset-0 overflow-hidden bg-black flex items-center justify-center">
+      <AnimatePresence mode="wait">
         {formVisible && (
-          <VipCodeForm
-            code={code}
-            error={error}
-            loading={loading}
-            inputRef={inputRef}
-            onChange={setCode}
-            onSubmit={handleSubmit}
-          />
+          <motion.div
+            key="form"
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: fadeDuration, ease: "easeOut" }}
+          >
+            <VipCodeForm
+              code={code}
+              error={error}
+              loading={loading}
+              inputRef={inputRef}
+              shake={shake}
+              onChange={setCode}
+              onSubmit={handleSubmit}
+            />
+          </motion.div>
         )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {phase === "welcome" && <VipWelcomeOverlay />}
+        {overlayVisible && (
+          <motion.div
+            key="welcome"
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: fadeDuration, ease: "easeOut" }}
+          >
+            <VipWelcomeOverlay />
+          </motion.div>
+        )}
       </AnimatePresence>
     </div>
   );

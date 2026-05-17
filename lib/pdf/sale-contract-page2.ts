@@ -108,6 +108,9 @@ export function generatePage2Content(data: SaleContractData): string {
   p.push(`(a la charge de l'acquereur des sortie de l'atelier.) Tj`);
 
   // Article 10 - Loi & Juridiction
+  // Juridiction Toulouse (siege artiste). Rappel R631-3 Code conso :
+  // clause attributive non opposable au consommateur — il garde le choix
+  // de son lieu de residence ou du lieu d'execution du contrat.
   p.push('/F1 13 Tf');
   p.push('0 -22 Td');
   p.push('(Article 10 - Loi applicable et juridiction) Tj');
@@ -115,7 +118,13 @@ export function generatePage2Content(data: SaleContractData): string {
   p.push('0 -16 Td');
   p.push(`(Le present contrat est soumis au droit francais. Tout litige sera) Tj`);
   p.push('0 -14 Td');
-  p.push(`(porte devant le tribunal competent de Paris.) Tj`);
+  p.push(`(porte devant le tribunal competent de Toulouse.) Tj`);
+  p.push('0 -14 Td');
+  p.push(`(Conformement a l'article R631-3 du Code de la consommation, le) Tj`);
+  p.push('0 -14 Td');
+  p.push(`(consommateur conserve le droit de saisir au choix le tribunal de son) Tj`);
+  p.push('0 -14 Td');
+  p.push(`(lieu de residence ou celui du lieu d'execution du contrat.) Tj`);
 
   p.push('ET');
 

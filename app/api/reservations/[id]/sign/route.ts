@@ -34,6 +34,7 @@ import {
   type ContractLegalContent,
 } from '@/lib/contract-signing';
 import { generateSaleContractPDF } from '@/lib/pdf/sale-contract';
+import { getPaymentMethodLabel } from '@/lib/payment-method-label';
 import {
   type Reservation,
   findCanvasIndex,
@@ -96,7 +97,7 @@ function buildLegalContent(
   return {
     contractNumber: `GF-${reservation.id.slice(0, 8).toUpperCase()}`,
     date: signature.timestamp,
-    paymentMethod: 'A definir (CB integral / acompte + solde / facture par email)',
+    paymentMethod: getPaymentMethodLabel(reservation.paymentMode),
     buyer: {
       name: reservation.name,
       email: reservation.email,

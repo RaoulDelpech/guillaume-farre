@@ -78,7 +78,9 @@ export default function ContractClauses() {
         </h4>
         <p>
           Le présent contrat est soumis au droit français. Tout litige sera porté devant
-          le tribunal compétent de Paris.
+          le tribunal compétent de Toulouse. Conformément à l&apos;article R631-3 du Code
+          de la consommation, le consommateur conserve le droit de saisir au choix le
+          tribunal de son lieu de résidence ou celui du lieu d&apos;exécution du contrat.
         </p>
       </section>
 

@@ -65,6 +65,12 @@ export interface Reservation {
   contractHmac?: string;
   contractPath?: string;
   paymentMode?: 'integral' | 'deposit_balance' | 'invoice_email';
+  depositAmount?: number;
+  depositPaidAt?: string;
+  balanceDueAt?: string;
+  stripeDepositSessionId?: string;
+  stripeBalanceSessionId?: string;
+  stripeBalancePaymentIntentId?: string;
   stripeInvoiceId?: string;
   stripeInvoiceUrl?: string;
   stripeCustomerId?: string;

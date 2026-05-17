@@ -1,11 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 /**
- * Overlay de bienvenue affiche apres l'ouverture des portes, avant le
- * `router.refresh()` qui bascule la page sur la vue privee.
+ * Slogan affiche apres validation du code VIP, avant le reload qui bascule
+ * vers la vue privee. Refonte Sprint 4.5 : typographie sobre blanche sur
+ * fond noir (cohesion charte graphique site). L'animation d'entree/sortie
+ * est portee par le parent VipDoorEntry via Framer Motion + AnimatePresence,
+ * cf. respect prefers-reduced-motion.
  *
  * @author Lalou
  */
@@ -13,40 +15,18 @@ export default function VipWelcomeOverlay() {
   const t = useTranslations("vip");
 
   return (
-    <motion.div
-      className="absolute inset-0 flex flex-col items-center justify-center z-20"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2, delay: 0.5 }}
-    >
-      <div className="flex flex-col items-center">
-        <div
-          className="h-px w-32 md:w-48 mb-10"
-          style={{ background: "rgba(140,110,50,0.3)" }}
-        />
-        <p
-          className="text-xs md:text-sm tracking-[0.5em] uppercase font-light mb-5"
-          style={{ color: "rgba(60,45,30,0.5)" }}
-        >
-          Guillaume Farré
-        </p>
-        <h1
-          className="text-2xl md:text-4xl lg:text-5xl font-light tracking-wide text-center px-8"
-          style={{ color: "rgb(60,45,30)" }}
-        >
-          {t("welcome")}
-        </h1>
-        <p
-          className="text-sm md:text-base font-light tracking-widest mt-5"
-          style={{ color: "rgba(60,45,30,0.45)" }}
-        >
-          {t("welcomeSubtitle")}
-        </p>
-        <div
-          className="h-px w-32 md:w-48 mt-10"
-          style={{ background: "rgba(140,110,50,0.3)" }}
-        />
-      </div>
-    </motion.div>
+    <div className="flex flex-col items-center px-8 text-center">
+      <div className="h-px w-24 md:w-32 mb-8 bg-white/20" />
+      <p className="text-[10px] md:text-xs tracking-[0.5em] uppercase font-light text-white/40 mb-4">
+        Guillaume Farré
+      </p>
+      <h1 className="text-2xl md:text-4xl lg:text-5xl font-extralight tracking-wide text-white">
+        {t("welcome")}
+      </h1>
+      <p className="text-xs md:text-sm font-light tracking-[0.2em] mt-4 text-white/50">
+        {t("welcomeSubtitle")}
+      </p>
+      <div className="h-px w-24 md:w-32 mt-8 bg-white/20" />
+    </div>
   );
 }

@@ -76,6 +76,9 @@ export interface Reservation {
   stripeCustomerId?: string;
   paidAt?: string;
   orderNumber?: string;
+  refundedAt?: string;
+  cancelledAt?: string;
+  balanceLinkLastRegeneratedAt?: string;
 }
 
 const DATA_DIR = path.join(process.cwd(), 'data');

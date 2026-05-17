@@ -23,7 +23,7 @@ import {
   parseFiltersFromSearchParams,
 } from '@/lib/admin/reservations-helpers';
 
-const UTF8_BOM = '﻿';
+const UTF8_BOM = '\uFEFF';
 
 export async function GET(request: NextRequest) {
   const authError = await requireAdminAuth();

@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
  * effacer le cookie `gf_vip` (HttpOnly — impossible de le faire cote JS
  * seul), puis `window.location.reload()` pour que le Server Component
  * parent `/[locale]/vip` re-evalue `getAccessLevel()` et bascule sur
- * `VipDoorEntry`.
+ * `VipCodeForm` (le formulaire de saisie du code VIP).
  *
  * On evite `router.refresh()` ici parce qu'il garde le composant client
  * `VipPrivateView` monte meme quand le server change la decision —

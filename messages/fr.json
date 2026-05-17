@@ -493,6 +493,9 @@
     "expired_title": "Délai dépassé",
     "expired_message": "Le délai de 14 jours pour régler le solde est dépassé. Contactez Guillaume Farré directement pour régulariser la situation.",
     "expired_cta_contact": "Contacter Guillaume",
+    "token_invalid_title": "Lien invalide ou expiré",
+    "token_invalid_message": "Ce lien de paiement n'est plus valide. Si vous pensez qu'il s'agit d'une erreur, contactez Guillaume Farré pour recevoir un nouveau lien.",
+    "token_invalid_cta_contact": "Contacter Guillaume",
     "errors": {
       "unauthorized": "Session expirée. Reconnectez-vous via votre code VIP.",
       "reservation_not_found": "Réservation introuvable.",

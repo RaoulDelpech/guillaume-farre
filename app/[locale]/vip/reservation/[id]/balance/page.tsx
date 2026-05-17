@@ -17,11 +17,18 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Link, redirect } from '@/i18n/routing';
 import { getAccessLevel } from '@/lib/access';
-import { readReservations, readToiles } from '@/lib/reservations-store';
+import {
+  readReservations,
+  readToiles,
+  writeReservations,
+  writeToiles,
+} from '@/lib/reservations-store';
 import {
   computeBalanceAmount,
   isBalanceExpired,
 } from '@/lib/canvas-payment-helpers';
+import { verifyBalanceToken } from '@/lib/balance-token';
+import { checkAndMarkExpired } from '@/lib/expiration-checker';
 import BalanceCheckoutButton from '@/components/vip/BalanceCheckoutButton';
 
 export async function generateMetadata({
@@ -40,6 +47,7 @@ export async function generateMetadata({
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
+  searchParams: Promise<{ bt?: string | string[] }>;
 }
 
 function formatDate(iso: string | undefined, locale: string): string {
@@ -57,20 +65,60 @@ function formatDate(iso: string | undefined, locale: string): string {
   }
 }
 
-export default async function BalancePage({ params }: PageProps) {
+export default async function BalancePage({ params, searchParams }: PageProps) {
   const { locale, id } = await params;
+  const { bt: btParam } = await searchParams;
+  const balanceToken = Array.isArray(btParam) ? btParam[0] : btParam;
 
+  // Acces autorise si :
+  //  (a) cookie VIP `secret` valide, OU
+  //  (b) Sprint 6 : token HMAC `bt` signe valide pour CE reservationId
+  // Si aucun des deux : on affiche un ecran "lien invalide" plutot que de
+  // rediriger silencieusement (meilleur UX pour l'acheteur qui clique sur
+  // un lien email perime — il comprend pourquoi il est bloque).
   const level = await getAccessLevel();
+  let tokenGranted = false;
   if (level !== 'secret') {
-    redirect({ href: '/vip', locale });
+    const verification = verifyBalanceToken(balanceToken);
+    if (verification.valid && verification.reservationId === id) {
+      tokenGranted = true;
+    } else {
+      const t = await getTranslations({ locale, namespace: 'vipBalance' });
+      return (
+        <main className="min-h-screen bg-[#f7f3eb] py-12 px-4">
+          <div className="max-w-xl mx-auto">
+            <section
+              role="alert"
+              className="bg-white border border-neutral-300 p-8 text-center space-y-4 shadow-sm"
+            >
+              <h1 className="text-xl font-extralight tracking-[0.15em] uppercase text-[#1a1a1a]">
+                {t('token_invalid_title')}
+              </h1>
+              <p className="text-sm font-light text-neutral-700 leading-relaxed">
+                {t('token_invalid_message')}
+              </p>
+              <Link
+                href="/contact"
+                locale={locale}
+                className="inline-block mt-4 px-5 py-3 text-xs uppercase tracking-[0.2em] border border-[#1a1a1a] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-colors"
+              >
+                {t('token_invalid_cta_contact')}
+              </Link>
+            </section>
+          </div>
+        </main>
+      );
+    }
   }
 
   const reservations = await readReservations();
-  const reservation = reservations.find((r) => r.id === id);
-  if (!reservation) {
+  const reservationIdx = reservations.findIndex((r) => r.id === id);
+  if (reservationIdx === -1) {
     redirect({ href: '/vip', locale });
     return null;
   }
+
+  let reservation = reservations[reservationIdx];
 
   if (reservation.status === 'paid') {
     redirect({
@@ -80,14 +128,44 @@ export default async function BalancePage({ params }: PageProps) {
     return null;
   }
 
-  if (reservation.status !== 'partial_paid') {
+  const toiles = await readToiles();
+  const toileIdx = toiles.findIndex((tt) => tt.name === reservation.canvasTitle);
+  if (toileIdx === -1) {
+    redirect({ href: '/vip', locale });
+    return null;
+  }
+  let toile = toiles[toileIdx];
+
+  // Sprint 6 : expiration intelligente. Si la reservation a depasse son
+  // delai (balanceDueAt pour partial_paid, expiresAt sinon), on la marque
+  // expired ET on libere la toile immediatement. Persistance synchrone
+  // avant rendu pour que d'autres acheteurs puissent reserver.
+  const checked = checkAndMarkExpired(reservation, toile);
+  if (checked.wasExpired) {
+    reservations[reservationIdx] = checked.reservation;
+    toiles[toileIdx] = checked.toile;
+    try {
+      await writeReservations(reservations);
+      await writeToiles(toiles);
+    } catch (err) {
+      console.error('[balance page] failed to persist expiration:', err);
+      // On continue avec les versions in-memory meme si l'ecriture echoue —
+      // pire cas : le prochain access retentera. Pas de blocage utilisateur.
+    }
+  }
+  reservation = checked.reservation;
+  toile = checked.toile;
+
+  // Si la reservation est expiree mais l'acheteur avait paye un acompte,
+  // on affiche l'ecran "delai depasse" avec CTA contact. S'il n'a jamais
+  // paye d'acompte (status etait pending/signed), on redirige vers /vip
+  // car il n'a rien a regler ici.
+  if (reservation.status === 'expired' && !reservation.depositPaidAt) {
     redirect({ href: '/vip', locale });
     return null;
   }
 
-  const toiles = await readToiles();
-  const toile = toiles.find((t) => t.name === reservation.canvasTitle);
-  if (!toile) {
+  if (reservation.status !== 'partial_paid' && reservation.status !== 'expired') {
     redirect({ href: '/vip', locale });
     return null;
   }
@@ -95,9 +173,9 @@ export default async function BalancePage({ params }: PageProps) {
   const t = await getTranslations({ locale, namespace: 'vipBalance' });
   const balanceAmount = computeBalanceAmount(toile.price, reservation.depositAmount);
   const depositAmount = reservation.depositAmount ?? toile.price - balanceAmount;
-  const expired = reservation.balanceDueAt
-    ? isBalanceExpired(reservation.balanceDueAt)
-    : false;
+  const expired =
+    reservation.status === 'expired' ||
+    (reservation.balanceDueAt ? isBalanceExpired(reservation.balanceDueAt) : false);
   const dueDateLabel = formatDate(reservation.balanceDueAt, locale);
 
   return (
@@ -170,6 +248,7 @@ export default async function BalancePage({ params }: PageProps) {
               reservationId={reservation.id}
               locale={locale}
               balanceAmount={balanceAmount}
+              balanceToken={tokenGranted ? balanceToken : undefined}
             />
           )}
 

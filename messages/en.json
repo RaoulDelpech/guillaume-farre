@@ -493,6 +493,9 @@
     "expired_title": "Deadline expired",
     "expired_message": "The 14-day deadline to pay the balance has passed. Please contact Guillaume Farré directly to settle the situation.",
     "expired_cta_contact": "Contact Guillaume",
+    "token_invalid_title": "Invalid or expired link",
+    "token_invalid_message": "This payment link is no longer valid. If you believe this is a mistake, please contact Guillaume Farré to receive a new link.",
+    "token_invalid_cta_contact": "Contact Guillaume",
     "errors": {
       "unauthorized": "Session expired. Please sign in again with your VIP code.",
       "reservation_not_found": "Reservation not found.",

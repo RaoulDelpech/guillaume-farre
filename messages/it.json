@@ -493,6 +493,9 @@
     "expired_title": "Termine scaduto",
     "expired_message": "Il termine di 14 giorni per pagare il saldo è scaduto. Contatta Guillaume Farré direttamente per regolarizzare la situazione.",
     "expired_cta_contact": "Contatta Guillaume",
+    "token_invalid_title": "Link non valido o scaduto",
+    "token_invalid_message": "Questo link di pagamento non è più valido. Se pensi che sia un errore, contatta Guillaume Farré per ricevere un nuovo link.",
+    "token_invalid_cta_contact": "Contatta Guillaume",
     "errors": {
       "unauthorized": "Sessione scaduta. Effettua di nuovo l'accesso con il tuo codice VIP.",
       "reservation_not_found": "Prenotazione non trovata.",

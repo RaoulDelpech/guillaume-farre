@@ -84,7 +84,11 @@ test-mobile.sh
 /data/contracts/
 
 # VIP access codes (PII: secret codes for early access)
-# NOTE: existing tracked file kept for prod continuity; runtime writes ignored
+# Untracked depuis fix audit 18/05/2026 — le runtime ecrit dans ce fichier
+# avec les codes generes par /api/vip/generate (donnees personnelles +
+# tokens secrets). Prod conserve son fichier local ; les autres environnements
+# repartent d'un fichier vide ou hydratent via backup admin.
+/data/vip-codes.json
 /data/vip-codes.runtime.json
 
 # Local verification artifacts (screenshots, traces)

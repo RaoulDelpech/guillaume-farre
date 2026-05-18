@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { validAdminCookie } from '@/lib/__tests__/helpers/admin-test-cookie';
 
 const mockCookiesGet = vi.fn();
 const mockReadReservations = vi.fn();
@@ -72,7 +73,7 @@ describe('POST /api/admin/reservations/[id]/cancel', () => {
   });
 
   it('404 when reservation not found', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -82,7 +83,7 @@ describe('POST /api/admin/reservations/[id]/cancel', () => {
   });
 
   it('409 when reservation in terminal status', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildReservation({ status: 'paid' })]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -92,7 +93,7 @@ describe('POST /api/admin/reservations/[id]/cancel', () => {
   });
 
   it('cancels reservation + releases toile + writes both files', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     const reservation = buildReservation({ status: 'pending', canvasId: 7 });
     mockReadReservations.mockResolvedValue([reservation]);
     mockReadToiles.mockResolvedValue([
@@ -119,7 +120,7 @@ describe('POST /api/admin/reservations/[id]/cancel', () => {
   });
 
   it('does not release toile if it points to another reservation', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildReservation({ status: 'pending', canvasId: 7 })]);
     mockReadToiles.mockResolvedValue([
       { id: 7, name: 'T7', price: 5000, status: 'reserved_pending', reservationId: 'OTHER-RES' },
@@ -135,7 +136,7 @@ describe('POST /api/admin/reservations/[id]/cancel', () => {
   });
 
   it('503 when lock cannot be acquired', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildReservation({ status: 'pending' })]);
     mockAcquireLock.mockResolvedValue(null);
     const POST = await importRoute();

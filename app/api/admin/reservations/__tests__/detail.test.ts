@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { validAdminCookie } from '@/lib/__tests__/helpers/admin-test-cookie';
 
 const mockCookiesGet = vi.fn();
 const mockReadReservations = vi.fn();
@@ -60,7 +61,7 @@ describe('GET /api/admin/reservations/[id]', () => {
   });
 
   it('404 when reservation not found', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     const GET = await importRoute();
     const res = await GET(new Request('http://x/api/admin/reservations/missing') as any, {
       params: Promise.resolve({ id: 'missing' }),
@@ -69,7 +70,7 @@ describe('GET /api/admin/reservations/[id]', () => {
   });
 
   it('200 with reservation + matched toile', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildReservation({ id: 'res-42', canvasId: 7 })]);
     mockReadToiles.mockResolvedValue([
       { id: 7, name: 'Toile 7', price: 5000, dimensions: '100x100', technique: 'huile', year: 2024 },
@@ -85,7 +86,7 @@ describe('GET /api/admin/reservations/[id]', () => {
   });
 
   it('200 with reservation + null toile if canvas missing', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildReservation({ id: 'res-x', canvasId: 999 })]);
     const GET = await importRoute();
     const res = await GET(new Request('http://x/api/admin/reservations/res-x') as any, {
@@ -97,7 +98,7 @@ describe('GET /api/admin/reservations/[id]', () => {
   });
 
   it('400 when id is empty', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     const GET = await importRoute();
     const res = await GET(new Request('http://x/api/admin/reservations/') as any, {
       params: Promise.resolve({ id: '' }),

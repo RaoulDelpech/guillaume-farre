@@ -39,6 +39,8 @@ describe('POST /api/admin/login', () => {
   beforeEach(() => {
     vi.resetModules();
     process.env.ADMIN_PASSWORD = 'test_admin_password';
+    process.env.MAGIC_LINK_SECRET =
+      process.env.MAGIC_LINK_SECRET || 'test-magic-link-secret-admin-login';
   });
 
   describe('mot de passe correct', () => {
@@ -53,16 +55,19 @@ describe('POST /api/admin/login', () => {
       expect(body).toEqual({ success: true });
     });
 
-    it('sets gf_admin cookie with HttpOnly and SameSite=Lax', async () => {
+    it('sets gf_admin cookie with HttpOnly and SameSite=Strict (HMAC-signed)', async () => {
       const POST = await importRoute();
       const res = await POST(
         buildReq({ password: 'test_admin_password' }, false, { 'x-forwarded-for': '10.0.0.2' })
       );
 
       const setCookie = res.headers.get('set-cookie') || '';
-      expect(setCookie).toContain('gf_admin=authenticated');
+      // Le cookie est maintenant HMAC-signe : <base64payload>.<base64sig>
+      // (depuis fix securite mai 2026, plus de string litterale 'authenticated').
+      expect(setCookie).toMatch(/gf_admin=[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/);
+      expect(setCookie).not.toContain('gf_admin=authenticated');
       expect(setCookie).toContain('HttpOnly');
-      expect(setCookie.toLowerCase()).toContain('samesite=lax');
+      expect(setCookie.toLowerCase()).toContain('samesite=strict');
       expect(setCookie).toContain('Path=/');
     });
 

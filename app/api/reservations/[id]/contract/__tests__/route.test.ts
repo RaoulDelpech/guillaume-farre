@@ -21,13 +21,21 @@ import path from 'path';
 
 process.env.MAGIC_LINK_SECRET = process.env.MAGIC_LINK_SECRET || 'test-secret-sprint4';
 
-const { mockGetAccessLevel, mockReadReservations } = vi.hoisted(() => ({
-  mockGetAccessLevel: vi.fn(),
+const VIP_SESSION_ID = '11111111-2222-3333-4444-555555555555';
+const VIP_SESSION_OK = {
+  level: 'secret' as const,
+  sessionId: VIP_SESSION_ID,
+  code: 'AAAAAAAA',
+  expiresAt: Date.now() + 60_000,
+};
+
+const { mockGetVipSession, mockReadReservations } = vi.hoisted(() => ({
+  mockGetVipSession: vi.fn(),
   mockReadReservations: vi.fn(),
 }));
 
 vi.mock('@/lib/access', () => ({
-  getAccessLevel: mockGetAccessLevel,
+  getVipSession: mockGetVipSession,
 }));
 
 vi.mock('@/lib/reservations-store', async (orig) => {
@@ -66,6 +74,7 @@ const SAMPLE_RESERVATION = {
   createdAt: '2026-05-16T10:00:00.000Z',
   expiresAt: '2026-05-23T10:00:00.000Z',
   status: 'signed' as const,
+  vipSessionId: VIP_SESSION_ID,
 };
 
 const CONTRACTS_DIR = path.join(process.cwd(), 'data', 'contracts');
@@ -73,7 +82,7 @@ const CONTRACT_PATH = path.join(CONTRACTS_DIR, `${SAMPLE_ID}.pdf`);
 const FAKE_PDF = Buffer.from('%PDF-1.4\n%fake content for sprint4 fix test\n%%EOF\n');
 
 beforeEach(() => {
-  mockGetAccessLevel.mockReset();
+  mockGetVipSession.mockReset();
   mockReadReservations.mockReset();
 });
 
@@ -88,7 +97,7 @@ afterEach(async () => {
 
 describe('GET /api/reservations/[id]/contract', () => {
   it('Cas 1 - retourne 401 sans cookie VIP (level normal)', async () => {
-    mockGetAccessLevel.mockResolvedValue('normal');
+    mockGetVipSession.mockResolvedValue(null);
     const GET = await importRoute();
     const res = await GET(buildReq(), buildParams(SAMPLE_ID));
     expect(res.status).toBe(401);
@@ -97,14 +106,19 @@ describe('GET /api/reservations/[id]/contract', () => {
   });
 
   it('Cas 2 - retourne 401 avec niveau hidden (insuffisant)', async () => {
-    mockGetAccessLevel.mockResolvedValue('hidden');
+    mockGetVipSession.mockResolvedValue({
+      level: 'hidden' as const,
+      sessionId: VIP_SESSION_ID,
+      code: 'AAAAAAAA',
+      expiresAt: Date.now() + 60_000,
+    });
     const GET = await importRoute();
     const res = await GET(buildReq(), buildParams(SAMPLE_ID));
     expect(res.status).toBe(401);
   });
 
   it('Cas 3a - retourne 404 si reservation introuvable', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([]);
     const GET = await importRoute();
     const res = await GET(buildReq(), buildParams(SAMPLE_ID));
@@ -114,14 +128,14 @@ describe('GET /api/reservations/[id]/contract', () => {
   });
 
   it('Cas 3b - retourne 404 si reservationId mal forme (path traversal)', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     const GET = await importRoute();
     const res = await GET(buildReq(), buildParams('../../etc/passwd'));
     expect(res.status).toBe(404);
   });
 
   it('Cas 4 - retourne 404 contract_not_ready si PDF absent', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     // No file written -> ENOENT path
     const GET = await importRoute();
@@ -131,8 +145,35 @@ describe('GET /api/reservations/[id]/contract', () => {
     expect(body.error).toBe('contract_not_ready');
   });
 
+  it('IDOR closure - retourne 403 si cookie VIP a un sessionId different de la reservation', async () => {
+    mockGetVipSession.mockResolvedValue({
+      ...VIP_SESSION_OK,
+      sessionId: '99999999-9999-9999-9999-999999999999', // autre VIP
+    });
+    mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+    await fs.mkdir(CONTRACTS_DIR, { recursive: true });
+    await fs.writeFile(CONTRACT_PATH, FAKE_PDF);
+    const GET = await importRoute();
+    const res = await GET(buildReq(), buildParams(SAMPLE_ID));
+    expect(res.status).toBe(403);
+    const body = await (res as Response).json();
+    expect(body.error).toBe('forbidden');
+  });
+
+  it('IDOR closure - retourne 403 si la reservation n a pas de vipSessionId (legacy)', async () => {
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
+    const legacyReservation = { ...SAMPLE_RESERVATION };
+    delete (legacyReservation as { vipSessionId?: string }).vipSessionId;
+    mockReadReservations.mockResolvedValue([legacyReservation]);
+    await fs.mkdir(CONTRACTS_DIR, { recursive: true });
+    await fs.writeFile(CONTRACT_PATH, FAKE_PDF);
+    const GET = await importRoute();
+    const res = await GET(buildReq(), buildParams(SAMPLE_ID));
+    expect(res.status).toBe(403);
+  });
+
   it('Cas 5 - retourne 200 + application/pdf + attachment si PDF present', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     await fs.mkdir(CONTRACTS_DIR, { recursive: true });
     await fs.writeFile(CONTRACT_PATH, FAKE_PDF);

@@ -22,7 +22,14 @@ import { describe, it, expect, vi, beforeAll, beforeEach } from 'vitest';
 
 process.env.MAGIC_LINK_SECRET = process.env.MAGIC_LINK_SECRET || 'test-secret-sprint3';
 
-const mockGetAccessLevel = vi.fn();
+const VIP_SESSION_ID = '11111111-2222-3333-4444-555555555555';
+const VIP_SESSION_OK = {
+  level: 'secret' as const,
+  sessionId: VIP_SESSION_ID,
+  code: 'AAAAAAAA',
+  expiresAt: Date.now() + 60_000,
+};
+const mockGetVipSession = vi.fn();
 const mockAcquireLock = vi.fn();
 const mockRelease = vi.fn(async () => {});
 const mockReadReservations = vi.fn();
@@ -41,7 +48,7 @@ interface PostSigArg {
 const mockSendPostSignatureCheckoutLink = vi.fn<(p: PostSigArg) => Promise<{ success: boolean; error?: string }>>(async () => ({ success: false, error: 'no-op' }));
 
 vi.mock('@/lib/access', () => ({
-  getAccessLevel: mockGetAccessLevel,
+  getVipSession: mockGetVipSession,
 }));
 
 vi.mock('@/lib/locks', () => ({
@@ -126,6 +133,7 @@ const SAMPLE_RESERVATION = {
   createdAt: '2026-05-16T10:00:00.000Z',
   expiresAt: '2026-05-23T10:00:00.000Z',
   status: 'pending' as const,
+  vipSessionId: VIP_SESSION_ID,
 };
 
 const SAMPLE_TOILE = {
@@ -143,7 +151,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  mockGetAccessLevel.mockReset();
+  mockGetVipSession.mockReset();
   mockAcquireLock.mockReset();
   mockRelease.mockClear();
   mockReadReservations.mockReset();
@@ -158,7 +166,7 @@ beforeEach(() => {
 
 describe('POST /api/reservations/[id]/sign', () => {
   it('I5 - retourne 401 sans cookie VIP', async () => {
-    mockGetAccessLevel.mockResolvedValue('normal');
+    mockGetVipSession.mockResolvedValue(null);
     const POST = await importRoute();
     const res = await POST(
       buildReq({ signatureImage: VALID_PNG_DATA_URL, fullName: 'Jean' }),
@@ -168,7 +176,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('I4 - retourne 400 si fullName trop court', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     const POST = await importRoute();
     const res = await POST(
       buildReq({ signatureImage: VALID_PNG_DATA_URL, fullName: 'A' }),
@@ -180,7 +188,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('I4 - retourne 400 si signatureImage absent', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     const POST = await importRoute();
     const res = await POST(
       buildReq({ fullName: 'Jean Dupont' }),
@@ -190,7 +198,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('I4 - retourne 400 si signatureImage n est pas PNG valide', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     const POST = await importRoute();
     const res = await POST(
       buildReq({
@@ -203,7 +211,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('I6 - retourne 404 si reservation introuvable', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([]);
     const POST = await importRoute();
     const res = await POST(
@@ -213,8 +221,37 @@ describe('POST /api/reservations/[id]/sign', () => {
     expect(res.status).toBe(404);
   });
 
+  it('IDOR closure - retourne 403 si cookie VIP a un sessionId different de la reservation', async () => {
+    mockGetVipSession.mockResolvedValue({
+      ...VIP_SESSION_OK,
+      sessionId: '99999999-9999-9999-9999-999999999999', // autre VIP
+    });
+    mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
+    const POST = await importRoute();
+    const res = await POST(
+      buildReq({ signatureImage: VALID_PNG_DATA_URL, fullName: 'Jean Dupont' }),
+      buildParams(SAMPLE_RESERVATION.id),
+    );
+    expect(res.status).toBe(403);
+    const body = await res.json();
+    expect(body.error).toBe('forbidden');
+  });
+
+  it('IDOR closure - retourne 403 si la reservation n a pas de vipSessionId (legacy)', async () => {
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
+    const legacyReservation = { ...SAMPLE_RESERVATION };
+    delete (legacyReservation as { vipSessionId?: string }).vipSessionId;
+    mockReadReservations.mockResolvedValue([legacyReservation]);
+    const POST = await importRoute();
+    const res = await POST(
+      buildReq({ signatureImage: VALID_PNG_DATA_URL, fullName: 'Jean Dupont' }),
+      buildParams(SAMPLE_RESERVATION.id),
+    );
+    expect(res.status).toBe(403);
+  });
+
   it('I6 - retourne 409 si reservation deja signed', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([{ ...SAMPLE_RESERVATION, status: 'signed' }]);
     const POST = await importRoute();
     const res = await POST(
@@ -227,7 +264,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('I7 - retourne 503 si lock indisponible', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockAcquireLock.mockResolvedValue(null);
     const POST = await importRoute();
@@ -239,7 +276,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('I2 - signature reussie -> 200 + reservation passe a signed + toile a reserved_signed', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     const POST = await importRoute();
@@ -270,7 +307,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('Sprint 4 fix - envoie email post-signature avec lien checkout (locale fr par defaut)', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     const previousSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -300,7 +337,7 @@ describe('POST /api/reservations/[id]/sign', () => {
   });
 
   it('Sprint 4 fix - email post-signature utilise la locale de accept-language (en)', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     const previousSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;

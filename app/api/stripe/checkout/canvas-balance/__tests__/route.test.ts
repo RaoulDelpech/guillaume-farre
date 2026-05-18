@@ -9,13 +9,20 @@ const STRIPE_STUB_KEY = ['sk', 'test', 'stub'].join('_');
 process.env.STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || STRIPE_STUB_KEY;
 process.env.NEXT_PUBLIC_SITE_URL = 'http://localhost:3343';
 
-const mockGetAccessLevel = vi.fn();
+const VIP_SESSION_ID = '11111111-2222-3333-4444-555555555555';
+const VIP_SESSION_OK = {
+  level: 'secret' as const,
+  sessionId: VIP_SESSION_ID,
+  code: 'AAAAAAAA',
+  expiresAt: Date.now() + 60_000,
+};
+const mockGetVipSession = vi.fn();
 const mockReadReservations = vi.fn();
 const mockReadToiles = vi.fn();
 const mockSessionsCreate = vi.fn();
 
 vi.mock('@/lib/access', () => ({
-  getAccessLevel: mockGetAccessLevel,
+  getVipSession: mockGetVipSession,
 }));
 
 vi.mock('@/lib/reservations-store', async (orig) => {
@@ -68,6 +75,7 @@ const SAMPLE_RESERVATION = {
   depositAmount: 6000,
   depositPaidAt: '2026-05-17T10:00:00.000Z',
   balanceDueAt: FUTURE_ISO,
+  vipSessionId: VIP_SESSION_ID,
 };
 
 const SAMPLE_TOILE = {
@@ -86,7 +94,7 @@ async function importRoute() {
 }
 
 beforeEach(() => {
-  mockGetAccessLevel.mockReset();
+  mockGetVipSession.mockReset();
   mockReadReservations.mockReset();
   mockReadToiles.mockReset();
   mockSessionsCreate.mockReset();
@@ -94,14 +102,14 @@ beforeEach(() => {
 
 describe('POST /api/stripe/checkout/canvas-balance', () => {
   it('401 sans cookie VIP secret', async () => {
-    mockGetAccessLevel.mockResolvedValue('normal');
+    mockGetVipSession.mockResolvedValue(null);
     const POST = await importRoute();
     const res = await POST(buildReq({ reservationId: 'res-bal-001' }));
     expect(res.status).toBe(401);
   });
 
   it('404 reservation introuvable', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([]);
     const POST = await importRoute();
     const res = await POST(buildReq({ reservationId: 'inconnu' }));
@@ -109,7 +117,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
   });
 
   it('400 si reservation pas en partial_paid', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([
       { ...SAMPLE_RESERVATION, status: 'signed' },
     ]);
@@ -119,7 +127,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
   });
 
   it('410 si balance expire', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([
       { ...SAMPLE_RESERVATION, balanceDueAt: PAST_ISO },
     ]);
@@ -131,7 +139,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
   });
 
   it('404 toile introuvable', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([]);
     const POST = await importRoute();
@@ -140,7 +148,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
   });
 
   it('200 + calcule balanceAmount correctement', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     mockSessionsCreate.mockResolvedValue({
@@ -162,7 +170,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
   });
 
   it('502 si Stripe echoue', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     mockSessionsCreate.mockRejectedValue(new Error('Stripe down'));
@@ -173,7 +181,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
 
   describe('Sprint 6 : auth par balanceToken HMAC (fallback sans cookie)', () => {
     it('200 si balanceToken valide pour la reservation (cookie absent)', async () => {
-      mockGetAccessLevel.mockResolvedValue('normal'); // pas secret
+      mockGetVipSession.mockResolvedValue(null); // pas secret
       mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
       mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
       mockSessionsCreate.mockResolvedValue({
@@ -197,7 +205,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
     });
 
     it('401 si balanceToken valide mais reservationId different', async () => {
-      mockGetAccessLevel.mockResolvedValue('normal');
+      mockGetVipSession.mockResolvedValue(null);
       const { signBalanceToken } = await import('@/lib/balance-token');
       const tokenForOther = signBalanceToken({
         reservationId: 'res-AUTRE-XYZ',
@@ -215,7 +223,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
     });
 
     it('401 si balanceToken expire', async () => {
-      mockGetAccessLevel.mockResolvedValue('normal');
+      mockGetVipSession.mockResolvedValue(null);
       const { signBalanceToken } = await import('@/lib/balance-token');
       const expiredToken = signBalanceToken({
         reservationId: SAMPLE_RESERVATION.id,
@@ -233,7 +241,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
     });
 
     it('401 si balanceToken garbage', async () => {
-      mockGetAccessLevel.mockResolvedValue('normal');
+      mockGetVipSession.mockResolvedValue(null);
       const POST = await importRoute();
       const res = await POST(
         buildReq({
@@ -245,7 +253,7 @@ describe('POST /api/stripe/checkout/canvas-balance', () => {
     });
 
     it('cookie VIP secret prevaut meme si balanceToken absent', async () => {
-      mockGetAccessLevel.mockResolvedValue('secret');
+      mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
       mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
       mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
       mockSessionsCreate.mockResolvedValue({

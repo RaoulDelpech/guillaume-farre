@@ -22,6 +22,11 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
+process.env.MAGIC_LINK_SECRET =
+  process.env.MAGIC_LINK_SECRET || 'test-magic-link-secret-admin-photos';
+
+import { signAdminCookie } from '@/lib/admin-cookie';
+
 const mockCookiesGet = vi.fn();
 const mockMergePhotoData = vi.fn();
 const mockSavePhotoMetadata = vi.fn();
@@ -70,7 +75,8 @@ async function importRoute() {
 }
 
 function mockAuthenticatedCookie() {
-  mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+  // Cookie HMAC-signe (depuis fix securite mai 2026, plus de literal 'authenticated').
+  mockCookiesGet.mockReturnValue({ value: signAdminCookie().value });
 }
 
 function mockNoCookie() {

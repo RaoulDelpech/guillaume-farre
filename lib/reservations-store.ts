@@ -79,6 +79,19 @@ export interface Reservation {
   refundedAt?: string;
   cancelledAt?: string;
   balanceLinkLastRegeneratedAt?: string;
+  /**
+   * SessionId du cookie VIP qui a cree la reservation. Lie cookie <->
+   * reservation pour fermer l'IDOR cross-VIP (audit hostile mai 2026 :
+   * tout cookie VIP secret pouvait telecharger n'importe quel contrat).
+   * Les routes /sign /contract et tous les Stripe canvas-* verifient
+   * `cookie.sessionId === reservation.vipSessionId`.
+   *
+   * Optionnel pour rester compatible avec le type lors de la migration ;
+   * les routes lectures rejettent en 403 si le champ est absent (pas de
+   * faille resi-duelle sur les reservations pre-fix — pas de production
+   * VIP encore active a date).
+   */
+  vipSessionId?: string;
 }
 
 const DATA_DIR = path.join(process.cwd(), 'data');

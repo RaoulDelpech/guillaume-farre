@@ -9,7 +9,14 @@ const STRIPE_STUB_KEY = ['sk', 'test', 'stub'].join('_');
 process.env.STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || STRIPE_STUB_KEY;
 process.env.NEXT_PUBLIC_SITE_URL = 'http://localhost:3343';
 
-const mockGetAccessLevel = vi.fn();
+const VIP_SESSION_ID = '11111111-2222-3333-4444-555555555555';
+const VIP_SESSION_OK = {
+  level: 'secret' as const,
+  sessionId: VIP_SESSION_ID,
+  code: 'AAAAAAAA',
+  expiresAt: Date.now() + 60_000,
+};
+const mockGetVipSession = vi.fn();
 const mockReadReservations = vi.fn();
 const mockReadToiles = vi.fn();
 const mockWriteReservations = vi.fn();
@@ -20,7 +27,7 @@ const mockInvoicesCreate = vi.fn();
 const mockInvoicesSend = vi.fn();
 
 vi.mock('@/lib/access', () => ({
-  getAccessLevel: mockGetAccessLevel,
+  getVipSession: mockGetVipSession,
 }));
 
 vi.mock('@/lib/reservations-store', async (orig) => {
@@ -73,6 +80,7 @@ const SAMPLE_RESERVATION = {
   createdAt: '2026-05-16T10:00:00.000Z',
   expiresAt: '2026-05-23T10:00:00.000Z',
   status: 'signed' as const,
+  vipSessionId: VIP_SESSION_ID,
 };
 
 const SAMPLE_TOILE = {
@@ -91,7 +99,7 @@ async function importRoute() {
 }
 
 beforeEach(() => {
-  mockGetAccessLevel.mockReset();
+  mockGetVipSession.mockReset();
   mockReadReservations.mockReset();
   mockReadToiles.mockReset();
   mockWriteReservations.mockReset();
@@ -105,14 +113,14 @@ beforeEach(() => {
 
 describe('POST /api/stripe/invoices/canvas-email', () => {
   it('401 sans cookie VIP secret', async () => {
-    mockGetAccessLevel.mockResolvedValue('normal');
+    mockGetVipSession.mockResolvedValue(null);
     const POST = await importRoute();
     const res = await POST(buildReq({ reservationId: 'res-inv-001' }));
     expect(res.status).toBe(401);
   });
 
   it('404 reservation introuvable', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([]);
     const POST = await importRoute();
     const res = await POST(buildReq({ reservationId: 'inconnu' }));
@@ -120,7 +128,7 @@ describe('POST /api/stripe/invoices/canvas-email', () => {
   });
 
   it('400 si reservation pas signed', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([
       { ...SAMPLE_RESERVATION, status: 'pending' },
     ]);
@@ -130,7 +138,7 @@ describe('POST /api/stripe/invoices/canvas-email', () => {
   });
 
   it('400 si reservation deja paid', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([
       { ...SAMPLE_RESERVATION, status: 'paid' },
     ]);
@@ -140,7 +148,7 @@ describe('POST /api/stripe/invoices/canvas-email', () => {
   });
 
   it('200 + cree customer + invoice + persiste invoiceId', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     mockCustomersList.mockResolvedValue({ data: [] });
@@ -180,7 +188,7 @@ describe('POST /api/stripe/invoices/canvas-email', () => {
   });
 
   it('reutilise customer existant via email lookup', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     mockCustomersList.mockResolvedValue({ data: [{ id: 'cus_existing_456' }] });
@@ -200,7 +208,7 @@ describe('POST /api/stripe/invoices/canvas-email', () => {
   });
 
   it('502 si Stripe.invoices.create echoue', async () => {
-    mockGetAccessLevel.mockResolvedValue('secret');
+    mockGetVipSession.mockResolvedValue(VIP_SESSION_OK);
     mockReadReservations.mockResolvedValue([SAMPLE_RESERVATION]);
     mockReadToiles.mockResolvedValue([SAMPLE_TOILE]);
     mockCustomersList.mockResolvedValue({ data: [{ id: 'cus_x' }] });

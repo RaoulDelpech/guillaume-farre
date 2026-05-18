@@ -19,7 +19,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { z, ZodError } from 'zod';
-import { getAccessLevel } from '@/lib/access';
+import { getVipSession } from '@/lib/access';
 import { readReservations, readToiles } from '@/lib/reservations-store';
 
 const STRIPE_API_VERSION = '2025-10-29.clover';
@@ -56,8 +56,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'stripe_unavailable' }, { status: 503 });
   }
 
-  const level = await getAccessLevel();
-  if (level !== 'secret') {
+  const session = await getVipSession();
+  if (!session || session.level !== 'secret') {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
@@ -76,6 +76,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const reservation = reservations.find((r) => r.id === body.reservationId);
   if (!reservation) {
     return NextResponse.json({ error: 'reservation_not_found' }, { status: 404 });
+  }
+
+  // Liaison cookie VIP <-> reservation (audit hostile mai 2026).
+  if (!reservation.vipSessionId || reservation.vipSessionId !== session.sessionId) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   }
 
   if (reservation.status !== 'signed') {

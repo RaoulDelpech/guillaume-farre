@@ -18,7 +18,11 @@ export function getPaymentMethodLabel(paymentMode?: PaymentMode | null): string 
     case 'integral':
       return 'Carte bancaire integral via Stripe';
     case 'deposit_balance':
-      return 'Acompte 30% + solde a la livraison';
+      // J+14 apres l'acompte (cf. balanceDueAt dans lib/reservations-store.ts
+      // et lib/balance-token.ts). Avant fix 18/05/2026, le libelle disait
+      // "a la livraison" alors que la livraison n'est pas le declencheur :
+      // le solde est exige sous 14 jours, livraison ou pas.
+      return 'Acompte 30% + solde sous 14 jours';
     case 'invoice_email':
       return 'Facture envoyee par email';
     default:

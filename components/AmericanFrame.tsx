@@ -204,12 +204,6 @@ export default function AmericanFrame({
   const frameFaceBg = buildFrameFace(theme)
   const ib = theme.innerBevel
 
-  // Canvas texture
-  const canvasGrain = [
-    'repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(0,0,0,0.015) 1px, rgba(0,0,0,0.015) 2px)',
-    'repeating-linear-gradient(90deg, transparent 0px, transparent 1px, rgba(0,0,0,0.015) 1px, rgba(0,0,0,0.015) 2px)',
-  ].join(', ')
-
   return (
     <div
       className={className}
@@ -287,37 +281,11 @@ export default function AmericanFrame({
                     width={imageWidth}
                     height={imageHeight}
                     sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
-                    quality={90}
+                    quality={92}
                     className="w-full h-auto"
-                    style={{ display: 'block', filter: 'saturate(1.08) contrast(1.03)' }}
+                    style={{ display: 'block', filter: 'saturate(1.20) contrast(1.08) brightness(1.05)' }}
                     {...(blurDataURL ? { placeholder: 'blur' as const, blurDataURL } : {})}
                     priority={priority}
-                  />
-                  {/* Canvas woven texture */}
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: canvasGrain,
-                      mixBlendMode: 'overlay',
-                      pointerEvents: 'none',
-                    }}
-                  />
-                  {/* Vignette — edges slightly darker */}
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      boxShadow: [
-                        'inset 0 2px 8px rgba(0,0,0,0.05)',
-                        'inset 0 -1px 6px rgba(0,0,0,0.03)',
-                        'inset 2px 0 6px rgba(0,0,0,0.025)',
-                        'inset -2px 0 6px rgba(0,0,0,0.025)',
-                      ].join(', '),
-                      pointerEvents: 'none',
-                    }}
                   />
                 </div>
               </div>

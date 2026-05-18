@@ -26,6 +26,7 @@ type CheckoutError =
 
 export default function CheckoutButton({ reservationId, locale }: CheckoutButtonProps) {
   const t = useTranslations('vipCheckout');
+  const tErrors = useTranslations('vipCheckout.errors');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<CheckoutError | null>(null);
 
@@ -77,7 +78,7 @@ export default function CheckoutButton({ reservationId, locale }: CheckoutButton
           role="alert"
           className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2"
         >
-          {t(`errors.${error}`)}
+          {tErrors(error)}
         </div>
       ) : null}
     </div>

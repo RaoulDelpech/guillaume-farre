@@ -42,6 +42,7 @@ export default function PaymentMethodsSelector({
   balanceAmount,
 }: PaymentMethodsSelectorProps) {
   const t = useTranslations('vipCheckout');
+  const tErrors = useTranslations('vipCheckout.errors');
   const [loadingMode, setLoadingMode] = useState<Mode | null>(null);
   const [error, setError] = useState<{ mode: Mode; kind: ErrorKind } | null>(null);
   const [invoiceSent, setInvoiceSent] = useState(false);
@@ -133,7 +134,7 @@ export default function PaymentMethodsSelector({
         <p className="text-xs font-light text-neutral-600 px-1">{t('mode_integral_hint')}</p>
         {error?.mode === 'integral' ? (
           <div role="alert" className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2">
-            {t(`errors.${error.kind}`)}
+            {tErrors(error.kind)}
           </div>
         ) : null}
       </div>
@@ -155,7 +156,7 @@ export default function PaymentMethodsSelector({
         </p>
         {error?.mode === 'deposit' ? (
           <div role="alert" className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2">
-            {t(`errors.${error.kind}`)}
+            {tErrors(error.kind)}
           </div>
         ) : null}
       </div>
@@ -173,7 +174,7 @@ export default function PaymentMethodsSelector({
         <p className="text-xs font-light text-neutral-500 px-1">{t('mode_invoice_hint')}</p>
         {error?.mode === 'invoice' ? (
           <div role="alert" className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2">
-            {t(`errors.${error.kind}`)}
+            {tErrors(error.kind)}
           </div>
         ) : null}
       </div>

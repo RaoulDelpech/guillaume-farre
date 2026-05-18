@@ -28,6 +28,10 @@ export interface SignaturePadProps {
 
 export default function SignaturePad({ reservationId, onSignSuccess }: SignaturePadProps) {
   const t = useTranslations('signature');
+  // Sous-scope dedie pour les erreurs : evite le pattern `t(`errors.${key}`)`
+  // qui faisait throw IntlError quand la cle interpole contenait un . ou
+  // qu'elle n'existait pas dans le namespace courant (next-intl v4).
+  const tErrors = useTranslations('signature.errors');
   const sigCanvasRef = useRef<SignatureCanvas | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   // Initial conservative : 0 evite tout debordement avant la premiere mesure.
@@ -156,7 +160,7 @@ export default function SignaturePad({ reservationId, onSignSuccess }: Signature
           role="alert"
           className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2"
         >
-          {t(`errors.${error}`)}
+          {tErrors(error)}
         </div>
       ) : null}
 

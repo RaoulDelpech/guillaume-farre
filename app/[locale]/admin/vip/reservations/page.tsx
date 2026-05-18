@@ -158,8 +158,9 @@ export default function AdminVipReservationsPage() {
       setStats(data.stats || null);
       setToiles(data.toiles || []);
       setPage(1);
-    } catch (err: any) {
-      setError(err.message || "Erreur inconnue");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Erreur inconnue";
+      setError(message);
     } finally {
       setLoading(false);
     }

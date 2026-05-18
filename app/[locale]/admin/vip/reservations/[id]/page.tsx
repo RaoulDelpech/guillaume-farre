@@ -165,8 +165,9 @@ export default function AdminReservationDetailPage() {
       const data = await res.json();
       setReservation(data.reservation);
       setToile(data.toile);
-    } catch (err: any) {
-      setError(err.message || "Erreur inconnue");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Erreur inconnue";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -197,8 +198,9 @@ export default function AdminReservationDetailPage() {
         }
         await loadData();
       }
-    } catch (err: any) {
-      setActionMsg(`Erreur réseau : ${err.message}`);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "erreur inconnue";
+      setActionMsg(`Erreur réseau : ${message}`);
     } finally {
       setActing(null);
     }

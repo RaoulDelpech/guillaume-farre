@@ -5,11 +5,12 @@
  *
  * Auth :
  *  - Cookie VIP niveau `secret` requis (meme niveau que POST /sign).
- *  - Pas de match email <-> cookie : le modele Sprint 3 ne lie pas le cookie
- *    a un acheteur specifique. Toute personne avec un cookie VIP secret peut
- *    donc telecharger n'importe quel contrat. C'est volontaire pour rester
- *    coherent avec la route /sign et la page /confirmation. Un Sprint 5
- *    pourrait ajouter une signature de magic-link contenant l'email.
+ *  - Liaison sessionId obligatoire : le cookie VIP doit porter le meme
+ *    sessionId que celui stocke dans la reservation (audit hostile mai 2026 :
+ *    avant ce check, tout cookie VIP secret pouvait telecharger n'importe
+ *    quel contrat). Mismatch -> 403 (authentifie mais pas autorise).
+ *    Si la reservation n'a pas de vipSessionId (cas pre-fix, theoriquement
+ *    aucun en prod car VIP pas encore lance), on rejette egalement.
  *
  * Comportement :
  *  - 200 + application/pdf si le fichier `data/contracts/{id}.pdf` existe.
@@ -27,7 +28,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
-import { getAccessLevel } from '@/lib/access';
+import { getVipSession } from '@/lib/access';
 import { readReservations } from '@/lib/reservations-store';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -45,8 +46,8 @@ export async function GET(
   _request: NextRequest,
   { params }: RouteParams,
 ): Promise<NextResponse | Response> {
-  const accessLevel = await getAccessLevel();
-  if (accessLevel !== 'secret') {
+  const session = await getVipSession();
+  if (!session || session.level !== 'secret') {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
@@ -59,6 +60,13 @@ export async function GET(
   const reservation = reservations.find((r) => r.id === reservationId);
   if (!reservation) {
     return NextResponse.json({ error: 'not_found' }, { status: 404 });
+  }
+
+  // Liaison cookie VIP <-> reservation (audit hostile mai 2026). Sans ce
+  // check, tout cookie VIP secret valide pouvait telecharger n'importe
+  // quel contrat (IDOR cross-VIP).
+  if (!reservation.vipSessionId || reservation.vipSessionId !== session.sessionId) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   }
 
   const contractPath = path.join(CONTRACTS_DIR, `${reservationId}.pdf`);

@@ -17,7 +17,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { z, ZodError } from 'zod';
-import { getAccessLevel } from '@/lib/access';
+import { getVipSession } from '@/lib/access';
 import { readReservations, readToiles } from '@/lib/reservations-store';
 import {
   computeBalanceAmount,
@@ -77,10 +77,21 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // Auth : cookie VIP `secret` OU Sprint 6 token HMAC valide pour cette
   // reservation precise. La 2e voie permet de payer le solde depuis le lien
   // email meme si le cookie a ete perdu.
-  const level = await getAccessLevel();
-  if (level !== 'secret') {
-    const verification = verifyBalanceToken(body.balanceToken);
-    if (!verification.valid || verification.reservationId !== body.reservationId) {
+  //
+  // Audit hostile mai 2026 - liaison sessionId :
+  //   - voie cookie : on EXIGE que session.sessionId match reservation.vipSessionId
+  //     (sinon un autre VIP authentifie pouvait declencher le checkout solde
+  //     d'une reservation qui n'est pas la sienne et payer pour le proprietaire).
+  //   - voie token HMAC : le token est deja lie a reservationId precis (verifie
+  //     dans verifyBalanceToken), donc bypass sessionId legitime.
+  const session = await getVipSession();
+  const hasValidBalanceToken = (() => {
+    const v = verifyBalanceToken(body.balanceToken);
+    return v.valid && v.reservationId === body.reservationId;
+  })();
+
+  if (!hasValidBalanceToken) {
+    if (!session || session.level !== 'secret') {
       return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
     }
   }
@@ -89,6 +100,18 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const reservation = reservations.find((r) => r.id === body.reservationId);
   if (!reservation) {
     return NextResponse.json({ error: 'reservation_not_found' }, { status: 404 });
+  }
+
+  // Liaison sessionId : la voie cookie doit matcher la reservation. Bypass
+  // si l'auth provient du balanceToken HMAC (deja lie a reservationId).
+  if (!hasValidBalanceToken) {
+    if (
+      !session ||
+      !reservation.vipSessionId ||
+      reservation.vipSessionId !== session.sessionId
+    ) {
+      return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    }
   }
 
   if (reservation.status !== 'partial_paid') {

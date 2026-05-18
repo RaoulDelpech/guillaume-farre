@@ -22,7 +22,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { ZodError } from 'zod';
 import { requireAdminAuth } from '@/lib/admin/auth';
-import { getAccessLevel } from '@/lib/access';
+import { getVipSession } from '@/lib/access';
 import { acquireLock } from '@/lib/locks';
 import { reservationBodySchema } from '@/lib/schemas/reservation';
 import {
@@ -47,8 +47,8 @@ async function notifyGuillaumeBestEffort(reservation: Reservation): Promise<void
 }
 
 export async function POST(request: NextRequest) {
-  const accessLevel = await getAccessLevel();
-  if (accessLevel === 'normal') {
+  const session = await getVipSession();
+  if (!session) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
@@ -127,6 +127,7 @@ export async function POST(request: NextRequest) {
       createdAt,
       expiresAt,
       status: 'pending',
+      vipSessionId: session.sessionId,
     };
 
     const reservations = await readReservations();

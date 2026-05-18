@@ -5,7 +5,11 @@ import { signVipCookie, VIP_COOKIE_NAME } from '@/lib/vip-cookie';
 /**
  * Valide un code VIP et set un cookie d'acces signe (HMAC-SHA256) avec niveau.
  *
- * Format cookie : `CODE:level:expiresAt:hmac` (voir lib/vip-cookie.ts).
+ * Format cookie : `CODE:level:sessionId:expiresAt:hmac` (voir lib/vip-cookie.ts).
+ * Le sessionId (UUID v4) est genere ici et lie le cookie a une session
+ * unique : les reservations creees avec ce cookie memorisent sessionId,
+ * les routes /sign /contract /checkout verifient le match (ferme IDOR
+ * cross-VIP audite mai 2026).
  * La signature HMAC permet au middleware (runtime Node.js) de verifier le
  * cookie sans relire les codes a chaque requete, tout en respectant la
  * revocation cote serveur (cf. lib/vip-revocation.ts).

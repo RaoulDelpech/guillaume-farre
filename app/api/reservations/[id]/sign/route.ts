@@ -24,7 +24,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { ZodError } from 'zod';
-import { getAccessLevel } from '@/lib/access';
+import { getVipSession } from '@/lib/access';
 import { acquireLock } from '@/lib/locks';
 import { signaturePayloadSchema } from '@/lib/schemas/signature';
 import {
@@ -123,8 +123,8 @@ function buildLegalContent(
 }
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
-  const accessLevel = await getAccessLevel();
-  if (accessLevel === 'normal') {
+  const session = await getVipSession();
+  if (!session) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
 
@@ -171,6 +171,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
   if (!preview) {
     return NextResponse.json({ error: 'not_found' }, { status: 404 });
   }
+  // Liaison cookie VIP <-> reservation (audit hostile mai 2026). Ferme
+  // l'IDOR ou tout cookie VIP `hidden`/`secret` pouvait signer la
+  // reservation d'un autre invite. Verifier AVANT lock pour faillir vite.
+  if (!preview.vipSessionId || preview.vipSessionId !== session.sessionId) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+  }
   if (preview.status !== 'pending') {
     return NextResponse.json(
       { error: 'already_signed', currentStatus: preview.status },
@@ -192,6 +198,11 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'not_found' }, { status: 404 });
     }
     const reservation = reservations[idx];
+    // Re-check liaison sessionId apres lock (la reservation peut avoir ete
+    // re-ecrite entre la preview et le lock).
+    if (!reservation.vipSessionId || reservation.vipSessionId !== session.sessionId) {
+      return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    }
     if (reservation.status !== 'pending') {
       return NextResponse.json(
         { error: 'already_signed', currentStatus: reservation.status },

@@ -11,6 +11,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { validAdminCookie } from '@/lib/__tests__/helpers/admin-test-cookie';
 
 const mockCookiesGet = vi.fn();
 const mockReadReservations = vi.fn();
@@ -74,7 +75,7 @@ describe('GET /api/admin/reservations', () => {
 
   describe('succes', () => {
     beforeEach(() => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
     });
 
     it('returns 200 with empty data', async () => {
@@ -155,7 +156,7 @@ describe('GET /api/admin/reservations', () => {
 
   describe('erreurs', () => {
     it('returns 500 if readReservations throws', async () => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
       mockReadReservations.mockRejectedValue(new Error('boom'));
       const GET = await importRoute();
       const res = await GET(new Request('http://localhost/api/admin/reservations') as any);

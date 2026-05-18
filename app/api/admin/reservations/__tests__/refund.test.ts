@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { validAdminCookie } from '@/lib/__tests__/helpers/admin-test-cookie';
 
 const mockCookiesGet = vi.fn();
 const mockReadReservations = vi.fn();
@@ -73,7 +74,7 @@ describe('POST /api/admin/reservations/[id]/refund', () => {
   });
 
   it('404 when not found', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -83,7 +84,7 @@ describe('POST /api/admin/reservations/[id]/refund', () => {
   });
 
   it('409 when not paid (pending)', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPaidReservation({ status: 'pending' })]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -93,7 +94,7 @@ describe('POST /api/admin/reservations/[id]/refund', () => {
   });
 
   it('409 when partial_paid', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPaidReservation({ status: 'partial_paid' })]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -103,7 +104,7 @@ describe('POST /api/admin/reservations/[id]/refund', () => {
   });
 
   it('marks refunded + releases toile + stamps refundedAt', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPaidReservation({ canvasId: 7 })]);
     mockReadToiles.mockResolvedValue([
       { id: 7, name: 'T7', price: 5000, status: 'paid', reservationId: 'res-1' },
@@ -123,7 +124,7 @@ describe('POST /api/admin/reservations/[id]/refund', () => {
   });
 
   it('503 when lock cannot be acquired', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPaidReservation()]);
     mockAcquireLock.mockResolvedValue(null);
     const POST = await importRoute();

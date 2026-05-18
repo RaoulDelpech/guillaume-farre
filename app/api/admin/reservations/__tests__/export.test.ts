@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { validAdminCookie } from '@/lib/__tests__/helpers/admin-test-cookie';
 
 const mockCookiesGet = vi.fn();
 const mockReadReservations = vi.fn();
@@ -61,7 +62,7 @@ describe('GET /api/admin/reservations/export.csv', () => {
   });
 
   it('200 with CSV headers and BOM', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildReservation()]);
     mockReadToiles.mockResolvedValue([{ id: 1, name: 'T1', price: 5000 }]);
     const GET = await importRoute();
@@ -83,7 +84,7 @@ describe('GET /api/admin/reservations/export.csv', () => {
   });
 
   it('applies filters (status)', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([
       buildReservation({ id: 'a', status: 'pending' }),
       buildReservation({ id: 'b', status: 'paid' }),
@@ -99,7 +100,7 @@ describe('GET /api/admin/reservations/export.csv', () => {
   });
 
   it('filename has date stamp YYYY-MM-DD', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     const GET = await importRoute();
     const res = await GET(new Request('http://x/api/admin/reservations/export.csv') as any);
     const disposition = res.headers.get('Content-Disposition') || '';

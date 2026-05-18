@@ -16,7 +16,15 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
+process.env.MAGIC_LINK_SECRET =
+  process.env.MAGIC_LINK_SECRET || 'test-magic-link-secret-admin-pricing';
+
+import { signAdminCookie } from '@/lib/admin-cookie';
+
 const mockCookiesGet = vi.fn();
+function validAdminCookie() {
+  return { value: signAdminCookie().value };
+}
 
 vi.mock('next/headers', () => ({
   cookies: vi.fn(async () => ({ get: mockCookiesGet })),
@@ -65,7 +73,7 @@ describe('GET /api/admin/pricing', () => {
 
   describe('succes', () => {
     it('returns 200 with success=true when authenticated', async () => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
 
       const { GET } = await importRoute();
       const res = await GET();
@@ -76,7 +84,7 @@ describe('GET /api/admin/pricing', () => {
     });
 
     it('includes formats object in response', async () => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
 
       const { GET } = await importRoute();
       const res = await GET();
@@ -87,7 +95,7 @@ describe('GET /api/admin/pricing', () => {
     });
 
     it('includes standardFormats array in response', async () => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
 
       const { GET } = await importRoute();
       const res = await GET();
@@ -98,7 +106,7 @@ describe('GET /api/admin/pricing', () => {
     });
 
     it('formats contains known print sizes (24x36, 40x60, 80x120)', async () => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
 
       const { GET } = await importRoute();
       const res = await GET();
@@ -110,7 +118,7 @@ describe('GET /api/admin/pricing', () => {
     });
 
     it('each format exposes label, dimensions, price, exemplaires', async () => {
-      mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+      mockCookiesGet.mockReturnValue(validAdminCookie());
 
       const { GET } = await importRoute();
       const res = await GET();

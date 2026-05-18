@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { validAdminCookie } from '@/lib/__tests__/helpers/admin-test-cookie';
 
 const mockCookiesGet = vi.fn();
 const mockReadReservations = vi.fn();
@@ -78,7 +79,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('404 when not found', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -88,7 +89,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('409 when status not partial_paid', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPartialPaid({ status: 'paid' })]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -98,7 +99,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('422 when balanceDueAt missing', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     const r = buildPartialPaid();
     delete r.balanceDueAt;
     mockReadReservations.mockResolvedValue([r]);
@@ -110,7 +111,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('422 when depositAmount missing', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     const r = buildPartialPaid();
     delete r.depositAmount;
     mockReadReservations.mockResolvedValue([r]);
@@ -122,7 +123,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('signs token, sends email, stamps balanceLinkLastRegeneratedAt', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPartialPaid()]);
     const POST = await importRoute();
     const res = await POST(new Request('http://x') as any, {
@@ -145,7 +146,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('returns success with emailSent=false when Resend fails (degraded mode)', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPartialPaid()]);
     mockSendEmail.mockResolvedValue({ success: false, error: 'API key missing' });
     const POST = await importRoute();
@@ -162,7 +163,7 @@ describe('POST /api/admin/reservations/[id]/regenerate-balance-link', () => {
   });
 
   it('422 when toile not found', async () => {
-    mockCookiesGet.mockReturnValue({ value: 'authenticated' });
+    mockCookiesGet.mockReturnValue(validAdminCookie());
     mockReadReservations.mockResolvedValue([buildPartialPaid({ canvasId: 999 })]);
     mockReadToiles.mockResolvedValue([{ id: 1, name: 'T1', price: 5000 }]);
     const POST = await importRoute();

@@ -171,6 +171,7 @@ export default function ToileLightbox({
                       className="max-h-[28vh] sm:max-h-[85vh] w-auto object-contain"
                       quality={95}
                       sizes="33vw"
+                      style={{ filter: 'saturate(1.22) contrast(1.10) brightness(1.07)' }}
                     />
                   ))}
                 </div>
@@ -182,8 +183,9 @@ export default function ToileLightbox({
                   height={toile.imageHeight || 900}
                   sizes="(max-width: 640px) 92vw, 80vw"
                   className="max-h-[65vh] sm:max-h-[88vh] max-w-[92vw] w-auto h-auto object-contain"
-                  quality={90}
+                  quality={95}
                   priority
+                  style={{ filter: 'saturate(1.22) contrast(1.10) brightness(1.07)' }}
                 />
               )}
             </motion.div>

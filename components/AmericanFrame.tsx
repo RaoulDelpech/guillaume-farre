@@ -283,7 +283,7 @@ export default function AmericanFrame({
                     sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
                     quality={92}
                     className="w-full h-auto"
-                    style={{ display: 'block', filter: 'saturate(1.20) contrast(1.08) brightness(1.05)' }}
+                    style={{ display: 'block', filter: 'saturate(1.22) contrast(1.10) brightness(1.07)' }}
                     {...(blurDataURL ? { placeholder: 'blur' as const, blurDataURL } : {})}
                     priority={priority}
                   />

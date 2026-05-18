@@ -30,10 +30,42 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "vip" });
+  const title = t("seoTitle");
+  const description = t("seoDescription");
+  const canonical = `https://guillaumefarre.com/${locale}/vip`;
   return {
-    title: t("title"),
-    description: t("subtitle"),
-    robots: { index: false, follow: false },
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        fr: "https://guillaumefarre.com/fr/vip",
+        en: "https://guillaumefarre.com/en/vip",
+        it: "https://guillaumefarre.com/it/vip",
+      },
+    },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title,
+      description,
+      siteName: "Guillaume Farré",
+      locale,
+      images: [
+        {
+          url: "https://guillaumefarre.com/images/og/vip.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Guillaume Farré — Invitation privée",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://guillaumefarre.com/images/og/vip.jpg"],
+    },
   };
 }
 

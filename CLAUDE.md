@@ -31,8 +31,8 @@ Pourquoi: [argument factuel étayé]
 ### 1. Système d'authentification simplifié
 - Plus de HTTP Basic Auth nginx
 - Page de login custom `/fr/login` avec juste mot de passe
-- **Mot de passe** : `LHOOQladino246`
-- Cookie `gf_auth` valide 30 jours
+- **SITE_PASSWORD** (login lecteur du site phase 2) : `LHOOQladino246` — pose le cookie `gf_auth` (30 jours)
+- **ADMIN_PASSWORD** (login admin /fr/admin) : valeur dans `.env.local` du VPS (récupérable via SSH ubuntu@57.131.23.96), NE PAS confondre avec SITE_PASSWORD. Pose le cookie `gf_admin` (HMAC-signé depuis fix sécurité 18/05/2026, TTL 8h)
 
 ### 2. Page /dino-histoire
 - Histoire complète de la Ferrari Dino

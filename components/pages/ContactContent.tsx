@@ -94,10 +94,12 @@ export default function ContactContent() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Nom */}
                 <div>
-                  <label className="block text-sm font-light tracking-wide mb-2">
+                  <label htmlFor="contact-name" className="block text-sm font-light tracking-wide mb-2">
                     Nom
                   </label>
                   <input
+                    id="contact-name"
+                    name="name"
                     type="text"
                     required
                     value={formData.name}
@@ -109,10 +111,12 @@ export default function ContactContent() {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-sm font-light tracking-wide mb-2">
+                  <label htmlFor="contact-email" className="block text-sm font-light tracking-wide mb-2">
                     Email
                   </label>
                   <input
+                    id="contact-email"
+                    name="email"
                     type="email"
                     required
                     value={formData.email}
@@ -124,10 +128,12 @@ export default function ContactContent() {
 
                 {/* Sujet - Dropdown */}
                 <div>
-                  <label className="block text-sm font-light tracking-wide mb-2">
+                  <label htmlFor="contact-subject" className="block text-sm font-light tracking-wide mb-2">
                     Sujet
                   </label>
                   <select
+                    id="contact-subject"
+                    name="subject"
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -143,10 +149,12 @@ export default function ContactContent() {
 
                 {/* Message */}
                 <div>
-                  <label className="block text-sm font-light tracking-wide mb-2">
+                  <label htmlFor="contact-message" className="block text-sm font-light tracking-wide mb-2">
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
+                    name="message"
                     required
                     rows={5}
                     value={formData.message}

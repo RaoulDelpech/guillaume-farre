@@ -169,7 +169,7 @@ export default function ToileLightbox({
                       width={toile.panelDimensions?.[i]?.imageWidth || 800}
                       height={toile.panelDimensions?.[i]?.imageHeight || 1200}
                       className="max-h-[28vh] sm:max-h-[85vh] w-auto object-contain"
-                      quality={90}
+                      quality={95}
                       sizes="33vw"
                     />
                   ))}

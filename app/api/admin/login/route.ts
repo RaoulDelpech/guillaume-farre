@@ -2,21 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 import { requireEnv } from "@/lib/require-env";
 import { isRateLimited, getClientIP } from "@/lib/rate-limit";
+import { ADMIN_COOKIE_NAME, signAdminCookie } from "@/lib/admin-cookie";
 
 const ADMIN_PASSWORD = requireEnv("ADMIN_PASSWORD");
-
-const ADMIN_COOKIE_NAME = "gf_admin";
-const ADMIN_COOKIE_VALUE = "authenticated";
-const ADMIN_COOKIE_MAX_AGE = 60 * 60 * 8; // 8 heures
 
 /**
  * Login admin
  *
- * Valide ADMIN_PASSWORD en temps constant, pose un cookie HttpOnly
- * `gf_admin` distinct du cookie de site public `gf_auth`.
+ * Valide ADMIN_PASSWORD en temps constant, pose un cookie HttpOnly signe
+ * HMAC-SHA256 (`gf_admin`) distinct du cookie de site public `gf_auth`.
  *
- * IMPORTANT : ce cookie est le SEUL moyen de passer `requireAdminAuth()`.
- * Le cookie `gf_auth` (site public) ne donne AUCUN acces admin.
+ * IMPORTANT : depuis fix securite mai 2026, le cookie n'est plus la string
+ * litterale `'authenticated'` (forgeable par tout client). C'est un payload
+ * signe MAGIC_LINK_SECRET / 8h. Toute valeur non signee est rejetee par
+ * requireAdminAuth().
  *
  * @author Lalou
  */
@@ -47,16 +46,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const signed = signAdminCookie();
+
     const response = NextResponse.json({ success: true });
-    response.cookies.set(ADMIN_COOKIE_NAME, ADMIN_COOKIE_VALUE, {
+    response.cookies.set(ADMIN_COOKIE_NAME, signed.value, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: ADMIN_COOKIE_MAX_AGE,
+      sameSite: "strict",
+      maxAge: signed.maxAgeSeconds,
       path: "/",
     });
     return response;
-  } catch {
+  } catch (err) {
+    // Silent catch interdit : on log cote serveur pour debug operationnel,
+    // reponse cliente generique pour ne pas leaker la cause (MAGIC_LINK_SECRET
+    // manquant -> 500 ici plutot que crash silencieux).
+    console.error("[admin/login] internal error", err);
     return NextResponse.json(
       { success: false, error: "Erreur serveur" },
       { status: 500 }

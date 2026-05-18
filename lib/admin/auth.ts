@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { ADMIN_COOKIE_NAME, verifyAdminCookie } from '@/lib/admin-cookie';
 
 /**
  * Cookie d'authentification admin.
@@ -8,20 +9,17 @@ import { NextResponse } from 'next/server';
  * Le cookie `gf_auth` ne donne AUCUN acces aux routes admin.
  * Seul `gf_admin` (pose par /api/admin/login apres validation ADMIN_PASSWORD)
  * permet d'acceder aux routes `/api/admin/*`.
- */
-const ADMIN_COOKIE_NAME = 'gf_admin';
-const ADMIN_COOKIE_VALUE = 'authenticated';
-
-/**
- * Vérifie si l'utilisateur est authentifié comme admin.
  *
- * @returns true si le cookie `gf_admin` est présent et valide
+ * Depuis fix securite mai 2026 : le cookie est signe HMAC-SHA256 avec
+ * MAGIC_LINK_SECRET (cf. lib/admin-cookie.ts). L'ancienne valeur statique
+ * `'authenticated'` est INVALIDE — toute session admin doit etre re-emise
+ * via /api/admin/login.
  */
 export async function isAdminAuthenticated(): Promise<boolean> {
   try {
     const cookieStore = await cookies();
     const authCookie = cookieStore.get(ADMIN_COOKIE_NAME);
-    return authCookie?.value === ADMIN_COOKIE_VALUE;
+    return verifyAdminCookie(authCookie?.value) !== null;
   } catch {
     return false;
   }

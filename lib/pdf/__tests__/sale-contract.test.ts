@@ -70,7 +70,7 @@ describe('getPaymentMethodLabel', () => {
 
   it('retourne le libelle acompte+solde pour paymentMode "deposit_balance"', () => {
     expect(getPaymentMethodLabel('deposit_balance')).toBe(
-      'Acompte 30% + solde a la livraison',
+      'Acompte 30% + solde sous 14 jours',
     );
   });
 

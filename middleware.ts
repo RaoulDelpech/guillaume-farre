@@ -3,6 +3,7 @@ import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 import { verifyVipCookie, VIP_COOKIE_NAME } from './lib/vip-cookie';
 import { isCodeRevoked } from './lib/vip-revocation';
+import { ADMIN_COOKIE_NAME, verifyAdminCookie } from './lib/admin-cookie';
 
 const AUTH_COOKIE = 'gf_auth';
 const VALID_LOCALES = ['fr', 'en', 'it'];
@@ -119,6 +120,24 @@ export default async function middleware(request: NextRequest) {
     // APIs publiques whitelistees
     if (pathname.startsWith('/api/')) {
       if (PUBLIC_API_ROUTES.some(route => pathname.startsWith(route))) {
+        return NextResponse.next();
+      }
+
+      // Routes admin : auth via cookie HMAC `gf_admin` (pose par /api/admin/login).
+      // En pre-launch, Guillaume peut se logger admin SANS avoir le cookie
+      // gf_auth (qui sert au site public phase 2). Avant ce fix, le middleware
+      // exigeait gf_auth pour TOUTES les routes API non-whitelistees, ce qui
+      // bloquait Guillaume sur /api/admin/* meme apres login admin valide.
+      // Bug visible : panel "Detecter photos similaires" -> 401 systematique.
+      if (pathname.startsWith('/api/admin/')) {
+        const adminCookie = request.cookies.get(ADMIN_COOKIE_NAME);
+        if (verifyAdminCookie(adminCookie?.value) !== null) {
+          return NextResponse.next();
+        }
+        // Pas de cookie admin valide : laisser passer pour que la route elle-meme
+        // applique requireAdminAuth() et retourne 401 avec son propre message.
+        // (les routes whitelistees comme /api/admin/login doivent atteindre
+        // leur handler pour pouvoir poser le cookie HMAC apres validation.)
         return NextResponse.next();
       }
 

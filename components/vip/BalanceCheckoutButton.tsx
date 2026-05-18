@@ -39,6 +39,7 @@ export default function BalanceCheckoutButton({
   balanceToken,
 }: BalanceCheckoutButtonProps) {
   const t = useTranslations('vipBalance');
+  const tErrors = useTranslations('vipBalance.errors');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<CheckoutError | null>(null);
 
@@ -94,7 +95,7 @@ export default function BalanceCheckoutButton({
       </button>
       {error ? (
         <div role="alert" className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2">
-          {t(`errors.${error}`)}
+          {tErrors(error)}
         </div>
       ) : null}
     </div>

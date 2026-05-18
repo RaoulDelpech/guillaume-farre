@@ -1,13 +1,22 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { QRCodeCanvas } from "qrcode.react";
 import { addRipple } from "@/components/ui/RippleButton";
 
 /**
  * Interface admin pour envoyer des invitations VIP par WhatsApp
  * Mobile-first — Guillaume envoie depuis son telephone
+ *
+ * Architecture popup blocker safe :
+ *   - Un code VIP est pre-genere au montage (et regenere apres chaque envoi).
+ *   - Le bouton "Envoyer via WhatsApp" est une balise <a target="_blank">
+ *     dont le href est recalcule selon le numero saisi.
+ *   - Le click utilisateur est une user gesture native qui ouvre l'onglet
+ *     WhatsApp sans passer par window.open() programmatique apres await
+ *     (Safari/Chrome tuent l'onglet about:blank apres le 1er await).
  *
  * @author Lalou
  */
@@ -21,6 +30,21 @@ interface VipCode {
   accessLevel?: 'hidden' | 'secret';
 }
 
+// Normaliser le numero : +33 si commence par 0, sinon garder tel quel
+function normalizePhone(raw: string): string {
+  const digits = raw.replace(/[\s\-\.\(\)]/g, '');
+  if (digits.startsWith('0') && digits.length === 10) {
+    return '33' + digits.slice(1);
+  }
+  if (digits.startsWith('+')) return digits.slice(1);
+  return digits;
+}
+
+function buildWaUrl(phone: string, vipUrl: string): string {
+  const message = `Invitation privée — Guillaume Farré\n\nDécouvrez mes toiles originales et photographies en accès exclusif (24h) :\n${vipUrl}`;
+  return `https://wa.me/${normalizePhone(phone)}?text=${encodeURIComponent(message)}`;
+}
+
 export default function AdminVipPage() {
   const t = useTranslations("adminVip");
   const [codes, setCodes] = useState<VipCode[]>([]);
@@ -28,15 +52,27 @@ export default function AdminVipPage() {
   const [generating, setGenerating] = useState(false);
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [lastVipUrl, setLastVipUrl] = useState<string | null>(null);
+  // Code VIP pre-genere pour le prochain envoi (refresh apres chaque "envoyer")
+  const [pendingUrl, setPendingUrl] = useState<string | null>(null);
+  // QR code separe : genere a la demande via "Generer QR code", pas synchronise
+  // au pre-generated du bouton WhatsApp pour eviter d'afficher l'URL de l'envoi en cours.
+  const [qrUrl, setQrUrl] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const qrRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    loadCodes();
+  const refreshPendingCode = useCallback(async () => {
+    try {
+      const res = await fetch("/api/vip/generate", { method: "POST" });
+      if (res.ok) {
+        const data = await res.json();
+        setPendingUrl(data.url);
+      }
+    } catch {
+      // Silent — la balise <a> sera disabled si pendingUrl null
+    }
   }, []);
 
-  async function loadCodes() {
+  const loadCodes = useCallback(async () => {
     try {
       const res = await fetch("/api/vip/list");
       if (res.ok) {
@@ -48,60 +84,43 @@ export default function AdminVipPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
-  // Normaliser le numero : +33 si commence par 0, sinon garder tel quel
-  function normalizePhone(raw: string): string {
-    const digits = raw.replace(/[\s\-\.\(\)]/g, '');
-    if (digits.startsWith('0') && digits.length === 10) {
-      return '33' + digits.slice(1);
-    }
-    if (digits.startsWith('+')) return digits.slice(1);
-    return digits;
-  }
+  useEffect(() => {
+    loadCodes();
+    refreshPendingCode();
+  }, [loadCodes, refreshPendingCode]);
 
-  async function handleSend() {
-    if (!phone.trim()) {
-      inputRef.current?.focus();
-      return;
-    }
+  // URL WhatsApp recalculee a la volee selon phone + code pre-genere.
+  // Pas de debounce : la generation a deja eu lieu, on construit juste un
+  // querystring. Le click utilisateur sur la balise <a> reste une user gesture.
+  const waUrl = useMemo(() => {
+    if (!pendingUrl || !phone.trim()) return null;
+    return buildWaUrl(phone, pendingUrl);
+  }, [pendingUrl, phone]);
 
-    setGenerating(true);
-    setSent(false);
-
-    // Ouvrir la fenetre AVANT le fetch (sinon popup bloque par Safari/iOS)
-    const waWindow = window.open('about:blank', '_blank');
-
-    try {
-      const res = await fetch("/api/vip/generate", { method: "POST" });
-      if (res.ok) {
-        const data = await res.json();
-        const url = data.url;
-        setLastVipUrl(url);
-
-        const message = `Invitation privée — Guillaume Farré\n\nDécouvrez mes toiles originales et photographies en accès exclusif (24h) :\n${url}`;
-        const waUrl = `https://wa.me/${normalizePhone(phone)}?text=${encodeURIComponent(message)}`;
-
-        if (waWindow) {
-          waWindow.location.href = waUrl;
-        } else {
-          // Fallback si popup bloque malgre tout
-          window.location.href = waUrl;
-        }
-
-        setSent(true);
-        setPhone("");
-        loadCodes();
-        setTimeout(() => setSent(false), 3000);
-      } else {
-        waWindow?.close();
+  const handleSendClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!waUrl) {
+        e.preventDefault();
+        inputRef.current?.focus();
+        return;
       }
-    } catch {
-      waWindow?.close();
-    } finally {
-      setGenerating(false);
-    }
-  }
+      addRipple(e);
+      // Marquer comme envoye, vider le champ, regenerer un nouveau code
+      // pour le destinataire suivant. Tout cela se fait APRES que le browser
+      // ait deja accepte le href (user gesture preservee).
+      setSent(true);
+      setPhone("");
+      // Defer pour ne pas bloquer le rendu du nouvel onglet
+      setTimeout(() => {
+        loadCodes();
+        refreshPendingCode();
+      }, 100);
+      setTimeout(() => setSent(false), 3000);
+    },
+    [waUrl, loadCodes, refreshPendingCode],
+  );
 
   async function handleQrOnly() {
     setGenerating(true);
@@ -109,7 +128,7 @@ export default function AdminVipPage() {
       const res = await fetch("/api/vip/generate", { method: "POST" });
       if (res.ok) {
         const data = await res.json();
-        setLastVipUrl(data.url);
+        setQrUrl(data.url);
         loadCodes();
       }
     } catch {
@@ -153,6 +172,8 @@ export default function AdminVipPage() {
     return `${hours}h${minutes.toString().padStart(2, "0")} ${t("remaining")}`;
   }
 
+  const sendDisabled = !waUrl;
+
   return (
     <div className="min-h-screen bg-black text-white p-6">
       {/* Header */}
@@ -163,12 +184,12 @@ export default function AdminVipPage() {
         <h1 className="text-2xl font-light tracking-wide">
           Invitation privée
         </h1>
-        <a
+        <Link
           href="/fr/admin/vip/reservations"
           className="inline-block mt-4 text-xs px-4 py-2 border border-[#C4A570]/40 text-[#C4A570] hover:bg-[#C4A570]/10 transition-colors tracking-[0.15em] uppercase"
         >
           Voir les réservations
-        </a>
+        </Link>
       </div>
 
       {/* Champ numero + bouton envoyer */}
@@ -182,27 +203,28 @@ export default function AdminVipPage() {
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="06 12 34 56 78"
             className="flex-1 bg-transparent border border-white/20 text-white text-center text-lg tracking-[0.15em] font-light py-4 px-4 placeholder:text-white/15 focus:border-white/50 focus:outline-none transition-colors"
             autoComplete="tel"
             inputMode="tel"
           />
         </div>
-        <button
-          onClick={(e) => {
-            addRipple(e);
-            handleSend();
-          }}
-          disabled={generating || !phone.trim()}
-          className={`relative overflow-hidden w-full mt-4 py-5 text-sm tracking-[0.3em] uppercase font-light border transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
-            sent
+        <a
+          href={waUrl || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleSendClick}
+          aria-disabled={sendDisabled}
+          className={`relative overflow-hidden block text-center w-full mt-4 py-5 text-sm tracking-[0.3em] uppercase font-light border transition-all ${
+            sendDisabled
+              ? 'opacity-30 cursor-not-allowed border-white/30 text-white'
+              : sent
               ? 'border-emerald-500/60 text-emerald-400 bg-emerald-500/10'
               : 'border-white/30 text-white hover:border-white/60 hover:bg-white/5'
           }`}
         >
-          {generating ? "Génération..." : sent ? "Envoyé via WhatsApp" : "Envoyer via WhatsApp"}
-        </button>
+          {sent ? "Envoyé via WhatsApp" : "Envoyer via WhatsApp"}
+        </a>
         <p className="text-white/20 text-[10px] text-center mt-3 font-light">
           Génère un lien exclusif 24h et ouvre WhatsApp
         </p>
@@ -223,12 +245,12 @@ export default function AdminVipPage() {
         </p>
 
         {/* QR code genere */}
-        {lastVipUrl && (
+        {qrUrl && (
           <div className="mt-8 flex flex-col items-center gap-5 py-6 border border-white/10 bg-white/[0.02]">
             <div className="p-4 bg-black">
               <QRCodeCanvas
                 ref={qrRef}
-                value={lastVipUrl}
+                value={qrUrl}
                 size={256}
                 bgColor="#000000"
                 fgColor="#FFFFFF"
@@ -236,7 +258,7 @@ export default function AdminVipPage() {
               />
             </div>
             <p className="text-white/30 text-[10px] tracking-[0.15em] font-light max-w-[280px] text-center break-all">
-              {lastVipUrl}
+              {qrUrl}
             </p>
             <button
               onClick={downloadQr}

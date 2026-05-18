@@ -49,6 +49,7 @@ export default function ReservationForm({
   onSuccess,
 }: ReservationFormProps) {
   const t = useTranslations('reservation');
+  const tErrors = useTranslations('reservation.errors');
   const ts = useTranslations('signature');
   const fid = useId();
   const closeRef = useRef<HTMLButtonElement | null>(null);
@@ -85,7 +86,7 @@ export default function ReservationForm({
       return;
     }
     if (outcome.kind === 'error') {
-      setGlobalError(t(`errors.${outcome.errorKey}`));
+      setGlobalError(tErrors(outcome.errorKey));
     }
   }
 

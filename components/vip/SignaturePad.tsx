@@ -28,9 +28,15 @@ export interface SignaturePadProps {
 
 export default function SignaturePad({ reservationId, onSignSuccess }: SignaturePadProps) {
   const t = useTranslations('signature');
+  // Sous-scope dedie pour les erreurs : evite le pattern `t(`errors.${key}`)`
+  // qui faisait throw IntlError quand la cle interpole contenait un . ou
+  // qu'elle n'existait pas dans le namespace courant (next-intl v4).
+  const tErrors = useTranslations('signature.errors');
   const sigCanvasRef = useRef<SignatureCanvas | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const [canvasWidth, setCanvasWidth] = useState(600);
+  // Initial conservative : 0 evite tout debordement avant la premiere mesure.
+  // Le canvas n'est rendu visuellement qu'apres mesure (canvasWidth > 0).
+  const [canvasWidth, setCanvasWidth] = useState(0);
   const [fullName, setFullName] = useState('');
   const [accepted, setAccepted] = useState(false);
   const [hasStroke, setHasStroke] = useState(false);
@@ -40,12 +46,19 @@ export default function SignaturePad({ reservationId, onSignSuccess }: Signature
     const node = wrapperRef.current;
     if (!node) return;
     const measure = (): void => {
-      const next = Math.min(600, node.clientWidth - 2);
-      if (next > 200) setCanvasWidth(next);
+      // -2 pour la bordure (1px de chaque cote). Min 240 pour rester
+      // signable meme sur tres petits viewports (<400px le canvas occupe
+      // toute la largeur dispo, plus de debordement de 57px observe a 375px).
+      const next = Math.min(600, Math.max(240, node.clientWidth - 2));
+      setCanvasWidth(next);
     };
     measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    // ResizeObserver donne une remesure synchrone quand le parent change
+    // de taille (orientation change, viewport zoom, dock open/close mobile).
+    // Plus fiable que window.resize qui ne capture pas tous les cas.
+    const ro = new ResizeObserver(measure);
+    ro.observe(node);
+    return () => ro.disconnect();
   }, []);
 
   const handleClear = useCallback(() => {
@@ -75,18 +88,26 @@ export default function SignaturePad({ reservationId, onSignSuccess }: Signature
         <label className="block text-xs uppercase tracking-wider text-neutral-600 mb-2">
           {t('canvas_label')}
         </label>
-        <div ref={wrapperRef} className="border border-neutral-400 bg-white">
-          <SignatureCanvas
-            ref={sigCanvasRef}
-            penColor="#1a1a1a"
-            canvasProps={{
-              width: canvasWidth,
-              height: 250,
-              className: 'w-full block touch-none',
-              'aria-label': t('canvas_label'),
-            }}
-            onEnd={handleStrokeEnd}
-          />
+        <div
+          ref={wrapperRef}
+          className="border border-neutral-400 bg-white overflow-hidden max-w-full"
+        >
+          {canvasWidth > 0 ? (
+            <SignatureCanvas
+              ref={sigCanvasRef}
+              penColor="#1a1a1a"
+              canvasProps={{
+                width: canvasWidth,
+                height: 250,
+                className: 'block touch-none max-w-full',
+                style: { width: `${canvasWidth}px`, height: '250px' },
+                'aria-label': t('canvas_label'),
+              }}
+              onEnd={handleStrokeEnd}
+            />
+          ) : (
+            <div style={{ height: 250 }} aria-hidden="true" />
+          )}
         </div>
         <div className="flex justify-between mt-2 text-xs">
           <button
@@ -139,7 +160,7 @@ export default function SignaturePad({ reservationId, onSignSuccess }: Signature
           role="alert"
           className="text-sm font-light text-red-700 bg-red-50 border border-red-200 px-3 py-2"
         >
-          {t(`errors.${error}`)}
+          {tErrors(error)}
         </div>
       ) : null}
 

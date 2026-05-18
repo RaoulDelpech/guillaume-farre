@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { QRCodeCanvas } from "qrcode.react";
 import { addRipple } from "@/components/ui/RippleButton";
 
@@ -183,12 +184,12 @@ export default function AdminVipPage() {
         <h1 className="text-2xl font-light tracking-wide">
           Invitation privée
         </h1>
-        <a
+        <Link
           href="/fr/admin/vip/reservations"
           className="inline-block mt-4 text-xs px-4 py-2 border border-[#C4A570]/40 text-[#C4A570] hover:bg-[#C4A570]/10 transition-colors tracking-[0.15em] uppercase"
         >
           Voir les réservations
-        </a>
+        </Link>
       </div>
 
       {/* Champ numero + bouton envoyer */}

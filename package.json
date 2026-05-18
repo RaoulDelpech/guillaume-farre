@@ -7,7 +7,7 @@
     "dev": "next dev -H 0.0.0.0 --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx tsc --noEmit && next lint",
+    "lint": "bunx tsc --noEmit && bunx eslint . --max-warnings=9999",
     "format": "bunx biome format --write",
     "migrate-metadata": "bun scripts/migrate-metadata.ts",
     "backup:data": "bun run scripts/backup-data.ts",

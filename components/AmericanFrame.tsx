@@ -203,6 +203,9 @@ export default function AmericanFrame({
   const theme = themes[frameColor]
   const frameFaceBg = buildFrameFace(theme)
   const ib = theme.innerBevel
+  // Reserve aspect ratio at first paint to avoid CLS on mobile (image hasn't loaded yet).
+  // Slightly taller than the image to account for frame padding (FRAME_FACE+bevel+lip+gap = ~19px per side).
+  const aspectRatio = `${imageWidth} / ${imageHeight}`
 
   return (
     <div
@@ -259,11 +262,13 @@ export default function AmericanFrame({
                   ].join(', '),
                 }}
               >
-                {/* Canvas — artwork, recessed with cast shadow + subtle edge highlight */}
+                {/* Canvas — artwork, recessed with cast shadow + subtle edge highlight.
+                    aspect-ratio reserves intrinsic space pre-load to prevent CLS on mobile. */}
                 <div
                   style={{
                     position: 'relative',
                     overflow: 'hidden',
+                    aspectRatio,
                     backgroundColor: theme.fond,
                     lineHeight: 0,
                     fontSize: 0,

@@ -15,10 +15,12 @@ export function formatPrice(price: number): string {
   }).format(price);
 }
 
-/** Compute CSS max-width so painting height stays under targetVH. */
+/** Compute CSS max-width so painting height stays under targetVH.
+ *  Uses `svh` (small viewport height) instead of `vh` to avoid CLS on mobile
+ *  caused by browser URL bar appearing/disappearing during scroll. */
 export function paintingMaxWidth(w: number, h: number, targetVH: number): string {
   const ar = w / h;
-  return `min(100%, calc((${targetVH}vh - ${FRAME_TOTAL_PX}px) * ${ar} + ${FRAME_TOTAL_PX}px))`;
+  return `min(100%, calc((${targetVH}svh - ${FRAME_TOTAL_PX}px) * ${ar} + ${FRAME_TOTAL_PX}px))`;
 }
 
 /** Fond ivoire texturé lin — identique au body global */

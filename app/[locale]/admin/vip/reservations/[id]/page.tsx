@@ -3,134 +3,30 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ExternalLink, FileText, RotateCw, Ban, RefreshCw } from "lucide-react";
+import { DetailAcheteurSection } from "@/components/admin/reservations/detail/DetailAcheteurSection";
+import {
+  DetailActionPanel,
+  ReservationAction,
+} from "@/components/admin/reservations/detail/DetailActionPanel";
+import { DetailOeuvreSection } from "@/components/admin/reservations/detail/DetailOeuvreSection";
+import { DetailPaymentSection } from "@/components/admin/reservations/detail/DetailPaymentSection";
+import { DetailReservationSection } from "@/components/admin/reservations/detail/DetailReservationSection";
+import { DetailSignatureSection } from "@/components/admin/reservations/detail/DetailSignatureSection";
+import {
+  Reservation,
+  STATUS_COLORS,
+  STATUS_LABELS,
+  Toile,
+} from "@/components/admin/reservations/detail/types";
 
 /**
  * Page admin detail reservation VIP (Sprint 7).
  *
- * Recap complet + 4 actions :
- *  - Cancel (sauf statuts terminaux)
- *  - Refund (uniquement statut 'paid')
- *  - Regenerate balance link (uniquement 'partial_paid')
- *  - Telecharger contrat (si PDF dispo)
- *  - Voir dans Stripe (lien dashboard externe)
+ * Compose 6 sous-sections (acheteur, oeuvre, reservation, signature, paiement,
+ * action panel). La logique fetch + doAction reste dans cette page maitre.
  *
  * @author Lalou
  */
-
-interface ReservationAddress {
-  line1: string;
-  line2?: string;
-  city: string;
-  postalCode: string;
-  country: string;
-}
-
-interface Reservation {
-  id: string;
-  canvasId: number | string;
-  canvasTitle: string;
-  firstName: string;
-  lastName: string;
-  name: string;
-  email: string;
-  phone: string;
-  address: ReservationAddress;
-  buyerType: "particulier" | "professionnel";
-  siret?: string;
-  companyName?: string;
-  message?: string;
-  createdAt: string;
-  expiresAt: string;
-  status: string;
-  signedAt?: string;
-  signatureIp?: string;
-  signatureUserAgent?: string;
-  signatureFullName?: string;
-  contractHash?: string;
-  contractPath?: string;
-  paymentMode?: "integral" | "deposit_balance" | "invoice_email";
-  depositAmount?: number;
-  depositPaidAt?: string;
-  balanceDueAt?: string;
-  stripeDepositSessionId?: string;
-  stripeBalanceSessionId?: string;
-  stripeBalancePaymentIntentId?: string;
-  stripeInvoiceId?: string;
-  stripeInvoiceUrl?: string;
-  stripeCustomerId?: string;
-  paidAt?: string;
-  orderNumber?: string;
-  refundedAt?: string;
-  cancelledAt?: string;
-  balanceLinkLastRegeneratedAt?: string;
-}
-
-interface Toile {
-  id: number | string;
-  name: string;
-  price: number;
-  dimensions?: string;
-  technique?: string;
-  year?: number;
-  status?: string;
-}
-
-const STATUS_LABELS: Record<string, string> = {
-  pending: "En attente",
-  signed: "Signée",
-  partial_paid: "Acompte versé",
-  paid: "Payée",
-  expired: "Expirée",
-  cancelled: "Annulée",
-  refunded: "Remboursée",
-  confirmed: "Confirmée",
-  declined: "Refusée",
-  invoiced: "Facturée",
-};
-
-const STATUS_COLORS: Record<string, string> = {
-  pending: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
-  signed: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  partial_paid: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  paid: "bg-green-500/20 text-green-300 border-green-500/30",
-  expired: "bg-zinc-500/20 text-zinc-300 border-zinc-500/30",
-  cancelled: "bg-red-500/20 text-red-300 border-red-500/30",
-  refunded: "bg-orange-500/20 text-orange-300 border-orange-500/30",
-};
-
-const MODE_LABELS: Record<string, string> = {
-  integral: "Paiement intégral",
-  deposit_balance: "Acompte 30% + solde 70%",
-  invoice_email: "Facture par email",
-};
-
-const TERMINAL_STATUSES = new Set(["cancelled", "refunded", "expired", "paid", "declined"]);
-
-function formatDate(iso?: string): string {
-  if (!iso) return "—";
-  try {
-    return new Date(iso).toLocaleString("fr-FR", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  } catch {
-    return iso;
-  }
-}
-
-function formatEur(amount: number | undefined): string {
-  if (typeof amount !== "number") return "—";
-  return new Intl.NumberFormat("fr-FR", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(amount);
-}
-
 export default function AdminReservationDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -173,10 +69,7 @@ export default function AdminReservationDetailPage() {
     }
   }
 
-  async function doAction(
-    action: "cancel" | "refund" | "regenerate-balance-link",
-    confirmText: string,
-  ) {
+  async function doAction(action: ReservationAction, confirmText: string) {
     if (!confirm(confirmText)) return;
     setActing(action);
     setActionMsg(null);
@@ -206,12 +99,6 @@ export default function AdminReservationDetailPage() {
     }
   }
 
-  const stripeBase = "https://dashboard.stripe.com";
-  const stripePaymentUrl = reservation?.stripeBalancePaymentIntentId
-    ? `${stripeBase}/payments/${reservation.stripeBalancePaymentIntentId}`
-    : null;
-  const stripeInvoiceUrl = reservation?.stripeInvoiceUrl || null;
-
   if (loading) {
     return (
       <div className="min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center">
@@ -237,10 +124,6 @@ export default function AdminReservationDetailPage() {
       </div>
     );
   }
-
-  const canCancel = !TERMINAL_STATUSES.has(reservation.status);
-  const canRefund = reservation.status === "paid";
-  const canRegenerate = reservation.status === "partial_paid";
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white">
@@ -276,220 +159,18 @@ export default function AdminReservationDetailPage() {
           </div>
         )}
 
-        {/* Actions */}
-        <div className="mt-8 bg-zinc-900/30 border border-zinc-800 rounded p-5">
-          <p className="text-xs text-zinc-500 uppercase tracking-wider mb-3">Actions admin</p>
-          <div className="flex flex-wrap gap-3">
-            {canRegenerate && (
-              <button
-                onClick={() =>
-                  doAction(
-                    "regenerate-balance-link",
-                    "Régénérer le lien de paiement du solde et envoyer un email à l'acheteur ?",
-                  )
-                }
-                disabled={acting !== null}
-                className="text-sm px-4 py-2 bg-[#C4A570] text-[#0A0A0A] rounded hover:bg-[#d4b580] disabled:opacity-50 flex items-center gap-2 font-medium"
-              >
-                <RotateCw className="h-3 w-3" />
-                {acting === "regenerate-balance-link"
-                  ? "Génération…"
-                  : "Régénérer lien balance"}
-              </button>
-            )}
-            {canCancel && (
-              <button
-                onClick={() =>
-                  doAction(
-                    "cancel",
-                    "Marquer cette réservation comme annulée et libérer la toile ?",
-                  )
-                }
-                disabled={acting !== null}
-                className="text-sm px-4 py-2 bg-zinc-800 text-zinc-200 rounded hover:bg-zinc-700 disabled:opacity-50 flex items-center gap-2"
-              >
-                <Ban className="h-3 w-3" />
-                {acting === "cancel" ? "Annulation…" : "Annuler"}
-              </button>
-            )}
-            {canRefund && (
-              <button
-                onClick={() =>
-                  doAction(
-                    "refund",
-                    "Marquer comme remboursée ? Le remboursement Stripe doit être effectué manuellement depuis le Dashboard.",
-                  )
-                }
-                disabled={acting !== null}
-                className="text-sm px-4 py-2 bg-orange-500/20 text-orange-300 border border-orange-500/30 rounded hover:bg-orange-500/30 disabled:opacity-50 flex items-center gap-2"
-              >
-                <RefreshCw className="h-3 w-3" />
-                {acting === "refund" ? "…" : "Marquer remboursée"}
-              </button>
-            )}
-            {reservation.contractPath && (
-              <a
-                href={`/api/reservations/${reservation.id}/contract`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm px-4 py-2 bg-zinc-800 text-zinc-200 rounded hover:bg-zinc-700 flex items-center gap-2"
-              >
-                <FileText className="h-3 w-3" />
-                Contrat PDF
-              </a>
-            )}
-            {stripePaymentUrl && (
-              <a
-                href={stripePaymentUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm px-4 py-2 bg-zinc-800 text-zinc-200 rounded hover:bg-zinc-700 flex items-center gap-2"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Voir paiement Stripe
-              </a>
-            )}
-            {stripeInvoiceUrl && (
-              <a
-                href={stripeInvoiceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm px-4 py-2 bg-zinc-800 text-zinc-200 rounded hover:bg-zinc-700 flex items-center gap-2"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Facture Stripe
-              </a>
-            )}
-            {!canCancel && !canRefund && !canRegenerate && (
-              <p className="text-xs text-zinc-500">
-                Aucune action disponible (statut terminal).
-              </p>
-            )}
-          </div>
-        </div>
+        <DetailActionPanel
+          reservation={reservation}
+          acting={acting}
+          onAction={doAction}
+        />
 
-        {/* Sections */}
-        <Section title="Acheteur">
-          <KV k="Nom" v={reservation.name || `${reservation.firstName} ${reservation.lastName}`} />
-          <KV k="Email" v={reservation.email} />
-          <KV k="Téléphone" v={reservation.phone} />
-          <KV k="Type" v={reservation.buyerType} />
-          {reservation.buyerType === "professionnel" && (
-            <>
-              <KV k="Société" v={reservation.companyName || "—"} />
-              <KV k="SIRET" v={reservation.siret || "—"} />
-            </>
-          )}
-          <KV
-            k="Adresse"
-            v={[
-              reservation.address?.line1,
-              reservation.address?.line2,
-              `${reservation.address?.postalCode} ${reservation.address?.city}`,
-              reservation.address?.country,
-            ]
-              .filter(Boolean)
-              .join(", ")}
-          />
-          {reservation.message && <KV k="Message" v={reservation.message} />}
-        </Section>
-
-        <Section title="Œuvre">
-          <KV k="Titre" v={reservation.canvasTitle} />
-          <KV k="Canvas ID" v={String(reservation.canvasId)} />
-          {toile && (
-            <>
-              <KV k="Dimensions" v={toile.dimensions || "—"} />
-              <KV k="Technique" v={toile.technique || "—"} />
-              <KV k="Année" v={String(toile.year || "—")} />
-              <KV k="Prix" v={formatEur(toile.price)} />
-              <KV k="Statut toile" v={toile.status || "available"} />
-            </>
-          )}
-        </Section>
-
-        <Section title="Réservation">
-          <KV k="Créée le" v={formatDate(reservation.createdAt)} />
-          <KV k="Expire le" v={formatDate(reservation.expiresAt)} />
-          {reservation.cancelledAt && <KV k="Annulée le" v={formatDate(reservation.cancelledAt)} />}
-          {reservation.refundedAt && <KV k="Remboursée le" v={formatDate(reservation.refundedAt)} />}
-        </Section>
-
-        {reservation.signedAt && (
-          <Section title="Signature contrat">
-            <KV k="Signée le" v={formatDate(reservation.signedAt)} />
-            <KV k="Nom" v={reservation.signatureFullName || "—"} />
-            <KV k="IP" v={reservation.signatureIp || "—"} />
-            <KV k="User-Agent" v={reservation.signatureUserAgent || "—"} mono />
-            <KV k="Hash contrat" v={reservation.contractHash || "—"} mono />
-          </Section>
-        )}
-
-        {reservation.paymentMode && (
-          <Section title="Paiement">
-            <KV k="Mode" v={MODE_LABELS[reservation.paymentMode] || reservation.paymentMode} />
-            {typeof reservation.depositAmount === "number" && (
-              <KV k="Acompte versé" v={formatEur(reservation.depositAmount)} />
-            )}
-            {reservation.depositPaidAt && (
-              <KV k="Acompte payé le" v={formatDate(reservation.depositPaidAt)} />
-            )}
-            {reservation.balanceDueAt && (
-              <KV k="Échéance solde" v={formatDate(reservation.balanceDueAt)} />
-            )}
-            {reservation.paidAt && <KV k="Payée le" v={formatDate(reservation.paidAt)} />}
-            {reservation.orderNumber && <KV k="N° commande" v={reservation.orderNumber} />}
-            {reservation.balanceLinkLastRegeneratedAt && (
-              <KV
-                k="Lien balance régénéré le"
-                v={formatDate(reservation.balanceLinkLastRegeneratedAt)}
-              />
-            )}
-          </Section>
-        )}
-
-        {(reservation.stripeCustomerId ||
-          reservation.stripeDepositSessionId ||
-          reservation.stripeBalanceSessionId ||
-          reservation.stripeBalancePaymentIntentId ||
-          reservation.stripeInvoiceId) && (
-          <Section title="Références Stripe">
-            {reservation.stripeCustomerId && (
-              <KV k="Customer ID" v={reservation.stripeCustomerId} mono />
-            )}
-            {reservation.stripeDepositSessionId && (
-              <KV k="Deposit session" v={reservation.stripeDepositSessionId} mono />
-            )}
-            {reservation.stripeBalanceSessionId && (
-              <KV k="Balance session" v={reservation.stripeBalanceSessionId} mono />
-            )}
-            {reservation.stripeBalancePaymentIntentId && (
-              <KV k="Balance payment intent" v={reservation.stripeBalancePaymentIntentId} mono />
-            )}
-            {reservation.stripeInvoiceId && (
-              <KV k="Invoice ID" v={reservation.stripeInvoiceId} mono />
-            )}
-          </Section>
-        )}
+        <DetailAcheteurSection reservation={reservation} />
+        <DetailOeuvreSection reservation={reservation} toile={toile} />
+        <DetailReservationSection reservation={reservation} />
+        <DetailSignatureSection reservation={reservation} />
+        <DetailPaymentSection reservation={reservation} />
       </div>
-    </div>
-  );
-}
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="mt-6 bg-zinc-900/30 border border-zinc-800 rounded p-5">
-      <h2 className="text-xs text-zinc-500 uppercase tracking-wider mb-3">{title}</h2>
-      <div className="space-y-1">{children}</div>
-    </section>
-  );
-}
-
-function KV({ k, v, mono }: { k: string; v: string; mono?: boolean }) {
-  return (
-    <div className="flex flex-wrap gap-2 py-1 text-sm">
-      <span className="text-zinc-500 min-w-[160px]">{k}</span>
-      <span className={`text-zinc-200 ${mono ? "font-mono text-xs break-all" : ""}`}>{v}</span>
     </div>
   );
 }

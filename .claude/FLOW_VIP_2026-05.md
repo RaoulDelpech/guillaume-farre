@@ -288,4 +288,22 @@ le drapeau `revoked`.
 
 ---
 
+## 11. Baseline tests automatises
+
+Etat post-Sprint 8 + security-fix + cleanup imperfections :
+
+- **31 fichiers de tests** (`bunx vitest run`)
+- **342 tests passants**
+- Couverture : flow VIP end-to-end (codes magic link, reservation, signature,
+  Stripe webhook acompte/integral, admin cookie HMAC, IDOR contract/sign,
+  helpers reservations, regenerate balance link, refund, cancel).
+
+Le brief initial Sprint 8 mentionnait 319 tests. La cible a evolue suite au
+fix securite (commits `3acc776` cookie admin HMAC, `9eb0b62` IDOR closure,
+`dcb9a3f` coverage securite) qui a ajoute 23 tests supplementaires.
+
+Toute regression sous 342 doit etre traitee avant merge.
+
+---
+
 Signature : Lalou

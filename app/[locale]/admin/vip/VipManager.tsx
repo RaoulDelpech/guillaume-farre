@@ -52,11 +52,15 @@ export default function VipManager() {
 
       {/* Champ numero + bouton envoyer */}
       <div className="max-w-md mx-auto mb-12">
-        <label className="block text-white/40 text-xs tracking-[0.2em] uppercase font-light mb-4 text-center">
+        <label
+          htmlFor="vip-phone"
+          className="block text-white/40 text-xs tracking-[0.2em] uppercase font-light mb-4 text-center"
+        >
           Numéro du destinataire
         </label>
         <div className="flex gap-3">
           <input
+            id="vip-phone"
             ref={inputRef}
             type="tel"
             value={phone}

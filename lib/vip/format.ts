@@ -19,7 +19,7 @@ export interface VipCode {
 export type VipCodeStatus = "active" | "used" | "expired";
 
 /**
- * Normalise un numero de telephone pour wa.me :
+ * Normalise un numero de telephone au format international sans "+" :
  * - 0X XX XX XX XX (10 chiffres) -> 33XXXXXXXXX
  * - +33... -> 33... (retire le +)
  * - sinon : retourne les chiffres tels quels
@@ -33,10 +33,17 @@ export function normalizePhone(raw: string): string {
   return digits;
 }
 
-/** Construit l'URL wa.me avec le message d'invitation pre-rempli. */
+/**
+ * Construit l'URL WhatsApp avec le message d'invitation pre-rempli.
+ *
+ * Utilise le protocole natif `whatsapp://send` (et non `https://wa.me/...`)
+ * afin d'ouvrir l'application WhatsApp installee — WhatsApp Desktop sur
+ * ordinateur, l'app WhatsApp sur mobile — plutot que WhatsApp Web dans le
+ * navigateur. Si l'application n'est pas installee, le clic reste sans effet.
+ */
 export function buildWaUrl(phone: string, vipUrl: string): string {
   const message = `Invitation privée — Guillaume Farré\n\nDécouvrez mes toiles originales et photographies en accès exclusif (24h) :\n${vipUrl}`;
-  return `https://wa.me/${normalizePhone(phone)}?text=${encodeURIComponent(message)}`;
+  return `whatsapp://send?phone=${normalizePhone(phone)}&text=${encodeURIComponent(message)}`;
 }
 
 /** Statut d'un code : utilise, expire (date depassee) ou actif. */

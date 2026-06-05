@@ -71,10 +71,10 @@ export default function VipManager() {
             inputMode="tel"
           />
         </div>
+        {/* href whatsapp:// — delegue a l'app WhatsApp native, pas d'onglet
+            navigateur (donc pas de target=_blank qui laisserait un onglet vide). */}
         <a
           href={waUrl || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={handleSendClick}
           aria-disabled={sendDisabled}
           className={`relative overflow-hidden block text-center w-full mt-4 py-5 text-sm tracking-[0.3em] uppercase font-light border transition-all ${

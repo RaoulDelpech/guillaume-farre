@@ -27,6 +27,8 @@ export interface Toile {
   status?: ToileStatus;
   reservationId?: string | null;
   reservedUntil?: string | null;
+  /** Toile de très grand format : affichage agrandi + mention dédiée */
+  largeFormat?: boolean;
 }
 
 export interface ReservationForm {

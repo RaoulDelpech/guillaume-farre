@@ -250,7 +250,8 @@
       "phoneLabel": "Phone:",
       "messageLabel": "Message:",
       "aboutWork": "Regarding the work:"
-    }
+    },
+    "largeFormat": "Large format"
   },
   "reservation": {
     "button": "Reserve this canvas",

@@ -250,7 +250,8 @@
       "phoneLabel": "Téléphone :",
       "messageLabel": "Message :",
       "aboutWork": "Concerne l'œuvre :"
-    }
+    },
+    "largeFormat": "Grand format"
   },
   "reservation": {
     "button": "Réserver cette toile",

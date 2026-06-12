@@ -131,6 +131,9 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
           {toiles.map((toile, index) => {
             const isTriptych = toile.triptych && toile.images;
             const formOpen = openFormId === toile.id;
+            // Grand format (ex. Atlantide 200x400 cm) : occupe toute la largeur
+            // disponible pour rendre la monumentalite de la toile evidente.
+            const isLarge = !!toile.largeFormat;
 
             return (
               <div
@@ -140,7 +143,9 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                 {/* Toile avec cadre americain */}
                 <button
                   onClick={() => setLightboxIdx(index)}
-                  className="block mx-auto cursor-pointer transition-transform hover:scale-[1.005] duration-300 ease-out"
+                  className={`block mx-auto cursor-pointer transition-transform hover:scale-[1.005] duration-300 ease-out ${
+                    isLarge ? 'w-full' : ''
+                  }`}
                   aria-label={`Agrandir ${toile.name}`}
                 >
                   {isTriptych ? (
@@ -173,11 +178,13 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                     <div
                       className="mx-auto"
                       style={{
-                        maxWidth: paintingMaxWidth(
-                          toile.imageWidth || 1200,
-                          toile.imageHeight || 900,
-                          BROWSE_VH
-                        ),
+                        maxWidth: isLarge
+                          ? '100%'
+                          : paintingMaxWidth(
+                              toile.imageWidth || 1200,
+                              toile.imageHeight || 900,
+                              BROWSE_VH
+                            ),
                       }}
                     >
                       <AmericanFrame
@@ -188,6 +195,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         frameColor="black"
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
+                        sizes={isLarge ? '(max-width: 1024px) 100vw, 1024px' : undefined}
                         priority={index < 2}
                       />
                     </div>
@@ -197,6 +205,11 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                 {/* Infos — nom a gauche, CTA a droite */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-8 max-w-4xl mx-auto gap-4">
                   <div>
+                    {toile.largeFormat && (
+                      <p className="text-[#8c6e32] text-[11px] font-normal tracking-[0.28em] uppercase mb-2">
+                        {t('largeFormat')} · {toile.dimensions.replace('x', ' × ')}
+                      </p>
+                    )}
                     <h3 className="text-xl font-extralight tracking-wide text-[#1a1a1a]">
                       {toile.name}
                     </h3>

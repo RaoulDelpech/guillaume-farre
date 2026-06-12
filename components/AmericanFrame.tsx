@@ -13,6 +13,8 @@ interface AmericanFrameProps {
   className?: string
   blurDataURL?: string
   priority?: boolean
+  /** Responsive `sizes` hint for next/image. Defaults to the standard gallery layout. */
+  sizes?: string
   /** Skip the mat gap (passe-partout). True for canvases that sit flush against the frame. */
   noMat?: boolean
 }
@@ -198,6 +200,7 @@ export default function AmericanFrame({
   className = '',
   blurDataURL,
   priority = false,
+  sizes = '(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw',
   noMat = false,
 }: AmericanFrameProps) {
   const theme = themes[frameColor]
@@ -285,7 +288,7 @@ export default function AmericanFrame({
                     alt={alt}
                     width={imageWidth}
                     height={imageHeight}
-                    sizes="(max-width: 640px) 95vw, (max-width: 1024px) 50vw, 40vw"
+                    sizes={sizes}
                     quality={92}
                     className="w-full h-auto"
                     style={{ display: 'block', filter: 'saturate(1.22) contrast(1.10) brightness(1.07)' }}

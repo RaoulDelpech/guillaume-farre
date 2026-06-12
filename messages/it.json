@@ -250,7 +250,8 @@
       "phoneLabel": "Telefono:",
       "messageLabel": "Messaggio:",
       "aboutWork": "Riguardo l'opera:"
-    }
+    },
+    "largeFormat": "Grande formato"
   },
   "reservation": {
     "button": "Prenotare questa tela",

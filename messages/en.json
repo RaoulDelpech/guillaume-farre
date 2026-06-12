@@ -528,5 +528,17 @@
     "cta_pay_balance": "Pay the balance now",
     "download_contract": "Download the signed contract",
     "continue_vip": "Continue the VIP visit"
+  },
+  "artEditions": {
+    "title": "Art Editions",
+    "subtitle": "Limited edition prints, signed and numbered — 8 prints + 2 artist's proofs.",
+    "supportPaper": "Fine Art paper print",
+    "supportLed": "LED light box",
+    "editionLabel": "Edition of {size} + {ea} AP",
+    "soldOut": "Sold out",
+    "acquire": "Acquire",
+    "loading": "Redirecting…",
+    "available": "{count} available",
+    "paymentError": "Payment error"
   }
 }

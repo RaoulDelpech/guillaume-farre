@@ -528,5 +528,17 @@
     "cta_pay_balance": "Régler le solde maintenant",
     "download_contract": "Télécharger le contrat signé",
     "continue_vip": "Continuer la visite VIP"
+  },
+  "artEditions": {
+    "title": "Éditions d'art",
+    "subtitle": "Tirages en édition limitée, signés et numérotés — 8 exemplaires + 2 épreuves d'artiste.",
+    "supportPaper": "Tirage papier Fine Art",
+    "supportLed": "Caisson lumineux LED",
+    "editionLabel": "Édition de {size} + {ea} E.A",
+    "soldOut": "Série complète",
+    "acquire": "Acquérir",
+    "loading": "Redirection…",
+    "available": "{count} disponibles",
+    "paymentError": "Erreur de paiement"
   }
 }

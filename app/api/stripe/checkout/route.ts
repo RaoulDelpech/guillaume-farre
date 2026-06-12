@@ -4,6 +4,8 @@ import { isRateLimited, getClientIP } from '@/lib/rate-limit';
 import { CANONICAL_PRICES } from '@/lib/pricing-calculator';
 import { calculateShippingFee, getShippingLabel, taxBreakdown, TVA_RATE } from '@/lib/shipping-config';
 import { reserveNextEdition, getAvailable } from '@/lib/editions';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 // Stripe initialisé seulement si clé disponible
 const stripe = process.env.STRIPE_SECRET_KEY
@@ -56,6 +58,15 @@ export async function POST(request: Request) {
     const { loadPhotoMetadata } = await import('@/lib/admin/photo-manager');
     const allPhotos = await loadPhotoMetadata();
 
+    // Editions d'art (prix et stock fixes, lus depuis le fichier a chaque requete)
+    let artEditionsData: Array<{ id: string; name: string; image: string; support: string; price: number; edition: { total: number; sold: number } }> = [];
+    try {
+      const aeRaw = await fs.readFile(path.join(process.cwd(), 'data', 'art-editions.json'), 'utf-8');
+      artEditionsData = JSON.parse(aeRaw);
+    } catch {
+      artEditionsData = [];
+    }
+
     for (const item of items) {
       const photo = allPhotos.find(p => p.path === item.photoPath || p.filename === item.filename);
       if (!photo) continue;
@@ -82,6 +93,39 @@ export async function POST(request: Request) {
       // Validation prix
       if (!item.price || item.price <= 0) {
         throw new Error(`Prix invalide pour "${item.title || `Item ${index + 1}`}": ${item.price}€`);
+      }
+
+      // === Editions d'art : support et prix FIXES, edition limitee 8 + 2 E.A ===
+      // Branche separee : validation contre art-editions.json, ne touche pas les tirages.
+      if (item.format === 'art-edition') {
+        const ae = artEditionsData.find((e) => e.id === item.artEditionId);
+        if (!ae) {
+          throw new Error(`Edition d'art non reconnue: ${item.artEditionId}`);
+        }
+        if (Math.abs(item.price - ae.price) > 0.01) {
+          console.error(`[Stripe] Prix art-edition manipule: ${item.price} vs ${ae.price} (${ae.id})`);
+          throw new Error(`Prix incorrect pour l'edition ${ae.name}`);
+        }
+        if (ae.edition.total - (ae.edition.sold || 0) <= 0) {
+          throw new Error(`Edition complete : ${ae.name}`);
+        }
+        const aeBase = process.env.NEXT_PUBLIC_SITE_URL || 'https://guillaumefarre.com';
+        const aeImages = (item.images || [])
+          .map((img: string) => (img.startsWith('http') ? img : `${aeBase}${img.startsWith('/') ? '' : '/'}${img}`))
+          .filter((img: string) => !img.includes('localhost') && !img.startsWith('http://'));
+        return {
+          title: item.title || ae.name,
+          price: ae.price,
+          category: item.category || 'Edition art',
+          images: aeImages,
+          format: 'art-edition',
+          artEditionId: ae.id,
+          material: item.material || ae.support,
+          orientation: item.orientation || 'vertical',
+          frame: 'none',
+          photoPath: item.photoPath || ae.image,
+          photoId: null,
+        };
       }
 
       // Validation prix serveur : recalculer à partir du format
@@ -221,6 +265,7 @@ export async function POST(request: Request) {
       },
       metadata: {
         items_formats: validatedItems.map((item: any) => item.format).join(','),
+        items_art_edition_ids: validatedItems.map((item: any) => item.artEditionId || '').join(','),
         items_materials: validatedItems.map((item: any) => item.material).join(','),
         items_orientations: validatedItems.map((item: any) => item.orientation).join(','),
         items_frames: validatedItems.map((item: any) => item.frame).join(','),

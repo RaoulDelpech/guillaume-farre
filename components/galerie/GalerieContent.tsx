@@ -16,6 +16,7 @@ import { STANDARD_FORMATS, PURCHASABLE_FORMATS, FORMATS, formatPrice, getLocaliz
 import { trackViewItem, trackAddToCart, trackBeginCheckout, trackLightboxOpen, trackLightboxClose, trackClickArtwork } from '@/lib/analytics';
 import photos from '@/data/photos.json';
 import blurPlaceholders from '@/data/blur-placeholders.json';
+import ArtEditionsSection from './ArtEditionsSection';
 
 const BLUR: Record<string, string> = blurPlaceholders;
 
@@ -361,6 +362,9 @@ export function GalerieContent() {
 
   return (
     <>
+      {/* Section Editions d'art (en tete de galerie) */}
+      <ArtEditionsSection />
+
       {/* Header */}
       <div className="mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-16 md:py-24 max-w-[1400px]">
         <div className="text-center mb-10 sm:mb-16">

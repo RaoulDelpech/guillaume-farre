@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
+import { updateArtEditionStock } from '@/lib/art-editions-stock';
 import { sendOrderConfirmationEmail, sendPaymentPendingEmail } from '@/lib/resend-client';
 import { createOrder, updateOrder } from '@/lib/orders';
 import { sendToGelato } from './gelato-handler';
@@ -54,6 +55,15 @@ export async function processOrder(stripe: Stripe, session: Stripe.Checkout.Sess
       const photoFilename = extractPhotoFilename(item);
       if (photoFilename && isLimitedEdition(item)) {
         await updatePhotoStock(photoFilename, format, item.quantity || 1);
+      }
+    }
+
+    // Mettre à jour le stock des éditions d'art (via metadata items_art_edition_ids)
+    const artEditionIds = fullSession.metadata?.items_art_edition_ids?.split(',') || [];
+    for (let i = 0; i < artEditionIds.length; i++) {
+      const aeId = artEditionIds[i];
+      if (aeId) {
+        await updateArtEditionStock(aeId, lineItems[i]?.quantity || 1);
       }
     }
 

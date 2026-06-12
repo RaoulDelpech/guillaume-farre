@@ -1,0 +1,79 @@
+[
+  {
+    "id": "arktika",
+    "name": "Arktika",
+    "image": "/images/works/photos/11.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333,
+    "support": "papier",
+    "dimensions": "100 × 70 cm",
+    "price": 2700,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  },
+  {
+    "id": "poseidon",
+    "name": "Poseidon",
+    "image": "/images/works/photos/poseidon.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1334,
+    "support": "papier",
+    "dimensions": "100 × 70 cm",
+    "price": 2700,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  },
+  {
+    "id": "the-brush",
+    "name": "The Brush",
+    "image": "/images/works/photos/14.jpg",
+    "imageWidth": 1334,
+    "imageHeight": 2000,
+    "support": "papier",
+    "dimensions": "100 × 70 cm",
+    "price": 2700,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  },
+  {
+    "id": "at-work",
+    "name": "At Work",
+    "image": "/images/works/photos/1.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333,
+    "support": "papier",
+    "dimensions": "100 × 70 cm",
+    "price": 2700,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  },
+  {
+    "id": "inferno",
+    "name": "Inferno",
+    "image": "/images/works/photos/inferno.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000,
+    "support": "caisson lumineux LED",
+    "dimensions": "60 × 80 cm",
+    "price": 3500,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  },
+  {
+    "id": "the-one",
+    "name": "The One",
+    "image": "/images/works/photos/3.jpg",
+    "imageWidth": 1333,
+    "imageHeight": 2000,
+    "support": "caisson lumineux LED",
+    "dimensions": "85 × 110 cm",
+    "price": 4000,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  },
+  {
+    "id": "magma",
+    "name": "Magma",
+    "image": "/images/works/photos/7.jpg",
+    "imageWidth": 2000,
+    "imageHeight": 1333,
+    "support": "caisson lumineux LED",
+    "dimensions": "85 × 110 cm",
+    "price": 4000,
+    "edition": { "size": 8, "ea": 2, "total": 10, "sold": 0 }
+  }
+]

@@ -528,5 +528,17 @@
     "cta_pay_balance": "Paga il saldo ora",
     "download_contract": "Scarica il contratto firmato",
     "continue_vip": "Continua la visita VIP"
+  },
+  "artEditions": {
+    "title": "Edizioni d'arte",
+    "subtitle": "Stampe in edizione limitata, firmate e numerate — 8 esemplari + 2 prove d'artista.",
+    "supportPaper": "Stampa Fine Art su carta",
+    "supportLed": "Cassonetto luminoso LED",
+    "editionLabel": "Edizione di {size} + {ea} P.A",
+    "soldOut": "Esaurito",
+    "acquire": "Acquista",
+    "loading": "Reindirizzamento…",
+    "available": "{count} disponibili",
+    "paymentError": "Errore di pagamento"
   }
 }

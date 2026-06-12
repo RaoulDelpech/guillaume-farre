@@ -18,7 +18,7 @@ import ToileLightbox from './ToileLightbox';
 import ContactArtistForm from './ContactArtistForm';
 import CanvasReserveCTA from './CanvasReserveCTA';
 import ReservationForm from '@/components/vip/ReservationForm';
-import { LINEN_BG, paintingMaxWidth, BROWSE_VH } from './toiles-utils';
+import { LINEN_BG, paintingMaxWidth, BROWSE_VH, LARGE_BROWSE_VH } from './toiles-utils';
 import blurPlaceholders from '@/data/blur-placeholders.json';
 import type { Toile } from './types';
 
@@ -143,9 +143,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                 {/* Toile avec cadre americain */}
                 <button
                   onClick={() => setLightboxIdx(index)}
-                  className={`block mx-auto cursor-pointer transition-transform hover:scale-[1.005] duration-300 ease-out ${
-                    isLarge ? 'w-full' : ''
-                  }`}
+                  className="block mx-auto cursor-pointer transition-transform hover:scale-[1.005] duration-300 ease-out"
                   aria-label={`Agrandir ${toile.name}`}
                 >
                   {isTriptych ? (
@@ -178,13 +176,11 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                     <div
                       className="mx-auto"
                       style={{
-                        maxWidth: isLarge
-                          ? '100%'
-                          : paintingMaxWidth(
-                              toile.imageWidth || 1200,
-                              toile.imageHeight || 900,
-                              BROWSE_VH
-                            ),
+                        maxWidth: paintingMaxWidth(
+                          toile.imageWidth || 1200,
+                          toile.imageHeight || 900,
+                          isLarge ? LARGE_BROWSE_VH : BROWSE_VH
+                        ),
                       }}
                     >
                       <AmericanFrame
@@ -195,7 +191,7 @@ export default function ToilesContent({ toiles, showPrices = false }: ToilesCont
                         frameColor="black"
                         blurDataURL={BLUR[toile.image || '']}
                         className="w-full"
-                        sizes={isLarge ? '(max-width: 1024px) 100vw, 1024px' : undefined}
+                        sizes={isLarge ? '(max-width: 768px) 90vw, 540px' : undefined}
                         priority={index < 2}
                       />
                     </div>

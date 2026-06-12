@@ -4,6 +4,9 @@ export const FRAME_TOTAL_PX = (18 + 1 + 2 + 4) * 2; // 50px
 
 // Browsing: paintings occupy ~75% of viewport height (frame included)
 export const BROWSE_VH = 75;
+// Grand format (Atlantide 200x400) : plus imposant, mais reste contraint par la
+// hauteur pour rester PORTRAIT et tenir dans l'ecran (pas de debordement vertical).
+export const LARGE_BROWSE_VH = 92;
 // Lightbox: near-full viewport
 export const LIGHTBOX_VH = 88;
 

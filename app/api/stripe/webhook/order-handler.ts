@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 import { updatePhotoStock } from '@/lib/admin/stock-manager';
 import { updateArtEditionStock } from '@/lib/art-editions-stock';
 import { sendOrderConfirmationEmail, sendPaymentPendingEmail } from '@/lib/resend-client';
-import { createOrder, updateOrder } from '@/lib/orders';
+import { createOrder, updateOrder, getOrderByStripeSession } from '@/lib/orders';
 import { sendToGelato } from './gelato-handler';
 import { syncToPennylane } from './pennylane-handler';
 import { extractFormatFromDescription, extractFrameFromDescription, extractPhotoFilename, isLimitedEdition } from './webhook-utils';
@@ -17,6 +17,10 @@ export async function processOrder(stripe: Stripe, session: Stripe.Checkout.Sess
     const customerDetails = fullSession.customer_details;
     // @ts-ignore - Shipping details structure changed in Stripe API 2025
     const shippingDetails = fullSession.shipping_details || fullSession.shipping_cost?.address;
+
+    // Idempotence : Stripe livre les webhooks "at least once". Si une commande existe
+    // déjà pour cette session, ce webhook est un retry → on ne re-décrémente pas le stock.
+    const alreadyProcessed = (await getOrderByStripeSession(fullSession.id)) !== null;
 
     // Créer commande dans notre système
     const order = await createOrder({
@@ -47,23 +51,29 @@ export async function processOrder(stripe: Stripe, session: Stripe.Checkout.Sess
       console.error('Gelato order failed, but payment succeeded:', error);
     }
 
-    // Mettre à jour le stock
-    const itemsFormats = fullSession.metadata?.items_formats?.split(',') || [];
-    for (let i = 0; i < lineItems.length; i++) {
-      const item = lineItems[i];
-      const format = itemsFormats[i] || extractFormatFromDescription(item.description || '');
-      const photoFilename = extractPhotoFilename(item);
-      if (photoFilename && isLimitedEdition(item)) {
-        await updatePhotoStock(photoFilename, format, item.quantity || 1);
+    // Mettre à jour le stock — UNIQUEMENT à la première réception du webhook
+    // (idempotence : un retry Stripe ne doit pas re-décrémenter le stock).
+    if (!alreadyProcessed) {
+      const itemsFormats = fullSession.metadata?.items_formats?.split(',') || [];
+      for (let i = 0; i < lineItems.length; i++) {
+        const item = lineItems[i];
+        const format = itemsFormats[i] || extractFormatFromDescription(item.description || '');
+        const photoFilename = extractPhotoFilename(item);
+        if (photoFilename && isLimitedEdition(item)) {
+          await updatePhotoStock(photoFilename, format, item.quantity || 1);
+        }
       }
-    }
 
-    // Mettre à jour le stock des éditions d'art (via metadata items_art_edition_ids)
-    const artEditionIds = fullSession.metadata?.items_art_edition_ids?.split(',') || [];
-    for (let i = 0; i < artEditionIds.length; i++) {
-      const aeId = artEditionIds[i];
-      if (aeId) {
-        await updateArtEditionStock(aeId, lineItems[i]?.quantity || 1);
+      // Stock des éditions d'art (metadata items_art_edition_ids, posée côté serveur)
+      const artEditionIds = fullSession.metadata?.items_art_edition_ids?.split(',') || [];
+      for (let i = 0; i < artEditionIds.length; i++) {
+        const aeId = artEditionIds[i];
+        if (aeId) {
+          const ok = await updateArtEditionStock(aeId, lineItems[i]?.quantity || 1);
+          if (!ok) {
+            console.error(`[webhook] Stock edition d'art NON decremente: ${aeId} (commande ${order.orderNumber}) — verification manuelle requise.`);
+          }
+        }
       }
     }
 

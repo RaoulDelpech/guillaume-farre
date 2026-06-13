@@ -51,6 +51,7 @@ export default async function PolitiqueConfidentialitePage() {
               <li>Gérer votre compte client</li>
               <li>Vous envoyer des informations sur vos commandes</li>
               <li>Améliorer nos services et notre site web</li>
+              <li>Mesurer l&apos;audience et analyser la navigation (statistiques de fréquentation, cartes de chaleur des clics), sous réserve de votre consentement</li>
               <li>Respecter nos obligations légales</li>
             </ul>
           </section>
@@ -75,12 +76,14 @@ export default async function PolitiqueConfidentialitePage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Stripe :</strong> pour le traitement sécurisé des paiements</li>
               <li><strong>Transporteurs :</strong> pour la livraison de vos commandes</li>
+              <li><strong>Google (Google Analytics) :</strong> mesure d&apos;audience, uniquement si vous avez accepté les cookies de mesure d&apos;audience</li>
+              <li><strong>Microsoft (Clarity) :</strong> analyse de la navigation et cartes de chaleur des clics, uniquement si vous avez accepté les cookies de mesure d&apos;audience</li>
             </ul>
             <p>
               Nous ne vendons jamais vos données à des tiers.
             </p>
             <p>
-              <strong>Transferts hors UE :</strong> Stripe Inc. est basé aux États-Unis. Les transferts de données sont encadrés par les clauses contractuelles types de la Commission européenne (article 46 du RGPD).
+              <strong>Transferts hors UE :</strong> Stripe Inc., Google LLC et Microsoft Corporation sont basés aux États-Unis. Les transferts de données sont encadrés par les clauses contractuelles types de la Commission européenne (article 46 du RGPD).
             </p>
           </section>
 
@@ -141,7 +144,11 @@ export default async function PolitiqueConfidentialitePage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Cookies nécessaires :</strong> Cookie d&apos;authentification administration (<code>gf_auth</code>, durée 30 jours)</li>
               <li><strong>Cookies de paiement :</strong> Cookies Stripe déposés lors du checkout pour sécuriser le processus de paiement</li>
+              <li><strong>Cookies de mesure d&apos;audience (soumis à votre consentement) :</strong> Google Analytics (<code>_ga</code>, <code>_ga_*</code>) pour les statistiques de fréquentation et Microsoft Clarity (<code>_clck</code>, <code>_clsk</code>) pour l&apos;analyse de la navigation et les cartes de chaleur des clics. Ces cookies ne sont déposés qu&apos;après votre acceptation et ne sont jamais chargés si vous refusez.</li>
             </ul>
+            <p>
+              Vous pouvez à tout moment retirer votre consentement aux cookies de mesure d&apos;audience.
+            </p>
           </section>
 
           <section>

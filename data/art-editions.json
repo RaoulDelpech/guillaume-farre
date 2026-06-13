@@ -2,7 +2,7 @@
   {
     "id": "arktika",
     "name": "Arktika",
-    "image": "/images/works/photos/11.jpg",
+    "image": "/images/works/photos/arktika.jpg",
     "imageWidth": 2000,
     "imageHeight": 1333,
     "support": "papier",
@@ -24,7 +24,7 @@
   {
     "id": "the-brush",
     "name": "The Brush",
-    "image": "/images/works/photos/14.jpg",
+    "image": "/images/works/photos/the-brush.jpg",
     "imageWidth": 1334,
     "imageHeight": 2000,
     "support": "papier",
@@ -57,7 +57,7 @@
   {
     "id": "the-one",
     "name": "The One",
-    "image": "/images/works/photos/3.jpg",
+    "image": "/images/works/photos/the-one.jpg",
     "imageWidth": 1333,
     "imageHeight": 2000,
     "support": "caisson lumineux LED",
@@ -68,7 +68,7 @@
   {
     "id": "magma",
     "name": "Magma",
-    "image": "/images/works/photos/7.jpg",
+    "image": "/images/works/photos/magma.jpg",
     "imageWidth": 2000,
     "imageHeight": 1333,
     "support": "caisson lumineux LED",

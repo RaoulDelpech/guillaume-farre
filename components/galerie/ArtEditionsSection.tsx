@@ -46,9 +46,15 @@ function EditionCard({
   const t = useTranslations('artEditions');
   const soldOut = available !== null && available <= 0;
   const isLed = edition.support.toLowerCase().includes('led');
+  // Largeur proportionnelle au ratio pour une hauteur uniforme entre paysages et
+  // portraits (--art-h défini sur le conteneur, responsive). Aligne toute la rangée.
+  const ratio = edition.imageWidth / edition.imageHeight;
 
   return (
-    <div className="flex flex-col">
+    <div
+      className="flex flex-col"
+      style={{ width: `calc(${ratio.toFixed(3)} * var(--art-h))`, maxWidth: '100%' }}
+    >
       <PhotoFrame
         src={edition.image}
         alt={edition.name}
@@ -165,7 +171,7 @@ export default function ArtEditionsSection() {
         <div className="w-16 h-px bg-[rgba(140,110,50,0.4)] mx-auto mt-6" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
+      <div className="flex flex-wrap justify-center items-end gap-x-6 gap-y-12 sm:gap-x-10 lg:gap-x-14 [--art-h:240px] sm:[--art-h:300px] lg:[--art-h:360px]">
         {editions.map((edition) => (
           <EditionCard
             key={edition.id}

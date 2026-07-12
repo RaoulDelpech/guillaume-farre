@@ -85,6 +85,10 @@ jobs:
             # au GitHub repo secret par Raoul 16/05 apres incident Sprint 4 partial.
             echo "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}" >> .env.local
             echo "NEXT_PUBLIC_SITE_URL=https://guillaumefarre.com" >> .env.local
+            # Matomo analytics souverain (self-hosted sur ce VPS, /stats/). Valeurs publiques
+            # (visibles dans le tag JS cote client) donc en clair, pas de secret GitHub.
+            echo "NEXT_PUBLIC_MATOMO_URL=https://guillaumefarre.com/stats/" >> .env.local
+            echo "NEXT_PUBLIC_MATOMO_SITE_ID=1" >> .env.local
             echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> .env.local
             echo "ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}" >> .env.local
             echo "SITE_PASSWORD=${{ secrets.SITE_PASSWORD }}" >> .env.local

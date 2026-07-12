@@ -115,6 +115,9 @@ jobs:
             echo "Build verified: BUILD_ID=$(cat .next/BUILD_ID)"
             echo "Restarting PM2..."
             pm2 restart guillaumefarre || pm2 start npm --name guillaumefarre -- start
+            # Persiste la liste PM2 -> le process remonte seul au reboot serveur. Sans ce
+            # save, dump.pm2 est absent et le site tombe en 502 apres un reboot (incident 12/07/2026).
+            pm2 save
             sleep 10
             echo "Checking port 3000..."
             ss -tlnp | grep 3000 || echo "Port 3000 not listening!"
